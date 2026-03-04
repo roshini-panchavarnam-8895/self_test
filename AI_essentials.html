@@ -22,6 +22,7 @@ const { useState } = React;
 const tabs = [
   { id: "concepts", label: "Concepts" },
   { id: "why", label: "Why Agents" },
+  { id: "behind", label: "Agents in Action" },
   { id: "prompts", label: "Prompt Engineering" },
   { id: "compare", label: "Model Comparison" },
   { id: "ides", label: "AI Code Editors" },
@@ -136,9 +137,9 @@ const compareInsights = [
 const concepts = [
   {
     id: "llm", emoji: "🧠", label: "LLM", fullName: "Large Language Model", color: "#FF6B6B",
-    analogy: "Super-Smart Student",
-    description: "A student who has read every book in every library on Earth. Can write, reason, and answer — but stuck at a desk. No internet, no apps, no phone. Pure brainpower, zero action.",
-    realLife: "A brilliant friend who knows everything but has no phone or laptop",
+    analogy: "A world-class chef with no kitchen",
+    description: "Imagine a chef who has memorized every recipe from every cuisine on Earth — French, Japanese, Indian, molecular gastronomy, all of it. Encyclopedic knowledge. But they're standing in an empty room. No stove, no knives, no ingredients, no plates. You shout orders through a window, they shout back exactly how they'd cook it — but they can't actually make anything. That's an LLM. Incredible knowledge, zero ability to act.",
+    realLife: "When you type into ChatGPT or Claude and get a text response — that's the chef describing the dish, not cooking it",
     examples: [
       { name: "Claude (Anthropic)", tag: "Opus · Sonnet · Haiku" },
       { name: "GPT-4o (OpenAI)", tag: "Powers ChatGPT" },
@@ -150,9 +151,9 @@ const concepts = [
   },
   {
     id: "model", emoji: "🤖", label: "AI Model", fullName: "AI Model (umbrella)", color: "#845EF7",
-    analogy: "The Whole School",
-    description: "LLM is just the language whiz. The school also has an art student (image AI), music student (audio AI), math genius (code AI). \"AI Model\" covers ALL of them.",
-    realLife: "LLM = English major · AI Model = any student in the school",
+    analogy: "The entire kitchen staff",
+    description: "The chef (LLM) handles main courses. But a restaurant has more specialists: a pastry chef who decorates cakes (image generation), a sommelier who pairs wines (recommendation models), a butcher who breaks down cuts (data processing), a DJ who sets the ambiance (audio models). \"AI Model\" covers the whole staff. The LLM is one role — the most prominent one — but not the only one.",
+    realLife: "LLM = head chef · AI Model = any specialist in the kitchen",
     examples: [
       { name: "🖼️ Image Gen", tag: "DALL-E · Midjourney · Stable Diffusion · Flux" },
       { name: "🎵 Audio / Music", tag: "Whisper · Suno · ElevenLabs · Udio" },
@@ -164,9 +165,9 @@ const concepts = [
   },
   {
     id: "tools", emoji: "🔧", label: "Tools", fullName: "AI Tools & Functions", color: "#20C997",
-    analogy: "Apps on a Phone",
-    description: "Give the student a smartphone! Calculator for math, Maps for directions, Camera for photos. The student decides WHICH app to open and WHEN. Tools let AI actually DO things in the world.",
-    realLife: "Installing apps that give your phone new superpowers",
+    analogy: "The kitchen equipment",
+    description: "Now give that chef an actual kitchen. Oven, knives, blender, thermometer, grill, deep fryer. Each piece of equipment lets them DO something they couldn't before. The chef decides which tool to grab based on what you ordered — you don't tell them to use the whisk, they just know. When Claude searches the web, that's the chef grabbing the reference cookbook. When it runs code, that's firing up the oven.",
+    realLife: "Each tool = one new capability the AI can use to take real action",
     examples: [
       { name: "🌐 Web Search", tag: "Search the internet for live info" },
       { name: "💻 Code Execution", tag: "Run Python, JS, bash in sandbox" },
@@ -178,9 +179,9 @@ const concepts = [
   },
   {
     id: "mcp", emoji: "🔌", label: "MCP", fullName: "Model Context Protocol", color: "#339AF0",
-    analogy: "USB-C Charger",
-    description: "Every phone had a different charger — chaos. USB-C fixed it: one cable, all devices. MCP is the USB-C of AI — one standard to connect ANY AI to ANY service without custom integration.",
-    realLife: "One cable to charge your phone, tablet, laptop & headphones",
+    analogy: "Universal plug system for all appliances",
+    description: "Old kitchens had appliances that only worked with specific outlets, adapters, and voltages — a total mess when you got a new machine. MCP is like a universal plug standard — ANY new appliance (Gmail, Slack, GitHub, Jira) plugs right into the kitchen instantly. No rewiring, no electrician, no custom adapters. The chef just plugs it in and starts using it. That's why connecting Claude to your Calendar takes seconds, not months of engineering.",
+    realLife: "One standard protocol to connect any AI to any service — plug and play",
     examples: [
       { name: "📧 Gmail MCP", tag: "Read, send, search emails" },
       { name: "📅 Google Calendar MCP", tag: "Create, view, update events" },
@@ -192,9 +193,9 @@ const concepts = [
   },
   {
     id: "skills", emoji: "📋", label: "Skills", fullName: "Skill Guides & Playbooks", color: "#F59F00",
-    analogy: "Recipe Card",
-    description: "You CAN cook without a recipe… but a tested recipe gives a perfect dish every time. Skills are expert playbooks the AI reads before doing a task to ensure quality & consistency.",
-    realLife: "Following a 5-star recipe instead of winging it",
+    analogy: "The recipe book with tested procedures",
+    description: "A great chef CAN improvise. But when you're running a restaurant with 200 covers on a Saturday night, you follow the recipe book — because it's been tested 500 times and guarantees consistency. Skills are those proven recipes for AI: \"When making a presentation, follow this exact structure.\" \"When writing code, use these standards.\" Without skills, the AI improvises and sometimes nails it, sometimes doesn't. With skills, it delivers reliably every time.",
+    realLife: "Without a recipe book: inconsistent output. With one: reliable quality every time",
     examples: [
       { name: "📊 PPTX Skill", tag: "Best practices for slide decks" },
       { name: "📄 DOCX Skill", tag: "Formatting rules for Word docs" },
@@ -206,9 +207,9 @@ const concepts = [
   },
   {
     id: "rag", emoji: "📚", label: "RAG", fullName: "Retrieval Augmented Generation", color: "#38D9A9",
-    analogy: "Open-Book Exam",
-    description: "The student is smart, but they can't memorize YOUR company docs, YOUR notes, YOUR data. RAG = giving them the right reference books during the exam. AI retrieves relevant chunks of YOUR data, then generates answers based on it.",
-    realLife: "Like a student allowed to check their notes during a test — same brain, way better answers",
+    analogy: "Knowing the customer's preferences & allergies",
+    description: "The chef knows world cuisine, but they know nothing about YOU — that you're allergic to shellfish, hate cilantro, love spicy food, and it's your anniversary tonight. RAG is the waiter handing the chef your customer card before they cook. Now every dish is personalized to YOUR preferences and constraints. When you upload your codebase to Cursor or docs to a Claude Project — that's RAG. Same chef, but now cooking specifically for you.",
+    realLife: "General expertise + your specific context = dramatically better, personalized results",
     examples: [
       { name: "📂 Claude Projects", tag: "Upload docs for context-aware chat" },
       { name: "🔍 Cursor Codebase Index", tag: "Your entire repo as AI memory" },
@@ -220,9 +221,9 @@ const concepts = [
   },
   {
     id: "prompt", emoji: "✍️", label: "Prompt", fullName: "Prompt Engineering", color: "#FF922B",
-    analogy: "How You Ask",
-    description: "The same brilliant student gives very different answers depending on HOW you ask. Vague question = vague answer. Specific, well-structured question with context = brilliant answer. Prompt engineering is the art of asking well.",
-    realLife: "\"Make food\" vs \"Make a spicy Thai green curry for 4, mild for kids\" — same chef, wildly different results",
+    analogy: "How you place your order",
+    description: "Walk up and say \"make me food.\" You'll get something... random. Now say \"I'd like a medium-rare ribeye, truffle mashed potatoes on the side, grilled asparagus, no garlic — she's allergic, and we're celebrating, so plate it beautifully.\" Same chef, completely different outcome. The quality of what you get is directly proportional to how clearly you order. That's prompting — the #1 skill that separates people who think AI is \"meh\" from people who get incredible results.",
+    realLife: "\"Make me food\" vs a precise order with preferences — same chef, wildly different results",
     examples: [
       { name: "🎭 Role Prompting", tag: "\"You are a senior React dev...\"" },
       { name: "🔗 Chain-of-Thought", tag: "\"Think step by step...\"" },
@@ -234,9 +235,9 @@ const concepts = [
   },
   {
     id: "agent", emoji: "🦸", label: "Agent", fullName: "AI Agent", color: "#E64980",
-    analogy: "Personal Assistant",
-    description: "The FULL package. Can THINK (LLM), USE APPS (tools), CONNECT to services (MCP), FOLLOW best practices (skills), LOOK UP your data (RAG). You say \"plan my trip\" and it does everything autonomously.",
-    realLife: "A PA who plans your entire trip without you micromanaging",
+    analogy: "The chef who runs the whole restaurant",
+    description: "You call and say \"I'm hosting a dinner party for 12 on Saturday.\" Instead of just suggesting a menu, this chef checks seasonal ingredient availability, designs a 4-course menu, orders from suppliers, preps the mise en place, cooks everything, plates it, pairs wines, sets the table, and sends you a text when it's ready — all from one phone call. That's an agent: the chef's knowledge (LLM) + kitchen equipment (tools) + supplier connections (MCP) + tested recipes (skills) + knowing your preferences (RAG), all working together to complete the job end-to-end.",
+    realLife: "One request, full autonomous execution — from planning to delivery",
     examples: [
       { name: "🖥️ Claude Code", tag: "Terminal agent — codes autonomously" },
       { name: "🔬 Claude Deep Research", tag: "Multi-step autonomous research" },
@@ -244,6 +245,81 @@ const concepts = [
       { name: "🟢 Augment Code Agent", tag: "Codebase-aware autonomous coding" },
       { name: "🤖 OpenAI Operator", tag: "Browser agent — clicks & types for you" },
       { name: "🌊 Devin (Cognition)", tag: "Full autonomous software engineer" },
+    ],
+  },
+];
+
+const agentExamples = [
+  {
+    id: "email",
+    prompt: "Hey Claude, email my team about tomorrow's standup being moved to 3pm",
+    result: "Email sent to 6 team members about the 3pm standup change",
+    steps: [
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Parses your intent: send email, about standup reschedule, to team, new time 3pm" },
+      { piece: "RAG", color: "#38D9A9", action: "Looks up \"my team\" — retrieves your team members from context and contacts" },
+      { piece: "Skills", color: "#F59F00", action: "Reads email skill — professional tone, concise, include old vs new time" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Drafts the email body with subject line" },
+      { piece: "Tool: Gmail", color: "#20C997", action: "Selected as the right tool for sending email" },
+      { piece: "MCP", color: "#339AF0", action: "Connects the Gmail tool to your actual Gmail account" },
+      { piece: "Tool: Gmail", color: "#20C997", action: "Sends the email to all team members" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Confirms completion back to you" },
+    ],
+  },
+  {
+    id: "debug",
+    prompt: "Find the bug in my checkout flow — payments are failing for international cards",
+    result: "Fixed hardcoded USD in stripe-config.ts. Added multi-currency support. All 47 tests passing.",
+    steps: [
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Understands: bug in payment flow, specific to international cards" },
+      { piece: "RAG", color: "#38D9A9", action: "Indexes your codebase — finds checkout.ts, payment-service.ts, stripe-config.ts" },
+      { piece: "Tool: File Read", color: "#20C997", action: "Opens the 3 relevant files and reads the code" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Analyzes: Stripe config is missing currency conversion — it hardcodes USD" },
+      { piece: "Tool: Web Search", color: "#20C997", action: "Searches \"Stripe API multi-currency setup\" for latest docs" },
+      { piece: "Skills", color: "#F59F00", action: "Reads coding skill — follow project conventions, add error handling" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Writes the fix: adds currency parameter, updates config, adds validation" },
+      { piece: "Tool: File Write", color: "#20C997", action: "Edits the 2 files with the fix" },
+      { piece: "Tool: Terminal", color: "#20C997", action: "Runs the test suite to verify the fix works" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Tests fail on one edge case → adjusts the fix" },
+      { piece: "Tool: Terminal", color: "#20C997", action: "Reruns tests — all 47 pass" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Reports the root cause, what was changed, and confirms tests pass" },
+    ],
+  },
+  {
+    id: "research",
+    prompt: "Research how our competitors are pricing their enterprise plans and create a comparison deck",
+    result: "6-slide competitor pricing comparison ready to download, with positioning recommendation.",
+    steps: [
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Breaks the task into subtasks: research → gather pricing → compare → build deck" },
+      { piece: "Tool: Web Search", color: "#20C997", action: "Searches \"Competitor A enterprise pricing 2025\"" },
+      { piece: "Tool: Web Search", color: "#20C997", action: "Searches \"Competitor B enterprise plan features\"" },
+      { piece: "Tool: Web Search", color: "#20C997", action: "Searches \"Competitor C pricing page\"" },
+      { piece: "Tool: Web Fetch", color: "#20C997", action: "Opens each pricing page and extracts plan details" },
+      { piece: "RAG", color: "#38D9A9", action: "Pulls YOUR company's pricing from uploaded docs for comparison" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Organizes everything into a comparison matrix" },
+      { piece: "Skills", color: "#F59F00", action: "Reads PPTX skill — company template, slide structure, chart formatting rules" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Plans 6 slides: title, overview, breakdown, comparison, positioning, recommendations" },
+      { piece: "Tool: Code Exec", color: "#20C997", action: "Runs Python to generate the .pptx file with charts and tables" },
+      { piece: "Tool: File Write", color: "#20C997", action: "Saves the completed presentation" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Delivers the file with a summary of key findings" },
+    ],
+  },
+  {
+    id: "meeting",
+    prompt: "Set up the Q4 planning meeting with the leadership team",
+    result: "Q4 planning meeting set for Thursday 2-3:30pm. Sent agenda and prep materials to 5 attendees.",
+    steps: [
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Parses intent: schedule meeting, leadership team, Q4 planning" },
+      { piece: "Tool: Calendar", color: "#20C997", action: "Checks YOUR calendar for available slots this week" },
+      { piece: "MCP", color: "#339AF0", action: "Routes the calendar tool to your Google Calendar account" },
+      { piece: "Tool: Calendar", color: "#20C997", action: "Checks each leadership member's availability" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Finds one overlapping 90-min slot: Thursday 2-3:30pm" },
+      { piece: "RAG", color: "#38D9A9", action: "Pulls Q3 action items and past meeting notes for agenda context" },
+      { piece: "Skills", color: "#F59F00", action: "Reads meeting skill — agenda format, include prep materials, set objectives" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Drafts agenda: Q3 review, Q4 goals, resource allocation, open items" },
+      { piece: "Tool: Calendar", color: "#20C997", action: "Creates the calendar event with agenda in description" },
+      { piece: "Tool: Gmail", color: "#20C997", action: "Sends a prep email with last quarter's action items attached" },
+      { piece: "MCP", color: "#339AF0", action: "Routes the email through your Gmail account" },
+      { piece: "LLM Brain", color: "#FF6B6B", action: "Confirms: meeting booked, agenda sent, prep materials delivered" },
     ],
   },
 ];
@@ -426,7 +502,7 @@ const ideInsights = [
 const bonusConcepts = [
   {
     icon: "🎯", title: "Fine-Tuning vs Prompting", color: "#E64980",
-    content: "Prompting = telling the chef what to cook tonight. Fine-tuning = sending the chef to culinary school in Italy so they permanently cook Italian. Prompting is quick & flexible; fine-tuning is expensive & permanent but deeper.",
+    content: "Prompting = telling the chef what to cook tonight. Fine-tuning = sending the chef to culinary school in Italy so they permanently cook Italian. Prompting is quick & flexible; fine-tuning is expensive & permanent but deeper. Prompting covers 95% of use cases.",
     versus: [
       { left: "✍️ Prompting", right: "🎓 Fine-Tuning" },
       { left: "Quick, no training needed", right: "Needs data + compute + time" },
@@ -464,6 +540,7 @@ function AIPlaybook() {
   const [expandedModel, setExpandedModel] = useState(null);
   const [compareView, setCompareView] = useState("bars");
   const [openIDE, setOpenIDE] = useState("Cursor");
+  const [activeAgent, setActiveAgent] = useState("email");
 
   return (
     <div style={{
@@ -741,6 +818,128 @@ function AIPlaybook() {
                   <p style={{ fontSize: 12, lineHeight: 1.6, color: "#8888A4", margin: 0 }}>{r.text}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* ─── AGENTS IN ACTION ─── */}
+        {activeTab === "behind" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#E64980", margin: "0 0 4px" }}>Agents in Action — Behind the Scenes</h2>
+              <p style={{ color: "#8888A8", fontSize: 13, margin: 0 }}>What actually happens when you give an agent a prompt — step by step</p>
+            </div>
+
+            <div style={{
+              background: "#E6498008", borderRadius: 11, padding: "12px 14px",
+              border: "1px solid #E6498018", marginBottom: 16,
+            }}>
+              <p style={{ fontSize: 13, color: "#B0B0CA", margin: 0, lineHeight: 1.55, textAlign: "center" }}>
+                Select a real scenario below. Each step shows which building block is working and what it does. Notice the pattern: the LLM brain orchestrates everything, calling on tools, RAG, skills, and MCP as needed.
+              </p>
+            </div>
+
+            {/* Scenario selector */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16, justifyContent: "center" }}>
+              {[
+                { id: "email", label: "Send Team Email" },
+                { id: "debug", label: "Fix a Bug" },
+                { id: "research", label: "Competitor Research Deck" },
+                { id: "meeting", label: "Schedule a Meeting" },
+              ].map((s) => (
+                <button key={s.id} onClick={() => setActiveAgent(s.id)} style={{
+                  padding: "8px 16px", borderRadius: 8, border: "none",
+                  background: activeAgent === s.id ? "#E6498018" : "#0B0B1A",
+                  color: activeAgent === s.id ? "#E64980" : "#6A6A88",
+                  fontSize: 13, fontWeight: 600, cursor: "pointer",
+                  outline: activeAgent === s.id ? "1.5px solid #E6498045" : "1.5px solid #181832",
+                  transition: "all 0.2s",
+                }}>{s.label}</button>
+              ))}
+            </div>
+
+            {(() => {
+              const ex = agentExamples.find((x) => x.id === activeAgent);
+              if (!ex) return null;
+              return (
+                <div key={ex.id} style={{ animation: "expandIn 0.25s ease" }}>
+                  {/* Prompt */}
+                  <div style={{
+                    background: "#08080F", borderRadius: 11, padding: "16px",
+                    border: "1px solid #181832", marginBottom: 12,
+                    borderLeft: "3px solid #E6498060",
+                  }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: "#E64980", textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: 6 }}>Your Prompt</div>
+                    <div style={{ fontSize: 15, color: "#E0DEF0", fontFamily: "'JetBrains Mono', monospace", lineHeight: 1.6 }}>"{ex.prompt}"</div>
+                  </div>
+
+                  {/* Steps */}
+                  <div style={{
+                    background: "#0B0B1A", borderRadius: 11, padding: "16px",
+                    border: "1px solid #181832", marginBottom: 12,
+                  }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: "#8888A8", textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: 12 }}>What happens behind the scenes</div>
+                    {ex.steps.map((step, i) => (
+                      <div key={i} style={{
+                        display: "flex", alignItems: "flex-start", gap: 11,
+                        padding: "10px 0",
+                        borderTop: i > 0 ? "1px solid #14142A" : "none",
+                        animation: `fadeUp 0.2s ease ${i * 0.04}s both`,
+                      }}>
+                        <div style={{
+                          width: 26, height: 26, borderRadius: "50%",
+                          background: step.color + "18", border: `1.5px solid ${step.color}40`,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          fontSize: 12, fontWeight: 700, color: step.color, flexShrink: 0,
+                          fontFamily: "'JetBrains Mono', monospace",
+                        }}>{String(i + 1).padStart(2, "0")}</div>
+                        <div style={{ flex: 1 }}>
+                          <span style={{
+                            fontSize: 12, fontWeight: 700, color: step.color,
+                            background: step.color + "12", borderRadius: 5,
+                            padding: "2px 8px", marginRight: 8,
+                          }}>{step.piece}</span>
+                          <span style={{ fontSize: 13, color: "#AAAAC4", lineHeight: 1.55 }}>{step.action}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Result */}
+                  <div style={{
+                    background: "#20C99708", borderRadius: 11, padding: "14px 16px",
+                    border: "1px solid #20C99720",
+                    borderLeft: "3px solid #20C99760",
+                  }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: "#20C997", textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: 4 }}>Result</div>
+                    <div style={{ fontSize: 14, color: "#D0D0E8", lineHeight: 1.5 }}>{ex.result}</div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Pattern insight */}
+            <div style={{
+              marginTop: 18, background: "#845EF708", borderRadius: 11,
+              padding: "14px 16px", border: "1px solid #845EF718",
+            }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#B8A4F8", marginBottom: 8 }}>The Pattern</div>
+              <p style={{ fontSize: 13, lineHeight: 1.65, color: "#9898B0", margin: "0 0 10px" }}>
+                Every agent follows the same loop regardless of the task:
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", justifyContent: "center" }}>
+                {["Plan", "→", "Act", "→", "Observe", "→", "Adjust", "→", "Act Again"].map((item, i) => (
+                  item === "→" ? <span key={i} style={{ color: "#44445A", fontSize: 13 }}>→</span> :
+                  <span key={i} style={{
+                    background: "#845EF712", border: "1px solid #845EF730",
+                    borderRadius: 6, padding: "5px 12px",
+                    fontSize: 13, fontWeight: 600, color: "#B8A4F8",
+                  }}>{item}</span>
+                ))}
+              </div>
+              <p style={{ fontSize: 13, lineHeight: 1.65, color: "#9898B0", margin: "10px 0 0" }}>
+                The <strong style={{ color: "#FF6B6B" }}>LLM brain</strong> is the decision-maker at every fork. <strong style={{ color: "#20C997" }}>Tools</strong> are the hands that execute. <strong style={{ color: "#339AF0" }}>MCP</strong> is the wiring to your services. <strong style={{ color: "#F59F00" }}>Skills</strong> ensure quality. <strong style={{ color: "#38D9A9" }}>RAG</strong> provides your specific context. The magic isn't any single piece — it's the orchestration.
+              </p>
             </div>
           </div>
         )}
