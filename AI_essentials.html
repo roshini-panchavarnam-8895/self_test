@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Essentials — What Every Developer Should Know</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0C0C14; }
+  button { font-family: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<script type="text/babel">
+const { useState } = React;
+
+
+const tabs = [
+  { id: "concepts", label: "Concepts" },
+  { id: "why", label: "Why Agents" },
+  { id: "prompts", label: "Prompt Engineering" },
+  { id: "compare", label: "Model Comparison" },
+  { id: "ides", label: "AI Code Editors" },
+  { id: "products", label: "Product Mapping" },
+  { id: "bonus", label: "Key Terms" },
+];
+
+// ── Model Comparison Data (Dev & Design Focus) ──
+const compareCategories = [
+  { id: "code", label: "💻 Code Gen", desc: "Writing new code from scratch" },
+  { id: "debug", label: "🐛 Debugging", desc: "Finding & fixing bugs" },
+  { id: "arch", label: "🏗️ Architecture", desc: "System design & planning" },
+  { id: "refactor", label: "♻️ Refactoring", desc: "Improving existing code" },
+  { id: "uiux", label: "🎨 UI/UX Design", desc: "Frontend, CSS, design systems" },
+  { id: "explain", label: "📖 Code Explain", desc: "Understanding complex code" },
+  { id: "review", label: "🔍 Code Review", desc: "Spotting issues & improvements" },
+  { id: "multifile", label: "📂 Multi-File", desc: "Working across many files at once" },
+  { id: "context", label: "🧠 Long Context", desc: "Handling large codebases/docs" },
+  { id: "speed", label: "⚡ Speed", desc: "Response latency" },
+];
+
+const aiModels = [
+  {
+    name: "Claude Opus 4.6", provider: "Anthropic", color: "#D97706", icon: "🟠",
+    tier: "Flagship", price: "$$$",
+    scores: { code: 95, debug: 96, arch: 97, refactor: 95, uiux: 94, explain: 97, review: 96, multifile: 93, context: 98, speed: 55 },
+    strengths: ["Best-in-class reasoning & architecture", "Massive 200K context window", "Exceptional code review & explanation", "Strong design intuition for UI/UX"],
+    weaknesses: ["Slower than smaller models", "Expensive for high-volume use"],
+    bestFor: "Complex architecture decisions, thorough code reviews, large codebase analysis, nuanced UI/UX work",
+  },
+  {
+    name: "Claude Sonnet 4.5", provider: "Anthropic", color: "#F59F00", icon: "🟡",
+    tier: "Balanced", price: "$$",
+    scores: { code: 91, debug: 90, arch: 88, refactor: 90, uiux: 91, explain: 89, review: 89, multifile: 88, context: 95, speed: 78 },
+    strengths: ["Great speed-to-quality ratio", "Strong at UI/frontend code", "200K context window", "Good for iterative development"],
+    weaknesses: ["Not as deep on complex architecture", "Slightly less thorough reviews"],
+    bestFor: "Day-to-day coding, frontend development, rapid prototyping, iterative feature building",
+  },
+  {
+    name: "GPT-4o", provider: "OpenAI", color: "#10A37F", icon: "💬",
+    tier: "Flagship", price: "$$$",
+    scores: { code: 90, debug: 89, arch: 88, refactor: 88, uiux: 86, explain: 90, review: 87, multifile: 85, context: 88, speed: 80 },
+    strengths: ["Very fast for its quality tier", "Strong general code generation", "Good multimodal (vision + code)", "Huge ecosystem & plugin support"],
+    weaknesses: ["UI/design output less polished", "Smaller context than Claude", "Can be verbose"],
+    bestFor: "Quick code generation, multimodal tasks (screenshot → code), general-purpose dev work",
+  },
+  {
+    name: "GPT-4.1", provider: "OpenAI", color: "#0EA47A", icon: "💚",
+    tier: "Code-Optimized", price: "$$",
+    scores: { code: 93, debug: 91, arch: 86, refactor: 91, uiux: 84, explain: 87, review: 88, multifile: 90, context: 92, speed: 76 },
+    strengths: ["Optimized for coding tasks", "Strong multi-file operations", "Good instruction following", "1M token context window"],
+    weaknesses: ["Less creative for design work", "Architecture reasoning behind Opus", "Newer — less community knowledge"],
+    bestFor: "Heavy coding sessions, multi-file refactors, large repo navigation, automated code tasks",
+  },
+  {
+    name: "Gemini 2.5 Pro", provider: "Google", color: "#4285F4", icon: "💎",
+    tier: "Flagship", price: "$$$",
+    scores: { code: 90, debug: 88, arch: 87, refactor: 87, uiux: 83, explain: 89, review: 86, multifile: 88, context: 96, speed: 74 },
+    strengths: ["Massive 1M+ token context", "Strong at analyzing huge codebases", "Good multimodal capabilities", "Tight Google ecosystem integration"],
+    weaknesses: ["UI/UX output less refined", "Can be inconsistent on complex logic", "Less polished code style"],
+    bestFor: "Analyzing massive codebases, long document processing, Google Workspace integration",
+  },
+  {
+    name: "DeepSeek R1", provider: "DeepSeek", color: "#6366F1", icon: "🔮",
+    tier: "Reasoning", price: "$",
+    scores: { code: 88, debug: 90, arch: 91, refactor: 86, uiux: 72, explain: 92, review: 88, multifile: 80, context: 82, speed: 50 },
+    strengths: ["Exceptional step-by-step reasoning", "Great at complex algorithmic problems", "Very affordable / open-source", "Shows thinking process transparently"],
+    weaknesses: ["Slow (reasoning takes time)", "Weak at UI/design/frontend", "Smaller context window", "Less polished for production code"],
+    bestFor: "Complex algorithms, math-heavy problems, architecture reasoning, learning & understanding code",
+  },
+  {
+    name: "Claude Haiku 4.5", provider: "Anthropic", color: "#38BDF8", icon: "⚡",
+    tier: "Speed", price: "$",
+    scores: { code: 82, debug: 80, arch: 74, refactor: 80, uiux: 80, explain: 78, review: 76, multifile: 75, context: 90, speed: 96 },
+    strengths: ["Extremely fast responses", "Very cheap per token", "Great for simple tasks & autocomplete", "200K context window"],
+    weaknesses: ["Less capable on complex reasoning", "Shallower code reviews", "Can miss subtle bugs"],
+    bestFor: "Autocomplete, quick fixes, simple code gen, high-volume tasks, inline suggestions",
+  },
+  {
+    name: "GPT-4o Mini", provider: "OpenAI", color: "#86EFAC", icon: "🟢",
+    tier: "Speed", price: "$",
+    scores: { code: 80, debug: 78, arch: 70, refactor: 77, uiux: 74, explain: 76, review: 73, multifile: 70, context: 82, speed: 95 },
+    strengths: ["Very fast & very cheap", "Good for simple code tasks", "Solid instruction following", "Great latency for real-time UX"],
+    weaknesses: ["Struggles with complex logic", "Poor at architecture & design", "Shallow debugging"],
+    bestFor: "Autocomplete, simple utilities, chat-based UX, high-volume cheap inference",
+  },
+];
+
+const compareInsights = [
+  {
+    icon: "🎯", title: "Pick by Task, Not by Hype", color: "#E64980",
+    text: "No single model wins everything. Use Opus/GPT-4.1 for complex work, Haiku/4o-mini for speed tasks. The best developers mix models like a DJ mixes tracks.",
+  },
+  {
+    icon: "💰", title: "Cost ≠ Quality (Always)", color: "#20C997",
+    text: "Haiku at $0.25/M tokens often gives 80% of Opus quality at 5% of the cost. For autocomplete & simple fixes, the small model wins on ROI every time.",
+  },
+  {
+    icon: "🎨", title: "For UI/Design: Claude Leads", color: "#D97706",
+    text: "Claude models consistently produce more polished, design-aware frontend code. If your work is UI-heavy, Claude Opus or Sonnet should be your go-to.",
+  },
+  {
+    icon: "🧠", title: "Context Window Matters More Than You Think", color: "#339AF0",
+    text: "Working on a monorepo? A 200K–1M context window means the model can see your ENTIRE codebase. This changes everything for refactoring and code review.",
+  },
+  {
+    icon: "🔀", title: "The Meta-Skill: Model Routing", color: "#845EF7",
+    text: "Advanced teams route different tasks to different models automatically. Simple completion → Haiku. PR review → Opus. This is where the industry is heading.",
+  },
+];
+
+const concepts = [
+  {
+    id: "llm", emoji: "🧠", label: "LLM", fullName: "Large Language Model", color: "#FF6B6B",
+    analogy: "Super-Smart Student",
+    description: "A student who has read every book in every library on Earth. Can write, reason, and answer — but stuck at a desk. No internet, no apps, no phone. Pure brainpower, zero action.",
+    realLife: "A brilliant friend who knows everything but has no phone or laptop",
+    examples: [
+      { name: "Claude (Anthropic)", tag: "Opus · Sonnet · Haiku" },
+      { name: "GPT-4o (OpenAI)", tag: "Powers ChatGPT" },
+      { name: "Gemini (Google)", tag: "Pro · Ultra · Flash" },
+      { name: "LLaMA (Meta)", tag: "Open-source" },
+      { name: "Mistral", tag: "Open-source EU" },
+      { name: "DeepSeek", tag: "Reasoning-focused" },
+    ],
+  },
+  {
+    id: "model", emoji: "🤖", label: "AI Model", fullName: "AI Model (umbrella)", color: "#845EF7",
+    analogy: "The Whole School",
+    description: "LLM is just the language whiz. The school also has an art student (image AI), music student (audio AI), math genius (code AI). \"AI Model\" covers ALL of them.",
+    realLife: "LLM = English major · AI Model = any student in the school",
+    examples: [
+      { name: "🖼️ Image Gen", tag: "DALL-E · Midjourney · Stable Diffusion · Flux" },
+      { name: "🎵 Audio / Music", tag: "Whisper · Suno · ElevenLabs · Udio" },
+      { name: "🎬 Video Gen", tag: "Sora · Runway · Kling · Veo" },
+      { name: "💻 Code Models", tag: "Codex · StarCoder · CodeLlama" },
+      { name: "👁️ Vision Models", tag: "Claude Vision · GPT-4V · LLaVA" },
+      { name: "🧬 Science Models", tag: "AlphaFold · Med-PaLM" },
+    ],
+  },
+  {
+    id: "tools", emoji: "🔧", label: "Tools", fullName: "AI Tools & Functions", color: "#20C997",
+    analogy: "Apps on a Phone",
+    description: "Give the student a smartphone! Calculator for math, Maps for directions, Camera for photos. The student decides WHICH app to open and WHEN. Tools let AI actually DO things in the world.",
+    realLife: "Installing apps that give your phone new superpowers",
+    examples: [
+      { name: "🌐 Web Search", tag: "Search the internet for live info" },
+      { name: "💻 Code Execution", tag: "Run Python, JS, bash in sandbox" },
+      { name: "📁 File Read/Write", tag: "Create docs, read CSVs, edit files" },
+      { name: "🧮 Calculator", tag: "Precise math, not guessing" },
+      { name: "🖼️ Image Generation", tag: "DALL-E, Stable Diffusion via API" },
+      { name: "📧 Send Email / Message", tag: "Gmail, Slack via MCP" },
+    ],
+  },
+  {
+    id: "mcp", emoji: "🔌", label: "MCP", fullName: "Model Context Protocol", color: "#339AF0",
+    analogy: "USB-C Charger",
+    description: "Every phone had a different charger — chaos. USB-C fixed it: one cable, all devices. MCP is the USB-C of AI — one standard to connect ANY AI to ANY service without custom integration.",
+    realLife: "One cable to charge your phone, tablet, laptop & headphones",
+    examples: [
+      { name: "📧 Gmail MCP", tag: "Read, send, search emails" },
+      { name: "📅 Google Calendar MCP", tag: "Create, view, update events" },
+      { name: "💬 Slack MCP", tag: "Post messages, search channels" },
+      { name: "🐙 GitHub MCP", tag: "Create PRs, read repos, issues" },
+      { name: "📋 Jira / Asana MCP", tag: "Manage tasks & projects" },
+      { name: "🗄️ Database MCPs", tag: "PostgreSQL, Supabase, Firebase" },
+    ],
+  },
+  {
+    id: "skills", emoji: "📋", label: "Skills", fullName: "Skill Guides & Playbooks", color: "#F59F00",
+    analogy: "Recipe Card",
+    description: "You CAN cook without a recipe… but a tested recipe gives a perfect dish every time. Skills are expert playbooks the AI reads before doing a task to ensure quality & consistency.",
+    realLife: "Following a 5-star recipe instead of winging it",
+    examples: [
+      { name: "📊 PPTX Skill", tag: "Best practices for slide decks" },
+      { name: "📄 DOCX Skill", tag: "Formatting rules for Word docs" },
+      { name: "📑 PDF Skill", tag: "How to create/edit PDFs properly" },
+      { name: "🎨 Frontend Design Skill", tag: "UI/UX best practices" },
+      { name: "📐 .cursorrules", tag: "Project coding standards for Cursor" },
+      { name: "🤖 Custom GPT Instructions", tag: "Persona + rules in ChatGPT" },
+    ],
+  },
+  {
+    id: "rag", emoji: "📚", label: "RAG", fullName: "Retrieval Augmented Generation", color: "#38D9A9",
+    analogy: "Open-Book Exam",
+    description: "The student is smart, but they can't memorize YOUR company docs, YOUR notes, YOUR data. RAG = giving them the right reference books during the exam. AI retrieves relevant chunks of YOUR data, then generates answers based on it.",
+    realLife: "Like a student allowed to check their notes during a test — same brain, way better answers",
+    examples: [
+      { name: "📂 Claude Projects", tag: "Upload docs for context-aware chat" },
+      { name: "🔍 Cursor Codebase Index", tag: "Your entire repo as AI memory" },
+      { name: "🧠 Pinecone / Weaviate", tag: "Vector databases for retrieval" },
+      { name: "🦜 LangChain RAG", tag: "Framework for building RAG pipelines" },
+      { name: "📎 NotebookLM (Google)", tag: "Upload docs → AI expert on them" },
+      { name: "🏢 Glean / Guru", tag: "Enterprise knowledge search + AI" },
+    ],
+  },
+  {
+    id: "prompt", emoji: "✍️", label: "Prompt", fullName: "Prompt Engineering", color: "#FF922B",
+    analogy: "How You Ask",
+    description: "The same brilliant student gives very different answers depending on HOW you ask. Vague question = vague answer. Specific, well-structured question with context = brilliant answer. Prompt engineering is the art of asking well.",
+    realLife: "\"Make food\" vs \"Make a spicy Thai green curry for 4, mild for kids\" — same chef, wildly different results",
+    examples: [
+      { name: "🎭 Role Prompting", tag: "\"You are a senior React dev...\"" },
+      { name: "🔗 Chain-of-Thought", tag: "\"Think step by step...\"" },
+      { name: "📝 Few-Shot Examples", tag: "Show 2-3 input→output pairs" },
+      { name: "🏗️ System Prompts", tag: "Invisible instructions that shape behavior" },
+      { name: "📐 Structured Output", tag: "\"Return JSON with these fields...\"" },
+      { name: "🔁 Iterative Refinement", tag: "\"Good, now improve X and add Y\"" },
+    ],
+  },
+  {
+    id: "agent", emoji: "🦸", label: "Agent", fullName: "AI Agent", color: "#E64980",
+    analogy: "Personal Assistant",
+    description: "The FULL package. Can THINK (LLM), USE APPS (tools), CONNECT to services (MCP), FOLLOW best practices (skills), LOOK UP your data (RAG). You say \"plan my trip\" and it does everything autonomously.",
+    realLife: "A PA who plans your entire trip without you micromanaging",
+    examples: [
+      { name: "🖥️ Claude Code", tag: "Terminal agent — codes autonomously" },
+      { name: "🔬 Claude Deep Research", tag: "Multi-step autonomous research" },
+      { name: "⌨️ Cursor Agent Mode", tag: "Multi-file edits + tests + fixes" },
+      { name: "🟢 Augment Code Agent", tag: "Codebase-aware autonomous coding" },
+      { name: "🤖 OpenAI Operator", tag: "Browser agent — clicks & types for you" },
+      { name: "🌊 Devin (Cognition)", tag: "Full autonomous software engineer" },
+    ],
+  },
+];
+
+const whyAgentsData = {
+  before: [
+    { icon: "💬", text: "Chat-only AI", sub: "You ask → it answers → you do the work" },
+    { icon: "📋", text: "Copy-paste workflow", sub: "Get answer, switch apps, paste, repeat" },
+    { icon: "🔁", text: "Human is the glue", sub: "YOU connect every step manually" },
+    { icon: "⏱️", text: "10 steps for 1 task", sub: "Research → draft → format → send → follow up" },
+  ],
+  after: [
+    { icon: "🦸", text: "Agent takes action", sub: "You ask → it does the whole job end-to-end" },
+    { icon: "⚡", text: "Stays in one place", sub: "Agent switches between tools for you" },
+    { icon: "🔗", text: "AI is the glue", sub: "Agent connects research → action → verification" },
+    { icon: "🎯", text: "1 prompt, done", sub: "\"Email team about meeting\" → sent ✅" },
+  ],
+  reasons: [
+    { icon: "🔓", title: "Tools unlocked the cage", text: "LLMs were brilliant but trapped. Tools + MCP gave them hands to act in the real world — search, email, code, book.", color: "#20C997" },
+    { icon: "🔄", title: "The Loop changed everything", text: "Old AI: one question → one answer. Agents: plan → act → observe → adjust → act again. They iterate like humans.", color: "#845EF7" },
+    { icon: "🧩", title: "MCP made it plug-and-play", text: "Before: custom integration for every app = months. Now: one universal standard = minutes.", color: "#339AF0" },
+    { icon: "📈", title: "LLMs got smart enough", text: "Agents need strong reasoning to decide what to do next. Models like Claude and GPT-4 finally crossed that threshold.", color: "#FF6B6B" },
+  ],
+};
+
+const promptLevels = [
+  {
+    level: "😬 Bad",
+    color: "#FF6B6B",
+    bg: "#FF6B6B10",
+    prompt: "Write code for login",
+    result: "Vague, generic code. Wrong language, no auth method, no error handling.",
+    why: "No context, no constraints, no details",
+  },
+  {
+    level: "😐 Okay",
+    color: "#F59F00",
+    bg: "#F59F0010",
+    prompt: "Write a React login component with email and password fields",
+    result: "Functional but basic. No validation, no styling, no error states.",
+    why: "Has specifics but missing quality signals",
+  },
+  {
+    level: "😊 Good",
+    color: "#339AF0",
+    bg: "#339AF010",
+    prompt: "Write a React login component with email/password, form validation, error messages, loading state, and Tailwind styling. Use React Hook Form.",
+    result: "Solid, production-like code with proper patterns.",
+    why: "Specific tech, clear requirements, mentions patterns",
+  },
+  {
+    level: "🤩 Great",
+    color: "#20C997",
+    bg: "#20C99710",
+    prompt: "You are a senior React developer. Build a login component: email/password fields with React Hook Form + Zod validation, loading spinner on submit, toast notifications for errors, responsive Tailwind CSS, accessible (ARIA labels). Follow this pattern: [example]. Don't include: social login.",
+    result: "Production-grade, accessible, follows team patterns, excludes what you don't want.",
+    why: "Role + specifics + examples + exclusions + standards",
+  },
+];
+
+const promptTechniques = [
+  { icon: "🎭", name: "Role Setting", example: "\"You are a senior backend engineer...\"", tip: "Gives the AI a persona and expertise level to anchor its responses" },
+  { icon: "📐", name: "Be Specific", example: "\"Use TypeScript, Zod validation, return JSON\"", tip: "Constraints = better output. The more precise, the less guessing" },
+  { icon: "✅", name: "Show Examples", example: "\"Follow this pattern: [paste code]\"", tip: "One good example beats a paragraph of instructions" },
+  { icon: "🚫", name: "Say What NOT To Do", example: "\"Don't use inline styles or any class\"", tip: "Exclusions prevent unwanted patterns — equally important as inclusions" },
+  { icon: "🪜", name: "Step-by-Step", example: "\"First analyze, then plan, then code\"", tip: "Breaking tasks into steps improves reasoning quality dramatically" },
+  { icon: "🔁", name: "Iterate", example: "\"Good, now add error handling and tests\"", tip: "Don't try to get perfection in one shot — build up progressively" },
+];
+
+const realProducts = [
+  {
+    name: "ChatGPT", icon: "💬", color: "#10A37F",
+    desc: "OpenAI's flagship consumer chatbot",
+    mapping: [
+      { piece: "🧠 LLM", what: "GPT-4o / GPT-4.1" },
+      { piece: "🔧 Tools", what: "Web browsing, code interpreter, DALL-E image gen, file analysis" },
+      { piece: "📋 Skills", what: "Custom GPTs with tailored instructions" },
+      { piece: "🦸 Agent", what: "\"Deep Research\" mode — autonomous multi-step research" },
+    ],
+  },
+  {
+    name: "Claude", icon: "🟠", color: "#D97706",
+    desc: "Anthropic's AI assistant — the one you're using right now",
+    mapping: [
+      { piece: "🧠 LLM", what: "Claude Opus 4.5 / Sonnet 4.5 / Haiku 4.5" },
+      { piece: "🔧 Tools", what: "Web search, code execution, file creation, image search" },
+      { piece: "🔌 MCP", what: "Gmail, Calendar, Slack, Drive connectors via open protocol" },
+      { piece: "📋 Skills", what: "Built-in skills for PPTX, DOCX, PDF, frontend design" },
+      { piece: "📚 RAG", what: "Project Knowledge — upload docs for context-aware answers" },
+      { piece: "🦸 Agent", what: "Claude Code (terminal agent), computer use, deep research" },
+    ],
+  },
+  {
+    name: "Cursor / Copilot", icon: "⌨️", color: "#845EF7",
+    desc: "AI-powered code editors that live in your IDE",
+    mapping: [
+      { piece: "🧠 LLM", what: "GPT-4 / Claude / Gemini (configurable)" },
+      { piece: "🔧 Tools", what: "File read/write, terminal, codebase search" },
+      { piece: "📋 Skills", what: ".cursorrules files — project-specific AI instructions" },
+      { piece: "📚 RAG", what: "Indexes your entire codebase for context-aware suggestions" },
+      { piece: "🦸 Agent", what: "Agent mode: edits multiple files, runs tests, fixes errors" },
+    ],
+  },
+  {
+    name: "Augment Code", icon: "🟢", color: "#00C853",
+    desc: "AI coding assistant built for large, complex codebases",
+    mapping: [
+      { piece: "🧠 LLM", what: "Proprietary + open models, optimized for code understanding" },
+      { piece: "🔧 Tools", what: "Code navigation, refactoring, terminal, multi-file edits" },
+      { piece: "📚 RAG", what: "Deep codebase indexing — understands your entire repo context" },
+      { piece: "🔌 MCP", what: "Integrates with GitHub, Jira, CI/CD pipelines" },
+      { piece: "📋 Skills", what: "Team conventions & style guides as AI instructions" },
+      { piece: "🦸 Agent", what: "Autonomous task completion across files, tests & PRs" },
+    ],
+  },
+  {
+    name: "Zapier + AI", icon: "⚙️", color: "#FF4A00",
+    desc: "Automation platform that connects 5000+ apps with AI",
+    mapping: [
+      { piece: "🧠 LLM", what: "Any model via API (GPT, Claude, etc.)" },
+      { piece: "🔧 Tools", what: "5000+ app integrations as actions" },
+      { piece: "🔌 MCP", what: "Pre-built connectors to practically everything" },
+      { piece: "🦸 Agent", what: "Multi-step workflows triggered by events automatically" },
+    ],
+  },
+];
+
+const aiIDEs = [
+  { name: "Cursor", color: "#A78BFA", tagline: "The most mature AI-native code editor", base: "VS Code fork", pricing: "Free · $20/mo Pro · $40/mo Business", models: "Claude, GPT-4o, GPT-4.1, Gemini — user selectable", keyFeature: "Agent Mode",
+    description: "Cursor rebuilt VS Code with AI at the core. Its Agent Mode allows you to describe a task and it edits multiple files, runs terminal commands, installs packages, executes tests, and fixes errors autonomously. The .cursorrules file lets teams define project-specific coding standards the AI follows consistently.",
+    strengths: ["Most mature AI IDE with the largest community", "Agent mode handles multi-file, multi-step tasks autonomously", ".cursorrules enforces team coding standards", "Full model flexibility — switch between providers freely", "Codebase-wide RAG indexing for contextual suggestions", "Cmd+K inline editing integrates naturally into workflow"],
+    considerations: ["Feature density can overwhelm newcomers", "Pro plan required for best models and full agent mode", "Resource-heavy on large codebases"],
+    bestFor: "Teams wanting maximum AI capability and model flexibility. The current market leader." },
+  { name: "Windsurf", color: "#22D3EE", tagline: "Conversational coding with proactive AI", base: "VS Code fork (Codeium)", pricing: "Free tier (generous) · $15/mo Pro", models: "GPT-4o, Claude Sonnet, Codeium models", keyFeature: "Cascade Flows",
+    description: "Built by the Codeium team. Windsurf's differentiator is Cascade — conversational flows where the AI understands intent across multiple steps, proactively suggests next actions, reads terminal output, and offers fixes before you ask. It anticipates rather than just responds.",
+    strengths: ["Cascade flows feel intuitive — AI anticipates next steps", "Generous free tier lowers the barrier to entry", "Lighter and faster than Cursor on most machines", "Proactive error detection from terminal output", "Less intimidating for developers new to AI coding", "Built-in models work without external API keys"],
+    considerations: ["Smaller community and extension ecosystem", "Agent capabilities less mature than Cursor", "Fewer model options compared to Cursor"],
+    bestFor: "Teams wanting an approachable entry point to AI-assisted coding. Strong free tier." },
+  { name: "OpenAI Codex", color: "#34D399", tagline: "Terminal-first autonomous coding agent", base: "CLI tool", pricing: "OpenAI API key required · usage-based", models: "o3, GPT-4.1, o4-mini — OpenAI only", keyFeature: "Sandboxed Execution",
+    description: "Unlike visual IDEs, Codex runs in the terminal. Describe a task and it reads your repo, writes code, creates files, runs tests, and commits — all in a sandboxed environment. Nothing touches your real code until you explicitly approve. Built for developers who live in the terminal.",
+    strengths: ["True sandbox — AI experiments without affecting your codebase", "Terminal-native workflow for backend and DevOps", "Handles complete features: plan → code → test → commit", "Uses OpenAI's strongest reasoning models", "Lightweight — no heavy IDE installation", "Well-suited for CI/CD integration"],
+    considerations: ["OpenAI models only — no Claude or Gemini", "No visual editor — changes aren't visible in real-time", "API key required with no free tier", "Best suited for experienced terminal users"],
+    bestFor: "Backend and DevOps engineers who prefer terminal workflows and want full task autonomy." },
+  { name: "Augment Code", color: "#4ADE80", tagline: "Deep codebase understanding for enterprise teams", base: "VS Code / JetBrains extension", pricing: "Free individual · Enterprise plans", models: "Proprietary + open models, code-optimized", keyFeature: "Cross-Repo Intelligence",
+    description: "While most tools index your current project, Augment indexes your entire organization's codebase — across repos, documentation, Jira tickets, and pull requests. Its strength is contextual depth: it understands not just your file, but how it connects to everything else. Built for teams where no single developer knows the full system.",
+    strengths: ["Deepest codebase indexing — understands cross-repo dependencies", "Works in both VS Code and JetBrains (IntelliJ, WebStorm)", "Enterprise-ready with team conventions and compliance", "Integrates with GitHub, Jira, and CI/CD pipelines", "Excellent at explaining unfamiliar code across large systems", "Free individual tier removes adoption friction"],
+    considerations: ["Full value emerges on large codebases — may be excessive for small projects", "Extension model limits integration depth vs full IDE forks", "Newer entrant with less community documentation"],
+    bestFor: "Engineering teams with large, interconnected codebases where cross-system context matters most." },
+  { name: "GitHub Copilot", color: "#A78BFA", tagline: "The original AI pair programmer", base: "Extension (VS Code / JetBrains / Neovim)", pricing: "Free for students · $10/mo · $19/mo Business", models: "GPT-4o, Claude Sonnet, o3-mini — selectable", keyFeature: "Ubiquity & GitHub Integration",
+    description: "The tool that started the AI coding revolution. Lives inside your existing editor as an extension — no IDE switch required. Inline autocomplete is the most battle-tested in the industry. Copilot Workspace converts GitHub issues into planned implementations with PR creation.",
+    strengths: ["Works in your existing editor — VS Code, JetBrains, Neovim, Xcode", "Most mature and reliable inline autocomplete", "Deepest GitHub integration (issues → PRs → reviews)", "Copilot Workspace converts issues into implementations", "Most affordable paid tier at $10/month", "Multi-model support with Claude and GPT options"],
+    considerations: ["Agent capabilities trail Cursor and Windsurf", "Extension model limits AI integration depth", "Multi-file editing less mature than dedicated AI IDEs"],
+    bestFor: "Developers who want AI assistance without leaving their current editor. GitHub-centric teams." },
+  { name: "Claude Code", color: "#F59E0B", tagline: "Anthropic's terminal agent — highest code quality", base: "CLI tool", pricing: "Anthropic API key · usage-based", models: "Claude Opus 4.6, Sonnet 4.5, Haiku 4.5", keyFeature: "Superior Reasoning & Code Quality",
+    description: "Anthropic's terminal coding agent. Reads your entire repo and autonomously plans and executes tasks. Its advantage is Claude's reasoning — it writes cleaner, more considered code, catches edge cases others miss, and produces genuinely production-quality output. Especially strong at frontend work, refactoring, and thorough code review. Native MCP support connects it to external services.",
+    strengths: ["Claude's reasoning produces the highest quality code output", "Strongest terminal agent for frontend and UI work", "Native MCP integration for GitHub, Jira, Slack", "Thorough consideration of edge cases and accessibility", "200K context window accommodates entire codebases", "Can also be used as the underlying model in Cursor"],
+    considerations: ["API key required — Opus usage is expensive", "Terminal-only interface, no visual editor", "Anthropic models only — no GPT or Gemini option"],
+    bestFor: "When code quality is the priority — complex refactoring, thorough reviews, production-grade features." },
+];
+
+const idePickGuide = [
+  { need: "Best all-rounder IDE right now", pick: "Cursor", color: "#A78BFA" },
+  { need: "New to AI coding, easy start", pick: "Windsurf", color: "#22D3EE" },
+  { need: "Don't want to leave VS Code / JetBrains", pick: "Copilot or Augment", color: "#A78BFA" },
+  { need: "Huge enterprise codebase (100K+ lines)", pick: "Augment Code", color: "#4ADE80" },
+  { need: "Terminal-first, maximum autonomy", pick: "Codex or Claude Code", color: "#34D399" },
+  { need: "Highest code quality & UI work", pick: "Claude Code", color: "#F59E0B" },
+  { need: "Cheapest paid option", pick: "GitHub Copilot ($10/mo)", color: "#A78BFA" },
+  { need: "Best free tier", pick: "Windsurf or Augment", color: "#22D3EE" },
+];
+
+const ideInsights = [
+  { title: "These tools are not mutually exclusive", text: "Many senior developers use Cursor for daily work, Claude Code for complex refactors, and Copilot for quick autocomplete in JetBrains. Match the tool to the task.", color: "#A78BFA" },
+  { title: "Rules files are critically underutilized", text: "Cursor has .cursorrules, Windsurf has cascade rules, Augment has team conventions. These are skill files for your AI — define your standards once, and every suggestion conforms. Most teams skip this and wonder why output feels generic.", color: "#FBBF24" },
+  { title: "IDE forks vs extensions — a strategic choice", text: "Cursor and Windsurf are full IDE forks with deep AI integration but require switching editors. Copilot and Augment are extensions — less integration depth but zero workflow disruption. The industry trend favors forks as agent capabilities demand deeper integration.", color: "#60A5FA" },
+  { title: "Visual IDEs vs Terminal Agents — two philosophies", text: "Visual IDEs (Cursor, Windsurf) let you see changes in real-time, great for frontend. CLI tools (Codex, Claude Code) work in the background, you review after. Neither is superior — it depends on whether you think visually or prefer reviewing diffs.", color: "#34D399" },
+  { title: "The real productivity shift is workflow change", text: "AI editors don't just accelerate typing — they change how you work. You shift from writing code to describing intent, from line-by-line debugging to explaining symptoms, from reading docs to asking questions. The developers who benefit most are those who restructure their workflow, not just add autocomplete.", color: "#F472B6" },
+];
+
+const bonusConcepts = [
+  {
+    icon: "🎯", title: "Fine-Tuning vs Prompting", color: "#E64980",
+    content: "Prompting = telling the chef what to cook tonight. Fine-tuning = sending the chef to culinary school in Italy so they permanently cook Italian. Prompting is quick & flexible; fine-tuning is expensive & permanent but deeper.",
+    versus: [
+      { left: "✍️ Prompting", right: "🎓 Fine-Tuning" },
+      { left: "Quick, no training needed", right: "Needs data + compute + time" },
+      { left: "Temporary (per conversation)", right: "Permanent behavior change" },
+      { left: "Great for most use cases", right: "Best for specialized domains" },
+    ],
+  },
+  {
+    icon: "🌡️", title: "Temperature", color: "#FF922B",
+    content: "Controls how \"creative\" vs \"predictable\" the AI is. Temperature 0 = robot accountant (same answer every time). Temperature 1 = jazz musician (surprising, sometimes wild). For code: use low temp. For brainstorming: crank it up.",
+  },
+  {
+    icon: "📏", title: "Context Window", color: "#339AF0",
+    content: "The AI's working memory — how much text it can \"see\" at once. Small window = reading through a keyhole. Large window = seeing the whole whiteboard. Claude's window is ~200K tokens ≈ a 500-page book. This is why RAG matters — it picks the RIGHT pages to show.",
+  },
+  {
+    icon: "🔀", title: "Multi-Modal", color: "#845EF7",
+    content: "AI that understands more than just text — images, audio, video, code, PDFs. Like a person who can read, see photos, listen to music, and watch videos. Claude can process text + images + documents + code all in one conversation.",
+  },
+  {
+    icon: "🧱", title: "Tokens", color: "#20C997",
+    content: "AI doesn't read words — it reads \"tokens\" (word pieces). \"Understanding\" = 3 tokens. Roughly: 1 token ≈ ¾ of a word. Why it matters: you're billed per token, and the context window is measured in tokens. Think of tokens as the AI's currency.",
+  },
+];
+
+function AIPlaybook() {
+  const [activeTab, setActiveTab] = useState("concepts");
+  const [activeConcept, setActiveConcept] = useState(null);
+  const [showConnections, setShowConnections] = useState(false);
+  const [beforeAfter, setBeforeAfter] = useState("after");
+  const [expandedProduct, setExpandedProduct] = useState(null);
+  const [expandedBonus, setExpandedBonus] = useState(null);
+  const [promptLevel, setPromptLevel] = useState(3);
+  const [compareFilter, setCompareFilter] = useState("code");
+  const [expandedModel, setExpandedModel] = useState(null);
+  const [compareView, setCompareView] = useState("bars");
+  const [openIDE, setOpenIDE] = useState("Cursor");
+
+  return (
+    <div style={{
+      minHeight: "100vh", background: "#0C0C14", color: "#E0DEF0",
+      fontFamily: "'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif",
+      paddingBottom: 40,
+    }}>
+      {/* Header */}
+      <div style={{ textAlign: "center", padding: "24px 16px 6px" }}>
+        <h1 style={{
+          fontSize: "clamp(1.4rem, 4vw, 2.1rem)", fontWeight: 800,
+          background: "linear-gradient(135deg, #FF6B6B, #845EF7, #339AF0, #20C997)",
+          WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+          margin: 0, lineHeight: 1.2,
+        }}>
+          AI Essentials
+        </h1>
+        <p style={{ color: "#55557A", fontSize: 12, margin: "5px 0 0" }}>
+          What Every Developer Should Know — from core concepts to real tools
+        </p>
+      </div>
+
+      {/* Tab Bar */}
+      <div style={{
+        display: "flex", gap: 2, padding: "10px 8px 0",
+        maxWidth: 740, margin: "0 auto",
+        overflowX: "auto", WebkitOverflowScrolling: "touch",
+      }}>
+        {tabs.map((t) => (
+          <button key={t.id} onClick={() => setActiveTab(t.id)} style={{
+            flex: "1 0 auto", padding: "9px 10px",
+            borderRadius: "10px 10px 0 0", border: "none",
+            background: activeTab === t.id ? "#151530" : "transparent",
+            color: activeTab === t.id ? "#E0DEF0" : "#A4A4A4",
+            fontSize: 12.5, fontWeight: 700, cursor: "pointer",
+            transition: "all 0.25s", whiteSpace: "nowrap",
+            borderBottom: activeTab === t.id ? "2px solid #845EF7" : "2px solid transparent",
+          }}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Content Panel */}
+      <div style={{
+        maxWidth: 740, margin: "0 auto",
+        background: "#0F0F22", borderRadius: "0 0 18px 18px",
+        padding: "18px 14px", minHeight: 400,
+        border: "1px solid #1A1A35", borderTop: "none",
+      }}>
+
+        {/* ─── CONCEPTS ─── */}
+        {activeTab === "concepts" && (
+          <div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(105px, 1fr))",
+              gap: 8, marginBottom: 16,
+            }}>
+              {concepts.map((c, i) => {
+                const isA = activeConcept === c.id;
+                return (
+                  <button key={c.id} onClick={() => setActiveConcept(isA ? null : c.id)} style={{
+                    background: isA ? `${c.color}12` : "#0B0B1A",
+                    border: isA ? `2px solid ${c.color}60` : "2px solid #181830",
+                    borderRadius: 12, padding: "13px 6px 10px", cursor: "pointer",
+                    textAlign: "center", transition: "all 0.25s",
+                    transform: isA ? "scale(1.04)" : "scale(1)",
+                    boxShadow: isA ? `0 4px 20px ${c.color}18` : "none",
+                    animation: `fadeUp 0.3s ease ${i * 0.04}s both`,
+                  }}>
+                    <div style={{ fontSize: 28, marginBottom: 3 }}>{c.emoji}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: isA ? c.color : "#9090A8" }}>{c.label}</div>
+                    <div style={{ fontSize: 11, color: "#A4A4A4", marginTop: 1 }}>{c.analogy}</div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {activeConcept && (() => {
+              const c = concepts.find((x) => x.id === activeConcept);
+              return (
+                <div key={c.id} style={{
+                  background: `${c.color}06`, border: `1px solid ${c.color}22`,
+                  borderRadius: 14, padding: "18px 16px", marginBottom: 14,
+                  animation: "expandIn 0.25s ease",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                    <span style={{ fontSize: 32 }}>{c.emoji}</span>
+                    <div>
+                      <div style={{ fontSize: 16, fontWeight: 700, color: c.color }}>{c.fullName}</div>
+                      <div style={{ fontSize: 13, color: "#6A6A88" }}>≈ {c.analogy}</div>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: 13, lineHeight: 1.65, color: "#AAAAC4", margin: "0 0 10px" }}>{c.description}</p>
+                  <div style={{
+                    background: `${c.color}0A`, borderLeft: `3px solid ${c.color}45`,
+                    borderRadius: "0 8px 8px 0", padding: "8px 12px", fontSize: 12, marginBottom: 12,
+                  }}>
+                    <span style={{ fontWeight: 700, color: c.color }}>Real vibe: </span>
+                    <span style={{ color: "#8888A4" }}>{c.realLife}</span>
+                  </div>
+
+                  {/* Real Examples Grid */}
+                  {c.examples && c.examples.length > 0 && (
+                    <div>
+                      <div style={{
+                        fontSize: 13, fontWeight: 700, color: c.color, marginBottom: 8,
+                        textTransform: "uppercase", letterSpacing: "0.5px",
+                        display: "flex", alignItems: "center", gap: 6,
+                      }}>
+                        <span style={{
+                          width: 16, height: 16, borderRadius: 4,
+                          background: `${c.color}20`, display: "inline-flex",
+                          alignItems: "center", justifyContent: "center", fontSize: 11,
+                        }}>⚡</span>
+                        Real-world examples
+                      </div>
+                      <div style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+                        gap: 6,
+                      }}>
+                        {c.examples.map((ex, j) => (
+                          <div key={j} style={{
+                            background: "#08080F",
+                            border: "1px solid #181830",
+                            borderRadius: 8,
+                            padding: "8px 10px",
+                            animation: `fadeUp 0.2s ease ${j * 0.04}s both`,
+                          }}>
+                            <div style={{ fontSize: 12, fontWeight: 600, color: "#D0D0E8", marginBottom: 2 }}>
+                              {ex.name}
+                            </div>
+                            <div style={{ fontSize: 10.5, color: "#6A6A88", lineHeight: 1.4 }}>
+                              {ex.tag}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            <button onClick={() => setShowConnections(!showConnections)} style={{
+              width: "100%", background: showConnections ? "#845EF712" : "#0B0B1A",
+              border: showConnections ? "2px solid #845EF745" : "2px solid #181830",
+              borderRadius: 10, padding: "11px 18px",
+              color: showConnections ? "#B8A4F8" : "#6A6A88",
+              cursor: "pointer", fontSize: 13, fontWeight: 700, transition: "all 0.25s",
+            }}>
+              {showConnections ? "▼" : "▶"} How they ALL connect
+            </button>
+
+            {showConnections && (
+              <div style={{
+                marginTop: 10, background: "#0A0A16", borderRadius: 12,
+                padding: "16px 12px", animation: "expandIn 0.25s ease",
+              }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5 }}>
+                  <Pill c="#E64980">🦸 AGENT — orchestrates everything</Pill>
+                  <Arr>uses ▼</Arr>
+                  <div style={{ display: "flex", gap: 5, flexWrap: "wrap", justifyContent: "center" }}>
+                    <Pill c="#FF6B6B">🧠 LLM</Pill>
+                    <Pill c="#F59F00">📋 Skills</Pill>
+                    <Pill c="#20C997">🔧 Tools</Pill>
+                    <Pill c="#38D9A9">📚 RAG</Pill>
+                  </div>
+                  <Arr>guided by ▼</Arr>
+                  <Pill c="#FF922B">✍️ Your Prompt</Pill>
+                  <Arr>tools connect via ▼</Arr>
+                  <Pill c="#339AF0">🔌 MCP</Pill>
+                  <Arr>plugs into ▼</Arr>
+                  <div style={{ display: "flex", gap: 5, flexWrap: "wrap", justifyContent: "center" }}>
+                    {["📧 Gmail", "📅 Cal", "💬 Slack", "📁 Drive", "🐙 GitHub"].map((s) => (
+                      <Mini key={s}>{s}</Mini>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{
+                  marginTop: 14, background: "#08080F", borderRadius: 10, padding: "14px 12px",
+                }}>
+                  <p style={{ fontSize: 12, color: "#6A6A88", margin: "0 0 10px", fontWeight: 600 }}>
+                    📖 "Hey Claude, email my team about tomorrow's meeting"
+                  </p>
+                  {[
+                    { s: "1", icon: "✍️", text: "Your prompt kicks everything off", color: "#FF922B" },
+                    { s: "2", icon: "🧠", text: "LLM understands intent & plans steps", color: "#FF6B6B" },
+                    { s: "3", icon: "📋", text: "Reads email skill for best practices", color: "#F59F00" },
+                    { s: "4", icon: "🔧", text: "Picks the \"send email\" tool", color: "#20C997" },
+                    { s: "5", icon: "🔌", text: "MCP connects tool → Gmail", color: "#339AF0" },
+                    { s: "6", icon: "🦸", text: "Email sent! Agent confirms ✅", color: "#E64980" },
+                  ].map((item, i) => (
+                    <div key={i} style={{
+                      display: "flex", alignItems: "center", gap: 8,
+                      padding: "6px 0",
+                      borderTop: i > 0 ? "1px solid #141428" : "none",
+                    }}>
+                      <div style={{
+                        width: 24, height: 24, borderRadius: "50%",
+                        background: `${item.color}20`, border: `1.5px solid ${item.color}45`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: 13, fontWeight: 800, color: item.color, flexShrink: 0,
+                      }}>{item.s}</div>
+                      <span style={{ fontSize: 14 }}>{item.icon}</span>
+                      <span style={{ fontSize: 12, color: "#AAAAC4" }}>{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ─── WHY AGENTS ─── */}
+        {activeTab === "why" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#E64980", margin: "0 0 4px" }}>
+                Why is everyone obsessed with Agents?
+              </h2>
+              <p style={{ color: "#55557A", fontSize: 12, margin: 0 }}>AI went from "talks" to "does"</p>
+            </div>
+
+            <div style={{
+              display: "flex", borderRadius: 8, overflow: "hidden",
+              border: "2px solid #1A1A35", marginBottom: 14,
+            }}>
+              {["before", "after"].map((v) => (
+                <button key={v} onClick={() => setBeforeAfter(v)} style={{
+                  flex: 1, padding: "9px 0", border: "none",
+                  background: beforeAfter === v ? (v === "before" ? "#FF6B6B14" : "#20C99714") : "#0A0A14",
+                  color: beforeAfter === v ? (v === "before" ? "#FF6B6B" : "#20C997") : "#44445A",
+                  fontSize: 13, fontWeight: 700, cursor: "pointer", transition: "all 0.25s",
+                }}>
+                  {v === "before" ? "Before Agents" : "With Agents"}
+                </button>
+              ))}
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 20 }}>
+              {(beforeAfter === "before" ? whyAgentsData.before : whyAgentsData.after).map((item, i) => (
+                <div key={i} style={{
+                  display: "flex", alignItems: "center", gap: 10,
+                  background: "#0B0B1A", borderRadius: 10, padding: "12px 14px",
+                  border: `1px solid ${beforeAfter === "before" ? "#FF6B6B12" : "#20C99712"}`,
+                  animation: `fadeUp 0.25s ease ${i * 0.06}s both`,
+                }}>
+                  <span style={{ fontSize: 22, flexShrink: 0 }}>{item.icon}</span>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#CCCCE0" }}>{item.text}</div>
+                    <div style={{ fontSize: 13, color: "#6A6A88", marginTop: 1 }}>{item.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <h3 style={{ fontSize: 13, fontWeight: 700, color: "#B8A4F8", margin: "0 0 10px", textAlign: "center" }}>
+              4 breakthroughs that made it possible
+            </h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {whyAgentsData.reasons.map((r, i) => (
+                <div key={i} style={{
+                  background: `${r.color}06`, border: `1px solid ${r.color}18`,
+                  borderRadius: 12, padding: "14px",
+                  animation: `fadeUp 0.25s ease ${i * 0.06}s both`,
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 4 }}>
+                    <span style={{ fontSize: 18 }}>{r.icon}</span>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: r.color }}>{r.title}</span>
+                  </div>
+                  <p style={{ fontSize: 12, lineHeight: 1.6, color: "#8888A4", margin: 0 }}>{r.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ─── PROMPTS ─── */}
+        {activeTab === "prompts" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#FF922B", margin: "0 0 4px" }}>
+                Prompt Engineering — The Multiplier
+              </h2>
+              <p style={{ color: "#55557A", fontSize: 12, margin: 0 }}>Same AI, wildly different results based on how you ask</p>
+            </div>
+
+            {/* Prompt Quality Slider */}
+            <div style={{
+              background: "#0B0B1A", borderRadius: 14, padding: "16px 14px",
+              border: "1px solid #1A1A35", marginBottom: 16,
+            }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#8888A4", marginBottom: 10, textAlign: "center" }}>
+                🎚️ Drag the slider: How good is your prompt?
+              </div>
+              <input type="range" min={0} max={3} step={1} value={promptLevel}
+                onChange={(e) => setPromptLevel(Number(e.target.value))}
+                style={{ width: "100%", accentColor: promptLevels[promptLevel].color }}
+              />
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "#A4A4A4", marginTop: 2 }}>
+                <span>😬 Bad</span><span>😐 Okay</span><span>😊 Good</span><span>🤩 Great</span>
+              </div>
+            </div>
+
+            {(() => {
+              const p = promptLevels[promptLevel];
+              return (
+                <div key={promptLevel} style={{
+                  background: p.bg, border: `1px solid ${p.color}25`,
+                  borderRadius: 14, padding: "16px", marginBottom: 16,
+                  animation: "expandIn 0.25s ease",
+                }}>
+                  <div style={{
+                    fontSize: 13, fontWeight: 800, color: p.color,
+                    marginBottom: 10, display: "flex", alignItems: "center", gap: 6,
+                  }}>
+                    <span style={{
+                      background: `${p.color}20`, borderRadius: 6,
+                      padding: "2px 8px", fontSize: 13,
+                    }}>{p.level}</span>
+                    Prompt
+                  </div>
+                  <div style={{
+                    background: "#08080F", borderRadius: 8, padding: "10px 12px",
+                    fontSize: 12, color: "#CCCCE0", lineHeight: 1.6,
+                    fontFamily: "monospace", marginBottom: 10,
+                    borderLeft: `3px solid ${p.color}50`,
+                  }}>
+                    {p.prompt}
+                  </div>
+                  <div style={{ fontSize: 12, color: "#AAAAC4", marginBottom: 6 }}>
+                    <span style={{ fontWeight: 700, color: p.color }}>Result: </span>{p.result}
+                  </div>
+                  <div style={{ fontSize: 13, color: "#6A6A88" }}>
+                    <span style={{ fontWeight: 700 }}>Why: </span>{p.why}
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Techniques */}
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: "#FF922B", margin: "0 0 10px" }}>
+              🧰 6 Techniques That Work Every Time
+            </h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {promptTechniques.map((t, i) => (
+                <div key={i} style={{
+                  background: "#0B0B1A", borderRadius: 11, padding: "12px 14px",
+                  border: "1px solid #1A1A35",
+                  animation: `fadeUp 0.25s ease ${i * 0.05}s both`,
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                    <span style={{ fontSize: 18 }}>{t.icon}</span>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: "#D0D0E8" }}>{t.name}</span>
+                  </div>
+                  <div style={{
+                    background: "#08080F", borderRadius: 6, padding: "6px 10px",
+                    fontSize: 13, color: "#FF922B", fontFamily: "monospace",
+                    marginBottom: 4,
+                  }}>
+                    {t.example}
+                  </div>
+                  <div style={{ fontSize: 13, color: "#7A7A98" }}>{t.tip}</div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{
+              marginTop: 14, background: "#FF922B0A", borderRadius: 12,
+              padding: "12px 14px", border: "1px solid #FF922B18",
+            }}>
+              <p style={{ fontSize: 12, lineHeight: 1.6, color: "#9898B0", margin: 0 }}>
+                <span style={{ fontWeight: 700, color: "#FF922B" }}>Key insight:</span> Prompt engineering isn't just for chatting — it's embedded in Skills (pre-written prompts), Agent instructions, RAG retrieval queries, and Tool descriptions. Every layer of the AI stack runs on good prompts.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* ─── COMPARE ─── */}
+        {activeTab === "compare" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#E64980", margin: "0 0 4px" }}>
+                AI Model Showdown — Dev & Design
+              </h2>
+              <p style={{ color: "#55557A", fontSize: 12, margin: 0 }}>Which model for which job? Tap a skill to compare.</p>
+            </div>
+
+            {/* View Toggle */}
+            <div style={{
+              display: "flex", borderRadius: 8, overflow: "hidden",
+              border: "2px solid #1A1A35", marginBottom: 12,
+            }}>
+              {[
+                { id: "bars", label: "📊 Rankings" },
+                { id: "cards", label: "🃏 Model Cards" },
+              ].map((v) => (
+                <button key={v.id} onClick={() => setCompareView(v.id)} style={{
+                  flex: 1, padding: "8px 0", border: "none",
+                  background: compareView === v.id ? "#845EF718" : "#0A0A14",
+                  color: compareView === v.id ? "#B8A4F8" : "#44445A",
+                  fontSize: 12.5, fontWeight: 700, cursor: "pointer", transition: "all 0.25s",
+                }}>
+                  {v.label}
+                </button>
+              ))}
+            </div>
+
+            {/* ── BARS VIEW ── */}
+            {compareView === "bars" && (
+              <div>
+                {/* Category Filter Pills */}
+                <div style={{
+                  display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 14,
+                  justifyContent: "center",
+                }}>
+                  {compareCategories.map((cat) => (
+                    <button key={cat.id} onClick={() => setCompareFilter(cat.id)} style={{
+                      padding: "5px 10px", borderRadius: 8, border: "none",
+                      background: compareFilter === cat.id ? "#E6498025" : "#0B0B1A",
+                      color: compareFilter === cat.id ? "#E64980" : "#6A6A88",
+                      fontSize: 13, fontWeight: 600, cursor: "pointer",
+                      transition: "all 0.2s",
+                      outline: compareFilter === cat.id ? "1.5px solid #E6498050" : "1.5px solid #181830",
+                    }}>
+                      {cat.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Category Description */}
+                {(() => {
+                  const cat = compareCategories.find((c) => c.id === compareFilter);
+                  return (
+                    <div style={{
+                      textAlign: "center", marginBottom: 12,
+                      fontSize: 13, color: "#6A6A88",
+                    }}>
+                      {cat.desc}
+                    </div>
+                  );
+                })()}
+
+                {/* Ranking Bars */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {[...aiModels]
+                    .sort((a, b) => b.scores[compareFilter] - a.scores[compareFilter])
+                    .map((m, i) => {
+                      const score = m.scores[compareFilter];
+                      const isTop = i === 0;
+                      return (
+                        <div key={m.name} style={{
+                          background: isTop ? `${m.color}0A` : "#0B0B1A",
+                          border: `1px solid ${isTop ? m.color + "30" : "#181830"}`,
+                          borderRadius: 10, padding: "10px 12px",
+                          animation: `fadeUp 0.25s ease ${i * 0.04}s both`,
+                          cursor: "pointer",
+                        }}
+                        onClick={() => setExpandedModel(expandedModel === m.name ? null : m.name)}
+                        >
+                          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                            <span style={{
+                              fontSize: 10, fontWeight: 800, color: isTop ? "#FFD700" : "#A4A4A4",
+                              width: 18, textAlign: "center",
+                            }}>
+                              {i === 0 ? "👑" : `#${i + 1}`}
+                            </span>
+                            <span style={{ fontSize: 16 }}>{m.icon}</span>
+                            <div style={{ flex: 1 }}>
+                              <span style={{ fontSize: 13, fontWeight: 700, color: isTop ? m.color : "#C0C0D8" }}>
+                                {m.name}
+                              </span>
+                              <span style={{ fontSize: 10, color: "#55557A", marginLeft: 6 }}>{m.tier}</span>
+                            </div>
+                            <span style={{
+                              fontSize: 14, fontWeight: 800,
+                              color: score >= 93 ? "#20C997" : score >= 85 ? "#F59F00" : score >= 75 ? "#339AF0" : "#6A6A88",
+                            }}>
+                              {score}
+                            </span>
+                          </div>
+                          {/* Bar */}
+                          <div style={{
+                            height: 6, borderRadius: 3, background: "#141428",
+                            overflow: "hidden", marginLeft: 26,
+                          }}>
+                            <div style={{
+                              height: "100%", borderRadius: 3,
+                              width: `${score}%`,
+                              background: `linear-gradient(90deg, ${m.color}90, ${m.color}50)`,
+                              transition: "width 0.6s ease",
+                            }} />
+                          </div>
+
+                          {/* Expanded detail */}
+                          {expandedModel === m.name && (
+                            <div style={{
+                              marginTop: 10, marginLeft: 26, padding: "10px 12px",
+                              background: "#08080F", borderRadius: 8,
+                              animation: "expandIn 0.2s ease",
+                            }}>
+                              <div style={{ fontSize: 13, color: "#6A6A88", marginBottom: 6 }}>
+                                <span style={{ fontWeight: 700, color: m.color }}>{m.provider}</span> · {m.tier} · {m.price}
+                              </div>
+                              <div style={{ display: "flex", gap: 8, marginBottom: 8, flexWrap: "wrap" }}>
+                                <div style={{ flex: "1 1 140px" }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: "#20C997", marginBottom: 4 }}>✅ STRENGTHS</div>
+                                  {m.strengths.map((s, j) => (
+                                    <div key={j} style={{ fontSize: 13, color: "#9898B0", padding: "2px 0", lineHeight: 1.4 }}>
+                                      • {s}
+                                    </div>
+                                  ))}
+                                </div>
+                                <div style={{ flex: "1 1 140px" }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: "#FF6B6B", marginBottom: 4 }}>⚠️ WEAKNESSES</div>
+                                  {m.weaknesses.map((w, j) => (
+                                    <div key={j} style={{ fontSize: 13, color: "#8888A4", padding: "2px 0", lineHeight: 1.4 }}>
+                                      • {w}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                              <div style={{
+                                background: `${m.color}0A`, borderLeft: `3px solid ${m.color}40`,
+                                borderRadius: "0 6px 6px 0", padding: "6px 10px",
+                              }}>
+                                <span style={{ fontSize: 10, fontWeight: 700, color: m.color }}>BEST FOR: </span>
+                                <span style={{ fontSize: 13, color: "#AAAAC4" }}>{m.bestFor}</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+            )}
+
+            {/* ── CARDS VIEW ── */}
+            {compareView === "cards" && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {aiModels.map((m, i) => (
+                  <div key={m.name} style={{
+                    background: "#0B0B1A", border: "1.5px solid #1A1A30",
+                    borderRadius: 14, overflow: "hidden",
+                    animation: `fadeUp 0.25s ease ${i * 0.05}s both`,
+                  }}>
+                    {/* Card Header */}
+                    <div style={{
+                      padding: "14px 14px 10px",
+                      background: `linear-gradient(135deg, ${m.color}10, transparent)`,
+                      borderBottom: "1px solid #1A1A30",
+                    }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                        <span style={{ fontSize: 24 }}>{m.icon}</span>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 15, fontWeight: 700, color: m.color }}>{m.name}</div>
+                          <div style={{ fontSize: 13, color: "#6A6A88" }}>{m.provider} · {m.tier} · {m.price}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Score Grid */}
+                    <div style={{ padding: "10px 14px" }}>
+                      <div style={{
+                        display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 4,
+                      }}>
+                        {compareCategories.map((cat) => {
+                          const score = m.scores[cat.id];
+                          const clr = score >= 93 ? "#20C997" : score >= 85 ? "#F59F00" : score >= 75 ? "#339AF0" : "#55557A";
+                          return (
+                            <div key={cat.id} style={{
+                              textAlign: "center", padding: "6px 2px",
+                              background: "#08080F", borderRadius: 6,
+                            }}>
+                              <div style={{ fontSize: 11, color: "#55557A", marginBottom: 2 }}>
+                                {cat.label.split(" ")[0]}
+                              </div>
+                              <div style={{ fontSize: 14, fontWeight: 800, color: clr }}>
+                                {score}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Best For */}
+                    <div style={{
+                      padding: "8px 14px 12px",
+                      borderTop: "1px solid #14142A",
+                    }}>
+                      <span style={{ fontSize: 10, fontWeight: 700, color: m.color }}>BEST FOR: </span>
+                      <span style={{ fontSize: 13, color: "#9898B0" }}>{m.bestFor}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Dev & Design Insights */}
+            <div style={{ marginTop: 18 }}>
+              <h3 style={{ fontSize: 13, fontWeight: 700, color: "#B8A4F8", margin: "0 0 10px", textAlign: "center" }}>
+                🧠 Dev & Design Insights
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {compareInsights.map((ins, i) => (
+                  <div key={i} style={{
+                    background: `${ins.color}06`, border: `1px solid ${ins.color}18`,
+                    borderRadius: 12, padding: "12px 14px",
+                    animation: `fadeUp 0.25s ease ${i * 0.05}s both`,
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 4 }}>
+                      <span style={{ fontSize: 16 }}>{ins.icon}</span>
+                      <span style={{ fontSize: 12.5, fontWeight: 700, color: ins.color }}>{ins.title}</span>
+                    </div>
+                    <p style={{ fontSize: 12, lineHeight: 1.6, color: "#8888A4", margin: 0 }}>{ins.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Pick Guide */}
+            <div style={{
+              marginTop: 16, background: "#0A0A16", borderRadius: 14,
+              padding: "16px 14px", border: "1px solid #1E1E38",
+            }}>
+              <h4 style={{ fontSize: 13, fontWeight: 700, color: "#E64980", margin: "0 0 12px", textAlign: "center" }}>
+                ⚡ Quick Pick Cheat Sheet
+              </h4>
+              {[
+                { task: "\"I need to architect a complex system\"", pick: "Claude Opus 4.6", color: "#D97706" },
+                { task: "\"Build me a beautiful landing page\"", pick: "Claude Opus 4.6 / Sonnet 4.5", color: "#D97706" },
+                { task: "\"Quick: fix this bug in my React code\"", pick: "Claude Sonnet 4.5 / GPT-4o", color: "#F59F00" },
+                { task: "\"Refactor these 15 files for TypeScript\"", pick: "GPT-4.1 / Cursor Agent", color: "#0EA47A" },
+                { task: "\"Analyze this 50K-line codebase\"", pick: "Gemini 2.5 Pro / Claude Opus", color: "#4285F4" },
+                { task: "\"Solve this algorithm challenge\"", pick: "DeepSeek R1", color: "#6366F1" },
+                { task: "\"Autocomplete as I type\"", pick: "Claude Haiku 4.5 / GPT-4o Mini", color: "#38BDF8" },
+                { task: "\"Review my PR thoroughly\"", pick: "Claude Opus 4.6", color: "#D97706" },
+              ].map((item, i) => (
+                <div key={i} style={{
+                  display: "flex", alignItems: "flex-start", gap: 8,
+                  padding: "7px 0",
+                  borderTop: i > 0 ? "1px solid #14142A" : "none",
+                }}>
+                  <span style={{ fontSize: 12, color: "#6A6A88", flex: "1 1 55%", lineHeight: 1.5 }}>{item.task}</span>
+                  <span style={{
+                    fontSize: 13, fontWeight: 700, color: item.color,
+                    background: `${item.color}12`, borderRadius: 6,
+                    padding: "3px 8px", whiteSpace: "nowrap",
+                    flex: "0 0 auto",
+                  }}>→ {item.pick}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ─── AI CODE EDITORS ─── */}
+        {activeTab === "ides" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#A78BFA", margin: "0 0 4px" }}>AI Code Editors & Terminal Agents</h2>
+              <p style={{ color: "#55557A", fontSize: 12, margin: 0 }}>Evaluating the tools reshaping software development workflows</p>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14, justifyContent: "center" }}>
+              {aiIDEs.map((ide) => (
+                <button key={ide.name} onClick={() => setOpenIDE(ide.name)} style={{
+                  padding: "7px 14px", borderRadius: 8, border: "none",
+                  background: openIDE === ide.name ? `${ide.color}18` : "#0B0B1A",
+                  color: openIDE === ide.name ? ide.color : "#6A6A88",
+                  fontSize: 12, fontWeight: 600, cursor: "pointer",
+                  outline: openIDE === ide.name ? `1.5px solid ${ide.color}45` : "1.5px solid #181832",
+                  transition: "all 0.2s",
+                }}>{ide.name}</button>
+              ))}
+            </div>
+
+            {(() => {
+              const ide = aiIDEs.find((x) => x.name === openIDE);
+              if (!ide) return null;
+              return (
+                <div key={ide.name} style={{ animation: "expandIn 0.25s ease" }}>
+                  <div style={{
+                    background: `${ide.color}06`, border: `1px solid ${ide.color}25`,
+                    borderRadius: 14, padding: "18px 16px", marginBottom: 12,
+                  }}>
+                    <div style={{ fontSize: 17, fontWeight: 700, color: ide.color, marginBottom: 2 }}>{ide.name}</div>
+                    <div style={{ fontSize: 12, color: "#8888A8", fontStyle: "italic", marginBottom: 14 }}>{ide.tagline}</div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(155px, 1fr))", gap: 6, marginBottom: 14 }}>
+                      {[{ l: "Platform", v: ide.base }, { l: "Key Feature", v: ide.keyFeature }, { l: "Models", v: ide.models }, { l: "Pricing", v: ide.pricing }].map((m, j) => (
+                        <div key={j} style={{ background: "#08080F", borderRadius: 6, padding: "8px 12px", border: "1px solid #181832" }}>
+                          <div style={{ fontSize: 13, color: "#6A6A88", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em" }}>{m.l}</div>
+                          <div style={{ fontSize: 12, color: "#D0D0E8", marginTop: 2 }}>{m.v}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p style={{ fontSize: 13.5, lineHeight: 1.7, color: "#B0B0CA", margin: 0 }}>{ide.description}</p>
+                  </div>
+
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
+                    <div style={{ background: "#0B0B1A", border: "1px solid #181832", borderRadius: 12, padding: "14px" }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: "#34D399", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.04em" }}>Strengths</div>
+                      {ide.strengths.map((str, j) => <div key={j} style={{ fontSize: 12, color: "#AAAAC4", padding: "3px 0", lineHeight: 1.5 }}>— {str}</div>)}
+                    </div>
+                    <div style={{ background: "#0B0B1A", border: "1px solid #181832", borderRadius: 12, padding: "14px" }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: "#F59E0B", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.04em" }}>Considerations</div>
+                      {ide.considerations.map((c, j) => <div key={j} style={{ fontSize: 12, color: "#8888A8", padding: "3px 0", lineHeight: 1.5 }}>— {c}</div>)}
+                    </div>
+                  </div>
+
+                  <div style={{ background: `${ide.color}08`, borderLeft: `3px solid ${ide.color}45`, borderRadius: "0 8px 8px 0", padding: "11px 14px" }}>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: ide.color }}>Best suited for: </span>
+                    <span style={{ fontSize: 12.5, color: "#D0D0E8" }}>{ide.bestFor}</span>
+                  </div>
+                </div>
+              );
+            })()}
+
+            <div style={{ marginTop: 18, background: "#0A0A16", borderRadius: 14, padding: "16px 14px", border: "1px solid #1E1E38" }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#B8A4F8", marginBottom: 11, textAlign: "center" }}>Selection Guide</div>
+              {idePickGuide.map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 0", borderTop: i > 0 ? "1px solid #14142A" : "none" }}>
+                  <span style={{ fontSize: 12.5, color: "#8888A8", flex: 1, lineHeight: 1.4 }}>{item.need}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: item.color, background: `${item.color}14`, borderRadius: 6, padding: "3px 8px", whiteSpace: "nowrap", flexShrink: 0 }}>{item.pick}</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 16 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#B8A4F8", marginBottom: 11, textAlign: "center" }}>Strategic Insights</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {ideInsights.map((ins, i) => (
+                  <div key={i} style={{
+                    background: "#0B0B1A", border: "1px solid #181832", borderLeft: `3px solid ${ins.color}40`,
+                    borderRadius: "0 12px 12px 0", padding: "13px 14px",
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#D0D0E8", marginBottom: 4 }}>{ins.title}</div>
+                    <p style={{ fontSize: 12.5, lineHeight: 1.6, color: "#8888A8", margin: 0 }}>{ins.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ─── PRODUCTS ─── */}
+        {activeTab === "products" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#339AF0", margin: "0 0 4px" }}>
+                Spot the Building Blocks
+              </h2>
+              <p style={{ color: "#55557A", fontSize: 12, margin: 0 }}>Every AI product = same Lego bricks, different build</p>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {realProducts.map((p, i) => {
+                const isOpen = expandedProduct === p.name;
+                return (
+                  <div key={p.name} style={{
+                    background: isOpen ? `${p.color}06` : "#0B0B1A",
+                    border: `1.5px solid ${isOpen ? p.color + "35" : "#1A1A30"}`,
+                    borderRadius: 12, overflow: "hidden", transition: "all 0.25s",
+                    animation: `fadeUp 0.25s ease ${i * 0.06}s both`,
+                  }}>
+                    <button onClick={() => setExpandedProduct(isOpen ? null : p.name)} style={{
+                      width: "100%", display: "flex", alignItems: "center", gap: 10,
+                      padding: "12px 14px", background: "transparent", border: "none",
+                      cursor: "pointer", textAlign: "left",
+                    }}>
+                      <span style={{ fontSize: 24 }}>{p.icon}</span>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 14, fontWeight: 700, color: isOpen ? p.color : "#B8B8D0" }}>{p.name}</div>
+                        <div style={{ fontSize: 10.5, color: "#55557A" }}>{p.desc}</div>
+                      </div>
+                      <span style={{
+                        color: "#44445A", fontSize: 14, transition: "transform 0.25s",
+                        transform: isOpen ? "rotate(90deg)" : "rotate(0)",
+                      }}>▶</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ padding: "0 14px 14px", animation: "expandIn 0.2s ease" }}>
+                        {p.mapping.map((m, j) => (
+                          <div key={j} style={{
+                            display: "flex", alignItems: "flex-start", gap: 8,
+                            padding: "7px 0",
+                            borderTop: j > 0 ? "1px solid #14142A" : "none",
+                          }}>
+                            <span style={{
+                              fontSize: 10.5, fontWeight: 700, background: "#141428",
+                              borderRadius: 5, padding: "2px 7px", whiteSpace: "nowrap",
+                              color: "#8888A4", flexShrink: 0,
+                            }}>{m.piece}</span>
+                            <span style={{ fontSize: 12, color: "#AAAAC4" }}>{m.what}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div style={{
+              marginTop: 14, background: "#845EF70A", borderRadius: 12,
+              padding: "12px 14px", border: "1px solid #845EF718",
+            }}>
+              <p style={{ fontSize: 12, lineHeight: 1.6, color: "#9898B0", margin: 0 }}>
+                <span style={{ fontWeight: 700, color: "#B8A4F8" }}>Pattern:</span> Notice how <strong style={{ color: "#CCCCE0" }}>Augment Code</strong> and <strong style={{ color: "#CCCCE0" }}>Cursor</strong> both use the same blocks but Augment bets heavily on deep RAG (understanding massive codebases), while Cursor leans into agent mode for multi-file edits. Same Legos, different strategy.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* ─── BONUS ─── */}
+        {activeTab === "bonus" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#845EF7", margin: "0 0 4px" }}>
+                Bonus Concepts Worth Knowing
+              </h2>
+              <p style={{ color: "#55557A", fontSize: 12, margin: 0 }}>Level up your AI vocabulary</p>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {bonusConcepts.map((b, i) => {
+                const isOpen = expandedBonus === i;
+                return (
+                  <div key={i} style={{
+                    background: isOpen ? `${b.color}06` : "#0B0B1A",
+                    border: `1.5px solid ${isOpen ? b.color + "35" : "#1A1A30"}`,
+                    borderRadius: 12, overflow: "hidden", transition: "all 0.25s",
+                    animation: `fadeUp 0.25s ease ${i * 0.06}s both`,
+                  }}>
+                    <button onClick={() => setExpandedBonus(isOpen ? null : i)} style={{
+                      width: "100%", display: "flex", alignItems: "center", gap: 10,
+                      padding: "12px 14px", background: "transparent", border: "none",
+                      cursor: "pointer", textAlign: "left",
+                    }}>
+                      <span style={{ fontSize: 22 }}>{b.icon}</span>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: isOpen ? b.color : "#B8B8D0", flex: 1 }}>
+                        {b.title}
+                      </span>
+                      <span style={{
+                        color: "#44445A", fontSize: 14, transition: "transform 0.25s",
+                        transform: isOpen ? "rotate(90deg)" : "rotate(0)",
+                      }}>▶</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ padding: "0 14px 14px", animation: "expandIn 0.2s ease" }}>
+                        <p style={{ fontSize: 12.5, lineHeight: 1.65, color: "#AAAAC4", margin: "0 0 8px" }}>{b.content}</p>
+                        {b.versus && (
+                          <div style={{ background: "#08080F", borderRadius: 8, overflow: "hidden" }}>
+                            {b.versus.map((v, j) => (
+                              <div key={j} style={{
+                                display: "grid", gridTemplateColumns: "1fr 1fr",
+                                borderTop: j > 0 ? "1px solid #14142A" : "none",
+                              }}>
+                                <div style={{
+                                  padding: "7px 10px", fontSize: 13,
+                                  color: j === 0 ? "#FF922B" : "#8888A4",
+                                  fontWeight: j === 0 ? 700 : 400,
+                                  borderRight: "1px solid #14142A",
+                                }}>{v.left}</div>
+                                <div style={{
+                                  padding: "7px 10px", fontSize: 13,
+                                  color: j === 0 ? "#845EF7" : "#8888A4",
+                                  fontWeight: j === 0 ? 700 : 400,
+                                }}>{v.right}</div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Footer */}
+      <div style={{
+        maxWidth: 740, margin: "14px auto 0", padding: "14px",
+        textAlign: "center",
+      }}>
+        <p style={{ fontSize: 12, lineHeight: 1.7, color: "#55557A", margin: 0 }}>
+          <strong style={{ color: "#8888A4" }}>One sentence:</strong>{" "}
+          <span style={{ color: "#E64980" }}>Agents</span> = <span style={{ color: "#FF6B6B" }}>LLM brain</span> + <span style={{ color: "#20C997" }}>Tool hands</span> + <span style={{ color: "#339AF0" }}>MCP plugs</span> + <span style={{ color: "#F59F00" }}>Skill guides</span> + <span style={{ color: "#38D9A9" }}>RAG memory</span>, all shaped by <span style={{ color: "#FF922B" }}>your prompts</span>.
+        </p>
+      </div>
+
+      <style>{`
+        @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes expandIn { from { opacity:0; transform:scale(0.97); } to { opacity:1; transform:scale(1); } }
+        button:hover { filter: brightness(1.08); }
+        * { box-sizing: border-box; }
+        input[type=range] { height: 6px; border-radius: 3px; outline: none; -webkit-appearance: none; background: #1A1A35; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: currentColor; cursor: pointer; border: 2px solid #08080F; }
+      `}</style>
+    </div>
+  );
+}
+
+function Pill({ c, children }) {
+  return <span style={{
+    background: `${c}12`, border: `1.5px solid ${c}40`, borderRadius: 20,
+    padding: "6px 14px", fontSize: 13, fontWeight: 700, color: c, whiteSpace: "nowrap",
+  }}>{children}</span>;
+}
+function Mini({ children }) {
+  return <span style={{
+    background: "#121228", border: "1px solid #222244", borderRadius: 14,
+    padding: "3px 10px", fontSize: 10, color: "#6A6A88",
+  }}>{children}</span>;
+}
+function Arr({ children }) {
+  return <span style={{ fontSize: 11, color: "#3A3A54", padding: "1px 0" }}>{children}</span>;
+}
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(AIPlaybook));
+
+</script>
+</body>
+</html>
