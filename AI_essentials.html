@@ -16,7 +16,7 @@
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
 <script type="text/babel">
-const { useState } = React;
+const { useState, useEffect } = React;
 
 
 const tabs = [
@@ -28,6 +28,7 @@ const tabs = [
   { id: "ides", label: "AI Code Editors" },
   { id: "products", label: "Product Mapping" },
   { id: "bonus", label: "Key Terms" },
+  { id: "updates", label: "Daily Updates" },
 ];
 
 // ── Model Comparison Data (Dev & Design Focus) ──
@@ -541,6 +542,51 @@ function AIPlaybook() {
   const [compareView, setCompareView] = useState("bars");
   const [openIDE, setOpenIDE] = useState("Cursor");
   const [activeAgent, setActiveAgent] = useState("email");
+  const [feeds, setFeeds] = useState({});
+  const [feedLoading, setFeedLoading] = useState(true);
+  const [feedFilter, setFeedFilter] = useState("all");
+
+  const feedSources = [
+    { id: "anthropic", name: "Anthropic", color: "#D97706", tag: "AI", url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.anthropic.com/feed.xml&count=5" },
+    { id: "openai", name: "OpenAI", color: "#10A37F", tag: "AI", url: "https://api.rss2json.com/v1/api.json?rss_url=https://openai.com/blog/rss.xml&count=5" },
+    { id: "google", name: "Google AI", color: "#4285F4", tag: "AI", url: "https://api.rss2json.com/v1/api.json?rss_url=https://blog.google/technology/ai/rss/&count=5" },
+    { id: "huggingface", name: "Hugging Face", color: "#FF9D00", tag: "AI", url: "https://api.rss2json.com/v1/api.json?rss_url=https://huggingface.co/blog/feed.xml&count=5" },
+    { id: "meta", name: "Meta AI", color: "#0668E1", tag: "AI", url: "https://api.rss2json.com/v1/api.json?rss_url=https://ai.meta.com/blog/rss/&count=5" },
+    { id: "stability", name: "Stability AI", color: "#A855F7", tag: "Design", url: "https://api.rss2json.com/v1/api.json?rss_url=https://stability.ai/blog/rss.xml&count=5" },
+    { id: "adobe", name: "Adobe AI", color: "#FF0000", tag: "Design", url: "https://api.rss2json.com/v1/api.json?rss_url=https://blog.adobe.com/en/topics/creativity/rss.xml&count=5" },
+    { id: "figma", name: "Figma", color: "#A259FF", tag: "Design", url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.figma.com/blog/feed/&count=5" },
+    { id: "midjourney", name: "Midjourney", color: "#E0E0E0", tag: "Design", url: "https://api.rss2json.com/v1/api.json?rss_url=https://mid-journey.ai/feed/&count=5" },
+    { id: "runway", name: "Runway ML", color: "#00E5FF", tag: "Design", url: "https://api.rss2json.com/v1/api.json?rss_url=https://runwayml.com/blog/rss.xml&count=5" },
+  ];
+
+  const loadFeeds = async () => {
+    setFeedLoading(true);
+    const results = {};
+    for (const src of feedSources) {
+      try {
+        const res = await fetch(src.url);
+        const data = await res.json();
+        if (data.status === "ok" && data.items) {
+          results[src.id] = data.items.map((item) => ({
+            title: item.title,
+            link: item.link,
+            date: item.pubDate,
+            desc: (item.description || "").replace(/<[^>]*>/g, "").slice(0, 180),
+            source: src.name,
+            sourceId: src.id,
+            color: src.color,
+            tag: src.tag,
+          }));
+        }
+      } catch (e) {
+        results[src.id] = [];
+      }
+    }
+    setFeeds(results);
+    setFeedLoading(false);
+  };
+
+  useEffect(() => { loadFeeds(); }, []);
 
   return (
     <div style={{
@@ -940,6 +986,148 @@ function AIPlaybook() {
               <p style={{ fontSize: 13, lineHeight: 1.65, color: "#9898B0", margin: "10px 0 0" }}>
                 The <strong style={{ color: "#FF6B6B" }}>LLM brain</strong> is the decision-maker at every fork. <strong style={{ color: "#20C997" }}>Tools</strong> are the hands that execute. <strong style={{ color: "#339AF0" }}>MCP</strong> is the wiring to your services. <strong style={{ color: "#F59F00" }}>Skills</strong> ensure quality. <strong style={{ color: "#38D9A9" }}>RAG</strong> provides your specific context. The magic isn't any single piece — it's the orchestration.
               </p>
+            </div>
+          </div>
+        )}
+
+        {/* ─── AGENTS IN ACTION ─── */}
+        {activeTab === "behind" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#E64980", margin: "0 0 4px" }}>
+                Agents in Action — Behind the Scenes
+              </h2>
+              <p style={{ color: "#55557A", fontSize: 13, margin: 0 }}>
+                What actually happens when you give an agent a prompt. Select a scenario.
+              </p>
+            </div>
+
+            {/* Scenario Selector */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16, justifyContent: "center" }}>
+              {[
+                { id: "email", label: "Send an Email", icon: "📧" },
+                { id: "debug", label: "Fix a Bug", icon: "🐛" },
+                { id: "research", label: "Research & Build Deck", icon: "📊" },
+                { id: "meeting", label: "Schedule a Meeting", icon: "📅" },
+              ].map((s) => (
+                <button key={s.id} onClick={() => setActiveAgent(s.id)} style={{
+                  padding: "8px 16px", borderRadius: 8, border: "none",
+                  background: activeAgent === s.id ? "#E6498018" : "#0B0B1A",
+                  color: activeAgent === s.id ? "#E64980" : "#6A6A88",
+                  fontSize: 13, fontWeight: 600, cursor: "pointer",
+                  outline: activeAgent === s.id ? "1.5px solid #E6498045" : "1.5px solid #181832",
+                  transition: "all 0.2s",
+                }}>{s.icon} {s.label}</button>
+              ))}
+            </div>
+
+            {/* Selected Example */}
+            {(() => {
+              const ex = agentExamples.find((x) => x.id === activeAgent);
+              if (!ex) return null;
+              return (
+                <div key={ex.id} style={{ animation: "expandIn 0.25s ease" }}>
+                  {/* Prompt */}
+                  <div style={{
+                    background: "#0F0F22", border: "1px solid #E6498030",
+                    borderRadius: 12, padding: "16px", marginBottom: 14,
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "#E64980", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                      Your Prompt
+                    </div>
+                    <div style={{
+                      background: "#08080F", borderRadius: 8, padding: "14px 16px",
+                      fontSize: 14, color: "#E0DEF0", lineHeight: 1.6,
+                      fontFamily: "'JetBrains Mono', 'SF Mono', monospace",
+                      borderLeft: "3px solid #E6498050",
+                    }}>
+                      "{ex.prompt}"
+                    </div>
+                  </div>
+
+                  {/* Step-by-step */}
+                  <div style={{
+                    background: "#0B0B1A", border: "1px solid #181832",
+                    borderRadius: 12, padding: "16px", marginBottom: 14,
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "#8888A8", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                      What happens behind the scenes
+                    </div>
+
+                    {ex.steps.map((step, i) => (
+                      <div key={i} style={{
+                        display: "flex", alignItems: "flex-start", gap: 12,
+                        padding: "10px 0",
+                        borderTop: i > 0 ? "1px solid #141428" : "none",
+                        animation: `fadeUp 0.2s ease ${i * 0.04}s both`,
+                      }}>
+                        {/* Step number */}
+                        <div style={{
+                          width: 26, height: 26, borderRadius: "50%",
+                          background: `${step.color}15`, border: `1.5px solid ${step.color}35`,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          fontSize: 12, fontWeight: 700, color: step.color,
+                          flexShrink: 0, fontFamily: "'JetBrains Mono', monospace",
+                        }}>{String(i + 1).padStart(2, "0")}</div>
+
+                        {/* Content */}
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <span style={{
+                            fontSize: 12, fontWeight: 700, color: step.color,
+                            background: `${step.color}12`, borderRadius: 4,
+                            padding: "2px 8px", marginRight: 8,
+                          }}>{step.piece}</span>
+                          <span style={{ fontSize: 13, color: "#B0B0CA", lineHeight: 1.5 }}>{step.action}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Result */}
+                  <div style={{
+                    background: "#20C99708", border: "1px solid #20C99720",
+                    borderRadius: 12, padding: "14px 16px",
+                    borderLeft: "3px solid #20C99750",
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "#20C997", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                      Result
+                    </div>
+                    <div style={{ fontSize: 14, color: "#D0D0E8", lineHeight: 1.5 }}>
+                      {ex.result}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Pattern Insight */}
+            <div style={{
+              marginTop: 18, background: "#0A0A16", borderRadius: 14,
+              padding: "16px", border: "1px solid #1E1E38",
+            }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#B8A4F8", marginBottom: 8 }}>
+                The Pattern Across All Examples
+              </div>
+              <p style={{ fontSize: 13, lineHeight: 1.7, color: "#8888A8", margin: "0 0 12px" }}>
+                Every agent follows the same loop: <strong style={{ color: "#D0D0E8" }}>Plan → Act → Observe → Adjust → Act again</strong>. It's never a single step. The LLM brain is the decision-maker at every fork, the tools are the hands that execute, MCP is the wiring that connects to your services, skills ensure quality, and RAG provides your specific context.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center" }}>
+                {[
+                  { label: "LLM Brain", color: "#FF6B6B", role: "Decides what to do" },
+                  { label: "Tools", color: "#20C997", role: "Executes actions" },
+                  { label: "MCP", color: "#339AF0", role: "Connects to services" },
+                  { label: "Skills", color: "#F59F00", role: "Ensures quality" },
+                  { label: "RAG", color: "#38D9A9", role: "Provides your context" },
+                ].map((item, i) => (
+                  <div key={i} style={{
+                    background: `${item.color}0A`, border: `1px solid ${item.color}20`,
+                    borderRadius: 8, padding: "8px 14px", textAlign: "center",
+                  }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: item.color }}>{item.label}</div>
+                    <div style={{ fontSize: 12, color: "#8888A8", marginTop: 2 }}>{item.role}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -1549,6 +1737,113 @@ function AIPlaybook() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        )}
+        {/* ─── DAILY UPDATES ─── */}
+        {activeTab === "updates" && (
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#60A5FA", margin: "0 0 4px" }}>AI Industry Timeline</h2>
+              <p style={{ color: "#8888A8", fontSize: 13, margin: 0 }}>Major releases and milestones — curated timeline + live feeds from official blogs</p>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16, justifyContent: "center" }}>
+              {[
+                { id: "all", label: "All", color: "#60A5FA" },
+                { id: "anthropic", label: "Anthropic", color: "#D97706" },
+                { id: "openai", label: "OpenAI", color: "#10A37F" },
+                { id: "google", label: "Google", color: "#4285F4" },
+                { id: "other", label: "Other", color: "#A78BFA" },
+              ].map((f) => (
+                <button key={f.id} onClick={() => setFeedFilter(f.id)} style={{
+                  padding: "7px 14px", borderRadius: 8, border: "none",
+                  background: feedFilter === f.id ? f.color + "18" : "#0B0B1A",
+                  color: feedFilter === f.id ? f.color : "#6A6A88",
+                  fontSize: 13, fontWeight: 600, cursor: "pointer",
+                  outline: feedFilter === f.id ? `1.5px solid ${f.color}45` : "1.5px solid #181832",
+                }}>{f.label}</button>
+              ))}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {[
+                { date: "Feb 17, 2026", source: "anthropic", color: "#D97706", title: "Claude Sonnet 4.6 released", desc: "Full upgrade across coding, computer use, long-context reasoning, agent planning, and design. 1M token context window in beta." },
+                { date: "Feb 17, 2026", source: "anthropic", color: "#D97706", title: "Anthropic partners with Rwanda & Infosys", desc: "MOU for AI in health and education in Rwanda. Collaboration with Infosys for AI agents in telecommunications." },
+                { date: "Feb 5, 2026", source: "anthropic", color: "#D97706", title: "Claude Opus 4.6 released", desc: "Upgraded smartest model with improved coding. Claude added to PowerPoint as add-in. Excel updated with native operations support." },
+                { date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Cowork launched (research preview)", desc: "Agentic capabilities for knowledge work beyond coding. GUI alternative to Claude Code. Runs locally in isolated VM with MCP integrations." },
+                { date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Code goes viral over holidays", desc: "Non-programmers discovered vibe coding during winter break. Used by employees at Microsoft, Google, and OpenAI." },
+                { date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Memory & Import Memory launched", desc: "Claude remembers context across conversations. Import memory feature lets users bring in preferences and past context for personalized interactions." },
+                { date: "Dec 2025", source: "anthropic", color: "#D97706", title: "Skills system expanded", desc: "Organization-wide skill management for Teams and Enterprise. Partner-built skills directory. Open Agent Skills standard for cross-platform use." },
+                { date: "Dec 2025", source: "openai", color: "#10A37F", title: "GPT-5.2 released", desc: "Major gains in real-world business task completion to expert level. Autonomous Codex agent for complex engineering tasks." },
+                { date: "Dec 2025", source: "google", color: "#4285F4", title: "Gemini 3.0 released", desc: "Flagship thinking model claiming top spot on major benchmarks. Triggered Sam Altman's Code Red memo at OpenAI." },
+                { date: "Nov 2025", source: "anthropic", color: "#D97706", title: "Claude Opus 4.5 released", desc: "Most capable frontier model. SOTA on SWE-bench Verified. Infinite Chats eliminates context window errors. Excel beta with pivot tables and charts." },
+                { date: "Nov 2025", source: "openai", color: "#10A37F", title: "GPT-5.1 + Codex Max released", desc: "Specialized Thinking and Instant modes. Codex Max built for long-running, project-scale agentic coding work." },
+                { date: "Oct 2025", source: "anthropic", color: "#D97706", title: "Claude Haiku 4.5 released", desc: "Fast, cheap model for high-volume tasks and smaller companies. Available on web and mobile." },
+                { date: "Oct 2025", source: "openai", color: "#10A37F", title: "OpenAI DevDay 2025", desc: "Apps SDK, AgentKit, Agent Builder, Codex GA with Slack integration, GPT-5 Pro, Sora 2 API. Codex built 80% of Agent Builder in 6 weeks." },
+                { date: "Oct 2025", source: "anthropic", color: "#D97706", title: "Claude Code web + iOS app launched", desc: "Claude Code expands beyond terminal to web interface and mobile app." },
+                { date: "Sep 2025", source: "anthropic", color: "#D97706", title: "Claude Sonnet 4.5 released", desc: "77.2% on SWE-bench Verified — highest ever. Crowned world's best coding model with 30+ hour focus windows and 0% error rate on Replit." },
+                { date: "Aug 2025", source: "anthropic", color: "#D97706", title: "Claude for Chrome launched", desc: "Chrome extension enabling Claude Code to directly control the browser for web automation tasks." },
+                { date: "Aug 2025", source: "openai", color: "#10A37F", title: "GPT-5 released", desc: "Flagship model with sharper reasoning, multimodal input, better math. Unified interface adapts by context and complexity." },
+                { date: "Aug 2025", source: "openai", color: "#10A37F", title: "OpenAI open-weight models released", desc: "gpt-oss-120b and gpt-oss-20b — first open release since GPT-2. Designed for self-hosting and on-prem deployment." },
+                { date: "Jul 2025", source: "google", color: "#4285F4", title: "Gemini 2.5 Pro (production)", desc: "Production-ready version leading benchmarks. 1M+ token context window for massive codebase analysis." },
+                { date: "Jul 2025", source: "other", color: "#A78BFA", title: "Meta releases Llama 3.2", desc: "Open-source multimodal models supporting text and vision. Lightweight versions for on-device deployment." },
+                { date: "May 2025", source: "anthropic", color: "#D97706", title: "Claude 4 launched (Sonnet + Opus)", desc: "Claude Code GA. MCP connectors. Code execution tool. Files API. Opus 4 classified Level 3 safety risk." },
+                { date: "Apr 2025", source: "openai", color: "#10A37F", title: "o3 and o4-mini reasoning models", desc: "Reasoning models for coding, math, science. Visual thinking — upload sketches and diagrams for analysis." },
+                { date: "Apr 2025", source: "openai", color: "#10A37F", title: "GPT-4.1 family released", desc: "GPT-4.1, 4.1 mini, 4.1 nano — API-only. Better than GPT-4o at lower price. 1M token context." },
+                { date: "Mar 2025", source: "anthropic", color: "#D97706", title: "Claude web search launched", desc: "Web search feature added to Claude for real-time information retrieval." },
+                { date: "Feb 2025", source: "anthropic", color: "#D97706", title: "Claude Code launched (preview)", desc: "Agentic CLI tool for terminal-based autonomous coding. 5.5x revenue increase by July." },
+                { date: "Feb 2025", source: "openai", color: "#10A37F", title: "GPT-4.5 released", desc: "Better reasoning, more creative, fewer mistakes. Advanced voice mode with GPT-4o mini for natural conversations." },
+                { date: "Feb 2025", source: "other", color: "#A78BFA", title: "DeepSeek R1 goes viral", desc: "Open-source reasoning model with transparent thinking. Competitive with GPT-4 on logic tasks at a fraction of cost." },
+                { date: "Jan 2025", source: "openai", color: "#10A37F", title: "Stargate Project announced", desc: "OpenAI + Oracle + SoftBank: $500B AI infrastructure initiative for US data centers." },
+                { date: "Jan 2025", source: "other", color: "#A78BFA", title: "Cursor raises $100M Series B", desc: "AI code editor reaches dominant market position. Agent mode and multi-model support drive enterprise adoption." },
+              ].filter((item) => feedFilter === "all" || item.source === feedFilter)
+              .map((item, i) => (
+                <div key={i} style={{
+                  background: "#0B0B1A", border: "1px solid #181832",
+                  borderLeft: `3px solid ${item.color}50`,
+                  borderRadius: "0 11px 11px 0", padding: "14px 16px",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: item.color, background: item.color + "14", borderRadius: 5, padding: "2px 8px" }}>
+                      {item.source === "anthropic" ? "Anthropic" : item.source === "openai" ? "OpenAI" : item.source === "google" ? "Google" : "Industry"}
+                    </span>
+                    <span style={{ fontSize: 12, color: "#55557A", marginLeft: "auto", fontFamily: "'JetBrains Mono', monospace" }}>{item.date}</span>
+                  </div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#D0D0E8", lineHeight: 1.4, marginBottom: 3 }}>{item.title}</div>
+                  <div style={{ fontSize: 13, color: "#8888A8", lineHeight: 1.5 }}>{item.desc}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 24, borderTop: "1px solid #1E1E38", paddingTop: 18 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 11, marginBottom: 14 }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: "#6A6A88" }}>Live from Official Blogs</span>
+                <button onClick={loadFeeds} style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #282840", background: "#0B0B1A", color: "#6A6A88", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>
+                  {feedLoading ? "Loading..." : "Refresh"}
+                </button>
+              </div>
+              {feedLoading ? (
+                <div style={{ textAlign: "center", padding: "16px 0", color: "#55557A", fontSize: 13 }}>Fetching latest posts...</div>
+              ) : (() => {
+                let allItems = [];
+                feedSources.forEach((src) => { if (feeds[src.id]) allItems = allItems.concat(feeds[src.id]); });
+                allItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+                if (allItems.length === 0) return <div style={{ textAlign: "center", padding: "16px 0", color: "#55557A", fontSize: 13 }}>Live feeds unavailable — the curated timeline above has you covered.</div>;
+                return (
+                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    {allItems.slice(0, 10).map((item, i) => {
+                      const d = item.date ? new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "";
+                      return (
+                        <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" style={{ background: "#0B0B1A", border: "1px solid #181832", borderLeft: `3px solid ${item.color}50`, borderRadius: "0 11px 11px 0", padding: "11px 14px", textDecoration: "none", display: "block" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <span style={{ fontSize: 12, fontWeight: 700, color: item.color, background: item.color + "14", borderRadius: 5, padding: "2px 8px" }}>{item.source}</span>
+                            <span style={{ fontSize: 13, fontWeight: 600, color: "#B0B0CA", flex: 1 }}>{item.title}</span>
+                            <span style={{ fontSize: 12, color: "#55557A" }}>{d}</span>
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
             </div>
           </div>
         )}
