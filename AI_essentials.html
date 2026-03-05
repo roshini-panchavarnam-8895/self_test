@@ -500,6 +500,36 @@ const ideInsights = [
   { title: "The real productivity shift is workflow change", text: "AI editors don't just accelerate typing — they change how you work. You shift from writing code to describing intent, from line-by-line debugging to explaining symptoms, from reading docs to asking questions. The developers who benefit most are those who restructure their workflow, not just add autocomplete.", color: "#F472B6" },
 ];
 
+const updates = [
+  { id: "ccs", date: "Feb 20, 2026", source: "anthropic", color: "#D97706", title: "Claude Code Security launched", tag: "Security", desc: "AI-powered vulnerability scanner built into Claude Code.", detail: "Scans codebases for security vulnerabilities and suggests targeted patches. Uses Opus 4.6 is reasoning to find bugs static analysis misses — understanding component interactions, tracing data flows, catching business logic flaws. Found 500+ high-severity vulnerabilities in production open-source code that survived decades of expert review. Cybersecurity stocks dropped 5-18% on the announcement. Available as research preview for Enterprise/Team customers and open-source maintainers.", link: "https://www.anthropic.com/news/claude-code-security" },
+  { id: "s46", date: "Feb 17, 2026", source: "anthropic", color: "#D97706", title: "Claude Sonnet 4.6 released", tag: "Model", desc: "Most capable Sonnet yet with 1M token context window in beta.", detail: "Full upgrade across coding, computer use, long-context reasoning, agent planning, knowledge work, and design. 1M token context window available in beta — 5x the previous limit. Priced same as Sonnet 4.5. Major improvements in agentic workflows and multi-step task completion.", link: "https://www.anthropic.com/news/claude-sonnet-4-6" },
+  { id: "rw", date: "Feb 17, 2026", source: "anthropic", color: "#D97706", title: "Anthropic partners with Rwanda & Infosys", tag: "Partnership", desc: "MOU for AI in health, education, and telecom sectors.", detail: "Three-year MOU with Rwanda government for cervical cancer elimination, malaria reduction, and maternal mortality. 2,000 Claude Pro licenses for educators. Partnership with Infosys to build AI agents for telecommunications and regulated industries.", link: "https://www.anthropic.com/news" },
+  { id: "o46", date: "Feb 5, 2026", source: "anthropic", color: "#D97706", title: "Claude Opus 4.6 released", tag: "Model", desc: "Upgraded flagship model. Claude added to PowerPoint and Excel.", detail: "Improved coding skills with 14.5-hour 50% task-completion time horizon (longest of any model per METR). Claude now available as PowerPoint add-in. Excel updated with Opus 4.6 support, native pivot table editing, and conditional formatting. Agent team capabilities introduced.", link: "https://www.anthropic.com/news/claude-opus-4-6" },
+  { id: "cw", date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Cowork launched", tag: "Product", desc: "Agentic desktop tool for knowledge work — GUI alternative to Claude Code.", detail: "Research preview bringing Claude Code's agentic capabilities to non-coding knowledge work. Runs locally on macOS in an isolated VM with direct file access and MCP integrations. Mostly built by Claude Code itself. Later expanded with recurring task scheduling and plugin marketplace.", link: "https://www.anthropic.com/news" },
+  { id: "viral", date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Code goes viral over holidays", tag: "Adoption", desc: "Non-programmers discover 'vibe coding'. Used by Microsoft, Google, OpenAI employees.", detail: "Claude Code went mainstream during winter holidays when people had time to experiment. Non-programmers used it for 'vibe coding' — describing what they want in plain English and getting working software. Widely considered the best AI coding assistant when paired with Opus 4.5. Anthropic later revoked OpenAI's access for violating terms of service.", link: "https://en.wikipedia.org/wiki/Claude_(language_model)" },
+  { id: "mem", date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Memory launched", tag: "Feature", desc: "Claude remembers context across conversations with importable memory.", detail: "Persistent memory system that retains user preferences, project context, and conversation history across sessions. Import memory feature allows users to bring in existing context. Dramatically improves personalization and reduces repetitive setup in ongoing workflows.", link: "https://support.anthropic.com" },
+  { id: "g52", date: "Dec 2025", source: "openai", color: "#10A37F", title: "GPT-5.2 released", tag: "Model", desc: "Expert-level business task completion. Autonomous Codex agent.", detail: "Significant gains in real-world task completion to expert level compared to GPT-5.1. GPT-Image 1.5 claims #1 on vision benchmarks. Autonomous Codex agent for complex engineering tasks. Released alongside improved image generation capabilities.", link: "https://openai.com/news/product-releases/" },
+  { id: "gem3", date: "Dec 2025", source: "google", color: "#4285F4", title: "Gemini 3.0 released", tag: "Model", desc: "Flagship thinking model. Top benchmarks. Triggered OpenAI's 'Code Red'.", detail: "Google's new frontier model claiming top spot on major benchmarks across the board. Sam Altman declared internal 'Code Red' emergency at OpenAI, redirecting all company efforts to improving ChatGPT. Accompanied by Gemini 3.0 Flash for cost-effective inference and Deep Research autonomous agent.", link: "https://blog.google/technology/ai/" },
+  { id: "skills", date: "Dec 2025", source: "anthropic", color: "#D97706", title: "Skills system expanded", tag: "Feature", desc: "Org-wide skill management. Partner directory. Open Agent Skills standard.", detail: "Skills introduced in October now easier to deploy and manage organization-wide for Team and Enterprise plans. New partner-built skills directory. Open standard (Agent Skills) enabling skills to work across AI platforms. A key step toward standardized AI workflow automation.", link: "https://www.anthropic.com/news" },
+  { id: "o45", date: "Nov 24, 2025", source: "anthropic", color: "#D97706", title: "Claude Opus 4.5 released", tag: "Model", desc: "Most capable frontier model. SOTA on SWE-bench. Infinite Chats feature.", detail: "State-of-the-art on SWE-bench Verified among all frontier models. 10.6% improvement over Sonnet 4.5 on Aider Polyglot. 29% more points on Vending-Bench for agentic tasks. Infinite Chats eliminates context window limit errors via conversation compaction. Excel beta with pivot tables and charts.", link: "https://www.anthropic.com/news" },
+  { id: "g51", date: "Nov 2025", source: "openai", color: "#10A37F", title: "GPT-5.1 + Codex Max launched", tag: "Model", desc: "Specialized Thinking/Instant modes. Codex Max for project-scale coding.", detail: "GPT-5.1 features Thinking mode for deep reasoning and Instant mode for fast responses. Codex Max built specifically for long-running, project-scale agentic coding — handles multi-file operations across entire codebases with context compaction.", link: "https://openai.com/news/product-releases/" },
+  { id: "h45", date: "Oct 15, 2025", source: "anthropic", color: "#D97706", title: "Claude Haiku 4.5 released", tag: "Model", desc: "Fast, cheap model targeting high-volume tasks and smaller companies.", detail: "Speed-optimized model for autocomplete, inline suggestions, and high-throughput tasks. Significantly cheaper than Sonnet/Opus while maintaining strong capabilities. Available across Claude web, mobile, and API.", link: "https://www.anthropic.com/news" },
+  { id: "dd25", date: "Oct 6, 2025", source: "openai", color: "#10A37F", title: "OpenAI DevDay 2025", tag: "Event", desc: "Apps SDK, AgentKit, Codex GA, GPT-5 Pro, Sora 2 API.", detail: "Massive developer event with 6 major releases: Apps SDK for native ChatGPT apps, AgentKit with visual Agent Builder (80% built by Codex in 6 weeks), Codex GA with Slack integration, GPT-5 Pro, gpt-realtime-mini for voice, and Sora 2 API for video generation. 4 million developers now build with OpenAI.", link: "https://openai.com/index/devday-2025/" },
+  { id: "s45", date: "Sep 2025", source: "anthropic", color: "#D97706", title: "Claude Sonnet 4.5 released", tag: "Model", desc: "77.2% SWE-bench — highest ever. 'World's best coding model'.", detail: "Game-changing release achieving 77.2% on SWE-bench Verified — the highest score of any model. 30+ hour focus windows for sustained work. 0% error rate on Replit benchmarks. Established Claude as the leading model for software development tasks.", link: "https://www.anthropic.com/news" },
+  { id: "chrome", date: "Aug 2025", source: "anthropic", color: "#D97706", title: "Claude for Chrome launched", tag: "Product", desc: "Chrome extension enabling Claude Code to control the browser.", detail: "Google Chrome extension allowing Claude Code to directly interact with and control web browsers for automation tasks. Enables web scraping, form filling, testing, and browser-based workflows.", link: "https://www.anthropic.com/news" },
+  { id: "g5", date: "Aug 7, 2025", source: "openai", color: "#10A37F", title: "GPT-5 released", tag: "Model", desc: "Flagship model. Sharper reasoning, multimodal, unified interface.", detail: "Over two years after GPT-4, OpenAI unveils GPT-5 with improved reasoning, multimodal input, better math, and cleaner task execution. Unified interface adapts by context and complexity. Had a bumpy launch — GPT-4o was restored for paying users after initial issues.", link: "https://openai.com/news/product-releases/" },
+  { id: "oss", date: "Aug 6, 2025", source: "openai", color: "#10A37F", title: "OpenAI open-weight models released", tag: "Open Source", desc: "gpt-oss-120b and gpt-oss-20b — first open release since GPT-2.", detail: "First open-weight language models since GPT-2 in 2019. Designed for transparency, research, and self-hosted/on-prem deployment. Accompanied by gpt-oss-safeguard safety models. Runs on consumer-grade hardware. Permissive license for free use.", link: "https://openai.com/news/product-releases/" },
+  { id: "gem25", date: "Jul 2025", source: "google", color: "#4285F4", title: "Gemini 2.5 Pro (production)", tag: "Model", desc: "Production-ready release leading benchmarks. 1M+ token context.", detail: "Final production version of Gemini 2.5 Pro achieving top benchmark scores across the board. 1M+ token context window enables processing of entire codebases and long documents in a single prompt.", link: "https://blog.google/technology/ai/" },
+  { id: "c4", date: "May 22, 2025", source: "anthropic", color: "#D97706", title: "Claude 4 launched (Sonnet + Opus)", tag: "Model", desc: "Claude Code GA. MCP connectors. Files API. Opus 4 = Level 3 safety.", detail: "Major platform release: Claude Code goes generally available. New API features including code execution tool, MCP connectors, and Files API. Opus 4 classified as Level 3 on Anthropic's four-point safety scale — so powerful it poses 'significantly higher risk'. Safety testing revealed frontier models would sometimes send blackmail emails to prevent their replacement.", link: "https://www.anthropic.com/news" },
+  { id: "o3", date: "Apr 17, 2025", source: "openai", color: "#10A37F", title: "o3 and o4-mini reasoning models", tag: "Model", desc: "Visual thinking — upload sketches and diagrams for analysis.", detail: "Reasoning models optimized for programming, math, and science. Can process images to 'think' — users upload sketches, diagrams, or low-quality drawings and the models understand intent. o4-mini achieves best benchmarked performance on AIME 2024 and 2025.", link: "https://openai.com/news/product-releases/" },
+  { id: "g41", date: "Apr 15, 2025", source: "openai", color: "#10A37F", title: "GPT-4.1 family released", tag: "Model", desc: "API-only models. Better than GPT-4o at lower price. 1M context.", detail: "GPT-4.1, 4.1 mini, and 4.1 nano — API-only models providing better performance than GPT-4o at lower cost. Strong multi-file operations and instruction following. 1M token context window.", link: "https://openai.com/news/product-releases/" },
+  { id: "ws", date: "Mar 2025", source: "anthropic", color: "#D97706", title: "Claude web search launched", tag: "Feature", desc: "Real-time web search integrated into Claude conversations.", detail: "Web search feature added to Claude starting with paying US users, later expanded to free users in May. Enables Claude to retrieve current information from the internet during conversations.", link: "https://www.anthropic.com/news" },
+  { id: "cc", date: "Feb 2025", source: "anthropic", color: "#D97706", title: "Claude Code launched (preview)", tag: "Product", desc: "Agentic CLI for autonomous coding. 5.5x revenue growth by July.", detail: "Terminal-based agentic tool enabling developers to delegate coding tasks from the command line. Reads files, writes code, runs commands, and iterates autonomously. Configured via CLAUDE.md, AGENTS.md, and SKILL.md files. Revenue grew 5.5x by July based on enterprise adoption.", link: "https://www.anthropic.com/news" },
+  { id: "g45", date: "Feb 2025", source: "openai", color: "#10A37F", title: "GPT-4.5 released", tag: "Model", desc: "Better reasoning, more creative, fewer mistakes. Advanced voice.", detail: "Improved version of GPT-4o with better reasoning, creativity, and accuracy. Initially Pro-only, later expanded to Plus, Teams, Enterprise, and API users. Advanced voice mode with natural-sounding conversation launched free for all users.", link: "https://openai.com/news/product-releases/" },
+  { id: "ds", date: "Feb 2025", source: "other", color: "#A78BFA", title: "DeepSeek R1 goes viral", tag: "Open Source", desc: "Open-source reasoning model competitive with GPT-4 at fraction of cost.", detail: "Chinese open-source reasoning model with transparent step-by-step thinking process. Competitive with GPT-4 on logic and math tasks at dramatically lower cost. Triggered global discussion about open-source AI competitiveness and US-China AI dynamics.", link: "https://github.com/deepseek-ai" },
+  { id: "sg", date: "Jan 2025", source: "openai", color: "#10A37F", title: "Stargate Project announced", tag: "Infrastructure", desc: "$500B AI infrastructure initiative with Oracle and SoftBank.", detail: "OpenAI partners with Oracle and SoftBank to build massive AI infrastructure and data centers in the United States. $100 billion initial commitment with $500 billion total planned investment. Aims to enhance US leadership in AI computing power.", link: "https://openai.com/news/product-releases/" },
+];
+
 const bonusConcepts = [
   {
     icon: "🎯", title: "Fine-Tuning vs Prompting", color: "#E64980",
@@ -545,6 +575,10 @@ function AIPlaybook() {
   const [feeds, setFeeds] = useState({});
   const [feedLoading, setFeedLoading] = useState(true);
   const [feedFilter, setFeedFilter] = useState("all");
+  const [openUpdate, setOpenUpdate] = useState(null);
+
+  const filteredUpdates = updates.filter((u) => feedFilter === "all" || u.source === feedFilter);
+  const openUpdateItem = filteredUpdates.find((u) => u.id === openUpdate);
 
   const feedSources = [
     { id: "anthropic", name: "Anthropic", color: "#D97706", tag: "AI", url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.anthropic.com/feed.xml&count=5" },
@@ -986,148 +1020,6 @@ function AIPlaybook() {
               <p style={{ fontSize: 13, lineHeight: 1.65, color: "#9898B0", margin: "10px 0 0" }}>
                 The <strong style={{ color: "#FF6B6B" }}>LLM brain</strong> is the decision-maker at every fork. <strong style={{ color: "#20C997" }}>Tools</strong> are the hands that execute. <strong style={{ color: "#339AF0" }}>MCP</strong> is the wiring to your services. <strong style={{ color: "#F59F00" }}>Skills</strong> ensure quality. <strong style={{ color: "#38D9A9" }}>RAG</strong> provides your specific context. The magic isn't any single piece — it's the orchestration.
               </p>
-            </div>
-          </div>
-        )}
-
-        {/* ─── AGENTS IN ACTION ─── */}
-        {activeTab === "behind" && (
-          <div>
-            <div style={{ textAlign: "center", marginBottom: 16 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#E64980", margin: "0 0 4px" }}>
-                Agents in Action — Behind the Scenes
-              </h2>
-              <p style={{ color: "#55557A", fontSize: 13, margin: 0 }}>
-                What actually happens when you give an agent a prompt. Select a scenario.
-              </p>
-            </div>
-
-            {/* Scenario Selector */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16, justifyContent: "center" }}>
-              {[
-                { id: "email", label: "Send an Email", icon: "📧" },
-                { id: "debug", label: "Fix a Bug", icon: "🐛" },
-                { id: "research", label: "Research & Build Deck", icon: "📊" },
-                { id: "meeting", label: "Schedule a Meeting", icon: "📅" },
-              ].map((s) => (
-                <button key={s.id} onClick={() => setActiveAgent(s.id)} style={{
-                  padding: "8px 16px", borderRadius: 8, border: "none",
-                  background: activeAgent === s.id ? "#E6498018" : "#0B0B1A",
-                  color: activeAgent === s.id ? "#E64980" : "#6A6A88",
-                  fontSize: 13, fontWeight: 600, cursor: "pointer",
-                  outline: activeAgent === s.id ? "1.5px solid #E6498045" : "1.5px solid #181832",
-                  transition: "all 0.2s",
-                }}>{s.icon} {s.label}</button>
-              ))}
-            </div>
-
-            {/* Selected Example */}
-            {(() => {
-              const ex = agentExamples.find((x) => x.id === activeAgent);
-              if (!ex) return null;
-              return (
-                <div key={ex.id} style={{ animation: "expandIn 0.25s ease" }}>
-                  {/* Prompt */}
-                  <div style={{
-                    background: "#0F0F22", border: "1px solid #E6498030",
-                    borderRadius: 12, padding: "16px", marginBottom: 14,
-                  }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: "#E64980", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                      Your Prompt
-                    </div>
-                    <div style={{
-                      background: "#08080F", borderRadius: 8, padding: "14px 16px",
-                      fontSize: 14, color: "#E0DEF0", lineHeight: 1.6,
-                      fontFamily: "'JetBrains Mono', 'SF Mono', monospace",
-                      borderLeft: "3px solid #E6498050",
-                    }}>
-                      "{ex.prompt}"
-                    </div>
-                  </div>
-
-                  {/* Step-by-step */}
-                  <div style={{
-                    background: "#0B0B1A", border: "1px solid #181832",
-                    borderRadius: 12, padding: "16px", marginBottom: 14,
-                  }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: "#8888A8", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                      What happens behind the scenes
-                    </div>
-
-                    {ex.steps.map((step, i) => (
-                      <div key={i} style={{
-                        display: "flex", alignItems: "flex-start", gap: 12,
-                        padding: "10px 0",
-                        borderTop: i > 0 ? "1px solid #141428" : "none",
-                        animation: `fadeUp 0.2s ease ${i * 0.04}s both`,
-                      }}>
-                        {/* Step number */}
-                        <div style={{
-                          width: 26, height: 26, borderRadius: "50%",
-                          background: `${step.color}15`, border: `1.5px solid ${step.color}35`,
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          fontSize: 12, fontWeight: 700, color: step.color,
-                          flexShrink: 0, fontFamily: "'JetBrains Mono', monospace",
-                        }}>{String(i + 1).padStart(2, "0")}</div>
-
-                        {/* Content */}
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <span style={{
-                            fontSize: 12, fontWeight: 700, color: step.color,
-                            background: `${step.color}12`, borderRadius: 4,
-                            padding: "2px 8px", marginRight: 8,
-                          }}>{step.piece}</span>
-                          <span style={{ fontSize: 13, color: "#B0B0CA", lineHeight: 1.5 }}>{step.action}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Result */}
-                  <div style={{
-                    background: "#20C99708", border: "1px solid #20C99720",
-                    borderRadius: 12, padding: "14px 16px",
-                    borderLeft: "3px solid #20C99750",
-                  }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: "#20C997", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                      Result
-                    </div>
-                    <div style={{ fontSize: 14, color: "#D0D0E8", lineHeight: 1.5 }}>
-                      {ex.result}
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
-
-            {/* Pattern Insight */}
-            <div style={{
-              marginTop: 18, background: "#0A0A16", borderRadius: 14,
-              padding: "16px", border: "1px solid #1E1E38",
-            }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#B8A4F8", marginBottom: 8 }}>
-                The Pattern Across All Examples
-              </div>
-              <p style={{ fontSize: 13, lineHeight: 1.7, color: "#8888A8", margin: "0 0 12px" }}>
-                Every agent follows the same loop: <strong style={{ color: "#D0D0E8" }}>Plan → Act → Observe → Adjust → Act again</strong>. It's never a single step. The LLM brain is the decision-maker at every fork, the tools are the hands that execute, MCP is the wiring that connects to your services, skills ensure quality, and RAG provides your specific context.
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center" }}>
-                {[
-                  { label: "LLM Brain", color: "#FF6B6B", role: "Decides what to do" },
-                  { label: "Tools", color: "#20C997", role: "Executes actions" },
-                  { label: "MCP", color: "#339AF0", role: "Connects to services" },
-                  { label: "Skills", color: "#F59F00", role: "Ensures quality" },
-                  { label: "RAG", color: "#38D9A9", role: "Provides your context" },
-                ].map((item, i) => (
-                  <div key={i} style={{
-                    background: `${item.color}0A`, border: `1px solid ${item.color}20`,
-                    borderRadius: 8, padding: "8px 14px", textAlign: "center",
-                  }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: item.color }}>{item.label}</div>
-                    <div style={{ fontSize: 12, color: "#8888A8", marginTop: 2 }}>{item.role}</div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         )}
@@ -1740,19 +1632,18 @@ function AIPlaybook() {
             </div>
           </div>
         )}
+
         {/* ─── DAILY UPDATES ─── */}
         {activeTab === "updates" && (
           <div>
             <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 16 }}>
               <div>
                 <h2 style={{ fontSize: 18, fontWeight: 800, color: "#60A5FA", margin: "0 0 4px" }}>AI Industry Timeline</h2>
-                <p style={{ color: "#8888A8", fontSize: 13, margin: 0 }}>Major releases and milestones — curated + live feeds</p>
+                <p style={{ color: "#8888A8", fontSize: 13, margin: 0 }}>Major releases and milestones — tap any card for details</p>
               </div>
-              <button onClick={loadFeeds} style={{
-                padding: "6px 14px", borderRadius: 6, border: "1px solid #282840",
-                background: "#0B0B1A", color: "#60A5FA", fontSize: 12, fontWeight: 600,
-                cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0, marginTop: 2,
-              }}>{feedLoading ? "Loading..." : "↻ Refresh Feeds"}</button>
+              <button onClick={loadFeeds} style={{ padding: "6px 14px", borderRadius: 6, border: "1px solid #282840", background: "#0B0B1A", color: "#60A5FA", fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0, marginTop: 2 }}>
+                {feedLoading ? "Loading..." : "↻ Refresh Feeds"}
+              </button>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16, justifyContent: "center" }}>
               {[
@@ -1762,7 +1653,7 @@ function AIPlaybook() {
                 { id: "google", label: "Google", color: "#4285F4" },
                 { id: "other", label: "Other", color: "#A78BFA" },
               ].map((f) => (
-                <button key={f.id} onClick={() => setFeedFilter(f.id)} style={{
+                <button key={f.id} onClick={() => { setFeedFilter(f.id); setOpenUpdate(null); }} style={{
                   padding: "7px 14px", borderRadius: 8, border: "none",
                   background: feedFilter === f.id ? f.color + "18" : "#0B0B1A",
                   color: feedFilter === f.id ? f.color : "#6A6A88",
@@ -1771,59 +1662,50 @@ function AIPlaybook() {
                 }}>{f.label}</button>
               ))}
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {[
-                { date: "Feb 17, 2026", source: "anthropic", color: "#D97706", title: "Claude Sonnet 4.6 released", desc: "Full upgrade across coding, computer use, long-context reasoning, agent planning, and design. 1M token context window in beta." },
-                { date: "Feb 17, 2026", source: "anthropic", color: "#D97706", title: "Anthropic partners with Rwanda & Infosys", desc: "MOU for AI in health and education in Rwanda. Collaboration with Infosys for AI agents in telecommunications." },
-                { date: "Feb 5, 2026", source: "anthropic", color: "#D97706", title: "Claude Opus 4.6 released", desc: "Upgraded smartest model with improved coding. Claude added to PowerPoint as add-in. Excel updated with native operations support." },
-                { date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Cowork launched (research preview)", desc: "Agentic capabilities for knowledge work beyond coding. GUI alternative to Claude Code. Runs locally in isolated VM with MCP integrations." },
-                { date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Code goes viral over holidays", desc: "Non-programmers discovered vibe coding during winter break. Used by employees at Microsoft, Google, and OpenAI." },
-                { date: "Jan 2026", source: "anthropic", color: "#D97706", title: "Claude Memory & Import Memory launched", desc: "Claude remembers context across conversations. Import memory feature lets users bring in preferences and past context for personalized interactions." },
-                { date: "Dec 2025", source: "anthropic", color: "#D97706", title: "Skills system expanded", desc: "Organization-wide skill management for Teams and Enterprise. Partner-built skills directory. Open Agent Skills standard for cross-platform use." },
-                { date: "Dec 2025", source: "openai", color: "#10A37F", title: "GPT-5.2 released", desc: "Major gains in real-world business task completion to expert level. Autonomous Codex agent for complex engineering tasks." },
-                { date: "Dec 2025", source: "google", color: "#4285F4", title: "Gemini 3.0 released", desc: "Flagship thinking model claiming top spot on major benchmarks. Triggered Sam Altman's Code Red memo at OpenAI." },
-                { date: "Nov 2025", source: "anthropic", color: "#D97706", title: "Claude Opus 4.5 released", desc: "Most capable frontier model. SOTA on SWE-bench Verified. Infinite Chats eliminates context window errors. Excel beta with pivot tables and charts." },
-                { date: "Nov 2025", source: "openai", color: "#10A37F", title: "GPT-5.1 + Codex Max released", desc: "Specialized Thinking and Instant modes. Codex Max built for long-running, project-scale agentic coding work." },
-                { date: "Oct 2025", source: "anthropic", color: "#D97706", title: "Claude Haiku 4.5 released", desc: "Fast, cheap model for high-volume tasks and smaller companies. Available on web and mobile." },
-                { date: "Oct 2025", source: "openai", color: "#10A37F", title: "OpenAI DevDay 2025", desc: "Apps SDK, AgentKit, Agent Builder, Codex GA with Slack integration, GPT-5 Pro, Sora 2 API. Codex built 80% of Agent Builder in 6 weeks." },
-                { date: "Oct 2025", source: "anthropic", color: "#D97706", title: "Claude Code web + iOS app launched", desc: "Claude Code expands beyond terminal to web interface and mobile app." },
-                { date: "Sep 2025", source: "anthropic", color: "#D97706", title: "Claude Sonnet 4.5 released", desc: "77.2% on SWE-bench Verified — highest ever. Crowned world's best coding model with 30+ hour focus windows and 0% error rate on Replit." },
-                { date: "Aug 2025", source: "anthropic", color: "#D97706", title: "Claude for Chrome launched", desc: "Chrome extension enabling Claude Code to directly control the browser for web automation tasks." },
-                { date: "Aug 2025", source: "openai", color: "#10A37F", title: "GPT-5 released", desc: "Flagship model with sharper reasoning, multimodal input, better math. Unified interface adapts by context and complexity." },
-                { date: "Aug 2025", source: "openai", color: "#10A37F", title: "OpenAI open-weight models released", desc: "gpt-oss-120b and gpt-oss-20b — first open release since GPT-2. Designed for self-hosting and on-prem deployment." },
-                { date: "Jul 2025", source: "google", color: "#4285F4", title: "Gemini 2.5 Pro (production)", desc: "Production-ready version leading benchmarks. 1M+ token context window for massive codebase analysis." },
-                { date: "Jul 2025", source: "other", color: "#A78BFA", title: "Meta releases Llama 3.2", desc: "Open-source multimodal models supporting text and vision. Lightweight versions for on-device deployment." },
-                { date: "May 2025", source: "anthropic", color: "#D97706", title: "Claude 4 launched (Sonnet + Opus)", desc: "Claude Code GA. MCP connectors. Code execution tool. Files API. Opus 4 classified Level 3 safety risk." },
-                { date: "Apr 2025", source: "openai", color: "#10A37F", title: "o3 and o4-mini reasoning models", desc: "Reasoning models for coding, math, science. Visual thinking — upload sketches and diagrams for analysis." },
-                { date: "Apr 2025", source: "openai", color: "#10A37F", title: "GPT-4.1 family released", desc: "GPT-4.1, 4.1 mini, 4.1 nano — API-only. Better than GPT-4o at lower price. 1M token context." },
-                { date: "Mar 2025", source: "anthropic", color: "#D97706", title: "Claude web search launched", desc: "Web search feature added to Claude for real-time information retrieval." },
-                { date: "Feb 2025", source: "anthropic", color: "#D97706", title: "Claude Code launched (preview)", desc: "Agentic CLI tool for terminal-based autonomous coding. 5.5x revenue increase by July." },
-                { date: "Feb 2025", source: "openai", color: "#10A37F", title: "GPT-4.5 released", desc: "Better reasoning, more creative, fewer mistakes. Advanced voice mode with GPT-4o mini for natural conversations." },
-                { date: "Feb 2025", source: "other", color: "#A78BFA", title: "DeepSeek R1 goes viral", desc: "Open-source reasoning model with transparent thinking. Competitive with GPT-4 on logic tasks at a fraction of cost." },
-                { date: "Jan 2025", source: "openai", color: "#10A37F", title: "Stargate Project announced", desc: "OpenAI + Oracle + SoftBank: $500B AI infrastructure initiative for US data centers." },
-                { date: "Jan 2025", source: "other", color: "#A78BFA", title: "Cursor raises $100M Series B", desc: "AI code editor reaches dominant market position. Agent mode and multi-model support drive enterprise adoption." },
-              ].filter((item) => feedFilter === "all" || item.source === feedFilter)
-              .map((item, i) => (
-                <div key={i} style={{
-                  background: "#0B0B1A", border: "1px solid #181832",
-                  borderLeft: `3px solid ${item.color}50`,
-                  borderRadius: "0 11px 11px 0", padding: "14px 16px",
-                }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: item.color, background: item.color + "14", borderRadius: 5, padding: "2px 8px" }}>
-                      {item.source === "anthropic" ? "Anthropic" : item.source === "openai" ? "OpenAI" : item.source === "google" ? "Google" : "Industry"}
+
+            {openUpdateItem ? (
+              <div style={{ animation: "expandIn 0.2s ease" }}>
+                <button onClick={() => setOpenUpdate(null)} style={{ background: "none", border: "none", color: "#6A6A88", fontSize: 13, cursor: "pointer", marginBottom: 11, padding: 0, fontWeight: 600 }}>← Back to timeline</button>
+                <div style={{ background: `${openUpdateItem.color}06`, border: `1.5px solid ${openUpdateItem.color}30`, borderRadius: 14, padding: "20px 18px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8, flexWrap: "wrap" }}>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: openUpdateItem.color, background: openUpdateItem.color + "14", borderRadius: 5, padding: "2px 8px" }}>
+                      {openUpdateItem.source === "anthropic" ? "Anthropic" : openUpdateItem.source === "openai" ? "OpenAI" : openUpdateItem.source === "google" ? "Google" : "Industry"}
                     </span>
-                    <span style={{ fontSize: 12, color: "#55557A", marginLeft: "auto", fontFamily: "'JetBrains Mono', monospace" }}>{item.date}</span>
+                    <span style={{ fontSize: 12, fontWeight: 600, color: "#8888A8", background: "#141428", borderRadius: 5, padding: "2px 8px" }}>{openUpdateItem.tag}</span>
+                    <span style={{ fontSize: 12, color: "#55557A", fontFamily: "'JetBrains Mono', monospace", marginLeft: "auto" }}>{openUpdateItem.date}</span>
                   </div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "#D0D0E8", lineHeight: 1.4, marginBottom: 3 }}>{item.title}</div>
-                  <div style={{ fontSize: 13, color: "#8888A8", lineHeight: 1.5 }}>{item.desc}</div>
+                  <h3 style={{ fontSize: 18, fontWeight: 700, color: "#E0DEF0", margin: "0 0 12px" }}>{openUpdateItem.title}</h3>
+                  <p style={{ fontSize: 14, lineHeight: 1.75, color: "#B0B0CA", margin: "0 0 16px" }}>{openUpdateItem.detail}</p>
+                  <a href={openUpdateItem.link} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, color: openUpdateItem.color, textDecoration: "none", background: openUpdateItem.color + "12", padding: "8px 14px", borderRadius: 8, border: `1px solid ${openUpdateItem.color}30` }}>
+                    Read more →
+                  </a>
                 </div>
-              ))}
-            </div>
-            <div style={{ marginTop: 24, borderTop: "1px solid #1E1E38", paddingTop: 18 }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 11, marginBottom: 14 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: "#6A6A88" }}>Live from Official Blogs</span>
               </div>
+            ) : (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(310px, 1fr))", gap: 8 }}>
+                {filteredUpdates.map((item, i) => (
+                  <div key={item.id} onClick={() => setOpenUpdate(item.id)} style={{
+                    background: "#0B0B1A", border: "1px solid #181832",
+                    borderLeft: `3px solid ${item.color}50`,
+                    borderRadius: "0 11px 11px 0", padding: "13px 15px",
+                    cursor: "pointer", transition: "all 0.15s",
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 5 }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: item.color, background: item.color + "14", borderRadius: 5, padding: "2px 7px" }}>
+                        {item.source === "anthropic" ? "Anthropic" : item.source === "openai" ? "OpenAI" : item.source === "google" ? "Google" : "Industry"}
+                      </span>
+                      <span style={{ fontSize: 11, color: "#55557A", background: "#141428", borderRadius: 4, padding: "1px 6px" }}>{item.tag}</span>
+                      <span style={{ fontSize: 11, color: "#44445A", marginLeft: "auto", fontFamily: "'JetBrains Mono', monospace" }}>{item.date}</span>
+                    </div>
+                    <div style={{ fontSize: 13.5, fontWeight: 600, color: "#D0D0E8", lineHeight: 1.4, marginBottom: 3 }}>{item.title}</div>
+                    <div style={{ fontSize: 12, color: "#6A6A88", lineHeight: 1.45 }}>{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div style={{ marginTop: 24, borderTop: "1px solid #1E1E38", paddingTop: 18 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#6A6A88", textAlign: "center", marginBottom: 14 }}>Live from Official Blogs</div>
               {feedLoading ? (
                 <div style={{ textAlign: "center", padding: "16px 0", color: "#55557A", fontSize: 13 }}>Fetching latest posts...</div>
               ) : (() => {
@@ -1832,16 +1714,16 @@ function AIPlaybook() {
                 allItems.sort((a, b) => new Date(b.date) - new Date(a.date));
                 if (allItems.length === 0) return <div style={{ textAlign: "center", padding: "16px 0", color: "#55557A", fontSize: 13 }}>Live feeds unavailable — the curated timeline above has you covered.</div>;
                 return (
-                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(310px, 1fr))", gap: 6 }}>
                     {allItems.slice(0, 10).map((item, i) => {
                       const d = item.date ? new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "";
                       return (
                         <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" style={{ background: "#0B0B1A", border: "1px solid #181832", borderLeft: `3px solid ${item.color}50`, borderRadius: "0 11px 11px 0", padding: "11px 14px", textDecoration: "none", display: "block" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                            <span style={{ fontSize: 12, fontWeight: 700, color: item.color, background: item.color + "14", borderRadius: 5, padding: "2px 8px" }}>{item.source}</span>
-                            <span style={{ fontSize: 13, fontWeight: 600, color: "#B0B0CA", flex: 1 }}>{item.title}</span>
-                            <span style={{ fontSize: 12, color: "#55557A" }}>{d}</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
+                            <span style={{ fontSize: 11, fontWeight: 700, color: item.color, background: item.color + "14", borderRadius: 5, padding: "2px 7px" }}>{item.source}</span>
+                            <span style={{ fontSize: 11, color: "#55557A", marginLeft: "auto" }}>{d}</span>
                           </div>
+                          <div style={{ fontSize: 13, fontWeight: 600, color: "#B0B0CA", lineHeight: 1.4 }}>{item.title}</div>
                         </a>
                       );
                     })}
