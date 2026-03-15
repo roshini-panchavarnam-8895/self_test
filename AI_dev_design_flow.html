@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Design-Dev Process — Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0C0E12;
+  --bg-2: #101318;
+  --surface: #161A21;
+  --surface-2: #1C2129;
+  --surface-3: #242A34;
+  --border: #272E3A;
+  --border-light: #333C4C;
+  --border-faint: #1E2430;
+  --text: #E4E8EE;
+  --text-2: #97A0AE;
+  --text-3: #636D7E;
+  --purple: #A78BFA;
+  --purple-dim: #7C3AED;
+  --purple-bg: rgba(167,139,250,0.08);
+  --purple-bg-solid: #1A1528;
+  --purple-border: rgba(167,139,250,0.18);
+  --blue: #60A5FA;
+  --blue-dim: #2563EB;
+  --blue-bg: rgba(96,165,250,0.08);
+  --blue-bg-solid: #121A2C;
+  --blue-border: rgba(96,165,250,0.18);
+  --green: #34D399;
+  --green-dim: #059669;
+  --green-bg: rgba(52,211,153,0.08);
+  --green-bg-solid: #0F1F1A;
+  --green-border: rgba(52,211,153,0.18);
+  --amber: #FBBF24;
+  --amber-dim: #D97706;
+  --amber-bg: rgba(251,191,36,0.08);
+  --amber-bg-solid: #1C1A0F;
+  --amber-border: rgba(251,191,36,0.18);
+  --rose: #FB7185;
+  --rose-dim: #E11D48;
+  --rose-bg: rgba(251,113,133,0.08);
+  --rose-bg-solid: #1F1218;
+  --rose-border: rgba(251,113,133,0.18);
+  --cyan: #22D3EE;
+  --cyan-dim: #0891B2;
+  --cyan-bg: rgba(34,211,238,0.08);
+  --cyan-bg-solid: #0F1C20;
+  --cyan-border: rgba(34,211,238,0.18);
+  --slate-bg: rgba(100,116,139,0.1);
+  --slate-border: rgba(100,116,139,0.2);
+}
+
+body {
+  font-family: 'Instrument Sans', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 40px 120px;
+}
+
+/* Subtle noise texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page { position: relative; z-index: 1; }
+
+/* ===== HEADER ===== */
+.page-header {
+  margin-bottom: 64px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--blue) 0%, transparent 100%);
+}
+
+.page-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.page-header h1 span {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-header p {
+  font-size: 15px;
+  color: var(--text-2);
+  max-width: 700px;
+}
+
+/* ===== SECTION ===== */
+.section {
+  margin-bottom: 64px;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  border: 1px solid;
+}
+
+.section-label.purple { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-border); }
+.section-label.blue { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-border); }
+.section-label.green { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+.section-label.amber { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
+.section-label.cyan { background: var(--cyan-bg); color: var(--cyan); border-color: var(--cyan-border); }
+.section-label.rose { background: var(--rose-bg); color: var(--rose); border-color: var(--rose-border); }
+.section-label.slate { background: var(--slate-bg); color: var(--text-2); border-color: var(--slate-border); }
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.section-desc {
+  font-size: 14px;
+  color: var(--text-3);
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+
+/* ===== FLOW CARDS ===== */
+.flow-track {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+.flow-track::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  border-radius: 1px;
+}
+
+.flow-track.purple-track::before { background: linear-gradient(180deg, var(--purple-border), transparent); }
+.flow-track.blue-track::before { background: linear-gradient(180deg, var(--blue-border), transparent); }
+.flow-track.green-track::before { background: linear-gradient(180deg, var(--green-border), transparent); }
+
+.flow-node {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.flow-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  border: 2px solid;
+}
+
+.flow-dot.purple { background: var(--purple-bg-solid); color: var(--purple); border-color: rgba(167,139,250,0.35); }
+.flow-dot.blue { background: var(--blue-bg-solid); color: var(--blue); border-color: rgba(96,165,250,0.35); }
+.flow-dot.green { background: var(--green-bg-solid); color: var(--green); border-color: rgba(52,211,153,0.35); }
+
+.flow-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.flow-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+.flow-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.flow-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  border: 1px solid;
+}
+
+.badge.ai { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-border); }
+.badge.human { background: var(--slate-bg); color: var(--text-2); border-color: var(--slate-border); }
+.badge.auto { background: var(--cyan-bg); color: var(--cyan); border-color: var(--cyan-border); }
+
+.flow-card-body {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.flow-card-body strong { color: var(--text); font-weight: 600; }
+
+.flow-detail {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-faint);
+}
+
+.flow-detail-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 8px;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.flow-detail-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-top: 2px;
+}
+
+.flow-detail-value {
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+/* ===== FULL FLOW DIAGRAM ===== */
+.full-flow-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  overflow-x: auto;
+}
+
+.swimlane {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  min-width: 1000px;
+}
+
+.lane-header {
+  padding: 14px 12px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.lane-header .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.lane-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-faint);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.lane-row:last-child { border-bottom: none; }
+
+.node {
+  flex-shrink: 0;
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid;
+  white-space: nowrap;
+  position: relative;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.node:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.node.has-ai::before {
+  content: 'AI';
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.node.purple { background: var(--purple-bg-solid); border-color: var(--purple-border); color: var(--purple); }
+.node.purple.has-ai::before { background: var(--purple-dim); }
+.node.blue { background: var(--blue-bg-solid); border-color: var(--blue-border); color: var(--blue); }
+.node.blue.has-ai::before { background: var(--blue-dim); }
+.node.green { background: var(--green-bg-solid); border-color: var(--green-border); color: var(--green); }
+.node.green.has-ai::before { background: var(--green-dim); }
+.node.rose { background: var(--rose-bg-solid); border-color: var(--rose-border); color: var(--rose); }
+.node.rose.has-ai::before { background: var(--rose-dim); }
+
+.arrow {
+  flex-shrink: 0;
+  color: var(--text-3);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ===== AI vs HUMAN TABLE ===== */
+.map-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.map-table th {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.map-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--border-faint);
+  vertical-align: top;
+  color: var(--text-2);
+}
+
+.map-table tbody tr {
+  transition: background 0.15s;
+}
+
+.map-table tbody tr:hover td { background: var(--surface); }
+
+.map-table td:first-child { font-weight: 600; color: var(--text); }
+
+.map-table .row-alt td { background: rgba(255,255,255,0.015); }
+
+.stream-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ===== NEEDS GRID ===== */
+.needs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 14px;
+}
+
+.need-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  border-left: 3px solid;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.need-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+.need-card.critical { border-left-color: var(--rose); }
+.need-card.high { border-left-color: var(--amber); }
+.need-card.medium { border-left-color: var(--blue); }
+
+.need-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.need-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.priority-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+.priority-tag.critical { background: var(--rose-bg); color: var(--rose); border-color: var(--rose-border); }
+.priority-tag.high { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
+.priority-tag.medium { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-border); }
+
+.need-list {
+  list-style: none;
+}
+
+.need-list li {
+  font-size: 12.5px;
+  color: var(--text-2);
+  padding: 7px 0 7px 20px;
+  position: relative;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.need-list li:last-child { border-bottom: none; }
+
+.need-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-3);
+}
+
+.need-list li strong { color: var(--text); font-weight: 600; }
+
+/* ===== CALLOUT ===== */
+.callout {
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin: 28px 0;
+  border: 1px solid;
+  border-left: 3px solid;
+}
+
+.callout.tip { background: var(--green-bg); border-color: var(--green-border); border-left-color: var(--green); }
+.callout.warn { background: var(--amber-bg); border-color: var(--amber-border); border-left-color: var(--amber); }
+.callout.info { background: var(--blue-bg); border-color: var(--blue-border); border-left-color: var(--blue); }
+
+.callout-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.callout.tip .callout-title { color: var(--green); }
+.callout.warn .callout-title { color: var(--amber); }
+.callout.info .callout-title { color: var(--blue); }
+
+.callout p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.callout p strong { color: var(--text); }
+
+/* ===== DIVIDER ===== */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 56px 0;
+  position: relative;
+}
+
+.divider::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--blue), transparent);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .page { padding: 32px 20px 80px; }
+  .needs-grid { grid-template-columns: 1fr; }
+  .page-header h1 { font-size: 26px; }
+  .full-flow-wrap { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <h1>AI-Infused Design &<br><span>Development Process</span></h1>
+    <p>Complete guide — full flow, design stream, dev & review stream, what's needed, and who does what (AI vs Human) at every step.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FULL FLOW -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label slate">Overview</div>
+    <div class="section-title">End-to-End Flow</div>
+    <div class="section-desc">Four lanes running in parallel. AI nodes are badged. Everything flows left to right.</div>
+
+    <div class="full-flow-wrap">
+      <div class="swimlane">
+        <div class="lane-header" style="color:var(--purple);border-bottom:1px solid var(--border-faint);">
+          <span class="dot" style="background:var(--purple)"></span>Design
+        </div>
+        <div class="lane-row">
+          <div class="node purple has-ai">PRD → AI Design Gen</div>
+          <span class="arrow">→</span>
+          <div class="node purple">Manual Tweaks</div>
+          <span class="arrow">→</span>
+          <div class="node purple has-ai">WCAG + Guideline Review</div>
+          <span class="arrow">→</span>
+          <div class="node purple">New Token / Component? Push to Git</div>
+          <span class="arrow">→</span>
+          <div class="node purple">PM & Dev Review Gate</div>
+        </div>
+
+        <div class="lane-header" style="color:var(--blue);border-bottom:1px solid var(--border-faint);">
+          <span class="dot" style="background:var(--blue)"></span>Library
+        </div>
+        <div class="lane-row">
+          <div class="node blue">Design Tokens + Components</div>
+          <span class="arrow">→</span>
+          <div class="node blue has-ai">Auto-Sync to Cloud Library</div>
+          <span class="arrow">→</span>
+          <div class="node blue has-ai">Review Labels Applied</div>
+          <span class="arrow">→</span>
+          <div class="node blue has-ai">Code Extension Updated</div>
+        </div>
+
+        <div class="lane-header" style="color:var(--green);border-bottom:1px solid var(--border-faint);">
+          <span class="dot" style="background:var(--green)"></span>Dev
+        </div>
+        <div class="lane-row">
+          <div class="node green has-ai">Design Pre-check</div>
+          <span class="arrow">→</span>
+          <div class="node green has-ai">HTML/CSS/JS Gen</div>
+          <span class="arrow">→</span>
+          <div class="node green">UI Sanity Review</div>
+          <span class="arrow">→</span>
+          <div class="node green">Engg Integration</div>
+          <span class="arrow">→</span>
+          <div class="node green">Final Sanity Review</div>
+        </div>
+
+        <div class="lane-header" style="color:var(--rose);">
+          <span class="dot" style="background:var(--rose)"></span>QA
+        </div>
+        <div class="lane-row" style="border-bottom:none;">
+          <div class="node rose has-ai">Browser + Unit Testing</div>
+          <span class="arrow">→</span>
+          <div class="node rose">Fix Cycle</div>
+          <span class="arrow">→</span>
+          <div class="node rose has-ai">AI Code Review</div>
+          <span class="arrow">→</span>
+          <div class="node rose">Manual Review + MR Labels</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================ -->
+  <!-- AI vs HUMAN -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label cyan">Reference</div>
+    <div class="section-title">AI vs Human — Who Does What</div>
+    <div class="section-desc">Every step mapped to its actor, what happens, and what tool is needed.</div>
+
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th style="width:160px">Step</th>
+          <th style="width:70px">Stream</th>
+          <th style="width:80px">Actor</th>
+          <th>What Happens</th>
+          <th style="width:180px">Tool / How</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Design Generation</td>
+          <td><span class="stream-dot" style="background:var(--purple)"></span>Design</td>
+          <td><span class="badge ai">AI</span></td>
+          <td>PRD or prompt fed to AI → generates screens, component specs, token usage for builder + live views</td>
+          <td>Figma AI / Custom design agent</td>
+        </tr>
+        <tr class="row-alt">
+          <td>Manual Refinement</td>
+          <td><span class="stream-dot" style="background:var(--purple)"></span>Design</td>
+          <td><span class="badge human">Human</span></td>
+          <td>Designer tweaks spacing, hierarchy, edge cases, brand tone. Minimal corrections on AI output.</td>
+          <td>Figma (manual)</td>
+        </tr>
+        <tr>
+          <td>WCAG & Guideline Check</td>
+          <td><span class="stream-dot" style="background:var(--purple)"></span>Design</td>
+          <td><span class="badge ai">AI</span></td>
+          <td>Automated check: contrast ratios, touch targets, design system adherence, RTL compliance</td>
+          <td>Figma plugin (Stark / Axe / Custom)</td>
+        </tr>
+        <tr class="row-alt">
+          <td>Component / Token Push</td>
+          <td><span class="stream-dot" style="background:var(--purple)"></span>Design</td>
+          <td><span class="badge auto">Auto</span></td>
+          <td>New components or tokens pushed to Git → auto-updates cloud component library</td>
+          <td>Figma API + Style Dictionary + CI</td>
+        </tr>
+        <tr>
+          <td>PM & Dev Review</td>
+          <td><span class="stream-dot" style="background:var(--purple)"></span>Design</td>
+          <td><span class="badge human">Human</span></td>
+          <td>Stakeholder sign-off. Design enters dev pipeline only after this gate.</td>
+          <td>Review workflow (Figma links + specs)</td>
+        </tr>
+        <tr class="row-alt">
+          <td>Design → Cloud Sync</td>
+          <td><span class="stream-dot" style="background:var(--blue)"></span>Library</td>
+          <td><span class="badge auto">Auto</span></td>
+          <td>Detects design changes, generates diff, applies review labels (new/modified/breaking/deprecated)</td>
+          <td>Figma webhooks + Diff engine + CI</td>
+        </tr>
+        <tr>
+          <td>Cloud → Extension Sync</td>
+          <td><span class="stream-dot" style="background:var(--blue)"></span>Library</td>
+          <td><span class="badge auto">Auto</span></td>
+          <td>Updated snippets/previews pushed to VS Code ext and Chrome drag-drop ext</td>
+          <td>Version manifest + CDN/API push</td>
+        </tr>
+        <tr class="row-alt">
+          <td>Design Pre-check</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev</td>
+          <td><span class="badge ai">AI</span></td>
+          <td>Design URL / screenshots ingested → validated against component library + WCAG. Outputs compliance report.</td>
+          <td>Custom AI platform (LLM + RAG)</td>
+        </tr>
+        <tr>
+          <td>Code Generation</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev</td>
+          <td><span class="badge ai">AI</span></td>
+          <td>AI generates HTML. Reuses existing CSS/JS if components exist. Creates new files only for new components.</td>
+          <td>LLM + RAG over component library</td>
+        </tr>
+        <tr class="row-alt">
+          <td>UI Sanity Review</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev</td>
+          <td><span class="badge human">Human</span></td>
+          <td>Developer compares generated output against approved design. Checks responsive + RTL.</td>
+          <td>Manual (browser dev tools)</td>
+        </tr>
+        <tr>
+          <td>Engineering Integration</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev</td>
+          <td><span class="badge human">Human</span></td>
+          <td>UI code wired with business logic, APIs, state management, backend services.</td>
+          <td>Standard dev workflow</td>
+        </tr>
+        <tr class="row-alt">
+          <td>Final Sanity Review</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev</td>
+          <td><span class="badge human">Human</span></td>
+          <td>Verify nothing broke during integration — spacing, animations, data states, RTL.</td>
+          <td>Manual</td>
+        </tr>
+        <tr>
+          <td>Browser + Unit Testing</td>
+          <td><span class="stream-dot" style="background:var(--rose)"></span>QA</td>
+          <td><span class="badge ai">AI</span></td>
+          <td>Cross-browser visual regression, screenshot diffs, auto-generated unit tests for UI components.</td>
+          <td>AI browser extension</td>
+        </tr>
+        <tr class="row-alt">
+          <td>AI Code Review</td>
+          <td><span class="stream-dot" style="background:var(--rose)"></span>QA</td>
+          <td><span class="badge ai">AI</span></td>
+          <td>First-pass code review: quality, performance, security, style compliance. Flags issues with suggestions.</td>
+          <td>CodeRabbit / Sourcery / Custom</td>
+        </tr>
+        <tr>
+          <td>Manual Review + MR</td>
+          <td><span class="stream-dot" style="background:var(--rose)"></span>QA</td>
+          <td><span class="badge human">Human</span></td>
+          <td>Human reviewer has final authority. Adds MR labels, approves merge.</td>
+          <td>GitLab / GitHub</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================ -->
+  <!-- DESIGN FLOW -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label purple">Stream 1</div>
+    <div class="section-title">Design Flow</div>
+    <div class="section-desc">From PRD to approved design. AI generates, humans refine and approve.</div>
+
+    <div class="flow-track purple-track">
+      <div class="flow-node">
+        <div class="flow-dot purple">1</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">PRD / Prompt → AI Design Generation</span>
+            <span class="badge ai">AI</span>
+          </div>
+          <div class="flow-card-body">
+            The PRD document or a consolidated design prompt is fed into an AI design tool. It produces <strong>initial screens, component layouts, token values, and specs</strong> covering both builder UI and live views.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Tool</span><span class="flow-detail-value">Figma AI, Galileo AI, or custom prompt-to-design agent</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Input</span><span class="flow-detail-value">PRD document or structured design prompt with feature requirements</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Output</span><span class="flow-detail-value">Figma screens with component usage, token references, layout structure</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot purple">2</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Manual Refinement</span>
+            <span class="badge human">Human</span>
+          </div>
+          <div class="flow-card-body">
+            Designer reviews AI output and makes <strong>minimal corrections</strong> — spacing tweaks, visual hierarchy, edge cases, brand tone alignment. Goal is refinement, not recreation.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Owner</span><span class="flow-detail-value">UI/UX Designer</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot purple">3</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Guideline & WCAG Review</span>
+            <span class="badge ai">AI Plugin</span>
+          </div>
+          <div class="flow-card-body">
+            AI plugin runs automated checks: <strong>design system adherence, WCAG AA/AAA contrast, touch targets, focus order, RTL compatibility</strong>. Outputs a structured report with severity levels and fix suggestions.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Tool</span><span class="flow-detail-value">Stark / Axe for Figma / Include — or custom plugin</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Output</span><span class="flow-detail-value">Compliance report: pass/fail per rule, severity, suggested fixes</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot purple">4</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">New Component / Token Push</span>
+            <span class="badge auto">Automated</span>
+          </div>
+          <div class="flow-card-body">
+            If new components or tokens are introduced, they're <strong>pushed to the Git repo</strong>. This triggers auto-update to the cloud component library, keeping design and dev in sync.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Pipeline</span><span class="flow-detail-value">Figma Tokens → Style Dictionary → Git commit → CI publish</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot purple">5</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">PM & Development Review Gate</span>
+            <span class="badge human">Human</span>
+          </div>
+          <div class="flow-card-body">
+            PM and dev lead sign off. <strong>Only after this gate</strong> does the design enter the development pipeline. Clear handoff with Figma links, annotated specs, and token references.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Owner</span><span class="flow-detail-value">Product Manager + Dev Lead</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================ -->
+  <!-- DEV & REVIEW FLOW -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label green">Stream 2</div>
+    <div class="section-title">Development & Review Flow</div>
+    <div class="section-desc">From design handoff to merged MR. AI assists at pre-check, generation, testing, and review.</div>
+
+    <div class="flow-track green-track">
+      <div class="flow-node">
+        <div class="flow-dot green">1</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Design Pre-check</span>
+            <span class="badge ai">AI Platform</span>
+          </div>
+          <div class="flow-card-body">
+            Before any code is written, design URL (or screenshots / PRD) is fed into a <strong>component-trained AI platform</strong>. It validates: are library components used correctly? WCAG met? Tokens consistent? Outputs a compliance report.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Tool</span><span class="flow-detail-value">Custom AI platform with RAG over component library + guidelines</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Input</span><span class="flow-detail-value">Figma URL, screenshots, or PRD document</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Output</span><span class="flow-detail-value">Structured compliance report (errors, warnings, info) with fix suggestions</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">2</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Code Generation</span>
+            <span class="badge ai">AI Code Gen</span>
+          </div>
+          <div class="flow-card-body">
+            If pre-check passes, AI generates HTML. <strong>Smart reuse:</strong> if CSS already exists in the component library → no regeneration. For new components → creates full file set (HTML + CSS + JS) following team conventions.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Tool</span><span class="flow-detail-value">LLM (Claude/GPT) + RAG over component library + code standards</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Context</span><span class="flow-detail-value">Component docs, CSS tokens, folder structure, naming conventions, examples</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">3</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">UI Sanity Review</span>
+            <span class="badge human">Human</span>
+          </div>
+          <div class="flow-card-body">
+            UI developer does a <strong>visual sanity check</strong> — comparing generated output against approved design. Checks edge cases, responsive behavior, RTL layout correctness.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Owner</span><span class="flow-detail-value">UI Developer</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">4</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Engineering Integration</span>
+            <span class="badge human">Human</span>
+          </div>
+          <div class="flow-card-body">
+            Engineering team <strong>wires UI code with business logic</strong> — APIs, state management, event handling, backend services.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Owner</span><span class="flow-detail-value">Engineering Team</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">5</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Final Sanity Review</span>
+            <span class="badge human">Human</span>
+          </div>
+          <div class="flow-card-body">
+            Post-integration review: <strong>spacing, animations, responsive behavior, data-driven states, RTL compliance</strong> all verified.
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">6</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">AI Browser + Unit Testing</span>
+            <span class="badge ai">AI Extension</span>
+          </div>
+          <div class="flow-card-body">
+            AI browser extension runs <strong>cross-browser visual testing</strong> (screenshot diffs) and <strong>auto-generates unit tests</strong> for UI components. Catches rendering inconsistencies and layout shifts.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Tool</span><span class="flow-detail-value">Custom AI browser extension + Playwright/Puppeteer backend</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Output</span><span class="flow-detail-value">Visual diff report + generated test files</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">7</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Code Review & MR</span>
+            <span class="badge ai">AI Review</span>
+            <span class="badge human">Human</span>
+          </div>
+          <div class="flow-card-body">
+            <strong>AI first pass:</strong> code quality, performance, security, style compliance. <strong>Human final pass:</strong> reviewer has ultimate authority, adds MR labels, approves merge.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">AI Tool</span><span class="flow-detail-value">CodeRabbit / Sourcery / Custom (Claude API integration)</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Human</span><span class="flow-detail-value">Senior dev / Tech lead — final authority on MR labels and merge</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================ -->
+  <!-- COMPONENT LIBRARY SYNC -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label blue">Stream 3</div>
+    <div class="section-title">Component Library Sync Flow</div>
+    <div class="section-desc">The bridge between design decisions and developer tooling — automated and version-controlled.</div>
+
+    <div class="flow-track blue-track">
+      <div class="flow-node">
+        <div class="flow-dot blue">1</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Dual-Format Component Library</span>
+            <span class="badge human">Foundation</span>
+          </div>
+          <div class="flow-card-body">
+            Maintain a component library in <strong>both design (Figma) and code (HTML/CSS/JS)</strong> with identical naming. Covers builder UI + live views. Single source of truth.
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot blue">2</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Auto-Sync: Design → Cloud Library</span>
+            <span class="badge auto">Automated</span>
+          </div>
+          <div class="flow-card-body">
+            Automated pipeline syncs design changes to cloud dev library. Review labels (<strong>new, modified, deprecated, breaking</strong>) auto-applied via diff analysis.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Pipeline</span><span class="flow-detail-value">Figma API webhook → Diff engine → Auto-PR with labels → CI publish on merge</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot blue">3</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Cloud Library → Code Extensions</span>
+            <span class="badge auto">Auto / Manual</span>
+          </div>
+          <div class="flow-card-body">
+            Changes propagate to <strong>VS Code extension and Chrome drag-drop extension</strong> via cloud push or manual trigger. Each update carries the review label.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Mechanism</span><span class="flow-detail-value">Version manifest on CDN → Extension checks on startup → Pulls if newer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================ -->
+  <!-- WHAT IS NEEDED -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label amber">Requirements</div>
+    <div class="section-title">What's Needed to Make This Work</div>
+    <div class="section-desc">Every prerequisite organized by priority. Critical items must exist before any AI step functions.</div>
+
+    <div class="needs-grid">
+      <div class="need-card critical">
+        <div class="need-card-header">
+          <h4>Component Library — Design</h4>
+          <span class="priority-tag critical">Critical</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>Figma components</strong> with variants for every UI element (builder + live views)</li>
+          <li><strong>Design tokens</strong> defined (colors, spacing, type, elevation, radius) via Figma Tokens</li>
+          <li><strong>Naming convention</strong> aligned 1:1 between Figma and code</li>
+          <li><strong>RTL variants</strong> with mirroring specs for Arabic support</li>
+          <li><strong>Versioning</strong> at the component level (semantic versioning)</li>
+        </ul>
+      </div>
+
+      <div class="need-card critical">
+        <div class="need-card-header">
+          <h4>Component Library — Code</h4>
+          <span class="priority-tag critical">Critical</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>Coded components</strong> (HTML/CSS/JS) matching every Figma component 1:1</li>
+          <li><strong>CSS token file</strong> auto-generated from design tokens via Style Dictionary</li>
+          <li><strong>Component docs</strong> — props, states, usage guidelines, do/don't examples</li>
+          <li><strong>Published via</strong> internal npm registry or CDN for consumption</li>
+          <li><strong>Storybook</strong> or equivalent for visual catalog and regression testing</li>
+        </ul>
+      </div>
+
+      <div class="need-card critical">
+        <div class="need-card-header">
+          <h4>AI Context Layer</h4>
+          <span class="priority-tag critical">Critical</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>Structured docs</strong> — .meta.json per component (props, variants, usage as data)</li>
+          <li><strong>Guidelines as data</strong> — JSON/YAML format, not just PDF</li>
+          <li><strong>WCAG as assertions</strong> — machine-checkable conditions, not prose</li>
+          <li><strong>Coding standards</strong> — naming, folder structure, CSS methodology, JS patterns</li>
+          <li><strong>Example mappings</strong> — 5-10 complete PRD → design → code as few-shot refs</li>
+        </ul>
+      </div>
+
+      <div class="need-card high">
+        <div class="need-card-header">
+          <h4>Design → Code Sync Pipeline</h4>
+          <span class="priority-tag high">High</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>Figma API</strong> integration to detect component/token changes</li>
+          <li><strong>Token transformation</strong> — Style Dictionary (tokens → CSS vars → JSON)</li>
+          <li><strong>Diff engine</strong> — classify: new / modified / deprecated / breaking</li>
+          <li><strong>Auto-PR</strong> with review labels on Git commit</li>
+          <li><strong>CI/CD</strong> to publish updated library on merge</li>
+        </ul>
+      </div>
+
+      <div class="need-card high">
+        <div class="need-card-header">
+          <h4>Developer Extensions</h4>
+          <span class="priority-tag high">High</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>VS Code extension</strong> for component snippet insertion</li>
+          <li><strong>Chrome extension</strong> (drag-drop library) connected to cloud source</li>
+          <li><strong>Auto-update</strong> — manifest check on startup, pull if newer</li>
+          <li><strong>Component search</strong> and preview within editor context</li>
+        </ul>
+      </div>
+
+      <div class="need-card medium">
+        <div class="need-card-header">
+          <h4>AI Tooling Stack</h4>
+          <span class="priority-tag medium">Medium</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>Design gen:</strong> Figma AI / custom agent for prompt-to-design</li>
+          <li><strong>WCAG plugin:</strong> Stark / Axe / Include for accessibility checks</li>
+          <li><strong>Pre-check:</strong> Custom LLM + RAG over component library</li>
+          <li><strong>Code gen:</strong> LLM + RAG trained on components + standards</li>
+          <li><strong>Testing:</strong> AI extension for visual regression + unit test gen</li>
+          <li><strong>Code review:</strong> CodeRabbit / Sourcery / Custom on Git</li>
+        </ul>
+      </div>
+
+      <div class="need-card medium">
+        <div class="need-card-header">
+          <h4>Process & Governance</h4>
+          <span class="priority-tag medium">Medium</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>PRD template</strong> optimized for AI consumption</li>
+          <li><strong>Design handoff checklist</strong> — tokens, states, RTL verified</li>
+          <li><strong>MR labeling</strong> convention aligned across AI + human reviewers</li>
+          <li><strong>Coverage gate</strong> in CI (% UI from library vs custom)</li>
+          <li><strong>Feedback loop</strong> — tag bugs on AI code, track accuracy</li>
+        </ul>
+      </div>
+
+      <div class="need-card medium">
+        <div class="need-card-header">
+          <h4>Metrics & Tracking</h4>
+          <span class="priority-tag medium">Medium</span>
+        </div>
+        <ul class="need-list">
+          <li><strong>AI accuracy:</strong> % generated code shipped unchanged</li>
+          <li><strong>Library coverage:</strong> % UI from library vs custom</li>
+          <li><strong>Time-to-ship:</strong> design-to-production cycle reduction</li>
+          <li><strong>Review efficiency:</strong> AI suggestion acceptance rate</li>
+          <li><strong>Bug attribution:</strong> AI-generated vs human-written bugs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================ -->
+  <!-- BUILD ORDER -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label rose">Summary</div>
+    <div class="section-title">Build Order — Priority Stack</div>
+    <div class="section-desc">If you can only do a few things, do these in this order.</div>
+
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th style="width:40px">#</th>
+          <th>What to Build</th>
+          <th style="width:100px">Impact</th>
+          <th style="width:100px">Effort</th>
+          <th style="width:110px">Timeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Complete dual component library (Figma + Code) with 1:1 naming</td>
+          <td><strong style="color:var(--rose)">Highest</strong></td>
+          <td>High</td>
+          <td>Weeks 1–6</td>
+        </tr>
+        <tr class="row-alt">
+          <td>2</td>
+          <td>Build AI context layer (structured component docs + guidelines + code standards)</td>
+          <td><strong style="color:var(--rose)">Highest</strong></td>
+          <td>Medium</td>
+          <td>Weeks 3–6</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Set up token pipeline (Figma Tokens → Style Dictionary → Git)</td>
+          <td><strong style="color:var(--amber)">High</strong></td>
+          <td>Medium</td>
+          <td>Weeks 4–8</td>
+        </tr>
+        <tr class="row-alt">
+          <td>4</td>
+          <td>Build Figma-to-Git sync with auto-PR and review labels</td>
+          <td><strong style="color:var(--amber)">High</strong></td>
+          <td>High</td>
+          <td>Weeks 7–12</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Integrate AI code review tool (quickest AI win)</td>
+          <td><strong style="color:var(--green)">Medium</strong></td>
+          <td>Low</td>
+          <td>Weeks 8–10</td>
+        </tr>
+        <tr class="row-alt">
+          <td>6</td>
+          <td>Build AI code generation pipeline (LLM + RAG over component library)</td>
+          <td><strong style="color:var(--rose)">Highest</strong></td>
+          <td>High</td>
+          <td>Weeks 13–18</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Build design pre-check platform</td>
+          <td><strong style="color:var(--amber)">High</strong></td>
+          <td>High</td>
+          <td>Weeks 14–20</td>
+        </tr>
+        <tr class="row-alt">
+          <td>8</td>
+          <td>Add extension auto-sync + browser testing + metrics</td>
+          <td><strong style="color:var(--green)">Medium</strong></td>
+          <td>Medium</td>
+          <td>Ongoing</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout tip" style="margin-top:36px;">
+      <div class="callout-title">Core Principle</div>
+      <p>The strongest version of this process isn't one where AI does the most work. It's one where AI has <strong>the best context</strong> to work with, and humans make the decisions that matter. Build the foundation (component library + AI context layer) first — everything else plugs into it.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
