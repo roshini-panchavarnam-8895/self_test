@@ -586,7 +586,7 @@ body::before {
   <div class="section">
     <div class="section-label slate">Overview</div>
     <div class="section-title">End-to-End Flow</div>
-    <div class="section-desc">Four lanes running in parallel. AI nodes are badged. Everything flows left to right.</div>
+    <div class="section-desc">Three lanes running in parallel. AI nodes are badged. Everything flows left to right.</div>
 
     <div class="full-flow-wrap">
       <div class="swimlane">
@@ -618,10 +618,10 @@ body::before {
           <div class="node blue has-ai">Code Extension Updated</div>
         </div>
 
-        <div class="lane-header" style="color:var(--green);border-bottom:1px solid var(--border-faint);">
+        <div class="lane-header" style="color:var(--green);">
           <span class="dot" style="background:var(--green)"></span>Dev
         </div>
-        <div class="lane-row">
+        <div class="lane-row" style="border-bottom:none;">
           <div class="node green has-ai">Design Pre-check</div>
           <span class="arrow">→</span>
           <div class="node green has-ai">HTML/CSS/JS Gen</div>
@@ -630,20 +630,13 @@ body::before {
           <span class="arrow">→</span>
           <div class="node green">Engg Integration</div>
           <span class="arrow">→</span>
-          <div class="node green">Final Sanity Review</div>
-        </div>
-
-        <div class="lane-header" style="color:var(--rose);">
-          <span class="dot" style="background:var(--rose)"></span>QA
-        </div>
-        <div class="lane-row" style="border-bottom:none;">
-          <div class="node rose has-ai">Browser + Unit Testing</div>
+          <div class="node green">Final Sanity</div>
           <span class="arrow">→</span>
-          <div class="node rose">Fix Cycle</div>
+          <div class="node green has-ai">Browser + Unit Test</div>
           <span class="arrow">→</span>
-          <div class="node rose has-ai">AI Code Review</div>
+          <div class="node green has-ai">AI Code Review</div>
           <span class="arrow">→</span>
-          <div class="node rose">Manual Review + MR Labels</div>
+          <div class="node green">Manual Review + MR</div>
         </div>
       </div>
     </div>
@@ -756,21 +749,21 @@ body::before {
         </tr>
         <tr>
           <td>Browser + Unit Testing</td>
-          <td><span class="stream-dot" style="background:var(--rose)"></span>QA</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev & QA</td>
           <td><span class="badge ai">AI</span></td>
           <td>Cross-browser visual regression, screenshot diffs, auto-generated unit tests for UI components.</td>
           <td>AI browser extension</td>
         </tr>
         <tr class="row-alt">
           <td>AI Code Review</td>
-          <td><span class="stream-dot" style="background:var(--rose)"></span>QA</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev & QA</td>
           <td><span class="badge ai">AI</span></td>
           <td>First-pass code review: quality, performance, security, style compliance. Flags issues with suggestions.</td>
           <td>CodeRabbit / Sourcery / Custom</td>
         </tr>
         <tr>
           <td>Manual Review + MR</td>
-          <td><span class="stream-dot" style="background:var(--rose)"></span>QA</td>
+          <td><span class="stream-dot" style="background:var(--green)"></span>Dev & QA</td>
           <td><span class="badge human">Human</span></td>
           <td>Human reviewer has final authority. Adds MR labels, approves merge.</td>
           <td>GitLab / GitHub</td>
@@ -883,7 +876,7 @@ body::before {
   <div class="section">
     <div class="section-label green">Stream 2</div>
     <div class="section-title">Development & Review Flow</div>
-    <div class="section-desc">From design handoff to merged MR. AI assists at pre-check, generation, testing, and review.</div>
+    <div class="section-desc">From design handoff to merged MR. AI assists at pre-check, generation, testing, and review — all in one continuous stream.</div>
 
     <div class="flow-track green-track">
       <div class="flow-node">
@@ -987,16 +980,47 @@ body::before {
         <div class="flow-dot green">7</div>
         <div class="flow-card">
           <div class="flow-card-top">
-            <span class="flow-card-title">Code Review & MR</span>
+            <span class="flow-card-title">AI Code Review</span>
             <span class="badge ai">AI Review</span>
+          </div>
+          <div class="flow-card-body">
+            AI-infused code review tool performs the <strong>first-pass sanity review</strong> — code quality, performance, security concerns, style compliance against team standards. Flags issues with inline suggestions and severity levels.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Tool</span><span class="flow-detail-value">CodeRabbit / Sourcery / Custom (Claude API integration)</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Output</span><span class="flow-detail-value">Inline comments on MR with suggestions, severity flags, auto-fix proposals</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">8</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Fix Cycle</span>
             <span class="badge human">Human</span>
           </div>
           <div class="flow-card-body">
-            <strong>AI first pass:</strong> code quality, performance, security, style compliance. <strong>Human final pass:</strong> reviewer has ultimate authority, adds MR labels, approves merge.
+            Developer addresses issues flagged by AI testing and code review — <strong>rendering fixes, test failures, code quality improvements</strong>. Iterates until all blockers are resolved.
           </div>
           <div class="flow-detail">
-            <div class="flow-detail-row"><span class="flow-detail-label">AI Tool</span><span class="flow-detail-value">CodeRabbit / Sourcery / Custom (Claude API integration)</span></div>
-            <div class="flow-detail-row"><span class="flow-detail-label">Human</span><span class="flow-detail-value">Senior dev / Tech lead — final authority on MR labels and merge</span></div>
+            <div class="flow-detail-row"><span class="flow-detail-label">Owner</span><span class="flow-detail-value">UI Developer / Engineer</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-node">
+        <div class="flow-dot green">9</div>
+        <div class="flow-card">
+          <div class="flow-card-top">
+            <span class="flow-card-title">Manual Review + MR Labels</span>
+            <span class="badge human">Human</span>
+          </div>
+          <div class="flow-card-body">
+            Human reviewer has <strong>final authority</strong>. Reviews the complete MR, adds appropriate labels, and approves the merge. This is the last gate before code ships.
+          </div>
+          <div class="flow-detail">
+            <div class="flow-detail-row"><span class="flow-detail-label">Owner</span><span class="flow-detail-value">Senior dev / Tech lead — final authority on MR labels and merge</span></div>
           </div>
         </div>
       </div>
