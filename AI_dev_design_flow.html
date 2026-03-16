@@ -562,12 +562,165 @@ body::before {
   background: linear-gradient(90deg, var(--blue), transparent);
 }
 
+/* ===== STATUS TRACKER ===== */
+.status-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-row {
+  display: grid;
+  grid-template-columns: 1fr 110px 100px;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.status-row:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.status-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.status-row-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.status-row-desc {
+  font-size: 11.5px;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+.status-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 5px;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid;
+}
+
+.status-chip.done {
+  background: var(--green-bg);
+  color: var(--green);
+  border-color: var(--green-border);
+}
+
+.status-chip.in-progress {
+  background: var(--amber-bg);
+  color: var(--amber);
+  border-color: var(--amber-border);
+}
+
+.status-chip.pending {
+  background: var(--surface-2);
+  color: var(--text-3);
+  border-color: var(--border);
+}
+
+.status-chip.blocked {
+  background: var(--rose-bg);
+  color: var(--rose);
+  border-color: var(--rose-border);
+}
+
+.priority-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.priority-chip.crit { color: var(--rose); }
+.priority-chip.high { color: var(--amber); }
+.priority-chip.med { color: var(--blue); }
+.priority-chip.low { color: var(--text-3); }
+
+.status-header {
+  display: grid;
+  grid-template-columns: 1fr 110px 100px;
+  gap: 12px;
+  padding: 8px 18px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.status-divider-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 20px 18px 8px;
+}
+
+.status-divider-label.pending-label { color: var(--text-3); }
+
+.progress-summary {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.progress-number {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.progress-label {
+  font-size: 11px;
+  color: var(--text-3);
+  line-height: 1.3;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .page { padding: 32px 20px 80px; }
   .needs-grid { grid-template-columns: 1fr; }
   .page-header h1 { font-size: 26px; }
   .full-flow-wrap { padding: 16px; }
+  .status-row { grid-template-columns: 1fr 90px 80px; padding: 12px 14px; }
+  .progress-summary { gap: 10px; }
+  .progress-item { padding: 10px 14px; }
 }
 </style>
 </head>
@@ -1083,6 +1236,214 @@ body::before {
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================ -->
+  <!-- CURRENT STATUS -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-label green">Current Status</div>
+    <div class="section-title">Where We Are & What's Pending</div>
+    <div class="section-desc">5 items in progress, 12 items pending. Items are ordered by dependency — top pending items unblock everything below.</div>
+
+    <div class="progress-summary">
+      <div class="progress-item">
+        <div class="progress-number" style="color:var(--amber)">5</div>
+        <div class="progress-label">In Progress</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-number" style="color:var(--rose)">4</div>
+        <div class="progress-label">Critical<br>Pending</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-number" style="color:var(--blue)">4</div>
+        <div class="progress-label">High<br>Pending</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-number" style="color:var(--text-3)">4</div>
+        <div class="progress-label">Medium<br>Pending</div>
+      </div>
+    </div>
+
+    <div class="status-header">
+      <span>Item</span>
+      <span>Status</span>
+      <span>Priority</span>
+    </div>
+
+    <!-- IN PROGRESS -->
+    <div class="status-grid">
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Design Library in Figma</div>
+          <div class="status-row-desc">Figma component library with variants for builder + live views</div>
+        </div>
+        <div class="status-chip in-progress">In Progress</div>
+        <div class="priority-chip crit">Critical</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">HTML Cloud Component Library</div>
+          <div class="status-row-desc">Coded component library hosted on cloud — the dev-side source of truth</div>
+        </div>
+        <div class="status-chip in-progress">In Progress</div>
+        <div class="priority-chip crit">Critical</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Code Extension</div>
+          <div class="status-row-desc">Chrome drag-and-drop component library extension with side panel</div>
+        </div>
+        <div class="status-chip in-progress">In Progress</div>
+        <div class="priority-chip high">High</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Design Guideline Check in Figma</div>
+          <div class="status-row-desc">Figma plugin for automated design system adherence + WCAG validation</div>
+        </div>
+        <div class="status-chip in-progress">In Progress</div>
+        <div class="priority-chip high">High</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Code Review Tool</div>
+          <div class="status-row-desc">AI-infused code review tool integrated with Git platform</div>
+        </div>
+        <div class="status-chip in-progress">In Progress</div>
+        <div class="priority-chip med">Medium</div>
+      </div>
+    </div>
+
+    <!-- PENDING -->
+    <div class="status-divider-label pending-label">Pending — Critical (blocks AI workflow)</div>
+
+    <div class="status-grid">
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Design Tokens as Structured Data</div>
+          <div class="status-row-desc">Tokens defined in Figma Tokens / Tokens Studio, exported as JSON. Required for Style Dictionary to generate CSS variables automatically.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip crit">Critical</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">1:1 Naming Alignment (Design ↔ Code)</div>
+          <div class="status-row-desc">Identical naming between Figma components and HTML components. Without this, every AI tool struggles to map between design and code.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip crit">Critical</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">AI Context Layer</div>
+          <div class="status-row-desc">Structured .meta.json per component, guidelines as JSON/YAML, WCAG as assertions, coding standards doc, 5–10 PRD→design→code example mappings.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip crit">Critical</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Component Versioning Strategy</div>
+          <div class="status-row-desc">Semantic versioning at the component level, not just library level. Breaking changes must be trackable for downstream consumers.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip crit">Critical</div>
+      </div>
+    </div>
+
+    <!-- PENDING HIGH -->
+    <div class="status-divider-label pending-label">Pending — High (enables automation)</div>
+
+    <div class="status-grid">
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Design → Git Sync Pipeline</div>
+          <div class="status-row-desc">Figma API webhooks → diff engine → auto-PR with review labels (new/modified/breaking/deprecated) → CI publish on merge.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip high">High</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Token Transformation Pipeline</div>
+          <div class="status-row-desc">Style Dictionary setup: Figma token JSON → CSS variables, SCSS, JSON, platform-specific output. Wired into Git sync for automatic flow.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip high">High</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Extension Auto-Update Mechanism</div>
+          <div class="status-row-desc">Version manifest on CDN, extension checks on startup, pulls new component data when cloud library updates. Offline fallback cache.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip high">High</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">PRD Template for AI Consumption</div>
+          <div class="status-row-desc">Structured PRD template with clear sections that AI design generation tools can parse and act on reliably.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip high">High</div>
+      </div>
+    </div>
+
+    <!-- PENDING MEDIUM -->
+    <div class="status-divider-label pending-label">Pending — Medium (AI layer + metrics)</div>
+
+    <div class="status-grid">
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Design Pre-check Platform</div>
+          <div class="status-row-desc">Custom AI platform: ingest Figma URL / screenshots → validate against component library + WCAG → structured compliance report. Needs AI context layer first.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip med">Medium</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">AI Code Generation Pipeline</div>
+          <div class="status-row-desc">LLM + RAG over component library. Design spec in → HTML/CSS/JS out. Reuses existing components, generates only what's new. Needs AI context layer first.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip med">Medium</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">AI Browser Testing Extension</div>
+          <div class="status-row-desc">Cross-browser visual regression (screenshot diffs) + auto-generated unit tests. Needs baseline screenshots from Storybook.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip med">Medium</div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-row-info">
+          <div class="status-row-title">Feedback Loop + Metrics</div>
+          <div class="status-row-desc">Tag bugs on AI-generated code, track accuracy over time, component coverage gate in CI, time-to-ship dashboard.</div>
+        </div>
+        <div class="status-chip pending">Pending</div>
+        <div class="priority-chip med">Medium</div>
+      </div>
+    </div>
+
   </div>
 
   <div class="divider"></div>
