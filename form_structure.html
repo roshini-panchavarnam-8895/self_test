@@ -56,7 +56,7 @@
 
   /* ═══ Annotations ═══ */
   .annotated .zc-canvas-container{outline:2px dashed var(--anno-canvas);outline-offset:4px}
-  .annotated .zc-canvas-container>div>form{outline:2px dashed var(--anno-form);outline-offset:2px}
+  .annotated [data-element-type="form"]{outline:2px dashed var(--anno-form);outline-offset:2px}
   .annotated [data-element-type="form_section"]{outline:1.5px dashed var(--anno-section);outline-offset:2px}
   .annotated [data-element-type="horizontal_flex"]{outline:1.5px dashed var(--anno-row);outline-offset:1px}
   .annotated [data-element-type="horizontal_flex"]>.zc-no-shrink{outline:1.5px dashed var(--anno-cell);outline-offset:0}
@@ -64,14 +64,14 @@
   .annotated .form-label{outline:1px dotted var(--anno-label);outline-offset:-1px}
   .annotated .form-field{outline:1px dotted var(--anno-formfield);outline-offset:-1px}
   .annotated .compositeWrapper{outline:1px dotted #f59e0b;outline-offset:-1px}
-  .annotated .zc-canvas-container::before,.annotated .zc-canvas-container>div>form::before,
+  .annotated .zc-canvas-container::before,.annotated [data-element-type="form"]::before,
   .annotated [data-element-type="form_section"]::before,.annotated [data-element-type="horizontal_flex"]::before,
   .annotated [data-element-type="horizontal_flex"]>.zc-no-shrink::before,
   .annotated .form-group::before,.annotated .form-label::before,.annotated .form-field::before{
     font-family:var(--mono-font);font-size:9px;font-weight:500;padding:0 5px;border-radius:3px;color:#fff;position:absolute;z-index:10;white-space:nowrap;pointer-events:none;
   }
   .annotated .zc-canvas-container{position:relative}.annotated .zc-canvas-container::before{content:'canvas-container';background:var(--anno-canvas);top:-18px;left:0}
-  .annotated .zc-canvas-container>div>form{position:relative}.annotated .zc-canvas-container>div>form::before{content:'<form> zc-flex zc-direction-column';background:var(--anno-form);top:-14px;left:8px}
+  .annotated [data-element-type="form"]{position:relative}.annotated [data-element-type="form"]::before{content:'<form> zc-flex zc-direction-column';background:var(--anno-form);top:-14px;left:8px}
   .annotated [data-element-type="form_section"]{position:relative}.annotated [data-element-type="form_section"]::before{content:'form_section';background:var(--anno-section);top:-12px;left:4px}
   .annotated [data-element-type="horizontal_flex"]{position:relative}.annotated [data-element-type="horizontal_flex"]::before{content:'horizontal_flex  zc-direction-row';background:var(--anno-row);top:-12px;left:4px}
   .annotated [data-element-type="horizontal_flex"]>.zc-no-shrink{position:relative}.annotated [data-element-type="horizontal_flex"]>.zc-no-shrink::before{content:'zc-col-N';background:var(--anno-cell);top:-12px;left:4px}
@@ -87,14 +87,12 @@
   /* ═══ Form ═══ */
   .zc-canvas-container{max-width:960px;margin:0 auto;height:540px;border-radius:var(--form-radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 16px rgba(0,0,0,.04);position:relative;width:100%}
   .zc-canvas-container>.zc-flex{height:100%}
+  .zc-canvas-container>form{height:100%}
   [data-element-type="form_header"]{background:var(--header-bg);border-bottom:1px solid var(--header-border)}
+  .view-draft{font-size:13px;color:var(--btn-primary-bg);text-decoration:none;font-weight:500}.view-draft:hover{text-decoration:underline}
   .form-title{font-size:16px;font-weight:600;color:var(--header-title)}
   .popupClose{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;color:var(--section-desc);transition:background .15s}
   .popupClose:hover{background:var(--btn-secondary-bg)}
-  .zc-canvas-container form{flex:1;overflow-y:auto;background:var(--form-bg)}
-  .zc-canvas-container form::-webkit-scrollbar{width:6px}
-  .zc-canvas-container form::-webkit-scrollbar-track{background:transparent}
-  .zc-canvas-container form::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
   .section-label{font-size:14px;font-weight:600;color:var(--section-title);padding-bottom:8px;border-bottom:1px solid var(--section-line)}
   .zc-label-text{font-size:13px;font-weight:500;color:var(--label-color)}
   .form-control{font-family:var(--canvas-font);font-size:13px;padding:8px 12px;border:1px solid var(--input-border);border-radius:var(--input-radius);background:var(--input-bg);color:var(--input-text);outline:none;transition:border-color .15s,box-shadow .15s;width:100%}
@@ -186,7 +184,7 @@
 
 <div class="page-intro">
   <h1>Zoho Creator — Flex Form Structure</h1>
-  <p>Canvas utility classes on every element including form-group internals. Header &amp; footer outside <code>&lt;form&gt;</code>.</p>
+  <p>Canvas utility classes on every element. <code>vertical_flex</code> wraps <code>&lt;form&gt;</code>. Header, fields &amp; footer all inside <code>&lt;form&gt;</code>.</p>
 </div>
 
 <div class="controls-row">
@@ -229,8 +227,8 @@
   <div id="form-sections" class="variant-panel active">
     <div class="zc-canvas-container label-left" id="formCanvasS" data-element-type="canvas">
       <div data-element-type="vertical_flex" class="zc-flex zc-direction-column" style="height:100%">
-        <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16"><span class="form-title" role="heading" aria-level="3">new form 1</span><span class="popupClose"><i>✕</i></span></div>
-        <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_1">
+        <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_1" data-element-type="form">
+          <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16 zc-gap-col-10"><span class="form-title" role="heading" aria-level="3">new form 1</span><a href="javascript:;" class="view-draft" role="button" aria-label="View Drafts">View Drafts</a></div>
           <div data-element-type="form_section" class="zc-flex zc-no-shrink zc-direction-column zc-gap-row-15">
             <h2 class="section-label">Personal Details</h2>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
@@ -256,26 +254,11 @@
           <div data-element-type="form_section" class="zc-flex zc-no-shrink zc-direction-column zc-gap-row-15">
             <h2 class="section-label">Additional Info</h2>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-              <div class="zc-no-shrink zc-col-12">
-                <div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_multiline">
-                  <label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Multi Line</span></label>
-                  <div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div>
-                </div>
-              </div>
+              <div class="zc-no-shrink zc-col-12"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_multiline"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Multi Line</span></label><div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div></div></div>
             </div>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-              <div class="zc-no-shrink zc-col-6">
-                <div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_select">
-                  <label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Drop Down</span></label>
-                  <div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div>
-                </div>
-              </div>
-              <div class="zc-no-shrink zc-col-6">
-                <div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_textfield">
-                  <label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Department</span></label>
-                  <div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div>
-                </div>
-              </div>
+              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_select"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Drop Down</span></label><div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div></div></div>
+              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Department</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div></div></div>
             </div>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
               <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">City</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Chennai"></div></div></div>
@@ -283,8 +266,8 @@
               <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
             </div>
           </div>
+          <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit"></div>
         </form>
-        <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit" form="new_form_1"></div>
       </div>
     </div>
   </div>
@@ -293,8 +276,8 @@
   <div id="form-flat" class="variant-panel">
     <div class="zc-canvas-container label-left" id="formCanvasF" data-element-type="canvas">
       <div data-element-type="vertical_flex" class="zc-flex zc-direction-column" style="height:100%">
-        <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16"><span class="form-title" role="heading" aria-level="3">new form 1</span><span class="popupClose"><i>✕</i></span></div>
-        <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_flat">
+        <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_flat" data-element-type="form">
+          <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16 zc-gap-col-10"><span class="form-title" role="heading" aria-level="3">new form 1</span><a href="javascript:;" class="view-draft" role="button" aria-label="View Drafts">View Drafts</a></div>
           <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
             <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_name"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Name</span></label><div class="form-field zc-col-common"><div class="compositeWrapper zc-flex zc-direction-row zc-gap-col-8"><span class="zc-col-common"><input class="form-control" type="text" placeholder="John"><p class="zc-subfield-label">First Name</p></span><span class="zc-col-common"><input class="form-control" type="text" placeholder="Doe"><p class="zc-subfield-label">Last Name</p></span></div></div></div></div>
             <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Single Line</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Enter text"></div></div></div>
@@ -311,8 +294,8 @@
             <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">State</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Tamil Nadu"></div></div></div>
             <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
           </div>
+          <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit"></div>
         </form>
-        <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit" form="new_form_flat"></div>
       </div>
     </div>
   </div>
@@ -323,67 +306,67 @@
   <div id="vb-sections" class="variant-panel active">
     <div class="vb-container">
       <div class="vb-box vb-canvas"><span class="vb-tag">.zc-canvas-container</span>
-        <div class="vb-flow"><span class="vb-flow-arrow down"></span> zc-flex zc-direction-column</div>
-        <div class="vb-box vb-header"><span class="vb-tag">form_header</span><span class="vb-outside-badge">OUTSIDE &lt;form&gt;</span></div>
         <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
-        <div class="vb-box vb-form"><span class="vb-tag">&lt;form&gt;</span><span class="vb-flex-badge">zc-flex zc-direction-column zc-gap-row-20</span>
+        <div class="vb-box vb-form"><span class="vb-tag">&lt;form&gt;</span><span class="vb-flex-badge">zc-flex zc-direction-column</span>
           <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
-          <div class="vb-box vb-section"><span class="vb-tag">form_section</span><span class="vb-flex-badge">zc-direction-column zc-gap-row-15</span>
-            <div class="vb-section-header"><strong>&lt;h2&gt; Personal Details</strong></div>
-            <div class="vb-box vb-row"><span class="vb-tag">horizontal_flex — ROW 1</span><span class="vb-flex-badge">zc-direction-row zc-gap-col-16</span>
-              <div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span>
-                <div class="vb-field"><span class="vb-tag">.form-group</span><span class="vb-flex-badge" id="vbFgBadge1">zc-flex zc-direction-row</span>
-                  <div class="vb-field-row" id="vbFgLayout1">
-                    <div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Name</span></div></div>
-                    <div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field zc-col-common</span>
-                      <div class="vb-composite"><span class="vb-tag">compositeWrapper zc-flex zc-direction-row zc-gap-col-8</span>
-                        <div class="vb-sub"><div class="vb-field-content"><span class="field-input">First</span></div></div>
-                        <div class="vb-sub"><div class="vb-field-content"><span class="field-input">Last</span></div></div>
+          <div class="vb-box vb-header"><span class="vb-tag">form_header</span><span class="vb-flex-badge">zc-no-shrink</span></div>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-section"><span class="vb-tag">form_section</span><span class="vb-flex-badge">zc-direction-column zc-gap-row-15</span>
+              <div class="vb-section-header"><strong>&lt;h2&gt; Personal Details</strong></div>
+              <div class="vb-box vb-row"><span class="vb-tag">horizontal_flex — ROW 1</span><span class="vb-flex-badge">zc-direction-row zc-gap-col-16</span>
+                <div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span>
+                  <div class="vb-field"><span class="vb-tag">.form-group</span><span class="vb-flex-badge" id="vbFgBadge1">zc-flex zc-direction-row</span>
+                    <div class="vb-field-row" id="vbFgLayout1">
+                      <div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Name</span></div></div>
+                      <div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field zc-col-common</span>
+                        <div class="vb-composite"><span class="vb-tag">compositeWrapper zc-flex zc-direction-row zc-gap-col-8</span>
+                          <div class="vb-sub"><div class="vb-field-content"><span class="field-input">First</span></div></div>
+                          <div class="vb-sub"><div class="vb-field-content"><span class="field-input">Last</span></div></div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span>
-                <div class="vb-field"><span class="vb-tag">.form-group</span><span class="vb-flex-badge" id="vbFgBadge2">zc-flex zc-direction-row</span>
-                  <div class="vb-field-row" id="vbFgLayout2">
-                    <div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Single Line</span></div></div>
-                    <div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field zc-col-common</span><div class="vb-field-content"><span class="field-input">________</span></div></div>
+                <div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span>
+                  <div class="vb-field"><span class="vb-tag">.form-group</span><span class="vb-flex-badge" id="vbFgBadge2">zc-flex zc-direction-row</span>
+                    <div class="vb-field-row" id="vbFgLayout2">
+                      <div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Single Line</span></div></div>
+                      <div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field zc-col-common</span><div class="vb-field-content"><span class="field-input">________</span></div></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="vb-box vb-section"><span class="vb-tag">form_section</span><span class="vb-flex-badge">zc-direction-column zc-gap-row-15</span>
-            <div class="vb-section-header"><strong>&lt;h2&gt; Additional Info</strong></div>
-            <div class="vb-box vb-row"><span class="vb-tag">ROW 2</span><div class="vb-box vb-cell" style="flex:0 0 100%"><span class="vb-tag">zc-col-12</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Multi Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><div class="field-textarea">textarea</div></div></div></div></div></div></div>
-            <div class="vb-box vb-row"><span class="vb-tag">ROW 3</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Drop Down</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><span class="field-input">-Select-▾</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Dept</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
-            <div class="vb-box vb-row"><span class="vb-tag">ROW 4</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">City</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">State</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">PIN</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div></div>
-          </div>
+            <div class="vb-box vb-section"><span class="vb-tag">form_section</span><span class="vb-flex-badge">zc-direction-column zc-gap-row-15</span>
+              <div class="vb-section-header"><strong>&lt;h2&gt; Additional Info</strong></div>
+              <div class="vb-box vb-row"><span class="vb-tag">ROW 2</span><div class="vb-box vb-cell" style="flex:0 0 100%"><span class="vb-tag">zc-col-12</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Multi Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><div class="field-textarea">textarea</div></div></div></div></div></div></div>
+              <div class="vb-box vb-row"><span class="vb-tag">ROW 3</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Drop Down</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><span class="field-input">-Select-▾</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Dept</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
+              <div class="vb-box vb-row"><span class="vb-tag">ROW 4</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">City</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">State</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">PIN</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div></div>
+            </div>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+          <div class="vb-box vb-footer"><span class="vb-tag">form_footer</span><span class="vb-flex-badge">zc-no-shrink zc-justify-end</span><div style="text-align:right;margin-top:4px"><span class="vb-btn-mock vb-btn-cancel">Cancel</span> <span class="vb-btn-mock vb-btn-submit">Submit</span></div></div>
         </div>
-        <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
-        <div class="vb-box vb-footer"><span class="vb-tag">form_footer</span><span class="vb-outside-badge">OUTSIDE &lt;form&gt;</span><div style="text-align:right;margin-top:4px"><span class="vb-btn-mock vb-btn-cancel">Cancel</span> <span class="vb-btn-mock vb-btn-submit">Submit</span></div><div class="vb-submit-note">↳ <code>form="new_form_1"</code></div></div>
       </div>
     </div>
   </div>
   <div id="vb-flat" class="variant-panel">
     <div class="vb-container">
       <div class="vb-box vb-canvas"><span class="vb-tag">.zc-canvas-container</span>
-        <div class="vb-flow"><span class="vb-flow-arrow down"></span> zc-flex zc-direction-column</div>
-        <div class="vb-box vb-header"><span class="vb-tag">form_header</span><span class="vb-outside-badge">OUTSIDE</span></div>
         <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
         <div class="vb-box vb-form"><span class="vb-tag">&lt;form&gt;</span><span class="vb-flex-badge">zc-flex zc-direction-column</span>
-          <div class="vb-flow"><span class="vb-flow-arrow down"></span> rows directly in form</div>
-          <div class="vb-box vb-row"><span class="vb-tag">ROW 1</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Name</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-composite"><span class="vb-tag">compositeWrapper</span><div class="vb-sub"><span class="field-input">First</span></div><div class="vb-sub"><span class="field-input">Last</span></div></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Single Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
           <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
-          <div class="vb-box vb-row"><span class="vb-tag">ROW 2</span><div class="vb-box vb-cell" style="flex:0 0 100%"><span class="vb-tag">zc-col-12</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Multi Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><div class="field-textarea">textarea</div></div></div></div></div></div></div>
+          <div class="vb-box vb-header"><span class="vb-tag">form_header</span><span class="vb-flex-badge">zc-no-shrink</span></div>
           <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
-          <div class="vb-box vb-row"><span class="vb-tag">ROW 3</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Drop Down</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">-Select-▾</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Dept</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 1</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Name</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-composite"><span class="vb-tag">compositeWrapper</span><div class="vb-sub"><span class="field-input">First</span></div><div class="vb-sub"><span class="field-input">Last</span></div></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Single Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
+            <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 2</span><div class="vb-box vb-cell" style="flex:0 0 100%"><span class="vb-tag">zc-col-12</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Multi Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><div class="field-textarea">textarea</div></div></div></div></div></div></div>
+            <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 3</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Drop Down</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">-Select-▾</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Dept</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
+            <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 4</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">City</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">State</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">PIN</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div></div>
           <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
-          <div class="vb-box vb-row"><span class="vb-tag">ROW 4</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">City</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">State</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">PIN</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div></div>
+          <div class="vb-box vb-footer"><span class="vb-tag">form_footer</span><span class="vb-flex-badge">zc-no-shrink zc-justify-end</span><div style="text-align:right;margin-top:4px"><span class="vb-btn-mock vb-btn-cancel">Cancel</span> <span class="vb-btn-mock vb-btn-submit">Submit</span></div></div>
         </div>
-        <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
-        <div class="vb-box vb-footer"><span class="vb-tag">form_footer</span><span class="vb-outside-badge">OUTSIDE</span><div style="text-align:right;margin-top:4px"><span class="vb-btn-mock vb-btn-cancel">Cancel</span> <span class="vb-btn-mock vb-btn-submit">Submit</span></div></div>
       </div>
     </div>
   </div>
@@ -482,33 +465,31 @@ function updateCodeAndStruct() {
   const secTree = `<span class="si">/* With Sections — label-${l} */</span>
 
 <span class="sc">.zc-canvas-container</span>
-<span class="sg">└─</span> <span class="sc">.zc-flex .zc-direction-column</span> <span class="sg">[vertical_flex]</span>
+<span class="sg">└─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column</span>
 <span class="sg">   ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-space-between</span>
-<span class="sg">   ├─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
 <span class="sg">   │  └─</span> <span class="ss">[form_section]</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-15</span>
-<span class="sg">   │     ├─</span> <span class="sd">&lt;h2 class="section-label"&gt;</span>
-<span class="sg">   │     └─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
-<span class="sg">   │        └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
-<span class="sg">   │           └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}</span>
-<span class="sg">   │              ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${l==='left'?' .zc-align-items-center':''}</span>
-<span class="sg">   │              └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
-<span class="sg">   │                 └─</span> <span class="sl">.compositeWrapper</span> <span class="sg">.zc-flex .zc-direction-row .zc-gap-col-8</span>
-<span class="sg">   │                    ├─</span> <span class="sg">span .zc-col-common → input + subfield-label</span>
-<span class="sg">   │                    └─</span> <span class="sg">span .zc-col-common → input + subfield-label</span>
-<span class="sg">   └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-end .zc-gap-col-10</span>`;
+<span class="sg">      │  ├─</span> <span class="sd">&lt;h2 class="section-label"&gt;</span>
+<span class="sg">      │  └─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
+<span class="sg">      │     └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
+<span class="sg">      │        └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}</span>
+<span class="sg">      │           ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${l==='left'?' .zc-align-items-center':''}</span>
+<span class="sg">      │           └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
+<span class="sg">      │              └─</span> <span class="sl">.compositeWrapper</span> <span class="sg">.zc-flex .zc-direction-row .zc-gap-col-8</span>
+<span class="sg">      │                 ├─</span> <span class="sg">span .zc-col-common → input + subfield-label</span>
+<span class="sg">      │                 └─</span> <span class="sg">span .zc-col-common → input + subfield-label</span>
+<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-end .zc-gap-col-10</span>`;
 
   const flatTree = `<span class="si">/* Without Sections — label-${l} */</span>
 
 <span class="sc">.zc-canvas-container</span>
-<span class="sg">└─</span> <span class="sc">.zc-flex .zc-direction-column</span>
-<span class="sg">   ├─</span> <span class="sd">[form_header]</span>
-<span class="sg">   ├─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
+<span class="sg">└─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column</span>
+<span class="sg">   ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>
 <span class="sg">   │  └─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
-<span class="sg">   │     └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
-<span class="sg">   │        └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}</span>
-<span class="sg">   │           ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink</span>
-<span class="sg">   │           └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
-<span class="sg">   └─</span> <span class="sd">[form_footer]</span>`;
+<span class="sg">      │  └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
+<span class="sg">      │     └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}</span>
+<span class="sg">      │        ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink</span>
+<span class="sg">      │        └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
+<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-no-shrink .zc-justify-end .zc-gap-col-10</span>`;
 
   document.getElementById('structS').innerHTML = secTree;
   document.getElementById('structF').innerHTML = flatTree;
@@ -519,6 +500,7 @@ function cleanHTML(html) {
   let s = html;
   s = s.replace(/\s*id="formCanvas[SF]"/g, '');
   s = s.replace(/\s*style="height:100%"/g, '');
+  s = s.replace(/\s*style="flex:1;overflow-y:auto"/g, '');
   // Remove annotation class
   s = s.replace(/\s*annotated/g, '');
   // Clean up multiple spaces in class attributes
