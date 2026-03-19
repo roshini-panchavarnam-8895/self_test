@@ -6,2111 +6,551 @@
 <title>AI Tools — Work Pattern Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #FAFAF8;
-  --bg-card: #FFFFFF;
-  --bg-surface: #F4F3F0;
-  --text-1: #1A1A18;
-  --text-2: #5C5B56;
-  --text-3: #8A8983;
-  --border: #E4E3DE;
-  --border-light: #EEEDE8;
-  --accent-blue: #2563EB;
-  --accent-blue-bg: #EFF6FF;
-  --accent-green: #16A34A;
-  --accent-green-bg: #F0FDF4;
-  --accent-amber: #D97706;
-  --accent-amber-bg: #FFFBEB;
-  --accent-purple: #7C3AED;
-  --accent-purple-bg: #F5F3FF;
-  --accent-rose: #E11D48;
-  --accent-rose-bg: #FFF1F2;
-  --accent-teal: #0D9488;
-  --accent-teal-bg: #F0FDFA;
-  --font: 'DM Sans', -apple-system, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-  --bad-bg: #FEF2F2;
-  --bad-text: #991B1B;
-  --good-bg: #F0FDF4;
-  --good-text: #166534;
-  --nav-bg: rgba(250,250,248,0.92);
-}
-
-[data-theme="dark"] {
-  --bg: #141413;
-  --bg-card: #1C1C1A;
-  --bg-surface: #232320;
-  --text-1: #EDEDEB;
-  --text-2: #A3A29D;
-  --text-3: #706F6A;
-  --border: #333330;
-  --border-light: #2A2A27;
-  --accent-blue: #60A5FA;
-  --accent-blue-bg: #1E2A3E;
-  --accent-green: #4ADE80;
-  --accent-green-bg: #162A1E;
-  --accent-amber: #FBBF24;
-  --accent-amber-bg: #2A2210;
-  --accent-purple: #A78BFA;
-  --accent-purple-bg: #221E36;
-  --accent-rose: #FB7185;
-  --accent-rose-bg: #2E161A;
-  --accent-teal: #2DD4BF;
-  --accent-teal-bg: #0F2A26;
-  --nav-bg: rgba(20,20,19,0.92);
-  --bad-bg: #2E161A;
-  --bad-text: #FCA5A5;
-  --good-bg: #162A1E;
-  --good-text: #86EFAC;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text-1);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  transition: background 0.3s, color 0.3s;
-}
-
-.container {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 60px 28px 80px;
-}
-
-/* ── Nav ── */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-light);
-  margin: 0 -28px;
-  padding: 0 28px;
-  margin-bottom: 48px;
-  transition: background 0.3s;
-}
-
-.nav-inner {
-  display: flex;
-  gap: 2px;
-  overflow-x: auto;
-  padding: 10px 0;
-  scrollbar-width: none;
-  align-items: center;
-}
-
-.nav-inner::-webkit-scrollbar { display: none; }
-
-.nav-link {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-3);
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  white-space: nowrap;
-  transition: all 0.15s;
-  flex-shrink: 0;
-}
-
-.nav-link:hover {
-  color: var(--text-1);
-  background: var(--bg-surface);
-}
-
-/* Theme toggle */
-.theme-toggle {
-  margin-left: auto;
-  flex-shrink: 0;
-  padding-left: 12px;
-  border-left: 1px solid var(--border-light);
-}
-
-.theme-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg-surface);
-  color: var(--text-2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  font-size: 16px;
-}
-
-.theme-btn:hover { border-color: var(--text-3); }
-
-/* ── Typography ── */
-.eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--accent-blue);
-  margin-bottom: 14px;
-}
-
-h1 {
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.5px;
-  margin-bottom: 14px;
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.3px;
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  font-size: 16px;
-  color: var(--text-2);
-  line-height: 1.65;
-  max-width: 640px;
-}
-
-.section {
-  margin-bottom: 60px;
-}
-
-.section-label {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 10px;
-}
-
-.section-intro {
-  font-size: 15px;
-  color: var(--text-2);
-  line-height: 1.65;
-  max-width: 640px;
-  margin-bottom: 24px;
-}
-
-/* ── Cards ── */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  margin-bottom: 14px;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.card:hover { border-color: var(--text-3); }
-
-/* ── Quick Start Banner ── */
-.quick-start {
-  background: var(--accent-blue-bg);
-  border: 1px solid var(--accent-blue);
-  border-radius: 14px;
-  padding: 28px;
-  margin-bottom: 52px;
-}
-
-.quick-start h2 {
-  color: var(--accent-blue);
-  font-size: 18px;
-  margin-bottom: 14px;
-}
-
-.qs-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.qs-step {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  font-size: 14.5px;
-  color: var(--text-1);
-  line-height: 1.55;
-}
-
-.qs-num {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--accent-blue);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-/* ── Tool Intro Grid ── */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.tool-intro {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.tool-intro .ti-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.tool-intro .ti-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.tool-intro .ti-name {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.tool-intro .ti-like {
-  font-size: 12px;
-  color: var(--accent-blue);
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.tool-intro .ti-desc {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.55;
-}
-
-/* ── Mindset ── */
-.mindset-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.mindset-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.mc-num {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.mindset-card h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.mindset-card .mc-analogy {
-  font-size: 13.5px;
-  color: var(--text-2);
-  line-height: 1.55;
-  margin-bottom: 12px;
-}
-
-.prompt-bad {
-  background: var(--bad-bg);
-  border-left: 3px solid var(--accent-rose);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-family: var(--mono);
-  color: var(--bad-text);
-  line-height: 1.5;
-  margin-bottom: 6px;
-  transition: background 0.3s, color 0.3s;
-}
-
-.prompt-good {
-  background: var(--good-bg);
-  border-left: 3px solid var(--accent-green);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-family: var(--mono);
-  color: var(--good-text);
-  line-height: 1.5;
-  transition: background 0.3s, color 0.3s;
-}
-
-.plabel {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 3px;
-  font-family: var(--font);
-}
-
-.plabel-bad { color: var(--accent-rose); }
-.plabel-good { color: var(--accent-green); }
-
-/* ── Prompt Patterns (Accordion) ── */
-.accordion {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.acc-head {
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.acc-head:hover { background: var(--bg-surface); }
-
-.acc-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--accent-blue);
-  background: var(--accent-blue-bg);
-  width: 24px;
-  height: 24px;
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.acc-title {
-  font-size: 15px;
-  font-weight: 500;
-  flex: 1;
-}
-
-.acc-arrow {
-  font-size: 16px;
-  color: var(--text-3);
-  transition: transform 0.2s;
-}
-
-.accordion.open .acc-arrow { transform: rotate(180deg); }
-
-.acc-body {
-  padding: 0 20px 20px;
-  display: none;
-}
-
-.accordion.open .acc-body { display: block; }
-
-.acc-desc {
-  font-size: 13.5px;
-  color: var(--text-2);
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-
-.template-box {
-  background: var(--bg-surface);
-  border-radius: 10px;
-  padding: 14px 18px;
-  font-family: var(--mono);
-  font-size: 12.5px;
-  line-height: 1.7;
-  color: var(--text-1);
-  margin-bottom: 14px;
-  white-space: pre-wrap;
-  word-break: break-word;
-  transition: background 0.3s;
-}
-
-.template-box .ph {
-  color: var(--accent-blue);
-  font-style: italic;
-}
-
-.ex-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 6px;
-}
-
-.example-prompt {
-  background: var(--bg-surface);
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--text-2);
-  border-left: 3px solid var(--accent-blue);
-  margin-bottom: 8px;
-  transition: background 0.3s;
-}
-
-/* ── Do's & Don'ts ── */
-.dd-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.dd-col {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.dd-col.do-col { border-top: 3px solid var(--accent-green); }
-.dd-col.dont-col { border-top: 3px solid var(--accent-rose); }
-
-.dd-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 14px;
-}
-
-.dd-item {
-  font-size: 13.5px;
-  color: var(--text-2);
-  line-height: 1.55;
-  padding: 7px 0;
-  border-bottom: 1px solid var(--border-light);
-  display: flex;
-  gap: 8px;
-}
-
-.dd-item:last-child { border-bottom: none; }
-.dd-icon { flex-shrink: 0; font-size: 13px; margin-top: 2px; }
-
-/* ── Mistakes ── */
-.mistake {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px;
-  margin-bottom: 10px;
-  display: flex;
-  gap: 14px;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.m-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--accent-rose);
-  background: var(--accent-rose-bg);
-  width: 24px;
-  height: 24px;
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.m-body h4 {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 3px;
-}
-
-.m-body p {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.55;
-}
-
-.m-fix {
-  font-size: 12.5px;
-  color: var(--good-text);
-  background: var(--good-bg);
-  padding: 8px 12px;
-  border-radius: 7px;
-  margin-top: 8px;
-  line-height: 1.5;
-  transition: background 0.3s, color 0.3s;
-}
-
-/* ── Use Cases ── */
-.uc {
-  margin-bottom: 32px;
-}
-
-.uc-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  margin-bottom: 6px;
-}
-
-.uc-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.uc-head {
-  padding: 22px 24px 18px;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.uc-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 6px;
-  margin-bottom: 8px;
-}
-
-.uc-head h3 {
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.uc-head p {
-  font-size: 13.5px;
-  color: var(--text-2);
-  line-height: 1.55;
-}
-
-.uc-body {
-  padding: 20px 24px;
-}
-
-.tool-row {
-  display: flex;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-light);
-  align-items: flex-start;
-}
-
-.tool-row:last-of-type { border-bottom: none; }
-.tool-row:first-child { padding-top: 0; }
-
-.t-rank {
-  width: 24px;
-  height: 24px;
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  flex-shrink: 0;
-}
-
-.t-best { background: var(--accent-blue-bg); color: var(--accent-blue); }
-.t-good { background: var(--accent-green-bg); color: var(--accent-green); }
-.t-alt { background: var(--bg-surface); color: var(--text-3); }
-
-.t-info { flex: 1; }
-.t-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-.t-why { font-size: 12.5px; color: var(--text-2); line-height: 1.5; }
-
-/* Prompt section in use cases */
-.uc-prompts {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-light);
-}
-
-.uc-prompts-head {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.prompt-pair {
-  margin-bottom: 14px;
-}
-
-.prompt-pair:last-child { margin-bottom: 0; }
-
-.pair-label {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-3);
-  margin-bottom: 6px;
-}
-
-/* ── Insight ── */
-.insight {
-  background: var(--bg-surface);
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-top: 14px;
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.55;
-  transition: background 0.3s;
-}
+:root{
+  --bg:#FAFAF8;--bg2:#FFFFFF;--bg3:#F4F3F0;
+  --t1:#1A1A18;--t2:#5C5B56;--t3:#8A8983;
+  --b1:#E4E3DE;--b2:#EEEDE8;
+  --blue:#2563EB;--blue-bg:#EFF6FF;
+  --green:#16A34A;--green-bg:#F0FDF4;
+  --amber:#D97706;--amber-bg:#FFFBEB;
+  --purple:#7C3AED;--purple-bg:#F5F3FF;
+  --rose:#E11D48;--rose-bg:#FFF1F2;
+  --teal:#0D9488;--teal-bg:#F0FDFA;
+  --font:'DM Sans',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --bad-bg:#FEF2F2;--bad-t:#991B1B;
+  --good-bg:#F0FDF4;--good-t:#166534;
+  --nav-bg:rgba(250,250,248,0.92);
+}
+[data-theme="dark"]{
+  --bg:#121211;--bg2:#1A1A18;--bg3:#222220;
+  --t1:#EDEDEB;--t2:#A3A29D;--t3:#706F6A;
+  --b1:#333330;--b2:#2A2A27;
+  --blue:#60A5FA;--blue-bg:#1E2A3E;
+  --green:#4ADE80;--green-bg:#162A1E;
+  --amber:#FBBF24;--amber-bg:#2A2210;
+  --purple:#A78BFA;--purple-bg:#221E36;
+  --rose:#FB7185;--rose-bg:#2E161A;
+  --teal:#2DD4BF;--teal-bg:#0F2A26;
+  --nav-bg:rgba(18,18,17,0.92);
+  --bad-bg:#2E161A;--bad-t:#FCA5A5;
+  --good-bg:#162A1E;--good-t:#86EFAC;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+.w{max-width:820px;margin:0 auto;padding:56px 28px 80px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--b2);margin:0 -28px;padding:0 28px;margin-bottom:44px;transition:background .3s}
+.nav-in{display:flex;gap:2px;overflow-x:auto;padding:10px 0;scrollbar-width:none;align-items:center}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-in a{font-size:12px;font-weight:500;color:var(--t3);text-decoration:none;padding:6px 12px;border-radius:8px;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.nav-in a:hover{color:var(--t1);background:var(--bg3)}
+.theme-btn{margin-left:auto;flex-shrink:0;width:36px;height:36px;border-radius:10px;border:1px solid var(--b1);background:var(--bg3);color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:16px}
+.theme-btn:hover{border-color:var(--t3)}
+
+/* type */
+.eye{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+h1{font-size:38px;font-weight:600;line-height:1.12;letter-spacing:-.6px;margin-bottom:14px}
+h2{font-size:24px;font-weight:600;line-height:1.25;letter-spacing:-.3px;margin-bottom:8px}
+h3{font-size:17px;font-weight:600;letter-spacing:-.2px}
+.sub{font-size:16px;color:var(--t2);line-height:1.65;max-width:620px}
+.sec{margin-bottom:64px}
+.sec-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.sec-intro{font-size:15px;color:var(--t2);line-height:1.65;max-width:620px;margin-bottom:24px}
+.divider{height:1px;background:var(--b1);margin:56px 0}
+
+/* ── Quick Start: numbered steps, no cards ── */
+.qs{border-left:3px solid var(--blue);padding-left:24px;margin:32px 0 40px}
+.qs-step{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;font-size:15px;line-height:1.6;color:var(--t1)}
+.qs-step:last-child{margin-bottom:0}
+.qs-n{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* ── Hero Banner ── */
+.hero{position:relative;border:2px solid var(--purple);border-radius:16px;padding:32px 30px;margin-bottom:28px;overflow:hidden;background:var(--bg2);transition:background .3s,border-color .3s}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--teal))}
+.hero .h-eye{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:14px}
+.hero h2{font-size:21px;margin-bottom:16px}
+.vibe-box{background:linear-gradient(135deg,var(--purple-bg),var(--blue-bg));border-radius:10px;padding:18px 22px;margin:18px 0;transition:background .3s}
+.vibe-box .vibe-title{font-size:19px;font-weight:600;color:var(--purple);margin-bottom:6px}
+.vibe-box p{font-size:14px;color:var(--t2);line-height:1.6}
+.trigger-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.trigger-pills span{background:var(--bg3);border:1px solid var(--b1);border-radius:8px;padding:6px 14px;font-size:12.5px;color:var(--t2);transition:background .3s,border-color .3s}
+
+/* ── Bottom Line (4-tool) ── */
+.bl{position:relative;border:2px solid var(--blue);border-radius:16px;padding:30px 28px;margin-bottom:52px;background:var(--bg2);overflow:hidden;transition:background .3s,border-color .3s}
+.bl::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--blue),var(--purple),var(--amber))}
+.bl .bl-eye{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.bl h2{font-size:20px;margin-bottom:18px}
+.bl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.bl-item{display:flex;gap:10px;align-items:flex-start;padding:14px;background:var(--bg3);border-radius:10px;transition:background .3s}
+.bl-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.bl-item .bl-name{font-size:13.5px;font-weight:600}
+.bl-item .bl-role{font-size:12px;color:var(--t2);line-height:1.45}
+.bl-foot{font-size:13.5px;color:var(--t2);line-height:1.6;padding-top:14px;border-top:1px solid var(--b2)}
+
+/* ── Tools: horizontal scroll strip ── */
+.tools-strip{display:flex;gap:14px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:thin;scrollbar-color:var(--b1) transparent;margin-bottom:8px}
+.tools-strip::-webkit-scrollbar{height:4px}
+.tools-strip::-webkit-scrollbar-thumb{background:var(--b1);border-radius:4px}
+.tool-card{min-width:200px;max-width:220px;flex-shrink:0;padding:18px;border:1px solid var(--b1);border-radius:12px;background:var(--bg2);transition:background .3s,border-color .3s}
+.tool-card:hover{border-color:var(--t3)}
+.tc-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.tc-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.tc-name{font-size:13.5px;font-weight:600}
+.tc-like{font-size:11px;color:var(--blue);font-weight:500;margin-bottom:5px}
+.tc-desc{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* ── Mindset: side-accent blocks (no card wrapper) ── */
+.mind-item{border-left:3px solid var(--b1);padding:16px 0 16px 22px;margin-bottom:8px;transition:border-color .2s}
+.mind-item:hover{border-color:var(--blue)}
+.mind-item .mi-num{font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:4px}
+.mind-item h3{font-size:15px;margin-bottom:5px}
+.mind-item p{font-size:13.5px;color:var(--t2);line-height:1.6}
+.pbad{background:var(--bad-bg);border-left:3px solid var(--rose);border-radius:6px;padding:8px 14px;font-size:12.5px;font-family:var(--mono);color:var(--bad-t);line-height:1.5;margin:8px 0 4px;transition:background .3s,color .3s}
+.pgood{background:var(--good-bg);border-left:3px solid var(--green);border-radius:6px;padding:8px 14px;font-size:12.5px;font-family:var(--mono);color:var(--good-t);line-height:1.5;transition:background .3s,color .3s}
+.plbl{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:2px;font-family:var(--font)}
+.plbl-b{color:var(--rose)}.plbl-g{color:var(--green)}
+
+/* ── Prompt Patterns: accordion ── */
+.acc{border-bottom:1px solid var(--b2);overflow:hidden}
+.acc:first-child{border-top:1px solid var(--b2)}
+.acc-h{padding:14px 0;display:flex;align-items:center;gap:12px;cursor:pointer;transition:color .15s}
+.acc-h:hover{color:var(--blue)}
+.acc-n{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue);background:var(--blue-bg);width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.acc-t{font-size:14.5px;font-weight:500;flex:1}
+.acc-a{font-size:14px;color:var(--t3);transition:transform .2s}
+.acc.open .acc-a{transform:rotate(180deg)}
+.acc-b{padding:0 0 18px 34px;display:none}
+.acc.open .acc-b{display:block}
+.acc-b p{font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:12px}
+.tpl{background:var(--bg3);border-radius:8px;padding:12px 16px;font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--t1);margin-bottom:12px;white-space:pre-wrap;word-break:break-word;transition:background .3s}
+.tpl .ph{color:var(--blue);font-style:italic}
+.ex-lbl{font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--t3);margin-bottom:5px}
+.ex-prompt{background:var(--bg3);border-radius:7px;padding:10px 14px;font-size:12.5px;line-height:1.6;color:var(--t2);border-left:3px solid var(--blue);margin-bottom:6px;transition:background .3s}
+
+/* ── Do's & Don'ts: two-column inline ── */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dd-col h3{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.dd-item{font-size:13px;color:var(--t2);line-height:1.55;padding:6px 0;border-bottom:1px solid var(--b2);display:flex;gap:7px}
+.dd-item:last-child{border-bottom:none}
+.dd-icon{flex-shrink:0;font-size:12px;margin-top:2px}
+
+/* ── Mistakes: numbered inline ── */
+.mistake{padding:14px 0;border-bottom:1px solid var(--b2)}
+.mistake:last-child{border-bottom:none}
+.m-head{display:flex;gap:10px;align-items:baseline}
+.m-num{font-family:var(--mono);font-size:12px;color:var(--rose);font-weight:600}
+.m-title{font-size:14px;font-weight:500}
+.m-desc{font-size:13px;color:var(--t2);line-height:1.55;margin:4px 0 0 28px}
+.m-fix{font-size:12.5px;color:var(--good-t);background:var(--good-bg);padding:8px 12px;border-radius:7px;margin:8px 0 0 28px;line-height:1.5;transition:background .3s,color .3s}
+
+/* ── Concepts: side-accent like mindset ── */
+.concept{border-left:3px solid var(--b1);padding:18px 0 18px 22px;margin-bottom:12px;transition:border-color .2s}
+.concept:hover{border-color:var(--purple)}
+.concept .c-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.concept .c-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.concept .c-title{font-size:15px;font-weight:600}
+.concept .c-like{font-size:12px;color:var(--blue);font-weight:500;margin-bottom:6px}
+.concept p{font-size:13.5px;color:var(--t2);line-height:1.6}
+.concept strong{color:var(--t1);font-weight:500}
+.c-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:10px}
+.c-flow span{background:var(--bg3);border:1px solid var(--b1);border-radius:6px;padding:4px 10px;font-size:11.5px;color:var(--t2);transition:background .3s,border-color .3s}
+.c-flow .arrow{background:none;border:none;padding:0;color:var(--t3);font-size:13px}
+.c-files{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.c-file{background:var(--bg3);border-radius:7px;padding:10px 14px;transition:background .3s}
+.c-file .cf-name{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--blue);margin-bottom:3px}
+.c-file .cf-desc{font-size:12px;color:var(--t2);line-height:1.4}
+.c-example{background:var(--bg3);border-radius:8px;padding:12px 16px;margin-top:10px;font-size:12.5px;color:var(--t2);line-height:1.6;transition:background .3s}
+
+/* ── Models: horizontal cards ── */
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.model-card{padding:16px 18px;border-left:3px solid var(--b1);background:var(--bg3);border-radius:0 10px 10px 0;transition:background .3s,border-color .2s}
+.model-card:hover{border-color:var(--blue)}
+.model-card .mc-name{font-size:14px;font-weight:600;margin-bottom:2px}
+.model-card .mc-tag{font-size:11px;color:var(--blue);font-weight:500;margin-bottom:5px}
+.model-card .mc-desc{font-size:12.5px;color:var(--t2);line-height:1.5}
+
+/* ── Use Cases: clean open layout ── */
+.uc{margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--b2)}
+.uc:last-child{border-bottom:none}
+.uc-num{font-family:var(--mono);font-size:42px;font-weight:600;color:var(--b1);line-height:1;margin-bottom:6px;transition:color .3s}
+.uc-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:5px;margin-bottom:8px}
+.uc h3{font-size:18px;margin-bottom:6px}
+.uc .uc-desc{font-size:13.5px;color:var(--t2);line-height:1.55;margin-bottom:16px}
+
+.tool-row{display:flex;gap:10px;padding:8px 0;align-items:flex-start}
+.t-rank{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:600;flex-shrink:0;margin-top:1px}
+.t-1{background:var(--blue-bg);color:var(--blue)}
+.t-2{background:var(--green-bg);color:var(--green)}
+.t-3{background:var(--bg3);color:var(--t3)}
+.t-name{font-size:13.5px;font-weight:500}
+.t-why{font-size:12px;color:var(--t2)}
+
+.model-rec{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--b2)}
+.model-rec-lbl{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--t3);width:100%;margin-bottom:2px}
+.mp{display:flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;background:var(--bg3);border-radius:6px;transition:background .3s}
+.mp strong{font-weight:600;color:var(--t1)}
+.mp span{color:var(--t2)}
+.mp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+.uc-prompt{margin-top:14px;padding-top:12px;border-top:1px solid var(--b2)}
+.uc-prompt-h{font-size:12px;font-weight:600;color:var(--t3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.pair-lbl{font-size:11px;color:var(--t3);margin-bottom:4px}
 
 /* ── Summary Table ── */
-.sum-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  font-size: 13px;
-  transition: background 0.3s, border-color 0.3s;
-}
+.s-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;border:1px solid var(--b1);border-radius:10px;overflow:hidden;background:var(--bg2);transition:background .3s,border-color .3s}
+.s-table thead th{text-align:left;padding:10px 14px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);background:var(--bg3);border-bottom:1px solid var(--b1)}
+.s-table tbody td{padding:10px 14px;border-bottom:1px solid var(--b2);color:var(--t2)}
+.s-table tbody tr:last-child td{border-bottom:none}
+.s-table tbody td:first-child{font-weight:500;color:var(--t1)}
+.cb{color:var(--blue);font-weight:500}
+.cg{color:var(--green)}
 
-.sum-table thead th {
-  text-align: left;
-  padding: 12px 16px;
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--text-3);
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border);
-}
+/* ── Bottom reminder ── */
+.reminder{border:1.5px solid var(--blue);padding:18px 20px;border-radius:10px;font-size:13.5px;line-height:1.6;background:var(--blue-bg);margin-top:20px;transition:background .3s,border-color .3s}
 
-.sum-table tbody td {
-  padding: 11px 16px;
-  border-bottom: 1px solid var(--border-light);
-  color: var(--text-2);
-  line-height: 1.5;
-}
+/* ── Insight ── */
+.insight{background:var(--bg3);border-radius:8px;padding:14px 18px;margin-top:14px;font-size:13px;color:var(--t2);line-height:1.55;transition:background .3s}
 
-.sum-table tbody tr:last-child td { border-bottom: none; }
-.sum-table tbody td:first-child { font-weight: 500; color: var(--text-1); }
-.c-best { color: var(--accent-blue); font-weight: 500; }
-.c-good { color: var(--accent-green); }
+/* ── Cheer Notes ── */
+.cheer{padding:24px 28px;margin:12px 0;text-align:center;border-radius:14px;background:rgba(37,99,235,0.04);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(37,99,235,0.08);position:relative;overflow:hidden}
+[data-theme="dark"] .cheer{background:rgba(96,165,250,0.06);border-color:rgba(96,165,250,0.1)}
+.cheer::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(124,58,237,0.04),transparent 50%),radial-gradient(circle at 70% 60%,rgba(37,99,235,0.04),transparent 50%);pointer-events:none}
+.cheer p{font-size:15px;color:var(--t2);line-height:1.65;max-width:560px;margin:0 auto;font-style:italic;position:relative}
+.cheer strong{color:var(--t1);font-style:normal;font-weight:600}
+.cheer .cheer-emoji{font-size:24px;display:block;margin-bottom:10px;font-style:normal;position:relative}
 
-/* ── Concepts ── */
-.concept-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px 24px;
-  margin-bottom: 14px;
-  transition: background 0.3s, border-color 0.3s;
-}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--b1);font-size:12px;color:var(--t3);display:flex;justify-content:space-between}
 
-.concept-card .cc-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.concept-card .cc-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.concept-card .cc-title {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.concept-card .cc-subtitle {
-  font-size: 13px;
-  color: var(--accent-blue);
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.concept-card .cc-body {
-  font-size: 14px;
-  color: var(--text-2);
-  line-height: 1.65;
-}
-
-.concept-card .cc-body strong {
-  color: var(--text-1);
-  font-weight: 500;
-}
-
-.cc-example {
-  background: var(--bg-surface);
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.6;
-  transition: background 0.3s;
-}
-
-.cc-example .cc-ex-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 4px;
-}
-
-.cc-flow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-  padding: 14px 18px;
-  background: var(--bg-surface);
-  border-radius: 10px;
-  transition: background 0.3s;
-}
-
-.cc-flow-step {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 14px;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--text-1);
-  white-space: nowrap;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.cc-flow-arrow {
-  color: var(--text-3);
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-.cc-file-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.cc-file {
-  background: var(--bg-surface);
-  border-radius: 8px;
-  padding: 12px 16px;
-  transition: background 0.3s;
-}
-
-.cc-file .cc-fname {
-  font-family: var(--mono);
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--accent-blue);
-  margin-bottom: 4px;
-}
-
-.cc-file .cc-fdesc {
-  font-size: 12.5px;
-  color: var(--text-2);
-  line-height: 1.5;
-}
-
-/* ── Model Badges ── */
-.model-rec {
-  margin-top: 14px;
-  padding: 14px 18px;
-  background: var(--bg-surface);
-  border-radius: 10px;
-  transition: background 0.3s;
-}
-
-.model-rec-head {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 10px;
-}
-
-.model-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.model-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 12.5px;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.model-pill .mp-name {
-  font-weight: 600;
-  color: var(--text-1);
-}
-
-.model-pill .mp-why {
-  color: var(--text-2);
-}
-
-.model-pill .mp-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* ── Hero Takeaway ── */
-.hero-takeaway {
-  position: relative;
-  background: var(--bg-card);
-  border: 2px solid var(--accent-blue);
-  border-radius: 16px;
-  padding: 32px 28px;
-  margin-top: 28px;
-  overflow: hidden;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.hero-takeaway::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-teal));
-}
-
-.hero-takeaway .ht-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--accent-blue);
-  margin-bottom: 14px;
-}
-
-.hero-takeaway .ht-title {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.35;
-  margin-bottom: 20px;
-  letter-spacing: -0.2px;
-}
-
-.ht-stack {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.ht-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 14px 16px;
-  background: var(--bg-surface);
-  border-radius: 10px;
-  transition: background 0.3s;
-}
-
-.ht-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.ht-item .ht-tool {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-1);
-  margin-bottom: 2px;
-}
-
-.ht-item .ht-role {
-  font-size: 12.5px;
-  color: var(--text-2);
-  line-height: 1.45;
-}
-
-.ht-bottom {
-  font-size: 14px;
-  color: var(--text-2);
-  line-height: 1.6;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-light);
-}
-
-.ht-bottom strong {
-  color: var(--text-1);
-}
-
-@media (max-width: 640px) {
-  .ht-stack { grid-template-columns: 1fr; }
-}
-
-/* ── Divider ── */
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 52px 0;
-}
-
-/* ── Footer ── */
-footer {
-  margin-top: 52px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-  color: var(--text-3);
-  display: flex;
-  justify-content: space-between;
-}
-
-@media (max-width: 640px) {
-  .container { padding: 32px 18px 48px; }
-  h1 { font-size: 28px; }
-  .tools-grid, .mindset-grid, .dd-grid { grid-template-columns: 1fr; }
-  .tools-grid { grid-template-columns: 1fr; }
-  .uc-head, .uc-body { padding: 18px; }
-  nav { margin: 0 -18px; padding: 0 18px; }
-  footer { flex-direction: column; gap: 4px; }
+@media(max-width:640px){
+  .w{padding:28px 18px 48px}
+  h1{font-size:28px}
+  .dd,.bl-grid,.model-grid,.c-files{grid-template-columns:1fr}
+  nav{margin:0 -18px;padding:0 18px}
+  footer{flex-direction:column;gap:4px}
 }
 </style>
 </head>
 <body>
+<div class="w">
 
-<div class="container">
+<!-- Nav -->
+<nav><div class="nav-in">
+  <a href="#tools">Tools</a>
+  <a href="#concepts">Concepts</a>
+  <a href="#models">Models</a>
+  <a href="#mindset">Mindset</a>
+  <a href="#patterns">Prompts</a>
+  <a href="#rules">Do's &amp; Don'ts</a>
+  <a href="#mistakes">Mistakes</a>
+  <a href="#usecases">Use cases</a>
+  <a href="#summary">Cheat sheet</a>
+  <button class="theme-btn" onclick="toggleTheme()" id="tbtn">&#9788;</button>
+</div></nav>
 
-  <!-- Nav -->
-  <nav>
-    <div class="nav-inner">
-      <a href="#tools" class="nav-link">Tools</a>
-      <a href="#concepts" class="nav-link">Concepts</a>
-      <a href="#models" class="nav-link">Models</a>
-      <a href="#mindset" class="nav-link">Mindset</a>
-      <a href="#patterns" class="nav-link">Prompts</a>
-      <a href="#rules" class="nav-link">Do's &amp; Don'ts</a>
-      <a href="#mistakes" class="nav-link">Mistakes</a>
-      <a href="#usecases" class="nav-link">Use cases</a>
-      <a href="#summary" class="nav-link">Cheat sheet</a>
-      <div class="theme-toggle">
-        <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme" id="theme-btn">&#9788;</button>
-      </div>
-    </div>
-  </nav>
+<!-- Header -->
+<header style="margin-bottom:36px">
+  <div class="eye">Team Knowledge Share</div>
+  <h1>AI tools for your<br>daily work</h1>
+  <p class="sub">A simple, practical guide to using AI tools wisely. No prior AI experience needed — just read, try, and learn.</p>
+</header>
 
-  <!-- Header -->
-  <header style="margin-bottom: 40px;">
-    <div class="eyebrow">Team Knowledge Share</div>
-    <h1>AI tools for your<br>daily work</h1>
-    <p class="subtitle">A simple, practical guide to using AI tools wisely. No prior AI experience needed — just read, try, and learn.</p>
-  </header>
+<!-- ═══ QUICK START ═══ -->
+<div class="sec">
+  <h2>Your first 5 minutes with AI</h2>
+  <p style="font-size:14px;color:var(--t2);margin:6px 0 18px;line-height:1.6;max-width:620px">Never used an AI tool? Pick any chat — <strong>Claude</strong> (claude.ai), <strong>ChatGPT</strong> (chatgpt.com), or <strong>Gemini</strong> (gemini.google.com). Try these 5 steps right now:</p>
+  <div class="qs">
+    <div class="qs-step"><span class="qs-n">1</span><span><strong>Open any AI chat</strong> — all are free to start. Just pick one and type.</span></div>
+    <div class="qs-step"><span class="qs-n">2</span><span><strong>Introduce yourself:</strong> <em>"I'm a frontend dev working on a SCSS design system"</em> — this gives AI context so answers are relevant to you.</span></div>
+    <div class="qs-step"><span class="qs-n">3</span><span><strong>Ask with details:</strong> <em>"How should I structure color tokens for light and dark themes in SCSS?"</em> — more specific = better answer.</span></div>
+    <div class="qs-step"><span class="qs-n">4</span><span><strong>Talk back:</strong> Say <em>"Show me code"</em> or <em>"Make it simpler"</em> — AI gets better the more you guide it.</span></div>
+    <div class="qs-step"><span class="qs-n">5</span><span><strong>Read before using:</strong> AI is fast but not always right. Review, test, understand — then use.</span></div>
+  </div>
+</div>
 
-  <!-- ═══════════════════ -->
-  <!-- QUICK START -->
-  <!-- ═══════════════════ -->
-  <div class="quick-start">
-    <h2>Your first 5 minutes with AI</h2>
-    <p style="font-size:14px;color:var(--text-2);margin-bottom:18px;line-height:1.6;">Never used an AI tool before? This is all you need to get started. Pick any AI chat tool — <strong>Claude Chat</strong> (claude.ai), <strong>ChatGPT</strong> (chatgpt.com), or <strong>Gemini</strong> (gemini.google.com) — they all work similarly. Try these 5 steps right now:</p>
-    <div class="qs-steps">
-      <div class="qs-step"><span class="qs-num">1</span> <span><strong>Open any AI chat</strong> — Claude, ChatGPT, or Gemini. All free to start. Just pick one and type.</span></div>
-      <div class="qs-step"><span class="qs-num">2</span> <span><strong>Introduce yourself and your work:</strong> <em>"I'm a frontend developer working on a SCSS design system for a web product"</em> — this gives AI context so every answer is relevant to you.</span></div>
-      <div class="qs-step"><span class="qs-num">3</span> <span><strong>Ask a real work question with details:</strong> <em>"How should I structure color tokens to support light and dark themes in SCSS?"</em> — the more specific, the better the answer.</span></div>
-      <div class="qs-step"><span class="qs-num">4</span> <span><strong>Don't stop at the first answer — talk back:</strong> Say <em>"Show me a code example"</em> or <em>"Make it simpler"</em> or <em>"What about RTL support?"</em> — AI gets better the more you guide it.</span></div>
-      <div class="qs-step"><span class="qs-num">5</span> <span><strong>Read and understand before using:</strong> AI is fast but not always right. Always review the output, test the code, and make sure you understand what it does before putting it in your project.</span></div>
-    </div>
-    <p style="font-size:13px;color:var(--accent-blue);margin-top:16px;font-weight:500;">That's it — you just had your first AI-assisted work conversation. The rest of this guide teaches you how to do it better, faster, and for every type of task.</p>
+<!-- ═══ #1 RULE + VIBE CODING ═══ -->
+<div class="hero" style="border-color:var(--purple);margin-bottom:24px">
+  <div class="h-eye">The #1 rule — more important than any tool or prompt</div>
+  <h2>Before any task — easy or tough — stop and ask:<br>"How can AI help me do this?"</h2>
+  <p style="font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:6px">This is the single most important habit. Before you start any work — a bug fix, a component, a feature — <strong>pause 10 seconds and think: "Can AI help me here?"</strong> Most people only think of AI when stuck. The ones who get 10x value think of it <strong>before they start</strong>.</p>
+  <div class="vibe-box">
+    <div class="vibe-title">⚡ This is vibe coding.</div>
+    <p>You describe what you want in plain language. AI builds the first version. You refine, guide, iterate. Instead of writing every line, you <strong style="color:var(--t1)">direct AI like a creative partner</strong> — focusing on <em>what</em> to build, not how to type it. That's the shift. That's the skill. That's what this guide is about.</p>
+  </div>
+  <div class="trigger-pills">
+    <span>New code? → AI scaffolds first</span>
+    <span>Error? → Paste to AI before googling</span>
+    <span>Review? → AI scans first</span>
+    <span>Planning? → Brainstorm with AI</span>
+    <span>Repetitive? → AI automates it</span>
+    <span>Learning? → AI explains it</span>
+  </div>
+</div>
+
+<!-- ═══ BOTTOM LINE ═══ -->
+<div class="bl" style="margin-bottom:56px">
+  <div class="bl-eye">The bottom line — if you read nothing else, read this</div>
+  <h2>Most productive developers don't pick one tool — they combine four</h2>
+  <div class="bl-grid">
+    <div class="bl-item"><div class="bl-icon" style="background:var(--green-bg);color:var(--green)">GC</div><div><div class="bl-name">GitHub Copilot <span style="font-weight:400;color:var(--t3);font-size:11px">$10/mo</span></div><div class="bl-role">Always on — autocomplete while you type</div></div></div>
+    <div class="bl-item"><div class="bl-icon" style="background:var(--blue-bg);color:var(--blue)">IDE</div><div><div class="bl-name">Cursor or Windsurf</div><div class="bl-role">Main editor — multi-file edits, agent, project context</div></div></div>
+    <div class="bl-item"><div class="bl-icon" style="background:var(--purple-bg);color:var(--purple)">CC</div><div><div class="bl-name">Claude Code</div><div class="bl-role">Hard problems — repo refactors, architecture, terminal</div></div></div>
+    <div class="bl-item"><div class="bl-icon" style="background:var(--amber-bg);color:var(--amber)">AI</div><div><div class="bl-name">Claude Chat / ChatGPT</div><div class="bl-role">Thinking — planning, exploring ideas, learning, POCs</div></div></div>
+  </div>
+  <div class="bl-foot"><strong>The tool matters less than how you use it.</strong> A clear prompt in any tool beats a vague prompt in the "perfect" tool.</div>
+</div>
+
+<!-- ═══ KNOW YOUR TOOLS ═══ -->
+<div class="sec" id="tools">
+  <div class="sec-label">First things first</div>
+  <h2>Know your tools</h2>
+  <p class="sec-intro">Think of these as team members with different specialties. Scroll through — each has a one-line analogy so you instantly get what it does.</p>
+  <div class="tools-strip">
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--blue-bg);color:var(--blue)">C</div><div class="tc-name">Claude Chat</div></div><div class="tc-like">Smart colleague you talk to</div><div class="tc-desc">Questions, file uploads, explanations. Best for thinking and learning. claude.ai</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--purple-bg);color:var(--purple)">CC</div><div class="tc-name">Claude Code</div></div><div class="tc-like">Developer in your terminal</div><div class="tc-desc">Reads files, runs commands, writes code across your project. Repo-scale tasks.</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--green-bg);color:var(--green)">Cu</div><div class="tc-name">Cursor</div></div><div class="tc-like">VS Code + AI pair programmer</div><div class="tc-desc">Editor that understands your whole project. Multi-file edits with Composer.</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--teal-bg);color:var(--teal)">W</div><div class="tc-name">Windsurf</div></div><div class="tc-like">Cursor alternative, costs less</div><div class="tc-desc">AI IDE with Cascade agent. $15/mo. Great free tier. Comparable to Cursor.</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--bg3);color:var(--t2)">GC</div><div class="tc-name">GitHub Copilot</div></div><div class="tc-like">Autocomplete on steroids</div><div class="tc-desc">$10/mo always-on companion. Works in VS Code, JetBrains. Keep alongside other tools.</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--amber-bg);color:var(--amber)">GP</div><div class="tc-name">ChatGPT</div></div><div class="tc-like">Claude's main competitor</div><div class="tc-desc">Strong brainstorming, creative approaches. Try both Claude &amp; ChatGPT for important questions.</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--teal-bg);color:var(--teal)">BE</div><div class="tc-name">Browser Extension</div></div><div class="tc-like">Assistant over your shoulder</div><div class="tc-desc">Highlight text on any page, ask questions. No copy-pasting needed.</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--rose-bg);color:var(--rose)">Cx</div><div class="tc-name">Codex CLI</div></div><div class="tc-like">Fire-and-forget terminal agent</div><div class="tc-desc">OpenAI's coding agent. Strong for autonomous defined tasks. Bundled with ChatGPT Plus.</div></div>
+    <div class="tool-card"><div class="tc-head"><div class="tc-icon" style="background:var(--amber-bg);color:var(--amber)">CW</div><div class="tc-name">Cowork</div></div><div class="tc-like">Project partner who creates files</div><div class="tc-desc">Creates docs, pages, polished outputs. Best for shareable reports &amp; reference pages.</div></div>
+  </div>
+</div>
+
+<div class="cheer"><span class="cheer-emoji">🛠️</span><p>Feeling overwhelmed by all these tools? You don't need all of them on day one. <strong>Pick just one and try it today.</strong> You can always add more later. Every expert started by opening a tool and typing their first question.</p></div>
+
+<!-- ═══ KEY CONCEPTS ═══ -->
+<div class="sec" id="concepts">
+  <div class="sec-label">Understand the building blocks</div>
+  <h2>Key concepts you'll hear about</h2>
+  <p class="sec-intro">You don't need to memorize — just understand what they mean so you're not lost when someone mentions them.</p>
+
+  <div class="concept"><div class="c-head"><div class="c-icon" style="background:var(--blue-bg);color:var(--blue)">A</div><div class="c-title">Agent</div></div><div class="c-like">A worker who plans and acts on their own</div><p>A regular AI answers questions. An <strong>agent</strong> actually <strong>does things</strong> — reads files, runs commands, creates folders. You give it a goal, it figures out the steps. Claude Code and Cursor Composer are agents.</p><div class="c-flow"><span>Reads your code</span><span class="arrow">→</span><span>Plans changes</span><span class="arrow">→</span><span>Creates files</span><span class="arrow">→</span><span>Updates components</span><span class="arrow">→</span><span>Tests</span></div></div>
+
+  <div class="concept"><div class="c-head"><div class="c-icon" style="background:var(--purple-bg);color:var(--purple)">SA</div><div class="c-title">Sub-agent</div></div><div class="c-like">Helper the main agent delegates to</div><p>For complex tasks, agents spawn <strong>sub-agents</strong> — focused workers for specific parts. One scans files, one maps tokens, one applies fixes — all in parallel.</p></div>
+
+  <div class="concept"><div class="c-head"><div class="c-icon" style="background:var(--green-bg);color:var(--green)">S</div><div class="c-title">Skills</div></div><div class="c-like">Instruction manuals for AI</div><p>Rules and instructions that teach AI a specific task. Write your conventions once as a skill, AI follows them automatically — no repeating "use BEM with .zc- prefix" every time.</p></div>
+
+  <div class="concept"><div class="c-head"><div class="c-icon" style="background:var(--amber-bg);color:var(--amber)">MD</div><div class="c-title">SKILL.md &amp; config files</div></div><div class="c-like">Cheat sheet you give AI before it works</div><p>Different tools read different files, same purpose — <strong>giving AI your project context automatically</strong>.</p>
+  <div class="c-files">
+    <div class="c-file"><div class="cf-name">SKILL.md</div><div class="cf-desc">Claude Code/Chat. Rules for specific tasks.</div></div>
+    <div class="c-file"><div class="cf-name">CLAUDE.md</div><div class="cf-desc">Project-level rules. Auto-read every session.</div></div>
+    <div class="c-file"><div class="cf-name">.cursorrules</div><div class="cf-desc">Same idea for Cursor IDE.</div></div>
+    <div class="c-file"><div class="cf-name">copilot-instructions.md</div><div class="cf-desc">GitHub Copilot's version.</div></div>
+  </div></div>
+
+  <div class="concept"><div class="c-head"><div class="c-icon" style="background:var(--teal-bg);color:var(--teal)">M</div><div class="c-title">MCP (Model Context Protocol)</div></div><div class="c-like">Plug-ins connecting AI to other tools</div><p>Lets AI connect to <strong>Figma, Google Drive, Slack, Jira</strong> directly. Instead of copy-pasting between apps, AI reads and writes to services for you.</p></div>
+
+  <div class="concept"><div class="c-head"><div class="c-icon" style="background:var(--rose-bg);color:var(--rose)">CW</div><div class="c-title">Context window &amp; Artifacts</div></div><div class="c-like">AI's short-term memory and scratchpad</div><p><strong>Context window</strong> = how much AI can "see" at once. Long chats lose old context. <strong>Artifacts</strong> = outputs AI creates (HTML, React, docs) that preview in a side panel.</p></div>
+
+  <div class="insight">All these connect: <strong>SKILL.md</strong> → <strong>agent</strong> reads it → spawns <strong>sub-agents</strong> → connects to tools via <strong>MCP</strong> → produces <strong>artifacts</strong>. That's modern AI-assisted development.</div>
+</div>
+
+<div class="cheer"><span class="cheer-emoji">💡</span><p>If these concepts feel new, that's completely fine. <strong>You don't need to understand everything to start using AI well.</strong> Most developers learn these by doing, not by reading. Come back to this section whenever a term confuses you — it'll click once you've experienced it firsthand.</p></div>
+
+<!-- ═══ MODELS ═══ -->
+<div class="sec" id="models">
+  <div class="sec-label">Which brain to use</div>
+  <h2>AI models — the quick guide</h2>
+  <p class="sec-intro">The <strong>tool</strong> is the interface. The <strong>model</strong> is the brain inside. Same tool, different model = different results.</p>
+
+  <div class="model-grid">
+    <div class="model-card" style="border-color:var(--blue)"><div class="mc-name">Claude Opus 4.6</div><div class="mc-tag">The deep thinker</div><div class="mc-desc">Complex architecture, tricky bugs, code reviews. Slower but most thorough.</div></div>
+    <div class="model-card" style="border-color:var(--green)"><div class="mc-name">Claude Sonnet 4.6</div><div class="mc-tag">The everyday workhorse</div><div class="mc-desc">Handles 80%+ of work at near-Opus quality. Your default — fast and capable.</div></div>
+    <div class="model-card" style="border-color:var(--amber)"><div class="mc-name">GPT-5.2 / 5.4</div><div class="mc-tag">The fast builder</div><div class="mc-desc">Quick prototyping, terminal tasks (5.4), creative exploration. Good second opinion.</div></div>
+    <div class="model-card" style="border-color:var(--purple)"><div class="mc-name">Gemini 3.1 Pro</div><div class="mc-tag">The value king</div><div class="mc-desc">Massive context, great benchmarks at half the cost. Best in Google ecosystem.</div></div>
   </div>
 
-  <!-- ═══════════════════ -->
-  <!-- KNOW YOUR TOOLS -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="tools">
-    <div class="section-label">First things first</div>
-    <h2>Know your tools</h2>
-    <p class="section-intro">Think of these as different team members, each with a specialty. You wouldn't ask the same person for every task — same idea here.</p>
+  <div class="insight"><strong>Quick pick:</strong> Start with Sonnet. If the answer isn't deep enough, switch to Opus. Use Gemini for huge contexts. GPT for a different perspective. Don't overthink it — the prompt matters more than the model.</div>
+</div>
 
-    <div class="tools-grid">
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-blue-bg);color:var(--accent-blue);">C</div>
-          <div class="ti-name">Claude Chat</div>
-        </div>
-        <div class="ti-like">Think of it as: A smart colleague you can talk to</div>
-        <div class="ti-desc">Ask questions, upload files, paste code, get explanations. Best for thinking, learning, and getting quick answers. Works at claude.ai in your browser.</div>
-      </div>
+<!-- ═══ MINDSET ═══ -->
+<div class="sec" id="mindset">
+  <div class="sec-label">How to actually use it</div>
+  <h2>4 rules that change everything</h2>
+  <p class="sec-intro">You've seen the #1 rule above. These four rules are how you apply it daily.</p>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-purple-bg);color:var(--accent-purple);">CC</div>
-          <div class="ti-name">Claude Code</div>
-        </div>
-        <div class="ti-like">Think of it as: A developer who works in your terminal</div>
-        <div class="ti-desc">Reads your files, runs commands, writes code across your project. Best for building things, scanning codebases, and automating tasks.</div>
-      </div>
+  <div class="mind-item"><div class="mi-num">01</div><h3>Talk to it like a new team member</h3><p>Don't say "fix the bug." Say "there's a bug in the dropdown — it doesn't close on outside click. Here's my useEffect: [paste]."</p>
+  <div class="pbad"><span class="plbl plbl-b">Vague</span>Fix my CSS</div><div class="pgood"><span class="plbl plbl-g">Clear</span>My dropdown stays open when clicking outside. Using React + useRef. Here's my code: [paste]. What's wrong?</div></div>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-teal-bg);color:var(--accent-teal);">BE</div>
-          <div class="ti-name">Claude Browser Extension</div>
-        </div>
-        <div class="ti-like">Think of it as: An assistant looking over your shoulder</div>
-        <div class="ti-desc">Works on any webpage. Highlight text or code on any site and ask questions about it — no copy-pasting needed.</div>
-      </div>
+  <div class="mind-item"><div class="mi-num">02</div><h3>Have a conversation, not a one-shot</h3><p>The first answer is a draft. Say "now add validation" or "make it RTL" or "that's not what I meant."</p>
+  <div class="pbad"><span class="plbl plbl-b">One-shot</span>Build login page → copy → done</div><div class="pgood"><span class="plbl plbl-g">Iterative</span>Build form → add validation → make RTL → match tokens → add loading</div></div>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-amber-bg);color:var(--accent-amber);">CW</div>
-          <div class="ti-name">Claude Cowork</div>
-        </div>
-        <div class="ti-like">Think of it as: A project partner who creates files</div>
-        <div class="ti-desc">Creates documents, pages, and polished outputs. Best for making things you'll share — reports, reference pages, documentation.</div>
-      </div>
+  <div class="mind-item"><div class="mi-num">03</div><h3>Give context upfront</h3><p>AI doesn't know your project. 30 seconds of context saves 10 minutes of fixing irrelevant answers.</p>
+  <div class="pbad"><span class="plbl plbl-b">No context</span>Write a button component</div><div class="pgood"><span class="plbl plbl-g">With context</span>Button for Zoho Creator design system. SCSS, BEM, $zc- tokens, RTL, sm/md/lg.</div></div>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-green-bg);color:var(--accent-green);">Cu</div>
-          <div class="ti-name">Cursor IDE</div>
-        </div>
-        <div class="ti-like">Think of it as: VS Code with a built-in AI pair programmer</div>
-        <div class="ti-desc">A code editor that understands your entire project. Ask questions about your code, generate new files, and refactor — all with full project context.</div>
-      </div>
+  <div class="mind-item"><div class="mi-num">04</div><h3>Trust but verify — always</h3><p>AI is confident even when wrong. Read the code, understand the logic, test locally, then use it.</p>
+  <div class="pbad"><span class="plbl plbl-b">Blind</span>Copy AI code → push to production</div><div class="pgood"><span class="plbl plbl-g">Smart</span>Read it → understand it → test it → then use it</div></div>
+</div>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--bg-surface);color:var(--text-2);">GC</div>
-          <div class="ti-name">GitHub Copilot</div>
-        </div>
-        <div class="ti-like">Think of it as: Auto-complete on steroids</div>
-        <div class="ti-desc">Lives inside VS Code/JetBrains and suggests code as you type. Also reviews pull requests on GitHub. At $10/mo, it's the cheapest always-on coding companion — most developers keep this running alongside other tools.</div>
-      </div>
+<div class="cheer"><span class="cheer-emoji">🤝</span><p>Here's the truth nobody says out loud: <strong>AI doesn't replace developers — it replaces the boring parts of development.</strong> The thinking, the creativity, the architecture, the decisions — that's still you. AI just handles the typing, the boilerplate, and the "I know what to do but it'll take 2 hours to write." You become the director. That's a promotion, not a threat.</p></div>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-teal-bg);color:var(--accent-teal);">W</div>
-          <div class="ti-name">Windsurf</div>
-        </div>
-        <div class="ti-like">Think of it as: A Cursor alternative that costs less</div>
-        <div class="ti-desc">AI-powered IDE with Cascade agent for multi-file editing. Very similar to Cursor but at $15/mo. Good free tier. If Cursor feels expensive, Windsurf is the strong alternative with comparable features.</div>
-      </div>
+<!-- ═══ PROMPT PATTERNS ═══ -->
+<div class="sec" id="patterns">
+  <div class="sec-label">Copy &amp; adapt these</div>
+  <h2>6 prompt formulas that always work</h2>
+  <p class="sec-intro">Don't start from blank. Pick a formula, fill in your details.</p>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-amber-bg);color:var(--accent-amber);">GP</div>
-          <div class="ti-name">ChatGPT</div>
-        </div>
-        <div class="ti-like">Think of it as: Claude Chat's main competitor</div>
-        <div class="ti-desc">OpenAI's chat interface. Strong for brainstorming, creative approaches, and quick prototyping. Different strengths than Claude — try both for important questions to get different perspectives.</div>
-      </div>
+  <div class="acc open"><div class="acc-h" onclick="this.parentElement.classList.toggle('open')"><div class="acc-n">1</div><div class="acc-t">The context-first formula</div><div class="acc-a">&#9662;</div></div><div class="acc-b"><p>Start every prompt with context. "Who am I, what am I working on, what do I need?"</p><div class="tpl">I'm working on <span class="ph">[project]</span> using <span class="ph">[stack]</span>.
+I have <span class="ph">[what exists]</span>.
+I need <span class="ph">[task]</span>.
+Constraints: <span class="ph">[rules]</span></div><div class="ex-lbl">Example</div><div class="ex-prompt">I'm building a component library for Zoho Creator using SCSS with BEM. I have button and input done. I need a dropdown with RTL, sm/md/lg sizes, matching the button pattern. Transitions under 200ms.</div></div></div>
 
-      <div class="tool-intro">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-rose-bg);color:var(--accent-rose);">Cx</div>
-          <div class="ti-name">Codex CLI</div>
-        </div>
-        <div class="ti-like">Think of it as: Claude Code's competitor from OpenAI</div>
-        <div class="ti-desc">Terminal-based coding agent from OpenAI. Strong at autonomous "fire-and-forget" tasks — tell it what to do and come back later. Bundled with ChatGPT Plus ($20/mo). Good for defined, repeatable tasks.</div>
-      </div>
+  <div class="acc"><div class="acc-h" onclick="this.parentElement.classList.toggle('open')"><div class="acc-n">2</div><div class="acc-t">The "act as" formula</div><div class="acc-a">&#9662;</div></div><div class="acc-b"><p>Give AI a role for the right depth and perspective.</p><div class="tpl">Act as a <span class="ph">[role]</span> specializing in <span class="ph">[domain]</span>.
+Review/Create <span class="ph">[thing]</span>. Focus on <span class="ph">[aspects]</span>.</div><div class="ex-lbl">Example</div><div class="ex-prompt">Act as a senior frontend dev specializing in RTL layouts. Review this CSS and list every property needing RTL handling. Show current code and corrected version.</div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="this.parentElement.classList.toggle('open')"><div class="acc-n">3</div><div class="acc-t">The "show me options" formula</div><div class="acc-a">&#9662;</div></div><div class="acc-b"><p>Not sure about the approach? Ask for 2-3 options with trade-offs.</p><div class="tpl">I need to <span class="ph">[task]</span>. Show me <span class="ph">[2-3]</span> approaches.
+For each: how it works, pros/cons, when to use.
+My setup: <span class="ph">[constraints]</span></div><div class="ex-lbl">Example</div><div class="ex-prompt">I need to handle theming in SCSS. Show me 3 approaches — CSS custom properties, SCSS maps with mixins, data-attributes. Show a button example for each. Which works best for RTL + multi-brand?</div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="this.parentElement.classList.toggle('open')"><div class="acc-n">4</div><div class="acc-t">The "transform this" formula</div><div class="acc-a">&#9662;</div></div><div class="acc-b"><p>Input → output with rules. Best for conversions and refactoring.</p><div class="tpl">Here is <span class="ph">[input]</span>.
+Transform into <span class="ph">[output format]</span>.
+Rules: <span class="ph">[requirements]</span></div><div class="ex-lbl">Example</div><div class="ex-prompt">Here's a screenshot of a Creator PageBuilder form. Transform to ZML markup. Use zc-form container, map fields to ZML types, keep two-column grid, add matching placeholders.</div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="this.parentElement.classList.toggle('open')"><div class="acc-n">5</div><div class="acc-t">The "review &amp; fix" formula</div><div class="acc-a">&#9662;</div></div><div class="acc-b"><p>Paste code, get structured review. Great for learning.</p><div class="tpl">Review this <span class="ph">[code]</span>:
+<span class="ph">[paste]</span>
+Check for: <span class="ph">[aspects]</span>
+For each issue: show line, explain, show fix.</div><div class="ex-lbl">Example</div><div class="ex-prompt">Review this SCSS. Check for: inconsistent tokens (should use $zc-), missing RTL (use logical properties), hardcoded values. For each: show line, explain, give fix.</div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="this.parentElement.classList.toggle('open')"><div class="acc-n">6</div><div class="acc-t">The "step by step" formula</div><div class="acc-a">&#9662;</div></div><div class="acc-b"><p>For complex tasks, ask AI to plan before coding.</p><div class="tpl">I need to <span class="ph">[complex task]</span>.
+Before code: 1) List steps  2) Identify issues  3) Implement step by step</div><div class="ex-lbl">Example</div><div class="ex-prompt">Add RTL support to our dropdown. Before code: list all CSS needing RTL handling, identify JS logic assuming LTR, note icons needing mirroring. Then implement each fix with explanations.</div></div></div>
+</div>
+
+<!-- ═══ DO'S & DON'TS ═══ -->
+<div class="sec" id="rules">
+  <div class="sec-label">Quick rules</div>
+  <h2>Do's and don'ts</h2>
+  <div class="dd">
+    <div class="dd-col"><h3 style="color:var(--green)">✓ Do this</h3>
+      <div class="dd-item"><span class="dd-icon">✓</span>Give context — project, stack, conventions</div>
+      <div class="dd-item"><span class="dd-icon">✓</span>Iterate — ask follow-ups, say "make it better"</div>
+      <div class="dd-item"><span class="dd-icon">✓</span>Paste actual code, not vague descriptions</div>
+      <div class="dd-item"><span class="dd-icon">✓</span>Ask "why?" — learn from AI, don't just copy</div>
+      <div class="dd-item"><span class="dd-icon">✓</span>Read and test every line before using</div>
+      <div class="dd-item"><span class="dd-icon">✓</span>Save prompts that worked — reuse them</div>
+      <div class="dd-item"><span class="dd-icon">✓</span>Break big tasks into smaller prompts</div>
+    </div>
+    <div class="dd-col"><h3 style="color:var(--rose)">✗ Don't do this</h3>
+      <div class="dd-item"><span class="dd-icon">✗</span>Copy AI code to production without reading</div>
+      <div class="dd-item"><span class="dd-icon">✗</span>Use vague one-word prompts</div>
+      <div class="dd-item"><span class="dd-icon">✗</span>Share passwords, API keys, or secrets</div>
+      <div class="dd-item"><span class="dd-icon">✗</span>Assume the first answer is always right</div>
+      <div class="dd-item"><span class="dd-icon">✗</span>Dump 10 things in one prompt</div>
+      <div class="dd-item"><span class="dd-icon">✗</span>Give up after one bad answer — rephrase</div>
+      <div class="dd-item"><span class="dd-icon">✗</span>Use AI as a crutch — use as a multiplier</div>
     </div>
   </div>
+</div>
 
-  <!-- ═══════════════════ -->
-  <!-- KEY CONCEPTS -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="concepts">
-    <div class="section-label">Understand the building blocks</div>
-    <h2>Key concepts you'll hear about</h2>
-    <p class="section-intro">These terms come up constantly in the AI tools world. You don't need to memorize them — just understand what they mean so you're not lost when someone mentions them.</p>
+<div class="cheer"><span class="cheer-emoji">🌱</span><p>If you're reading this and thinking "this is a lot" — remember, <strong>you already learned HTML, CSS, JavaScript, frameworks, Git, and deployment.</strong> You've leveled up before. AI is just the next skill. And honestly? It's one of the easier ones — because the AI literally helps you learn it.</p></div>
 
-    <!-- Agent -->
-    <div class="concept-card">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-blue-bg);color:var(--accent-blue);">A</div>
-        <div class="cc-title">Agent</div>
-      </div>
-      <div class="cc-subtitle">Think of it as: A worker who can plan and act on their own</div>
-      <div class="cc-body">
-        A regular AI just answers questions. An <strong>agent</strong> can actually <strong>do things</strong> — read your files, run commands, create folders, install packages, browse the web, and execute multi-step tasks. You give it a goal, and it figures out the steps to get there.
-        <br><br>
-        <strong>Claude Code</strong> is an agent — you say "set up a React project with TypeScript and add RTL support" and it creates folders, writes files, installs packages, and configures everything. <strong>Cursor Composer</strong> is also agentic — it can edit multiple files to accomplish a task.
-      </div>
-      <div class="cc-example">
-        <div class="cc-ex-label">How an agent works</div>
-        You say: "Add dark mode to my app"
-      </div>
-      <div class="cc-flow">
-        <span class="cc-flow-step">Reads your code</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Plans the changes</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Creates CSS variables</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Updates components</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Adds toggle button</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Tests it</span>
-      </div>
-    </div>
+<!-- ═══ MISTAKES ═══ -->
+<div class="sec" id="mistakes">
+  <div class="sec-label">Learn from others</div>
+  <h2>5 mistakes everyone makes at first</h2>
+  <div class="mistake"><div class="m-head"><span class="m-num">01</span><span class="m-title">Being too vague</span></div><div class="m-desc">"Fix my code" — AI doesn't know your project.</div><div class="m-fix">Fix: Say what's broken, what you expected, and paste your code. One good prompt beats ten vague ones.</div></div>
+  <div class="mistake"><div class="m-head"><span class="m-num">02</span><span class="m-title">Accepting everything without reading</span></div><div class="m-desc">AI writes confident code with subtle bugs.</div><div class="m-fix">Fix: Read every line. Ask "explain this part" if unsure. Test locally. Never push code you can't explain.</div></div>
+  <div class="mistake"><div class="m-head"><span class="m-num">03</span><span class="m-title">Using the wrong tool</span></div><div class="m-desc">Using chat for coding, or Cursor for quick questions.</div><div class="m-fix">Fix: Quick question → Chat. Browser debugging → Extension. Multi-file → Cursor. Repo-wide → Claude Code.</div></div>
+  <div class="mistake"><div class="m-head"><span class="m-num">04</span><span class="m-title">One giant prompt for everything</span></div><div class="m-desc">10 requirements in one message = nothing done well.</div><div class="m-fix">Fix: One focus per message. Structure first, then styling, then interactions.</div></div>
+  <div class="mistake"><div class="m-head"><span class="m-num">05</span><span class="m-title">Starting new chat every time</span></div><div class="m-desc">Losing all context AI built about your project.</div><div class="m-fix">Fix: Keep one chat for related tasks. AI remembers everything in the current conversation.</div></div>
+</div>
 
-    <!-- Sub-agent -->
-    <div class="concept-card">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-purple-bg);color:var(--accent-purple);">SA</div>
-        <div class="cc-title">Sub-agent</div>
-      </div>
-      <div class="cc-subtitle">Think of it as: A helper the main agent delegates tasks to</div>
-      <div class="cc-body">
-        When a task is complex, the main agent can <strong>spawn sub-agents</strong> — smaller, focused workers that handle specific parts of the job. The main agent coordinates everything, and each sub-agent handles one piece.
-        <br><br>
-        For example, in <strong>Claude Code</strong>, if you ask "refactor all components to use design tokens," the main agent might create sub-agents: one to scan existing hardcoded values, one to map them to tokens, and one to apply the changes — all working in parallel.
-      </div>
-      <div class="cc-flow">
-        <span class="cc-flow-step" style="background:var(--accent-purple-bg);border-color:var(--accent-purple);">Main agent</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Sub-agent: Scan files</span>
-        <span class="cc-flow-arrow">&</span>
-        <span class="cc-flow-step">Sub-agent: Map tokens</span>
-        <span class="cc-flow-arrow">&</span>
-        <span class="cc-flow-step">Sub-agent: Apply fixes</span>
-      </div>
-    </div>
+<div class="cheer"><span class="cheer-emoji">😄</span><p>Every mistake above? <strong>We've all made them.</strong> The person who wrote this guide made every single one. The difference between a beginner and someone good at AI is just 2-3 weeks of practice. That's it. You're closer than you think.</p></div>
 
-    <!-- Skills -->
-    <div class="concept-card">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-green-bg);color:var(--accent-green);">S</div>
-        <div class="cc-title">Skills</div>
-      </div>
-      <div class="cc-subtitle">Think of it as: Instruction manuals you give to AI for specific tasks</div>
-      <div class="cc-body">
-        A <strong>skill</strong> is a set of rules and instructions that teach AI how to do a specific type of task well. Instead of explaining your conventions every time, you write them once as a skill, and AI follows them automatically.
-        <br><br>
-        Skills are powerful because they make AI <strong>consistent</strong>. Without a skill, you'd need to repeat "use BEM naming with .zc- prefix" in every prompt. With a skill, AI knows this by default.
-      </div>
-      <div class="cc-example">
-        <div class="cc-ex-label">What a skill contains</div>
-        A component library skill might include: which 28 components exist, what naming convention to use (BEM with .zc- prefix), what folder structure to follow, what grid system to use, which tokens are available, and how to handle RTL — all in one file that AI reads before starting work.
-      </div>
-    </div>
+<div class="divider"></div>
 
-    <!-- SKILL.md / Markdown files -->
-    <div class="concept-card">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-amber-bg);color:var(--accent-amber);">MD</div>
-        <div class="cc-title">SKILL.md &amp; markdown config files</div>
-      </div>
-      <div class="cc-subtitle">Think of it as: A cheat sheet you give AI before it starts working</div>
-      <div class="cc-body">
-        Skills are written as <strong>markdown files</strong> (files ending in .md). The most common one is <strong>SKILL.md</strong> — a plain text file with structured instructions that AI tools can read and follow.
-        <br><br>
-        Different tools use different config files, but they all serve the same purpose — <strong>giving AI context about your project without you having to repeat it every time</strong>.
-      </div>
-      <div class="cc-file-grid">
-        <div class="cc-file">
-          <div class="cc-fname">SKILL.md</div>
-          <div class="cc-fdesc">Used by Claude Code and Claude Chat. Defines rules for a specific task type — like "how to build components for our design system."</div>
-        </div>
-        <div class="cc-file">
-          <div class="cc-fname">CLAUDE.md</div>
-          <div class="cc-fdesc">Project-level instructions for Claude Code. Lives in your repo root. Claude reads it automatically every session — your project's conventions, stack, and rules.</div>
-        </div>
-        <div class="cc-file">
-          <div class="cc-fname">.cursorrules</div>
-          <div class="cc-fdesc">Same idea but for Cursor IDE. Put your project conventions here and Cursor follows them in every suggestion and generation.</div>
-        </div>
-        <div class="cc-file">
-          <div class="cc-fname">.github/copilot-instructions.md</div>
-          <div class="cc-fdesc">GitHub Copilot's version. Sits in your repo and tells Copilot about your coding standards, naming patterns, and preferences.</div>
-        </div>
-      </div>
-      <div class="cc-example" style="margin-top: 14px;">
-        <div class="cc-ex-label">Example: What goes in a CLAUDE.md or SKILL.md</div>
-        <div style="font-family:var(--mono);font-size:12px;line-height:1.7;margin-top:6px;white-space:pre-wrap;color:var(--text-1);"># Project: Creator Design System
+<!-- ═══ USE CASES ═══ -->
+<div class="sec" id="usecases">
+  <div class="sec-label">Which tool for which work</div>
+  <h2>6 real work scenarios</h2>
+  <p class="sec-intro">Each has tool recommendations, model picks, and a before/after prompt example.</p>
 
-## Tech stack
-- SCSS with BEM naming (.zc- prefix)
-- HTML5 templates
-- RTL support required (use CSS logical properties)
-
-## Conventions
-- Token variables: $zc-color-*, $zc-spacing-*, $zc-font-*
-- Component folder: /components/[name]/[name].scss + [name].html
-- Motion presets: snap, shift, pop, ease, enter, flourish, glide
-
-## Rules
-- Never use hardcoded colors — always use $zc-color tokens
-- All spacing must use $zc-spacing tokens
-- Every component must support RTL via logical properties</div>
-      </div>
-    </div>
-
-    <!-- MCP -->
-    <div class="concept-card">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-teal-bg);color:var(--accent-teal);">M</div>
-        <div class="cc-title">MCP (Model Context Protocol)</div>
-      </div>
-      <div class="cc-subtitle">Think of it as: Plug-ins that connect AI to external tools</div>
-      <div class="cc-body">
-        MCP lets AI tools <strong>connect to other services</strong> — like Figma, Google Drive, Slack, Jira, or your internal tools. Instead of copying data between apps, AI can directly read from and write to these services.
-        <br><br>
-        For example, with MCP you could ask Claude to "read the latest design from Figma and generate matching component code" or "check my Jira tickets and summarize what's pending" — all in one conversation.
-      </div>
-      <div class="cc-flow">
-        <span class="cc-flow-step">You ask Claude</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step" style="background:var(--accent-teal-bg);border-color:var(--accent-teal);">MCP connector</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Figma / Drive / Jira</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">AI processes data</span>
-        <span class="cc-flow-arrow">&#8594;</span>
-        <span class="cc-flow-step">Result to you</span>
-      </div>
-    </div>
-
-    <!-- Artifacts & Context Window -->
-    <div class="concept-card">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-rose-bg);color:var(--accent-rose);">CW</div>
-        <div class="cc-title">Context window &amp; Artifacts</div>
-      </div>
-      <div class="cc-subtitle">Think of it as: AI's short-term memory and its scratchpad</div>
-      <div class="cc-body">
-        The <strong>context window</strong> is how much text AI can "see" at once in a conversation — like a desk that can only hold so many papers. When a conversation gets very long, older parts may fall off the desk. That's why starting fresh with key context sometimes helps.
-        <br><br>
-        <strong>Artifacts</strong> are the outputs AI creates that you can preview, edit, and download — like HTML pages, React components, documents, or code files. In Claude Chat, artifacts appear in a side panel where you can see them live.
-      </div>
-      <div class="cc-example">
-        <div class="cc-ex-label">Why this matters in practice</div>
-        If you're in a long conversation and AI starts forgetting earlier instructions, it's because the context window is full. Start a new chat and re-share the key context (or use a CLAUDE.md / SKILL.md file so AI picks it up automatically).
-      </div>
-    </div>
-
-    <div class="insight">All these concepts connect: you write a <strong>SKILL.md</strong> file with your project rules → an <strong>agent</strong> (like Claude Code) reads it → the agent may use <strong>sub-agents</strong> for complex tasks → it connects to external tools via <strong>MCP</strong> → and produces <strong>artifacts</strong> you can use. Understanding this flow is understanding how modern AI-assisted development works.</div>
+  <div class="uc"><div class="uc-num">01</div><div class="uc-tag" style="background:var(--purple-bg);color:var(--purple)">Review</div><h3>Bulk repo or file review</h3><p class="uc-desc">Scanning many files for patterns, auditing conventions, finding inconsistencies.</p>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Code</span> — <span class="t-why">traverses entire repos, no file limit</span></div></div>
+    <div class="tool-row"><div class="t-rank t-2">2</div><div><span class="t-name">Cursor IDE</span> — <span class="t-why">codebase chat for project-wide questions</span></div></div>
+    <div class="tool-row"><div class="t-rank t-3">3</div><div><span class="t-name">Copilot / VS Code Ext</span> — <span class="t-why">good per-file, not bulk</span></div></div>
+    <div class="model-rec"><div class="model-rec-lbl">Best models</div><div class="mp"><span class="mp-dot" style="background:var(--blue)"></span><strong>Opus 4.6</strong> <span>deep reasoning</span></div><div class="mp"><span class="mp-dot" style="background:var(--green)"></span><strong>Sonnet 4.6</strong> <span>80% of reviews</span></div><div class="mp"><span class="mp-dot" style="background:var(--purple)"></span><strong>Gemini 3.1</strong> <span>massive context</span></div></div>
+    <div class="uc-prompt"><div class="uc-prompt-h">Prompt example</div><div class="pair-lbl">Audit naming conventions</div><div class="pbad"><span class="plbl plbl-b">Weak</span>Check my components for naming issues.</div><div class="pgood"><span class="plbl plbl-g">Strong (Claude Code)</span>Scan all .scss under /src/components/. Check BEM with .zc- prefix. For each violation: path, line, current name, fix. Group by component. Summary count at end.</div></div>
   </div>
 
-  <!-- ═══════════════════ -->
-  <!-- MODELS -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="models">
-    <div class="section-label">Which brain to use</div>
-    <h2>AI models — the quick guide</h2>
-    <p class="section-intro">Each tool runs on an AI "model" — the brain behind it. Different models are better at different things. Here's what you need to know to pick the right one.</p>
-
-    <div class="concept-card">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-blue-bg);color:var(--accent-blue);">AI</div>
-        <div class="cc-title">What's a model?</div>
-      </div>
-      <div class="cc-subtitle">Think of it as: The engine inside the car — same car, different engine = different performance</div>
-      <div class="cc-body">
-        When you use Claude Chat, Cursor, or Copilot — they all run on an AI model underneath. The <strong>tool</strong> is the interface you interact with (chat window, IDE, terminal). The <strong>model</strong> is the AI brain doing the thinking. You can often choose which model to use inside the same tool.
-        <br><br>
-        <strong>Why it matters:</strong> Using a powerful model (like Opus) for a simple question wastes time and money. Using a fast model (like Sonnet) for a complex architecture task gives worse results. Match the model to the task complexity.
-      </div>
-    </div>
-
-    <!-- Model cards grid -->
-    <div class="tools-grid" style="margin-top: 14px;">
-
-      <div class="tool-intro" style="border-top: 3px solid var(--accent-blue);">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-blue-bg);color:var(--accent-blue);">O</div>
-          <div class="ti-name">Claude Opus 4.6</div>
-        </div>
-        <div class="ti-like">The deep thinker — use for hard problems</div>
-        <div class="ti-desc">
-          Best for: complex architecture decisions, debugging tricky logic, multi-file refactoring, detailed code reviews, long-context analysis.
-          <br><br>
-          Think of it as your senior developer — slower but gives the most thoughtful, thorough answer. Use when quality matters more than speed.
-        </div>
-      </div>
-
-      <div class="tool-intro" style="border-top: 3px solid var(--accent-green);">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-green-bg);color:var(--accent-green);">S</div>
-          <div class="ti-name">Claude Sonnet 4.6</div>
-        </div>
-        <div class="ti-like">The everyday workhorse — use for most tasks</div>
-        <div class="ti-desc">
-          Best for: daily coding, component building, quick debugging, learning, writing docs, generating demos and artifacts.
-          <br><br>
-          Handles 80%+ of your work at near-Opus quality but much faster. This is your default — switch to Opus only when you need extra depth.
-        </div>
-      </div>
-
-      <div class="tool-intro" style="border-top: 3px solid var(--accent-amber);">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-amber-bg);color:var(--accent-amber);">G</div>
-          <div class="ti-name">GPT-5.2 / 5.4</div>
-        </div>
-        <div class="ti-like">The fast builder — great for prototyping</div>
-        <div class="ti-desc">
-          Best for: quick prototyping, conversational brainstorming, terminal-heavy tasks (5.4), creative writing, web app generation.
-          <br><br>
-          GPT-5.4 is specifically strong for Codex (OpenAI's coding agent) and terminal execution. Good as an alternative perspective when Claude's answer doesn't fit.
-        </div>
-      </div>
-
-      <div class="tool-intro" style="border-top: 3px solid var(--accent-purple);">
-        <div class="ti-head">
-          <div class="ti-icon" style="background:var(--accent-purple-bg);color:var(--accent-purple);">G</div>
-          <div class="ti-name">Gemini 3.1 Pro</div>
-        </div>
-        <div class="ti-like">The value king — frontier quality, lower cost</div>
-        <div class="ti-desc">
-          Best for: large-context tasks (huge files/repos), research-heavy work, tasks within Google ecosystem, cost-sensitive high-volume work.
-          <br><br>
-          Matches Opus-level coding benchmarks at less than half the cost. Excellent if you work with Google Workspace tools.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Simple decision guide -->
-    <div class="concept-card" style="margin-top: 14px;">
-      <div class="cc-head">
-        <div class="cc-icon" style="background:var(--accent-teal-bg);color:var(--accent-teal);">?</div>
-        <div class="cc-title">Quick decision: which model do I pick?</div>
-      </div>
-      <div class="cc-body" style="font-size:13.5px;">
-        <strong>"I need a quick answer or simple code"</strong> → Sonnet 4.6 (fast, good enough for most things)
-        <br><br>
-        <strong>"This is complex — architecture, tricky bug, or critical code"</strong> → Opus 4.6 (slower but much deeper reasoning)
-        <br><br>
-        <strong>"I'm processing a huge file or entire codebase"</strong> → Gemini 3.1 Pro (massive context window, great value)
-        <br><br>
-        <strong>"I want a second opinion or different approach"</strong> → GPT-5.2 / 5.4 (different strengths, fresh perspective)
-        <br><br>
-        <strong>"I'm not sure"</strong> → Start with Sonnet 4.6. If the answer isn't good enough, switch to Opus. That's what most developers do.
-      </div>
-    </div>
-
-    <div class="insight">Models change fast — new versions come out every few months. The principle stays the same: use a fast model for simple tasks, a powerful model for hard ones. Don't overthink it — the right prompt matters more than the right model.</div>
+  <div class="uc"><div class="uc-num">02</div><div class="uc-tag" style="background:var(--blue-bg);color:var(--blue)">R&D</div><h3>Standalone R&D — extensions, tools, experiments</h3><p class="uc-desc">Building something new from scratch, not tied to an existing codebase.</p>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Code</span> — <span class="t-why">scaffolds entire projects from terminal</span></div></div>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Chat / ChatGPT</span> — <span class="t-why">planning &amp; architecture thinking</span></div></div>
+    <div class="tool-row"><div class="t-rank t-2">2</div><div><span class="t-name">Cursor / Windsurf</span> — <span class="t-why">iterate once scaffold exists</span></div></div>
+    <div class="model-rec"><div class="model-rec-lbl">Best models</div><div class="mp"><span class="mp-dot" style="background:var(--blue)"></span><strong>Opus 4.6</strong> <span>architecture</span></div><div class="mp"><span class="mp-dot" style="background:var(--amber)"></span><strong>GPT-5.4</strong> <span>terminal &amp; prototyping</span></div><div class="mp"><span class="mp-dot" style="background:var(--green)"></span><strong>Sonnet 4.6</strong> <span>fast iteration</span></div></div>
+    <div class="uc-prompt"><div class="uc-prompt-h">Prompt example</div><div class="pair-lbl">Build a Chrome extension</div><div class="pbad"><span class="plbl plbl-b">Weak</span>Make me a Chrome extension.</div><div class="pgood"><span class="plbl plbl-g">Strong (Claude Code)</span>Create Chrome extension (Manifest V3) with side panel as drag-and-drop component library. Categories, previews, drag-to-page. Vanilla JS. Proper manifest with side_panel permissions.</div></div>
   </div>
 
-  <!-- ═══════════════════ -->
-  <!-- MINDSET -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="mindset">
-    <div class="section-label">The most important part</div>
-    <h2>4 rules that change everything</h2>
-    <p class="section-intro">Tools don't matter if you use them wrong. These four rules make the difference between "AI is useless" and "AI saves me 2 hours a day."</p>
-
-    <div class="mindset-grid">
-
-      <div class="mindset-card">
-        <div class="mc-num" style="background:var(--accent-blue-bg);color:var(--accent-blue);">1</div>
-        <h3>Talk to it like a new team member</h3>
-        <p class="mc-analogy">If a new developer joined your team today, you wouldn't say "fix the bug." You'd say "there's a bug in the dropdown component — it doesn't close when clicking outside. Here's the file." Same with AI.</p>
-        <div class="prompt-bad"><span class="plabel plabel-bad">Vague</span>Fix my CSS</div>
-        <div class="prompt-good"><span class="plabel plabel-good">Clear</span>My dropdown menu stays open when I click outside it. I'm using React with useRef and useEffect. Here's my current code: [paste]. What's wrong?</div>
-      </div>
-
-      <div class="mindset-card">
-        <div class="mc-num" style="background:var(--accent-green-bg);color:var(--accent-green);">2</div>
-        <h3>Have a conversation, not a one-shot</h3>
-        <p class="mc-analogy">AI is like a rough sketch — the first answer is a starting point. The magic is in saying "now make it simpler" or "add error handling" or "that's not what I meant, I need X instead."</p>
-        <div class="prompt-bad"><span class="plabel plabel-bad">One-shot</span>Build complete login page → copy paste → done</div>
-        <div class="prompt-good"><span class="plabel plabel-good">Iterative</span>Build login form → add validation → make it RTL → match our tokens → add loading state</div>
-      </div>
-
-      <div class="mindset-card">
-        <div class="mc-num" style="background:var(--accent-amber-bg);color:var(--accent-amber);">3</div>
-        <h3>Give context upfront</h3>
-        <p class="mc-analogy">AI doesn't know your project, your tech stack, or your team's conventions. The 30 seconds you spend giving context saves 10 minutes of fixing irrelevant answers.</p>
-        <div class="prompt-bad"><span class="plabel plabel-bad">No context</span>Write a button component</div>
-        <div class="prompt-good"><span class="plabel plabel-good">With context</span>Write a button for our Zoho Creator design system. SCSS with BEM, $zc- prefix tokens, RTL support, sm/md/lg sizes.</div>
-      </div>
-
-      <div class="mindset-card">
-        <div class="mc-num" style="background:var(--accent-rose-bg);color:var(--accent-rose);">4</div>
-        <h3>Trust but verify — always</h3>
-        <p class="mc-analogy">AI is confident even when wrong. It's like a very fast junior developer — great speed, but you still need to review the code before it ships. Read it. Test it. Understand it.</p>
-        <div class="prompt-bad"><span class="plabel plabel-bad">Blind trust</span>Copy AI code → paste into production → push</div>
-        <div class="prompt-good"><span class="plabel plabel-good">Smart trust</span>Read the code → understand the logic → test locally → then use it</div>
-      </div>
-
-    </div>
+  <div class="uc"><div class="uc-num">03</div><div class="uc-tag" style="background:var(--green-bg);color:var(--green)">Knowledge</div><h3>Learning, searching, understanding</h3><p class="uc-desc">New technology, best practices, understanding unfamiliar code or concepts.</p>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Chat / ChatGPT</span> — <span class="t-why">deep learning with web search</span></div></div>
+    <div class="tool-row"><div class="t-rank t-2">2</div><div><span class="t-name">Browser Extension</span> — <span class="t-why">highlight text on any page, ask questions</span></div></div>
+    <div class="tool-row"><div class="t-rank t-2">2</div><div><span class="t-name">Cursor Chat</span> — <span class="t-why">code questions with project context</span></div></div>
+    <div class="model-rec"><div class="model-rec-lbl">Best models</div><div class="mp"><span class="mp-dot" style="background:var(--green)"></span><strong>Sonnet 4.6</strong> <span>everyday learning</span></div><div class="mp"><span class="mp-dot" style="background:var(--blue)"></span><strong>Opus 4.6</strong> <span>complex topics</span></div><div class="mp"><span class="mp-dot" style="background:var(--amber)"></span><strong>GPT-5.2</strong> <span>creative exploration</span></div></div>
+    <div class="uc-prompt"><div class="uc-prompt-h">Prompt example</div><div class="pair-lbl">Learn RTL from scratch</div><div class="pbad"><span class="plbl plbl-b">Weak</span>What is RTL?</div><div class="pgood"><span class="plbl plbl-g">Strong</span>I'm a frontend dev adding RTL for Arabic. Explain like I've never done it: which CSS changes (before/after), logical properties, common gotchas, how to test without knowing Arabic. SCSS examples.</div></div>
   </div>
 
-  <!-- ═══════════════════ -->
-  <!-- PROMPT PATTERNS -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="patterns">
-    <div class="section-label">Copy &amp; adapt these</div>
-    <h2>6 prompt formulas that always work</h2>
-    <p class="section-intro">Don't start from blank. Pick a formula, fill in your details, and you'll get 10x better results than "help me with this."</p>
+  <div class="cheer"><span class="cheer-emoji">🚀</span><p>Notice something? In every scenario, <strong>your experience and judgment is the irreplaceable part.</strong> AI doesn't know which component matters most to users. It doesn't understand your product's context. It can't make taste decisions. You bring the "why" and "what." AI speeds up the "how." That's a superpower, not a replacement.</p></div>
 
-    <!-- Pattern 1 -->
-    <div class="accordion open">
-      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="acc-num">1</div>
-        <div class="acc-title">The context-first formula</div>
-        <div class="acc-arrow">&#9662;</div>
-      </div>
-      <div class="acc-body">
-        <p class="acc-desc">The single most important pattern. Start every prompt with context before your actual question. Think: "Who am I, what am I working on, what do I need?"</p>
-        <div class="template-box">I'm working on <span class="ph">[project]</span> using <span class="ph">[tech stack]</span>.
-I currently have <span class="ph">[what exists]</span>.
-I need to <span class="ph">[specific task]</span>.
-Constraints: <span class="ph">[any rules or preferences]</span></div>
-        <div class="ex-label">Real example</div>
-        <div class="example-prompt">I'm working on a component library for Zoho Creator using SCSS with BEM naming. I have button and input components done. I need to create a dropdown that supports RTL, has sm/md/lg sizes, and follows the same pattern as the button. Keep transitions under 200ms.</div>
-      </div>
-    </div>
-
-    <!-- Pattern 2 -->
-    <div class="accordion">
-      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="acc-num">2</div>
-        <div class="acc-title">The "act as" formula</div>
-        <div class="acc-arrow">&#9662;</div>
-      </div>
-      <div class="acc-body">
-        <p class="acc-desc">Give AI a role so it knows what depth and perspective to use.</p>
-        <div class="template-box">Act as a <span class="ph">[role]</span> who specializes in <span class="ph">[domain]</span>.
-Review/Create/Analyze <span class="ph">[the thing]</span>.
-Focus on <span class="ph">[specific aspects]</span>.</div>
-        <div class="ex-label">Real example</div>
-        <div class="example-prompt">Act as a senior frontend developer who specializes in RTL layouts. Review this CSS file and list every property that needs RTL handling. Show the current code and the corrected version for each.</div>
-      </div>
-    </div>
-
-    <!-- Pattern 3 -->
-    <div class="accordion">
-      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="acc-num">3</div>
-        <div class="acc-title">The "show me options" formula</div>
-        <div class="acc-arrow">&#9662;</div>
-      </div>
-      <div class="acc-body">
-        <p class="acc-desc">When you're not sure about the best approach, ask for 2-3 options with trade-offs. This is how you learn fastest.</p>
-        <div class="template-box">I need to <span class="ph">[task]</span>.
-Show me <span class="ph">[2-3]</span> different approaches.
-For each: how it works, pros and cons, when to use it.
-My setup: <span class="ph">[your constraints]</span></div>
-        <div class="ex-label">Real example</div>
-        <div class="example-prompt">I need to handle theming in our SCSS design system. Show me 3 approaches — CSS custom properties, SCSS maps with mixins, and data-attribute selectors. For each, show a button component example and tell me which works best for RTL + multiple brand themes.</div>
-      </div>
-    </div>
-
-    <!-- Pattern 4 -->
-    <div class="accordion">
-      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="acc-num">4</div>
-        <div class="acc-title">The "transform this" formula</div>
-        <div class="acc-arrow">&#9662;</div>
-      </div>
-      <div class="acc-body">
-        <p class="acc-desc">Give AI an input and tell it exactly what output format you want. Best for conversions and refactoring.</p>
-        <div class="template-box">Here is <span class="ph">[input: code, screenshot, file]</span>.
-Transform into <span class="ph">[desired output]</span>.
-Rules: <span class="ph">[list your requirements]</span></div>
-        <div class="ex-label">Real example</div>
-        <div class="example-prompt">Here's a screenshot of a Creator PageBuilder form. Transform this into ZML markup. Use zc-form container, map fields to correct ZML input types, keep the two-column grid, add matching placeholder text.</div>
-      </div>
-    </div>
-
-    <!-- Pattern 5 -->
-    <div class="accordion">
-      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="acc-num">5</div>
-        <div class="acc-title">The "review &amp; fix" formula</div>
-        <div class="acc-arrow">&#9662;</div>
-      </div>
-      <div class="acc-body">
-        <p class="acc-desc">Paste your code and ask for a structured review. Great for learning — you'll see what's wrong and why.</p>
-        <div class="template-box">Review this <span class="ph">[code/component]</span>:
-<span class="ph">[paste code]</span>
-
-Check for: <span class="ph">[aspect 1, aspect 2, aspect 3]</span>
-For each issue: show the line, explain why, show the fix.</div>
-        <div class="ex-label">Real example</div>
-        <div class="example-prompt">Review this SCSS file. Check for: inconsistent token usage (should use $zc- variables), missing RTL support (should use logical properties), and hardcoded values. For each issue show the line, explain the problem, give the fix.</div>
-      </div>
-    </div>
-
-    <!-- Pattern 6 -->
-    <div class="accordion">
-      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="acc-num">6</div>
-        <div class="acc-title">The "step by step" formula</div>
-        <div class="acc-arrow">&#9662;</div>
-      </div>
-      <div class="acc-body">
-        <p class="acc-desc">For complex tasks, ask AI to plan before doing. This prevents rushing to a wrong answer.</p>
-        <div class="template-box">I need to <span class="ph">[complex task]</span>.
-Before writing code:
-1. List the steps you'll take
-2. Identify potential issues
-3. Then implement step by step</div>
-        <div class="ex-label">Real example</div>
-        <div class="example-prompt">I need to add RTL support to our dropdown component. Before code: list all CSS properties that need RTL handling, identify any JS logic that assumes LTR (like positioning), note icons that need mirroring. Then implement each fix, explaining each change.</div>
-      </div>
-    </div>
+  <div class="uc"><div class="uc-num">04</div><div class="uc-tag" style="background:var(--amber-bg);color:var(--amber)">Build</div><h3>Component library from repos, URLs, JSON, or docs</h3><p class="uc-desc">Extracting components from existing sources, building structured libraries.</p>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Code</span> — <span class="t-why">parse files, scaffold entire library</span></div></div>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Chat + uploads</span> — <span class="t-why">upload specs, get organized code</span></div></div>
+    <div class="tool-row"><div class="t-rank t-2">2</div><div><span class="t-name">Cursor / Browser Ext</span> — <span class="t-why">build in IDE / extract from live pages</span></div></div>
+    <div class="model-rec"><div class="model-rec-lbl">Best models</div><div class="mp"><span class="mp-dot" style="background:var(--blue)"></span><strong>Opus 4.6</strong> <span>complex specs</span></div><div class="mp"><span class="mp-dot" style="background:var(--green)"></span><strong>Sonnet 4.6</strong> <span>quick components</span></div><div class="mp"><span class="mp-dot" style="background:var(--amber)"></span><strong>GPT-5.4</strong> <span>image-to-code</span></div></div>
+    <div class="uc-prompt"><div class="uc-prompt-h">Prompt example</div><div class="pair-lbl">Build library from SKILL.md</div><div class="pbad"><span class="plbl plbl-b">Weak</span>Create a component library from this file.</div><div class="pgood"><span class="plbl plbl-g">Strong (Claude Code)</span>Read SKILL.md. It defines 28 components. For each: SCSS (BEM .zc-), HTML with all variants, index file. /components/[name]/. Start with first 5, show me before continuing.</div></div>
   </div>
 
-  <!-- ═══════════════════ -->
-  <!-- DO'S & DON'TS -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="rules">
-    <div class="section-label">Quick rules</div>
-    <h2>Do's and don'ts</h2>
-
-    <div class="dd-grid">
-      <div class="dd-col do-col">
-        <div class="dd-title" style="color:var(--accent-green);">&#10003; Do this</div>
-        <div class="dd-item"><span class="dd-icon">&#10003;</span> Give context — your project, tech stack, conventions</div>
-        <div class="dd-item"><span class="dd-icon">&#10003;</span> Iterate — ask follow-ups, say "make it better"</div>
-        <div class="dd-item"><span class="dd-icon">&#10003;</span> Paste your actual code, not a vague description</div>
-        <div class="dd-item"><span class="dd-icon">&#10003;</span> Ask "why?" — learn from AI, don't just copy</div>
-        <div class="dd-item"><span class="dd-icon">&#10003;</span> Read and test every line before using it</div>
-        <div class="dd-item"><span class="dd-icon">&#10003;</span> Save prompts that worked — reuse them</div>
-        <div class="dd-item"><span class="dd-icon">&#10003;</span> Break big tasks into smaller focused prompts</div>
-      </div>
-
-      <div class="dd-col dont-col">
-        <div class="dd-title" style="color:var(--accent-rose);">&#10007; Don't do this</div>
-        <div class="dd-item"><span class="dd-icon">&#10007;</span> Don't copy AI code to production without reading it</div>
-        <div class="dd-item"><span class="dd-icon">&#10007;</span> Don't use vague one-word prompts</div>
-        <div class="dd-item"><span class="dd-icon">&#10007;</span> Don't share passwords, API keys, or secrets</div>
-        <div class="dd-item"><span class="dd-icon">&#10007;</span> Don't assume the first answer is always right</div>
-        <div class="dd-item"><span class="dd-icon">&#10007;</span> Don't dump 10 things in one prompt</div>
-        <div class="dd-item"><span class="dd-icon">&#10007;</span> Don't give up after one bad answer — rephrase it</div>
-        <div class="dd-item"><span class="dd-icon">&#10007;</span> Don't use AI as a crutch — use it as a multiplier</div>
-      </div>
-    </div>
+  <div class="uc"><div class="uc-num">05</div><div class="uc-tag" style="background:var(--rose-bg);color:var(--rose)">Debug</div><h3>Analyse &amp; debug cloud products</h3><p class="uc-desc">Debugging Deluge in Zoho Creator, analysing workflows, extracting page logic.</p>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Browser Extension</span> — <span class="t-why">select code on-page, ask questions</span></div></div>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Chat / ChatGPT</span> — <span class="t-why">paste scripts, deep debugging</span></div></div>
+    <div class="tool-row"><div class="t-rank t-2">2</div><div><span class="t-name">Claude Code</span> — <span class="t-why">extract to local file structures</span></div></div>
+    <div class="model-rec"><div class="model-rec-lbl">Best models</div><div class="mp"><span class="mp-dot" style="background:var(--blue)"></span><strong>Opus 4.6</strong> <span>logic bugs</span></div><div class="mp"><span class="mp-dot" style="background:var(--green)"></span><strong>Sonnet 4.6</strong> <span>most debugging</span></div><div class="mp"><span class="mp-dot" style="background:var(--amber)"></span><strong>GPT-5.2</strong> <span>explaining code</span></div></div>
+    <div class="uc-prompt"><div class="uc-prompt-h">Prompt example</div><div class="pair-lbl">Debug Deluge workflow</div><div class="pbad"><span class="plbl plbl-b">Weak</span>My Deluge script isn't working.</div><div class="pgood"><span class="plbl plbl-g">Strong</span>Deluge script triggers on form submit. Should create record + send email. Record works, email doesn't. Script: [paste]. Trigger: On Create → On Success. Template: "project_notification". Why no email?</div></div>
   </div>
 
-  <!-- ═══════════════════ -->
-  <!-- COMMON MISTAKES -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="mistakes">
-    <div class="section-label">Learn from others</div>
-    <h2>5 mistakes everyone makes at first</h2>
-    <p class="section-intro">These are normal — just recognizing them puts you ahead.</p>
-
-    <div class="mistake">
-      <div class="m-num">1</div>
-      <div class="m-body">
-        <h4>Being too vague</h4>
-        <p>"Fix my code" or "make a component" — AI doesn't know your project.</p>
-        <div class="m-fix">Fix: Say what you're building, what's broken, and what you expect. "The dropdown doesn't close on outside click. Here's my useEffect: [code]" gets you an answer in one try.</div>
-      </div>
-    </div>
-
-    <div class="mistake">
-      <div class="m-num">2</div>
-      <div class="m-body">
-        <h4>Accepting everything without reading</h4>
-        <p>AI writes confident-looking code that might have subtle bugs or outdated patterns.</p>
-        <div class="m-fix">Fix: Read every line. If you don't understand something, ask "explain this part." Run it locally. Never push code you can't explain.</div>
-      </div>
-    </div>
-
-    <div class="mistake">
-      <div class="m-num">3</div>
-      <div class="m-body">
-        <h4>Using the wrong tool for the job</h4>
-        <p>Using Claude Chat for tasks that need Claude Code, or Cursor for quick questions.</p>
-        <div class="m-fix">Fix: Quick question → Claude Chat. Debugging in browser → Browser Extension. Multi-file coding → Cursor. Repo-wide tasks → Claude Code. See the use case section below.</div>
-      </div>
-    </div>
-
-    <div class="mistake">
-      <div class="m-num">4</div>
-      <div class="m-body">
-        <h4>One giant prompt for everything</h4>
-        <p>Putting 10 requirements in one message. AI tries to do everything and does nothing well.</p>
-        <div class="m-fix">Fix: One focus per message. First get the structure right, then styling, then interactions. Build up step by step.</div>
-      </div>
-    </div>
-
-    <div class="mistake">
-      <div class="m-num">5</div>
-      <div class="m-body">
-        <h4>Starting a new chat every time</h4>
-        <p>Losing all the context AI built up about your project by opening a new conversation.</p>
-        <div class="m-fix">Fix: Keep one chat going for related tasks. AI remembers everything in the current conversation. Only start new for completely different topics.</div>
-      </div>
-    </div>
+  <div class="uc"><div class="uc-num">06</div><div class="uc-tag" style="background:var(--teal-bg);color:var(--teal)">POC</div><h3>Quick POCs &amp; live demos</h3><p class="uc-desc">RTL comparisons, component showcases, interactive demos.</p>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Chat (Artifacts)</span> — <span class="t-why">describe → get working preview instantly</span></div></div>
+    <div class="tool-row"><div class="t-rank t-1">1</div><div><span class="t-name">Claude Code</span> — <span class="t-why">deployable projects (GitHub Pages)</span></div></div>
+    <div class="tool-row"><div class="t-rank t-2">2</div><div><span class="t-name">Cursor / Cowork</span> — <span class="t-why">integrate with codebase / polished doc+demos</span></div></div>
+    <div class="model-rec"><div class="model-rec-lbl">Best models</div><div class="mp"><span class="mp-dot" style="background:var(--green)"></span><strong>Sonnet 4.6</strong> <span>fast demos</span></div><div class="mp"><span class="mp-dot" style="background:var(--blue)"></span><strong>Opus 4.6</strong> <span>polished output</span></div><div class="mp"><span class="mp-dot" style="background:var(--amber)"></span><strong>GPT-5.2</strong> <span>web apps</span></div></div>
+    <div class="uc-prompt"><div class="uc-prompt-h">Prompt example</div><div class="pair-lbl">RTL standardization demo</div><div class="pbad"><span class="plbl plbl-b">Weak</span>Show RTL demo.</div><div class="pgood"><span class="plbl plbl-g">Strong</span>Interactive HTML: LTR vs RTL side by side. Include form, sidebar, table, card. Toggle to switch. Below each component show which RTL rules apply. CSS logical properties. Clean enough to present.</div></div>
   </div>
+</div>
 
-  <div class="divider"></div>
+<!-- ═══ CHEAT SHEET ═══ -->
+<div class="sec" id="summary">
+  <div class="sec-label">Bookmark this</div>
+  <h2>Cheat sheet — which tool to open</h2>
+  <table class="s-table"><thead><tr><th>I need to...</th><th>Open this first</th><th>Also works</th></tr></thead><tbody>
+    <tr><td>Scan a whole repo</td><td class="cb">Claude Code</td><td class="cg">Cursor, Codex CLI</td></tr>
+    <tr><td>Build something new</td><td class="cb">Cursor / Windsurf</td><td class="cg">Claude Code, Codex CLI</td></tr>
+    <tr><td>Learn or understand</td><td class="cb">Claude Chat / ChatGPT</td><td class="cg">Browser Ext, Gemini</td></tr>
+    <tr><td>Create component library</td><td class="cb">Cursor + Claude Code</td><td class="cg">Windsurf, Copilot</td></tr>
+    <tr><td>Debug cloud product</td><td class="cb">Browser Ext + Chat</td><td class="cg">ChatGPT, Claude Code</td></tr>
+    <tr><td>Make a quick demo</td><td class="cb">Claude Chat / ChatGPT</td><td class="cg">Cursor, Windsurf</td></tr>
+    <tr><td>Daily coding</td><td class="cb">Cursor / Windsurf + Copilot</td><td class="cg">Claude VS Code Ext</td></tr>
+    <tr><td>Fire-and-forget tasks</td><td class="cb">Codex CLI / Claude Code</td><td class="cg">Copilot Agent Mode</td></tr>
+  </tbody></table>
+  <div class="reminder" style="margin-top:20px"><strong style="color:var(--blue);display:block;margin-bottom:4px">Remember the setup</strong><strong>Copilot</strong> (autocomplete) + <strong>Cursor / Windsurf</strong> (daily IDE) + <strong>Claude Code</strong> (hard tasks) + <strong>Chat / ChatGPT</strong> (thinking &amp; learning).<br><span style="color:var(--t2);font-size:12.5px">The tool matters less than how you use it. A great prompt in any tool beats a lazy prompt in the perfect tool.</span></div>
+</div>
 
-  <!-- ═══════════════════ -->
-  <!-- USE CASES -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="usecases">
-    <div class="section-label">Which tool for which work</div>
-    <h2>6 real work scenarios</h2>
-    <p class="section-intro">Each scenario shows the best tool to use and a real before/after prompt example.</p>
+<div class="cheer" style="margin:40px 0 20px;padding:28px 0;border-top:1px solid var(--b2);border-bottom:1px solid var(--b2)"><span class="cheer-emoji">🎉</span><p>You made it to the end! That already puts you ahead of most people. <strong>The developers who thrive in the AI era aren't the ones who know the most tools — they're the ones who started trying.</strong> Open an AI chat today, try one prompt formula from this guide, and see what happens. Your future self will thank you for starting now.</p></div>
 
-    <!-- UC 1 -->
-    <div class="uc">
-      <div class="uc-num">01</div>
-      <div class="uc-card">
-        <div class="uc-head">
-          <div class="uc-tag" style="background:var(--accent-purple-bg);color:var(--accent-purple);">Review</div>
-          <h3>Bulk repo or file review</h3>
-          <p>Scanning many files for patterns, auditing naming conventions, finding inconsistencies across a codebase.</p>
-        </div>
-        <div class="uc-body">
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Code</div><div class="t-why">Can traverse entire repos, grep files, and give consolidated reports — no file-count limit.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-good">2</div>
-            <div class="t-info"><div class="t-name">Cursor IDE</div><div class="t-why">Codebase indexing lets you ask questions across your whole project from within the editor.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-alt">3</div>
-            <div class="t-info"><div class="t-name">GitHub Copilot / VS Code Extension</div><div class="t-why">Good per-file, but not built for repo-wide bulk analysis.</div></div>
-          </div>
-
-          <div class="model-rec">
-            <div class="model-rec-head">Recommended models for this task</div>
-            <div class="model-pills">
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-blue)"></span><span class="mp-name">Claude Opus 4.6</span><span class="mp-why">— deep reasoning across large codebases</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-green)"></span><span class="mp-name">Claude Sonnet 4.6</span><span class="mp-why">— faster, handles 80%+ of review tasks</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-purple)"></span><span class="mp-name">Gemini 3.1 Pro</span><span class="mp-why">— great for massive context (1M+ tokens)</span></div>
-            </div>
-          </div>
-
-          <div class="uc-prompts">
-            <div class="uc-prompts-head">Prompt examples</div>
-            <div class="prompt-pair">
-              <div class="pair-label">Audit naming conventions across repo</div>
-              <div class="prompt-bad"><span class="plabel plabel-bad">Weak</span>Check my components for naming issues.</div>
-              <div class="prompt-good"><span class="plabel plabel-good">Strong (Claude Code)</span>Scan all .scss files under /src/components/. Check if class names follow BEM with .zc- prefix. For each violation: file path, line number, current name, suggested fix. Group by component. Summary count at the end.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC 2 -->
-    <div class="uc">
-      <div class="uc-num">02</div>
-      <div class="uc-card">
-        <div class="uc-head">
-          <div class="uc-tag" style="background:var(--accent-blue-bg);color:var(--accent-blue);">R&D</div>
-          <h3>Standalone R&D — new extensions, tools, experiments</h3>
-          <p>Building something from scratch that isn't tied to an existing codebase.</p>
-        </div>
-        <div class="uc-body">
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Code</div><div class="t-why">Scaffolds entire projects — folders, configs, manifests — in one go from the terminal.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Chat</div><div class="t-why">Best for the thinking phase — planning architecture and exploring approaches before writing code.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-good">2</div>
-            <div class="t-info"><div class="t-name">Cursor IDE</div><div class="t-why">Great once you have a scaffold and want to iterate on the code within the editor.</div></div>
-          </div>
-
-          <div class="model-rec">
-            <div class="model-rec-head">Recommended models for this task</div>
-            <div class="model-pills">
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-blue)"></span><span class="mp-name">Claude Opus 4.6</span><span class="mp-why">— best for architecture planning &amp; complex scaffolding</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-amber)"></span><span class="mp-name">GPT-5.4</span><span class="mp-why">— strong for terminal execution &amp; quick prototyping</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-green)"></span><span class="mp-name">Claude Sonnet 4.6</span><span class="mp-why">— fast iteration once scaffold exists</span></div>
-            </div>
-          </div>
-
-          <div class="uc-prompts">
-            <div class="uc-prompts-head">Prompt examples</div>
-            <div class="prompt-pair">
-              <div class="pair-label">Build a Chrome extension</div>
-              <div class="prompt-bad"><span class="plabel plabel-bad">Weak</span>Make me a Chrome extension.</div>
-              <div class="prompt-good"><span class="plabel plabel-good">Strong (Claude Code)</span>Create a Chrome extension (Manifest V3) with a side panel that works as a drag-and-drop component library. Side panel lists components in categories. Each shows a preview. Drag to drop into the active page. Vanilla JS, no frameworks. Include proper manifest.json with side_panel permissions.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC 3 -->
-    <div class="uc">
-      <div class="uc-num">03</div>
-      <div class="uc-card">
-        <div class="uc-head">
-          <div class="uc-tag" style="background:var(--accent-green-bg);color:var(--accent-green);">Knowledge</div>
-          <h3>Learning, searching, understanding</h3>
-          <p>Learning a new technology, finding best practices, understanding unfamiliar code or concepts.</p>
-        </div>
-        <div class="uc-body">
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Chat</div><div class="t-why">Deep conversational learning with web search. Upload docs, paste code, get explanations.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-good">2</div>
-            <div class="t-info"><div class="t-name">Browser Extension</div><div class="t-why">Highlight any text on a webpage and ask Claude to explain it — no context switching.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-good">2</div>
-            <div class="t-info"><div class="t-name">Cursor Chat</div><div class="t-why">Ask code questions with your actual project files as context.</div></div>
-          </div>
-
-          <div class="model-rec">
-            <div class="model-rec-head">Recommended models for this task</div>
-            <div class="model-pills">
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-green)"></span><span class="mp-name">Claude Sonnet 4.6</span><span class="mp-why">— fast, clear explanations for everyday learning</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-blue)"></span><span class="mp-name">Claude Opus 4.6</span><span class="mp-why">— deep, nuanced answers for complex topics</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-amber)"></span><span class="mp-name">GPT-5.2</span><span class="mp-why">— conversational &amp; good for creative exploration</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-purple)"></span><span class="mp-name">Gemini 3.1 Pro</span><span class="mp-why">— best if you're deep in Google ecosystem</span></div>
-            </div>
-          </div>
-
-          <div class="uc-prompts">
-            <div class="uc-prompts-head">Prompt examples</div>
-            <div class="prompt-pair">
-              <div class="pair-label">Learn RTL from scratch</div>
-              <div class="prompt-bad"><span class="plabel plabel-bad">Weak</span>What is RTL?</div>
-              <div class="prompt-good"><span class="plabel plabel-good">Strong (Claude Chat)</span>I'm a frontend developer about to add RTL support for Arabic users. Explain RTL to me like I've never done it. Cover: which CSS properties change (with before/after examples), what CSS logical properties are and why they matter, common gotchas, and how to test without knowing Arabic. Give SCSS examples.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC 4 -->
-    <div class="uc">
-      <div class="uc-num">04</div>
-      <div class="uc-card">
-        <div class="uc-head">
-          <div class="uc-tag" style="background:var(--accent-amber-bg);color:var(--accent-amber);">Build</div>
-          <h3>Component library from repos, URLs, JSON, or docs</h3>
-          <p>Extracting components from existing sources and building a structured library.</p>
-        </div>
-        <div class="uc-body">
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Code</div><div class="t-why">Clone repos, parse JSON/SKILL.md, extract patterns, and scaffold an entire library in one session.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Chat + file uploads</div><div class="t-why">Upload specs or docs and get organized component code back.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-good">2</div>
-            <div class="t-info"><div class="t-name">Cursor / Browser Extension</div><div class="t-why">Cursor for building within the IDE. Browser Extension for extracting from live web pages.</div></div>
-          </div>
-
-          <div class="model-rec">
-            <div class="model-rec-head">Recommended models for this task</div>
-            <div class="model-pills">
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-blue)"></span><span class="mp-name">Claude Opus 4.6</span><span class="mp-why">— best at following complex spec files &amp; generating structured output</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-green)"></span><span class="mp-name">Claude Sonnet 4.6</span><span class="mp-why">— great for iterating individual components quickly</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-amber)"></span><span class="mp-name">GPT-5.4</span><span class="mp-why">— strong for image-to-code conversion tasks</span></div>
-            </div>
-          </div>
-
-          <div class="uc-prompts">
-            <div class="uc-prompts-head">Prompt examples</div>
-            <div class="prompt-pair">
-              <div class="pair-label">Build library from SKILL.md</div>
-              <div class="prompt-bad"><span class="plabel plabel-bad">Weak</span>Create a component library from this file.</div>
-              <div class="prompt-good"><span class="plabel plabel-good">Strong (Claude Code)</span>Read SKILL.md at ./design-system/SKILL.md. It defines 28 components. For each: create SCSS (BEM with .zc- prefix), HTML template showing all variants, and an index file. Folder structure: /components/[name]/[name].scss + [name].html. Start with the first 5, show me results before continuing.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC 5 -->
-    <div class="uc">
-      <div class="uc-num">05</div>
-      <div class="uc-card">
-        <div class="uc-head">
-          <div class="uc-tag" style="background:var(--accent-rose-bg);color:var(--accent-rose);">Debug</div>
-          <h3>Analyse &amp; debug cloud products</h3>
-          <p>Debugging Deluge scripts in Zoho Creator, analysing workflows, extracting page logic into component files.</p>
-        </div>
-        <div class="uc-body">
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Browser Extension</div><div class="t-why">You're already in the browser. Select code or UI directly and ask questions without leaving the page.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Chat</div><div class="t-why">Paste scripts, upload screenshots, describe issues in detail for deep debugging.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-good">2</div>
-            <div class="t-info"><div class="t-name">Claude Code</div><div class="t-why">For extracting cloud logic into local file structures and organized components.</div></div>
-          </div>
-
-          <div class="model-rec">
-            <div class="model-rec-head">Recommended models for this task</div>
-            <div class="model-pills">
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-blue)"></span><span class="mp-name">Claude Opus 4.6</span><span class="mp-why">— best at reasoning through complex logic bugs</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-green)"></span><span class="mp-name">Claude Sonnet 4.6</span><span class="mp-why">— good enough for most debugging, much faster</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-amber)"></span><span class="mp-name">GPT-5.2</span><span class="mp-why">— strong at explaining code logic conversationally</span></div>
-            </div>
-          </div>
-
-          <div class="uc-prompts">
-            <div class="uc-prompts-head">Prompt examples</div>
-            <div class="prompt-pair">
-              <div class="pair-label">Debug Deluge workflow</div>
-              <div class="prompt-bad"><span class="plabel plabel-bad">Weak</span>My Deluge script isn't working.</div>
-              <div class="prompt-good"><span class="plabel plabel-good">Strong (Claude Chat)</span>Here's my Deluge script that triggers on form submission. It should create a record in "Projects" and send an email, but the email never sends. Record creation works. Script: [paste]. Trigger: On Create → On Success. Email template: "project_notification". Why isn't the email executing?</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC 6 -->
-    <div class="uc">
-      <div class="uc-num">06</div>
-      <div class="uc-card">
-        <div class="uc-head">
-          <div class="uc-tag" style="background:var(--accent-teal-bg);color:var(--accent-teal);">POC</div>
-          <h3>Quick POCs &amp; live demos</h3>
-          <p>RTL comparison pages, component showcases, interactive demos — anything "show don't tell."</p>
-        </div>
-        <div class="uc-body">
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Chat (Artifacts)</div><div class="t-why">Describe what you need → get a working preview instantly. Fastest path to a live demo.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-best">1</div>
-            <div class="t-info"><div class="t-name">Claude Code</div><div class="t-why">When the POC needs to be a real deployable project — GitHub Pages, shareable build.</div></div>
-          </div>
-          <div class="tool-row">
-            <div class="t-rank t-good">2</div>
-            <div class="t-info"><div class="t-name">Cursor / Cowork</div><div class="t-why">Cursor when it needs to integrate with existing code. Cowork for polished doc + demo pages.</div></div>
-          </div>
-
-          <div class="model-rec">
-            <div class="model-rec-head">Recommended models for this task</div>
-            <div class="model-pills">
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-green)"></span><span class="mp-name">Claude Sonnet 4.6</span><span class="mp-why">— fast artifact generation, great for quick demos</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-blue)"></span><span class="mp-name">Claude Opus 4.6</span><span class="mp-why">— when the POC needs production-quality polish</span></div>
-              <div class="model-pill"><span class="mp-dot" style="background:var(--accent-amber)"></span><span class="mp-name">GPT-5.2</span><span class="mp-why">— good for interactive prototypes &amp; web apps</span></div>
-            </div>
-          </div>
-
-          <div class="uc-prompts">
-            <div class="uc-prompts-head">Prompt examples</div>
-            <div class="prompt-pair">
-              <div class="pair-label">RTL standardization demo</div>
-              <div class="prompt-bad"><span class="plabel plabel-bad">Weak</span>Show RTL demo.</div>
-              <div class="prompt-good"><span class="plabel plabel-good">Strong (Claude Chat)</span>Create an interactive HTML page showing RTL vs LTR side by side. Include: a form, a sidebar nav, a data table, and a card layout. Add a toggle to switch between LTR and RTL. Below each component show which RTL rules are being demonstrated. Use CSS logical properties. Make it clean enough to present to the team.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════ -->
-  <!-- CHEAT SHEET -->
-  <!-- ═══════════════════ -->
-  <div class="section" id="summary">
-    <div class="section-label">Bookmark this</div>
-    <h2>Cheat sheet — which tool to open</h2>
-
-    <table class="sum-table">
-      <thead>
-        <tr>
-          <th>I need to...</th>
-          <th>Open this first</th>
-          <th>Also works</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Scan a whole repo</td>
-          <td class="c-best">Claude Code</td>
-          <td class="c-good">Cursor (codebase chat), Codex CLI</td>
-        </tr>
-        <tr>
-          <td>Build something new</td>
-          <td class="c-best">Cursor / Windsurf</td>
-          <td class="c-good">Claude Code (terminal), Codex CLI</td>
-        </tr>
-        <tr>
-          <td>Learn or understand</td>
-          <td class="c-best">Claude Chat / ChatGPT</td>
-          <td class="c-good">Browser Extension, Gemini</td>
-        </tr>
-        <tr>
-          <td>Create component library</td>
-          <td class="c-best">Cursor + Claude Code</td>
-          <td class="c-good">Windsurf, Copilot</td>
-        </tr>
-        <tr>
-          <td>Debug cloud product</td>
-          <td class="c-best">Browser Ext + Claude Chat</td>
-          <td class="c-good">ChatGPT, Claude Code</td>
-        </tr>
-        <tr>
-          <td>Make a quick demo</td>
-          <td class="c-best">Claude Chat / ChatGPT</td>
-          <td class="c-good">Cursor, Windsurf</td>
-        </tr>
-        <tr>
-          <td>Daily coding (typing)</td>
-          <td class="c-best">Cursor / Windsurf + Copilot</td>
-          <td class="c-good">Claude VS Code Ext</td>
-        </tr>
-        <tr>
-          <td>Fire-and-forget tasks</td>
-          <td class="c-best">Codex CLI / Claude Code</td>
-          <td class="c-good">Copilot Agent Mode</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="hero-takeaway">
-      <div class="ht-label">The bottom line</div>
-      <div class="ht-title">Most productive developers in 2026 don't pick one tool — they combine four</div>
-      <div class="ht-stack">
-        <div class="ht-item">
-          <div class="ht-icon" style="background:var(--accent-green-bg);color:var(--accent-green);">GC</div>
-          <div>
-            <div class="ht-tool">GitHub Copilot <span style="font-weight:400;color:var(--text-3);font-size:12px;">$10/mo</span></div>
-            <div class="ht-role">Always on — autocomplete &amp; inline suggestions while you type</div>
-          </div>
-        </div>
-        <div class="ht-item">
-          <div class="ht-icon" style="background:var(--accent-blue-bg);color:var(--accent-blue);">IDE</div>
-          <div>
-            <div class="ht-tool">Cursor or Windsurf</div>
-            <div class="ht-role">Your main editor — multi-file edits, Composer/Cascade agent, project context</div>
-          </div>
-        </div>
-        <div class="ht-item">
-          <div class="ht-icon" style="background:var(--accent-purple-bg);color:var(--accent-purple);">CC</div>
-          <div>
-            <div class="ht-tool">Claude Code</div>
-            <div class="ht-role">Hard problems — repo-wide refactors, architecture, complex debugging in terminal</div>
-          </div>
-        </div>
-        <div class="ht-item">
-          <div class="ht-icon" style="background:var(--accent-amber-bg);color:var(--accent-amber);">AI</div>
-          <div>
-            <div class="ht-tool">Claude Chat or ChatGPT</div>
-            <div class="ht-role">Thinking &amp; learning — planning, exploring ideas, understanding concepts, POCs</div>
-          </div>
-        </div>
-      </div>
-      <div class="ht-bottom">
-        <strong>The tool matters less than how you use it.</strong> A clear, detailed prompt in any tool beats a vague prompt in the "perfect" tool. Master the prompt formulas in this guide — that's the real skill that transfers across every tool.
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <span>AI Tools Work Pattern Guide</span>
-    <span>Last updated: March 2026</span>
-  </footer>
-
+<footer><span>AI Tools Work Pattern Guide</span><span>Last updated: March 2026</span></footer>
 </div>
 
 <script>
-function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  const t = isDark ? 'light' : 'dark';
-  html.setAttribute('data-theme', t);
-  localStorage.setItem('theme', t);
-  document.getElementById('theme-btn').innerHTML = t === 'dark' ? '&#9790;' : '&#9788;';
+function toggleTheme(){
+  const h=document.documentElement,d=h.getAttribute('data-theme')==='dark',t=d?'light':'dark';
+  h.setAttribute('data-theme',t);localStorage.setItem('theme',t);
+  document.getElementById('tbtn').innerHTML=t==='dark'?'&#9790;':'&#9788;';
 }
-
-(function() {
-  const saved = localStorage.getItem('theme');
-  const prefer = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const t = saved || (prefer ? 'dark' : 'light');
-  if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-  document.getElementById('theme-btn').innerHTML = t === 'dark' ? '&#9790;' : '&#9788;';
+(function(){
+  const s=localStorage.getItem('theme'),p=matchMedia('(prefers-color-scheme:dark)').matches,t=s||(p?'dark':'light');
+  if(t==='dark')document.documentElement.setAttribute('data-theme','dark');
+  document.getElementById('tbtn').innerHTML=t==='dark'?'&#9790;':'&#9788;';
 })();
 </script>
-
 </body>
 </html>
