@@ -263,7 +263,7 @@ h2 {
 /* ── Tool Intro Grid ── */
 .tools-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 12px;
   margin-bottom: 12px;
 }
@@ -923,6 +923,103 @@ h2 {
   flex-shrink: 0;
 }
 
+/* ── Hero Takeaway ── */
+.hero-takeaway {
+  position: relative;
+  background: var(--bg-card);
+  border: 2px solid var(--accent-blue);
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-top: 28px;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.hero-takeaway::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-teal));
+}
+
+.hero-takeaway .ht-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: 14px;
+}
+
+.hero-takeaway .ht-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 20px;
+  letter-spacing: -0.2px;
+}
+
+.ht-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ht-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.ht-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ht-item .ht-tool {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 2px;
+}
+
+.ht-item .ht-role {
+  font-size: 12.5px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.ht-bottom {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.ht-bottom strong {
+  color: var(--text-1);
+}
+
+@media (max-width: 640px) {
+  .ht-stack { grid-template-columns: 1fr; }
+}
+
 /* ── Divider ── */
 .divider {
   height: 1px;
@@ -945,6 +1042,7 @@ footer {
   .container { padding: 32px 18px 48px; }
   h1 { font-size: 28px; }
   .tools-grid, .mindset-grid, .dd-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
   .uc-head, .uc-body { padding: 18px; }
   nav { margin: 0 -18px; padding: 0 18px; }
   footer { flex-direction: column; gap: 4px; }
@@ -985,13 +1083,15 @@ footer {
   <!-- ═══════════════════ -->
   <div class="quick-start">
     <h2>Your first 5 minutes with AI</h2>
+    <p style="font-size:14px;color:var(--text-2);margin-bottom:18px;line-height:1.6;">Never used an AI tool before? This is all you need to get started. Pick any AI chat tool — <strong>Claude Chat</strong> (claude.ai), <strong>ChatGPT</strong> (chatgpt.com), or <strong>Gemini</strong> (gemini.google.com) — they all work similarly. Try these 5 steps right now:</p>
     <div class="qs-steps">
-      <div class="qs-step"><span class="qs-num">1</span> <span>Open <strong>Claude Chat</strong> at claude.ai — it's the simplest starting point</span></div>
-      <div class="qs-step"><span class="qs-num">2</span> <span>Tell it what you're working on: <em>"I'm a frontend dev working on a SCSS design system"</em></span></div>
-      <div class="qs-step"><span class="qs-num">3</span> <span>Ask your question with details: <em>"How should I structure my color tokens for light and dark themes?"</em></span></div>
-      <div class="qs-step"><span class="qs-num">4</span> <span>If the answer isn't perfect — don't restart. Say <em>"Make it simpler"</em> or <em>"Show me an example"</em></span></div>
-      <div class="qs-step"><span class="qs-num">5</span> <span>Always <strong>read and understand</strong> what AI gives you before using it</span></div>
+      <div class="qs-step"><span class="qs-num">1</span> <span><strong>Open any AI chat</strong> — Claude, ChatGPT, or Gemini. All free to start. Just pick one and type.</span></div>
+      <div class="qs-step"><span class="qs-num">2</span> <span><strong>Introduce yourself and your work:</strong> <em>"I'm a frontend developer working on a SCSS design system for a web product"</em> — this gives AI context so every answer is relevant to you.</span></div>
+      <div class="qs-step"><span class="qs-num">3</span> <span><strong>Ask a real work question with details:</strong> <em>"How should I structure color tokens to support light and dark themes in SCSS?"</em> — the more specific, the better the answer.</span></div>
+      <div class="qs-step"><span class="qs-num">4</span> <span><strong>Don't stop at the first answer — talk back:</strong> Say <em>"Show me a code example"</em> or <em>"Make it simpler"</em> or <em>"What about RTL support?"</em> — AI gets better the more you guide it.</span></div>
+      <div class="qs-step"><span class="qs-num">5</span> <span><strong>Read and understand before using:</strong> AI is fast but not always right. Always review the output, test the code, and make sure you understand what it does before putting it in your project.</span></div>
     </div>
+    <p style="font-size:13px;color:var(--accent-blue);margin-top:16px;font-weight:500;">That's it — you just had your first AI-assisted work conversation. The rest of this guide teaches you how to do it better, faster, and for every type of task.</p>
   </div>
 
   <!-- ═══════════════════ -->
@@ -1054,7 +1154,34 @@ footer {
           <div class="ti-name">GitHub Copilot</div>
         </div>
         <div class="ti-like">Think of it as: Auto-complete on steroids</div>
-        <div class="ti-desc">Lives inside VS Code and suggests code as you type. Also reviews pull requests on GitHub. Best as a always-on coding companion.</div>
+        <div class="ti-desc">Lives inside VS Code/JetBrains and suggests code as you type. Also reviews pull requests on GitHub. At $10/mo, it's the cheapest always-on coding companion — most developers keep this running alongside other tools.</div>
+      </div>
+
+      <div class="tool-intro">
+        <div class="ti-head">
+          <div class="ti-icon" style="background:var(--accent-teal-bg);color:var(--accent-teal);">W</div>
+          <div class="ti-name">Windsurf</div>
+        </div>
+        <div class="ti-like">Think of it as: A Cursor alternative that costs less</div>
+        <div class="ti-desc">AI-powered IDE with Cascade agent for multi-file editing. Very similar to Cursor but at $15/mo. Good free tier. If Cursor feels expensive, Windsurf is the strong alternative with comparable features.</div>
+      </div>
+
+      <div class="tool-intro">
+        <div class="ti-head">
+          <div class="ti-icon" style="background:var(--accent-amber-bg);color:var(--accent-amber);">GP</div>
+          <div class="ti-name">ChatGPT</div>
+        </div>
+        <div class="ti-like">Think of it as: Claude Chat's main competitor</div>
+        <div class="ti-desc">OpenAI's chat interface. Strong for brainstorming, creative approaches, and quick prototyping. Different strengths than Claude — try both for important questions to get different perspectives.</div>
+      </div>
+
+      <div class="tool-intro">
+        <div class="ti-head">
+          <div class="ti-icon" style="background:var(--accent-rose-bg);color:var(--accent-rose);">Cx</div>
+          <div class="ti-name">Codex CLI</div>
+        </div>
+        <div class="ti-like">Think of it as: Claude Code's competitor from OpenAI</div>
+        <div class="ti-desc">Terminal-based coding agent from OpenAI. Strong at autonomous "fire-and-forget" tasks — tell it what to do and come back later. Bundled with ChatGPT Plus ($20/mo). Good for defined, repeatable tasks.</div>
       </div>
     </div>
   </div>
@@ -1879,37 +2006,83 @@ Before writing code:
         <tr>
           <td>Scan a whole repo</td>
           <td class="c-best">Claude Code</td>
-          <td class="c-good">Cursor</td>
+          <td class="c-good">Cursor (codebase chat), Codex CLI</td>
         </tr>
         <tr>
           <td>Build something new</td>
-          <td class="c-best">Claude Code + Chat</td>
-          <td class="c-good">Cursor</td>
+          <td class="c-best">Cursor / Windsurf</td>
+          <td class="c-good">Claude Code (terminal), Codex CLI</td>
         </tr>
         <tr>
           <td>Learn or understand</td>
-          <td class="c-best">Claude Chat</td>
-          <td class="c-good">Browser Extension</td>
+          <td class="c-best">Claude Chat / ChatGPT</td>
+          <td class="c-good">Browser Extension, Gemini</td>
         </tr>
         <tr>
           <td>Create component library</td>
-          <td class="c-best">Claude Code + Chat</td>
-          <td class="c-good">Cursor</td>
+          <td class="c-best">Cursor + Claude Code</td>
+          <td class="c-good">Windsurf, Copilot</td>
         </tr>
         <tr>
           <td>Debug cloud product</td>
-          <td class="c-best">Browser Ext + Chat</td>
-          <td class="c-good">Claude Code</td>
+          <td class="c-best">Browser Ext + Claude Chat</td>
+          <td class="c-good">ChatGPT, Claude Code</td>
         </tr>
         <tr>
           <td>Make a quick demo</td>
-          <td class="c-best">Claude Chat</td>
-          <td class="c-good">Claude Code</td>
+          <td class="c-best">Claude Chat / ChatGPT</td>
+          <td class="c-good">Cursor, Windsurf</td>
+        </tr>
+        <tr>
+          <td>Daily coding (typing)</td>
+          <td class="c-best">Cursor / Windsurf + Copilot</td>
+          <td class="c-good">Claude VS Code Ext</td>
+        </tr>
+        <tr>
+          <td>Fire-and-forget tasks</td>
+          <td class="c-best">Codex CLI / Claude Code</td>
+          <td class="c-good">Copilot Agent Mode</td>
         </tr>
       </tbody>
     </table>
 
-    <div class="insight" style="margin-top: 20px;">The tool matters less than how you use it. A clear, detailed prompt in any tool beats a vague prompt in the "perfect" tool. Learn the prompt formulas above — that's the real skill.</div>
+    <div class="hero-takeaway">
+      <div class="ht-label">The bottom line</div>
+      <div class="ht-title">Most productive developers in 2026 don't pick one tool — they combine four</div>
+      <div class="ht-stack">
+        <div class="ht-item">
+          <div class="ht-icon" style="background:var(--accent-green-bg);color:var(--accent-green);">GC</div>
+          <div>
+            <div class="ht-tool">GitHub Copilot <span style="font-weight:400;color:var(--text-3);font-size:12px;">$10/mo</span></div>
+            <div class="ht-role">Always on — autocomplete &amp; inline suggestions while you type</div>
+          </div>
+        </div>
+        <div class="ht-item">
+          <div class="ht-icon" style="background:var(--accent-blue-bg);color:var(--accent-blue);">IDE</div>
+          <div>
+            <div class="ht-tool">Cursor or Windsurf</div>
+            <div class="ht-role">Your main editor — multi-file edits, Composer/Cascade agent, project context</div>
+          </div>
+        </div>
+        <div class="ht-item">
+          <div class="ht-icon" style="background:var(--accent-purple-bg);color:var(--accent-purple);">CC</div>
+          <div>
+            <div class="ht-tool">Claude Code</div>
+            <div class="ht-role">Hard problems — repo-wide refactors, architecture, complex debugging in terminal</div>
+          </div>
+        </div>
+        <div class="ht-item">
+          <div class="ht-icon" style="background:var(--accent-amber-bg);color:var(--accent-amber);">AI</div>
+          <div>
+            <div class="ht-tool">Claude Chat or ChatGPT</div>
+            <div class="ht-role">Thinking &amp; learning — planning, exploring ideas, understanding concepts, POCs</div>
+          </div>
+        </div>
+      </div>
+      <div class="ht-bottom">
+        <strong>The tool matters less than how you use it.</strong> A clear, detailed prompt in any tool beats a vague prompt in the "perfect" tool. Master the prompt formulas in this guide — that's the real skill that transfers across every tool.
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->
