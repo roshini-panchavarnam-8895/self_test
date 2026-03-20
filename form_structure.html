@@ -95,11 +95,11 @@
   .popupClose:hover{background:var(--btn-secondary-bg)}
   .section-label{font-size:14px;font-weight:600;color:var(--section-title);padding-bottom:8px;border-bottom:1px solid var(--section-line)}
   .zc-label-text{font-size:13px;font-weight:500;color:var(--label-color)}
-  .form-control{font-family:var(--canvas-font);font-size:13px;padding:8px 12px;border:1px solid var(--input-border);border-radius:var(--input-radius);background:var(--input-bg);color:var(--input-text);outline:none;transition:border-color .15s,box-shadow .15s;width:100%}
+  .form-control{font-family:var(--canvas-font);font-size:13px;padding:12px;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);color:var(--input-text);outline:none;transition:border-color .15s,box-shadow .15s;width:100%}
   .form-control:focus{border-color:var(--input-focus);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
   textarea.form-control{resize:vertical;line-height:1.5}
   .zc-subfield-label{font-size:11px;color:var(--sublabel-color);margin-top:3px}
-  .select2-choice{display:flex;align-items:center;padding:8px 12px;border:1px solid var(--input-border);border-radius:var(--input-radius);background:var(--input-bg);font-size:13px;color:var(--input-text);text-decoration:none;cursor:pointer;transition:border-color .15s;width:100%}
+  .select2-choice{display:flex;align-items:center;padding:8px 12px;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);font-size:13px;color:var(--input-text);text-decoration:none;cursor:pointer;transition:border-color .15s;width:100%}
   .select2-choice:hover{border-color:var(--input-focus)}
   .select2-chosen{flex:1;color:var(--input-placeholder)}
   .select2-arrow{margin-left:8px;color:var(--section-desc)}
@@ -111,9 +111,70 @@
 
   /* label-left overrides */
   .label-left .form-label{padding-top:8px;padding-right:12px}
+  /* label-right overrides */
+  .label-right .form-label{padding-top:8px;padding-right:12px;text-align:right;justify-content:flex-end}
   /* label-top overrides */
   .label-top .form-label{padding-bottom:4px}
   .label-top .form-field{width:100%}
+  /* ═══ label-inplace: floating label inside input, slides up on focus ═══ */
+  .label-inplace .form-group{position:relative}
+  .label-inplace .form-field{width:100%}
+
+  /* Simple fields: label floats inside the input */
+  .label-inplace .form-group:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label{
+    position:absolute;top:0;left:12px;height:100%;
+    display:flex;align-items:center;
+    padding:0;margin:0;pointer-events:none;
+    transition:all .2s cubic-bezier(.4,0,.2,1);
+    z-index:1;transform-origin:left center;
+  }
+  .label-inplace .form-group:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label .zc-label-text{
+    font-size:13px;color:var(--input-placeholder);
+    transition:all .2s cubic-bezier(.4,0,.2,1);
+  }
+  .label-inplace .form-control{padding:18px 12px 6px 12px}
+  .label-inplace textarea.form-control{padding:18px 12px 6px 12px}
+
+  /* Slid-up state: on focus or has value */
+  .label-inplace .form-group.is-focused:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label,
+  .label-inplace .form-group.has-value:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label{
+    height:auto;top:4px;align-items:flex-start;
+  }
+  .label-inplace .form-group.is-focused:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label .zc-label-text{
+    font-size:10px;color:var(--input-focus);
+  }
+  .label-inplace .form-group.has-value:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label .zc-label-text{
+    font-size:10px;color:var(--label-color);
+  }
+
+  /* Composite fields (Name, Address): main label stays as top label */
+  .label-inplace [data-element-type="form_name"] .form-label,
+  .label-inplace [data-element-type="form_address"] .form-label{
+    position:static;display:flex;padding:0 0 6px 0;pointer-events:auto;
+  }
+  .label-inplace [data-element-type="form_name"] .form-label .zc-label-text,
+  .label-inplace [data-element-type="form_address"] .form-label .zc-label-text{
+    font-size:14px;font-weight:600;color:var(--label-color);
+  }
+  .label-inplace .compositeWrapper{padding-top:0}
+  .label-inplace .compositeWrapper .form-control{padding:18px 12px 6px 12px}
+  /* Sub-field labels float inside each sub-input */
+  .label-inplace .compositeWrapper > span{position:relative}
+  .label-inplace .zc-subfield-label{
+    position:absolute;top:0;left:12px;height:100%;
+    display:flex;align-items:center;
+    margin:0;pointer-events:none;
+    font-size:13px;color:var(--input-placeholder);
+    transition:all .2s cubic-bezier(.4,0,.2,1);
+    transform-origin:left center;
+  }
+  /* Sub-field float up on focus/value */
+  .label-inplace .compositeWrapper > span.is-focused .zc-subfield-label,
+  .label-inplace .compositeWrapper > span.has-value .zc-subfield-label{
+    height:auto;top:4px;align-items:flex-start;font-size:10px;
+  }
+  .label-inplace .compositeWrapper > span.is-focused .zc-subfield-label{color:var(--input-focus)}
+  .label-inplace .compositeWrapper > span.has-value .zc-subfield-label{color:var(--label-color)}
 
   .view-panel{display:none}.view-panel.active{display:block}
   .variant-panel{display:none}.variant-panel.active{display:block}
@@ -194,18 +255,20 @@
     <button class="toggle-btn" onclick="switchTab('breakdown')">Visual Breakdown</button>
     <button class="toggle-btn" onclick="switchTab('code')">HTML Code</button>
   </div>
-  <span class="depth-badge" id="depthBadge">Depth: <strong>7</strong></span>
+  <span class="depth-badge" id="depthBadge">Depth: <strong>6</strong></span>
 </div>
 <div class="controls-row">
   <span class="variant-label">Section:</span>
   <div class="variant-bar" id="variantBar">
-    <button class="variant-btn active" onclick="switchVariant('sections')">With Sections</button>
-    <button class="variant-btn" onclick="switchVariant('flat')">Without Sections</button>
+    <button class="variant-btn active" onclick="switchVariant('flat')">Without Sections</button>
+    <button class="variant-btn" onclick="switchVariant('sections')">With Sections</button>
   </div>
   <span class="variant-label">Label:</span>
   <div class="variant-bar" id="labelBar">
-    <button class="variant-btn active" onclick="switchLabel('left')">Label Left</button>
-    <button class="variant-btn" onclick="switchLabel('top')">Label Top</button>
+    <button class="variant-btn" onclick="switchLabel('left')">Left</button>
+    <button class="variant-btn" onclick="switchLabel('right')">Right</button>
+    <button class="variant-btn" onclick="switchLabel('top')">Top</button>
+    <button class="variant-btn active" onclick="switchLabel('inplace')">Inplace</button>
   </div>
 </div>
 
@@ -224,8 +287,8 @@
 <div id="panel-form" class="view-panel active">
 
   <!-- WITH SECTIONS -->
-  <div id="form-sections" class="variant-panel active">
-    <div class="zc-canvas-container label-left" id="formCanvasS" data-element-type="canvas">
+  <div id="form-sections" class="variant-panel">
+    <div class="zc-canvas-container label-inplace" id="formCanvasS" data-element-type="canvas">
       <div data-element-type="vertical_flex" class="zc-flex zc-direction-column" style="height:100%">
         <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_1" data-element-type="form">
           <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16 zc-gap-col-10"><span class="form-title" role="heading" aria-level="3">new form 1</span><a href="javascript:;" class="view-draft" role="button" aria-label="View Drafts">View Drafts</a></div>
@@ -233,8 +296,8 @@
             <h2 class="section-label">Personal Details</h2>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
               <div class="zc-no-shrink zc-col-6">
-                <div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_name">
-                  <label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Name</span></label>
+                <div class="form-group zc-flex zc-direction-column" data-element-type="form_name">
+                  <label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Name</span></label>
                   <div class="form-field zc-col-common">
                     <div class="compositeWrapper zc-flex zc-direction-row zc-gap-col-8">
                       <span class="zc-col-common"><input class="form-control" type="text" placeholder="John"><p class="zc-subfield-label">First Name</p></span>
@@ -244,8 +307,8 @@
                 </div>
               </div>
               <div class="zc-no-shrink zc-col-6">
-                <div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_textfield">
-                  <label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Single Line</span></label>
+                <div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield">
+                  <label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Single Line</span></label>
                   <div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Enter text"></div>
                 </div>
               </div>
@@ -254,16 +317,16 @@
           <div data-element-type="form_section" class="zc-flex zc-no-shrink zc-direction-column zc-gap-row-15">
             <h2 class="section-label">Additional Info</h2>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-              <div class="zc-no-shrink zc-col-12"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_multiline"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Multi Line</span></label><div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div></div></div>
+              <div class="zc-no-shrink zc-col-12"><div class="form-group zc-flex zc-direction-column" data-element-type="form_multiline"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Multi Line</span></label><div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div></div></div>
             </div>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_select"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Drop Down</span></label><div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div></div></div>
-              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Department</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div></div></div>
+              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_select"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Drop Down</span></label><div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div></div></div>
+              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Department</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div></div></div>
             </div>
             <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">City</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Chennai"></div></div></div>
-              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">State</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Tamil Nadu"></div></div></div>
-              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
+              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">City</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Chennai"></div></div></div>
+              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">State</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Tamil Nadu"></div></div></div>
+              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
             </div>
           </div>
           <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit"></div>
@@ -273,26 +336,26 @@
   </div>
 
   <!-- WITHOUT SECTIONS -->
-  <div id="form-flat" class="variant-panel">
-    <div class="zc-canvas-container label-left" id="formCanvasF" data-element-type="canvas">
+  <div id="form-flat" class="variant-panel active">
+    <div class="zc-canvas-container label-inplace" id="formCanvasF" data-element-type="canvas">
       <div data-element-type="vertical_flex" class="zc-flex zc-direction-column" style="height:100%">
         <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_flat" data-element-type="form">
           <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16 zc-gap-col-10"><span class="form-title" role="heading" aria-level="3">new form 1</span><a href="javascript:;" class="view-draft" role="button" aria-label="View Drafts">View Drafts</a></div>
           <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_name"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Name</span></label><div class="form-field zc-col-common"><div class="compositeWrapper zc-flex zc-direction-row zc-gap-col-8"><span class="zc-col-common"><input class="form-control" type="text" placeholder="John"><p class="zc-subfield-label">First Name</p></span><span class="zc-col-common"><input class="form-control" type="text" placeholder="Doe"><p class="zc-subfield-label">Last Name</p></span></div></div></div></div>
-            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Single Line</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Enter text"></div></div></div>
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_name"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Name</span></label><div class="form-field zc-col-common"><div class="compositeWrapper zc-flex zc-direction-row zc-gap-col-8"><span class="zc-col-common"><input class="form-control" type="text" placeholder="John"><p class="zc-subfield-label">First Name</p></span><span class="zc-col-common"><input class="form-control" type="text" placeholder="Doe"><p class="zc-subfield-label">Last Name</p></span></div></div></div></div>
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Single Line</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Enter text"></div></div></div>
           </div>
           <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-            <div class="zc-no-shrink zc-col-12"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_multiline"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Multi Line</span></label><div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div></div></div>
+            <div class="zc-no-shrink zc-col-12"><div class="form-group zc-flex zc-direction-column" data-element-type="form_multiline"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Multi Line</span></label><div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div></div></div>
           </div>
           <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_select"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Drop Down</span></label><div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div></div></div>
-            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-row zc-align-items-start" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:200px"><span class="zc-label-text">Department</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div></div></div>
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_select"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Drop Down</span></label><div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div></div></div>
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Department</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div></div></div>
           </div>
           <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
-            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">City</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Chennai"></div></div></div>
-            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">State</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Tamil Nadu"></div></div></div>
-            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-row zc-align-items-start"><label class="form-label zc-flex zc-no-shrink zc-align-items-center" style="width:120px"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
+            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">City</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Chennai"></div></div></div>
+            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">State</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Tamil Nadu"></div></div></div>
+            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
           </div>
           <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit"></div>
         </form>
@@ -303,7 +366,7 @@
 
 <!-- ═══ VISUAL BREAKDOWN ═══ -->
 <div id="panel-breakdown" class="view-panel">
-  <div id="vb-sections" class="variant-panel active">
+  <div id="vb-sections" class="variant-panel">
     <div class="vb-container">
       <div class="vb-box vb-canvas"><span class="vb-tag">.zc-canvas-container</span>
         <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
@@ -349,7 +412,7 @@
       </div>
     </div>
   </div>
-  <div id="vb-flat" class="variant-panel">
+  <div id="vb-flat" class="variant-panel active">
     <div class="vb-container">
       <div class="vb-box vb-canvas"><span class="vb-tag">.zc-canvas-container</span>
         <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
@@ -374,11 +437,11 @@
 
 <!-- ═══ HTML CODE ═══ -->
 <div id="panel-code" class="view-panel">
-  <div id="code-sections" class="variant-panel active">
+  <div id="code-sections" class="variant-panel">
     <div class="code-container"><div class="code-toolbar"><div class="code-toolbar-left"><span class="code-toolbar-dot r"></span><span class="code-toolbar-dot y"></span><span class="code-toolbar-dot g"></span><span class="code-filename" id="codeFilenameS">with-sections-label-left.html</span></div><button class="code-copy-btn" onclick="copyCode('codeS',this)">Copy</button></div>
       <div class="code-body"><pre id="codeS"></pre></div></div>
   </div>
-  <div id="code-flat" class="variant-panel">
+  <div id="code-flat" class="variant-panel active">
     <div class="code-container"><div class="code-toolbar"><div class="code-toolbar-left"><span class="code-toolbar-dot r"></span><span class="code-toolbar-dot y"></span><span class="code-toolbar-dot g"></span><span class="code-filename" id="codeFilenameF">without-sections-label-left.html</span></div><button class="code-copy-btn" onclick="copyCode('codeF',this)">Copy</button></div>
       <div class="code-body"><pre id="codeF"></pre></div></div>
   </div>
@@ -386,19 +449,26 @@
 
 <!-- ═══ Structure ═══ -->
 <div class="structure-panel">
-  <div id="struct-sections" class="variant-panel active"><pre id="structS"></pre></div>
-  <div id="struct-flat" class="variant-panel"><pre id="structF"></pre></div>
+  <div id="struct-sections" class="variant-panel"><pre id="structS"></pre></div>
+  <div id="struct-flat" class="variant-panel active"><pre id="structF"></pre></div>
 </div>
 
 <script>
-let currentTab='clean', currentVariant='sections', currentLabel='left';
+let currentTab='clean', currentVariant='flat', currentLabel='inplace';
 
 const FG_LEFT = 'zc-flex zc-direction-row zc-align-items-start';
+const FG_RIGHT = 'zc-flex zc-direction-row zc-align-items-start';
 const FG_TOP  = 'zc-flex zc-direction-column zc-gap-row-4';
+const FG_INPLACE = 'zc-flex zc-direction-column';
 const FL_LEFT = 'zc-flex zc-no-shrink zc-align-items-center';
+const FL_RIGHT = 'zc-flex zc-no-shrink zc-align-items-center';
 const FL_TOP  = 'zc-flex zc-no-shrink';
+const FL_INPLACE = 'zc-flex zc-no-shrink';
 const FF = 'zc-col-common';
 const CW = 'zc-flex zc-direction-row zc-gap-col-8';
+
+const LABEL_MODES = { left: FG_LEFT, right: FG_RIGHT, top: FG_TOP, inplace: FG_INPLACE };
+const LABEL_FL = { left: FL_LEFT, right: FL_RIGHT, top: FL_TOP, inplace: FL_INPLACE };
 
 function switchTab(tab) {
   currentTab = tab;
@@ -414,30 +484,121 @@ function switchTab(tab) {
 
 function switchVariant(v) {
   currentVariant = v;
-  document.querySelectorAll('#variantBar .variant-btn').forEach((b,i) => b.classList.toggle('active', (v==='sections')===(i===0)));
-  document.getElementById('depthBadge').innerHTML = v==='sections' ? 'Depth: <strong>7</strong>' : 'Depth: <strong>6</strong>';
+  document.querySelectorAll('#variantBar .variant-btn').forEach((b,i) => b.classList.toggle('active', (v==='flat')===(i===0)));
+  document.getElementById('depthBadge').innerHTML = v==='sections' ? 'Depth: <strong>6</strong>' : 'Depth: <strong>6</strong>';
   applyVariant();
 }
 
 function switchLabel(l) {
   currentLabel = l;
-  document.querySelectorAll('#labelBar .variant-btn').forEach((b,i) => b.classList.toggle('active', (l==='left')===(i===0)));
+  const btns = document.querySelectorAll('#labelBar .variant-btn');
+  const idx = {left:0,right:1,top:2,inplace:3};
+  btns.forEach((b,i) => b.classList.toggle('active', i===idx[l]));
+
+  const fgCls = LABEL_MODES[l];
+  const flCls = LABEL_FL[l];
 
   // Update live form classes
   document.querySelectorAll('.form-group').forEach(fg => {
     fg.className = fg.className.replace(/zc-flex zc-direction-(row|column)( zc-align-items-start| zc-gap-row-4)*/g, '');
-    fg.classList.add(...(l==='left' ? FG_LEFT : FG_TOP).split(' '));
+    fg.classList.add(...fgCls.split(' '));
+    fg.classList.remove('is-focused','has-value');
   });
   document.querySelectorAll('.form-label').forEach(fl => {
     fl.className = fl.className.replace(/zc-flex zc-no-shrink( zc-align-items-center)*/g, '');
-    fl.classList.add(...(l==='left' ? FL_LEFT : FL_TOP).split(' '));
-    if(l==='top') fl.style.removeProperty('width'); else if(!fl.style.width) fl.style.width='200px';
+    fl.classList.add(...flCls.split(' '));
+    if(l==='left'||l==='right') { if(!fl.style.width) fl.style.width='200px'; }
+    else { fl.style.removeProperty('width'); }
   });
 
   // Swap canvas-level class
-  document.querySelectorAll('.zc-canvas-container').forEach(c => { c.classList.remove('label-left','label-top'); c.classList.add('label-'+l); });
+  document.querySelectorAll('.zc-canvas-container').forEach(c => {
+    c.classList.remove('label-left','label-right','label-top','label-inplace');
+    c.classList.add('label-'+l);
+  });
+
+  // Setup inplace: use label text as placeholder for simple fields,
+  // use subfield text as placeholder for composite fields
+  setupInplacePlaceholders();
 
   applyVariant();
+}
+
+function setupInplacePlaceholders() {
+  document.querySelectorAll('.zc-canvas-container .form-group').forEach(fg => {
+    const isComposite = fg.dataset.elementType === 'form_name' || fg.dataset.elementType === 'form_address';
+
+    if (currentLabel === 'inplace') {
+      if (isComposite) {
+        // Composite: clear sub-input placeholders — subfield-label floats visually
+        fg.querySelectorAll('.compositeWrapper > span').forEach(span => {
+          const input = span.querySelector('.form-control');
+          if (input) {
+            if (!input.dataset.origPlaceholder) input.dataset.origPlaceholder = input.placeholder || '';
+            input.placeholder = '';
+          }
+        });
+      } else {
+        // Simple: clear placeholder — form-label floats visually
+        const input = fg.querySelector('.form-control');
+        if (input) {
+          if (!input.dataset.origPlaceholder) input.dataset.origPlaceholder = input.placeholder || '';
+          input.placeholder = '';
+        }
+      }
+    } else {
+      // Restore original placeholders, remove float states
+      fg.querySelectorAll('.form-control').forEach(input => {
+        if (input.dataset.origPlaceholder !== undefined) {
+          input.placeholder = input.dataset.origPlaceholder;
+        }
+      });
+      fg.querySelectorAll('.compositeWrapper > span').forEach(span => {
+        span.classList.remove('is-focused', 'has-value');
+      });
+    }
+  });
+
+  // Add focus/blur/input listeners for floating state on form-group level
+  document.querySelectorAll('.zc-canvas-container .form-control').forEach(input => {
+    if (input.dataset.inplaceListenerAdded) return;
+    input.dataset.inplaceListenerAdded = 'true';
+
+    input.addEventListener('focus', function() {
+      // Form-group level (for simple fields)
+      const g = this.closest('.form-group');
+      if (g) g.classList.add('is-focused');
+      // Span level (for composite sub-fields)
+      const span = this.closest('.compositeWrapper > span');
+      if (span) span.classList.add('is-focused');
+    });
+    input.addEventListener('blur', function() {
+      const g = this.closest('.form-group');
+      if (g) {
+        g.classList.remove('is-focused');
+        if (this.value) g.classList.add('has-value');
+        else g.classList.remove('has-value');
+      }
+      const span = this.closest('.compositeWrapper > span');
+      if (span) {
+        span.classList.remove('is-focused');
+        if (this.value) span.classList.add('has-value');
+        else span.classList.remove('has-value');
+      }
+    });
+    input.addEventListener('input', function() {
+      const g = this.closest('.form-group');
+      if (g) {
+        if (this.value) g.classList.add('has-value');
+        else g.classList.remove('has-value');
+      }
+      const span = this.closest('.compositeWrapper > span');
+      if (span) {
+        if (this.value) span.classList.add('has-value');
+        else span.classList.remove('has-value');
+      }
+    });
+  });
 }
 
 function applyVariant() {
@@ -461,35 +622,41 @@ function updateCodeAndStruct() {
   document.getElementById('codeF').innerHTML = hl(cleanHTML(rawF));
 
   // Structure trees
-  const dir = l==='left' ? 'row' : 'column';
+  const dir = (l==='left'||l==='right') ? 'row' : 'column';
+  const alignCls = (l==='left'||l==='right') ? ' .zc-align-items-center' : '';
+  const labelNote = l==='inplace' ? ' (hidden via CSS, text used as placeholder)' : '';
+  const fgExtra = l==='right' ? ' (label text-align: right)' : '';
+
   const secTree = `<span class="si">/* With Sections — label-${l} */</span>
 
-<span class="sc">.zc-canvas-container</span>
-<span class="sg">└─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column</span>
-<span class="sg">   ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-space-between</span>
-<span class="sg">   │  └─</span> <span class="ss">[form_section]</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-15</span>
+<span class="sc">.zc-canvas-container .label-${l}</span>
+<span class="sg">└─</span> <span class="sc">[vertical_flex]</span> <span class="sg">.zc-flex .zc-direction-column</span>
+<span class="sg">   └─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
+<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-space-between</span>
+<span class="sg">      ├─</span> <span class="ss">[form_section]</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-15</span>
 <span class="sg">      │  ├─</span> <span class="sd">&lt;h2 class="section-label"&gt;</span>
 <span class="sg">      │  └─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
 <span class="sg">      │     └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
-<span class="sg">      │        └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}</span>
-<span class="sg">      │           ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${l==='left'?' .zc-align-items-center':''}</span>
+<span class="sg">      │        └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}</span>
+<span class="sg">      │           ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
 <span class="sg">      │           └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
 <span class="sg">      │              └─</span> <span class="sl">.compositeWrapper</span> <span class="sg">.zc-flex .zc-direction-row .zc-gap-col-8</span>
-<span class="sg">      │                 ├─</span> <span class="sg">span .zc-col-common → input + subfield-label</span>
-<span class="sg">      │                 └─</span> <span class="sg">span .zc-col-common → input + subfield-label</span>
+<span class="sg">      │                 ├─</span> <span class="sg">span .zc-col-common → input</span>
+<span class="sg">      │                 └─</span> <span class="sg">span .zc-col-common → input</span>
 <span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-end .zc-gap-col-10</span>`;
 
   const flatTree = `<span class="si">/* Without Sections — label-${l} */</span>
 
-<span class="sc">.zc-canvas-container</span>
-<span class="sg">└─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column</span>
-<span class="sg">   ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>
-<span class="sg">   │  └─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
+<span class="sc">.zc-canvas-container .label-${l}</span>
+<span class="sg">└─</span> <span class="sc">[vertical_flex]</span> <span class="sg">.zc-flex .zc-direction-column</span>
+<span class="sg">   └─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
+<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>
+<span class="sg">      ├─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
 <span class="sg">      │  └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
-<span class="sg">      │     └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}</span>
-<span class="sg">      │        ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink</span>
+<span class="sg">      │     └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}</span>
+<span class="sg">      │        ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
 <span class="sg">      │        └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
-<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-no-shrink .zc-justify-end .zc-gap-col-10</span>`;
+<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-no-shrink</span>`;
 
   document.getElementById('structS').innerHTML = secTree;
   document.getElementById('structF').innerHTML = flatTree;
@@ -646,6 +813,7 @@ function copyCode(id, btn) {
 
 // Init
 updateCodeAndStruct();
+setupInplacePlaceholders();
 </script>
 </body>
 </html>
