@@ -49,6 +49,31 @@
   .prop-applied{font-family:var(--mono-font);font-size:10px;color:#059669;margin-top:4px;display:none}
   .prop-applied.visible{display:block}
 
+  /* Sidebar tabs */
+  .props-tabs{display:flex;gap:0;margin-top:10px;border-bottom:1px solid var(--form-border);margin:-1px -20px 0}
+  .props-tab{font-family:var(--canvas-font);font-size:12px;font-weight:500;padding:8px 16px;border:none;background:transparent;color:var(--section-desc);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;flex:1;text-align:center}
+  .props-tab.active{color:var(--btn-primary-bg);border-bottom-color:var(--btn-primary-bg)}
+  .props-tab:not(.active):hover{color:var(--label-color);background:#f9fafb}
+  .props-tab-panel{display:none}.props-tab-panel.active{display:block}
+
+  /* Selected field panel */
+  .sel-empty{padding:40px 20px;text-align:center}
+  .sel-empty-icon{font-size:32px;color:var(--input-border);margin-bottom:8px}
+  .sel-empty p{font-size:12px;color:var(--section-desc)}
+  .sel-field-header{padding:12px 20px;background:#f0f7ff;border-bottom:1px solid #dbeafe;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .sel-field-name{font-size:14px;font-weight:600;color:var(--header-title)}
+  .sel-field-type{font-family:var(--mono-font);font-size:10px;color:var(--btn-primary-bg);background:#dbeafe;padding:2px 6px;border-radius:3px}
+  .prop-label-sm{font-family:var(--mono-font);font-size:11px;font-weight:500;color:var(--label-color);min-width:48px;flex-shrink:0}
+  .prop-input-wide{width:80px}
+  .prop-unit-sel{font-family:var(--mono-font);font-size:10px;color:var(--section-desc);min-width:16px}
+  .sel-reset-all{font-family:var(--canvas-font);font-size:11px;padding:6px 14px;border:1px solid var(--input-border);border-radius:5px;background:transparent;color:var(--section-desc);cursor:pointer;transition:all .15s;width:100%}
+  .sel-reset-all:hover{background:#fef2f2;color:#dc2626;border-color:#fca5a5}
+
+  /* Field selection highlight */
+  .form-group.is-selected{outline:2px solid var(--btn-primary-bg) !important;outline-offset:2px;border-radius:4px}
+  .form-group:not(.is-selected){cursor:pointer}
+  .form-group:not(.is-selected):hover{outline:1px dashed rgba(37,99,235,.3);outline-offset:2px;border-radius:4px}
+
   /* ═══ Canvas grid utilities ═══ */
   .zc-flex{display:flex}.zc-no-shrink{flex-shrink:0}.zc-direction-column{flex-direction:column}.zc-direction-row{flex-direction:row}
   .zc-row-wrap{flex-wrap:wrap}.zc-row-nowrap{flex-wrap:nowrap}
@@ -501,96 +526,91 @@
 <!-- ═══ Properties Sidebar ═══ -->
 <div class="props-sidebar" id="propsSidebar">
   <div class="props-header">
-    <h2>Width Properties</h2>
-    <p>Set widths for form elements (px or %)</p>
+    <h2>Properties</h2>
+    <div class="props-tabs">
+      <button class="props-tab active" onclick="switchPropsTab('common')">Common</button>
+      <button class="props-tab" onclick="switchPropsTab('selected')">Selected Field</button>
+    </div>
   </div>
 
-  <!-- form-group -->
-  <div class="prop-section" id="propFG">
-    <div class="prop-section-title">
-      <span class="prop-dot" style="background:var(--anno-field)"></span>
-      form-group
-      <span class="prop-element">.form-group</span>
+  <!-- ═══ COMMON TAB ═══ -->
+  <div class="props-tab-panel active" id="propsCommon">
+    <div class="prop-section" id="propFG">
+      <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-field)"></span>form-group<span class="prop-element">.form-group</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fg-unit" value="px" checked onchange="togglePropUnit('fg')"> px</label><input type="number" class="prop-input" id="fg-px" placeholder="auto" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fg-unit" value="pct" onchange="togglePropUnit('fg')"> %</label><input type="number" class="prop-input" id="fg-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('fg')">Reset</button></div>
+      <div class="prop-applied" id="fg-applied"></div>
     </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="fg-unit" value="px" checked onchange="togglePropUnit('fg')"> px</label>
-      <input type="number" class="prop-input" id="fg-px" placeholder="auto" min="0" oninput="applyWidths()">
-      <span class="prop-unit">px</span>
+    <div class="prop-section" id="propFL">
+      <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-label)"></span>form-label<span class="prop-element">.form-label</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fl-unit" value="px" checked onchange="togglePropUnit('fl')"> px</label><input type="number" class="prop-input" id="fl-px" placeholder="200" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fl-unit" value="pct" onchange="togglePropUnit('fl')"> %</label><input type="number" class="prop-input" id="fl-pct" placeholder="30" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('fl')">Reset</button></div>
+      <div class="prop-applied" id="fl-applied"></div>
     </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="fg-unit" value="pct" onchange="togglePropUnit('fg')"> %</label>
-      <input type="number" class="prop-input" id="fg-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()">
-      <span class="prop-unit">%</span>
-      <button class="prop-reset" onclick="resetProp('fg')">Reset</button>
+    <div class="prop-section" id="propFF">
+      <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-formfield)"></span>form-field<span class="prop-element">.form-field</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="ff-unit" value="px" checked onchange="togglePropUnit('ff')"> px</label><input type="number" class="prop-input" id="ff-px" placeholder="auto" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="ff-unit" value="pct" onchange="togglePropUnit('ff')"> %</label><input type="number" class="prop-input" id="ff-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('ff')">Reset</button></div>
+      <div class="prop-applied" id="ff-applied"></div>
     </div>
-    <div class="prop-applied" id="fg-applied"></div>
-    <p class="prop-note">The entire field container. In multi-column layouts, cell wrapper controls width instead.</p>
+    <div class="prop-section" id="propCW">
+      <div class="prop-section-title"><span class="prop-dot" style="background:#f59e0b"></span>compositeWrapper<span class="prop-element">.compositeWrapper</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="cw-unit" value="px" checked onchange="togglePropUnit('cw')"> px</label><input type="number" class="prop-input" id="cw-px" placeholder="auto" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="cw-unit" value="pct" onchange="togglePropUnit('cw')"> %</label><input type="number" class="prop-input" id="cw-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('cw')">Reset</button></div>
+      <div class="prop-applied" id="cw-applied"></div>
+    </div>
   </div>
 
-  <!-- form-label -->
-  <div class="prop-section" id="propFL">
-    <div class="prop-section-title">
-      <span class="prop-dot" style="background:var(--anno-label)"></span>
-      form-label
-      <span class="prop-element">.form-label</span>
+  <!-- ═══ SELECTED FIELD TAB ═══ -->
+  <div class="props-tab-panel" id="propsSelected">
+    <div class="sel-empty" id="selEmpty">
+      <div class="sel-empty-icon">⊹</div>
+      <p>Click a field in the form to select it</p>
     </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="fl-unit" value="px" checked onchange="togglePropUnit('fl')"> px</label>
-      <input type="number" class="prop-input" id="fl-px" placeholder="200" min="0" oninput="applyWidths()">
-      <span class="prop-unit">px</span>
-    </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="fl-unit" value="pct" onchange="togglePropUnit('fl')"> %</label>
-      <input type="number" class="prop-input" id="fl-pct" placeholder="30" min="0" max="100" disabled oninput="applyWidths()">
-      <span class="prop-unit">%</span>
-      <button class="prop-reset" onclick="resetProp('fl')">Reset</button>
-    </div>
-    <div class="prop-applied" id="fl-applied"></div>
-    <p class="prop-note">Label area width. Most relevant for Label Left/Right. Ignored in Inplace (label is absolute-positioned).</p>
-  </div>
+    <div class="sel-content" id="selContent" style="display:none">
+      <div class="sel-field-header">
+        <span class="sel-field-name" id="selFieldName">Name</span>
+        <span class="sel-field-type" id="selFieldType">form_name</span>
+        <button class="prop-reset" onclick="deselectField()">✕ Deselect</button>
+      </div>
 
-  <!-- form-field -->
-  <div class="prop-section" id="propFF">
-    <div class="prop-section-title">
-      <span class="prop-dot" style="background:var(--anno-formfield)"></span>
-      form-field
-      <span class="prop-element">.form-field</span>
-    </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="ff-unit" value="px" checked onchange="togglePropUnit('ff')"> px</label>
-      <input type="number" class="prop-input" id="ff-px" placeholder="auto" min="0" oninput="applyWidths()">
-      <span class="prop-unit">px</span>
-    </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="ff-unit" value="pct" onchange="togglePropUnit('ff')"> %</label>
-      <input type="number" class="prop-input" id="ff-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()">
-      <span class="prop-unit">%</span>
-      <button class="prop-reset" onclick="resetProp('ff')">Reset</button>
-    </div>
-    <div class="prop-applied" id="ff-applied"></div>
-    <p class="prop-note">Input/control area. Uses <code>flex:1</code> by default (fills remaining space in Left/Right mode).</p>
-  </div>
+      <!-- Selected: form-group -->
+      <div class="prop-section">
+        <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-field)"></span>form-group</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-fg-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-fg-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">gap</span><input type="text" class="prop-input" id="sel-fg-g" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">radius</span><input type="number" class="prop-input" id="sel-fg-r" placeholder="0" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
 
-  <!-- compositeWrapper -->
-  <div class="prop-section" id="propCW">
-    <div class="prop-section-title">
-      <span class="prop-dot" style="background:#f59e0b"></span>
-      compositeWrapper
-      <span class="prop-element">.compositeWrapper</span>
+      <!-- Selected: form-label -->
+      <div class="prop-section">
+        <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-label)"></span>form-label</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-fl-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-fl-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">radius</span><input type="number" class="prop-input" id="sel-fl-r" placeholder="0" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
+
+      <!-- Selected: form-field -->
+      <div class="prop-section">
+        <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-formfield)"></span>form-field</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-ff-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-ff-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">radius</span><input type="number" class="prop-input" id="sel-ff-r" placeholder="0" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
+
+      <!-- Selected: compositeWrapper (shown only for composite fields) -->
+      <div class="prop-section" id="selCWSection" style="display:none">
+        <div class="prop-section-title"><span class="prop-dot" style="background:#f59e0b"></span>compositeWrapper</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-cw-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">gap</span><input type="text" class="prop-input" id="sel-cw-g" placeholder="8" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-cw-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
+
+      <div class="prop-section">
+        <button class="sel-reset-all" onclick="resetSelectedProps()">Reset All Overrides</button>
+      </div>
     </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="cw-unit" value="px" checked onchange="togglePropUnit('cw')"> px</label>
-      <input type="number" class="prop-input" id="cw-px" placeholder="auto" min="0" oninput="applyWidths()">
-      <span class="prop-unit">px</span>
-    </div>
-    <div class="prop-row">
-      <label class="prop-radio-label"><input type="radio" name="cw-unit" value="pct" onchange="togglePropUnit('cw')"> %</label>
-      <input type="number" class="prop-input" id="cw-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()">
-      <span class="prop-unit">%</span>
-      <button class="prop-reset" onclick="resetProp('cw')">Reset</button>
-    </div>
-    <div class="prop-applied" id="cw-applied"></div>
-    <p class="prop-note">Sub-fields container (Name, Address). Only affects composite field types.</p>
   </div>
 </div>
 
@@ -1074,12 +1094,189 @@ function applyWidths() {
   updateCodeAndStruct();
 }
 
+// ═══ Sidebar Tab Switching ═══
+
+function switchPropsTab(tab) {
+  document.querySelectorAll('.props-tab').forEach((b,i) => b.classList.toggle('active', (tab==='common')===(i===0)));
+  document.getElementById('propsCommon').classList.toggle('active', tab==='common');
+  document.getElementById('propsSelected').classList.toggle('active', tab==='selected');
+}
+
+// ═══ Field Selection ═══
+
+let selectedField = null;
+
+function setupFieldSelection() {
+  // Use event delegation on canvas containers
+  document.querySelectorAll('.zc-canvas-container').forEach(canvas => {
+    canvas.addEventListener('click', function(e) {
+      const fg = e.target.closest('.form-group');
+      if (!fg) return;
+      e.stopPropagation();
+      selectField(fg);
+    });
+  });
+  // Click outside deselects
+  document.querySelector('.main-content').addEventListener('click', function(e) {
+    if (!e.target.closest('.form-group') && !e.target.closest('.props-sidebar')) {
+      deselectField();
+    }
+  });
+}
+
+function selectField(fg) {
+  // Remove previous selection
+  document.querySelectorAll('.form-group.is-selected').forEach(el => el.classList.remove('is-selected'));
+  // Select new
+  fg.classList.add('is-selected');
+  selectedField = fg;
+
+  // Switch to selected tab
+  switchPropsTab('selected');
+
+  // Update header
+  const labelEl = fg.querySelector('.form-label .zc-label-text');
+  const fieldName = labelEl ? labelEl.textContent.trim() : 'Unknown';
+  const fieldType = fg.dataset.elementType || 'form_field';
+  document.getElementById('selFieldName').textContent = fieldName;
+  document.getElementById('selFieldType').textContent = fieldType;
+
+  // Show/hide compositeWrapper section
+  const hasCW = !!fg.querySelector('.compositeWrapper');
+  document.getElementById('selCWSection').style.display = hasCW ? '' : 'none';
+
+  // Show content, hide empty state
+  document.getElementById('selEmpty').style.display = 'none';
+  document.getElementById('selContent').style.display = '';
+
+  // Read current inline styles into inputs
+  readSelectedProps();
+}
+
+function deselectField() {
+  document.querySelectorAll('.form-group.is-selected').forEach(el => el.classList.remove('is-selected'));
+  selectedField = null;
+  document.getElementById('selEmpty').style.display = '';
+  document.getElementById('selContent').style.display = 'none';
+  clearSelectedInputs();
+}
+
+function readSelectedProps() {
+  if (!selectedField) return;
+  const fg = selectedField;
+  const fl = fg.querySelector('.form-label');
+  const ff = fg.querySelector('.form-field');
+  const cw = fg.querySelector('.compositeWrapper');
+
+  setInputFromStyle('sel-fg-w', fg, 'width');
+  setInputFromStyle('sel-fg-p', fg, 'padding');
+  setInputFromStyle('sel-fg-g', fg, 'gap');
+  setInputFromStyle('sel-fg-r', fg, 'borderRadius');
+
+  if (fl) {
+    setInputFromStyle('sel-fl-w', fl, 'width');
+    setInputFromStyle('sel-fl-p', fl, 'padding');
+    setInputFromStyle('sel-fl-r', fl, 'borderRadius');
+  }
+
+  if (ff) {
+    setInputFromStyle('sel-ff-w', ff, 'width');
+    setInputFromStyle('sel-ff-p', ff, 'padding');
+    setInputFromStyle('sel-ff-r', ff, 'borderRadius');
+  }
+
+  if (cw) {
+    setInputFromStyle('sel-cw-w', cw, 'width');
+    setInputFromStyle('sel-cw-g', cw, 'gap');
+    setInputFromStyle('sel-cw-p', cw, 'padding');
+  }
+}
+
+function setInputFromStyle(inputId, el, prop) {
+  const input = document.getElementById(inputId);
+  if (!input || !el) return;
+  const val = el.style[prop];
+  input.value = val ? parseInt(val) || val.replace(/px|%/g,'') : '';
+}
+
+function clearSelectedInputs() {
+  ['sel-fg-w','sel-fg-p','sel-fg-g','sel-fg-r','sel-fl-w','sel-fl-p','sel-fl-r','sel-ff-w','sel-ff-p','sel-ff-r','sel-cw-w','sel-cw-g','sel-cw-p'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+function applySelectedProps() {
+  if (!selectedField) return;
+  const fg = selectedField;
+  const fl = fg.querySelector('.form-label');
+  const ff = fg.querySelector('.form-field');
+  const cw = fg.querySelector('.compositeWrapper');
+
+  applyPropToEl(fg, 'sel-fg-w', 'width');
+  applyPropToEl(fg, 'sel-fg-p', 'padding');
+  applyPropToEl(fg, 'sel-fg-g', 'gap');
+  applyPropToEl(fg, 'sel-fg-r', 'borderRadius');
+
+  if (fl) {
+    applyPropToEl(fl, 'sel-fl-w', 'width');
+    applyPropToEl(fl, 'sel-fl-p', 'padding');
+    applyPropToEl(fl, 'sel-fl-r', 'borderRadius');
+  }
+
+  if (ff) {
+    applyPropToEl(ff, 'sel-ff-w', 'width');
+    applyPropToEl(ff, 'sel-ff-p', 'padding');
+    applyPropToEl(ff, 'sel-ff-r', 'borderRadius');
+  }
+
+  if (cw) {
+    applyPropToEl(cw, 'sel-cw-w', 'width');
+    applyPropToEl(cw, 'sel-cw-g', 'gap');
+    applyPropToEl(cw, 'sel-cw-p', 'padding');
+  }
+
+  updateCodeAndStruct();
+}
+
+function applyPropToEl(el, inputId, cssProp) {
+  const input = document.getElementById(inputId);
+  if (!input || !el) return;
+  const val = input.value.trim();
+  if (val) {
+    // If it looks like just a number, append px
+    const unit = /^\d+$/.test(val) ? 'px' : '';
+    el.style[cssProp] = val + unit;
+  } else {
+    el.style.removeProperty(cssProp.replace(/([A-Z])/g, '-$1').toLowerCase());
+  }
+}
+
+function resetSelectedProps() {
+  if (!selectedField) return;
+  const fg = selectedField;
+  const fl = fg.querySelector('.form-label');
+  const ff = fg.querySelector('.form-field');
+  const cw = fg.querySelector('.compositeWrapper');
+
+  ['width','padding','gap','borderRadius'].forEach(p => {
+    fg.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase());
+  });
+  if (fl) ['width','padding','borderRadius'].forEach(p => fl.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase()));
+  if (ff) ['width','padding','borderRadius'].forEach(p => ff.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase()));
+  if (cw) ['width','gap','padding'].forEach(p => cw.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase()));
+
+  clearSelectedInputs();
+  updateCodeAndStruct();
+}
+
 // Init
 // Save original form inner HTML for mixed restore
 origFormS = document.querySelector('#formCanvasS form').innerHTML;
 origFormF = document.querySelector('#formCanvasF form').innerHTML;
 updateCodeAndStruct();
 setupInplacePlaceholders();
+setupFieldSelection();
 
 function switchCols(n) {
   currentCols = n;
