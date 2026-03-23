@@ -22,7 +22,32 @@
     --column-gap:0px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:var(--canvas-font);background:var(--canvas-bg);color:var(--input-text);min-height:100vh;padding:32px;}
+  body{font-family:var(--canvas-font);background:var(--canvas-bg);color:var(--input-text);min-height:100vh;display:flex;flex-direction:row;}
+  .main-content{flex:1;min-width:0;padding:32px;overflow-y:auto}
+
+  /* ═══ Properties Sidebar ═══ */
+  .props-sidebar{width:300px;flex-shrink:0;background:#fff;border-left:1px solid var(--form-border);overflow-y:auto;height:100vh;position:sticky;top:0}
+  .props-header{padding:16px 20px;border-bottom:1px solid var(--form-border);background:#fafbfc}
+  .props-header h2{font-size:14px;font-weight:600;color:var(--header-title);letter-spacing:-.2px}
+  .props-header p{font-size:11px;color:var(--section-desc);margin-top:2px}
+  .prop-section{padding:16px 20px;border-bottom:1px solid var(--form-border)}
+  .prop-section-title{font-size:12px;font-weight:600;color:var(--header-title);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .prop-section-title .prop-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .prop-section-title .prop-element{font-family:var(--mono-font);font-size:11px;font-weight:500;color:var(--section-desc);margin-left:auto}
+  .prop-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .prop-row:last-child{margin-bottom:0}
+  .prop-radio-label{display:flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;font-weight:500;color:var(--label-color);min-width:32px}
+  .prop-radio-label input[type="radio"]{margin:0;accent-color:var(--btn-primary-bg);cursor:pointer}
+  .prop-input{font-family:var(--mono-font);font-size:12px;width:64px;padding:5px 8px;border:1px solid var(--input-border);border-radius:5px;background:var(--input-bg);color:var(--input-text);outline:none;transition:border-color .15s}
+  .prop-input:focus{border-color:var(--input-focus)}
+  .prop-input:disabled{opacity:.4;cursor:not-allowed;background:#f9fafb}
+  .prop-unit{font-family:var(--mono-font);font-size:10px;color:var(--section-desc);min-width:16px}
+  .prop-reset{font-family:var(--canvas-font);font-size:10px;padding:3px 8px;border:1px solid var(--input-border);border-radius:4px;background:transparent;color:var(--section-desc);cursor:pointer;transition:all .15s;margin-left:auto}
+  .prop-reset:hover{background:var(--btn-secondary-bg);color:var(--label-color)}
+  .prop-note{font-size:10px;color:var(--section-desc);font-style:italic;margin-top:6px;line-height:1.4}
+  .prop-divider{height:1px;background:var(--form-border);margin:8px 0}
+  .prop-applied{font-family:var(--mono-font);font-size:10px;color:#059669;margin-top:4px;display:none}
+  .prop-applied.visible{display:block}
 
   /* ═══ Canvas grid utilities ═══ */
   .zc-flex{display:flex}.zc-no-shrink{flex-shrink:0}.zc-direction-column{flex-direction:column}.zc-direction-row{flex-direction:row}
@@ -32,16 +57,18 @@
   .zc-gap-col-8{column-gap:.5rem;--column-gap:.5rem}.zc-gap-col-10{column-gap:.625rem;--column-gap:.625rem}
   .zc-gap-col-16{column-gap:1rem;--column-gap:1rem}.zc-gap-row-4{row-gap:.25rem}.zc-gap-row-15{row-gap:.9375rem}.zc-gap-row-20{row-gap:1.25rem}
   .zc-p-16{padding:1rem}.zc-p-24{padding:1.5rem}
+  .zc-col-2{flex:0 0 calc(16.667% - var(--column-gap)*0.833);max-width:calc(16.667% - var(--column-gap)*0.833)}
+  .zc-col-3{flex:0 0 calc(25% - var(--column-gap)*0.75);max-width:calc(25% - var(--column-gap)*0.75)}
   .zc-col-4{flex:0 0 calc(33.333% - var(--column-gap)*0.667);max-width:calc(33.333% - var(--column-gap)*0.667)}
   .zc-col-6{flex:0 0 calc(50% - var(--column-gap)*0.5);max-width:calc(50% - var(--column-gap)*0.5)}
   .zc-col-12{flex:0 0 100%;max-width:100%}
   .zc-col-common{flex:1 1 0%}
 
   /* ═══ Page UI ═══ */
-  .page-intro{max-width:960px;margin:0 auto 24px}
+  .page-intro{max-width:100%;margin:0 0 24px}
   .page-intro h1{font-size:22px;font-weight:600;letter-spacing:-.3px;color:var(--header-title);margin-bottom:6px}
   .page-intro p{font-size:14px;color:var(--section-desc);line-height:1.5}
-  .controls-row{max-width:960px;margin:0 auto 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .controls-row{max-width:100%;margin:0 0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .toggle-bar{display:flex;gap:4px;background:#fff;padding:4px;border-radius:8px;border:1px solid var(--form-border);width:fit-content}
   .toggle-btn{font-family:var(--canvas-font);font-size:13px;font-weight:500;padding:8px 18px;border:none;border-radius:6px;cursor:pointer;background:transparent;color:var(--section-desc);transition:all .2s}
   .toggle-btn.active{background:var(--btn-primary-bg);color:#fff;box-shadow:0 1px 3px rgba(37,99,235,.3)}
@@ -85,9 +112,12 @@
   .legend-swatch{width:12px;height:3px;border-radius:2px}
 
   /* ═══ Form ═══ */
-  .zc-canvas-container{max-width:960px;margin:0 auto;height:540px;border-radius:var(--form-radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 16px rgba(0,0,0,.04);position:relative;width:100%}
+  .zc-canvas-container{max-width:100%;margin:0;height:540px;border-radius:var(--form-radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 16px rgba(0,0,0,.04);position:relative;width:100%}
   .zc-canvas-container>.zc-flex{height:100%}
-  .zc-canvas-container>form{height:100%}
+  .zc-canvas-container form{flex:1;overflow-y:auto}
+  .zc-canvas-container form::-webkit-scrollbar{width:6px}
+  .zc-canvas-container form::-webkit-scrollbar-track{background:transparent}
+  .zc-canvas-container form::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
   [data-element-type="form_header"]{background:var(--header-bg);border-bottom:1px solid var(--header-border)}
   .view-draft{font-size:13px;color:var(--btn-primary-bg);text-decoration:none;font-weight:500}.view-draft:hover{text-decoration:underline}
   .form-title{font-size:16px;font-weight:600;color:var(--header-title)}
@@ -178,9 +208,11 @@
 
   .view-panel{display:none}.view-panel.active{display:block}
   .variant-panel{display:none}.variant-panel.active{display:block}
+  /* 1-column: form-groups are direct children — gap handled by form's zc-gap-row-20 */
+  form > .form-group{margin-bottom:0}
 
   /* ═══ VB ═══ */
-  .vb-container{max-width:960px;margin:0 auto;padding:24px;background:#0f1117;border-radius:12px;overflow-x:auto}
+  .vb-container{max-width:100%;margin:0;padding:24px;background:#0f1117;border-radius:12px;overflow-x:auto}
   .vb-box{border:2px solid;border-radius:8px;padding:10px;position:relative;margin-top:18px;transition:transform .15s,box-shadow .15s}
   .vb-box:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:2}
   .vb-box:first-child{margin-top:0}
@@ -218,7 +250,7 @@
   .vb-field-col{display:flex;flex-direction:column;gap:3px}
 
   /* ═══ Code ═══ */
-  .code-container{max-width:960px;margin:0 auto;background:#0f1117;border-radius:12px;overflow:hidden}
+  .code-container{max-width:100%;margin:0;background:#0f1117;border-radius:12px;overflow:hidden}
   .code-toolbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#1a1c20;border-bottom:1px solid rgba(255,255,255,.06)}
   .code-toolbar-left{display:flex;align-items:center;gap:8px}
   .code-toolbar-dot{width:10px;height:10px;border-radius:50%}
@@ -233,7 +265,7 @@
   .code-body .ct{color:#f87171}.code-body .ca{color:#fbbf24}.code-body .cv{color:#34d399}
   .code-body .cc{color:#4b5563;font-style:italic}.code-body .cp{color:#93c5fd}.code-body .cx{color:#a5b4fc}
 
-  .structure-panel{max-width:960px;margin:32px auto 0;background:#1a1c20;border-radius:10px;padding:20px;overflow-x:auto}
+  .structure-panel{max-width:100%;margin:32px 0 0;background:#1a1c20;border-radius:10px;padding:20px;overflow-x:auto}
   .structure-panel pre{font-family:var(--mono-font);font-size:11.5px;line-height:1.7;color:#e2e4e9;white-space:pre}
   .structure-panel .sc{color:#a5b4fc}.structure-panel .sf{color:#60a5fa}.structure-panel .ss{color:#22d3ee}
   .structure-panel .sr{color:#34d399}.structure-panel .sl{color:#fbbf24}.structure-panel .sd{color:#f87171}
@@ -242,6 +274,8 @@
 </style>
 </head>
 <body>
+
+<div class="main-content">
 
 <div class="page-intro">
   <h1>Zoho Creator — Flex Form Structure</h1>
@@ -269,6 +303,15 @@
     <button class="variant-btn" onclick="switchLabel('right')">Right</button>
     <button class="variant-btn" onclick="switchLabel('top')">Top</button>
     <button class="variant-btn active" onclick="switchLabel('inplace')">Inplace</button>
+  </div>
+  <span class="variant-label">Columns:</span>
+  <div class="variant-bar" id="colBar">
+    <button class="variant-btn active" onclick="switchCols('mixed')">Mixed</button>
+    <button class="variant-btn" onclick="switchCols(1)">1</button>
+    <button class="variant-btn" onclick="switchCols(2)">2</button>
+    <button class="variant-btn" onclick="switchCols(3)">3</button>
+    <button class="variant-btn" onclick="switchCols(4)">4</button>
+    <button class="variant-btn" onclick="switchCols(5)">5</button>
   </div>
 </div>
 
@@ -453,8 +496,106 @@
   <div id="struct-flat" class="variant-panel active"><pre id="structF"></pre></div>
 </div>
 
+</div><!-- /.main-content -->
+
+<!-- ═══ Properties Sidebar ═══ -->
+<div class="props-sidebar" id="propsSidebar">
+  <div class="props-header">
+    <h2>Width Properties</h2>
+    <p>Set widths for form elements (px or %)</p>
+  </div>
+
+  <!-- form-group -->
+  <div class="prop-section" id="propFG">
+    <div class="prop-section-title">
+      <span class="prop-dot" style="background:var(--anno-field)"></span>
+      form-group
+      <span class="prop-element">.form-group</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="fg-unit" value="px" checked onchange="togglePropUnit('fg')"> px</label>
+      <input type="number" class="prop-input" id="fg-px" placeholder="auto" min="0" oninput="applyWidths()">
+      <span class="prop-unit">px</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="fg-unit" value="pct" onchange="togglePropUnit('fg')"> %</label>
+      <input type="number" class="prop-input" id="fg-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()">
+      <span class="prop-unit">%</span>
+      <button class="prop-reset" onclick="resetProp('fg')">Reset</button>
+    </div>
+    <div class="prop-applied" id="fg-applied"></div>
+    <p class="prop-note">The entire field container. In multi-column layouts, cell wrapper controls width instead.</p>
+  </div>
+
+  <!-- form-label -->
+  <div class="prop-section" id="propFL">
+    <div class="prop-section-title">
+      <span class="prop-dot" style="background:var(--anno-label)"></span>
+      form-label
+      <span class="prop-element">.form-label</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="fl-unit" value="px" checked onchange="togglePropUnit('fl')"> px</label>
+      <input type="number" class="prop-input" id="fl-px" placeholder="200" min="0" oninput="applyWidths()">
+      <span class="prop-unit">px</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="fl-unit" value="pct" onchange="togglePropUnit('fl')"> %</label>
+      <input type="number" class="prop-input" id="fl-pct" placeholder="30" min="0" max="100" disabled oninput="applyWidths()">
+      <span class="prop-unit">%</span>
+      <button class="prop-reset" onclick="resetProp('fl')">Reset</button>
+    </div>
+    <div class="prop-applied" id="fl-applied"></div>
+    <p class="prop-note">Label area width. Most relevant for Label Left/Right. Ignored in Inplace (label is absolute-positioned).</p>
+  </div>
+
+  <!-- form-field -->
+  <div class="prop-section" id="propFF">
+    <div class="prop-section-title">
+      <span class="prop-dot" style="background:var(--anno-formfield)"></span>
+      form-field
+      <span class="prop-element">.form-field</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="ff-unit" value="px" checked onchange="togglePropUnit('ff')"> px</label>
+      <input type="number" class="prop-input" id="ff-px" placeholder="auto" min="0" oninput="applyWidths()">
+      <span class="prop-unit">px</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="ff-unit" value="pct" onchange="togglePropUnit('ff')"> %</label>
+      <input type="number" class="prop-input" id="ff-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()">
+      <span class="prop-unit">%</span>
+      <button class="prop-reset" onclick="resetProp('ff')">Reset</button>
+    </div>
+    <div class="prop-applied" id="ff-applied"></div>
+    <p class="prop-note">Input/control area. Uses <code>flex:1</code> by default (fills remaining space in Left/Right mode).</p>
+  </div>
+
+  <!-- compositeWrapper -->
+  <div class="prop-section" id="propCW">
+    <div class="prop-section-title">
+      <span class="prop-dot" style="background:#f59e0b"></span>
+      compositeWrapper
+      <span class="prop-element">.compositeWrapper</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="cw-unit" value="px" checked onchange="togglePropUnit('cw')"> px</label>
+      <input type="number" class="prop-input" id="cw-px" placeholder="auto" min="0" oninput="applyWidths()">
+      <span class="prop-unit">px</span>
+    </div>
+    <div class="prop-row">
+      <label class="prop-radio-label"><input type="radio" name="cw-unit" value="pct" onchange="togglePropUnit('cw')"> %</label>
+      <input type="number" class="prop-input" id="cw-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()">
+      <span class="prop-unit">%</span>
+      <button class="prop-reset" onclick="resetProp('cw')">Reset</button>
+    </div>
+    <div class="prop-applied" id="cw-applied"></div>
+    <p class="prop-note">Sub-fields container (Name, Address). Only affects composite field types.</p>
+  </div>
+</div>
+
 <script>
-let currentTab='clean', currentVariant='flat', currentLabel='inplace';
+let currentTab='clean', currentVariant='flat', currentLabel='inplace', currentCols='mixed';
 
 const FG_LEFT = 'zc-flex zc-direction-row zc-align-items-start';
 const FG_RIGHT = 'zc-flex zc-direction-row zc-align-items-start';
@@ -469,6 +610,13 @@ const CW = 'zc-flex zc-direction-row zc-gap-col-8';
 
 const LABEL_MODES = { left: FG_LEFT, right: FG_RIGHT, top: FG_TOP, inplace: FG_INPLACE };
 const LABEL_FL = { left: FL_LEFT, right: FL_RIGHT, top: FL_TOP, inplace: FL_INPLACE };
+
+// Column class for N columns per row (12-col grid)
+const COL_CLASS = { 1:'zc-col-12', 2:'zc-col-6', 3:'zc-col-4', 4:'zc-col-3', 5:'zc-col-2' };
+const ROW_CLASSES = 'zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start';
+
+// Store original HTML for mixed restore
+let origFormS = null, origFormF = null;
 
 function switchTab(tab) {
   currentTab = tab;
@@ -607,12 +755,14 @@ function applyVariant() {
     document.getElementById(id).classList.toggle('active', id.includes('sections') ? s : !s);
   });
   updateCodeAndStruct();
+  applyWidths();
 }
 
 function updateCodeAndStruct() {
   const l = currentLabel;
-  document.getElementById('codeFilenameS').textContent = `with-sections-label-${l}.html`;
-  document.getElementById('codeFilenameF').textContent = `without-sections-label-${l}.html`;
+  const colSuffix = currentCols === 'mixed' ? '' : `-${currentCols}col`;
+  document.getElementById('codeFilenameS').textContent = `with-sections-label-${l}${colSuffix}.html`;
+  document.getElementById('codeFilenameF').textContent = `without-sections-label-${l}${colSuffix}.html`;
 
   // Extract actual HTML from the live DOM
   const rawS = document.getElementById('formCanvasS').outerHTML;
@@ -626,36 +776,63 @@ function updateCodeAndStruct() {
   const alignCls = (l==='left'||l==='right') ? ' .zc-align-items-center' : '';
   const labelNote = l==='inplace' ? ' (hidden via CSS, text used as placeholder)' : '';
   const fgExtra = l==='right' ? ' (label text-align: right)' : '';
+  const c = currentCols;
+  const colNote = c === 'mixed' ? 'zc-col-N (mixed)' : c === 1 ? 'no wrapper (block flow)' : COL_CLASS[c] + ` (${c} per row)`;
+  const is1 = (c === 1);
 
-  const secTree = `<span class="si">/* With Sections — label-${l} */</span>
+  // With Sections tree
+  let secTree = `<span class="si">/* With Sections — label-${l} — cols: ${c} */</span>
 
 <span class="sc">.zc-canvas-container .label-${l}</span>
 <span class="sg">└─</span> <span class="sc">[vertical_flex]</span> <span class="sg">.zc-flex .zc-direction-column</span>
 <span class="sg">   └─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
-<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-space-between</span>
+<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>`;
+
+  if (is1) {
+    secTree += `
+<span class="sg">      ├─</span> <span class="ss">[form_section]</span> <span class="sg">display:block  <span class="si">← no flex needed</span></span>
+<span class="sg">      │  ├─</span> <span class="sd">&lt;h2 class="section-label"&gt;</span>
+<span class="sg">      │  └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}  <span class="si">← direct child, no row/cell wrapper</span></span>
+<span class="sg">      │     ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
+<span class="sg">      │     └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>`;
+  } else {
+    secTree += `
 <span class="sg">      ├─</span> <span class="ss">[form_section]</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-15</span>
 <span class="sg">      │  ├─</span> <span class="sd">&lt;h2 class="section-label"&gt;</span>
 <span class="sg">      │  └─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
-<span class="sg">      │     └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
+<span class="sg">      │     └─</span> <span class="sl">.zc-no-shrink .${colNote}</span>
 <span class="sg">      │        └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}</span>
 <span class="sg">      │           ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
 <span class="sg">      │           └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
-<span class="sg">      │              └─</span> <span class="sl">.compositeWrapper</span> <span class="sg">.zc-flex .zc-direction-row .zc-gap-col-8</span>
-<span class="sg">      │                 ├─</span> <span class="sg">span .zc-col-common → input</span>
-<span class="sg">      │                 └─</span> <span class="sg">span .zc-col-common → input</span>
-<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-flex .zc-no-shrink .zc-justify-end .zc-gap-col-10</span>`;
+<span class="sg">      │              └─</span> <span class="sl">.compositeWrapper</span> <span class="sg">.zc-flex .zc-direction-row .zc-gap-col-8</span>`;
+  }
 
-  const flatTree = `<span class="si">/* Without Sections — label-${l} */</span>
+  secTree += `
+<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-no-shrink</span>`;
+
+  // Without Sections tree
+  let flatTree = `<span class="si">/* Without Sections — label-${l} — cols: ${c} */</span>
 
 <span class="sc">.zc-canvas-container .label-${l}</span>
 <span class="sg">└─</span> <span class="sc">[vertical_flex]</span> <span class="sg">.zc-flex .zc-direction-column</span>
 <span class="sg">   └─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
-<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>
+<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>`;
+
+  if (is1) {
+    flatTree += `
+<span class="sg">      ├─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}  <span class="si">← direct child, no row/cell wrapper</span></span>
+<span class="sg">      │  ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
+<span class="sg">      │  └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>`;
+  } else {
+    flatTree += `
 <span class="sg">      ├─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
-<span class="sg">      │  └─</span> <span class="sl">.zc-no-shrink .zc-col-6</span>
+<span class="sg">      │  └─</span> <span class="sl">.zc-no-shrink .${colNote}</span>
 <span class="sg">      │     └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}</span>
 <span class="sg">      │        ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
-<span class="sg">      │        └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
+<span class="sg">      │        └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>`;
+  }
+
+  flatTree += `
 <span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-no-shrink</span>`;
 
   document.getElementById('structS').innerHTML = secTree;
@@ -811,9 +988,201 @@ function copyCode(id, btn) {
   });
 }
 
+// ═══ Width Properties Panel ═══
+
+function togglePropUnit(prefix) {
+  const unit = document.querySelector(`input[name="${prefix}-unit"]:checked`).value;
+  const pxInput = document.getElementById(`${prefix}-px`);
+  const pctInput = document.getElementById(`${prefix}-pct`);
+  pxInput.disabled = (unit !== 'px');
+  pctInput.disabled = (unit !== 'pct');
+  applyWidths();
+}
+
+function resetProp(prefix) {
+  document.getElementById(`${prefix}-px`).value = '';
+  document.getElementById(`${prefix}-pct`).value = '';
+  document.getElementById(`${prefix}-applied`).textContent = '';
+  document.getElementById(`${prefix}-applied`).classList.remove('visible');
+  applyWidths();
+}
+
+function getWidthValue(prefix) {
+  const unit = document.querySelector(`input[name="${prefix}-unit"]:checked`).value;
+  const input = document.getElementById(`${prefix}-${unit === 'px' ? 'px' : 'pct'}`);
+  const val = input.value.trim();
+  if (!val) return null;
+  return unit === 'px' ? `${val}px` : `${val}%`;
+}
+
+function showApplied(prefix, value) {
+  const el = document.getElementById(`${prefix}-applied`);
+  if (value) {
+    el.textContent = `✓ width: ${value}`;
+    el.classList.add('visible');
+  } else {
+    el.textContent = '';
+    el.classList.remove('visible');
+  }
+}
+
+function applyWidths() {
+  const fgW = getWidthValue('fg');
+  const flW = getWidthValue('fl');
+  const ffW = getWidthValue('ff');
+  const cwW = getWidthValue('cw');
+
+  showApplied('fg', fgW);
+  showApplied('fl', flW);
+  showApplied('ff', ffW);
+  showApplied('cw', cwW);
+
+  // Apply to all form-groups
+  document.querySelectorAll('.zc-canvas-container .form-group').forEach(fg => {
+    if (fgW) { fg.style.width = fgW; fg.style.maxWidth = fgW; }
+    else { fg.style.removeProperty('width'); fg.style.removeProperty('max-width'); }
+  });
+
+  // Apply to all form-labels
+  document.querySelectorAll('.zc-canvas-container .form-label').forEach(fl => {
+    // Only apply fixed width in left/right mode; in top/inplace label width is auto
+    if (flW && (currentLabel === 'left' || currentLabel === 'right')) {
+      fl.style.width = flW; fl.style.minWidth = flW; fl.style.maxWidth = flW;
+      fl.style.flex = `0 0 ${flW}`;
+    } else if (flW && currentLabel === 'top') {
+      fl.style.width = flW; fl.style.maxWidth = flW;
+      fl.style.removeProperty('min-width'); fl.style.removeProperty('flex');
+    } else {
+      fl.style.removeProperty('width'); fl.style.removeProperty('min-width');
+      fl.style.removeProperty('max-width'); fl.style.removeProperty('flex');
+    }
+  });
+
+  // Apply to all form-fields
+  document.querySelectorAll('.zc-canvas-container .form-field').forEach(ff => {
+    if (ffW) { ff.style.width = ffW; ff.style.maxWidth = ffW; ff.style.flex = `0 0 ${ffW}`; }
+    else { ff.style.removeProperty('width'); ff.style.removeProperty('max-width'); ff.style.removeProperty('flex'); }
+  });
+
+  // Apply to compositeWrappers
+  document.querySelectorAll('.zc-canvas-container .compositeWrapper').forEach(cw => {
+    if (cwW) { cw.style.width = cwW; cw.style.maxWidth = cwW; }
+    else { cw.style.removeProperty('width'); cw.style.removeProperty('max-width'); }
+  });
+
+  // Update code tab to reflect inline styles
+  updateCodeAndStruct();
+}
+
 // Init
+// Save original form inner HTML for mixed restore
+origFormS = document.querySelector('#formCanvasS form').innerHTML;
+origFormF = document.querySelector('#formCanvasF form').innerHTML;
 updateCodeAndStruct();
 setupInplacePlaceholders();
+
+function switchCols(n) {
+  currentCols = n;
+  const btns = document.querySelectorAll('#colBar .variant-btn');
+  const idx = {mixed:0,1:1,2:2,3:3,4:4,5:5};
+  btns.forEach((b,i) => b.classList.toggle('active', i===idx[n]));
+
+  document.querySelectorAll('.zc-canvas-container').forEach(canvas => {
+    const form = canvas.querySelector('form');
+    if (!form) return;
+    const isSections = canvas.id === 'formCanvasS';
+
+    // Always restore original HTML first so we have a clean base
+    form.innerHTML = isSections ? origFormS : origFormF;
+
+    if (n === 'mixed') {
+      // Already restored — done
+    } else {
+      // Collect all cells from the restored original
+      const allCells = [];
+
+      if (isSections) {
+        // Process each section independently
+        const sectionEls = form.querySelectorAll('[data-element-type="form_section"]');
+        const header = form.querySelector('[data-element-type="form_header"]');
+        const footer = form.querySelector('[data-element-type="form_footer"]');
+        const headerHTML = header ? header.outerHTML : '';
+        const footerHTML = footer ? footer.outerHTML : '';
+
+        const sections = [];
+        sectionEls.forEach(sec => {
+          const label = sec.querySelector('.section-label');
+          const secCells = [];
+          sec.querySelectorAll('[data-element-type="horizontal_flex"] > .zc-no-shrink').forEach(cell => {
+            secCells.push(cell.cloneNode(true));
+          });
+          sections.push({ labelHTML: label ? label.outerHTML : '', cells: secCells });
+        });
+
+        let newHTML = headerHTML;
+        sections.forEach(sec => {
+          if (n === 1) {
+            newHTML += `<div data-element-type="form_section" class="zc-no-shrink" style="display:block">`;
+          } else {
+            newHTML += `<div data-element-type="form_section" class="zc-flex zc-no-shrink zc-direction-column zc-gap-row-15">`;
+          }
+          newHTML += sec.labelHTML;
+          newHTML += buildColRows(sec.cells, n);
+          newHTML += `</div>`;
+        });
+        newHTML += footerHTML;
+        form.innerHTML = newHTML;
+
+      } else {
+        // Flat: collect all cells
+        const cells = [];
+        form.querySelectorAll('[data-element-type="horizontal_flex"] > .zc-no-shrink').forEach(cell => {
+          cells.push(cell.cloneNode(true));
+        });
+
+        const header = form.querySelector('[data-element-type="form_header"]');
+        const footer = form.querySelector('[data-element-type="form_footer"]');
+        const headerHTML = header ? header.outerHTML : '';
+        const footerHTML = footer ? footer.outerHTML : '';
+
+        let newHTML = headerHTML;
+        newHTML += buildColRows(cells, n);
+        newHTML += footerHTML;
+        form.innerHTML = newHTML;
+      }
+    }
+  });
+
+  // Re-apply label mode after DOM rebuild
+  switchLabel(currentLabel);
+}
+
+function buildColRows(cellList, n) {
+  const colCls = COL_CLASS[n] || 'zc-col-12';
+  let html = '';
+
+  if (n === 1) {
+    // 1-column: form-group directly, no row/cell wrapper
+    cellList.forEach(cell => {
+      const fg = cell.querySelector('.form-group');
+      html += fg ? fg.outerHTML : cell.innerHTML;
+    });
+  } else {
+    // Multi-column: group into rows of n
+    for (let i = 0; i < cellList.length; i += n) {
+      const chunk = cellList.slice(i, i + n);
+      html += `<div data-element-type="horizontal_flex" class="${ROW_CLASSES}">`;
+      chunk.forEach(cell => {
+        // Replace column class
+        cell.className = cell.className.replace(/zc-col-\d+/g, '').replace(/\s+/g, ' ').trim();
+        cell.classList.add('zc-no-shrink', colCls);
+        html += cell.outerHTML;
+      });
+      html += `</div>`;
+    }
+  }
+  return html;
+}
 </script>
 </body>
 </html>
