@@ -580,7 +580,6 @@
         <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-fg-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
         <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-fg-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
         <div class="prop-row"><span class="prop-label-sm">gap</span><input type="text" class="prop-input" id="sel-fg-g" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
-        <div class="prop-row"><span class="prop-label-sm">radius</span><input type="number" class="prop-input" id="sel-fg-r" placeholder="0" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
       </div>
 
       <!-- Selected: form-label -->
@@ -588,7 +587,6 @@
         <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-label)"></span>form-label</div>
         <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-fl-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
         <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-fl-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
-        <div class="prop-row"><span class="prop-label-sm">radius</span><input type="number" class="prop-input" id="sel-fl-r" placeholder="0" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
       </div>
 
       <!-- Selected: form-field -->
@@ -1171,18 +1169,18 @@ function readSelectedProps() {
   setInputFromStyle('sel-fg-w', fg, 'width');
   setInputFromStyle('sel-fg-p', fg, 'padding');
   setInputFromStyle('sel-fg-g', fg, 'gap');
-  setInputFromStyle('sel-fg-r', fg, 'borderRadius');
 
   if (fl) {
     setInputFromStyle('sel-fl-w', fl, 'width');
     setInputFromStyle('sel-fl-p', fl, 'padding');
-    setInputFromStyle('sel-fl-r', fl, 'borderRadius');
   }
 
   if (ff) {
     setInputFromStyle('sel-ff-w', ff, 'width');
     setInputFromStyle('sel-ff-p', ff, 'padding');
-    setInputFromStyle('sel-ff-r', ff, 'borderRadius');
+    // Read radius from first child input element
+    const firstInput = ff.querySelector('.form-control, .select2-choice');
+    if (firstInput) setInputFromStyle('sel-ff-r', firstInput, 'borderRadius');
   }
 
   if (cw) {
@@ -1200,7 +1198,7 @@ function setInputFromStyle(inputId, el, prop) {
 }
 
 function clearSelectedInputs() {
-  ['sel-fg-w','sel-fg-p','sel-fg-g','sel-fg-r','sel-fl-w','sel-fl-p','sel-fl-r','sel-ff-w','sel-ff-p','sel-ff-r','sel-cw-w','sel-cw-g','sel-cw-p'].forEach(id => {
+  ['sel-fg-w','sel-fg-p','sel-fg-g','sel-fl-w','sel-fl-p','sel-ff-w','sel-ff-p','sel-ff-r','sel-cw-w','sel-cw-g','sel-cw-p'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
@@ -1216,18 +1214,17 @@ function applySelectedProps() {
   applyPropToEl(fg, 'sel-fg-w', 'width');
   applyPropToEl(fg, 'sel-fg-p', 'padding');
   applyPropToEl(fg, 'sel-fg-g', 'gap');
-  applyPropToEl(fg, 'sel-fg-r', 'borderRadius');
 
   if (fl) {
     applyPropToEl(fl, 'sel-fl-w', 'width');
     applyPropToEl(fl, 'sel-fl-p', 'padding');
-    applyPropToEl(fl, 'sel-fl-r', 'borderRadius');
   }
 
   if (ff) {
     applyPropToEl(ff, 'sel-ff-w', 'width');
     applyPropToEl(ff, 'sel-ff-p', 'padding');
-    applyPropToEl(ff, 'sel-ff-r', 'borderRadius');
+    // Apply radius to child input/textarea/select2-choice elements, not .form-field itself
+    applyRadiusToChildren(ff, 'sel-ff-r');
   }
 
   if (cw) {
@@ -1252,6 +1249,21 @@ function applyPropToEl(el, inputId, cssProp) {
   }
 }
 
+function applyRadiusToChildren(ff, inputId) {
+  const input = document.getElementById(inputId);
+  if (!input || !ff) return;
+  const val = input.value.trim();
+  const children = ff.querySelectorAll('.form-control, .select2-choice');
+  children.forEach(child => {
+    if (val) {
+      const unit = /^\d+$/.test(val) ? 'px' : '';
+      child.style.borderRadius = val + unit;
+    } else {
+      child.style.removeProperty('border-radius');
+    }
+  });
+}
+
 function resetSelectedProps() {
   if (!selectedField) return;
   const fg = selectedField;
@@ -1259,12 +1271,18 @@ function resetSelectedProps() {
   const ff = fg.querySelector('.form-field');
   const cw = fg.querySelector('.compositeWrapper');
 
-  ['width','padding','gap','borderRadius'].forEach(p => {
-    fg.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase());
+  ['width','padding','gap'].forEach(p => {
+    fg.style.removeProperty(p);
   });
-  if (fl) ['width','padding','borderRadius'].forEach(p => fl.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase()));
-  if (ff) ['width','padding','borderRadius'].forEach(p => ff.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase()));
-  if (cw) ['width','gap','padding'].forEach(p => cw.style.removeProperty(p.replace(/([A-Z])/g, '-$1').toLowerCase()));
+  if (fl) ['width','padding'].forEach(p => fl.style.removeProperty(p));
+  if (ff) {
+    ['width','padding'].forEach(p => ff.style.removeProperty(p));
+    // Reset radius on child elements
+    ff.querySelectorAll('.form-control, .select2-choice').forEach(child => {
+      child.style.removeProperty('border-radius');
+    });
+  }
+  if (cw) ['width','gap','padding'].forEach(p => cw.style.removeProperty(p));
 
   clearSelectedInputs();
   updateCodeAndStruct();
