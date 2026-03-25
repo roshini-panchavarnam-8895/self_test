@@ -1,0 +1,621 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZC Grid — Form Layout Recipes (with Responsive)</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
+<style>
+/* ========== GRID.CSS ESSENTIALS (inlined for live demos) ========== */
+:root { --column-gap: 0px; }
+.zc-row { display:flex; flex-wrap:wrap; }
+.zc-flex { display:flex; }
+.zc-col { flex-shrink:0; width:100%; max-width:100%; }
+.zc-col-auto { flex:0 0 auto; width:auto; }
+.zc-col-common { flex:1 1 0%; }
+.zc-no-shrink { flex-shrink:0; }
+.zc-col-3{flex:0 0 calc(25% - var(--column-gap)*0.75);max-width:calc(25% - var(--column-gap)*0.75)}
+.zc-col-4{flex:0 0 calc(33.333% - var(--column-gap)*0.667);max-width:calc(33.333% - var(--column-gap)*0.667)}
+.zc-col-5{flex:0 0 calc(41.667% - var(--column-gap)*0.583);max-width:calc(41.667% - var(--column-gap)*0.583)}
+.zc-col-6{flex:0 0 calc(50% - var(--column-gap)*0.5);max-width:calc(50% - var(--column-gap)*0.5)}
+.zc-col-8{flex:0 0 calc(66.667% - var(--column-gap)*0.333);max-width:calc(66.667% - var(--column-gap)*0.333)}
+.zc-col-9{flex:0 0 calc(75% - var(--column-gap)*0.25);max-width:calc(75% - var(--column-gap)*0.25)}
+.zc-col-12{flex:0 0 calc(100% - var(--column-gap)*0);max-width:calc(100% - var(--column-gap)*0)}
+@media(max-width:992px){
+.zc-col-md-6{flex:0 0 calc(50% - var(--column-gap)*0.5);max-width:calc(50% - var(--column-gap)*0.5)}
+.zc-col-md-12{flex:0 0 100%;max-width:100%}
+}
+@media(max-width:768px){
+.zc-col-sm-6{flex:0 0 calc(50% - var(--column-gap)*0.5);max-width:calc(50% - var(--column-gap)*0.5)}
+.zc-col-sm-12{flex:0 0 100%;max-width:100%}
+}
+@media(max-width:576px){
+.zc-col-xs-12{flex:0 0 100%;max-width:100%}
+.zc-col-xs-6{flex:0 0 calc(50% - var(--column-gap)*0.5);max-width:calc(50% - var(--column-gap)*0.5)}
+}
+.zc-direction-column{flex-direction:column}
+.zc-justify-start{justify-content:start}.zc-justify-end{justify-content:end}.zc-justify-center{justify-content:center}.zc-justify-space-between{justify-content:space-between}
+.zc-align-items-start{align-items:start}.zc-align-items-center{align-items:center}.zc-align-items-end{align-items:end}.zc-align-items-stretch{align-items:stretch}
+.zc-row-wrap{flex-wrap:wrap}.zc-row-nowrap{flex-wrap:nowrap}
+.zc-gap-4{gap:.25rem;--column-gap:.25rem}.zc-gap-8{gap:.5rem;--column-gap:.5rem}.zc-gap-12{gap:.75rem;--column-gap:.75rem}.zc-gap-16{gap:1rem;--column-gap:1rem}.zc-gap-20{gap:1.25rem;--column-gap:1.25rem}.zc-gap-24{gap:1.5rem;--column-gap:1.5rem}
+
+/* ========== PAGE STYLES ========== */
+:root {
+  --bg:#F6F5F0;--surface:#FFF;--surface-alt:#F9F8F5;--border:#E2E0D8;--border-light:#ECEAE3;
+  --text:#1C1B18;--text-2:#5C5A51;--text-3:#908D82;
+  --accent:#1D6CE0;--accent-soft:#EBF2FD;--accent-border:#B8D4F8;
+  --green:#158C3F;--green-soft:#EDFAF1;--green-border:#B5E8C6;
+  --orange:#C27012;--orange-soft:#FDF5EB;--orange-border:#F5D9A8;
+  --purple:#6B2FC7;--purple-soft:#F3EFFC;--purple-border:#D1C2F0;
+  --teal:#0F7B7B;--teal-soft:#ECFAFA;--teal-border:#A8E0E0;
+  --rose:#C23058;--rose-soft:#FDF0F3;--rose-border:#F0B8C8;
+  --code-bg:#1A1A18;--code-text:#E5E3DC;
+  --radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,0.04);--shadow-md:0 4px 14px rgba(0,0,0,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+
+.hero{background:linear-gradient(145deg,#0C2340 0%,#163B65 40%,#1D4F8A 100%);color:#fff;padding:72px 40px 64px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 80%,rgba(29,108,224,.2) 0%,transparent 50%),radial-gradient(ellipse at 85% 20%,rgba(107,47,199,.12) 0%,transparent 50%)}
+.hero-inner{max-width:880px;margin:0 auto;position:relative;z-index:1}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:20px}
+.hero h1{font-size:clamp(28px,4.5vw,44px);font-weight:700;line-height:1.15;letter-spacing:-.8px;margin-bottom:14px}
+.hero h1 span{color:#7DB8F5}
+.hero p{font-size:16px;color:rgba(255,255,255,.55);max-width:560px;line-height:1.7}
+
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+.nav-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin:-28px auto 44px;max-width:900px;padding:14px 20px;position:relative;z-index:2;box-shadow:var(--shadow-md);display:flex;flex-wrap:wrap;gap:6px}
+.nav-bar a{font-size:13px;color:var(--text-2);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all .15s;font-weight:500;white-space:nowrap}
+.nav-bar a:hover{background:var(--surface-alt);color:var(--text)}
+.nav-bar a .num{display:inline-block;background:var(--border-light);color:var(--text-3);font-size:10px;font-weight:700;width:18px;height:18px;line-height:18px;text-align:center;border-radius:4px;margin-right:5px}
+
+.recipe{margin-bottom:56px;scroll-margin-top:20px}
+.recipe-header{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.recipe-num{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0}
+.recipe-header h2{font-size:22px;font-weight:700;letter-spacing:-.3px}
+.recipe>.desc{font-size:14.5px;color:var(--text-2);margin-bottom:24px;padding-left:50px;line-height:1.65}
+
+.preview-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.preview-label{background:var(--surface-alt);border-bottom:1px solid var(--border-light);padding:8px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);display:flex;align-items:center;gap:6px}
+.preview-label .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.preview-body{padding:24px}
+
+.demo-form-section{margin-bottom:20px}.demo-form-section:last-child{margin-bottom:0}
+.demo-section-title{font-size:13px;font-weight:700;color:var(--text);padding-bottom:8px;margin-bottom:14px;border-bottom:1.5px solid var(--border);letter-spacing:.2px}
+.demo-field label{display:block;font-size:12.5px;font-weight:600;color:var(--text-2);margin-bottom:5px}
+.demo-field input,.demo-field select,.demo-field textarea{width:100%;padding:8px 11px;font-size:13.5px;font-family:'DM Sans',sans-serif;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);outline:none;transition:border-color .15s}
+.demo-field input:focus,.demo-field select:focus,.demo-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(29,108,224,.08)}
+.demo-field input::placeholder{color:var(--text-3)}
+.demo-field textarea{resize:vertical;min-height:70px}
+.demo-btn{padding:9px 22px;font-size:13.5px;font-weight:600;font-family:'DM Sans',sans-serif;border:none;border-radius:6px;cursor:pointer;transition:all .15s}
+.demo-btn-primary{background:var(--accent);color:#fff}
+.demo-btn-secondary{background:var(--surface-alt);color:var(--text-2);border:1px solid var(--border)}
+.demo-btn:hover{opacity:.9}
+.demo-divider{height:1px;background:var(--border-light);margin:20px 0}
+
+pre{background:var(--code-bg);border-radius:var(--radius-sm);padding:18px 20px;overflow-x:auto;margin-bottom:16px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:var(--code-text);border:1px solid #2A2A28}
+.hl-tag{color:#FCA5A5}.hl-attr{color:#C4B5FD}.hl-str{color:#86EFAC}.hl-cmt{color:#6B7280;font-style:italic}.hl-resp{color:#FDE68A;font-weight:500}
+code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--surface-alt);border:1px solid var(--border-light);padding:1px 5px;border-radius:4px}
+
+.explain{border-radius:var(--radius-sm);padding:16px 18px;margin-bottom:16px;font-size:13.5px;line-height:1.65}
+.explain.blue{background:var(--accent-soft);border:1px solid var(--accent-border);color:#1A55B0}
+.explain.green{background:var(--green-soft);border:1px solid var(--green-border);color:#0F6B2E}
+.explain.orange{background:var(--orange-soft);border:1px solid var(--orange-border);color:#8A5510}
+.explain.purple{background:var(--purple-soft);border:1px solid var(--purple-border);color:#5222A0}
+.explain.teal{background:var(--teal-soft);border:1px solid var(--teal-border);color:#0A6060}
+.explain.rose{background:var(--rose-soft);border:1px solid var(--rose-border);color:#9A2545}
+.explain strong{font-weight:600}
+
+.class-tag{display:inline-block;background:var(--code-bg);color:#A5D6A7;font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:2px 7px;border-radius:4px;font-weight:500}
+.class-tag.yellow{color:#FDE68A}
+
+.flow-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+.flow-table th{text-align:left;padding:10px 14px;background:var(--surface-alt);border:1px solid var(--border);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--text-2)}
+.flow-table td{padding:10px 14px;border:1px solid var(--border-light);vertical-align:top}
+.flow-table td code{font-size:12px}
+.flow-table tr:hover td{background:var(--surface-alt)}
+
+.screen-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.screen-badge.desktop{background:#DBEAFE;color:#1E40AF}
+.screen-badge.tablet{background:#FCE7F3;color:#9D174D}
+.screen-badge.phone{background:#FEF3C7;color:#92400E}
+
+.section-divider{height:1px;background:var(--border);margin:48px 0}
+footer{text-align:center;padding:36px 24px;color:var(--text-3);font-size:13px;border-top:1px solid var(--border);margin-top:32px}
+
+@media(max-width:640px){
+.hero{padding:48px 20px 44px}.nav-bar{margin:-20px 16px 28px;padding:12px 14px}.container{padding:0 16px}
+pre{font-size:11.5px;padding:14px 14px}.recipe>.desc{padding-left:0}
+.flow-table{font-size:12px}.flow-table th,.flow-table td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= HERO ======================= -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge">ZC Grid CSS • Form </div>
+    <h1>Form Layout<br><span>with Responsive Breakpoints</span></h1>
+    <p>Every form field now includes <code style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#FDE68A">sm</code>, <code style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#FDE68A">md</code>, <code style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#FDE68A">xs</code> responsive classes so layouts adapt gracefully from desktop → tablet → phone.</p>
+  </div>
+</div>
+
+<!-- ======================= NAV ======================= -->
+<div class="container">
+<nav class="nav-bar">
+  <a href="#why"><span class="num">!</span>Why Responsive?</a>
+  <a href="#think"><span class="num">?</span>How to Think</a>
+  <a href="#r1"><span class="num">1</span>1-Column</a>
+  <a href="#r2"><span class="num">2</span>2-Column</a>
+  <a href="#r3"><span class="num">3</span>3-Column</a>
+  <a href="#r4"><span class="num">4</span>3-Col → 1-Col</a>
+  <a href="#r5"><span class="num">5</span>2-Col + 1-Col</a>
+  <a href="#r6"><span class="num">6</span>Multi-Section</a>
+  <a href="#r7"><span class="num">7</span>Inline Label</a>
+  <a href="#r8"><span class="num">8</span>Uneven Widths</a>
+</nav>
+</div>
+
+<div class="container">
+
+<!-- ================ WHY RESPONSIVE ================ -->
+<section class="recipe" id="why">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:#FEF3C7;color:#92400E;">!</div>
+    <h2>Why Responsive Classes Are Essential for Forms</h2>
+  </div>
+  <p class="desc">Without responsive classes, a 3-column form on desktop stays 3-column on a tiny phone — making each input impossibly narrow. Responsive classes fix this by changing the width at each screen size.</p>
+
+  <div class="explain orange">
+    <strong>The problem without responsive classes:</strong><br><br>
+    <code>zc-col-4</code> alone = "always be one-third width, on EVERY screen"<br>
+    On a 1400px desktop → each field is ~460px wide ✅ Great<br>
+    On a 768px tablet → each field is ~250px wide ⚠️ Tight<br>
+    On a 375px phone → each field is ~120px wide ❌ Broken — can't even type a name!<br><br>
+    <strong>The fix — add responsive overrides:</strong><br><br>
+    <code>zc-col-4 <strong style="color:#D97706">zc-col-md-6 zc-col-xs-12</strong></code><br>
+    On desktop → one-third width → 3 per row ✅<br>
+    On tablet (≤992px) → <code>md-6</code> kicks in → half width → 2 per row ✅<br>
+    On phone (≤576px) → <code>xs-12</code> kicks in → full width → 1 per row ✅
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ HOW TO THINK ================ -->
+<section class="recipe" id="think">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--accent-soft);color:var(--accent);">?</div>
+    <h2>How to Think: The Responsive Decision Cheatsheet</h2>
+  </div>
+  <p class="desc">Use this table every time you create a form field. Find your desktop column count on the left, then read across for the classes to add.</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Copy-Paste Ready Combinations</div>
+    <div class="preview-body" style="overflow-x:auto">
+      <table class="flow-table">
+        <tbody><tr>
+          <th>Desktop Layout</th>
+          <th><span class="screen-badge desktop">Desktop</span><br>Default</th>
+          <th><span class="screen-badge tablet">Tablet ≤992</span><br>md override</th>
+          <th><span class="screen-badge phone">Phone ≤576</span><br>xs override</th>
+          <th>Full class string to copy</th>
+        </tr>
+        <tr>
+          <td><strong>3 fields per row</strong></td>
+          <td><code>zc-col-4</code></td>
+          <td><code>zc-col-md-6</code><br><em>→ 2 per row</em></td>
+          <td><code>zc-col-xs-12</code><br><em>→ 1 per row</em></td>
+          <td><code style="color:var(--green);background:var(--green-soft);border-color:var(--green-border)">zc-col-4 zc-col-md-6 zc-col-xs-12</code></td>
+        </tr>
+        <tr>
+          <td><strong>2 fields per row</strong></td>
+          <td><code>zc-col-6</code></td>
+          <td><em>not needed</em><br><em>(still fine)</em></td>
+          <td><code>zc-col-xs-12</code><br><em>→ 1 per row</em></td>
+          <td><code style="color:var(--green);background:var(--green-soft);border-color:var(--green-border)">zc-col-6 zc-col-xs-12</code></td>
+        </tr>
+        <tr>
+          <td><strong>1 field per row</strong></td>
+          <td><code>zc-col-12</code></td>
+          <td><em>not needed</em></td>
+          <td><em>not needed</em></td>
+          <td><code style="color:var(--green);background:var(--green-soft);border-color:var(--green-border)">zc-col-12</code></td>
+        </tr>
+        <tr>
+          <td><strong>Wide + Narrow</strong><br>(e.g. 8 + 4)</td>
+          <td><code>zc-col-8</code><br><code>zc-col-4</code></td>
+          <td><code>zc-col-md-6</code><br><em>→ equal halves</em></td>
+          <td><code>zc-col-xs-12</code><br><em>→ stacked</em></td>
+          <td><code style="color:var(--green);background:var(--green-soft);border-color:var(--green-border)">zc-col-8 zc-col-md-6 zc-col-xs-12</code><br><code style="color:var(--green);background:var(--green-soft);border-color:var(--green-border)">zc-col-4 zc-col-md-6 zc-col-xs-12</code></td>
+        </tr>
+        <tr>
+          <td><strong>Inline label + field</strong></td>
+          <td><code>zc-col-3</code> (label)<br><code>zc-col-common</code> (field)</td>
+          <td colspan="2"><code>zc-col-sm-12</code> on label<br><em>→ label stacks above field</em></td>
+          <td><code style="color:var(--green);background:var(--green-soft);border-color:var(--green-border)">zc-col-3 zc-col-sm-12</code> (label)<br><code style="color:var(--green);background:var(--green-soft);border-color:var(--green-border)">zc-col-common</code> (field)</td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <div class="explain blue">
+    <strong>Simple rule of thumb:</strong><br>
+    • <code>zc-col-12</code> → needs 0 responsive overrides (already full-width everywhere)<br>
+    • <code>zc-col-6</code> → needs 1 override: add <code>zc-col-xs-12</code><br>
+    • <code>zc-col-4</code> or smaller → needs 2 overrides: add <code>zc-col-md-6 zc-col-xs-12</code><br><br>
+    <strong>The more columns on desktop, the more overrides you need.</strong>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 1 ================ -->
+<section class="recipe" id="r1">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--accent-soft);color:var(--accent)">1</div>
+    <h2>1-Column Form</h2>
+  </div>
+  <p class="desc">All fields full-width. No responsive classes needed — <code>zc-col-12</code> is already 100% on every screen.</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview</div>
+    <div class="preview-body">
+      <div class="zc-row zc-gap-16">
+        <div class="zc-col-12 demo-field"><label>Full Name</label><input type="text" placeholder="Enter your full name"></div>
+        <div class="zc-col-12 demo-field"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+        <div class="zc-col-12 demo-field"><label>Message</label><textarea placeholder="Write here..."></textarea></div>
+        <div class="zc-col-12"><button class="demo-btn demo-btn-primary">Submit</button></div>
+      </div>
+    </div>
+  </div>
+
+  <pre><span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-12"</span><span class="hl-tag">&gt;</span> Full Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-12"</span><span class="hl-tag">&gt;</span> Email <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-12"</span><span class="hl-tag">&gt;</span> Message <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain blue"><strong>No responsive overrides needed.</strong> <code>zc-col-12</code> = 100% width at every breakpoint. It literally can't get wider.</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 2 ================ -->
+<section class="recipe" id="r2">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--green-soft);color:var(--green)">2</div>
+    <h2>2-Column Form (Responsive)</h2>
+  </div>
+  <p class="desc">Two per row on desktop → stacks to one-per-row on phones. Resize your browser to see it work!</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview — Resize browser to test!</div>
+    <div class="preview-body">
+      <div class="zc-row zc-gap-16">
+        <div class="zc-col-6 zc-col-xs-12 demo-field"><label>First Name</label><input type="text" placeholder="John"></div>
+        <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+        <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Email</label><input type="email" placeholder="john@example.com"></div>
+        <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"></div>
+      </div>
+    </div>
+  </div>
+
+  <pre><span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-6 <span class="hl-resp">zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> First Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-6 <span class="hl-resp">zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Last Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-6 <span class="hl-resp">zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Email <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-6 <span class="hl-resp">zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Phone <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain green">
+    <span class="screen-badge desktop">Desktop</span> <span class="class-tag">zc-col-6</span> → half width → 2 per row<br>
+    <span class="screen-badge phone">Phone ≤576px</span> <span class="class-tag yellow">zc-col-xs-12</span> kicks in → full width → 1 per row<br><br>
+    <strong>Why no md class?</strong> Because half-width is still comfortable on tablets (~480px per field). You only need to stack on small phones.
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 3 ================ -->
+<section class="recipe" id="r3">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--purple-soft);color:var(--purple)">3</div>
+    <h2>3-Column Form (Responsive)</h2>
+  </div>
+  <p class="desc">Three per row → two on tablet → one on phone. This is where responsive classes become critical — without them, each field would be ~120px on a phone.</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview — Resize browser to see 3→2→1 flow!</div>
+    <div class="preview-body">
+      <div class="zc-row zc-gap-16">
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>First Name</label><input type="text" placeholder="John"></div>
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Middle Name</label><input type="text" placeholder="Michael"></div>
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Date of Birth</label><input type="date"></div>
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Gender</label><select><option>Male</option><option>Female</option></select></div>
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Blood Group</label><select><option>A+</option><option>B+</option><option>O+</option></select></div>
+      </div>
+    </div>
+  </div>
+
+  <pre><span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> First Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Middle Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Last Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-cmt">&lt;!-- same pattern for remaining fields --&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain purple">
+    <span class="screen-badge desktop">Desktop &gt;992px</span> <span class="class-tag">zc-col-4</span> → one-third → 3 per row<br>
+    <span class="screen-badge tablet">Tablet ≤992px</span> <span class="class-tag yellow">zc-col-md-6</span> → half → 2 per row<br>
+    <span class="screen-badge phone">Phone ≤576px</span> <span class="class-tag yellow">zc-col-xs-12</span> → full → 1 per row
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 4 ================ -->
+<section class="recipe" id="r4">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--orange-soft);color:var(--orange)">4</div>
+    <h2>Mixed: 3-Column Section → 1-Column Flat Fields</h2>
+  </div>
+  <p class="desc">Grouped 3-column section at top (with responsive) + flat full-width fields below (no responsive needed).</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview — Resize to see 3→2→1 in the top section!</div>
+    <div class="preview-body">
+      <div class="demo-form-section">
+        <div class="demo-section-title">Personal Details</div>
+        <div class="zc-row zc-gap-16">
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>First Name</label><input type="text" placeholder="John"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Middle Name</label><input type="text" placeholder="Michael"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Date of Birth</label><input type="date"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Gender</label><select><option>Male</option><option>Female</option></select></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Nationality</label><input type="text" placeholder="Indian"></div>
+        </div>
+      </div>
+      <div class="demo-divider"></div>
+      <div class="zc-row zc-gap-16">
+        <div class="zc-col-12 demo-field"><label>Current Address</label><textarea placeholder="Enter your full address..."></textarea></div>
+        <div class="zc-col-12 demo-field"><label>Additional Notes</label><textarea placeholder="Any additional information..."></textarea></div>
+        <div class="zc-col-12 zc-flex zc-justify-end zc-gap-8">
+          <button class="demo-btn demo-btn-secondary">Cancel</button>
+          <button class="demo-btn demo-btn-primary">Save Record</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <pre><span class="hl-cmt">&lt;!-- ✅ SECTION: 3-column with responsive --&gt;</span>
+<span class="hl-tag">&lt;h3&gt;</span>Personal Details<span class="hl-tag">&lt;/h3&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> First Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Middle Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Last Name <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-cmt">&lt;!-- more col-4 md-6 xs-12 fields... --&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-cmt">&lt;!-- ✅ FLAT: always full-width, NO responsive needed --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-12"</span><span class="hl-tag">&gt;</span> Address <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-12"</span><span class="hl-tag">&gt;</span> Notes <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain orange"><strong>Only the 3-column section needs responsive classes.</strong> The flat <code>zc-col-12</code> section is already full-width everywhere — no overrides needed. You only add responsive classes to fields narrower than full-width.</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 5 ================ -->
+<section class="recipe" id="r5">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--teal-soft);color:var(--teal)">5</div>
+    <h2>Mixed: 2-Col Section + 1-Col + Action Bar</h2>
+  </div>
+  <p class="desc">2-column section for short fields → full-width textareas → action bar.</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview</div>
+    <div class="preview-body">
+      <div class="demo-form-section">
+        <div class="demo-section-title">Contact Information</div>
+        <div class="zc-row zc-gap-16">
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Email</label><input type="email" placeholder="john@company.com"></div>
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"></div>
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>City</label><input type="text" placeholder="Chennai"></div>
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>State</label><input type="text" placeholder="Tamil Nadu"></div>
+        </div>
+      </div>
+      <div class="demo-divider"></div>
+      <div class="zc-row zc-gap-16">
+        <div class="zc-col-12 demo-field"><label>Full Address</label><textarea placeholder="Street address..."></textarea></div>
+      </div>
+      <div class="demo-divider"></div>
+      <div class="zc-flex zc-justify-space-between zc-align-items-center" style="flex-wrap:wrap;gap:12px">
+        <span style="font-size:12px;color:var(--text-3)">* All fields are required</span>
+        <div class="zc-flex zc-gap-8">
+          <button class="demo-btn demo-btn-secondary">Discard</button>
+          <button class="demo-btn demo-btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <pre><span class="hl-cmt">&lt;!-- 2-column section with phone fallback --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-6 <span class="hl-resp">zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Email <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-6 <span class="hl-resp">zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Phone <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Full-width + action bar --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-12"</span><span class="hl-tag">&gt;</span> Address <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain teal"><strong>2-column shortcut:</strong> For <code>zc-col-6</code> fields you only need <code>zc-col-xs-12</code>. No md override needed because half-width is still fine on tablets.</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 6 ================ -->
+<section class="recipe" id="r6">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--rose-soft);color:var(--rose)">6</div>
+    <h2>Multi-Section Complex Form (Full Responsive)</h2>
+  </div>
+  <p class="desc">3-col section → 2-col section → 1-col flat fields. Each section has the appropriate responsive overrides.</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview — Resize to test all breakpoints!</div>
+    <div class="preview-body">
+      <div class="demo-form-section">
+        <div class="demo-section-title">Personal Details</div>
+        <div class="zc-row zc-gap-16">
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>First Name</label><input type="text" placeholder="John"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Middle Name</label><input type="text" placeholder="Michael"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Date of Birth</label><input type="date"></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Gender</label><select><option>Male</option><option>Female</option></select></div>
+          <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Marital Status</label><select><option>Single</option><option>Married</option></select></div>
+        </div>
+      </div>
+      <div class="demo-divider"></div>
+      <div class="demo-form-section">
+        <div class="demo-section-title">Employment Information</div>
+        <div class="zc-row zc-gap-16">
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Employee ID</label><input type="text" placeholder="EMP-00421"></div>
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Department</label><select><option>Engineering</option><option>Design</option></select></div>
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Designation</label><input type="text" placeholder="Senior Developer"></div>
+          <div class="zc-col-6 zc-col-xs-12 demo-field"><label>Joining Date</label><input type="date"></div>
+        </div>
+      </div>
+      <div class="demo-divider"></div>
+      <div class="zc-row zc-gap-16">
+        <div class="zc-col-12 demo-field"><label>Permanent Address</label><textarea placeholder="Full address..."></textarea></div>
+        <div class="zc-col-12 demo-field"><label>Emergency Contact</label><textarea placeholder="Name, phone..."></textarea></div>
+      </div>
+      <div class="demo-divider"></div>
+      <div class="zc-flex zc-justify-end zc-gap-8"><button class="demo-btn demo-btn-secondary">Cancel</button><button class="demo-btn demo-btn-primary">Submit</button></div>
+    </div>
+  </div>
+
+  <pre><span class="hl-cmt">&lt;!-- SECTION 1: 3-col (needs md + xs overrides) --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span>...<span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-cmt">&lt;!-- SECTION 2: 2-col (needs xs override only) --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-6 <span class="hl-resp">zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span>...<span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-cmt">&lt;!-- FLAT: 1-col (no overrides needed) --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-12"</span><span class="hl-tag">&gt;</span>...<span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain rose">
+    <strong>Responsive overrides per section type:</strong><br>
+    3-col fields → <code>zc-col-4 <strong>zc-col-md-6 zc-col-xs-12</strong></code> (2 overrides)<br>
+    2-col fields → <code>zc-col-6 <strong>zc-col-xs-12</strong></code> (1 override)<br>
+    1-col fields → <code>zc-col-12</code> (0 overrides)
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 7 ================ -->
+<section class="recipe" id="r7">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--accent-soft);color:var(--accent)">7</div>
+    <h2>Inline Label + Field (Responsive)</h2>
+  </div>
+  <p class="desc">Label sits beside the field on desktop → stacks above it on small screens using <code>zc-col-sm-12</code>.</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview</div>
+    <div class="preview-body">
+      <div class="zc-flex zc-direction-column zc-gap-16">
+        <div class="zc-row zc-gap-12 zc-align-items-center">
+          <label class="zc-col-3 zc-col-sm-12 zc-no-shrink demo-field" style="margin:0"><span style="font-size:12.5px;font-weight:600;color:var(--text-2)">Company Name</span></label>
+          <div class="zc-col-common demo-field" style="margin:0"><input type="text" placeholder="Zoho Corporation"></div>
+        </div>
+        <div class="zc-row zc-gap-12 zc-align-items-center">
+          <label class="zc-col-3 zc-col-sm-12 zc-no-shrink demo-field" style="margin:0"><span style="font-size:12.5px;font-weight:600;color:var(--text-2)">Industry</span></label>
+          <div class="zc-col-common demo-field" style="margin:0"><select><option>Technology</option><option>Finance</option></select></div>
+        </div>
+        <div class="zc-row zc-gap-12 zc-align-items-center">
+          <label class="zc-col-3 zc-col-sm-12 zc-no-shrink demo-field" style="margin:0"><span style="font-size:12.5px;font-weight:600;color:var(--text-2)">Website</span></label>
+          <div class="zc-col-common demo-field" style="margin:0"><input type="url" placeholder="https://www.zoho.com"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <pre><span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-12 zc-align-items-center"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;label</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-3 <span class="hl-resp">zc-col-sm-12</span> zc-no-shrink"</span><span class="hl-tag">&gt;</span>Company<span class="hl-tag">&lt;/label&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-common"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;input</span> <span class="hl-attr">type=</span><span class="hl-str">"text"</span> <span class="hl-tag">/&gt;</span>
+  <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain blue">
+    <span class="screen-badge desktop">Desktop</span> <span class="class-tag">zc-col-3</span> on label → sits beside the input (25% width)<br>
+    <span class="screen-badge tablet">≤768px</span> <span class="class-tag yellow">zc-col-sm-12</span> → label goes full-width, input wraps below it<br><br>
+    <strong>Why <code>zc-row</code> not <code>zc-flex</code>?</strong> Because <code>zc-row</code> wraps items. When the label becomes <code>sm-12</code> (full-width), the input wraps to the next line. With <code>zc-flex</code> (no wrap), items would squeeze instead.
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================ RECIPE 8 ================ -->
+<section class="recipe" id="r8">
+  <div class="recipe-header">
+    <div class="recipe-num" style="background:var(--purple-soft);color:var(--purple)">8</div>
+    <h2>Uneven Widths (Responsive)</h2>
+  </div>
+  <p class="desc">Mixed widths (8+4, 5+4+3, 3+9) that equalize to halves on tablet and stack on phone.</p>
+
+  <div class="preview-wrap">
+    <div class="preview-label"><span class="dot"></span> Live Preview — Resize to see equalization!</div>
+    <div class="preview-body">
+      <div class="zc-row zc-gap-16">
+        <div class="zc-col-8 zc-col-md-6 zc-col-xs-12 demo-field"><label>Street Address</label><input type="text" placeholder="123 Anna Salai"></div>
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>Pin Code</label><input type="text" placeholder="600018"></div>
+        <div class="zc-col-5 zc-col-md-6 zc-col-xs-12 demo-field"><label>City</label><input type="text" placeholder="Chennai"></div>
+        <div class="zc-col-4 zc-col-md-6 zc-col-xs-12 demo-field"><label>State</label><select><option>Tamil Nadu</option><option>Kerala</option></select></div>
+        <div class="zc-col-3 zc-col-md-6 zc-col-xs-12 demo-field"><label>Country</label><select><option>India</option><option>USA</option></select></div>
+        <div class="zc-col-3 zc-col-md-6 zc-col-xs-12 demo-field"><label>Code</label><select><option>+91</option><option>+1</option></select></div>
+        <div class="zc-col-9 zc-col-md-6 zc-col-xs-12 demo-field"><label>Phone Number</label><input type="tel" placeholder="98765 43210"></div>
+      </div>
+    </div>
+  </div>
+
+  <pre><span class="hl-cmt">&lt;!-- Desktop: uneven (8+4, 5+4+3, 3+9) → Tablet: equal halves → Phone: stacked --&gt;</span>
+
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-row zc-gap-16"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-8 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Street <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Pin Code <span class="hl-tag">&lt;/div&gt;</span>
+
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-5 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> City <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-4 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> State <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-3 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Country <span class="hl-tag">&lt;/div&gt;</span>
+
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-3 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Code <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class=</span><span class="hl-str">"zc-col-9 <span class="hl-resp">zc-col-md-6 zc-col-xs-12</span>"</span><span class="hl-tag">&gt;</span> Phone <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+
+  <div class="explain purple"><strong>The equalization trick:</strong> On desktop, fields have unequal widths (8+4, 5+4+3). On tablet, everything normalizes to <code>zc-col-md-6</code> (equal halves) for a clean look. On phone, everything stacks with <code>zc-col-xs-12</code>. The 3-item row (5+4+3) wraps as 2+1 on tablet — totally fine, the third field just flows down.</div>
+</section>
+
+</div>
+
+<footer>ZC Grid CSS — Form Layout Recipes v2 (with Responsive Breakpoints) — Zoho Creator Design System</footer>
+
+
+
+</body></html>
