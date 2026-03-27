@@ -12,7 +12,7 @@
       color: #2d3748;
       padding: 30px 20px;
     }
-    .container { max-width: 960px; margin: 0 auto; }
+    .container { max-width: 1060px; margin: 0 auto; }
 
     /* Header */
     .report-header {
@@ -45,6 +45,7 @@
     table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
     thead tr { background: #2b6cb0; color: white; }
     thead th { padding: 13px 16px; text-align: left; font-size: 13px; font-weight: 600; letter-spacing: 0.4px; }
+    thead th.wi-col { background: #1a4a2e; }
     tbody tr { border-bottom: 1px solid #e8edf3; transition: background 0.15s; }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: #f0f5ff; }
@@ -63,8 +64,22 @@
     .badge-num.zero { background: #f7fafc; color: #a0aec0; }
     .badge-total { background: #2b6cb0; color: white; border-radius: 12px; padding: 3px 12px; font-weight: 700; font-size: 13px; }
 
+    /* WI badge */
+    .badge-wi {
+      display: inline-block;
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .badge-wi.zero { background: #f7fafc; color: #a0aec0; }
+    td.wi-cell { background: #f0fdf4; }
+    .total-row td.wi-cell { background: #d1fae5 !important; color: #065f46; }
+
     /* Person Cards */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 20px; }
     .card {
       background: white;
       border-radius: 10px;
@@ -86,6 +101,15 @@
     }
     .card-header .name { font-weight: 700; font-size: 15px; }
     .card-header .count { margin-left: auto; font-size: 22px; font-weight: 800; }
+    .card-header .wi-badge-header {
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 20px;
+      padding: 3px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .card-body { padding: 0 18px 16px; }
     .month-block { margin-top: 12px; }
     .month-label {
@@ -107,6 +131,84 @@
       font-family: monospace;
     }
     .chip.shared { background: #fff7ed; color: #c05621; }
+    .chip.wi {
+      background: #d1fae5;
+      color: #065f46;
+      border-left: 3px solid #10b981;
+      font-weight: 700;
+    }
+    .chip.wi-parent {
+      background: #d1fae5;
+      color: #065f46;
+      border-left: 3px solid #10b981;
+      font-weight: 700;
+    }
+    .chip.wi-child {
+      background: #ecfdf5;
+      color: #047857;
+      border-left: 3px dashed #6ee7b7;
+      font-style: italic;
+    }
+
+    /* WI section inside card */
+    .wi-block {
+      margin-top: 14px;
+      background: #f0fdf4;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid #bbf7d0;
+    }
+    .wi-block-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #065f46;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .wi-entry { margin-bottom: 6px; }
+    .wi-entry:last-child { margin-bottom: 0; }
+    .wi-entry .wi-main-chip {
+      display: inline-flex;
+      align-items: center;
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 6px;
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: monospace;
+      border-left: 3px solid #10b981;
+    }
+    .wi-entry .wi-children {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+      padding-left: 14px;
+    }
+    .wi-entry .wi-child-chip {
+      display: inline-flex;
+      align-items: center;
+      background: #ecfdf5;
+      color: #047857;
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      font-family: monospace;
+      border-left: 2px dashed #6ee7b7;
+    }
+    .wi-entry .wi-note {
+      font-size: 11px;
+      color: #6b7280;
+      font-style: italic;
+      margin-top: 2px;
+      padding-left: 14px;
+    }
 
     /* Notes */
     .notes-box {
@@ -132,8 +234,6 @@
     .c-saravanan  { background-color: #b83280; }
     .c-nivetha    { background-color: #2c7a7b; }
     .c-arun       { background-color: #744210; }
-    .c-nagarajan  { background-color: #4a5568; }
-    .c-madan      { background-color: #4a5568; }
 
     .border-roshini    { border-top: 4px solid #276749; }
     .border-chandru    { border-top: 4px solid #2b6cb0; }
@@ -154,6 +254,19 @@
     .text-arun       { color: #744210; }
 
     .footer { text-align: center; margin-top: 36px; font-size: 12px; color: #a0aec0; }
+
+    /* WI legend pill */
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 12px;
+      color: #4a5568;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -166,12 +279,17 @@
     <div class="meta">
       <span>📅 Jan – Mar 2026</span>
       <span>🎟️ 73 Total Tickets</span>
+      <span>✅ 19 WI Converted</span>
     </div>
   </div>
 
   <!-- Summary Table -->
   <div class="section">
     <div class="section-title">Summary by Person</div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span> WI Converted — ticket raised as Work Item</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#6ee7b7;border: 1px dashed #10b981"></span> Child ticket under a parent WI</span>
+    </div>
     <table>
       <thead>
         <tr>
@@ -180,6 +298,8 @@
           <th>February</th>
           <th>March</th>
           <th>Total</th>
+          <th class="wi-col">✅ WI Converted</th>
+          <th class="wi-col">WI Ticket IDs</th>
         </tr>
       </thead>
       <tbody>
@@ -189,6 +309,12 @@
           <td><span class="badge-num">12</span></td>
           <td><span class="badge-num">13</span></td>
           <td><span class="badge-total">41</span></td>
+          <td class="wi-cell"><span class="badge-wi">3 (+3 child)</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:12px;color:#065f46;line-height:1.7">
+            153281293, 152453889<br>
+            154219923 <span style="color:#6b7280;font-style:italic;font-family:sans-serif;font-size:11px">(parent)</span><br>
+            <span style="color:#047857;font-size:11px">↳ children: 154194055, 154239179, 154188550</span>
+          </td>
         </tr>
         <tr>
           <td><span class="avatar c-chandru" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">C</span><strong>Chandru</strong></td>
@@ -196,6 +322,10 @@
           <td><span class="badge-num zero">0</span></td>
           <td><span class="badge-num">14</span></td>
           <td><span class="badge-total">14</span></td>
+          <td class="wi-cell"><span class="badge-wi">5</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:12px;color:#065f46;line-height:1.7">
+            156580402, 156338447<br>155916570, 155832563<br>153579738
+          </td>
         </tr>
         <tr>
           <td><span class="avatar c-dhatchayini" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">D</span><strong>Dhatchayini</strong></td>
@@ -203,6 +333,10 @@
           <td><span class="badge-num">1</span></td>
           <td><span class="badge-num">5</span></td>
           <td><span class="badge-total">6</span></td>
+          <td class="wi-cell"><span class="badge-wi">2</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:12px;color:#065f46;line-height:1.7">
+            155889742, 148855113
+          </td>
         </tr>
         <tr>
           <td><span class="avatar c-sankari" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">S</span><strong>Sankari</strong></td>
@@ -210,6 +344,10 @@
           <td><span class="badge-num">1</span></td>
           <td><span class="badge-num zero">0</span></td>
           <td><span class="badge-total">4</span></td>
+          <td class="wi-cell"><span class="badge-wi">4</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:12px;color:#065f46;line-height:1.7">
+            152530195, 153547183<br>153379367, 155349990
+          </td>
         </tr>
         <tr>
           <td><span class="avatar c-vignesh" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">V</span><strong>Vignesh</strong></td>
@@ -217,6 +355,8 @@
           <td><span class="badge-num">1</span></td>
           <td><span class="badge-num zero">0</span></td>
           <td><span class="badge-total">3</span></td>
+          <td class="wi-cell"><span class="badge-wi">1</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:12px;color:#065f46">97320121</td>
         </tr>
         <tr>
           <td><span class="avatar c-saravanan" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">S</span><strong>Saravanan</strong></td>
@@ -224,6 +364,8 @@
           <td><span class="badge-num">1</span></td>
           <td><span class="badge-num zero">0</span></td>
           <td><span class="badge-total">2</span></td>
+          <td class="wi-cell"><span class="badge-wi">2</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:12px;color:#065f46">154105747, 154484255</td>
         </tr>
         <tr>
           <td><span class="avatar c-nivetha" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">N</span><strong>Nivetha</strong></td>
@@ -231,6 +373,8 @@
           <td><span class="badge-num zero">0</span></td>
           <td><span class="badge-num">1</span></td>
           <td><span class="badge-total">2</span></td>
+          <td class="wi-cell"><span class="badge-wi zero">—</span></td>
+          <td class="wi-cell" style="color:#a0aec0;font-size:12px">—</td>
         </tr>
         <tr>
           <td><span class="avatar c-arun" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">A</span><strong>Arun</strong></td>
@@ -238,6 +382,10 @@
           <td><span class="badge-num">1</span></td>
           <td><span class="badge-num zero">0</span></td>
           <td><span class="badge-total">1</span></td>
+          <td class="wi-cell"><span class="badge-wi">2</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:12px;color:#065f46;line-height:1.7">
+            152275083, 155009241
+          </td>
         </tr>
 
         <tr class="total-row">
@@ -246,10 +394,12 @@
           <td><strong>16</strong></td>
           <td><strong>33</strong></td>
           <td><strong>73*</strong></td>
+          <td class="wi-cell"><strong>19 (+3 child)</strong></td>
+          <td class="wi-cell" style="font-size:12px;color:#065f46"><strong>Across 7 team members</strong></td>
         </tr>
       </tbody>
     </table>
-    <p style="font-size:12px;color:#718096;margin-top:8px;">* Total exceeds 66 unique tickets due to shared ownership on 4 tickets.</p>
+    <p style="font-size:12px;color:#718096;margin-top:8px;">* Total exceeds 66 unique tickets due to shared ownership on 4 tickets. &nbsp;|&nbsp; WI count: 19 unique WI-converted tickets + 3 child tickets under Roshini's 154219923.</p>
   </div>
 
   <!-- Person Cards -->
@@ -265,13 +415,14 @@
             <div class="name text-roshini">Roshini</div>
             <div style="font-size:12px;color:#718096">👍 Reactions &amp; Thread Replies</div>
           </div>
+          <span class="wi-badge-header">✅ 3 WI (+3 child)</span>
           <div class="count text-roshini">41</div>
         </div>
         <div class="card-body">
           <div class="month-block">
             <div class="month-label">🗓 January — 16 tickets</div>
             <div class="ticket-chips">
-              <span class="chip">153074735</span><span class="chip">153547183</span><span class="chip">153379367</span><span class="chip">153605240</span><span class="chip">152603595</span><span class="chip">153943774</span><span class="chip">154239179</span><span class="chip">154188550</span><span class="chip">154194055</span><span class="chip">154219923</span><span class="chip">152453889</span><span class="chip">154244694</span><span class="chip">154373311</span><span class="chip">154190926</span><span class="chip shared">153281293 ⚑</span><span class="chip">153901624</span>
+              <span class="chip">153074735</span><span class="chip">153547183</span><span class="chip">153379367</span><span class="chip">153605240</span><span class="chip">152603595</span><span class="chip">153943774</span><span class="chip wi">154239179 ✅</span><span class="chip wi-child">↳ child of 154219923</span><span class="chip wi">154188550 ✅</span><span class="chip wi-child">↳ child of 154219923</span><span class="chip wi">154194055 ✅</span><span class="chip wi-child">↳ child of 154219923</span><span class="chip wi">154219923 ✅ (parent)</span><span class="chip wi">152453889 ✅</span><span class="chip">154244694</span><span class="chip">154373311</span><span class="chip">154190926</span><span class="chip shared">153281293 ⚑ ✅</span><span class="chip">153901624</span>
             </div>
           </div>
           <div class="month-block">
@@ -286,6 +437,27 @@
               <span class="chip">155759422</span><span class="chip">155788845</span><span class="chip">155784102</span><span class="chip">155853491</span><span class="chip">155807580</span><span class="chip">155932960</span><span class="chip">154818545</span><span class="chip">156167152</span><span class="chip">156088594</span><span class="chip shared">156218197 ⚑</span><span class="chip">156196179</span><span class="chip">156454486</span><span class="chip shared">156100728 ⚑</span>
             </div>
           </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">153281293</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">(shared with Vignesh)</span>
+            </div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">152453889</span>
+            </div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">154219923</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">parent WI — same issue group</span>
+              <div class="wi-children">
+                <span class="wi-child-chip">154194055</span>
+                <span class="wi-child-chip">154239179</span>
+                <span class="wi-child-chip">154188550</span>
+              </div>
+              <div class="wi-note">↳ 3 child tickets under this parent (same issue)</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -297,13 +469,26 @@
             <div class="name text-chandru">Chandru</div>
             <div style="font-size:12px;color:#718096">👍 Reactions &amp; Thread Replies</div>
           </div>
+          <span class="wi-badge-header">✅ 5 WI</span>
           <div class="count text-chandru">14</div>
         </div>
         <div class="card-body">
           <div class="month-block">
             <div class="month-label">🗓 March — 14 tickets</div>
             <div class="ticket-chips">
-              <span class="chip">155832563</span><span class="chip">155830909</span><span class="chip">155807244</span><span class="chip">155978753</span><span class="chip">155916570</span><span class="chip">156338447</span><span class="chip">156325496</span><span class="chip shared">156100728 ⚑</span><span class="chip shared">156472797 ⚑</span><span class="chip">156580402</span><span class="chip shared">156218197 ⚑</span><span class="chip">156823959</span><span class="chip">156924670</span><span class="chip">156854485</span>
+              <span class="chip wi">155832563 ✅</span><span class="chip">155830909</span><span class="chip">155807244</span><span class="chip">155978753</span><span class="chip wi">155916570 ✅</span><span class="chip wi">156338447 ✅</span><span class="chip">156325496</span><span class="chip shared">156100728 ⚑</span><span class="chip shared">156472797 ⚑</span><span class="chip wi">156580402 ✅</span><span class="chip shared">156218197 ⚑</span><span class="chip">156823959</span><span class="chip">156924670</span><span class="chip">156854485</span>
+            </div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry"><span class="wi-main-chip">156580402</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">156338447</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">155916570</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">155832563</span></div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">153579738</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">(not in ticket list — may be pre-Jan or separate)</span>
             </div>
           </div>
         </div>
@@ -317,6 +502,7 @@
             <div class="name text-dhatchayini">Dhatchayini</div>
             <div style="font-size:12px;color:#718096">👍 Reactions &amp; Thread Replies</div>
           </div>
+          <span class="wi-badge-header">✅ 2 WI</span>
           <div class="count text-dhatchayini">6</div>
         </div>
         <div class="card-body">
@@ -329,7 +515,16 @@
           <div class="month-block">
             <div class="month-label">🗓 March — 5 tickets</div>
             <div class="ticket-chips">
-              <span class="chip">155889742</span><span class="chip">156267297</span><span class="chip">156547302</span><span class="chip shared">156472797 ⚑</span><span class="chip">156839805</span>
+              <span class="chip wi">155889742 ✅</span><span class="chip">156267297</span><span class="chip">156547302</span><span class="chip shared">156472797 ⚑</span><span class="chip">156839805</span>
+            </div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry"><span class="wi-main-chip">155889742</span></div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">148855113</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">(not in current period list — may be pre-Jan)</span>
             </div>
           </div>
         </div>
@@ -343,20 +538,29 @@
             <div class="name text-sankari">Sankari</div>
             <div style="font-size:12px;color:#718096">👍 Reactions</div>
           </div>
+          <span class="wi-badge-header">✅ 4 WI</span>
           <div class="count text-sankari">4</div>
         </div>
         <div class="card-body">
           <div class="month-block">
             <div class="month-label">🗓 January — 3 tickets</div>
             <div class="ticket-chips">
-              <span class="chip">152530195</span><span class="chip shared">153547183 ⚑</span><span class="chip shared">153379367 ⚑</span>
+              <span class="chip wi">152530195 ✅</span><span class="chip shared wi">153547183 ⚑ ✅</span><span class="chip shared wi">153379367 ⚑ ✅</span>
             </div>
           </div>
           <div class="month-block">
             <div class="month-label">🗓 February — 1 ticket</div>
             <div class="ticket-chips">
-              <span class="chip">155349990</span>
+              <span class="chip wi">155349990 ✅</span>
             </div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets <span style="font-weight:400;font-size:10px;color:#047857">(all 4 tickets converted — 100%)</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">152530195</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">153547183</span> <span style="font-size:11px;color:#6b7280;margin-left:6px">(shared with Roshini)</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">153379367</span> <span style="font-size:11px;color:#6b7280;margin-left:6px">(shared with Roshini)</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">155349990</span></div>
           </div>
         </div>
       </div>
@@ -369,6 +573,7 @@
             <div class="name text-vignesh">Vignesh</div>
             <div style="font-size:12px;color:#718096">Thread Replies</div>
           </div>
+          <span class="wi-badge-header">✅ 1 WI</span>
           <div class="count text-vignesh">3</div>
         </div>
         <div class="card-body">
@@ -384,6 +589,14 @@
               <span class="chip">155467097</span>
             </div>
           </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">97320121</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">(not in current period list)</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -395,16 +608,23 @@
             <div class="name text-saravanan">Saravanan</div>
             <div style="font-size:12px;color:#718096">Thread Replies</div>
           </div>
+          <span class="wi-badge-header">✅ 2 WI</span>
           <div class="count text-saravanan">2</div>
         </div>
         <div class="card-body">
           <div class="month-block">
             <div class="month-label">🗓 January — 1 ticket</div>
-            <div class="ticket-chips"><span class="chip">154105747</span></div>
+            <div class="ticket-chips"><span class="chip wi">154105747 ✅</span></div>
           </div>
           <div class="month-block">
             <div class="month-label">🗓 February — 1 ticket</div>
-            <div class="ticket-chips"><span class="chip">154484255</span></div>
+            <div class="ticket-chips"><span class="chip wi">154484255 ✅</span></div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry"><span class="wi-main-chip">154105747</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">154484255</span></div>
           </div>
         </div>
       </div>
@@ -439,12 +659,22 @@
             <div class="name text-arun">Arun</div>
             <div style="font-size:12px;color:#718096">Thread Replies</div>
           </div>
+          <span class="wi-badge-header">✅ 2 WI</span>
           <div class="count text-arun">1</div>
         </div>
         <div class="card-body">
           <div class="month-block">
             <div class="month-label">🗓 February — 1 ticket</div>
-            <div class="ticket-chips"><span class="chip">155009241</span></div>
+            <div class="ticket-chips"><span class="chip wi">155009241 ✅</span></div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">152275083</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">(not in current period list — may be pre-Jan or separate)</span>
+            </div>
+            <div class="wi-entry"><span class="wi-main-chip">155009241</span></div>
           </div>
         </div>
       </div>
@@ -460,12 +690,13 @@
         <li>Ownership is determined by 👍 thumbs-up reaction or thread reply from the team member on the ticket message in the channel.</li>
         <li>Tickets marked with <strong>⚑</strong> (orange chips) are <strong>shared ownership</strong> — multiple people reacted/replied.</li>
         <li>Shared tickets: <strong>153547183 &amp; 153379367</strong> (Roshini + Sankari) &nbsp;|&nbsp; <strong>153281293</strong> (Roshini + Vignesh) &nbsp;|&nbsp; <strong>156472797</strong> (Dhatchayini + Chandru) &nbsp;|&nbsp; <strong>156100728 &amp; 156218197</strong> (Roshini + Chandru)</li>
+        <li>Tickets marked with <strong>✅</strong> (green chips) are <strong>WI Converted</strong> — raised as Work Items.</li>
         <li>Data source: #creatorsupportuidiscussion Cliq channel and craft records extracted on 27 March 2026.</li>
       </ul>
     </div>
   </div>
 
-  <div class="footer">Creator Support UI Team &nbsp;•&nbsp; Ticket Ownership Report Jan–Mar 2026 &nbsp;•&nbsp; Generated 27 Mar 2026</div>
+  <div class="footer">Creator Support UI Team &nbsp;•&nbsp; Ticket Ownership Report Jan–Mar 2026 &nbsp;•&nbsp; Updated 27 Mar 2026</div>
 
 </div>
 </body>
