@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Ownership Report — Jan to Mar 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6f9;
+      color: #2d3748;
+      padding: 30px 20px;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+
+    /* Header */
+    .report-header {
+      background: linear-gradient(135deg, #1a365d, #2b6cb0);
+      color: white;
+      border-radius: 12px;
+      padding: 30px 36px;
+      margin-bottom: 28px;
+    }
+    .report-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .report-header p { font-size: 14px; opacity: 0.85; }
+    .report-header .meta { margin-top: 14px; display: flex; gap: 24px; flex-wrap: wrap; }
+    .report-header .meta span {
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+    }
+
+    /* Summary Table */
+    .section { margin-bottom: 32px; }
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 14px;
+      padding-left: 12px;
+      border-left: 4px solid #2b6cb0;
+    }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+    thead tr { background: #2b6cb0; color: white; }
+    thead th { padding: 13px 16px; text-align: left; font-size: 13px; font-weight: 600; letter-spacing: 0.4px; }
+    tbody tr { border-bottom: 1px solid #e8edf3; transition: background 0.15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f0f5ff; }
+    tbody td { padding: 12px 16px; font-size: 13.5px; }
+    .total-row { background: #eef2ff !important; font-weight: 700; }
+    .total-row td { color: #1a365d; }
+    .badge-num {
+      display: inline-block;
+      background: #ebf4ff;
+      color: #2b6cb0;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .badge-num.zero { background: #f7fafc; color: #a0aec0; }
+    .badge-total { background: #2b6cb0; color: white; border-radius: 12px; padding: 3px 12px; font-weight: 700; font-size: 13px; }
+
+    /* Person Cards */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px; color: white;
+      flex-shrink: 0;
+    }
+    .card-header .name { font-weight: 700; font-size: 15px; }
+    .card-header .count { margin-left: auto; font-size: 22px; font-weight: 800; }
+    .card-body { padding: 0 18px 16px; }
+    .month-block { margin-top: 12px; }
+    .month-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #718096;
+      margin-bottom: 6px;
+    }
+    .ticket-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: #edf2ff;
+      color: #3730a3;
+      border-radius: 6px;
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: monospace;
+    }
+    .chip.shared { background: #fff7ed; color: #c05621; }
+
+    /* Notes */
+    .notes-box {
+      background: white;
+      border-radius: 10px;
+      padding: 18px 22px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    }
+    .notes-box ul { list-style: none; padding: 0; }
+    .notes-box li { padding: 6px 0; font-size: 13.5px; border-bottom: 1px solid #f0f4f8; display: flex; gap: 8px; }
+    .notes-box li:last-child { border-bottom: none; }
+    .notes-box li::before { content: "ℹ️"; flex-shrink: 0; }
+
+    /* Zero row styling */
+    .zero-row td { color: #a0aec0; }
+
+    /* Colors per person */
+    .c-roshini    { background-color: #276749; }
+    .c-chandru    { background-color: #2b6cb0; }
+    .c-dhatchayini{ background-color: #b7791f; }
+    .c-sankari    { background-color: #c05621; }
+    .c-vignesh    { background-color: #553c9a; }
+    .c-saravanan  { background-color: #b83280; }
+    .c-nivetha    { background-color: #2c7a7b; }
+    .c-arun       { background-color: #744210; }
+    .c-nagarajan  { background-color: #4a5568; }
+    .c-madan      { background-color: #4a5568; }
+
+    .border-roshini    { border-top: 4px solid #276749; }
+    .border-chandru    { border-top: 4px solid #2b6cb0; }
+    .border-dhatchayini{ border-top: 4px solid #b7791f; }
+    .border-sankari    { border-top: 4px solid #c05621; }
+    .border-vignesh    { border-top: 4px solid #553c9a; }
+    .border-saravanan  { border-top: 4px solid #b83280; }
+    .border-nivetha    { border-top: 4px solid #2c7a7b; }
+    .border-arun       { border-top: 4px solid #744210; }
+
+    .text-roshini    { color: #276749; }
+    .text-chandru    { color: #2b6cb0; }
+    .text-dhatchayini{ color: #b7791f; }
+    .text-sankari    { color: #c05621; }
+    .text-vignesh    { color: #553c9a; }
+    .text-saravanan  { color: #b83280; }
+    .text-nivetha    { color: #2c7a7b; }
+    .text-arun       { color: #744210; }
+
+    .footer { text-align: center; margin-top: 36px; font-size: 12px; color: #a0aec0; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="report-header">
+    <h1>Ticket Ownership Report</h1>
+    <p>Creator Support UI Discussion — #creatorsupportuidiscussion</p>
+    <div class="meta">
+      <span>📅 Jan – Mar 2026</span>
+      <span>🎟️ 73 Total Tickets</span>
+    </div>
+  </div>
+
+  <!-- Summary Table -->
+  <div class="section">
+    <div class="section-title">Summary by Person</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th>January</th>
+          <th>February</th>
+          <th>March</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="avatar c-roshini" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">R</span><strong>Roshini</strong></td>
+          <td><span class="badge-num">16</span></td>
+          <td><span class="badge-num">12</span></td>
+          <td><span class="badge-num">13</span></td>
+          <td><span class="badge-total">41</span></td>
+        </tr>
+        <tr>
+          <td><span class="avatar c-chandru" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">C</span><strong>Chandru</strong></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-num">14</span></td>
+          <td><span class="badge-total">14</span></td>
+        </tr>
+        <tr>
+          <td><span class="avatar c-dhatchayini" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">D</span><strong>Dhatchayini</strong></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-num">5</span></td>
+          <td><span class="badge-total">6</span></td>
+        </tr>
+        <tr>
+          <td><span class="avatar c-sankari" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">S</span><strong>Sankari</strong></td>
+          <td><span class="badge-num">3</span></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-total">4</span></td>
+        </tr>
+        <tr>
+          <td><span class="avatar c-vignesh" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">V</span><strong>Vignesh</strong></td>
+          <td><span class="badge-num">2</span></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-total">3</span></td>
+        </tr>
+        <tr>
+          <td><span class="avatar c-saravanan" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">S</span><strong>Saravanan</strong></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-total">2</span></td>
+        </tr>
+        <tr>
+          <td><span class="avatar c-nivetha" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">N</span><strong>Nivetha</strong></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-total">2</span></td>
+        </tr>
+        <tr>
+          <td><span class="avatar c-arun" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">A</span><strong>Arun</strong></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-num">1</span></td>
+          <td><span class="badge-num zero">0</span></td>
+          <td><span class="badge-total">1</span></td>
+        </tr>
+
+        <tr class="total-row">
+          <td><strong>Grand Total</strong></td>
+          <td><strong>23</strong></td>
+          <td><strong>16</strong></td>
+          <td><strong>33</strong></td>
+          <td><strong>73*</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#718096;margin-top:8px;">* Total exceeds 66 unique tickets due to shared ownership on 4 tickets.</p>
+  </div>
+
+  <!-- Person Cards -->
+  <div class="section">
+    <div class="section-title">Ticket Details by Person</div>
+    <div class="cards-grid">
+
+      <!-- Roshini -->
+      <div class="card border-roshini">
+        <div class="card-header">
+          <div class="avatar c-roshini">R</div>
+          <div>
+            <div class="name text-roshini">Roshini</div>
+            <div style="font-size:12px;color:#718096">👍 Reactions &amp; Thread Replies</div>
+          </div>
+          <div class="count text-roshini">41</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 16 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">153074735</span><span class="chip">153547183</span><span class="chip">153379367</span><span class="chip">153605240</span><span class="chip">152603595</span><span class="chip">153943774</span><span class="chip">154239179</span><span class="chip">154188550</span><span class="chip">154194055</span><span class="chip">154219923</span><span class="chip">152453889</span><span class="chip">154244694</span><span class="chip">154373311</span><span class="chip">154190926</span><span class="chip shared">153281293 ⚑</span><span class="chip">153901624</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 12 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">154474650</span><span class="chip">154487332</span><span class="chip">154522643</span><span class="chip">154588427</span><span class="chip">154508354</span><span class="chip">154920256</span><span class="chip">154976532</span><span class="chip">155125357</span><span class="chip">154380759</span><span class="chip">155596820</span><span class="chip">154477562</span><span class="chip">154954796</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 March — 13 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">155759422</span><span class="chip">155788845</span><span class="chip">155784102</span><span class="chip">155853491</span><span class="chip">155807580</span><span class="chip">155932960</span><span class="chip">154818545</span><span class="chip">156167152</span><span class="chip">156088594</span><span class="chip shared">156218197 ⚑</span><span class="chip">156196179</span><span class="chip">156454486</span><span class="chip shared">156100728 ⚑</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chandru -->
+      <div class="card border-chandru">
+        <div class="card-header">
+          <div class="avatar c-chandru">C</div>
+          <div>
+            <div class="name text-chandru">Chandru</div>
+            <div style="font-size:12px;color:#718096">👍 Reactions &amp; Thread Replies</div>
+          </div>
+          <div class="count text-chandru">14</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 March — 14 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">155832563</span><span class="chip">155830909</span><span class="chip">155807244</span><span class="chip">155978753</span><span class="chip">155916570</span><span class="chip">156338447</span><span class="chip">156325496</span><span class="chip shared">156100728 ⚑</span><span class="chip shared">156472797 ⚑</span><span class="chip">156580402</span><span class="chip shared">156218197 ⚑</span><span class="chip">156823959</span><span class="chip">156924670</span><span class="chip">156854485</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dhatchayini -->
+      <div class="card border-dhatchayini">
+        <div class="card-header">
+          <div class="avatar c-dhatchayini">D</div>
+          <div>
+            <div class="name text-dhatchayini">Dhatchayini</div>
+            <div style="font-size:12px;color:#718096">👍 Reactions &amp; Thread Replies</div>
+          </div>
+          <div class="count text-dhatchayini">6</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips">
+              <span class="chip">155132156</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 March — 5 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">155889742</span><span class="chip">156267297</span><span class="chip">156547302</span><span class="chip shared">156472797 ⚑</span><span class="chip">156839805</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sankari -->
+      <div class="card border-sankari">
+        <div class="card-header">
+          <div class="avatar c-sankari">S</div>
+          <div>
+            <div class="name text-sankari">Sankari</div>
+            <div style="font-size:12px;color:#718096">👍 Reactions</div>
+          </div>
+          <div class="count text-sankari">4</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 3 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">152530195</span><span class="chip shared">153547183 ⚑</span><span class="chip shared">153379367 ⚑</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips">
+              <span class="chip">155349990</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vignesh -->
+      <div class="card border-vignesh">
+        <div class="card-header">
+          <div class="avatar c-vignesh">V</div>
+          <div>
+            <div class="name text-vignesh">Vignesh</div>
+            <div style="font-size:12px;color:#718096">Thread Replies</div>
+          </div>
+          <div class="count text-vignesh">3</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 2 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip shared">153281293 ⚑</span><span class="chip">153329667</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips">
+              <span class="chip">155467097</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saravanan -->
+      <div class="card border-saravanan">
+        <div class="card-header">
+          <div class="avatar c-saravanan">S</div>
+          <div>
+            <div class="name text-saravanan">Saravanan</div>
+            <div style="font-size:12px;color:#718096">Thread Replies</div>
+          </div>
+          <div class="count text-saravanan">2</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip">154105747</span></div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip">154484255</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nivetha -->
+      <div class="card border-nivetha">
+        <div class="card-header">
+          <div class="avatar c-nivetha">N</div>
+          <div>
+            <div class="name text-nivetha">Nivetha</div>
+            <div style="font-size:12px;color:#718096">Thread Replies</div>
+          </div>
+          <div class="count text-nivetha">2</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip">151861192</span></div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 March — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip">155992823</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arun -->
+      <div class="card border-arun">
+        <div class="card-header">
+          <div class="avatar c-arun">A</div>
+          <div>
+            <div class="name text-arun">Arun</div>
+            <div style="font-size:12px;color:#718096">Thread Replies</div>
+          </div>
+          <div class="count text-arun">1</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip">155009241</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="section">
+    <div class="section-title">Notes</div>
+    <div class="notes-box">
+      <ul>
+        <li>Ownership is determined by 👍 thumbs-up reaction or thread reply from the team member on the ticket message in the channel.</li>
+        <li>Tickets marked with <strong>⚑</strong> (orange chips) are <strong>shared ownership</strong> — multiple people reacted/replied.</li>
+        <li>Shared tickets: <strong>153547183 &amp; 153379367</strong> (Roshini + Sankari) &nbsp;|&nbsp; <strong>153281293</strong> (Roshini + Vignesh) &nbsp;|&nbsp; <strong>156472797</strong> (Dhatchayini + Chandru) &nbsp;|&nbsp; <strong>156100728 &amp; 156218197</strong> (Roshini + Chandru)</li>
+        <li>Data source: #creatorsupportuidiscussion Cliq channel and craft records extracted on 27 March 2026.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">Creator Support UI Team &nbsp;•&nbsp; Ticket Ownership Report Jan–Mar 2026 &nbsp;•&nbsp; Generated 27 Mar 2026</div>
+
+</div>
+</body>
+</html>
