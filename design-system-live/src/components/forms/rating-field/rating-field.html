@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rating Field Component</title>
+  <link rel="stylesheet" href="rating-field.css">
+</head>
+<body>
+<form class="zc-form-table zc-label-left">
+  <script defer src="rating-field.js"></script>
+  <fieldset class="zc-field-group zc-rating-group" role="radiogroup" aria-labelledby="rating-field-default-label" aria-describedby="rating-field-hint">
+    <legend id="rating-field-default-label" class="zc-form-label"><span class="zc-label-text">Rating Field</span></legend>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-rating-options">
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-default-1" name="rating_field_default" value="1" class="zc-form-control zc-rating-input" aria-describedby="rating-field-hint">
+            <label for="rating-field-default-1" class="zc-rating-label" aria-label="1 star"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">1 star</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-default-2" name="rating_field_default" value="2" class="zc-form-control zc-rating-input" aria-describedby="rating-field-hint">
+            <label for="rating-field-default-2" class="zc-rating-label" aria-label="2 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">2 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-default-3" name="rating_field_default" value="3" class="zc-form-control zc-rating-input" aria-describedby="rating-field-hint">
+            <label for="rating-field-default-3" class="zc-rating-label" aria-label="3 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">3 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-default-4" name="rating_field_default" value="4" class="zc-form-control zc-rating-input" aria-describedby="rating-field-hint">
+            <label for="rating-field-default-4" class="zc-rating-label" aria-label="4 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">4 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-default-5" name="rating_field_default" value="5" class="zc-form-control zc-rating-input" aria-describedby="rating-field-hint">
+            <label for="rating-field-default-5" class="zc-rating-label" aria-label="5 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">5 stars</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span id="rating-field-hint" class="zc-field-help-text">Select a rating from 1 to 5.</span>
+  </fieldset>
+  <fieldset class="zc-field-group zc-rating-group" role="radiogroup" aria-labelledby="rating-field-required-label" aria-required="true" aria-describedby="rating-field-required-error">
+    <legend id="rating-field-required-label" class="zc-form-label"><span class="zc-label-text">Rating Field</span><span class="zc-form-required" aria-hidden="true">*</span><span class="zc-sr-only">(required)</span></legend>
+    <div class="zc-form-field validationError">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-rating-options">
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-required-1" name="rating_field_required" value="1" class="zc-form-control zc-rating-input" aria-required="true" aria-invalid="true" aria-describedby="rating-field-required-error">
+            <label for="rating-field-required-1" class="zc-rating-label" aria-label="1 star"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">1 star</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-required-2" name="rating_field_required" value="2" class="zc-form-control zc-rating-input" aria-required="true" aria-invalid="true" aria-describedby="rating-field-required-error">
+            <label for="rating-field-required-2" class="zc-rating-label" aria-label="2 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">2 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-required-3" name="rating_field_required" value="3" class="zc-form-control zc-rating-input" aria-required="true" aria-invalid="true" aria-describedby="rating-field-required-error">
+            <label for="rating-field-required-3" class="zc-rating-label" aria-label="3 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">3 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-required-4" name="rating_field_required" value="4" class="zc-form-control zc-rating-input" aria-required="true" aria-invalid="true" aria-describedby="rating-field-required-error">
+            <label for="rating-field-required-4" class="zc-rating-label" aria-label="4 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">4 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-required-5" name="rating_field_required" value="5" class="zc-form-control zc-rating-input" aria-required="true" aria-invalid="true" aria-describedby="rating-field-required-error">
+            <label for="rating-field-required-5" class="zc-rating-label" aria-label="5 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">5 stars</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="rating-field-required-error" class="zc-field-error-text zc-field-error-msg" role="alert" aria-live="assertive" hidden><i class="zc-field-error-msg-icon zc-li-outline ui-3-alert" aria-hidden="true"></i><span>Please select a rating.</span></div>
+  </fieldset>
+  <fieldset class="zc-field-group zc-field-disabled zc-rating-group" role="radiogroup" aria-labelledby="rating-field-disabled-label" disabled>
+    <legend id="rating-field-disabled-label" class="zc-form-label"><span class="zc-label-text">Rating Field (Disabled)</span></legend>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-rating-options">
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-disabled-1" name="rating_field_disabled" value="1" class="zc-form-control zc-rating-input" disabled aria-disabled="true">
+            <label for="rating-field-disabled-1" class="zc-rating-label" aria-label="1 star"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">1 star</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-disabled-2" name="rating_field_disabled" value="2" class="zc-form-control zc-rating-input" disabled aria-disabled="true">
+            <label for="rating-field-disabled-2" class="zc-rating-label" aria-label="2 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">2 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-disabled-3" name="rating_field_disabled" value="3" class="zc-form-control zc-rating-input" disabled aria-disabled="true">
+            <label for="rating-field-disabled-3" class="zc-rating-label" aria-label="3 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">3 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-disabled-4" name="rating_field_disabled" value="4" class="zc-form-control zc-rating-input" disabled aria-disabled="true">
+            <label for="rating-field-disabled-4" class="zc-rating-label" aria-label="4 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">4 stars</span></label>
+          </div>
+          <div class="zc-rating-option">
+            <input type="radio" id="rating-field-disabled-5" name="rating_field_disabled" value="5" class="zc-form-control zc-rating-input" disabled aria-disabled="true">
+            <label for="rating-field-disabled-5" class="zc-rating-label" aria-label="5 stars"><i class="zc-li-outline favourite-outline" aria-hidden="true"></i><span class="zc-sr-only">5 stars</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+</body>
+</html>

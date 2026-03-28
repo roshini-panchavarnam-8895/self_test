@@ -1,0 +1,40 @@
+@use '../common' as c;
+@include c.all();
+
+.compositeWrapper.zc-name-composite {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.zc-name-composite > span {
+  flex: 1;
+  min-width: 0;
+}
+
+.zc-name-composite > .PREFIX-wrapper {
+  flex: 0 0 120px;
+}
+
+.zc-name-composite > .SUFFIX-wrapper {
+  flex: 0 0 100px;
+}
+
+.zc-name-composite input.form-control,
+.zc-name-composite select.form-control {
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--zc-color-border);
+  border-radius: var(--zc-border-radius);
+  background-color: var(--zc-color-bg);
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: 34px;
+  box-sizing: border-box;
+  appearance: auto;
+}

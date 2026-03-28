@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox — Zoho Creator</title>
+  <link rel="stylesheet" href="checkbox.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix zc-checkbox-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Checkbox</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="zc-checkbox-choices" role="group" aria-label="Checkbox options">
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox" id="checkbox-1" value="Choice 1" checked><label for="checkbox-1"></label><label class="choice-label-text" for="checkbox-1">Choice 1</label></span></label></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox" id="checkbox-2" value="Choice 2"><label for="checkbox-2"></label><label class="choice-label-text" for="checkbox-2">Choice 2</label></span></label></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox" id="checkbox-3" value="Choice 3"><label for="checkbox-3"></label><label class="choice-label-text" for="checkbox-3">Choice 3</label></span></label></div></div>
+        </div>
+        <div class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix zc-checkbox-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Checkbox<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="zc-checkbox-choices" role="group" aria-label="Checkbox options">
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox_Err" id="checkbox-err-1" value="Choice 1"><label for="checkbox-err-1"></label><label class="choice-label-text" for="checkbox-err-1">Choice 1</label></span></label></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox_Err" id="checkbox-err-2" value="Choice 2"><label for="checkbox-err-2"></label><label class="choice-label-text" for="checkbox-err-2">Choice 2</label></span></label></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox_Err" id="checkbox-err-3" value="Choice 3"><label for="checkbox-err-3"></label><label class="choice-label-text" for="checkbox-err-3">Choice 3</label></span></label></div></div>
+        </div>
+        <div class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Select a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-checkbox-field-group zc-field-disabled">
+      <label class="form-label">
+        <span class="zc-label-text">Checkbox</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="zc-checkbox-choices" role="group" aria-label="Checkbox options">
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox_Dis" id="checkbox-dis-1" value="Choice 1" disabled aria-disabled="true"><label for="checkbox-dis-1"></label><label class="choice-label-text" for="checkbox-dis-1">Choice 1</label></span></label></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox_Dis" id="checkbox-dis-2" value="Choice 2" disabled aria-disabled="true"><label for="checkbox-dis-2"></label><label class="choice-label-text" for="checkbox-dis-2">Choice 2</label></span></label></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><label><span><input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="Checkbox_Dis" id="checkbox-dis-3" value="Choice 3" disabled aria-disabled="true"><label for="checkbox-dis-3"></label><label class="choice-label-text" for="checkbox-dis-3">Choice 3</label></span></label></div></div>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

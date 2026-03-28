@@ -1,0 +1,57 @@
+@use '../common' as c;
+@include c.all();
+
+.signature-outer {
+  width: 302px;
+  border: 1px dashed var(--zc-color-border);
+  border-radius: var(--zc-border-radius);
+  background: #fafafa;
+  overflow: hidden;
+}
+
+.signature-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e7e7ee;
+}
+
+.signature-fieldtext {
+  color: var(--zc-color-subfield-label);
+  font-family: var(--zc-font-family);
+  font-size: 13px;
+}
+
+.signature-clear-btn {
+  color: #295BF9;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.signature-div {
+  position: relative;
+  padding: 10px;
+  min-height: 100px;
+}
+
+.signature-line-div {
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.jSignature {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: var(--zc-color-bg);
+  touch-action: none;
+}

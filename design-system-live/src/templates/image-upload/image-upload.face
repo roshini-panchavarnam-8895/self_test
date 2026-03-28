@@ -1,0 +1,49 @@
+{% comment %} Image Upload — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "image-upload" %}
+{% assign field_name = field.name | default: "Image" %}
+{% assign field_label = field.label | default: "Image" %}
+
+<div class="form-group clearfix form-image-field imageopetion zc-{{ field_name }}-group" data-element-type="image-upload" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_image_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix smallSizeLive" type="image" name="{{ field_name }}">
+    <div class="imageComponents zc-uploadComponents clearfix">
+      <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select Image</div>
+      <div class="zc-file-upload single">
+        <div class="filedrag">
+          <div class="zc-image-local">
+            <input type="hidden" name="{{ field_name }}-LOCAL">
+            <input class="textfield zc-elem-focus-field" type="file" name="uploadFile" id="zc-{{ field_name }}_FILE" title="" accept="image/*"
+              {% if field.required %}required aria-required="true"{% endif %}>
+          </div>
+        </div>
+        <ul class="filename"></ul>
+      </div>
+      <div class="zc-image-link" style="display:none">
+        <input class="form-control textfield image-source zc-elem-focus-field" type="text" placeholder="https://" name="{{ field_name }}.source">
+        <ul class="filename hide" role="button" aria-label="clear">
+          <li><i class="zc-li-outline ui-1-simple-remove zc-elem-focus-field" role="button" aria-label="Remove" tabindex="0"></i></li>
+        </ul>
+      </div>
+      <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+        <span class="calcIcon restoreIcon hide zc-elem-focus-field" aria-label="{{ field_label }} Restore" tabindex="0">
+          <i class="zc-li-outline arrows-4-undo-29"></i>
+        </span>
+        <span class="calcIcon uploadIcon zc-elem-focus-field" role="button" aria-label="{{ field_label }} Local Computer" tabindex="-1" title="Local Computer">
+          <i class="zc-li-outline arrows-2-square-upload"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>

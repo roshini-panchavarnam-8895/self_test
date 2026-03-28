@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textarea — Zoho Creator</title>
+  <link rel="stylesheet" href="textarea.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-multi-line">
+        <span class="zc-label-text">Multi Line</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <textarea class="form-control" name="Multi_Line" id="zc-multi-line" aria-describedby="zc-multi-line-help"></textarea>
+        <div id="zc-multi-line-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-multi-line-err">
+        <span class="zc-label-text">Multi Line<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <textarea class="form-control" name="Multi_Line_Err" id="zc-multi-line-err" required aria-required="true" aria-invalid="true" aria-describedby="zc-multi-line-error"></textarea>
+        <div id="zc-multi-line-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-multi-line-dis">
+        <span class="zc-label-text">Multi Line</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <textarea class="form-control" name="Multi_Line_Dis" id="zc-multi-line-dis" disabled aria-disabled="true"></textarea>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% comment %} Phone Input — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "phone" %}
+{% assign field_name = field.name | default: "Phone_Number" %}
+{% assign field_label = field.label | default: "Phone" %}
+{% assign field_placeholder = field.placeholder | default: "81234 56789" %}
+{% assign dial_code = field.dial_code | default: "+91" %}
+{% assign country_title = field.country_title | default: "India" %}
+{% assign country_flag = field.country_flag | default: "in" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-phonenumber-field" data-element-type="phone-input" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_phonenumber_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix form-phone-field smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <div class="intl-tel-input allow-dropdown separate-dial-code">
+      <div class="flag-container">
+        <div class="selected-flag zc-elem-focus-field" role="combobox" id="zc-country-input" tabindex="0" title="{{ country_title }}: {{ dial_code }}">
+          <div class="iti-flag {{ country_flag }}"></div>
+          <div class="selected-dial-code" id="zc-selected-dial-code-zc-{{ field_name }}">{{ dial_code }}</div>
+          <div class="iti-arrow"></div>
+        </div>
+      </div>
+      <input
+        class="form-control textfield zc-{{ field_name }} zc-elem-focus-field"
+        type="tel"
+        placeholder="{{ field_placeholder }}"
+        name="{{ field_name }}"
+        id="zc-{{ field_name }}"
+        {% if field.required %}
+          required
+          aria-required="true"
+        {% endif %}
+        autocomplete="off"
+        style="padding-left: 89px;">
+    </div>
+
+    {% if field.error %}
+      <div class="fieldErrorMsg zc-field-error-msg zc-dem-box-sizing" id="zc-{{ field_name }}-errorMsg" style="min-width:240px;width:240px">
+        {% block error_icon %}{% endblock %}
+        <span>{{ field.error_message | default: "This field is mandatory. Enter a value." }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+</div>

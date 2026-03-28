@@ -1,0 +1,17 @@
+{
+  "name": "live-mode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node auto-sync.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chokidar": "^5.0.0",
+    "ws": "^8.19.0"
+  }
+}

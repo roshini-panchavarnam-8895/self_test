@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Components Live Sync</title>
+  <style>
+    :root {
+      --color-text: #12132B;
+      --color-placeholder: #B0B0C4;
+      --color-icon: #606189;
+      --color-border: #CBCBDC;
+      --color-bg: #FFFFFF;
+      --color-brand: #5051F9;
+      --color-btn-text: #FFFFFF;
+      --color-hover-bg: #EDEDFE;
+      --color-focus-border: #F98650;
+      --color-checkbox-filled: #F950DD;
+      --color-dropdown-hover: #E8E8FD;
+      --font-family: 'Lato', sans-serif;
+      --font-size-base: 14px;
+      --font-size-sub-label: 13px;
+      --font-size-section: 16px;
+      --input-border-radius: 8px;
+      --form-border-radius: 10px;
+      --input-height: 36px;
+      --input-width: 300px;
+      --input-half-width: 145px;
+      --label-width: 113px;
+      --label-right-padding: 36px;
+      --field-gap: 10px;
+      --field-margin-bottom: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 24px;
+      font-family: var(--font-family);
+      background: #f7f8fc;
+      color: var(--color-text);
+    }
+    .demo-shell {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--form-border-radius);
+      box-shadow: 0 10px 30px rgba(18, 19, 43, 0.08);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+    .intro {
+      margin: 0 0 24px;
+      font-size: var(--font-size-sub-label);
+      color: var(--color-icon);
+    }
+    .section-title {
+      margin: 0 0 16px;
+      font-size: var(--font-size-section);
+    }
+    .field, .inline-fields {
+      display: grid;
+      grid-template-columns: var(--label-width) 1fr;
+      gap: var(--field-gap);
+      margin-bottom: var(--field-margin-bottom);
+      align-items: start;
+    }
+    .inline-fields .controls {
+      display: flex;
+      gap: var(--field-gap);
+      flex-wrap: wrap;
+    }
+    .label {
+      padding-right: var(--label-right-padding);
+      font-size: var(--font-size-base);
+      font-weight: 700;
+      line-height: var(--input-height);
+    }
+    .hint {
+      margin-top: 6px;
+      font-size: var(--font-size-sub-label);
+      color: var(--color-placeholder);
+    }
+    .control, .select, .button {
+      height: var(--input-height);
+      border-radius: var(--input-border-radius);
+      font: inherit;
+    }
+    .control, .select {
+      width: var(--input-width);
+      padding: 0 12px;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg);
+      color: var(--color-text);
+      outline: none;
+    }
+    .control::placeholder { color: var(--color-placeholder); }
+    .control:focus, .select:focus { border-color: var(--color-focus-border); }
+    .half { width: var(--input-half-width); }
+    .select:hover, .tag:hover { background: var(--color-dropdown-hover); }
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: var(--color-hover-bg);
+      color: var(--color-text);
+      font-size: var(--font-size-sub-label);
+    }
+    .tag .icon { color: var(--color-icon); }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--font-size-base);
+    }
+    .checkbox-row input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--color-checkbox-filled);
+    }
+    .button {
+      padding: 0 16px;
+      border: 0;
+      background: var(--color-brand);
+      color: var(--color-btn-text);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="demo-shell">
+    <h1>Form Field Components</h1>
+    <p class="intro">Live sync POC: edit values in the inline <code>:root</code> token block or sync from Figma.</p>
+    <h2 class="section-title">Demo form</h2>
+
+    <div class="field">
+      <label class="label" for="fullName">Full name</label>
+      <div>
+        <input class="control" id="fullName" type="text" placeholder="Enter full name" />
+        <div class="hint">Base text, placeholder, radius and focus border are all token-driven.</div>
+      </div>
+    </div>
+
+    <div class="inline-fields">
+      <label class="label" for="country">Details</label>
+      <div class="controls">
+        <select class="select half" id="country">
+          <option>Country</option>
+          <option>India</option>
+          <option>United States</option>
+        </select>
+        <input class="control half" type="text" placeholder="Postal code" />
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="label">Preferences</span>
+      <div>
+        <label class="checkbox-row"><input type="checkbox" checked /> Email updates</label>
+        <div class="chips">
+          <span class="tag">Design system <span class="icon">×</span></span>
+          <span class="tag">Live sync <span class="icon">×</span></span>
+          <button class="button" type="button">Save</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

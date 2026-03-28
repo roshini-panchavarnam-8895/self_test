@@ -1,0 +1,42 @@
+{% comment %} URL Input — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "url" %}
+{% assign field_name = field.name | default: "Url" %}
+{% assign field_label = field.label | default: "Url" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group" data-element-type="url-input" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_url_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <div class="urlWrapper" type="url" name="{{ field_name }}">
+      <input
+        class="form-control zc-elem-focus-field zc-{{ field_name }}"
+        type="text"
+        placeholder="https://"
+        name="{{ field_name }}.url"
+        id="zc-{{ field_name }}_url"
+        {% if field.required %}
+          required
+          aria-required="true"
+        {% endif %}
+        autocomplete="off">
+      <input
+        class="form-control zc-elem-focus-field zc-{{ field_name }} urlOpts"
+        type="text"
+        placeholder="Link Name"
+        name="{{ field_name }}.link"
+        id="zc-{{ field_name }}_link"
+        style="display: none;">
+    </div>
+  </div>
+
+</div>

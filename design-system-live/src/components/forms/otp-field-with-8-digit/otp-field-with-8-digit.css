@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap');
+
+:root {
+  --color-primary: var(--primary-color, #5051F9);
+  --color-text-primary: var(--primary-text-color, #12132b);
+  --color-text-placeholder: #999999;
+  --color-border: var(--primary-border-color, #CBCBDC);
+  --color-border-focus: var(--primary-color, #5051F9);
+  --color-bg-white: #ffffff;
+  --color-bg-disabled: #f0f0f4;
+  --color-error: #E61F1F;
+  --font-family: 'Lato', sans-serif;
+  --font-size-base: 14.5px;
+  --input-height: 36px;
+  --input-border-radius: 6px;
+  --field-margin-bottom: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-family);
+  background-color: #f7f6f9;
+  padding: 24px;
+  color: var(--color-text-primary);
+}
+
+.zc-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+
+/* ── Layout ── */
+.zc-field-group { margin-bottom: var(--field-margin-bottom, 20px); border: none; padding: 0; min-inline-size: 0; }
+.zc-field-group::after { content: ''; display: table; clear: both; }
+
+.zc-form-label {
+  float: left; width: 140px; margin-right: 16px;
+  font-family: var(--font-family, 'Lato', sans-serif);
+  font-size: var(--font-size-base, 14.5px); font-weight: 400;
+  color: var(--color-text-primary, #12132b);
+  line-height: var(--input-height, 36px); text-align: right;
+  display: inline-block; letter-spacing: .1px; padding: 5px 0 5px 0;
+}
+.zc-label-text { display: block; float: left; width: 100%; text-align: right; }
+.zc-form-required { color: var(--color-error, #E61F1F); margin-left: 3px; font-size: 13px; font-weight: 400; }
+
+.zc-form-field { margin-bottom: 0; }
+.zc-field-input-wrapper { display: block; margin-left: 156px; max-width: 240px; }
+.zc-field-group > .zc-form-field { display: block; margin-left: 156px; max-width: 240px; margin-bottom: 0; }
+.zc-field-group > .zc-form-field > .zc-field-input-wrapper { margin-left: 0; max-width: none; }
+
+/* ── Form Controls (text inputs, selects, textareas) ── */
+.zc-field-input,
+input.zc-form-control,
+select.zc-form-control,
+textarea.zc-field-input {
+  width: 100%; height: var(--input-height, 36px); padding: 0 12px;
+  font-family: var(--font-family, 'Lato', sans-serif);
+  font-size: var(--font-size-base, 14.5px);
+  color: var(--color-text-primary, #12132b);
+  background-color: var(--color-bg-white, #fff);
+  border: 1px solid var(--color-border, #CBCBDC);
+  border-radius: var(--input-border-radius, 6px);
+  outline: none; margin: 0; float: left; min-height: 30px;
+  -webkit-appearance: none; -moz-appearance: none; appearance: none;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+textarea.zc-field-input { height: auto; min-height: 80px; padding: 8px 12px; resize: none; overflow: auto; }
+.zc-field-input::placeholder, input.zc-form-control::placeholder { color: var(--color-text-placeholder, #999); }
+.zc-field-input:hover, input.zc-form-control:hover { border-color: #333; }
+.zc-field-input:focus, input.zc-form-control:focus {
+  border-color: var(--color-border-focus, #5051F9);
+  box-shadow: 0 0 0 .5px var(--color-border-focus, #5051F9);
+}
+
+/* ── Validation Error ── */
+.validationError .zc-field-input,
+.validationError input.zc-form-control,
+.validationError select.zc-form-control,
+.validationError textarea.zc-field-input {
+  background: #fff !important;
+  border: 1px solid var(--color-error, #E61F1F) !important;
+  box-shadow: 0 0 0 .5px var(--color-error, #E61F1F);
+  outline: none;
+}
+
+/* ── Disabled ── */
+.zc-field-disabled .zc-field-input,
+.zc-field-input:disabled, input.zc-form-control:disabled,
+select.zc-form-control:disabled, textarea.zc-field-input:disabled {
+  background-color: var(--color-bg-disabled, #f0f0f4); cursor: not-allowed;
+  opacity: 0.75; border-color: var(--color-border, #CBCBDC);
+}
+.zc-field-disabled .zc-form-label { color: var(--tertiary-text-color, #606189); }
+
+/* ── Help & Error Text ── */
+.zc-field-help-text {
+  clear: both; font-weight: 400; line-height: 1.42857143;
+  padding: 6px 0 0; word-break: break-word;
+  color: #2f305d; font-size: .8125rem;
+}
+.zc-field-error-text, .zc-field-error-msg {
+  color: var(--color-error, #E61F1F); font-size: 13px; font-weight: 400;
+  line-height: 1.1; white-space: normal; clear: both;
+  display: flex; align-items: center; gap: 4px; margin-top: 4px;
+}
+.zc-field-error-text[hidden], .zc-field-error-msg[hidden] { display: none; }
+.zc-field-error-msg-icon { font-size: 13px; flex-shrink: 0; }
+
+.zc-field-group > .zc-field-help-text,
+.zc-field-group > .zc-field-error-text, .zc-field-group > .zc-field-error-msg {
+  clear: both; padding-top: 6px; padding-left: 156px;
+}
+
+.zc-otp-group { display: flex; gap: 6px; }
+.zc-otp-input,
+input.zc-otp-input.zc-form-control {
+  width: 36px !important; height: var(--input-height, 36px); text-align: center;
+  font-size: 16px; font-weight: 600; padding: 0 !important;
+  border: 1px solid var(--color-border, #CBCBDC);
+  border-radius: var(--input-border-radius, 6px);
+  float: none !important;
+}
+.zc-otp-input:focus { border-color: var(--color-border-focus, #5051F9); box-shadow: 0 0 0 .5px var(--color-border-focus, #5051F9); }
+.validationError .zc-otp-input { border-color: var(--color-error, #E61F1F) !important; }
+.zc-otp-input:disabled { background-color: var(--color-bg-disabled, #f0f0f4); opacity: .75; cursor: not-allowed; }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload — Zoho Creator</title>
+  <link rel="stylesheet" href="image-upload.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix form-imageupload-field">
+      <label class="form-label">
+        <span class="zc-label-text">Image upload</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="zc-uploadComponents clearfix">
+          <div class="zc-file-upload">
+            <div class="filedrag">
+              <div class="zc-upload-msg">Select Image</div>
+              <input class="zc-file-input" type="file" name="uploadFile" accept="image/*" title="" aria-label="Upload file">
+            </div>
+            <ul class="filename"></ul>
+          </div>
+          <div class="zc-upload-icons">
+            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
+              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+        <div id="zc-image-upload-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix form-imageupload-field">
+      <label class="form-label">
+        <span class="zc-label-text">Image upload<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="zc-uploadComponents clearfix">
+          <div class="zc-file-upload">
+            <div class="filedrag">
+              <div class="zc-upload-msg">Select Image</div>
+              <input class="zc-file-input" type="file" name="uploadFile_Err" accept="image/*" title="" aria-label="Upload file">
+            </div>
+            <ul class="filename"></ul>
+          </div>
+          <div class="zc-upload-icons">
+            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
+              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+        <div id="zc-image-upload-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Upload a file.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix form-imageupload-field zc-field-disabled">
+      <label class="form-label">
+        <span class="zc-label-text">Image upload</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="zc-uploadComponents clearfix">
+          <div class="zc-file-upload">
+            <div class="filedrag">
+              <div class="zc-upload-msg">Select Image</div>
+              <input class="zc-file-input" type="file" name="uploadFile_Dis" accept="image/*" title="" aria-label="Upload file">
+            </div>
+            <ul class="filename"></ul>
+          </div>
+          <div class="zc-upload-icons">
+            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
+              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>
