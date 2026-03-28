@@ -1,0 +1,302 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap");
+:root {
+  --zc-font-family: "Lato", sans-serif;
+  --zc-font-size: 14.5px;
+  --zc-color-text: rgb(18, 19, 43);
+  --zc-color-label: rgb(51, 51, 51);
+  --zc-color-border: rgb(203, 203, 220);
+  --zc-color-error: rgb(230, 31, 31);
+  --zc-color-error-text: #c04543;
+  --zc-color-mandatory: rgb(255, 0, 0);
+  --zc-color-help-text: rgb(47, 48, 93);
+  --zc-color-subfield-label: rgb(112, 115, 143);
+  --zc-color-bg: rgb(255, 255, 255);
+  --zc-color-primary: rgb(80, 81, 249);
+  --zc-color-icon: rgb(96, 97, 137);
+  --zc-border-radius: 6px;
+  --zc-input-height: 36px;
+  --zc-input-width: 240px;
+}
+
+.smallSizeLive {
+  --zc-input-width: 250px;
+}
+
+.mediumSizeLive {
+  --zc-input-width: 300px;
+}
+
+.largeSizeLive {
+  --zc-input-width: 400px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--zc-font-family);
+  font-size: 14px;
+  line-height: 1.43;
+  color: var(--zc-color-text);
+  margin: 0;
+  padding: 0;
+  background: #f4f6fa;
+}
+
+.clearfix::after,
+.zc-dem-clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.zc-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: left;
+}
+
+.form-group::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.form-label {
+  float: left;
+  width: 140px;
+  margin-right: 16px;
+}
+
+.zc-label-text {
+  display: block;
+  max-width: 570px;
+  color: var(--zc-color-label);
+  font-family: var(--zc-font-family);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+  overflow: hidden;
+}
+
+.fieldMandate {
+  margin-left: 3px;
+  color: var(--zc-color-mandatory);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.1px;
+}
+
+.form-field {
+  display: block;
+  margin-left: 156px;
+  position: relative;
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: left;
+}
+
+input.form-control {
+  display: block;
+  height: var(--zc-input-height);
+  min-height: 30px;
+  min-width: var(--zc-input-width);
+  max-width: var(--zc-input-width);
+  padding: 0 12px;
+  border: 1px solid var(--zc-color-border);
+  border-radius: var(--zc-border-radius);
+  background-color: var(--zc-color-bg);
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: 34px;
+  box-sizing: border-box;
+  outline: none;
+}
+input.form-control:focus {
+  border-color: var(--zc-color-primary);
+  box-shadow: 0 0 0 0.5px var(--zc-color-primary);
+}
+
+textarea.form-control {
+  display: block;
+  height: 200px;
+  min-height: 30px;
+  min-width: var(--zc-input-width);
+  max-width: var(--zc-input-width);
+  padding: 7px 12px;
+  border: 1px solid var(--zc-color-border);
+  border-radius: var(--zc-border-radius);
+  background-color: var(--zc-color-bg);
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: 18px;
+  box-sizing: border-box;
+  outline: none;
+  white-space: pre-wrap;
+  resize: vertical;
+}
+textarea.form-control:focus {
+  border-color: var(--zc-color-primary);
+  box-shadow: 0 0 0 0.5px var(--zc-color-primary);
+}
+
+.zc-help-txt {
+  display: block;
+  clear: both;
+  padding-top: 6px;
+  color: var(--zc-color-help-text);
+  font-family: var(--zc-font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18.57px;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.zc-subfield-label {
+  display: block;
+  clear: both;
+  padding-top: 4px;
+  margin: 0;
+  color: var(--zc-color-subfield-label);
+  font-family: var(--zc-font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18.57px;
+}
+
+.zc-prepend-icon {
+  position: absolute;
+  left: 12px;
+  bottom: 0;
+  color: var(--zc-color-icon);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.fieldErrorMsg {
+  color: var(--zc-color-error-text);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.zc-field-error-msg-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.validationError input.form-control,
+.validationError textarea.form-control {
+  border-color: var(--zc-color-error);
+  box-shadow: 0 0 0 0.5px var(--zc-color-error);
+}
+
+.zc-field-disabled input.form-control,
+.zc-field-disabled textarea.form-control,
+.zc-field-disabled select.form-control {
+  background-color: #f0f0f4;
+  color: #606189;
+  cursor: not-allowed;
+  border-color: var(--zc-color-border);
+}
+
+.zc-checkbox-choices {
+  display: block;
+}
+
+.choice-table-row {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.choice-table-cell {
+  display: block;
+}
+.choice-table-cell span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.customCheckbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.customCheckbox + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 1px solid var(--zc-color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--zc-color-bg, #fff);
+  position: relative;
+  box-sizing: border-box;
+}
+.customCheckbox:checked + label {
+  background: var(--zc-color-primary);
+  border-color: var(--zc-color-primary);
+}
+.customCheckbox:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.customCheckbox:disabled + label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.choice-label-text {
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1.4;
+}

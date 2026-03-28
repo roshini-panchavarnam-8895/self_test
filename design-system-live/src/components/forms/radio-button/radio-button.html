@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radio Button — Zoho Creator</title>
+  <link rel="stylesheet" href="radio-button.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix zc-radio-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Radio</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="zc-radio-choices" role="radiogroup" aria-label="Radio options">
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio" id="radio-1" value="Choice 1"><label for="radio-1"></label><label class="choice-label-text" for="radio-1">Choice 1</label></span></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio" id="radio-2" value="Choice 2"><label for="radio-2"></label><label class="choice-label-text" for="radio-2">Choice 2</label></span></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio" id="radio-3" value="Choice 3"><label for="radio-3"></label><label class="choice-label-text" for="radio-3">Choice 3</label></span></div></div>
+        </div>
+        <div class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix zc-radio-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Radio<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="zc-radio-choices" role="radiogroup" aria-label="Radio options">
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio_Err" id="radio-err-1" value="Choice 1"><label for="radio-err-1"></label><label class="choice-label-text" for="radio-err-1">Choice 1</label></span></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio_Err" id="radio-err-2" value="Choice 2"><label for="radio-err-2"></label><label class="choice-label-text" for="radio-err-2">Choice 2</label></span></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio_Err" id="radio-err-3" value="Choice 3"><label for="radio-err-3"></label><label class="choice-label-text" for="radio-err-3">Choice 3</label></span></div></div>
+        </div>
+        <div class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Select a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-radio-field-group zc-field-disabled">
+      <label class="form-label">
+        <span class="zc-label-text">Radio</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="zc-radio-choices" role="radiogroup" aria-label="Radio options">
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio_Dis" id="radio-dis-1" value="Choice 1" disabled aria-disabled="true"><label for="radio-dis-1"></label><label class="choice-label-text" for="radio-dis-1">Choice 1</label></span></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio_Dis" id="radio-dis-2" value="Choice 2" disabled aria-disabled="true"><label for="radio-dis-2"></label><label class="choice-label-text" for="radio-dis-2">Choice 2</label></span></div></div>
+          <div class="choice-table-row"><div class="choice-table-cell"><span><input class="customRadio" type="radio" name="Radio_Dis" id="radio-dis-3" value="Choice 3" disabled aria-disabled="true"><label for="radio-dis-3"></label><label class="choice-label-text" for="radio-dis-3">Choice 3</label></span></div></div>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

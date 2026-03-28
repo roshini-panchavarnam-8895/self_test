@@ -1,0 +1,113 @@
+@use '../common' as c;
+@include c.all();
+
+.form-rtf {
+  display: block;
+  position: relative;
+  width: 240px;
+  min-width: 240px;
+  background-color: var(--zc-color-bg);
+}
+
+.ze {
+  display: block;
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--zc-color-border);
+  border-radius: var(--zc-border-radius);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ze_SCmb {
+  display: block;
+  position: relative;
+  padding: 8px 6px 5px;
+  border-bottom: 1px solid #e7e7ee;
+  background-color: rgb(248, 248, 251);
+  overflow: hidden;
+}
+
+.ze-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  align-items: center;
+
+  ul {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2px;
+  }
+
+  ul li {
+    display: inline-block;
+  }
+
+  ul li b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    min-height: 28px;
+    padding: 4px 5px;
+    border: 1px solid var(--zc-color-border);
+    border-radius: var(--zc-border-radius);
+    background-color: var(--zc-color-bg);
+    font-weight: 400;
+    font-size: 13px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &:hover {
+      background: #e7e7ee;
+    }
+  }
+}
+
+.ze-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.ze-textcolor {
+  border-bottom: 3px solid #000;
+  padding-bottom: 1px;
+}
+
+.ze-bgcolor {
+  border-bottom: 3px solid #fff;
+  padding-bottom: 1px;
+  background-color: #ffffc0;
+}
+
+.ze-font-name,
+.ze-font-size {
+  font-size: 12px;
+  font-style: normal;
+}
+
+.ze-arrow {
+  font-size: 10px;
+  margin-left: 2px;
+}
+
+.ze_area {
+  width: 100%;
+  min-height: 200px;
+  overflow: auto;
+}
+
+.ze_body {
+  min-height: 200px;
+  padding: 10px 12px;
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  line-height: 1.6;
+  outline: none;
+}

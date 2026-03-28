@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decimal Input — Zoho Creator</title>
+  <link rel="stylesheet" href="decimal-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-decimal">
+        <span class="zc-label-text">Decimal</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control zc-numberfield" type="text" name="Decimal" id="zc-decimal" placeholder="##.##" inputmode="decimal" aria-describedby="zc-decimal-help">
+        <div id="zc-decimal-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-decimal-err">
+        <span class="zc-label-text">Decimal<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <input class="form-control zc-numberfield" type="text" name="Decimal_Err" id="zc-decimal-err" placeholder="##.##" inputmode="decimal" required aria-required="true" aria-invalid="true" aria-describedby="zc-decimal-error">
+        <div id="zc-decimal-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-decimal-dis">
+        <span class="zc-label-text">Decimal</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control zc-numberfield" type="text" name="Decimal_Dis" id="zc-decimal-dis" placeholder="Disabled" inputmode="decimal" disabled aria-disabled="true">
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

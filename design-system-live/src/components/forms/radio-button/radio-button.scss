@@ -1,0 +1,72 @@
+@use '../common' as c;
+@include c.all();
+
+.zc-radio-choices {
+  display: block;
+}
+
+.choice-table-row {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.choice-table-cell {
+  display: block;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.customRadio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+
+  & + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid var(--zc-color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    background: var(--zc-color-bg, #fff);
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  &:checked + label {
+    border-color: var(--zc-color-primary);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--zc-color-primary);
+    }
+  }
+
+  &:disabled + label {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.choice-label-text {
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1.4;
+}

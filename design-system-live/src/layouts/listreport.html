@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List Report</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+/* ====== BASE RESET ====== */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  color: #12132b;
+  background: #f0eff4;
+  margin: 0;
+  padding: 30px;
+}
+
+/* ====== MAIN CONTAINER ====== */
+.view-outer-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 960px;
+  margin: 0 auto;
+  border: 1px solid #e7e7ee;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+/* ====== REPORT HEADER ====== */
+.view-header.view-header-reportlist {
+  border-bottom: 1px solid #e7e7ee;
+  background: #fff;
+}
+.zc-new-report-header.row {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  min-height: 52px;
+  flex-wrap: nowrap;
+}
+.zc-reportnameheader {
+  flex: 1;
+  width: auto !important;
+  float: none !important;
+  padding: 0 !important;
+}
+.view-name-wrapper { display: flex; align-items: center; }
+.view-name.pull-left {
+  font-size: 16px;
+  font-weight: 600;
+  color: #12132b;
+  margin: 0;
+  float: none !important;
+}
+.zc-view-name { letter-spacing: .2px; }
+.zc-header-unsave-icon { display: none; }
+.viewprintoption { display: none !important; }
+.view-options-container { display: none; }
+
+/* Toolbar buttons */
+.zc-reportoptionheader {
+  width: auto !important;
+  float: none !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.zc-reportoptionheader .view-options {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float: none !important;
+}
+.zc-reportoptionheader .view-options > li {
+  display: flex;
+  align-items: center;
+}
+.zc-reportoptionheader .view-options a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #e0dfe6;
+  background: #fff;
+  color: #6c6c8a;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background .15s, border-color .15s;
+  position: relative;
+}
+.zc-reportoptionheader .view-options a:hover {
+  background: #f5f5fa;
+  border-color: #ccccd6;
+}
+.zc-reportoptionheader .view-options a i.fa { margin: 0; }
+.zc-reportoptionheader .view-options a .fa-caret-down { display: none; }
+.zc-add-record {
+  background: #6236ff !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  width: 34px !important;
+  height: 34px !important;
+}
+.zc-add-record:hover {
+  background: #5528e6 !important;
+}
+.zc-add-record .add-record { display: none; }
+.zc-tooltip { display: none !important; }
+.zc-mobilesearchel { display: none; }
+
+/* Settings dropdown nav */
+.report_nav { display: none !important; }
+
+/* ====== RECORD CONTAINER / TABLE ====== */
+.record-container.zc-reporttype-list {
+  overflow: hidden;
+}
+.list-view-inner.reportinnercont {
+  max-width: 100% !important;
+  overflow: auto !important;
+  position: relative !important;
+}
+
+/* Override Handsontable fixed dimensions */
+.wtHolder {
+  height: auto !important;
+  width: 100% !important;
+  max-height: 520px;
+  overflow: auto !important;
+}
+.wtHider {
+  width: 100% !important;
+  height: auto !important;
+}
+.wtSpreader {
+  position: relative !important;
+}
+
+/* Core table */
+.handsontable table.htCore {
+  width: 100% !important;
+  border-collapse: collapse;
+  font-size: 13px;
+  table-layout: auto !important;
+}
+
+/* Column widths - override fixed col widths */
+.htCore colgroup col {
+  width: auto !important;
+}
+.htCore colgroup col.rowHeader {
+  width: 42px !important;
+  min-width: 42px;
+}
+
+/* Header row */
+.htCore thead th {
+  background: #fafafe;
+  border: none;
+  border-bottom: 1px solid #e7e7ee;
+  border-right: 1px solid #f0f0f5;
+  padding: 10px 12px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #71718c;
+  text-align: left;
+  white-space: nowrap;
+  position: relative;
+}
+.htCore thead th:first-child {
+  border-right: 1px solid #f0f0f5;
+}
+.htCore thead th .colHeader {
+  color: #71718c;
+  font-weight: 500;
+}
+.htCore thead th .relative { position: relative; }
+
+/* Checkbox header */
+.zcReport_HeaderCheckBox,
+.zcReport_HeaderEditColumn {
+  width: 36px !important;
+  text-align: center;
+}
+.zcReport_HeaderCheckBox .customCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.zcReport_HeaderCheckBox input[type="checkbox"],
+.customCheckbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #6236ff;
+  cursor: pointer;
+}
+
+/* Sort icon in headers */
+.htCore thead th .descending,
+.htCore thead th i.fa-angle-down {
+  color: #b0b0c2;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+/* Eye icon column */
+.hidecolumnheader {
+  width: 32px !important;
+  text-align: center;
+  color: #b0b0c2;
+}
+.hidecolumnheader .fa-eye { color: #b0b0c2; font-size: 13px; }
+
+/* Data rows */
+.htCore tbody tr {
+  transition: background .12s;
+}
+.htCore tbody tr:hover {
+  background: #fafaff;
+}
+.htCore tbody td {
+  border: none;
+  border-bottom: 1px solid #f0f0f5;
+  border-right: 1px solid #f5f5fa;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #12132b;
+  vertical-align: middle;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: auto !important;
+}
+.htCore tbody td:last-child {
+  border-right: none;
+}
+
+/* Row checkbox */
+.zcReport_CheckBox {
+  width: 36px !important;
+  text-align: center;
+}
+.zcReport_Edit {
+  width: 36px !important;
+  text-align: center;
+  color: #b0b0c2;
+}
+.zcReport_Edit .fa-pencil {
+  font-size: 12px;
+  color: #b0b0c2;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.htCore tbody tr:hover .zcReport_Edit .fa-pencil {
+  opacity: 1;
+}
+
+/* Text cells */
+.zcReport_Text { color: #12132b; }
+.zcReport_TextArea {
+  white-space: normal;
+  max-width: 280px;
+  line-height: 1.5;
+}
+.zcReport_Number,
+.zcReport_Date {
+  color: #555;
+}
+.zcAlginRight,
+.zcReport_alignHeaderRight {
+  text-align: right;
+}
+
+/* Multi-line text */
+.zc-multi-line-space {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+  line-height: 1.45;
+}
+
+/* Sort/Group header rows */
+.sort-group td,
+tr.sort-group td {
+  background: #f7f6fa !important;
+  font-weight: 500;
+  color: #12132b;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e7e7ee;
+  font-size: 13px;
+}
+.zc-sortgroup-option { display: none; }
+
+/* Column resize handle */
+.manualColumnResizer { display: none; }
+
+/* Handsontable borders */
+.wtBorder { display: none !important; }
+.htBorders { display: none !important; }
+
+/* Clone tables (for frozen columns) */
+.ht_clone_top,
+.ht_clone_left,
+.ht_clone_bottom {
+  display: none !important;
+}
+
+/* ====== FOOTER ====== */
+.zc-reports-footer-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1px solid #e7e7ee;
+  background: #fff;
+  font-size: 13px;
+}
+.zc-reports-footer-sec-head {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.zc-reports-footer-sec-head li span {
+  color: #6236ff;
+  font-style: italic;
+}
+.zc-summary-details {
+  color: #71718c;
+  cursor: pointer;
+}
+.zc-summary-details:hover { color: #12132b; }
+
+/* Mobile add record button at bottom */
+.zc-add-record-footer { display: none !important; }
+
+/* ====== HIDE OVERLAY/POPUP SECTIONS ====== */
+.imagepreview-outer,
+.imagepreview-overlay,
+.zc-show-imagepreview,
+.zc-show_Image,
+.zc-imageConentContainer,
+.zc-audio-preview,
+.zc-wavesurfer-container,
+.zc-preview-video-container,
+.zc-video-preview,
+.zc-report-adv-search,
+.record-advance-options-wrapper,
+.zc-record-adv-opt-wrapper,
+.zc-right-panel,
+.zc-geoform-outer-wrapper,
+.zc-mapping-field,
+.view-col-show-hide,
+.viewcolshowhidedrpdwn,
+.vieweditdrpdwn,
+.viewsettingsdrpdwn,
+.zc-viewoptionsdiv,
+.save-changes {
+  display: none !important;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  body { padding: 12px; }
+  .view-outer-wrapper { border-radius: 8px; }
+  .zc-new-report-header.row { padding: 8px 12px; }
+  .wtHolder { max-height: 400px; }
+}
+
+/* ====== UTILITY OVERRIDES ====== */
+.pull-left { float: none !important; }
+.pull-right { float: none !important; }
+.row { margin: 0 !important; }
+.col-sm-4, .col-sm-8 {
+  width: auto !important;
+  float: none !important;
+  padding: 0 !important;
+}
+.clearfix::after { display: none; }
+.flRight { float: none !important; }
+.flt-left { float: none !important; }
+.flt-right { float: none !important; }
+
+/* No data row */
+.zc-viewrow-nodata {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 14px;
+}
+
+</style>
+</head>
+<body>
+<div elname="zc-view-component" isquickview="true" class="view-outer-wrapper   zc-multi-record-view" id="List_report_2_ZC_JLV75F" style="border:"><!-- Report Header-->
+<div class="view-header view-header-reportlist" style="background-color:">
+<div class="zc-new-report-header row zc-fixed-header ">
+<div class="row">
+<div class="col-sm-8 zc-reportnameheader" id="viewheadername">
+<div class="view-name-wrapper" id="reportTitleDiv">
+<h3 class="view-name pull-left"><span class="zc-view-name ">List report 2</span><span class="zc-header-unsave-icon"></span>
+</h3>
+
+<ul class="viewprintoption zc-custom_filter_dropdown" style="right:inherit;display:none" id="" elname="zc-savedReportCont">
+</ul>
+
+</div>
+
+<div class="view-options-container">
+<ul class="view-options pull-left view-options-menufix save-changes" elname="zc-savechangesEl">
+<li style="display:none"><a href="javascript:;" role="button" class="zc_transition zc-save-btn" elname="zc-savedialogEl" zc-savetype="sameview">Save Changes</a>
+</li>
+
+<li style="display:none"><a href="javascript:;" role="button" elname="zc-resetReportEl" class="zc_transition zc-remove-btn">Remove Changes</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-sm-4 zc-reportoptionheader">
+<ul class="view-options pull-right">
+<li><a href="javascript:;" role="button" class="zc_transition active zc-advance-search-icon zc-tooltip-el" elname="zc-showSearchDivEl" aria-label="Advanced Search"><i class="fa fa-search"></i><span class="zc-mobilesearchel">Search</span><span class="hide zc-tooltip advance-search-opt zc_transition">Advanced Search (Option + Shift + A)</span></a>
+</li>
+
+<li><a href="javascript:;" role="button" zc-tooltip="true" class="zc_transition pull-right zc-add-record zc-tooltip-el" elname="zc-showAddFormEl" aria-label="Add"><i class="fa fa-plus"></i><label class="add-record">Add</label><span class="hide zc-tooltip">Add (Option + Shift + N)</span></a>
+</li>
+
+<li><a href="javascript:;" role="button" class="zc_transition zc-tooltip-el zc-more-options" id="zc-moreActionDialogEl" zc-selected="true" aria-label="More Options" aria-haspopup="menu" aria-expanded="false" aria-controls="report_nav_menu"><i class="fa fa-bars"><i class="fa fa-caret-down"></i></i><span class="hide zc-tooltip">More Options</span></a>
+<div class="report_nav" style="display:none;" elname="zc-viewOptionsDIV">
+<div class="report_nav_menu accordion_menu" id="report_nav_menu">
+<ul role="menu" class="viewsettingsdrpdwn ">
+<li role="menuitem" class="view-settings-subgroup"><a href="javascript:;" role="button" aria-controls="zc-changeReportType" aria-expanded="true" elname="zc-navmenuEl" class="zc_tab zc_transition selected" aria-label="Show as">Show as<i class="fa fa-caret-down pull-right" aria-hidden="true"></i></a>
+<ul class="zc_tab_comp report_nav_submenu" id="zc-changeReportType" role="menu">
+<li role="presentation" class="selected_viewtype"><a role="menuitem" href="javascript:;" elname="zc-changeReportType" reporttype="1" aria-current="true">List</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-changeReportType" reporttype="2" class="zc_transition" aria-current="false">Calendar</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-changeReportType" reporttype="15" class="zc_transition" aria-current="false">Timeline</a>
+</li>
+
+</ul>
+
+</li>
+
+<li role="menuitem" class="view-settings-subgroup"><a href="javascript:;" role="button" aria-controls="zc-printReportEl" aria-expanded="false" elname="zc-navmenuEl" class="zc_tab zc_transition" aria-label="Print">Print<i class="fa fa-caret-down pull-right" aria-hidden="true"></i></a>
+<ul class="zc_tab_comp report_nav_submenu" id="zc-printReportEl" role="menu">
+<li role="presentation"><a role="menuitem" elname="zc-printReportEl" printtype="list" href="javascript:;" class="link zc_transition">Print as list</a>
+</li>
+
+<li role="presentation"><a role="menuitem" elname="zc-printReportEl" printtype="summary" href="javascript:;" class="link">Print as Summary</a>
+</li>
+
+</ul>
+
+</li>
+
+<li role="menuitem" class="view-settings-subgroup"><a href="javascript:;" role="button" class="zc_transition" elname="zc-importRecordEl">Import</a>
+</li>
+
+<li role="menuitem" class="view-settings-subgroup"><a href="javascript:;" role="button" aria-controls="zc-exportReportType" aria-expanded="false" elname="zc-navmenuEl" class="zc_tab zc_transition" aria-label="Export">Export<i class="fa fa-caret-down pull-right" aria-hidden="true"></i></a>
+<ul class="zc_tab_comp report_nav_submenu" id="zc-exportReportType" role="menu">
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-exportReportType" exporttype="xlsx">XLSX</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-exportReportType" exporttype="pdf">PDF</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-exportReportType" exporttype="html">HTML</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-exportReportType" exporttype="xml">XML</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-exportReportType" exporttype="json">JSON</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-exportReportType" exporttype="csv">CSV</a>
+</li>
+
+<li role="presentation"><a role="menuitem" href="javascript:;" elname="zc-exportReportType" exporttype="tsv">TSV</a>
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<ul class="view-options pull-left view-options-menufix zc-report-newheader" elname="zc-recActionEl" style="display: none;">
+<li><a href="javascript:;" role="button" class="zc_transition zc-tooltip-el" zc-tooltip="true" elname="zc-bulkEditRecordEl" zcactiontype="bulk" title=""><i class="fa fa-pencil" aria-hidden="true"></i><span class="">Edit</span></a>
+</li>
+
+<li><a href="javascript:;" role="button" class="zc_transition zc-tooltip-el" zc-tooltip="true" elname="zc-duplicateRecordEl" zcactiontype="bulk" title=""><i class="fa fa-copy" aria-hidden="true"></i><span class="">Duplicate</span></a>
+</li>
+
+<li><a href="javascript:;" role="button" class="zc_transition zc-tooltip-el zc-delete-btn" zc-tooltip="true" elname="zc-deleteRecordEl" zcactiontype="bulk" title=""><i class="fa fa-trash-o" aria-hidden="true"></i><span class="">Delete</span></a>
+</li>
+
+<li class="view-settings-subgroup" elname="zc-newheader-print"><a href="javascript:;" role="button" class="zc_tab zc_transition" aria-expanded="false" aria-controls="report_nav_print_submenu" aria-haspopup="true">Print<i class="fa fa-angle-down pull-right" aria-hidden="true"></i></a>
+<ul role="menu" class="zc_tab_comp report_nav_submenu" id="report_nav_print_submenu" style="display:none">
+<li role="presentation"><a role="menuitem" elname="zc-printReportEl" printtype="list" href="javascript:;" class="link zc_transition">Print as list</a>
+</li>
+
+<li role="presentation"><a role="menuitem" elname="zc-printReportEl" printtype="summary" href="javascript:;" class="link">Print as Summary</a>
+</li>
+
+</ul>
+
+</li>
+
+<li class="view-settings-subgroup" elname="zc-newheader-export"><a href="javascript:;" class="zc_tab zc_transition">Export<i class="fa fa-angle-down pull-right"></i></a>
+<ul class="zc_tab_comp report_nav_submenu" style="display:none">
+<li><a href="javascript:;" elname="zc-exportReportType" exporttype="xlsx">XLSX</a>
+</li>
+ 
+<li><a href="javascript:;" elname="zc-exportReportType" exporttype="pdf">PDF</a>
+</li>
+
+<li><a href="javascript:;" elname="zc-exportReportType" exporttype="html">HTML</a>
+</li>
+
+<li><a href="javascript:;" elname="zc-exportReportType" exporttype="xml">XML</a>
+</li>
+
+<li><a href="javascript:;" elname="zc-exportReportType" exporttype="json">JSON</a>
+</li>
+
+<li><a href="javascript:;" elname="zc-exportReportType" exporttype="csv">CSV</a>
+</li>
+
+<li><a href="javascript:;" elname="zc-exportReportType" exporttype="tsv">TSV</a>
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+<!-- Report Record Actions -->
+<div class="record-advance-options-wrapper row zc-record-adv-opt-wrapper">
+</div>
+
+</div>
+<!-- Report Header Ends Here -->
+<div class="reportfullwidth   " style="height: calc(100% - 98px);"><!-- Report Body-->
+<div class="record-container zc-reporttype-list  " elname="recordcontainer">
+<div elname="recordcontainerwrapper" class="list-view-inner reportinnercont " style="max-width: 1239px;overflow:auto;position:relative;overflow:hidden">
+<div id="listReportMainContainer" class="handsontable htColumnHeaders">
+<div class="ht_master handsontable">
+<div class="wtHolder" style="position: relative; height: 319px; width: 1222px;">
+<div class="wtHider" style="width: 1515px; height: 9263px;">
+<div class="wtSpreader" style="position: relative; top: 0px; left: 0px;">
+<table class="htCore">
+<colgroup><col class="rowHeader" style="width: 30px;"><col style="width: 30px;"><col style="width: 515px;"><col style="width: 515px;"><col style="width: 131px;"><col style="width: 104px;"><col style="width: 90px;"><col style="width: 122px;">
+</colgroup>
+
+<thead>
+<tr><th class="zcReport_HeaderEditColumn" searchallowed="false" style="height: 37px;">
+<div class="relative"><span class="colHeader"><a zc-tooltip="true'" href="javascript:;" class="view-col-show-hide zc-tooltip-el" id="zcShowHideCol" zc-selected="true" aria-label="Show/Hide Columns"><i class="fa fa-eye"></i><span class="hide zc-tooltip">Show/Hide Columns</span></a></span>
+</div>
+</th><th class="zcReport_HeaderCheckBox" searchallowed="false">
+<div class="relative"><span class="colHeader"><a><input type="checkbox" value="" id="List_report_2_ZC_JLV75F-for-all_clone" name="Checkbox" class="customCheckbox" elname="zc-selectAllRecsEl" aria-label="Select All"><label for="List_report_2_ZC_JLV75F-for-all_clone"></label></a></span>
+</div>
+</th><th class="" searchallowed="true">
+<div class="relative"><span class="colHeader"><span>Single Line QR</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" restrictsortgroup="true" searchallowed="true">
+<div class="relative"><span class="colHeader"><span>Multi Line</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" searchallowed="true">
+<div class="relative"><span class="colHeader"><span>DateQR</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" searchallowed="true">
+<div class="relative"><span class="colHeader"><span>Time</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="zcReport_alignHeaderRight" searchallowed="true">
+<div class="relative"><span class="colHeader"><span>Decimal</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" searchallowed="true">
+<div class="relative"><span class="colHeader"><span>Multi Select</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th>
+</tr>
+
+</thead>
+
+<tbody>
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001141049"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001141049" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001141049" id="96307000001141049_ZC_JLV75F" name="96307000001141049_checkbox" class="customCheckbox"><label for="96307000001141049_ZC_JLV75F" recid="96307000001141049"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">ccece</span></td><td class="zcReport_Date zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001141039"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001141039" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001141039" id="96307000001141039_ZC_JLV75F" name="96307000001141039_checkbox" class="customCheckbox"><label for="96307000001141039_ZC_JLV75F" recid="96307000001141039"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">12345678</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">You don't have to code extensively to create applications. Learn how organizations are <br><br></span></td><td class="zcReport_Date zc-mapping-field htDimmed">08-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:21:11 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">46.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001141031"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001141031" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001141031" id="96307000001141031_ZC_JLV75F" name="96307000001141031_checkbox" class="customCheckbox"><label for="96307000001141031_ZC_JLV75F" recid="96307000001141031"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed. Fusce vitae imperdiet lectus. Integer vel aliquam dolor. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:21:11 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">46.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001141023"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001141023" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001141023" id="96307000001141023_ZC_JLV75F" name="96307000001141023_checkbox" class="customCheckbox"><label for="96307000001141023_ZC_JLV75F" recid="96307000001141023"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">dffasdf</span></td><td class="zcReport_Date zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001141019"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001141019" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001141019" id="96307000001141019_ZC_JLV75F" name="96307000001141019_checkbox" class="customCheckbox"><label for="96307000001141019_ZC_JLV75F" recid="96307000001141019"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001141013"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001141013" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001141013" id="96307000001141013_ZC_JLV75F" name="96307000001141013_checkbox" class="customCheckbox"><label for="96307000001141013_ZC_JLV75F" recid="96307000001141013"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">dccwcwcw</span></td><td class="zcReport_Date zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001141005"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001141005" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001141005" id="96307000001141005_ZC_JLV75F" name="96307000001141005_checkbox" class="customCheckbox"><label for="96307000001141005_ZC_JLV75F" recid="96307000001141005"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed. Fusce vitae imperdiet lectus. Integer vel aliquam dolor. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:21:11 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">46.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140997"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140997" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140997" id="96307000001140997_ZC_JLV75F" name="96307000001140997_checkbox" class="customCheckbox"><label for="96307000001140997_ZC_JLV75F" recid="96307000001140997"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-October-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:26:40 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">646.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140989"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140989" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140989" id="96307000001140989_ZC_JLV75F" name="96307000001140989_checkbox" class="customCheckbox"><label for="96307000001140989_ZC_JLV75F" recid="96307000001140989"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:23:23 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">55.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140981"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140981" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140981" id="96307000001140981_ZC_JLV75F" name="96307000001140981_checkbox" class="customCheckbox"><label for="96307000001140981_ZC_JLV75F" recid="96307000001140981"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140975"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140975" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140975" id="96307000001140975_ZC_JLV75F" name="96307000001140975_checkbox" class="customCheckbox"><label for="96307000001140975_ZC_JLV75F" recid="96307000001140975"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed. Fusce vitae imperdiet lectus. Integer vel aliquam dolor. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:21:11 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">46.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140967"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140967" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140967" id="96307000001140967_ZC_JLV75F" name="96307000001140967_checkbox" class="customCheckbox"><label for="96307000001140967_ZC_JLV75F" recid="96307000001140967"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140961"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140961" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140961" id="96307000001140961_ZC_JLV75F" name="96307000001140961_checkbox" class="customCheckbox"><label for="96307000001140961_ZC_JLV75F" recid="96307000001140961"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">dccwcwcw</span></td><td class="zcReport_Date zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed"></td><td class="zcReport_Text zc-mapping-field htDimmed"></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140953"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140953" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140953" id="96307000001140953_ZC_JLV75F" name="96307000001140953_checkbox" class="customCheckbox"><label for="96307000001140953_ZC_JLV75F" recid="96307000001140953"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140945"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140945" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140945" id="96307000001140945_ZC_JLV75F" name="96307000001140945_checkbox" class="customCheckbox"><label for="96307000001140945_ZC_JLV75F" recid="96307000001140945"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed. Fusce vitae imperdiet lectus. Integer vel aliquam dolor. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:21:11 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">46.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140937"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140937" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140937" id="96307000001140937_ZC_JLV75F" name="96307000001140937_checkbox" class="customCheckbox"><label for="96307000001140937_ZC_JLV75F" recid="96307000001140937"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-October-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:26:40 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">646.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140929"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140929" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140929" id="96307000001140929_ZC_JLV75F" name="96307000001140929_checkbox" class="customCheckbox"><label for="96307000001140929_ZC_JLV75F" recid="96307000001140929"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"> Donec non lectus gravida, consequat dolor vel, varius diam. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Ut at congue urna, eu tristique nisi. Mauris faucibus felis in diam rutrum, ac maximus erat dignissim.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:59:00 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">66.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140921"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140921" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140921" id="96307000001140921_ZC_JLV75F" name="96307000001140921_checkbox" class="customCheckbox"><label for="96307000001140921_ZC_JLV75F" recid="96307000001140921"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:23:23 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">55.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140913"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140913" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140913" id="96307000001140913_ZC_JLV75F" name="96307000001140913_checkbox" class="customCheckbox"><label for="96307000001140913_ZC_JLV75F" recid="96307000001140913"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140905"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140905" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140905" id="96307000001140905_ZC_JLV75F" name="96307000001140905_checkbox" class="customCheckbox"><label for="96307000001140905_ZC_JLV75F" recid="96307000001140905"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140899"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140899" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140899" id="96307000001140899_ZC_JLV75F" name="96307000001140899_checkbox" class="customCheckbox"><label for="96307000001140899_ZC_JLV75F" recid="96307000001140899"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140893"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140893" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140893" id="96307000001140893_ZC_JLV75F" name="96307000001140893_checkbox" class="customCheckbox"><label for="96307000001140893_ZC_JLV75F" recid="96307000001140893"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed. Fusce vitae imperdiet lectus. Integer vel aliquam dolor. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:21:11 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">46.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140885"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140885" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140885" id="96307000001140885_ZC_JLV75F" name="96307000001140885_checkbox" class="customCheckbox"><label for="96307000001140885_ZC_JLV75F" recid="96307000001140885"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140877"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140877" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140877" id="96307000001140877_ZC_JLV75F" name="96307000001140877_checkbox" class="customCheckbox"><label for="96307000001140877_ZC_JLV75F" recid="96307000001140877"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140871"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140871" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140871" id="96307000001140871_ZC_JLV75F" name="96307000001140871_checkbox" class="customCheckbox"><label for="96307000001140871_ZC_JLV75F" recid="96307000001140871"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">28-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:40:50 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">32.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140863"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140863" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140863" id="96307000001140863_ZC_JLV75F" name="96307000001140863_checkbox" class="customCheckbox"><label for="96307000001140863_ZC_JLV75F" recid="96307000001140863"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140855"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140855" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140855" id="96307000001140855_ZC_JLV75F" name="96307000001140855_checkbox" class="customCheckbox"><label for="96307000001140855_ZC_JLV75F" recid="96307000001140855"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"> Donec non lectus gravida, consequat dolor vel, varius diam. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Ut at congue urna, eu tristique nisi. Mauris faucibus felis in diam rutrum, ac maximus erat dignissim.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:59:00 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">66.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140847"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140847" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140847" id="96307000001140847_ZC_JLV75F" name="96307000001140847_checkbox" class="customCheckbox"><label for="96307000001140847_ZC_JLV75F" recid="96307000001140847"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"> Donec non lectus gravida, consequat dolor vel, varius diam. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Ut at congue urna, eu tristique nisi. Mauris faucibus felis in diam rutrum, ac maximus erat dignissim.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:59:00 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">66.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140839"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140839" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140839" id="96307000001140839_ZC_JLV75F" name="96307000001140839_checkbox" class="customCheckbox"><label for="96307000001140839_ZC_JLV75F" recid="96307000001140839"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140831"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140831" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140831" id="96307000001140831_ZC_JLV75F" name="96307000001140831_checkbox" class="customCheckbox"><label for="96307000001140831_ZC_JLV75F" recid="96307000001140831"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140823"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140823" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140823" id="96307000001140823_ZC_JLV75F" name="96307000001140823_checkbox" class="customCheckbox"><label for="96307000001140823_ZC_JLV75F" recid="96307000001140823"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140817"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140817" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140817" id="96307000001140817_ZC_JLV75F" name="96307000001140817_checkbox" class="customCheckbox"><label for="96307000001140817_ZC_JLV75F" recid="96307000001140817"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">30-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:38:17 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">22.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140809"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140809" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140809" id="96307000001140809_ZC_JLV75F" name="96307000001140809_checkbox" class="customCheckbox"><label for="96307000001140809_ZC_JLV75F" recid="96307000001140809"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140801"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140801" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140801" id="96307000001140801_ZC_JLV75F" name="96307000001140801_checkbox" class="customCheckbox"><label for="96307000001140801_ZC_JLV75F" recid="96307000001140801"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140793"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140793" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140793" id="96307000001140793_ZC_JLV75F" name="96307000001140793_checkbox" class="customCheckbox"><label for="96307000001140793_ZC_JLV75F" recid="96307000001140793"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"> Donec non lectus gravida, consequat dolor vel, varius diam. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Ut at congue urna, eu tristique nisi. Mauris faucibus felis in diam rutrum, ac maximus erat dignissim.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:59:00 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">66.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140785"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140785" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140785" id="96307000001140785_ZC_JLV75F" name="96307000001140785_checkbox" class="customCheckbox"><label for="96307000001140785_ZC_JLV75F" recid="96307000001140785"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">28-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:40:50 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">32.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140777"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140777" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140777" id="96307000001140777_ZC_JLV75F" name="96307000001140777_checkbox" class="customCheckbox"><label for="96307000001140777_ZC_JLV75F" recid="96307000001140777"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-October-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:26:40 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">646.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140769"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140769" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140769" id="96307000001140769_ZC_JLV75F" name="96307000001140769_checkbox" class="customCheckbox"><label for="96307000001140769_ZC_JLV75F" recid="96307000001140769"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"> Donec non lectus gravida, consequat dolor vel, varius diam. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Ut at congue urna, eu tristique nisi. Mauris faucibus felis in diam rutrum, ac maximus erat dignissim.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:59:00 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">66.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140761"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140761" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140761" id="96307000001140761_ZC_JLV75F" name="96307000001140761_checkbox" class="customCheckbox"><label for="96307000001140761_ZC_JLV75F" recid="96307000001140761"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">28-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:40:50 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">32.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140753"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140753" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140753" id="96307000001140753_ZC_JLV75F" name="96307000001140753_checkbox" class="customCheckbox"><label for="96307000001140753_ZC_JLV75F" recid="96307000001140753"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140745"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140745" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140745" id="96307000001140745_ZC_JLV75F" name="96307000001140745_checkbox" class="customCheckbox"><label for="96307000001140745_ZC_JLV75F" recid="96307000001140745"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:23:23 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">55.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140737"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140737" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140737" id="96307000001140737_ZC_JLV75F" name="96307000001140737_checkbox" class="customCheckbox"><label for="96307000001140737_ZC_JLV75F" recid="96307000001140737"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">30-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:38:17 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">22.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140729"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140729" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140729" id="96307000001140729_ZC_JLV75F" name="96307000001140729_checkbox" class="customCheckbox"><label for="96307000001140729_ZC_JLV75F" recid="96307000001140729"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140721"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140721" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140721" id="96307000001140721_ZC_JLV75F" name="96307000001140721_checkbox" class="customCheckbox"><label for="96307000001140721_ZC_JLV75F" recid="96307000001140721"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140713"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140713" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140713" id="96307000001140713_ZC_JLV75F" name="96307000001140713_checkbox" class="customCheckbox"><label for="96307000001140713_ZC_JLV75F" recid="96307000001140713"></label></td><td class="zcReport_Text zc-mapping-field htDimmed"> Donec non lectus gravida, consequat dolor vel, varius diam. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Ut at congue urna, eu tristique nisi. Mauris faucibus felis in diam rutrum, ac maximus erat dignissim.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:59:00 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">66.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140705"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140705" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140705" id="96307000001140705_ZC_JLV75F" name="96307000001140705_checkbox" class="customCheckbox"><label for="96307000001140705_ZC_JLV75F" recid="96307000001140705"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">30-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:38:17 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">22.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140697"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140697" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140697" id="96307000001140697_ZC_JLV75F" name="96307000001140697_checkbox" class="customCheckbox"><label for="96307000001140697_ZC_JLV75F" recid="96307000001140697"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-October-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:26:40 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">646.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140689"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140689" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140689" id="96307000001140689_ZC_JLV75F" name="96307000001140689_checkbox" class="customCheckbox"><label for="96307000001140689_ZC_JLV75F" recid="96307000001140689"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Etiam sem nisl, elementum in hendrerit at, eleifend quis ligula. Maecenas iaculis ante nibh, et convallis lacus pretium sed. Fusce vitae imperdiet lectus. Integer vel aliquam dolor. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:21:11 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">46.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140681"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140681" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140681" id="96307000001140681_ZC_JLV75F" name="96307000001140681_checkbox" class="customCheckbox"><label for="96307000001140681_ZC_JLV75F" recid="96307000001140681"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">28-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:40:50 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">32.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140673"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140673" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140673" id="96307000001140673_ZC_JLV75F" name="96307000001140673_checkbox" class="customCheckbox"><label for="96307000001140673_ZC_JLV75F" recid="96307000001140673"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Aliquam erat volutpat. Nam blandit velit eget hendrerit porta. Ut id urna tellus. Integer sed sem tincidunt, iaculis diam id, commodo lectus.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">28-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:40:50 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">32.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140665"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140665" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140665" id="96307000001140665_ZC_JLV75F" name="96307000001140665_checkbox" class="customCheckbox"><label for="96307000001140665_ZC_JLV75F" recid="96307000001140665"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:23:23 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">55.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140657"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140657" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140657" id="96307000001140657_ZC_JLV75F" name="96307000001140657_checkbox" class="customCheckbox"><label for="96307000001140657_ZC_JLV75F" recid="96307000001140657"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur sodales leo, in viverra nibh ultrices sit amet. Ut quis tortor accumsan tortor porttitor imperdiet ut nec arcu. Vivamus et neque nisl. Suspendisse potenti. Curabitur scelerisque enim et metus vulputate, vitae vehicula enim ornare. Donec sagittis ipsum enim, sed volutpat quam hendrerit eu. Vestibulum sollicitudin eros tortor, pellentesque consectetur nisl condimentum ullamcorper. Ut purus turpis, accumsan at ante vitae, varius eleifend justo. Vivamus pellentesque diam diam, a pulvinar justo congue nec.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">23-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:12:02 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">3.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br>Choice 2<br>Choice 3<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140651"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140651" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140651" id="96307000001140651_ZC_JLV75F" name="96307000001140651_checkbox" class="customCheckbox"><label for="96307000001140651_ZC_JLV75F" recid="96307000001140651"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Pellentesque blandit tincidunt eros varius tincidunt. Donec non lectus gravida, consequat dolor vel, varius diam.</span></td><td class="zcReport_Date zc-mapping-field htDimmed">22-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:51:06 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">4.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140643"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140643" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140643" id="96307000001140643_ZC_JLV75F" name="96307000001140643_checkbox" class="customCheckbox"><label for="96307000001140643_ZC_JLV75F" recid="96307000001140643"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci.  Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">05-October-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:26:40 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">646.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 1<br></td>
+</tr>
+
+<tr class="" tabindex="0" elname="zc-reportRowEl" reclinkid="96307000001140635"><td class="zcReport_Edit htDimmed" elname="zc-rowActionsTdEl"><a class="zc-edit-record-icon" reclinkid="96307000001140635" href="" grpelname="zc-showMoreRecordActionEl" elname="zc-showMoreActionEl"><i class="fa fa-ellipsis-h"></i></a></td><td class="zcReport_CheckBox"><input elname="zc-recSelectionEl" type="checkbox" recid="96307000001140635" id="96307000001140635_ZC_JLV75F" name="96307000001140635_checkbox" class="customCheckbox"><label for="96307000001140635_ZC_JLV75F" recid="96307000001140635"></label></td><td class="zcReport_Text zc-mapping-field htDimmed">Duis aliquam nunc nec dui consequat laoreet. </td><td class="zcReport_TextArea zc-mapping-field htDimmed"><span class="zc-multi-line-space">Duis aliquam nunc nec dui consequat laoreet. Vestibulum ac suscipit orci. </span></td><td class="zcReport_Date zc-mapping-field htDimmed">30-September-23</td><td class="zcReport_Text zc-mapping-field htDimmed">05:38:17 PM</td><td class="zcReport_Number zcAlginRight zc-mapping-field htDimmed">22.00</td><td class="zcReport_Text zc-mapping-field htDimmed">Choice 2<br></td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="htBorders">
+<div style="position: absolute; top: 0px; left: 0px;">
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current corner" style="background-color: rgb(75, 137, 255); height: 6px; width: 6px; border: 1px solid rgb(255, 255, 255); display: none;">
+</div>
+
+</div>
+
+<div style="position: absolute; top: 0px; left: 0px;">
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill corner" style="background-color: rgb(255, 0, 0); height: 6px; width: 6px; border: 1px solid rgb(255, 255, 255); display: none;">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+ 
+<div class="ht_clone_top handsontable" style="position: absolute; top: 0px; left: 0px; overflow: hidden; width: 1222px; height: 42px;">
+<div class="wtHolder" style="position: relative; width: 1222px; height: 72px;">
+<div class="wtHider" style="width: 1515px;">
+<div class="wtSpreader" style="position: relative; left: 0px;">
+<table class="htCore">
+<colgroup><col class="rowHeader" style="width: 30px;"><col style="width: 30px;"><col style="width: 515px;"><col style="width: 515px;"><col style="width: 131px;"><col style="width: 104px;"><col style="width: 90px;"><col style="width: 122px;">
+</colgroup>
+
+<thead>
+<tr><th class="zcReport_HeaderEditColumn" searchallowed="false" style="height: 37px;">
+<div class="relative"><span class="colHeader"><a zc-tooltip="true'" href="javascript:;" class="view-col-show-hide zc-tooltip-el" id="zcShowHideCol" zc-selected="true" aria-label="Show/Hide Columns"><i class="fa fa-eye"></i><span class="hide zc-tooltip">Show/Hide Columns</span></a></span>
+</div>
+</th><th class="zcReport_HeaderCheckBox" searchallowed="false" style="border-left-width: 0px;">
+<div class="relative"><span class="colHeader"><a><input type="checkbox" value="" id="List_report_2_ZC_JLV75F-for-all" name="Checkbox" class="customCheckbox" elname="zc-selectAllRecsEl" aria-label="Select All"><label for="List_report_2_ZC_JLV75F-for-all"></label></a></span>
+</div>
+</th><th class="" searchallowed="true" tabindex="0" delugename="Single_Line_QR" comptype="1" isencrypted="false" displayname="Single Line QR">
+<div class="relative"><span class="colHeader"><span>Single Line QR</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" restrictsortgroup="true" searchallowed="true" tabindex="0" delugename="Multi_Line" comptype="3" isencrypted="false" displayname="Multi Line">
+<div class="relative"><span class="colHeader"><span>Multi Line</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" searchallowed="true" tabindex="0" delugename="DateQR" comptype="10" isencrypted="false" displayname="DateQR">
+<div class="relative"><span class="colHeader"><span>DateQR</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" searchallowed="true" tabindex="0" delugename="Time" comptype="11" isencrypted="false" displayname="Time">
+<div class="relative"><span class="colHeader"><span>Time</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="zcReport_alignHeaderRight" searchallowed="true" tabindex="0" delugename="Decimal" comptype="5" isencrypted="false" displayname="Decimal">
+<div class="relative"><span class="colHeader"><span>Decimal</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th><th class="" searchallowed="true" tabindex="0" delugename="Multi_Select" comptype="13" isencrypted="false" displayname="Multi Select">
+<div class="relative"><span class="colHeader"><span>Multi Select</span><i class="fa zc-report-sortOrder descending"></i></span>
+</div>
+</th>
+</tr>
+
+</thead>
+
+<tbody>
+</tbody>
+
+</table>
+
+<div class="htBorders">
+<div style="position: absolute; top: 0px; left: 0px;">
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current" style="background-color: rgb(75, 137, 255); height: 2px; width: 2px; display: none;">
+</div>
+
+<div class="wtBorder current corner" style="background-color: rgb(75, 137, 255); height: 6px; width: 6px; border: 1px solid rgb(255, 255, 255); display: none;">
+</div>
+
+</div>
+
+<div style="position: absolute; top: 0px; left: 0px;">
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill" style="background-color: rgb(255, 0, 0); height: 1px; width: 1px; display: none;">
+</div>
+
+<div class="wtBorder fill corner" style="background-color: rgb(255, 0, 0); height: 6px; width: 6px; border: 1px solid rgb(255, 255, 255); display: none;">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="ht_clone_bottom handsontable" style="position: absolute; top: 0px; left: 0px; overflow: hidden; bottom: 0px;">
+<div class="wtHolder" style="position: relative;">
+<div class="wtHider">
+<div class="wtSpreader" style="width: 100% !important;">
+<table class="htCore" style="width: 100% !important;">
+<colgroup>
+</colgroup>
+
+<thead>
+<tr>
+</tr>
+
+</thead>
+
+<tbody>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="ht_clone_left handsontable" style="position: absolute; top: 0px; left: 0px; overflow: hidden;">
+<div class="wtHolder" style="position: relative;">
+<div class="wtHider">
+<div class="wtSpreader" style="position: relative;">
+<table class="htCore">
+<colgroup>
+</colgroup>
+
+<thead>
+<tr>
+</tr>
+
+</thead>
+
+<tbody>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="manualColumnResizer" style="top: 0px; left: 569px; height: 38px;">
+</div>
+
+</div>
+
+</div>
+
+<table style="display:none">
+<tbody>
+<tr class="zc-viewrow-nodata zc-row-1" id="nodatatrelement"><td class="zc-viewrow-nodata align-center" colspan="65"><span elname="zc-view-nodata">No Data Available</span></td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="zc-show-hide" style="display: none;" id="zcShowHideColCont" elname="zcShowHideColCont">
+<div class="zc-wrap-column-container"><span class="zc-wrap-column-title" id="zcWrapColumnTitle">Wrap column</span>
+<div class="zc-toggle-cont" id="">
+<div class="zc-toggleswitch" id=""><input type="checkbox" id="wrapColsInputEl" aria-labelledby="zcWrapColumnTitle" role="switch" value="wrapColumns"><span class="zc-toggleswitch-slider"></span>
+</div>
+
+</div>
+
+</div>
+
+<ul class="viewcolshowhidedrpdwn">
+<li>
+<div class="zc_transition"><input type="checkbox" class="customCheckbox" id="show-hide-col-all" name="show-hide-col-all" elname="zc-showHideAllInput"><label for="show-hide-col-all" elname="zc-groupSelectionEl"></label><label for="show-hide-col-all" class="hidecolumnheader" elname="zc-groupSelectionEl">Show/Hide Columns</label>
+</div>
+
+</li>
+
+<li>
+<div class="zc_transition"><input type="checkbox" class="customCheckbox" id="Single_Line_QR_showhide" name="viewdel" elname="zc-showHideInput" value="Single_Line_QR" checked="checked"><label for="Single_Line_QR_showhide" elname="zc-groupSelectionEl"></label><label for="Single_Line_QR_showhide" elname="zc-groupSelectionEl">Single Line QR</label>
+</div>
+
+</li>
+
+<li>
+<div class="zc_transition"><input type="checkbox" class="customCheckbox" id="Multi_Line_showhide" name="viewdel" elname="zc-showHideInput" value="Multi_Line" checked="checked"><label for="Multi_Line_showhide" elname="zc-groupSelectionEl"></label><label for="Multi_Line_showhide" elname="zc-groupSelectionEl">Multi Line</label>
+</div>
+
+</li>
+
+<li>
+<div class="zc_transition"><input type="checkbox" class="customCheckbox" id="DateQR_showhide" name="viewdel" elname="zc-showHideInput" value="DateQR" checked="checked"><label for="DateQR_showhide" elname="zc-groupSelectionEl"></label><label for="DateQR_showhide" elname="zc-groupSelectionEl">DateQR</label>
+</div>
+
+</li>
+
+<li>
+<div class="zc_transition"><input type="checkbox" class="customCheckbox" id="Time_showhide" name="viewdel" elname="zc-showHideInput" value="Time" checked="checked"><label for="Time_showhide" elname="zc-groupSelectionEl"></label><label for="Time_showhide" elname="zc-groupSelectionEl">Time</label>
+</div>
+
+</li>
+
+<li>
+<div class="zc_transition"><input type="checkbox" class="customCheckbox" id="Decimal_showhide" name="viewdel" elname="zc-showHideInput" value="Decimal" checked="checked"><label for="Decimal_showhide" elname="zc-groupSelectionEl"></label><label for="Decimal_showhide" elname="zc-groupSelectionEl">Decimal</label>
+</div>
+
+</li>
+
+<li>
+<div class="zc_transition"><input type="checkbox" class="customCheckbox" id="Multi_Select_showhide" name="viewdel" elname="zc-showHideInput" value="Multi_Select" checked="checked"><label for="Multi_Select_showhide" elname="zc-groupSelectionEl"></label><label for="Multi_Select_showhide" elname="zc-groupSelectionEl">Multi Select</label>
+</div>
+
+</li>
+
+</ul>
+
+<div class="zc-show-hide-done"><span class="showhidedrpdwnbtn"><input type="button" value="Done" class="zc-live-primary-btn zc_transition" elname="zc-showHideButton"></span>
+</div>
+
+</div>
+
+<div style="display:none;" zc_criteria="" critstr="" serverprefix="https://creatoruitestapp.localzoho.com" scheme="https" exportserverprefix="creatoruitest.localzoho.com" publicserver="" isicalenable="false" isicalfeedfeatureallowed="true" isexportenable="false" isviewexportfeatureallowed="true" privatelink="" elname="zc-linkinfo-div">
+</div>
+ 
+<ul class="vieweditdrpdwn" elname="zc-moreRecMenuActionFloat" style="display:none">
+<li zcrecacttype="FloatMenu_Single"><a href="javascript:;" class="zc_transition link" reclinkid="" elname="zc-showEditFormEl">Edit</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Single"><a href="javascript:;" reclinkid="" class="zc_transition link" elname="zc-duplicateRecordEl">Duplicate</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Single"><a href="javascript:;" class="zc_transition link" reclinkid="" elname="zc-deleteRecordEl">Delete</a>
+</li>
+
+</ul>
+
+<ul class="vieweditdrpdwn" elname="zc-moreRecActionFloat" style="display:none">
+<li zcrecacttype="FloatMenu_Single"><a href="javascript:;" class="zc_transition link" reclinkid="" elname="zc-showEditFormEl">Edit</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Single"><a href="javascript:;" class="zc_transition link" reclinkid="" elname="zc-deleteRecordEl">Delete</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Bulk" style="padding-left:10px;"><a href="javascript:;" class="zc_transition link" elname="zc-deleteRecordEl">Delete</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Single"><a href="javascript:;" reclinkid="" class="zc_transition link" elname="zc-duplicateRecordEl">Duplicate</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Bulk" style="padding-left:10px;"><a href="javascript:;" class="zc_transition link" elname="zc-duplicateRecordEl">Duplicate</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Single"><a href="javascript:;" class="zc_transition link" reclinkid="" elname="zc-showRecordEl">View Record</a>
+</li>
+
+<li zcrecacttype="FloatMenu_Single"><a href="" class="zc_transition link" target="_blank" elname="zc-printViewEl">Print</a>
+</li>
+
+<li zcrecacttype="FloatMenu_select"><a href="javascript:;" reclinkid="" class="link" elname="zc-selectRecordEl">Select this Record</a>
+</li>
+
+<li zcrecacttype="FloatMenu_selectAll"><a href="javascript:;" elname="zc-selecAllRecordEl" class="link">Select All Records</a>
+</li>
+
+<li zcrecacttype="FloatMenu_deselect"><a href="javascript:;" reclinkid="" class="link" elname="zc-deSelectRecordEl">Deselect this Record</a>
+</li>
+
+<li zcrecacttype="FloatMenu_deselectall"><a href="javascript:;" elname="zc-deselectAllRecordEl" class="link">Deselect All Records</a>
+</li>
+
+</ul>
+
+<div elname="zc-sortGroupCont" id="zc-sortGroupCont" style="display:none;">
+<div class="report_nav">
+<div class="report_nav_menu accordion_menu sort-group" id="report_nav_menu">
+<ul role="menu" class="viewsettingsdrpdwn zc-sortgroup-option" elname="zc-moreRecColheaderMenu">
+<li role="presentation" class="view-settings-subgroup"><a href="javascript:;" role="menuitem" elname="zc-showSearchDivColEl">Search</a>
+</li>
+
+<li role="presentation" class="view-settings-subgroup"><a href="javascript:;" role="menuitem" isasc="true" elname="zc-reportSortEl">Sort by Ascending</a>
+</li>
+
+<li role="presentation" class="view-settings-subgroup"><a href="javascript:;" role="menuitem" isasc="false" elname="zc-reportSortEl">Sort by Descending</a>
+</li>
+
+<li role="presentation" class="view-settings-subgroup"><a href="javascript:;" role="menuitem" isasc="true" elname="zc-reportGroupEl">Group by Ascending</a>
+</li>
+
+<li role="presentation" class="view-settings-subgroup"><a href="javascript:;" role="menuitem" isasc="false" elname="zc-reportGroupEl">Group by Descending</a>
+</li>
+
+<li role="presentation" class="view-settings-subgroup"><a href="javascript:;" role="menuitem" elname="zc-hideColumnEl">Hide Column</a>
+</li>
+
+</ul>
+
+<ul class="viewsettingsdrpdwn sub-menu-level-2 flRight" elname="zc-moreOpts" style="display:none;">
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="zc-viewoptionsdiv" elname="zc-delactionsdiv" style="position:absolute;display:none;">
+<div class="zc-del-failure" style="display:none;">
+<div class="zc-error-inform"><span elname="zc-spanmsg-failure" class="zc-spanmsg-failure"><span class="msgtoshow"> </span></span>
+</div>
+
+<div comelname="zc-errdetailsdiv" elname="zc-recsdiv-failure" class="zc-errdetailsdiv">
+</div>
+
+</div>
+
+<div class="zc-del-success" style="display:none;">
+<div class="zc-error-inform"><span elname="zc-spanmsg-success" class="zc-spanmsg-success"><span class="msgtoshow"> </span></span>
+</div>
+
+<div comelname="zc-errdetailsdiv" elname="zc-recsdiv-success" class="zc-errdetailsdiv">
+</div>
+
+</div>
+
+</div>
+
+<div elname="zc-imagedialog-cont" class="hide zc-show-imagepreview">
+<div class="imagepreview-overlay">
+</div>
+
+<div class="imagepreview-outer zc-show_Image">
+<div class="zc-show-ImageHeader">
+<div class="zc-popupImage-Name" elname="zc-fileName">Image
+</div>
+
+<div class="zc-popupImage-option">
+<ul>
+<li style="display:none"><a href="javascript:;" class="zc-originalImage">Show Original</a>
+</li>
+
+<li id="zc-downloadelement"><a href="" id="zc-downloadurl" download=""><span class="zc-imageDownload"><i class="fa fa-download"></i></span></a>
+</li>
+
+<li><a href="javascript:;" elname="zc-imageClose"><span class="zc-imageclose"><i class="fa fa-close"></i></span></a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="zc-imageConentContainer"><img src="">
+</div>
+
+</div>
+
+</div>
+
+<div elname="zc-mediadialog-cont" class="zc-video-preview hide zc-show-imagepreview">
+<div class="imagepreview-overlay">
+</div>
+
+<div class="imagepreview-outer zc-show_Image">
+<div class="zc-show-ImageHeader">
+<div class="zc-popupImage-Name" elname="zc-fileName">Image
+</div>
+
+<div class="zc-popupImage-option">
+<ul>
+<li style="display:none"><a href="" class="zc-originalImage">Show Original</a>
+</li>
+
+<li id="zc-downloadelement"><a href="" id="zc-videodownloadurl" download=""><span class="zc-imageDownload"><i class="fa fa-download"></i></span></a>
+</li>
+
+<li><a href="" elname="zc-imageClose"><span class="zc-imageclose"><i class="fa fa-close"></i></span></a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="zc-imageConentContainer">
+<div class="zc-preview-video-container"><video controlslist="nodownload" src=""></video><i id="playIcon" class="zc-li-solid x3 media-1-button-play" style=""></i>
+<div class="zc-video-controls">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div elname="zc-mediadialog-cont" class="zc-audio-preview hide zc-show-imagepreview">
+<div class="imagepreview-overlay">
+</div>
+
+<div class="imagepreview-outer zc-show_Image">
+<div class="zc-show-ImageHeader">
+<div class="zc-popupImage-Name" elname="zc-fileName">Image
+</div>
+
+<div class="zc-popupImage-option">
+<ul>
+<li style="display:none"><a href="" class="zc-originalImage">Show Original</a>
+</li>
+
+<li id="zc-downloadelement"><a href="" id="zc-audiodownloadurl" download=""><span class="zc-imageDownload"><i class="fa fa-download"></i></span></a>
+</li>
+
+<li><a elname="zc-imageClose"><span class="zc-imageclose"><i class="fa fa-close"></i></span></a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="zc-imageConentContainer" width="500" height="200">
+<div class="zc-wavesurfer-container clearfix">
+<div class="zc-wavesurfer-wrapper">
+<div style="background-color: white;width:500px" id="waveform" class="hide zc-wavesurfer">
+</div>
+<audio style="width:100%;" controlslist="noremoteplayback nodownload" src=""></audio>
+</div>
+
+<div class="zc-wavesurfer-controls zc-dem-clearfix">
+<div class="flt-left"><i id="playerPlay" class="zc-li-solid  media-1-button-play"></i><i id="playerStop" class="zc-li-solid  media-1-button-stop"></i>
+</div>
+
+<div id="seek" action="seek" class="zc-progress-bar-con">
+<div id="scroll" class="zc-audioprogress-bar " style="left: 0px;">
+</div>
+
+<div id="scrollcrcl" class="zc-circl" style="left: 0px;z-index: 3; display: none;">
+</div>
+
+<div id="played" action="seek" class="zc-progess" style="width: 0px;">
+</div>
+
+</div>
+
+<div class="flt-right"><i id="playerVol" class="zc-li-solid  media-1-volume-98"></i><input id="volume" class="zc-wavesurfer-volume" type="range" min="0" max="100" step="1" style="width: 90px;">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hide save-view-record" id="reportConfig">
+</div>
+
+<div elname="exportReportPopup" class="zc-export-report-popup" style="display:none;">
+<div class="zc-export-report-popup-inner">
+<div class="zc-export-report-heading zc-dem-clearfix">
+<h3>Export
+</h3>
+<span elname="hideExportCont" class="zc-export-hide-btn">Hide</span>
+</div>
+
+<ul elname="exportReportPopupUl" class="zc-export-report-content">
+</ul>
+
+</div>
+
+</div>
+
+<div elname="exportReportSpinner" class="zc-export-count hide">
+<div class="zc-export-count-inner"><span elname="exportCount" class="zc-export-spinner-count"></span>
+<div class="zc-export-spinner">
+</div>
+<i class="zc-li-outline ui-1-check-small" value="ui-1-check-small" html="ui-1-check-small"></i>
+</div>
+
+</div>
+
+<div class="zc-reportheader-tooltip" style="left: 712px; top: 89px;">Single Line QR
+</div>
+
+</div>
+<!-- Advanced Search -->
+<div class="zc-right-panel zc-report-adv-search" elname="advancedSearch">
+<div class="zc-criteria-builder">
+<div class="zc-cb-form-group">
+<form method="post" name="zc-advSearchForm">
+<div class="zc-cb-header "><span class="zc-cb-title zc-dem-text-ellipsis">Search - List report 2</span><a href="#" class="zc-cb-close zc-ico-close" elname="criteria-close" tabindex="0"></a>
+</div>
+
+<div class="zc-cb-content" id="searchlist">
+<ul class="zc-cb-checkbox-group">
+<li elname="zc-advSortGroupEl" iscompositesearched="false" delugename="Single_Line_QR" comptype="1" eventbinded="false" relatedfield="false" advdisplaysingleoption="true">
+<div class="zc-cb-checkbox" elname="zc-searchCheckBoxEl"><input type="checkbox" class="customCheckbox" id="checkbox-Single_Line_QR-ZC_JLV75F"><label for="checkbox-Single_Line_QR-ZC_JLV75F"></label><label for="checkbox-Single_Line_QR-ZC_JLV75F">Single Line QR</label>
+</div>
+
+<div class="zc-cb-form-condtion-group hide" elname="Single_Line_QR">
+<div class="zc-cb-combo-wrapper">
+<div class="select2-container zc-cb-select zc-cb-form-control zc-dem-custom-selectbox" id="s2id_autogen267"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-268">Contains</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen268" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-268" id="s2id_autogen268" tabindex="0">
+<div class="select2-drop select2-display-none zc-dem-custom-selectbox-menu select2-with-searchbox">   
+<div class="select2-search">       <label for="s2id_autogen268_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-268" id="s2id_autogen268_search" placeholder="">   
+</div>
+   
+<ul class="select2-results" role="listbox" id="select2-results-268">   
+</ul>
+
+</div>
+
+</div>
+<select elname="Single_Line_QR_op" name="zc_searchSelect" searchcomponenttype="1" delugename="Single_Line_QR" class="zc-cb-select zc-cb-form-control" tabindex="-1" title="" style="display: none;"><option value="18">Is</option><option value="19">Is Not</option><option class="zc-restrictOpt" value="29">Is Empty</option><option class="zc-restrictOpt" value="30">Is Not Empty</option><option value="24">Starts With</option><option value="25">Ends With</option><option value="28">Like</option><option class="zc-restrictOpt" value="26" selected="selected">Contains</option><option class="zc-restrictOpt" value="27">Not Contains</option></select>
+</div>
+
+<div elname="zc-advviewsearchrow2_List_report_2">
+<div name="zc-outercontainer">
+<div name="zc-regularSearch" elname="zc-regularSearch" class="adv-search-textfield"><input elname="zc-regularSearch-Input" islookup="" decimallength="" type="text" autocomplete="off" fieldtype="1" delugename="Single_Line_QR" searchname="Single_Line_QR_search">
+</div>
+
+<div name="zc-rangeSearch" elname="zc-rangeSearch" class="adv-search-textfield range-search-textfield">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</li>
+
+<li elname="zc-advSortGroupEl" iscompositesearched="false" delugename="Multi_Line" comptype="3" eventbinded="false" relatedfield="false" advdisplaysingleoption="true">
+<div class="zc-cb-checkbox" elname="zc-searchCheckBoxEl"><input type="checkbox" class="customCheckbox" id="checkbox-Multi_Line-ZC_JLV75F"><label for="checkbox-Multi_Line-ZC_JLV75F"></label><label for="checkbox-Multi_Line-ZC_JLV75F">Multi Line</label>
+</div>
+
+<div class="zc-cb-form-condtion-group hide" elname="Multi_Line">
+<div class="zc-cb-combo-wrapper">
+<div class="select2-container zc-cb-select zc-cb-form-control zc-dem-custom-selectbox" id="s2id_autogen269"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-270">Contains</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen270" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-270" id="s2id_autogen270" tabindex="0">
+<div class="select2-drop select2-display-none zc-dem-custom-selectbox-menu select2-with-searchbox">   
+<div class="select2-search">       <label for="s2id_autogen270_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-270" id="s2id_autogen270_search" placeholder="">   
+</div>
+   
+<ul class="select2-results" role="listbox" id="select2-results-270">   
+</ul>
+
+</div>
+
+</div>
+<select elname="Multi_Line_op" name="zc_searchSelect" searchcomponenttype="3" delugename="Multi_Line" class="zc-cb-select zc-cb-form-control" tabindex="-1" title="" style="display: none;"><option value="18">Is</option><option value="19">Is Not</option><option class="zc-restrictOpt" value="29">Is Empty</option><option class="zc-restrictOpt" value="30">Is Not Empty</option><option value="24">Starts With</option><option value="25">Ends With</option><option value="28">Like</option><option class="zc-restrictOpt" value="26" selected="selected">Contains</option><option class="zc-restrictOpt" value="27">Not Contains</option></select>
+</div>
+
+<div elname="zc-advviewsearchrow2_List_report_2">
+<div name="zc-outercontainer">
+<div name="zc-regularSearch" elname="zc-regularSearch" class="adv-search-textfield"><input elname="zc-regularSearch-Input" islookup="" decimallength="" type="text" autocomplete="off" fieldtype="3" delugename="Multi_Line" searchname="Multi_Line_search">
+</div>
+
+<div name="zc-rangeSearch" elname="zc-rangeSearch" class="adv-search-textfield range-search-textfield">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</li>
+
+<li elname="zc-advSortGroupEl" iscompositesearched="false" delugename="DateQR" comptype="10" eventbinded="false" relatedfield="false" advdisplaysingleoption="true">
+<div class="zc-cb-checkbox" elname="zc-searchCheckBoxEl"><input type="checkbox" class="customCheckbox" id="checkbox-DateQR-ZC_JLV75F"><label for="checkbox-DateQR-ZC_JLV75F"></label><label for="checkbox-DateQR-ZC_JLV75F">DateQR</label>
+</div>
+
+<div class="zc-cb-form-condtion-group hide" elname="DateQR">
+<div class="zc-cb-combo-wrapper">
+<div class="select2-container zc-cb-select zc-cb-form-control zc-dem-custom-selectbox" id="s2id_autogen271"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-272">Is</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen272" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-272" id="s2id_autogen272" tabindex="0">
+<div class="select2-drop select2-display-none zc-dem-custom-selectbox-menu select2-with-searchbox">   
+<div class="select2-search">       <label for="s2id_autogen272_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-272" id="s2id_autogen272_search" placeholder="">   
+</div>
+   
+<ul class="select2-results" role="listbox" id="select2-results-272">   
+</ul>
+
+</div>
+
+</div>
+<select elname="DateQR_op" name="zc_searchSelect" searchcomponenttype="10" delugename="DateQR" class="zc-cb-select zc-cb-form-control" tabindex="-1" title="" style="display: none;"><option value="18">Is</option><option value="19">Is Not</option><option class="zc-restrictOpt" value="29">Is Empty</option><option class="zc-restrictOpt" value="30">Is Not Empty</option><option value="20">Before</option><option value="21">After</option><option value="58">between</option><optgroup label="Day"><option value="31">Yesterday</option><option value="32">Today</option><option value="33">Tomorrow</option><option value="34">Last 7 Days</option><option value="35">Last 30 Days</option><option value="36">Last 60 Days</option><option value="37">Last 90 Days</option><option value="38">Last 120 Days</option><option value="64">Last N Days</option><option value="39">Next 7 Days</option><option value="40">Next 30 Days</option><option value="41">Next 60 Days</option><option value="42">Next 90 Days</option><option value="43">Next 120 Days</option><option value="65">Next N Days</option></optgroup><optgroup label="Week"><option value="60">Last Week</option><option value="59">This Week</option><option value="61">Next Week</option><option value="62">Current and Previous Week</option><option value="63">Current and Next Week</option><option value="66">Last N Week</option><option value="67">Next N Week</option></optgroup><optgroup label="Month"><option value="44">Last Month</option><option value="45">This Month</option><option value="46">Next Month</option><option value="47">Current and Previous Month</option><option value="48">Current and Next Month</option><option value="68">Last N Month</option><option value="69">Next N Month</option></optgroup><optgroup label="Year"><option value="51">Last Year</option><option value="52">This Year</option><option value="53">Next Year</option><option value="54">Last 2 Years</option><option value="55">Next 2 Years</option><option value="56">Current and Previous Year</option><option value="57">Current and Next Year</option><option value="70">Last N Years</option><option value="71">Next N Years</option></optgroup></select>
+</div>
+
+<div elname="zc-advviewsearchrow2_List_report_2">
+<div name="zc-outercontainer">
+<div name="zc-regularSearch" elname="zc-regularSearch" class="adv-search-textfield"><input elname="zc-regularSearch-Input" islookup="" decimallength="" type="text" autocomplete="off" fieldtype="10" delugename="DateQR" searchname="DateQR_search" id="viewSearchEl_DateQR" class="zc-advsearch-date" showcalender="true">
+</div>
+
+<div name="zc-rangeSearch" elname="zc-rangeSearch" class="adv-search-textfield range-search-textfield">
+<div style="display:none" elname="DateQR">
+<div id="rangeSearch_from"><input placeholder="From" type="text" autocomplete="off" fieldtype="10" delugename="DateQR__1211" id="viewSearchEl_DateQR__1211" showcalender="true">
+</div>
+
+<div class="search-between" id="rangeSearch_to"><input placeholder="To" type="text" autocomplete="off" fieldtype="10" delugename="DateQR__1212" id="viewSearchEl_DateQR__1212" showcalender="true">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</li>
+
+<li elname="zc-advSortGroupEl" iscompositesearched="false" delugename="Time" comptype="11" eventbinded="false" relatedfield="false" advdisplaysingleoption="true">
+<div class="zc-cb-checkbox" elname="zc-searchCheckBoxEl"><input type="checkbox" class="customCheckbox" id="checkbox-Time-ZC_JLV75F"><label for="checkbox-Time-ZC_JLV75F"></label><label for="checkbox-Time-ZC_JLV75F">Time</label>
+</div>
+
+<div class="zc-cb-form-condtion-group hide" elname="Time">
+<div class="zc-cb-combo-wrapper">
+<div class="select2-container zc-cb-select zc-cb-form-control zc-dem-custom-selectbox" id="s2id_autogen273"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-274">Is</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen274" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-274" id="s2id_autogen274" tabindex="0">
+<div class="select2-drop select2-display-none zc-dem-custom-selectbox-menu select2-with-searchbox">   
+<div class="select2-search">       <label for="s2id_autogen274_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-274" id="s2id_autogen274_search" placeholder="">   
+</div>
+   
+<ul class="select2-results" role="listbox" id="select2-results-274">   
+</ul>
+
+</div>
+
+</div>
+<select elname="Time_op" name="zc_searchSelect" searchcomponenttype="11" delugename="Time" class="zc-cb-select zc-cb-form-control" tabindex="-1" title="" style="display: none;"><option value="18">Is</option><option value="19">Is Not</option><option class="zc-restrictOpt" value="29">Is Empty</option><option class="zc-restrictOpt" value="30">Is Not Empty</option><option value="20">Before</option><option value="21">After</option><option value="58">between</option></select>
+</div>
+
+<div elname="zc-advviewsearchrow2_List_report_2">
+<div name="zc-outercontainer">
+<div name="zc-regularSearch" elname="zc-regularSearch" class="adv-search-textfield"><input elname="zc-regularSearch-Input" islookup="" decimallength="" type="text" autocomplete="off" fieldtype="11" delugename="Time" searchname="Time_search" class="zc-advsearch-time">
+</div>
+
+<div name="zc-rangeSearch" elname="zc-rangeSearch" class="adv-search-textfield range-search-textfield">
+<div style="display:none" elname="Time">
+<div id="rangeSearch_from"><input placeholder="From" type="text" autocomplete="off" fieldtype="11" delugename="Time__1211">
+</div>
+
+<div class="search-between" id="rangeSearch_to"><input placeholder="To" type="text" autocomplete="off" fieldtype="11" delugename="Time__1212">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</li>
+
+<li elname="zc-advSortGroupEl" iscompositesearched="false" delugename="Decimal" comptype="19" eventbinded="false" relatedfield="false" advdisplaysingleoption="true">
+<div class="zc-cb-checkbox" elname="zc-searchCheckBoxEl"><input type="checkbox" class="customCheckbox" id="checkbox-Decimal-ZC_JLV75F"><label for="checkbox-Decimal-ZC_JLV75F"></label><label for="checkbox-Decimal-ZC_JLV75F">Decimal</label>
+</div>
+
+<div class="zc-cb-form-condtion-group hide" elname="Decimal">
+<div class="zc-cb-combo-wrapper">
+<div class="select2-container zc-cb-select zc-cb-form-control zc-dem-custom-selectbox" id="s2id_autogen275"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-276">Is</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen276" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-276" id="s2id_autogen276" tabindex="0">
+<div class="select2-drop select2-display-none zc-dem-custom-selectbox-menu select2-with-searchbox">   
+<div class="select2-search">       <label for="s2id_autogen276_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-276" id="s2id_autogen276_search" placeholder="">   
+</div>
+   
+<ul class="select2-results" role="listbox" id="select2-results-276">   
+</ul>
+
+</div>
+
+</div>
+<select elname="Decimal_op" name="zc_searchSelect" searchcomponenttype="19" delugename="Decimal" class="zc-cb-select zc-cb-form-control" tabindex="-1" title="" style="display: none;"><option value="18" selected="selected">Is</option><option value="19">Is Not</option><option class="zc-restrictOpt" value="29">Is Empty</option><option class="zc-restrictOpt" value="30">Is Not Empty</option><option value="20">Less Than</option><option value="21">Greater Than</option><option value="22">Lesser than or equal to</option><option value="23">Greater than or equal to</option><option value="58">between</option></select>
+</div>
+
+<div elname="zc-advviewsearchrow2_List_report_2">
+<div name="zc-outercontainer">
+<div name="zc-regularSearch" elname="zc-regularSearch" class="adv-search-textfield"><input elname="zc-regularSearch-Input" islookup="" decimallength="" type="text" autocomplete="off" fieldtype="19" delugename="Decimal" searchname="Decimal_search">
+</div>
+
+<div name="zc-rangeSearch" elname="zc-rangeSearch" class="adv-search-textfield range-search-textfield">
+<div style="display:none" elname="Decimal">
+<div id="rangeSearch_from"><input placeholder="From" type="text" autocomplete="off" fieldtype="19" delugename="Decimal__1211">
+</div>
+
+<div class="search-between" id="rangeSearch_to"><input placeholder="To" type="text" autocomplete="off" fieldtype="19" delugename="Decimal__1212">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</li>
+
+<li elname="zc-advSortGroupEl" iscompositesearched="false" delugename="Multi_Select" comptype="13" eventbinded="false" relatedfield="false" advdisplaysingleoption="true">
+<div class="zc-cb-checkbox" elname="zc-searchCheckBoxEl"><input type="checkbox" class="customCheckbox" id="checkbox-Multi_Select-ZC_JLV75F"><label for="checkbox-Multi_Select-ZC_JLV75F"></label><label for="checkbox-Multi_Select-ZC_JLV75F">Multi Select</label>
+</div>
+
+<div class="zc-cb-form-condtion-group hide" elname="Multi_Select">
+<div class="zc-cb-combo-wrapper">
+<div class="select2-container zc-cb-select zc-cb-form-control zc-dem-custom-selectbox" id="s2id_autogen277"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-278">Contains</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen278" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-278" id="s2id_autogen278" tabindex="0">
+<div class="select2-drop select2-display-none zc-dem-custom-selectbox-menu select2-with-searchbox">   
+<div class="select2-search">       <label for="s2id_autogen278_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-278" id="s2id_autogen278_search" placeholder="">   
+</div>
+   
+<ul class="select2-results" role="listbox" id="select2-results-278">   
+</ul>
+
+</div>
+
+</div>
+<select elname="Multi_Select_op" name="zc_searchSelect" searchcomponenttype="13" delugename="Multi_Select" class="zc-cb-select zc-cb-form-control" tabindex="-1" title="" style="display: none;"><option value="18">Is</option><option value="19">Is Not</option><option class="zc-restrictOpt" value="29">Is Empty</option><option class="zc-restrictOpt" value="30">Is Not Empty</option><option value="24">Starts With</option><option value="25">Ends With</option><option value="28">Like</option><option class="zc-restrictOpt" value="26" selected="selected">Contains</option><option class="zc-restrictOpt" value="27">Not Contains</option></select>
+</div>
+
+<div elname="zc-advviewsearchrow2_List_report_2">
+<div name="zc-outercontainer">
+<div name="zc-regularSearch" elname="zc-regularSearch" class="adv-search-textfield"><input elname="zc-regularSearch-Input" islookup="" decimallength="" type="text" autocomplete="off" fieldtype="13" delugename="Multi_Select" searchname="Multi_Select_search">
+</div>
+
+<div name="zc-rangeSearch" elname="zc-rangeSearch" class="adv-search-textfield range-search-textfield">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="zc-cb-cnd-resutls hide"><span class="zc-cb-cnd-title">1 AND 2 OR 3</span><a class="zc-cb-cnd-edit"><i class="zc-ico-pencil"></i></a>
+</div>
+
+<div class="zc-cb-footer" elname="advSearchButtonEl"><a href="javascript:;" class="zc-cb-btn zc-cb-btn-primary zc-live-primary-btn" elname="zc-advSearchReportEl" type="button">Search</a>
+</div>
+<input type="submit" tabindex="-1" style="position: absolute; left: -9999px">
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="zc-reports-footer-sec   zc-mfooter-search-icon ">
+<ul class="zc-dem-clearfix zc-reports-footer-sec-head">
+<li id="showTotalRecords" class="zc-footer-reccount-loader"><span>Showing 274 of 274</span>
+</li>
+
+</ul>
+
+<div class="zc-summary-details zc-summary-details-action">
+</div>
+
+</div>
+<a href="javascript:;" role="button" zc-tooltip="true" class="zc_transition pull-right zc-add-record zc-tooltip-el zc-add-record-footer" elname="zc-showAddFormEl" aria-label="Add"><i class="fa fa-plus"></i><label class="add-record">Add</label><span class="hide zc-tooltip">Add (Option + Shift + N)</span></a><!--  --><!--
+</div>
+ -->
+<div id="geo-overlay" class="zc-geoform-outer-wrapper zc-geolocation-enabled" style="display:none">
+<div class="zc-geo-location-popup">
+<div class="zc-relative-position"><i id="geodenied" class="zc-geodenied" style="display:none"></i>
+<h3 id="geoheader">
+</h3>
+<span id="arrow" class="zc-geo-location-arrow"></span>
+<div id="popupimg" class="zc-geo-popimg" style="display:none"><span></span>
+</div>
+<p id="geodesc"></p><input id="allowlocation" type="button" value="Proceed" class="zc-live-primary-btn">
+</div>
+
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

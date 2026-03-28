@@ -1,0 +1,73 @@
+{% comment %} Checkbox — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "checkbox" %}
+{% assign field_name = field.name | default: "Checkbox" %}
+{% assign field_label = field.label | default: "Checkbox" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-checkbox-field-group" data-element-type="checkbox" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_list_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix{% if field.error %} select2Err validationError{% endif %}">
+    <div class="flLeft tempContDiv zc-{{ field_name }}" type="checkbox" role="group" name="parentOf-{{ field_name }}">
+      {% for option in field.options %}
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <label>
+              <span>
+                <input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="{{ field_name }}" id="checkboxesEl_zc-{{ field_name }}_{{ forloop.index }}" value="{{ option.value }}">
+                <label for="checkboxesEl_zc-{{ field_name }}_{{ forloop.index }}"></label>
+                <label class="choice-label-text" for="checkboxesEl_zc-{{ field_name }}_{{ forloop.index }}">{{ option.label }}</label>
+              </span>
+            </label>
+          </div>
+        </div>
+      {% endfor %}
+      {% if field.options == nil %}
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <label>
+              <span>
+                <input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="{{ field_name }}" id="checkboxesEl_zc-{{ field_name }}_1" value="Choice 1">
+                <label for="checkboxesEl_zc-{{ field_name }}_1"></label>
+                <label class="choice-label-text" for="checkboxesEl_zc-{{ field_name }}_1">Choice 1</label>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <label>
+              <span>
+                <input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="{{ field_name }}" id="checkboxesEl_zc-{{ field_name }}_2" value="Choice 2">
+                <label for="checkboxesEl_zc-{{ field_name }}_2"></label>
+                <label class="choice-label-text" for="checkboxesEl_zc-{{ field_name }}_2">Choice 2</label>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <label>
+              <span>
+                <input class="customCheckbox zc_checkbox zc-elem-focus-field" type="checkbox" name="{{ field_name }}" id="checkboxesEl_zc-{{ field_name }}_3" value="Choice 3">
+                <label for="checkboxesEl_zc-{{ field_name }}_3"></label>
+                <label class="choice-label-text" for="checkboxesEl_zc-{{ field_name }}_3">Choice 3</label>
+              </span>
+            </label>
+          </div>
+        </div>
+      {% endif %}
+      <div class="choice-table-row"></div>
+    </div>
+  </div>
+
+</div>

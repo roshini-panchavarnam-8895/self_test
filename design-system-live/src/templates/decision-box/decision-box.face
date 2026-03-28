@@ -1,0 +1,21 @@
+{% comment %} Decision Box — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "decision-box" %}
+{% assign field_name = field.name | default: "Decision_box" %}
+{% assign field_label = field.label | default: "Decision box" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-decisionbox-field-group" data-element-type="decision-box" data-element-id="{{ field_id }}">
+
+  <div class="decision-box-field form-field clearfix">
+    <input class="customCheckbox zc_decisionbox" type="checkbox" name="{{ field_name }}" id="zc-{{ field_name }}"
+      {% if field.required %}
+        required
+        aria-required="true"
+      {% endif %}>
+    <label class="zc_decision_box_label" for="zc-{{ field_name }}"></label>
+  </div>
+
+  <label class="form-label decision-box-label" for="zc-{{ field_name }}">{{ field_label }}</label>
+
+</div>

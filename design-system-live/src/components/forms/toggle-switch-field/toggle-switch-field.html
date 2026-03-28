@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Switch Field Component</title>
+  <link rel="stylesheet" href="toggle-switch-field.css">
+  <script defer src="toggle-switch-field.js"></script>
+</head>
+<body>
+<form class="zc-form-table zc-label-left">
+  <div class="zc-field-group zc-toggle-group">
+    <label id="toggle-label" class="zc-form-label"><span class="zc-label-text">Toggle Switch</span></label>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-toggle-switch">
+          <input type="checkbox" id="toggle-default" name="toggle_switch" class="zc-toggle-input zc-form-control" role="switch" aria-labelledby="toggle-label" aria-describedby="toggle-hint">
+          <label for="toggle-default" class="zc-toggle-slider" aria-hidden="true"></label>
+        </div>
+      </div>
+    </div>
+    <span id="toggle-hint" class="zc-field-help-text">Toggle on or off</span>
+  </div>
+
+  <div class="zc-field-group zc-toggle-group">
+    <label id="toggle-label-req" class="zc-form-label"><span class="zc-label-text">Toggle Switch</span><span class="zc-form-required" aria-hidden="true">*</span><span class="zc-sr-only">(required)</span></label>
+    <div class="zc-form-field validationError">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-toggle-switch">
+          <input type="checkbox" id="toggle-required" name="toggle_switch_req" class="zc-toggle-input zc-form-control" role="switch" aria-labelledby="toggle-label-req" required aria-required="true" aria-invalid="true" aria-describedby="toggle-error">
+          <label for="toggle-required" class="zc-toggle-slider" aria-hidden="true"></label>
+        </div>
+      </div>
+    </div>
+    <div id="toggle-error" class="zc-field-error-text zc-field-error-msg" role="alert" aria-live="assertive" hidden><i class="zc-field-error-msg-icon zc-li-outline ui-3-alert" aria-hidden="true"></i><span>This field is mandatory</span></div>
+  </div>
+
+  <div class="zc-field-group zc-toggle-group zc-field-disabled">
+    <label id="toggle-label-dis" class="zc-form-label"><span class="zc-label-text">Toggle Switch (Disabled)</span></label>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-toggle-switch">
+          <input type="checkbox" id="toggle-disabled" name="toggle_switch_dis" class="zc-toggle-input zc-form-control" role="switch" aria-labelledby="toggle-label-dis" disabled aria-disabled="true">
+          <label for="toggle-disabled" class="zc-toggle-slider" aria-hidden="true"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

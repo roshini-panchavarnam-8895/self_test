@@ -1,0 +1,40 @@
+{% comment %} Multi Select — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "multi-select" %}
+{% assign field_name = field.name | default: "Multi_Select" %}
+{% assign field_label = field.label | default: "Multi Select" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-multiselect-field-group" data-element-type="multi-select" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_list_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix searchable-lookup smallSizeLive zc-Default{% if field.error %} select2Err validationError{% endif %}">
+    <div class="select2-container select2-container-multi zc-{{ field_name }} form-choice-field zc_list_field" id="s2id_autogen_{{ field_name }}">
+      <ul class="select2-choices">
+        <li class="select2-search-field">
+          <label class="select2-offscreen" for="s2id_autogen_{{ field_name }}_input"></label>
+          <input class="select2-input select2-default zc-elem-focus-field" type="text" placeholder="" role="combobox" name="zc-sel2-inp-{{ field_name }}" id="s2id_autogen_{{ field_name }}_input" autocomplete="new-zc-sel2-inp-{{ field_name }}" style="width: 238px;">
+        </li>
+      </ul>
+      <div class="select2-drop select2-drop-multi select2-display-none {{ field_name }}-switch-search">
+        <ul class="select2-results">
+          {% for option in field.options %}
+            <li class="select2-result" data-value="{{ option.value }}" role="option">
+              <div class="select2-result-label">{{ option.label }}</div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <input class="zc-{{ field_name }} form-choice-field zc_list_field" type="text" name="{{ field_name }}" tabindex="-1" style="display: none;">
+  </div>
+
+</div>

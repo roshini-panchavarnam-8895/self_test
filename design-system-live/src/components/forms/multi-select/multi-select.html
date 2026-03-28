@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Select — Zoho Creator</title>
+  <link rel="stylesheet" href="multi-select.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-multi-select">
+        <span class="zc-label-text">Multi Select</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="select2-container select2-container-multi" id="zc-multi-select-container" role="combobox" aria-expanded="false" aria-haspopup="listbox">
+          <ul class="select2-choices">
+            <li class="select2-search-field">
+              <input type="text" class="select2-input select2-default" autocomplete="off" placeholder="Multi Select" role="combobox" aria-expanded="false">
+            </li>
+          </ul>
+          <div class="select2-drop select2-drop-multi select2-display-none">
+            <ul class="select2-results">
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice1"><div class="select2-result-label">Choice 1</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice2"><div class="select2-result-label">Choice 2</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice3"><div class="select2-result-label">Choice 3</div></li>
+            </ul>
+          </div>
+        </div>
+        <input type="hidden" name="multi_select_default" id="zc-multi-select">
+        <div id="zc-multi-select-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-multi-select-err">
+        <span class="zc-label-text">Multi Select<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="select2-container select2-container-multi select2Err" id="zc-multi-select-err-container" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-invalid="true">
+          <ul class="select2-choices">
+            <li class="select2-search-field">
+              <input type="text" class="select2-input select2-default" autocomplete="off" placeholder="Multi Select" role="combobox" aria-expanded="false">
+            </li>
+          </ul>
+          <div class="select2-drop select2-drop-multi select2-display-none">
+            <ul class="select2-results">
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice1"><div class="select2-result-label">Choice 1</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice2"><div class="select2-result-label">Choice 2</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice3"><div class="select2-result-label">Choice 3</div></li>
+            </ul>
+          </div>
+        </div>
+        <input type="hidden" name="multi_select_err" id="zc-multi-select-err" required aria-required="true">
+        <div id="zc-multi-select-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Select a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-multi-select-dis">
+        <span class="zc-label-text">Multi Select</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="select2-container select2-container-multi select2-container-disabled" id="zc-multi-select-dis-container" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-disabled="true">
+          <ul class="select2-choices">
+            <li class="select2-search-field">
+              <input type="text" class="select2-input select2-default" autocomplete="off" placeholder="Multi Select" disabled>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

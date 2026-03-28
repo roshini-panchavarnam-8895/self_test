@@ -1,0 +1,17 @@
+{% comment %} Section Separator — Form Layout Component {% endcomment %}
+
+{% assign section_id = field.id | default: "section" %}
+{% assign section_title = field.label | default: "Section" %}
+{% assign section_description = field.description | default: "" %}
+
+<div class="form-group section-group zc-Section hide_field" data-element-type="section-separator" data-element-id="{{ section_id }}">
+  <div class="form-section" name="{{ section_title }}">
+    <section>
+      <h2><label class="section-label" title="{{ section_title }}">{{ section_title }}</label></h2>
+      <hr style="clear:both;" aria-hidden="true">
+      {% if section_description != "" %}
+        <p style="margin-top: 10px;">{{ section_description }}</p>
+      {% endif %}
+    </section>
+  </div>
+</div>

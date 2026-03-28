@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown — Zoho Creator</title>
+  <link rel="stylesheet" href="dropdown.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-dropdown">
+        <span class="zc-label-text">Drop Down</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="select2-container" id="zc-dropdown-container" role="combobox" aria-expanded="false" aria-haspopup="listbox">
+          <a class="select2-choice" tabindex="0" role="button">
+            <span class="select2-chosen" id="select2-chosen-1">-Select-</span>
+            <abbr class="select2-search-choice-close"></abbr>
+            <span class="select2-arrow" role="presentation"><b role="presentation"></b></span>
+          </a>
+          <input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="combobox" aria-expanded="false" id="s2id_zc-dropdown" tabindex="-1">
+          <div class="select2-drop select2-display-none" role="listbox">
+            <ul class="select2-results">
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice1"><div class="select2-result-label">Choice 1</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice2"><div class="select2-result-label">Choice 2</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice3"><div class="select2-result-label">Choice 3</div></li>
+            </ul>
+          </div>
+        </div>
+        <input type="hidden" name="dropdown_default" id="zc-dropdown">
+        <div id="zc-dropdown-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-dropdown-err">
+        <span class="zc-label-text">Drop Down<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="select2-container select2Err" id="zc-dropdown-err-container" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-invalid="true">
+          <a class="select2-choice" tabindex="0" role="button">
+            <span class="select2-chosen" id="select2-chosen-2">-Select-</span>
+            <abbr class="select2-search-choice-close"></abbr>
+            <span class="select2-arrow" role="presentation"><b role="presentation"></b></span>
+          </a>
+          <input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="combobox" aria-expanded="false" id="s2id_zc-dropdown-err" tabindex="-1">
+          <div class="select2-drop select2-display-none" role="listbox">
+            <ul class="select2-results">
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice1"><div class="select2-result-label">Choice 1</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice2"><div class="select2-result-label">Choice 2</div></li>
+              <li class="select2-result select2-result-selectable" role="option" data-value="choice3"><div class="select2-result-label">Choice 3</div></li>
+            </ul>
+          </div>
+        </div>
+        <input type="hidden" name="dropdown_err" id="zc-dropdown-err" required aria-required="true">
+        <div id="zc-dropdown-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Select a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-dropdown-dis">
+        <span class="zc-label-text">Drop Down</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="select2-container select2-container-disabled" id="zc-dropdown-dis-container" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-disabled="true">
+          <a class="select2-choice" tabindex="-1" role="button">
+            <span class="select2-chosen">-Select-</span>
+            <span class="select2-arrow" role="presentation"><b role="presentation"></b></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

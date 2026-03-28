@@ -1,0 +1,34 @@
+{% comment %} Number Input — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "number" %}
+{% assign field_name = field.name | default: "Number" %}
+{% assign field_label = field.label | default: "Number" %}
+{% assign field_placeholder = field.placeholder | default: "#######" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group" data-element-type="number-input" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_number_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <input
+      class="form-control zc_numberfield zc_number_field zc-{{ field_name }}"
+      type="text"
+      placeholder="{{ field_placeholder }}"
+      name="{{ field_name }}"
+      id="zc-{{ field_name }}"
+      {% if field.required %}
+        required
+        aria-required="true"
+      {% endif %}
+      autocomplete="off">
+  </div>
+
+</div>

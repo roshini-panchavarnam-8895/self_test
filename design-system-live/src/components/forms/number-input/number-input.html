@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Input — Zoho Creator</title>
+  <link rel="stylesheet" href="number-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-number">
+        <span class="zc-label-text">Number</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control zc-numberfield" type="text" name="Number" id="zc-number" placeholder="#######" inputmode="numeric" aria-describedby="zc-number-help">
+        <div id="zc-number-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-number-err">
+        <span class="zc-label-text">Number<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <input class="form-control zc-numberfield" type="text" name="Number_Err" id="zc-number-err" placeholder="#######" inputmode="numeric" required aria-required="true" aria-invalid="true" aria-describedby="zc-number-error">
+        <div id="zc-number-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-number-dis">
+        <span class="zc-label-text">Number</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control zc-numberfield" type="text" name="Number_Dis" id="zc-number-dis" placeholder="Disabled" inputmode="numeric" disabled aria-disabled="true">
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

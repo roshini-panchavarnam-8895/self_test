@@ -1,0 +1,37 @@
+{% comment %} DateTime Input — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "datetime" %}
+{% assign field_name = field.name | default: "Date_Time" %}
+{% assign field_label = field.label | default: "Date-Time" %}
+{% assign datetime_format = field.datetime_format | default: "dd-MMMM-yy hh:mm:ss A" %}
+
+<div class="form-group zc-{{ field_name }}-group clearfix" data-element-type="datetime-input" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_datetime_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field input-group date-field-wrapper clearfix smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <div class="zc-datefield-placeholder adjustInplaceWidth" style="max-width: 218px;">{{ datetime_format }}</div>
+    <input
+      class="form-control zc_datetimefield zc-{{ field_name }}"
+      type="text"
+      name="{{ field_name }}"
+      id="{{ field_name }}"
+      {% if field.required %}
+        required
+        aria-required="true"
+      {% endif %}
+      autocomplete="off">
+    <span class="input-group-addon calcIcon" id="dateButtonEl_{{ field_name }}">
+      <span class="fa fa-calendar"></span>
+    </span>
+  </div>
+
+</div>

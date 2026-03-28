@@ -1,0 +1,24 @@
+{% comment %} Form Buttons — Form Action Component {% endcomment %}
+
+{% assign submit_label = field.submit_label | default: "Submit" %}
+{% assign draft_label = field.draft_label | default: "Save as Draft" %}
+{% assign reset_label = field.reset_label | default: "Reset" %}
+
+<div class="zc-footer-wrapper" data-element-type="form-buttons">
+  <div class="zc-form-footer mono-column column-block">
+    <div class="first-column">
+      <div class="form-action-container">
+        <div class="form-action formbutton">
+          <label class="form-label"> </label>
+          <input class="zc-live-primary-btn" type="submit" aria-label="{{ submit_label }}" name="submit" value="{{ submit_label }}" title="">
+
+          {% if field.show_draft != false %}
+            <input class="zc-live-secondary-btn zc-draft-btn" type="button" role="button" aria-label="{{ draft_label }}" name="draft-button" value="{{ draft_label }}">
+          {% endif %}
+
+          <input class="zc-live-secondary-btn" type="reset" aria-label="{{ reset_label }}" name="reset" value="{{ reset_label }}" title="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

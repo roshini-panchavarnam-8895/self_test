@@ -1,0 +1,37 @@
+{% comment %} Date Input — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "date" %}
+{% assign field_name = field.name | default: "DateQR" %}
+{% assign field_label = field.label | default: "Date" %}
+{% assign date_format = field.date_format | default: "dd-MMMM-yy" %}
+
+<div class="form-group zc-{{ field_name }}-group clearfix" data-element-type="date-input" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_date_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field input-group date-field-wrapper clearfix smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <div class="zc-datefield-placeholder adjustInplaceWidth" style="max-width: 218px;">{{ date_format }}</div>
+    <input
+      class="form-control zc_datefield zc-{{ field_name }}"
+      type="text"
+      name="{{ field_name }}"
+      id="{{ field_name }}"
+      {% if field.required %}
+        required
+        aria-required="true"
+      {% endif %}
+      autocomplete="off">
+    <span class="input-group-addon calcIcon" id="dateButtonEl_{{ field_name }}">
+      <span class="fa fa-calendar"></span>
+    </span>
+  </div>
+
+</div>

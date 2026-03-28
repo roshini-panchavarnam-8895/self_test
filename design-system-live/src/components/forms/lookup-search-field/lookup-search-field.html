@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lookup Search Field Component</title>
+  <link rel="stylesheet" href="lookup-search-field.css">
+  <script defer src="lookup-search-field.js"></script>
+</head>
+<body>
+<form class="zc-form-table zc-label-left">
+  <div class="zc-field-group zc-lookup-advanced-form-group">
+    <label id="lookup-label" class="zc-form-label zc-picklist-label"><span class="zc-label-text">Lookup Search Field</span></label>
+    <div class="zc-form-field zc-lookup-advanced-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-select2-container zc-form-choice-field zc-picklist-field" id="lookup-container" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="lookup-label">
+          <div class="zc-select2-choice" tabindex="0" role="button" aria-describedby="lookup-hint">
+            <span class="zc-select2-chosen">-Select-</span>
+            <abbr class="zc-select2-search-choice-close" tabindex="-1" aria-label="Clear selection"></abbr>
+            <span class="zc-select2-arrow" aria-hidden="true"><i class="zc-li-outline arrows-1-small-triangle-down"></i></span>
+          </div>
+          <div class="zc-select2-drop zc-select2-display-none zc-select2-with-searchbox" role="listbox" aria-labelledby="lookup-label">
+            <div class="zc-select2-search"><input type="text" class="zc-select2-input" autocomplete="off" placeholder="Search..." aria-label="Search options"></div>
+            <ul class="zc-select2-results">
+              <li class="zc-select2-result" data-value="record1" role="option"><div class="zc-select2-result-label">Record 1</div></li>
+              <li class="zc-select2-result" data-value="record2" role="option"><div class="zc-select2-result-label">Record 2</div></li>
+              <li class="zc-select2-result" data-value="record3" role="option"><div class="zc-select2-result-label">Record 3</div></li>
+            </ul>
+          </div>
+          <input type="hidden" name="lookup_search_field" id="lookup-value">
+          <span role="button" aria-label="Advanced field search" tabindex="0" class="zc-advanced-search-icon"><i class="zc-li-outline ui-3-search" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+    <span id="lookup-hint" class="zc-field-help-text">Search and select a record</span>
+  </div>
+
+  <div class="zc-field-group zc-lookup-advanced-form-group">
+    <label id="lookup-label-req" class="zc-form-label zc-picklist-label"><span class="zc-label-text">Lookup Search Field</span><span class="zc-form-required" aria-hidden="true">*</span><span class="zc-sr-only">(required)</span></label>
+    <div class="zc-form-field validationError zc-lookup-advanced-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-select2-container zc-form-choice-field zc-picklist-field" id="lookup-container-req" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="lookup-label-req" aria-required="true" aria-invalid="true" aria-describedby="lookup-error">
+          <div class="zc-select2-choice" tabindex="0" role="button">
+            <span class="zc-select2-chosen">-Select-</span>
+            <abbr class="zc-select2-search-choice-close" tabindex="-1" aria-label="Clear selection"></abbr>
+            <span class="zc-select2-arrow" aria-hidden="true"><i class="zc-li-outline arrows-1-small-triangle-down"></i></span>
+          </div>
+          <div class="zc-select2-drop zc-select2-display-none zc-select2-with-searchbox" role="listbox">
+            <div class="zc-select2-search"><input type="text" class="zc-select2-input" autocomplete="off" placeholder="Search..." aria-label="Search options"></div>
+            <ul class="zc-select2-results">
+              <li class="zc-select2-result" data-value="record1" role="option"><div class="zc-select2-result-label">Record 1</div></li>
+              <li class="zc-select2-result" data-value="record2" role="option"><div class="zc-select2-result-label">Record 2</div></li>
+            </ul>
+          </div>
+          <input type="hidden" name="lookup_search_field_req" id="lookup-value-req" required aria-required="true" aria-invalid="true">
+          <span role="button" aria-label="Advanced field search" tabindex="0" class="zc-advanced-search-icon"><i class="zc-li-outline ui-3-search" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+    <div id="lookup-error" class="zc-field-error-text zc-field-error-msg" role="alert" aria-live="assertive" hidden><i class="zc-field-error-msg-icon zc-li-outline ui-3-alert" aria-hidden="true"></i><span>Please select a record</span></div>
+  </div>
+
+  <div class="zc-field-group zc-lookup-advanced-form-group zc-field-disabled">
+    <label id="lookup-label-dis" class="zc-form-label zc-picklist-label"><span class="zc-label-text">Lookup Search Field (Disabled)</span></label>
+    <div class="zc-form-field zc-lookup-advanced-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-select2-container zc-select2-container-disabled zc-form-choice-field zc-picklist-field" id="lookup-container-dis" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="lookup-label-dis" aria-disabled="true">
+          <div class="zc-select2-choice" tabindex="-1" role="button"><span class="zc-select2-chosen">-Select-</span><span class="zc-select2-arrow" aria-hidden="true"><i class="zc-li-outline arrows-1-small-triangle-down"></i></span></div>
+          <input type="hidden" name="lookup_search_field_dis" id="lookup-value-dis">
+          <span role="button" aria-label="Advanced field search" tabindex="-1" class="zc-advanced-search-icon" aria-disabled="true"><i class="zc-li-outline ui-3-search" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

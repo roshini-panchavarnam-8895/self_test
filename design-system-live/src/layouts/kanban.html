@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanban Card with Circle Image Layout</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Lato',sans-serif;font-size:14.5px;color:#12132b;background:#f0eff4;padding:30px}
+
+/* ====== COMPONENT CONTAINER ====== */
+.kanban-component{
+  background:#f7f6f9;
+  border-radius:16px 16px 0 0;
+  overflow:hidden;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+/* ====== REPORT HEADER ====== */
+.report-header{
+  background:#f7f6f9;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:48px;
+  border-bottom:1px solid #e7e7ee;
+}
+.report-title{font-size:18px;font-weight:400;color:#12132b;letter-spacing:.1px}
+.toolbar{display:flex;gap:6px;align-items:center}
+.toolbar-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:8px;
+  border:1px solid #cbcbdc;background:#fff;color:#71718c;
+  cursor:pointer;transition:background .15s,border-color .15s;
+}
+.toolbar-btn:hover{background:#f0eff4;border-color:#b0b0c0}
+.toolbar-btn.add-btn{background:#8643f4;border-color:transparent;color:#fff}
+.toolbar-btn.add-btn:hover{background:#7d31f6}
+.toolbar-btn svg{width:14px;height:14px;fill:currentColor}
+
+/* ====== KANBAN BOARD ====== */
+.kanban-board{
+  display:flex;
+  gap:0;
+  padding:8px 0;
+  overflow-x:auto;
+  min-height:500px;
+}
+.kanban-column{
+  flex:0 0 33.33%;
+  min-width:300px;
+  padding:0 8px;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ====== COLUMN HEADER ====== */
+.column-header{
+  background:#fff;
+  border:1px solid #dcdce7;
+  border-radius:10px;
+  padding:10px 14px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  margin-bottom:10px;
+}
+.column-header::before{
+  content:'';
+  position:absolute;
+  left:0;top:12px;
+  width:4px;height:24px;
+  background:#8643f4;
+  border-radius:0 4px 4px 0;
+}
+.column-header h2{
+  font-size:16px;
+  font-weight:400;
+  color:#12132b;
+  padding-left:6px;
+}
+
+/* ====== CARD LIST ====== */
+.card-list{
+  flex:1;
+  overflow-y:auto;
+  padding-right:2px;
+}
+
+/* ====== KANBAN CARD ====== */
+.kanban-card{
+  background:#fff;
+  border-radius:10px;
+  padding:14px;
+  margin:0 2px 13px 2px;
+  box-shadow:0 1px 0 0 rgba(176,176,194,0.36);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  transition:box-shadow .2s;
+  position:relative;
+}
+.kanban-card:hover{
+  box-shadow:0 2px 8px 0 rgba(176,176,194,0.5);
+}
+
+/* ---- Circle image ---- */
+.card-avatar{
+  width:64px;height:64px;
+  border-radius:100%;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.card-avatar img{
+  width:100%;height:100%;
+  object-fit:cover;
+  border-radius:100%;
+}
+/* Placeholder avatar */
+.card-avatar.placeholder{
+  border:1px solid #dcdce7;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+}
+.card-avatar.placeholder svg{
+  width:24px;height:24px;
+  fill:#96a4aa;
+}
+
+/* ---- Card text ---- */
+.card-info{
+  flex:1;
+  min-width:0;
+}
+.card-title{
+  font-size:16px;
+  font-weight:400;
+  color:#12132b;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.card-address{
+  font-size:14px;
+  color:#2f305d;
+  margin-top:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.card-address .pin-icon{
+  vertical-align:middle;
+  margin-right:4px;
+}
+
+/* ---- Card more button ---- */
+.card-more{
+  position:absolute;
+  top:8px;right:8px;
+  width:24px;height:24px;
+  border-radius:50%;
+  background:#fff;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.kanban-card:hover .card-more{display:flex}
+.card-more span{
+  display:inline-block;
+  width:4px;height:4px;
+  background:#ccc;
+  border-radius:50%;
+  margin:0 1px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:768px){
+  body{padding:10px}
+  .kanban-column{flex:0 0 85%;min-width:260px}
+}
+</style>
+</head>
+<body>
+
+<div class="kanban-component" id="kanbanComponent">
+  <!-- Report Header -->
+  <div class="report-header">
+    <span class="report-title">Circle kanban layout</span>
+    <div class="toolbar">
+      <button class="toolbar-btn sort-btn" title="Sort">
+        <svg viewBox="0 0 24 24"><path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg>
+      </button>
+      <button class="toolbar-btn search-btn" title="Search">
+        <svg viewBox="0 0 512 512"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+      </button>
+      <button class="toolbar-btn add-btn" title="Add">
+        <svg viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg>
+      </button>
+      <button class="toolbar-btn more-btn" title="More Options">
+        <svg viewBox="0 0 512 192"><circle cx="60" cy="96" r="48"/><circle cx="256" cy="96" r="48"/><circle cx="452" cy="96" r="48"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Kanban Board -->
+  <div class="kanban-board" id="kanbanBoard"></div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ====== SAMPLE DATA ====== */
+  var columns = [
+    {
+      title: 'Choice 1',
+      cards: [
+        { name: '', address: '', img: '' },
+        { name: '', address: '', img: '' },
+        { name: 'Mrs. John', address: '', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+        { name: 'Kakashi uchiha', address: 'NO: 02, copy ninja Street,, chennai,', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
+        { name: 'itachi uchiha', address: 'NO: 01, Hogwarts Street, chennai,', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' }
+      ]
+    },
+    {
+      title: 'Choice 2',
+      cards: [
+        { name: 'Mr. John', address: 'NO: 01, harry street 1st cross, chennai,', img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
+        { name: 'Harry Potter', address: 'NO: 01, harry street 1st cross, chennai,', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
+        { name: 'Dora Dora', address: 'NO: 01, harry street 1st cross, chennai,', img: '' },
+        { name: 'Harry Potter', address: 'NO: 01, harry street 1st cross, chennai,', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
+        { name: 'Dora Dora', address: 'NO: 01, harry street 1st cross, chennai,', img: '' }
+      ]
+    },
+    {
+      title: 'Choice 3',
+      cards: [
+        { name: 'Mrs. John', address: '', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+        { name: 'Mrs. John', address: '', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+        { name: 'Mrs. John', address: '', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+        { name: 'Mrs. John', address: '', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+        { name: 'Mrs. John', address: '', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' }
+      ]
+    }
+  ];
+
+  /* ====== RENDER ====== */
+  function render() {
+    var board = document.getElementById('kanbanBoard');
+    var html = '';
+
+    for (var c = 0; c < columns.length; c++) {
+      var col = columns[c];
+      html += '<div class="kanban-column">';
+      html += '<div class="column-header"><h2>' + col.title + '</h2></div>';
+      html += '<div class="card-list">';
+
+      for (var i = 0; i < col.cards.length; i++) {
+        var card = col.cards[i];
+        html += '<div class="kanban-card">';
+
+        // More button
+        html += '<div class="card-more"><span></span><span></span><span></span></div>';
+
+        // Avatar
+        if (card.img) {
+          html += '<div class="card-avatar"><img src="' + card.img + '" alt="' + card.name + '"></div>';
+        } else {
+          html += '<div class="card-avatar placeholder"><svg viewBox="0 0 24 24"><path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13Z"/></svg></div>';
+        }
+
+        // Info
+        html += '<div class="card-info">';
+        if (card.name) {
+          html += '<div class="card-title">' + card.name + '</div>';
+        }
+        if (card.address) {
+          html += '<div class="card-address"><svg class="pin-icon" viewBox="0 0 384 512" width="12" height="14" style="fill:#7d31f6;vertical-align:middle;margin-right:4px"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/></svg>' + card.address + '</div>';
+        }
+        html += '</div>';
+
+        html += '</div>'; // .kanban-card
+      }
+
+      html += '</div>'; // .card-list
+      html += '</div>'; // .kanban-column
+    }
+
+    board.innerHTML = html;
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
