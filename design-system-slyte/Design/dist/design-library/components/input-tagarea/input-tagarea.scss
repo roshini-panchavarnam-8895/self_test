@@ -1,0 +1,109 @@
+/* =============================================================================
+   INPUT TAGAREA COMPONENT — SCSS
+   Figma Source: Input_TagArea (node 5183:20602)
+   File: 88Zeos2AXPni7858flxLP2
+   ============================================================================= 
+   
+   VARIANTS:
+     Styles  → Empty | With Tags | Search | Overflow | Disabled
+     States  → Default | Focus | Disabled
+   
+   NAMING: Single-hyphen modifier  (zc-tagarea-disabled  NOT  zc-tagarea--disabled)
+   DOM:    Uses .zc-tagarea wrapper with <lyte-dropdown> and .zc-tag chips
+
+   CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
+     --zc-color-black-white-surface-white-surface              (#FFFFFF)
+     --zc-color-neutral-border-neutral-border-default          (#D5D6D9)
+     --zc-color-neutral-surface-neutral-surface-subtle         (#F2F4F7)
+     --zc-color-neutral-surface-neutral-surface-subtle-hover   (#E4E7EC)
+     --zc-color-neutral-text-neutral-text-default              (#475467)
+     --zc-color-primary-border-primary-border-default          (#0D4EF2)
+     --zc-color-primary-surface-primary-surface-subtle         (#F5F8FE)
+     --zc-radius-r                                             (6px)
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   TAGAREA WRAPPER — flex container with border, holds tags + dropdown
+   --------------------------------------------------------------------------- */
+.zc-tagarea {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    padding: 4px 8px;
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    border-radius: var(--zc-radius-r, 6px);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    font-family: 'ZohoPuvi', sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: text;
+
+    &:focus-within {
+        border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+        box-shadow: 0 0 0 2px var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   TAG CHIPS CONTAINER — flex row of tag chips
+   --------------------------------------------------------------------------- */
+.zc-tagarea-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   INLINE DROPDOWN — fills remaining space
+   --------------------------------------------------------------------------- */
+.zc-tagarea-dropdown {
+    flex: 1 1 120px;
+    min-width: 120px;
+
+    /* Reset border/shadow on nested dropdown so tagarea wrapper provides it */
+    &,
+    & lyte-drop-box,
+    & .lyteDropDown {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   OVERFLOW PILL — "+N more" indicator
+   --------------------------------------------------------------------------- */
+.zc-tagarea-overflow {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--zc-color-neutral-text-neutral-text-default, #475467);
+    background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F2F4F7);
+    border-radius: 10px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: var(--zc-color-neutral-surface-neutral-surface-subtle-hover, #E4E7EC);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   DISABLED STATE — reduced opacity, no interaction
+   --------------------------------------------------------------------------- */
+.zc-tagarea-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F2F4F7);
+
+    .zc-tag-close {
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}

@@ -1,0 +1,752 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-toggle-on"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Content Switcher</h1>
+                            <p class="detail-description">Segmented control / toggle group for switching between related content views using <code>&lt;lyte-tabs&gt;</code> Slyte DOM. Variants: Fill, Fill Minimal, 2/3/4 Segments, Button Type, Disabled across 4 sizes (XS/SM/MD/LG).</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Navigation</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma 2630:5644</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 2 Styles × 3 Counts × 4 Sizes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchContentSwitcherStyleTab('fill', this)">Fill</button>
+                        <button class="btn-style-tab" onclick="switchContentSwitcherStyleTab('fill-minimal', this)">Fill Minimal</button>
+                        <button class="btn-style-tab" onclick="switchContentSwitcherStyleTab('counts', this)">Counts (2/3/4)</button>
+                        <button class="btn-style-tab" onclick="switchContentSwitcherStyleTab('button-type', this)">Button Type</button>
+                        <button class="btn-style-tab" onclick="switchContentSwitcherStyleTab('disabled', this)">Disabled</button>
+                    </div>
+
+                    <div id="content-switcher-component-variants">
+
+                        <!-- ==== FILL ==== -->
+                        <div class="btn-variant-group" data-style="fill">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Fill — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Large (40px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-lg">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base / MD (36px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small (32px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-sm">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Extra Small (26px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-xs">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchContentSwitcherCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Fill: Large --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-lg"&gt;
+  &lt;template is="registerYield" yield-name="tabYield"&gt;
+    &lt;lyte-tab-head&gt;
+      &lt;lyte-tab-title&gt;Overview&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Details&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Settings&lt;/lyte-tab-title&gt;
+    &lt;/lyte-tab-head&gt;
+    &lt;lyte-tab-body&gt;
+      &lt;lyte-tab-content&gt;Overview content&lt;/lyte-tab-content&gt;
+      &lt;lyte-tab-content&gt;Details content&lt;/lyte-tab-content&gt;
+      &lt;lyte-tab-content&gt;Settings content&lt;/lyte-tab-content&gt;
+    &lt;/lyte-tab-body&gt;
+  &lt;/template&gt;
+&lt;/lyte-tabs&gt;
+
+&lt;!-- Fill: Base (MD) — use zc-content-switcher-md --&gt;
+&lt;!-- Fill: Small — use zc-content-switcher-sm --&gt;
+&lt;!-- Fill: Extra Small — use zc-content-switcher-xs --&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-content-switcher lyte-tab-head {
+  background: #EBEBEB;
+  border: 1px solid #D5D6D9;
+  border-radius: 6px;
+  padding: 4px;
+}
+.zc-content-switcher-fill lyte-tab-title.lyteTabActive {
+  background: #0D4EF2;
+  color: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.12);
+}
+
+/* Sizes: xs=26px, sm=32px, md=36px, lg=40px */
+.zc-content-switcher-xs lyte-tab-title { padding: 3px 10px; font-size: 12px; }
+.zc-content-switcher-sm lyte-tab-title { padding: 4px 12px; font-size: 12px; }
+.zc-content-switcher-md lyte-tab-title { padding: 5px 14px; font-size: 14px; }
+.zc-content-switcher-lg lyte-tab-title { padding: 7px 16px; font-size: 14px; }</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Fill — Hover &amp; Active States</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>First</lyte-tab-title>
+                                                    <lyte-tab-title>Second</lyte-tab-title>
+                                                    <lyte-tab-title>Third</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>First content</lyte-tab-content>
+                                                    <lyte-tab-content>Second content</lyte-tab-content>
+                                                    <lyte-tab-content>Third content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Hover on Default: inactive text #696C74 → #6C6D71 --&gt;
+&lt;!-- Hover on Active (Fill): #0D4EF2 → #0B44D5 --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md"&gt;
+  &lt;template is="registerYield" yield-name="tabYield"&gt;
+    &lt;lyte-tab-head&gt;
+      &lt;lyte-tab-title&gt;First&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Second&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Third&lt;/lyte-tab-title&gt;
+    &lt;/lyte-tab-head&gt;
+    &lt;lyte-tab-body&gt;...&lt;/lyte-tab-body&gt;
+  &lt;/template&gt;
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FILL MINIMAL ==== -->
+                        <div class="btn-variant-group" data-style="fill-minimal" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Fill Minimal — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Large (40px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-lg">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base / MD (36px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small (32px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-sm">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Extra Small (26px)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-xs">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchContentSwitcherCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Fill Minimal: Large --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-lg"&gt;
+  &lt;template is="registerYield" yield-name="tabYield"&gt;
+    &lt;lyte-tab-head&gt;
+      &lt;lyte-tab-title&gt;Overview&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Details&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Settings&lt;/lyte-tab-title&gt;
+    &lt;/lyte-tab-head&gt;
+    &lt;lyte-tab-body&gt;...&lt;/lyte-tab-body&gt;
+  &lt;/template&gt;
+&lt;/lyte-tabs&gt;
+
+&lt;!-- Fill Minimal: Base (MD) — use zc-content-switcher-md --&gt;
+&lt;!-- Fill Minimal: Small — use zc-content-switcher-sm --&gt;
+&lt;!-- Fill Minimal: Extra Small — use zc-content-switcher-xs --&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-content-switcher-minimal lyte-tab-head {
+  background: #EBEBEB;
+  border: 1px solid #D5D6D9;
+  border-radius: 6px;
+  padding: 4px;
+}
+.zc-content-switcher-minimal lyte-tab-title.lyteTabActive {
+  background: #E7EDFE;       /* light blue from Figma */
+  color: #0D4EF2;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== COUNTS (2/3/4) ==== -->
+                        <div class="btn-variant-group" data-style="counts" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">2 Segments</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Day</lyte-tab-title>
+                                                    <lyte-tab-title>Week</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Day view</lyte-tab-content>
+                                                    <lyte-tab-content>Week view</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Minimal</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Day</lyte-tab-title>
+                                                    <lyte-tab-title>Week</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Day view</lyte-tab-content>
+                                                    <lyte-tab-content>Week view</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 2 Segments --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md"&gt;
+  &lt;template is="registerYield" yield-name="tabYield"&gt;
+    &lt;lyte-tab-head&gt;
+      &lt;lyte-tab-title&gt;Day&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Week&lt;/lyte-tab-title&gt;
+    &lt;/lyte-tab-head&gt;
+    &lt;lyte-tab-body&gt;...&lt;/lyte-tab-body&gt;
+  &lt;/template&gt;
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">3 Segments</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Day</lyte-tab-title>
+                                                    <lyte-tab-title>Week</lyte-tab-title>
+                                                    <lyte-tab-title>Month</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Day view</lyte-tab-content>
+                                                    <lyte-tab-content>Week view</lyte-tab-content>
+                                                    <lyte-tab-content>Month view</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Minimal</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Day</lyte-tab-title>
+                                                    <lyte-tab-title>Week</lyte-tab-title>
+                                                    <lyte-tab-title>Month</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Day view</lyte-tab-content>
+                                                    <lyte-tab-content>Week view</lyte-tab-content>
+                                                    <lyte-tab-content>Month view</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 3 Segments --&gt;
+&lt;lyte-tabs ... class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md"&gt;
+  ...
+    &lt;lyte-tab-title&gt;Day&lt;/lyte-tab-title&gt;
+    &lt;lyte-tab-title&gt;Week&lt;/lyte-tab-title&gt;
+    &lt;lyte-tab-title&gt;Month&lt;/lyte-tab-title&gt;
+  ...
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4 Segments</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Day</lyte-tab-title>
+                                                    <lyte-tab-title>Week</lyte-tab-title>
+                                                    <lyte-tab-title>Month</lyte-tab-title>
+                                                    <lyte-tab-title>Year</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Day view</lyte-tab-content>
+                                                    <lyte-tab-content>Week view</lyte-tab-content>
+                                                    <lyte-tab-content>Month view</lyte-tab-content>
+                                                    <lyte-tab-content>Year view</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Minimal</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Day</lyte-tab-title>
+                                                    <lyte-tab-title>Week</lyte-tab-title>
+                                                    <lyte-tab-title>Month</lyte-tab-title>
+                                                    <lyte-tab-title>Year</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Day view</lyte-tab-content>
+                                                    <lyte-tab-content>Week view</lyte-tab-content>
+                                                    <lyte-tab-content>Month view</lyte-tab-content>
+                                                    <lyte-tab-content>Year view</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 4 Segments --&gt;
+&lt;lyte-tabs ... class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md"&gt;
+  ...
+    &lt;lyte-tab-title&gt;Day&lt;/lyte-tab-title&gt;
+    &lt;lyte-tab-title&gt;Week&lt;/lyte-tab-title&gt;
+    &lt;lyte-tab-title&gt;Month&lt;/lyte-tab-title&gt;
+    &lt;lyte-tab-title&gt;Year&lt;/lyte-tab-title&gt;
+  ...
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== BUTTON TYPE ==== -->
+                        <div class="btn-variant-group" data-style="button-type" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Button Type — Fill, All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Large</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-button zc-content-switcher-lg">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="2" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg></span> Board</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                    <lyte-tab-content>Board content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base (MD)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-button zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="2" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg></span> Board</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                    <lyte-tab-content>Board content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-button zc-content-switcher-sm">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="2" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg></span> Board</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                    <lyte-tab-content>Board content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Extra Small</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-button zc-content-switcher-xs">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="2" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg></span> Board</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                    <lyte-tab-content>Board content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchContentSwitcherCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Button Type with Icons --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-button zc-content-switcher-md"&gt;
+  &lt;template is="registerYield" yield-name="tabYield"&gt;
+    &lt;lyte-tab-head&gt;
+      &lt;lyte-tab-title&gt;
+        &lt;span class="zc-cs-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt; List
+      &lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;
+        &lt;span class="zc-cs-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt; Grid
+      &lt;/lyte-tab-title&gt;
+    &lt;/lyte-tab-head&gt;
+    &lt;lyte-tab-body&gt;...&lt;/lyte-tab-body&gt;
+  &lt;/template&gt;
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-content-switcher-button lyte-tab-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.zc-cs-icon {
+  display: inline-flex;
+  width: 16px; height: 16px;
+}
+.zc-cs-icon svg { width: 100%; height: 100%; }</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Button Type — Fill Minimal, All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Large</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-button zc-content-switcher-lg">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base (MD)</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-button zc-content-switcher-md">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-button zc-content-switcher-sm">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Extra Small</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-button zc-content-switcher-xs">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> List</lyte-tab-title>
+                                                    <lyte-tab-title><span class="zc-cs-icon"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span> Grid</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>List content</lyte-tab-content>
+                                                    <lyte-tab-content>Grid content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Button Type — Fill Minimal --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-button zc-content-switcher-md"&gt;
+  &lt;template is="registerYield" yield-name="tabYield"&gt;
+    &lt;lyte-tab-head&gt;
+      &lt;lyte-tab-title&gt;&lt;span class="zc-cs-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt; List&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;&lt;span class="zc-cs-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt; Grid&lt;/lyte-tab-title&gt;
+    &lt;/lyte-tab-head&gt;
+    &lt;lyte-tab-body&gt;...&lt;/lyte-tab-body&gt;
+  &lt;/template&gt;
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Fill &amp; Minimal (Before Selection)</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Disabled</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md zc-content-switcher-disabled">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Minimal Disabled</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-md zc-content-switcher-disabled">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchContentSwitcherCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled (before selection): Add zc-content-switcher-disabled --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md zc-content-switcher-disabled"&gt;
+  ...
+&lt;/lyte-tabs&gt;
+
+&lt;!-- Disabled After (with active): Add zc-content-switcher-disabled-after --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md zc-content-switcher-disabled-after"&gt;
+  ...
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-content-switcher-disabled {
+  pointer-events: none;
+}
+.zc-content-switcher-disabled lyte-tab-title {
+  color: #A1A2A4;
+  cursor: not-allowed;
+}
+.zc-content-switcher-disabled.zc-content-switcher-fill
+  lyte-tab-title.lyteTabActive {
+  background: #A1A2A4;
+  color: #FFFFFF;
+}
+.zc-content-switcher-disabled-after {
+  pointer-events: none;
+}
+.zc-content-switcher-disabled-after lyte-tab-title {
+  color: #A1A2A4;
+  cursor: not-allowed;
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled After — Fill &amp; Minimal (With Active Selection)</span><button class="btn-variant-card__toggle" onclick="toggleContentSwitcherCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Disabled After</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md zc-content-switcher-disabled-after">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Minimal Disabled After</span>
+                                        <lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-minimal zc-content-switcher-md zc-content-switcher-disabled-after">
+                                            <template is="registerYield" yield-name="tabYield">
+                                                <lyte-tab-head>
+                                                    <lyte-tab-title>Overview</lyte-tab-title>
+                                                    <lyte-tab-title>Details</lyte-tab-title>
+                                                    <lyte-tab-title>Settings</lyte-tab-title>
+                                                </lyte-tab-head>
+                                                <lyte-tab-body>
+                                                    <lyte-tab-content>Overview content</lyte-tab-content>
+                                                    <lyte-tab-content>Details content</lyte-tab-content>
+                                                    <lyte-tab-content>Settings content</lyte-tab-content>
+                                                </lyte-tab-body>
+                                            </template>
+                                        </lyte-tabs>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchContentSwitcherCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyContentSwitcherCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled After: active segment + disabled switcher --&gt;
+&lt;lyte-tabs lt-prop-height="auto" class="zc-content-switcher zc-content-switcher-fill zc-content-switcher-md zc-content-switcher-disabled-after"&gt;
+  &lt;template is="registerYield" yield-name="tabYield"&gt;
+    &lt;lyte-tab-head&gt;
+      &lt;lyte-tab-title&gt;Overview&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Details&lt;/lyte-tab-title&gt;
+      &lt;lyte-tab-title&gt;Settings&lt;/lyte-tab-title&gt;
+    &lt;/lyte-tab-head&gt;
+    &lt;lyte-tab-body&gt;...&lt;/lyte-tab-body&gt;
+  &lt;/template&gt;
+&lt;/lyte-tabs&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /content-switcher-component-variants -->

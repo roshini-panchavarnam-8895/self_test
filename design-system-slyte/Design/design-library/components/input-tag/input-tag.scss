@@ -1,0 +1,211 @@
+/* =============================================================================
+   INPUT TAG COMPONENT — SCSS
+   Figma Source: Input_Tag (node 2947:9730)
+   File: 88Zeos2AXPni7858flxLP2
+
+   VARIANTS:
+     Colors → Primary | Success | Warning | Error | Neutral
+     Sizes  → Small (sm) | Medium (md) | Large (lg)
+     Types  → Default | Removable | With Icon
+     States → Default | Hover | Disabled
+
+   NAMING: Single-hyphen modifier (zc-tag-primary NOT zc-tag--primary)
+   DOM:    Uses .zc-tag wrapper on custom <span> elements
+
+   CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
+     --zc-color-primary-surface-subtle         (#F5F8FE)
+     --zc-color-primary-border-minimal          (#C0D1FC)
+     --zc-color-primary-text-default              (#0D4EF2)
+     --zc-color-success-surface-subtle         (#F6FEF9)
+     --zc-color-success-border-minimal          (#D1FAE3)
+     --zc-color-success-text-default              (#078841)
+     --zc-color-warning-surface-subtle         (#FFF9F5)
+     --zc-color-warning-border-minimal          (#FEE1CD)
+     --zc-color-warning-text-default              (#D25704)
+     --zc-color-error-surface-subtle             (#FEF6F6)
+     --zc-color-error-border-minimal              (#FAD2D1)
+     --zc-color-error-text-default                  (#CC1914)
+     --zc-color-neutral-surface-subtle         (#FAFAFA)
+     --zc-color-neutral-border-minimal          (#EBEBEB)
+     --zc-color-neutral-text-default              (#6C6D71)
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   BASE TAG
+   --------------------------------------------------------------------------- */
+.zc-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: 'ZohoPuvi', sans-serif;
+    cursor: default;
+    white-space: nowrap;
+    user-select: none;
+    transition: background-color 0.15s ease,
+                border-color 0.15s ease,
+                color 0.15s ease;
+
+    /* Default = Medium size */
+    height: 26px;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+/* ---------------------------------------------------------------------------
+   SIZE VARIANTS
+   --------------------------------------------------------------------------- */
+.zc-tag-sm {
+    height: 20px;
+    padding: 0 6px;
+    font-size: 11px;
+    line-height: 18px;
+
+    .zc-tag-close {
+        font-size: 8px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .zc-tag-icon {
+        font-size: 9px;
+    }
+}
+
+.zc-tag-md {
+    height: 26px;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.zc-tag-lg {
+    height: 28px;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 26px;
+
+    .zc-tag-close {
+        font-size: 11px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .zc-tag-icon {
+        font-size: 12px;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR VARIANTS
+   --------------------------------------------------------------------------- */
+.zc-tag-primary {
+    background: var(--zc-color-primary-surface-subtle, #F5F8FE);
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+    border-color: var(--zc-color-primary-border-minimal, #C0D1FC);
+
+    &:hover:not(.zc-tag-disabled) {
+        background: var(--zc-color-primary-surface-subtle-hover, #E7EDFE);
+    }
+}
+
+.zc-tag-success {
+    background: var(--zc-color-success-surface-subtle, #F6FEF9);
+    color: var(--zc-color-success-text-default, #078841);
+    border-color: var(--zc-color-success-border-minimal, #D1FAE3);
+
+    &:hover:not(.zc-tag-disabled) {
+        background: var(--zc-color-success-surface-subtle-hover, #EDFDF4);
+    }
+}
+
+.zc-tag-warning {
+    background: var(--zc-color-warning-surface-subtle, #FFF9F5);
+    color: var(--zc-color-warning-text-default, #D25704);
+    border-color: var(--zc-color-warning-border-minimal, #FEE1CD);
+
+    &:hover:not(.zc-tag-disabled) {
+        background: var(--zc-color-warning-surface-subtle-hover, #FFF6F0);
+    }
+}
+
+.zc-tag-error {
+    background: var(--zc-color-error-surface-subtle, #FEF6F6);
+    color: var(--zc-color-error-text-default, #CC1914);
+    border-color: var(--zc-color-error-border-minimal, #FAD2D1);
+
+    &:hover:not(.zc-tag-disabled) {
+        background: var(--zc-color-error-surface-subtle-hover, #FEF1F1);
+    }
+}
+
+.zc-tag-neutral {
+    background: var(--zc-color-neutral-surface-subtle, #FAFAFA);
+    color: var(--zc-color-neutral-text-default, #6C6D71);
+    border-color: var(--zc-color-neutral-border-minimal, #EBEBEB);
+
+    &:hover:not(.zc-tag-disabled) {
+        background: var(--zc-color-neutral-surface-subtle-hover, #F5F5F5);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   REMOVABLE TAG — extra right padding for close button
+   --------------------------------------------------------------------------- */
+.zc-tag-removable {
+    padding-right: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   CLOSE BUTTON — inside removable tags
+   --------------------------------------------------------------------------- */
+.zc-tag-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 2px;
+    color: inherit;
+    opacity: 0.7;
+    font-size: 10px;
+    border-radius: 2px;
+    transition: opacity 0.15s ease, background 0.15s ease;
+    flex-shrink: 0;
+
+    &:hover {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.08);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--zc-color-primary-border-default, #0D4EF2);
+        outline-offset: 1px;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   LEADING ICON
+   --------------------------------------------------------------------------- */
+.zc-tag-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   DISABLED STATE
+   --------------------------------------------------------------------------- */
+.zc-tag-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}

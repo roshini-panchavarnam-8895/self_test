@@ -1,0 +1,592 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-square"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Primary Button</h1>
+                            <p class="detail-description">Primary action button using <code>&lt;lyte-button&gt;</code> Slyte DOM. Variants: Fill, Border, Minimal Border, Minimal Fill, Link, Hyperlink + Icon, Circle Icon, Duo Icon, Split, Duo Button Group, Duo Combo across 4 sizes × 7 color themes.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Basic</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 12 Types × 7 Themes × 4 Sizes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchButtonStyleTab('fill', this)">Fill</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('border', this)">Border</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('minimal-border', this)">Minimal Border</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('minimal-fill', this)">Minimal Fill</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('link', this)">Link</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('hyperlink', this)">Hyperlink</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('icon-button', this)">Icon Button</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('circle-icon', this)">Circle Icon</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('duo-icon', this)">Duo Icon</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('split', this)">Split Button</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('duo-group', this)">Duo Button Group</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('duo-combo', this)">Duo Combo</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('color-themes', this)">Color Themes</button>
+                        <button class="btn-style-tab" onclick="switchButtonStyleTab('disabled', this)">Disabled</button>
+                    </div>
+
+                    <div id="btn-component-variants">
+
+                        <!-- ==== FILL ==== -->
+                        <div class="btn-variant-group" data-style="fill">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Fill — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span><lyte-button class="zc-btn zc-btn-fill zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Base</span><lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span><lyte-button class="zc-btn zc-btn-fill zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Extra Small</span><lyte-button class="zc-btn zc-btn-fill zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBtnCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Fill: Large --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-lg"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Fill: Base (default) --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Fill: Small --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-sm"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Fill: Extra Small --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-xs"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-btn-fill, lyte-button.zc-btn-fill button {
+  background: var(--zc-color-primary-surface-primary-surface-default);
+  border-color: var(--zc-color-primary-surface-primary-surface-default);
+  color: var(--zc-color-black-white-text-white-text);
+}
+.zc-btn-fill:hover, lyte-button.zc-btn-fill button:hover {
+  background: var(--zc-color-primary-surface-primary-surface-default-hover);
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Fill — With Leading Icon</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Leading Icon</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Create</template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Trailing Icon</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Next<span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Leading icon --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;
+    &lt;span class="zc-btn-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt;
+    Create
+  &lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== BORDER ==== -->
+                        <div class="btn-variant-group" data-style="border" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Border — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span><lyte-button class="zc-btn zc-btn-border zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Base</span><lyte-button class="zc-btn zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span><lyte-button class="zc-btn zc-btn-border zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Extra Small</span><lyte-button class="zc-btn zc-btn-border zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBtnCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-button class="zc-btn zc-btn-border zc-btn-lg"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-btn-border, lyte-button.zc-btn-border button {
+  background: var(--zc-color-black-white-surface-white-surface);
+  border-color: var(--zc-color-primary-border-primary-border-default);
+  color: var(--zc-color-primary-text-primary-text-default);
+}
+.zc-btn-border:hover, lyte-button.zc-btn-border button:hover {
+  background: var(--zc-color-primary-surface-primary-surface-subtle);
+  border-color: var(--zc-color-primary-border-primary-border-default-hover);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== MINIMAL BORDER ==== -->
+                        <div class="btn-variant-group" data-style="minimal-border" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Minimal Border — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Base</span><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Extra Small</span><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBtnCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-btn-minimal-border, lyte-button.zc-btn-minimal-border button {
+  background: var(--zc-color-black-white-surface-white-surface);
+  border-color: var(--zc-color-primary-border-primary-border-low);
+  color: var(--zc-color-primary-text-primary-text-default);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== MINIMAL FILL ==== -->
+                        <div class="btn-variant-group" data-style="minimal-fill" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Minimal Fill — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Base</span><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Extra Small</span><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBtnCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-btn-minimal-fill, lyte-button.zc-btn-minimal-fill button {
+  background: var(--zc-color-primary-surface-primary-surface-subtle-hover);
+  color: var(--zc-color-primary-text-primary-text-default);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== LINK ==== -->
+                        <div class="btn-variant-group" data-style="link" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Link — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span><lyte-button class="zc-btn zc-btn-link zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Base</span><lyte-button class="zc-btn zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span><lyte-button class="zc-btn zc-btn-link zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Extra Small</span><lyte-button class="zc-btn zc-btn-link zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBtnCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-button class="zc-btn zc-btn-link zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-btn-link, lyte-button.zc-btn-link button {
+  background: transparent;
+  border-color: transparent;
+  color: var(--zc-color-primary-text-primary-text-default);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== HYPERLINK ==== -->
+                        <div class="btn-variant-group" data-style="hyperlink" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Hyperlink</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Default</span><lyte-button class="zc-btn zc-btn-hyperlink"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-button class="zc-btn zc-btn-hyperlink"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ICON BUTTON ==== -->
+                        <div class="btn-variant-group" data-style="icon-button" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Icon Button — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Large</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Base</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Small</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill XS</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Border Base</span>
+                                        <lyte-button class="zc-btn zc-btn-border zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Minimal Fill</span>
+                                        <lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Icon Only Button --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;
+    &lt;span class="zc-btn-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== CIRCLE ICON BUTTON ==== -->
+                        <div class="btn-variant-group" data-style="circle-icon" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Circle Icon Button — All Sizes &amp; Styles</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Large</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-circle zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Base</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-circle zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Small</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-circle zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill XS</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-circle zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Border Base</span>
+                                        <lyte-button class="zc-btn zc-btn-border zc-btn-circle zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Min Border Base</span>
+                                        <lyte-button class="zc-btn zc-btn-minimal-border zc-btn-circle zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Min Fill Base</span>
+                                        <lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-circle zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Link Base</span>
+                                        <lyte-button class="zc-btn zc-btn-link zc-btn-circle zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Circle Icon Button --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-circle zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;
+    &lt;span class="zc-btn-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DUO ICON BUTTON ==== -->
+                        <div class="btn-variant-group" data-style="duo-icon" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Duo Icon Button — Leading + Trailing Icons</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Large</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Create<span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Base</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Create<span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Border Base</span>
+                                        <lyte-button class="zc-btn zc-btn-border zc-btn-duo-icon zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Add Item<span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Small</span>
+                                        <lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Create<span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Duo Icon Button (leading + trailing) --&gt;
+&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon zc-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;
+    &lt;span class="zc-btn-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt;
+    Create
+    &lt;span class="zc-btn-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SPLIT BUTTON ==== -->
+                        <div class="btn-variant-group" data-style="split" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Split Button — Action + Dropdown Trigger</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Large</span>
+                                        <div class="zc-btn-split">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-lg zc-btn-split-action"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-lg zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Base</span>
+                                        <div class="zc-btn-split">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-action"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Small</span>
+                                        <div class="zc-btn-split">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-sm zc-btn-split-action"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-sm zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Border Base</span>
+                                        <div class="zc-btn-split">
+                                            <lyte-button class="zc-btn zc-btn-border zc-btn-md zc-btn-split-action"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-border zc-btn-md zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Split Button --&gt;
+&lt;div class="zc-btn-split"&gt;
+  &lt;lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-action"&gt;
+    &lt;template is="registerYield" yield-name="text"&gt;Save&lt;/template&gt;
+  &lt;/lyte-button&gt;
+  &lt;lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-trigger"&gt;
+    &lt;template is="registerYield" yield-name="text"&gt;
+      &lt;span class="zc-btn-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-button&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DUO BUTTON GROUP ==== -->
+                        <div class="btn-variant-group" data-style="duo-group" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Duo Button Group — CTA + Sub-CTA Pairing</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Large</span>
+                                        <div class="zc-btn-duo-group">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-lg"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-lg"><template is="registerYield" yield-name="text">Cancel</template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Base</span>
+                                        <div class="zc-btn-duo-group">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Cancel</template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Small</span>
+                                        <div class="zc-btn-duo-group">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-sm"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-sm"><template is="registerYield" yield-name="text">Cancel</template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill XS</span>
+                                        <div class="zc-btn-duo-group">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-xs"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-xs"><template is="registerYield" yield-name="text">Cancel</template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Border Base</span>
+                                        <div class="zc-btn-duo-group">
+                                            <lyte-button class="zc-btn zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Cancel</template></lyte-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Duo Button Group (CTA + Sub-CTA) --&gt;
+&lt;div class="zc-btn-duo-group"&gt;
+  &lt;lyte-button class="zc-btn zc-btn-fill zc-btn-md"&gt;
+    &lt;template is="registerYield" yield-name="text"&gt;Save&lt;/template&gt;
+  &lt;/lyte-button&gt;
+  &lt;lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-md"&gt;
+    &lt;template is="registerYield" yield-name="text"&gt;Cancel&lt;/template&gt;
+  &lt;/lyte-button&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DUO COMBO BUTTON ==== -->
+                        <div class="btn-variant-group" data-style="duo-combo" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Duo Combo Button — Text + Icon Pairing</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Large</span>
+                                        <div class="zc-btn-duo-combo">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-lg"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Base</span>
+                                        <div class="zc-btn-duo-combo">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Border Base</span>
+                                        <div class="zc-btn-duo-combo">
+                                            <lyte-button class="zc-btn zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill Small</span>
+                                        <div class="zc-btn-duo-combo">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-sm"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Fill XS</span>
+                                        <div class="zc-btn-duo-combo">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-xs"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Duo Combo Button (Text + Icon) --&gt;
+&lt;div class="zc-btn-duo-combo"&gt;
+  &lt;lyte-button class="zc-btn zc-btn-fill zc-btn-md"&gt;
+    &lt;template is="registerYield" yield-name="text"&gt;Save&lt;/template&gt;
+  &lt;/lyte-button&gt;
+  &lt;lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-icon-only zc-btn-md"&gt;
+    &lt;template is="registerYield" yield-name="text"&gt;
+      &lt;span class="zc-btn-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-button&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== COLOR THEMES ==== -->
+                        <div class="btn-variant-group" data-style="color-themes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">All Color Themes — Fill Style</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Primary</span><lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Primary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Secondary</span><lyte-button class="zc-btn zc-btn-secondary zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Secondary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Info</span><lyte-button class="zc-btn zc-btn-info zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Info</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Success</span><lyte-button class="zc-btn zc-btn-success zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Success</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><lyte-button class="zc-btn zc-btn-warning zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Warning</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><lyte-button class="zc-btn zc-btn-error zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Error</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">HueGrey</span><lyte-button class="zc-btn zc-btn-huegrey zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">HueGrey</template></lyte-button></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">All Color Themes — Border Style</span></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Primary</span><lyte-button class="zc-btn zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Primary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Secondary</span><lyte-button class="zc-btn zc-btn-secondary zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Secondary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Info</span><lyte-button class="zc-btn zc-btn-info zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Info</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Success</span><lyte-button class="zc-btn zc-btn-success zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Success</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><lyte-button class="zc-btn zc-btn-warning zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Warning</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><lyte-button class="zc-btn zc-btn-error zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Error</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">HueGrey</span><lyte-button class="zc-btn zc-btn-huegrey zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">HueGrey</template></lyte-button></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">All Color Themes — Minimal Border Style</span></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Primary</span><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Primary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Secondary</span><lyte-button class="zc-btn zc-btn-secondary zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Secondary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Info</span><lyte-button class="zc-btn zc-btn-info zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Info</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Success</span><lyte-button class="zc-btn zc-btn-success zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Success</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><lyte-button class="zc-btn zc-btn-warning zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Warning</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><lyte-button class="zc-btn zc-btn-error zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Error</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">HueGrey</span><lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">HueGrey</template></lyte-button></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">All Color Themes — Minimal Fill Style</span></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Primary</span><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Primary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Secondary</span><lyte-button class="zc-btn zc-btn-secondary zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Secondary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Info</span><lyte-button class="zc-btn zc-btn-info zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Info</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Success</span><lyte-button class="zc-btn zc-btn-success zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Success</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><lyte-button class="zc-btn zc-btn-warning zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Warning</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><lyte-button class="zc-btn zc-btn-error zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Error</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">HueGrey</span><lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">HueGrey</template></lyte-button></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">All Color Themes — Link Style</span></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Primary</span><lyte-button class="zc-btn zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Primary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Secondary</span><lyte-button class="zc-btn zc-btn-secondary zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Secondary</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Info</span><lyte-button class="zc-btn zc-btn-info zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Info</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Success</span><lyte-button class="zc-btn zc-btn-success zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Success</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><lyte-button class="zc-btn zc-btn-warning zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Warning</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><lyte-button class="zc-btn zc-btn-error zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Error</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">HueGrey</span><lyte-button class="zc-btn zc-btn-huegrey zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">HueGrey</template></lyte-button></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled States</span><button class="btn-variant-card__toggle" onclick="toggleBtnCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Fill</span><lyte-button class="zc-btn zc-btn-fill zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Border</span><lyte-button class="zc-btn zc-btn-border zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Minimal Border</span><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Minimal Fill</span><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Link</span><lyte-button class="zc-btn zc-btn-link zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBtnCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBtnCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-button class="zc-btn zc-btn-fill zc-btn-md" lt-prop-disabled="true"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /btn-component-variants -->

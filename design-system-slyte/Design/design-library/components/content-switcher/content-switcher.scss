@@ -1,0 +1,223 @@
+/* =============================================================
+   Content Switcher — Zoho Creator Design System (SCSS)
+   Figma Source: Content_Switcher (node 2630:5644)
+   Maps to <lyte-tabs> with content-switcher styling
+
+   Lyte DOM structure:
+     lyte-tabs > .lyteTabNav > lyte-tab-head > lyte-tab-title
+     lyte-tabs > lyte-tab-body > lyte-tab-content
+
+   Figma tokens:
+     Active fill:     #0D4EF2   Active border: #0D4EF2
+     Inactive text:   #696C74   Background:    #EAEBEC
+     Minimal active:  #E7EDFE   Border:        #D5D6D9
+     Hover text:      #6C6D71   Disabled text: #A1A2A4
+     Active hover:    #0B44D5   Min hover act: #DDE6FD
+     Sizes: XS 26px | SM 32px | MD 36px (Base) | LG 40px
+   ============================================================= */
+
+/* --- Base Wrapper — Reset lyte-tabs defaults --- */
+.zc-content-switcher {
+    display: inline-flex;
+    flex-direction: column;
+    min-height: auto !important;
+    background-color: transparent !important;
+    min-width: auto !important;
+    border: none !important;
+
+    /* Tab Head — segmented pill container */
+    lyte-tab-head {
+        display: inline-flex !important;
+        align-items: center;
+        background: #FFFFFF;
+        border: 1px solid #D5D6D9;
+        border-radius: 10px;
+        padding: 4px;
+        gap: 0;
+        float: none !important;
+    }
+
+    .lyteTabNav {
+        width: auto !important;
+        float: none !important;
+        display: inline-flex;
+    }
+
+    /* Tab Title (each segment) */
+    lyte-tab-title {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding: 0 14px;
+        font-family: 'ZohoPuvi', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.286;
+        color: #696C74;
+        background: transparent;
+        border: none !important;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        white-space: nowrap;
+        user-select: none;
+        float: none !important;
+        opacity: 1 !important;
+        box-sizing: border-box;
+        flex: 1;
+        text-align: center;
+
+        &:hover {
+            color: #6C6D71;
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        &.lyteTabActive {
+            font-weight: 400;
+            opacity: 1 !important;
+        }
+    }
+
+    lyte-tab-body {
+        display: none !important;
+    }
+}
+
+/* --- Fill — Solid primary bg on active --- */
+.zc-content-switcher-fill {
+    lyte-tab-title.lyteTabActive {
+        background: #0D4EF2 !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+        border-bottom-color: transparent !important;
+
+        &:hover {
+            background: #0B44D5 !important;
+            color: #FFFFFF !important;
+        }
+    }
+}
+
+/* --- Minimal — Light blue bg on active --- */
+.zc-content-switcher-minimal {
+    lyte-tab-head {
+        border: 1px solid #D5D6D9;
+    }
+
+    lyte-tab-title.lyteTabActive {
+        background: #E7EDFE !important;
+        color: #0D4EF2 !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        border-radius: 6px;
+        border-bottom-color: transparent !important;
+
+        &:hover {
+            background: #DDE6FD !important;
+            color: #0D4EF2 !important;
+        }
+    }
+}
+
+/* --- Size: XS (26px) --- */
+.zc-content-switcher-xs {
+    lyte-tab-head { padding: 4px; border-radius: 8px; }
+    lyte-tab-title { height: 26px; padding: 0 10px; font-size: 14px; }
+    lyte-tab-title.lyteTabActive { border-radius: 4px; }
+}
+
+/* --- Size: SM (32px) --- */
+.zc-content-switcher-sm {
+    lyte-tab-head { padding: 4px; }
+    lyte-tab-title { height: 32px; padding: 0 12px; font-size: 14px; }
+}
+
+/* --- Size: MD / Base (36px) --- */
+.zc-content-switcher-md {
+    lyte-tab-head { padding: 4px; }
+    lyte-tab-title { height: 36px; padding: 0 14px; font-size: 14px; }
+}
+
+/* --- Size: LG (40px) --- */
+.zc-content-switcher-lg {
+    lyte-tab-head { padding: 4px; }
+    lyte-tab-title { height: 40px; padding: 0 16px; font-size: 14px; }
+}
+
+/* --- Button Type — Icon + Text --- */
+.zc-content-switcher-button {
+    lyte-tab-title {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 6px;
+    }
+}
+
+.zc-cs-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    svg { width: 100%; height: 100%; }
+}
+
+.zc-content-switcher-xs .zc-cs-icon { width: 14px; height: 14px; }
+.zc-content-switcher-sm .zc-cs-icon { width: 14px; height: 14px; }
+.zc-content-switcher-lg .zc-cs-icon { width: 14px; height: 14px; }
+
+/* --- Disabled — no selection yet --- */
+.zc-content-switcher-disabled {
+    pointer-events: none;
+
+    lyte-tab-head {
+        background: #EAEBEC;
+        border-color: #D5D6D9;
+    }
+
+    lyte-tab-title {
+        color: #A1A2A4;
+        cursor: not-allowed;
+    }
+
+    &.zc-content-switcher-fill lyte-tab-title.lyteTabActive {
+        background: #A1A2A4 !important;
+        color: #FFFFFF !important;
+        box-shadow: none;
+    }
+
+    &.zc-content-switcher-minimal lyte-tab-title.lyteTabActive {
+        background: #D5D6D9 !important;
+        color: #A1A2A4 !important;
+        box-shadow: none;
+    }
+}
+
+/* --- Disabled After — with active selection --- */
+.zc-content-switcher-disabled-after {
+    pointer-events: none;
+
+    lyte-tab-head {
+        background: #EAEBEC;
+        border-color: #D6D7D8;
+    }
+
+    lyte-tab-title {
+        color: #A1A2A4;
+        cursor: not-allowed;
+    }
+
+    &.zc-content-switcher-fill lyte-tab-title.lyteTabActive {
+        background: #A1A2A4 !important;
+        color: #FFFFFF !important;
+        box-shadow: none;
+    }
+
+    &.zc-content-switcher-minimal lyte-tab-title.lyteTabActive {
+        background: #D5D6D9 !important;
+        color: #A1A2A4 !important;
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,145 @@
+/* ============================================================================
+   TEXTAREA COMPONENT — SCSS
+   Figma Source: TextArea_Base (node 2198:46128), file 88Zeos2AXPni7858flxLP2
+   
+   Multi-line text input for longer form content.
+   Token mapping uses Zoho Creator Design System CSS custom properties.
+   ============================================================================ */
+
+/* --- Field Container --- */
+.zc-textarea-field {
+    display: flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 200px;
+}
+
+/* --- Label --- */
+.zc-textarea-label {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    margin-bottom: 6px;
+    line-height: 20px;
+}
+
+/* --- Wrapper (border container) --- */
+.zc-textarea-wrapper {
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    border-radius: var(--zc-radius-r, 6px);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    overflow: hidden;
+}
+
+/* --- Textarea Element --- */
+.zc-textarea {
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: var(--zc-p2-font-size, 14px);
+    line-height: 20px;
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.zc-textarea::placeholder {
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+}
+
+/* --- Footer (hint + counter) --- */
+.zc-textarea-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.zc-textarea-hint {
+    font-size: var(--zc-p3-font-size, 12px);
+    line-height: 16px;
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+}
+
+.zc-textarea-counter {
+    font-size: var(--zc-p3-font-size, 12px);
+    line-height: 16px;
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+    margin-left: auto;
+}
+
+/* ========================= STATE VARIANTS ========================= */
+
+/* --- Hover --- */
+.zc-textarea-wrapper:hover {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+}
+
+/* --- Focus --- */
+.zc-textarea-wrapper-focus,
+.zc-textarea-wrapper:focus-within {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}
+
+/* --- Disabled --- */
+.zc-textarea-wrapper-disabled {
+    background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
+    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    cursor: not-allowed;
+}
+
+.zc-textarea-wrapper-disabled:hover {
+    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+}
+
+.zc-textarea-wrapper-disabled .zc-textarea {
+    cursor: not-allowed;
+    color: #9EA0A7;
+    resize: none;
+}
+
+/* --- Read-only --- */
+.zc-textarea-wrapper-readonly {
+    background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
+}
+
+.zc-textarea-wrapper-readonly .zc-textarea {
+    cursor: default;
+    resize: none;
+}
+
+/* --- Error --- */
+.zc-textarea-wrapper-error {
+    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+    background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
+}
+
+.zc-textarea-wrapper-error:hover {
+    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+}
+
+.zc-textarea-field-error .zc-textarea-hint {
+    color: var(--zc-color-error-text-error-text-default, #CC1914);
+}
+
+/* --- Success --- */
+.zc-textarea-wrapper-success {
+    border-color: var(--zc-color-success-border-success-border-default, #078841);
+}
+
+.zc-textarea-wrapper-success:hover {
+    border-color: var(--zc-color-success-border-success-border-default, #078841);
+}
+
+/* --- No Resize --- */
+.zc-textarea-noresize .zc-textarea,
+.zc-textarea-noresize {
+    resize: none;
+}

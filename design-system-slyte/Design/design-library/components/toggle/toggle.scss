@@ -1,0 +1,132 @@
+/* =============================================================================
+   TOGGLE (SWITCH) COMPONENT — SCSS
+   Figma Source: Toggle (node 2359:348)
+
+   VARIANTS:
+     State     → Off (Unchecked) | On (Checked)
+     Size      → SM (28×16) | MD (36×20) | LG (44×24)
+     Interact  → Default | Hover | Focus | Disabled
+
+   Uses <lyte-checkbox lt-prop-type="switch"> which renders:
+     label > input.on-off-sw + span.lyteCheckSwitch > span.on-btn + [lyte-label]
+   Checked state: input.on-off-sw:checked + .lyteCheckSwitch
+   Disabled: .lyteCheckDisabled on lyte-checkbox
+
+   NAMING: Single-hyphen modifier (zc-toggle-sm NOT zc-toggle--sm)
+   ============================================================================= */
+
+.zc-toggle {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'ZohoPuvi', sans-serif;
+
+    /* TRACK — pill-shaped background (OFF state) */
+    .lyteCheckSwitch {
+        display: inline-flex;
+        align-items: center;
+        width: 36px;
+        height: 20px;
+        background: var(--zc-color-neutral-surface-default, #D5D6D9);
+        border-radius: 999px;
+        position: relative;
+        padding: 2px;
+        box-sizing: border-box;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    /* THUMB / KNOB */
+    .on-btn {
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(38, 40, 43, 0.18);
+        transition: transform 0.2s ease, left 0.2s ease;
+        position: absolute;
+        left: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* LABEL */
+    [lyte-label] {
+        font-size: var(--zc-p2-font-size, 14px);
+        font-weight: var(--zc-p2-font-weight-regular, 400);
+        color: var(--zc-color-neutral-text-default, #37383C);
+        margin-left: 8px;
+        line-height: 20px;
+    }
+
+    /* CHECKED (On) — primary track */
+    input.on-off-sw:checked + .lyteCheckSwitch {
+        background: var(--zc-color-primary-surface-default, #0D4EF2);
+    }
+
+    /* CHECKED — thumb slides right */
+    input.on-off-sw:checked + .lyteCheckSwitch .on-btn {
+        left: auto;
+        right: 2px;
+        transform: translateY(-50%);
+    }
+
+    /* HOVER — off state */
+    &:hover .lyteCheckSwitch {
+        background: var(--zc-color-neutral-surface-default-hover, #C3C4C8);
+    }
+
+    /* HOVER — on state */
+    &:hover input.on-off-sw:checked + .lyteCheckSwitch {
+        background: var(--zc-color-primary-surface-default-hover, #0B44D5);
+    }
+
+    /* FOCUS */
+    &:focus-within .lyteCheckSwitch {
+        outline: 2px solid var(--zc-color-primary-border-default, #0D4EF2);
+        outline-offset: 2px;
+    }
+
+    /* DISABLED */
+    &.lyteCheckDisabled,
+    &.zc-toggle-disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        pointer-events: none;
+
+        [lyte-label] {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+    }
+}
+
+/* =============================================================================
+   SIZE: SM — 28×16, thumb 12px
+   ============================================================================= */
+.zc-toggle-sm,
+.zc-toggle.zc-toggle-sm {
+    .lyteCheckSwitch { width: 28px; height: 16px; }
+    .on-btn { width: 12px; height: 12px; }
+    input.on-off-sw:checked + .lyteCheckSwitch .on-btn { left: auto; right: 2px; }
+}
+
+/* =============================================================================
+   SIZE: MD — 36×20, thumb 16px (default)
+   ============================================================================= */
+.zc-toggle-md,
+.zc-toggle.zc-toggle-md {
+    .lyteCheckSwitch { width: 36px; height: 20px; }
+    .on-btn { width: 16px; height: 16px; }
+}
+
+/* =============================================================================
+   SIZE: LG — 44×24, thumb 20px
+   ============================================================================= */
+.zc-toggle-lg,
+.zc-toggle.zc-toggle-lg {
+    .lyteCheckSwitch { width: 44px; height: 24px; }
+    .on-btn { width: 20px; height: 20px; }
+    input.on-off-sw:checked + .lyteCheckSwitch .on-btn { left: auto; right: 2px; }
+}

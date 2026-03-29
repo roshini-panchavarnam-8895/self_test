@@ -1,0 +1,794 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-user-circle"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Avatar</h1>
+                            <p class="detail-description">User avatar component from Figma <code>Avatar_Base ✦</code> (node 2956:1475). Supports Image &amp; Initials types across 3 shapes (Square, Rounded, Circle) and 4 sizes (XL, L, M, S). Includes status badge overlay and stacked avatar groups.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Basic</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 2 Types × 3 Shapes × 4 Sizes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchAvatarStyleTab('image', this)">Image</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('initials', this)">Initials</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('sizes', this)">Sizes</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('shapes', this)">Shapes</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('status', this)">Status</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('group', this)">Group</button>
+                    </div>
+
+                    <div id="avatar-component-variants">
+
+                        <!-- ==== IMAGE ==== -->
+                        <div class="btn-variant-group" data-style="image">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Image Avatar — Circle (All Sizes)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">XL (48px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">L (40px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">M (32px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">S (24px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Image Avatar: XL (48px) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+  &lt;img src="path/to/photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- Image Avatar: L (40px) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"&gt;
+  &lt;img src="path/to/photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- Image Avatar: M (32px, default) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+  &lt;img src="path/to/photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- Image Avatar: S (24px) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"&gt;
+  &lt;img src="path/to/photo.jpg" alt="User" /&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none">
+                                        <div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>.zc-nav-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  img { width: 100%; height: 100%; object-fit: cover; }
+}
+.zc-nav-avatar-xl { width: 48px; height: 48px; }
+.zc-nav-avatar-lg { width: 40px; height: 40px; }
+.zc-nav-avatar-md { width: 32px; height: 32px; }
+.zc-nav-avatar-sm { width: 24px; height: 24px; }
+.zc-nav-avatar-circle { border-radius: 50%; }</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Image Avatar — Shapes</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Square (4px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Rounded (8px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Circle (50%)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Square --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- Rounded --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- Circle --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== INITIALS ==== -->
+                        <div class="btn-variant-group" data-style="initials" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Initials Avatar — All Sizes</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">XL (48px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">L (40px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">M (32px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">S (24px)</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Initials Avatar: XL --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Initials Avatar: L --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;AB&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Initials Avatar: M (default) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;ZC&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Initials Avatar: S --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none">
+                                        <div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>.zc-nav-avatar {
+  background: var(--zc-color-primary-surface-primary-surface-subtle, #E7EDFE);
+}
+.zc-nav-avatar-initials {
+  font-family: 'ZohoPuvi', sans-serif;
+  font-weight: 600;
+  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  text-transform: uppercase;
+  user-select: none;
+}
+.zc-nav-avatar-xl .zc-nav-avatar-initials { font-size: 18px; }
+.zc-nav-avatar-lg .zc-nav-avatar-initials { font-size: 16px; }
+.zc-nav-avatar-md .zc-nav-avatar-initials { font-size: 14px; }
+.zc-nav-avatar-sm .zc-nav-avatar-initials { font-size: 11px; }</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Initials Avatar — All Shapes</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Square</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Rounded</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Circle</span>
+                                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Square (border-radius: 4px) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Rounded (border-radius: 8px) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;AB&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Circle (border-radius: 50%) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;ZC&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SIZES ==== -->
+                        <div class="btn-variant-group" data-style="sizes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Sizes Comparison — Image Type</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="gap:16px;align-items:flex-end">
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL · 48px</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">L · 40px</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">M · 32px</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">S · 24px</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- XL: 48×48 --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- L: 40×40 --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- M: 32×32 (default) --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;!-- S: 24×24 --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Sizes Comparison — Initials Type</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="gap:16px;align-items:flex-end">
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL · 48px · 18px</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">L · 40px · 16px</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">M · 32px · 14px</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">S · 24px · 11px</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Initials sizes: font-size scales with avatar size --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;  &lt;!-- 18px --&gt;
+&lt;/div&gt;
+
+&lt;div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;  &lt;!-- 16px --&gt;
+&lt;/div&gt;
+
+&lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;  &lt;!-- 14px --&gt;
+&lt;/div&gt;
+
+&lt;div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;  &lt;!-- 11px --&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SHAPES ==== -->
+                        <div class="btn-variant-group" data-style="shapes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Shape Variants — Square (border-radius: 4px)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="gap:16px;align-items:flex-end">
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">L</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">M</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">S</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Square shape: border-radius 4px --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Shape Variants — Rounded (border-radius: 8px)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="gap:16px;align-items:flex-end">
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL Image</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">L Initials</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-rounded" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">M Image</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">S Initials</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Rounded shape: border-radius 8px --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-rounded"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;AB&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Shape Variants — Circle (border-radius: 50%)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="gap:16px;align-items:flex-end">
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL Image</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">L Initials</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">M Image</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">S Initials</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Circle shape: border-radius 50% --&gt;
+&lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+  &lt;img src="photo.jpg" alt="User" /&gt;
+&lt;/div&gt;
+
+&lt;div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"&gt;
+  &lt;span class="zc-nav-avatar-initials"&gt;AB&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== STATUS ==== -->
+                        <div class="btn-variant-group" data-style="status" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Avatar with Status Badge</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="gap:20px">
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                                <span class="zc-badge" style="width:12px;height:12px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">Online</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                                <span class="zc-badge" style="width:12px;height:12px;background:#9CA0AB;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">Offline</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                                <span class="zc-badge" style="width:12px;height:12px;background:#EF4444;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">Busy</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                                <span class="zc-badge" style="width:12px;height:12px;background:#F59E0B;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">Away</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Avatar with Online status --&gt;
+&lt;div class="zc-nav-avatar-wrapper"&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+    &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-badge zc-badge-online"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Avatar with Offline status --&gt;
+&lt;div class="zc-nav-avatar-wrapper"&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+    &lt;img src="photo.jpg" alt="User" /&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-badge zc-badge-offline"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Avatar with Busy status --&gt;
+&lt;div class="zc-nav-avatar-wrapper"&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+    &lt;span class="zc-nav-avatar-initials"&gt;AB&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-badge zc-badge-busy"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Avatar with Away status --&gt;
+&lt;div class="zc-nav-avatar-wrapper"&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+    &lt;span class="zc-nav-avatar-initials"&gt;ZC&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-badge zc-badge-away"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none">
+                                        <div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>.zc-nav-avatar-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+.zc-nav-avatar-wrapper .zc-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
+.zc-badge-online { background: #22C55E; }
+.zc-badge-offline { background: #9CA0AB; }
+.zc-badge-busy { background: #EF4444; }
+.zc-badge-away { background: #F59E0B; }</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Status Badge — Size Variants</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="gap:20px;align-items:flex-end">
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                                <span class="zc-badge" style="width:12px;height:12px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                                <span class="zc-badge" style="width:10px;height:10px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">L</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                                <span class="zc-badge" style="width:8px;height:8px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">M</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="zc-nav-avatar-wrapper">
+                                                <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                                <span class="zc-badge" style="width:7px;height:7px;background:#22C55E;position:absolute;bottom:0;right:0;border:1.5px solid #fff;border-radius:50%"></span>
+                                            </div>
+                                            <div style="font-size:11px;color:#6B6D74;margin-top:6px">S</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Status badge scales with avatar size --&gt;
+&lt;div class="zc-nav-avatar-wrapper"&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"&gt;
+    &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-badge zc-badge-online"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== GROUP ==== -->
+                        <div class="btn-variant-group" data-style="group" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Avatar Group — Overlapping Stack</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default (M)</span>
+                                        <div class="zc-nav-avatar-group">
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                            <div class="zc-nav-avatar-group-count">+5</div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Large (L)</span>
+                                        <div class="zc-nav-avatar-group">
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                            <div class="zc-nav-avatar-group-count" style="width:40px;height:40px;font-size:13px">+3</div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Extra Large (XL)</span>
+                                        <div class="zc-nav-avatar-group">
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                                            <div class="zc-nav-avatar-group-count" style="width:48px;height:48px;font-size:14px">+8</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Avatar Group: overlapping with negative margin --&gt;
+&lt;div class="zc-nav-avatar-group"&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+    &lt;img src="user1.jpg" alt="User 1" /&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+    &lt;span class="zc-nav-avatar-initials"&gt;AB&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+    &lt;img src="user3.jpg" alt="User 3" /&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"&gt;
+    &lt;span class="zc-nav-avatar-initials"&gt;ZC&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-nav-avatar-group-count"&gt;+5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none">
+                                        <div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>.zc-nav-avatar-group {
+  display: inline-flex;
+  align-items: center;
+  .zc-nav-avatar {
+    border: 2px solid #FFFFFF;
+    margin-left: -8px;
+    &amp;:first-child { margin-left: 0; }
+  }
+}
+.zc-nav-avatar-group-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #F0F1F3;
+  font-family: 'ZohoPuvi', sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: #37383C;
+  margin-left: -8px;
+  border: 2px solid #FFFFFF;
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Avatar Group — Small (S)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Compact Group</span>
+                                        <div class="zc-nav-avatar-group">
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                                            <div class="zc-nav-avatar-group-count" style="width:24px;height:24px;font-size:10px">+2</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block">
+                                        <div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div>
+                                        <pre><code>&lt;!-- Small avatar group --&gt;
+&lt;div class="zc-nav-avatar-group"&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"&gt;
+    &lt;img src="user1.jpg" alt="User" /&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"&gt;
+    &lt;span class="zc-nav-avatar-initials"&gt;JD&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-nav-avatar-group-count" style="width:24px;height:24px;font-size:10px"&gt;+2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Primary Button — Zoho Creator Design System</title>
+    <meta name="description" content="Primary Button component with all variants using lyte-button DOM.">
+    <link rel="stylesheet" href="../../zohopuvi/font-zohopuvi.css">
+    <!-- Lyte framework + lyte-button component -->
+    <script type="text/javascript" src="../../../../node_modules/@zoho/lyte-ui-component/dist/dummy-app-init-for-non-lyte-app.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/@zoho/lyte-ui-component/dist/components/javascript/lyte-button.js"></script>
+    <link rel="stylesheet" href="../../../../node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/lyte-ui-button.css">
+    <!-- Custom design-system overrides -->
+    <link rel="stylesheet" href="button.css">
+    <style>
+        body {
+            font-family: 'ZohoPuvi', sans-serif;
+            background: #f8f9fb;
+            margin: 0;
+            padding: 40px;
+            color: #25272C;
+        }
+        h1 { font-size: 29px; font-weight: 600; margin-bottom: 8px; }
+        .subtitle { font-size: 14px; color: #696C74; margin-bottom: 32px; }
+        .section { margin-bottom: 40px; }
+        .section h2 { font-size: 18px; font-weight: 500; margin-bottom: 16px; border-bottom: 1px solid #EBEBEB; padding-bottom: 8px; }
+        .row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+        .row .label { width: 120px; font-size: 12px; color: #696C74; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+    <h1>Primary Button</h1>
+    <p class="subtitle">Primary action button — the main CTA in any view. Uses lyte-button DOM with zc- modifier classes.</p>
+
+    <!-- FILL -->
+    <div class="section">
+        <h2>Fill</h2>
+        <div class="row"><span class="label">Large</span>
+            <lyte-button class="zc-btn zc-btn-fill zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+        <div class="row"><span class="label">Base</span>
+            <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+        <div class="row"><span class="label">Small</span>
+            <lyte-button class="zc-btn zc-btn-fill zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+        <div class="row"><span class="label">Extra Small</span>
+            <lyte-button class="zc-btn zc-btn-fill zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+    </div>
+
+    <!-- BORDER -->
+    <div class="section">
+        <h2>Border</h2>
+        <div class="row"><span class="label">Large</span>
+            <lyte-button class="zc-btn zc-btn-border zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+        <div class="row"><span class="label">Base</span>
+            <lyte-button class="zc-btn zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+        <div class="row"><span class="label">Small</span>
+            <lyte-button class="zc-btn zc-btn-border zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+        <div class="row"><span class="label">Extra Small</span>
+            <lyte-button class="zc-btn zc-btn-border zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+        </div>
+    </div>
+
+    <!-- ICON BUTTON -->
+    <div class="section">
+        <h2>Icon Button</h2>
+        <div class="row">
+            <span class="label">Fill Icon</span>
+            <lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+            <lyte-button class="zc-btn zc-btn-border zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></template></lyte-button>
+        </div>
+    </div>
+
+    <!-- DUO ICON BUTTON -->
+    <div class="section">
+        <h2>Duo Icon Button</h2>
+        <div class="row">
+            <span class="label">Fill Duo Icon</span>
+            <lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Create<span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+        </div>
+    </div>
+
+    <!-- SPLIT BUTTON -->
+    <div class="section">
+        <h2>Split Button</h2>
+        <div class="row">
+            <span class="label">Fill Split</span>
+            <div class="zc-btn-split">
+                <lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-action"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                <lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DUO COMBO BUTTON -->
+    <div class="section">
+        <h2>Primary Duo Combo Button</h2>
+        <div class="row">
+            <span class="label">Duo Combo</span>
+            <div class="zc-btn-duo-combo">
+                <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Save</template></lyte-button>
+                <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Cancel</template></lyte-button>
+            </div>
+        </div>
+    </div>
+
+    <script src="button.js"></script>
+</body>
+</html>

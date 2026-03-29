@@ -1,0 +1,188 @@
+/* =============================================================================
+   NOTES COMPONENT — SCSS
+   Figma Source: Notes (node 2393:3616)
+
+   VARIANTS:
+     - Default (basic note)
+     - With Timestamp
+     - With Author (avatar + name)
+     - With Actions (edit/delete buttons)
+     - Color: Default (neutral), Info (blue tint), Warning (yellow tint)
+     - Read-only
+     - Editable
+
+   NAMING: Single-hyphen modifier (zc-note-info NOT zc-note--info)
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   BASE NOTE
+   --------------------------------------------------------------------------- */
+.zc-note {
+    display: block;
+    border: 1px solid var(--zc-color-neutral-border-default, #D5D6D9);
+    border-radius: var(--zc-radius-rl, 8px);
+    padding: 12px 16px;
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    font-family: 'ZohoPuvi', sans-serif;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------------------
+   NOTE HEADER — flex row for author, timestamp, actions
+   --------------------------------------------------------------------------- */
+.zc-note-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   AUTHOR NAME
+   --------------------------------------------------------------------------- */
+.zc-note-author {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-default, #1B1F23);
+    line-height: 1.4;
+}
+
+/* ---------------------------------------------------------------------------
+   TIMESTAMP
+   --------------------------------------------------------------------------- */
+.zc-note-timestamp {
+    font-size: var(--zc-p3-font-size, 12px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    color: var(--zc-color-neutral-text-subtle, #6B7280);
+    line-height: 1.4;
+}
+
+/* When timestamp is in header, push it (or actions) to the right */
+.zc-note-header .zc-note-timestamp {
+    margin-left: auto;
+}
+
+/* When actions exist alongside timestamp, don't auto-push timestamp */
+.zc-note-header .zc-note-timestamp:not(:last-child) {
+    margin-left: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   NOTE META — bottom metadata row (for default notes without header)
+   --------------------------------------------------------------------------- */
+.zc-note-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--zc-color-neutral-border-low, #E5E7EB);
+}
+
+/* ---------------------------------------------------------------------------
+   NOTE CONTENT — text area
+   --------------------------------------------------------------------------- */
+.zc-note-content {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    color: var(--zc-color-neutral-text-default, #1B1F23);
+    line-height: 1.5;
+}
+
+.zc-note-content p {
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   ACTIONS — edit/delete icon buttons
+   --------------------------------------------------------------------------- */
+.zc-note-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.zc-note-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: var(--zc-radius-s, 4px);
+    color: var(--zc-color-neutral-text-subtle, #6B7280);
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.zc-note-action:hover {
+    background: var(--zc-color-neutral-surface-hover, #F3F4F6);
+    color: var(--zc-color-neutral-text-default, #1B1F23);
+}
+
+.zc-note-action:active {
+    background: var(--zc-color-neutral-surface-pressed, #E5E7EB);
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR VARIANT — Default (neutral bg)
+   --------------------------------------------------------------------------- */
+.zc-note-default {
+    background: var(--zc-color-neutral-surface-subtle, #F9FAFB);
+    border-color: var(--zc-color-neutral-border-default, #D5D6D9);
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR VARIANT — Info (blue tint bg)
+   --------------------------------------------------------------------------- */
+.zc-note-info {
+    background: var(--zc-color-primary-surface-subtle, #F5F8FE);
+    border-color: var(--zc-color-primary-border-minimal, #C0D1FC);
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR VARIANT — Warning (yellow tint bg)
+   --------------------------------------------------------------------------- */
+.zc-note-warning {
+    background: var(--zc-color-warning-surface-subtle, #FFFBEB);
+    border-color: var(--zc-color-warning-border-minimal, #FDE68A);
+}
+
+/* ---------------------------------------------------------------------------
+   READ-ONLY STATE
+   --------------------------------------------------------------------------- */
+.zc-note-readonly {
+    opacity: 0.75;
+    cursor: default;
+    user-select: text;
+}
+
+.zc-note-readonly .zc-note-action {
+    display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   EDITABLE STATE
+   --------------------------------------------------------------------------- */
+.zc-note-editable .zc-note-content {
+    outline: none;
+    cursor: text;
+}
+
+.zc-note-editable .zc-note-content:focus {
+    box-shadow: 0 0 0 2px var(--zc-color-primary-border-default, #0D4EF2);
+    border-radius: var(--zc-radius-s, 4px);
+}
+
+/* ---------------------------------------------------------------------------
+   HOVER ELEVATION
+   --------------------------------------------------------------------------- */
+.zc-note:hover {
+    box-shadow: 0 1px 3px rgba(38, 40, 43, 0.08);
+}

@@ -1,0 +1,168 @@
+import { _defineProperty } from "@slyte/core/src/lyte-utils";
+import { prop } from "../../../../@slyte/core/index.js";
+import { Component } from "../component.js";
+
+/**
+ * Renders a grouper
+ * @component lyte-grouper
+ * @version 3.1.0
+ */
+class LyteGrouperComponent extends Component {
+    constructor() {
+        super();
+    }
+
+    data(arg1) {
+		return Object.assign(super.data({
+			/** 
+			 * @componentProperty {Horizontal | Vertical} ltPropAlignment=Horizontal
+			 * @default Horizontal
+			 */
+			ltPropAlignment : prop("string", {"default" : "Horizontal"}),
+			/** 
+			 * @componentProperty {line | fill} ltPropAppearance=line
+			 */
+			ltPropAppearance : prop("string",{"default" : "line"}),
+			/** 
+			 * @componentProperty {string} ltPropWidth=auto
+			 */
+			ltPropWidth : prop("string",{"default" : "auto"}),
+			// /** 
+			//  * @componentProperty {array} ltPropSelectedClass
+			//  */
+			ltPropSelectedClass : prop("array",{"default" : []}),
+
+			currentClass : prop("string",{"default" : ""}),
+			isFocused: prop("boolean", {"default": false})
+		}), arg1);		
+	}
+
+    didConnect() {
+		this._container = this.$node.querySelector("lyte-yield");
+		this.addClassForElementInsideYield();
+	}
+
+    didDestroy() {
+		delete this._container;
+	}
+
+    getContainer() {
+		return this._container;
+	}
+
+    addClassToElement(element, className) {
+		element.classList.add(className);
+	}
+
+    getChildrenInsideYield() {
+		var container =  this.getContainer();
+		return container.children;
+	}
+
+    addClassForElementInsideYield() {
+		var children = this.getChildrenInsideYield();
+		var className = "lyteGrouperItem";
+		for(var index=0; index<children.length; index++) {
+			this.addClassToElement(children[index], className);
+		}
+	}
+
+    static actions(arg1) {
+        return Object.assign(super.actions({
+            grouperFocusIn : function() {
+                this.setData("isFocused", true);
+            },
+            grouperFocusOut : function() {
+                this.setData("isFocused", false);
+            }
+        }), arg1);
+    }
+
+    _() {
+        _;
+    }
+}
+
+LyteGrouperComponent._template = "<template tag-name=\"lyte-grouper\" style=\"width:{{ltPropWidth}}\"> <lyte-yield yield-name=\"yield\" onfocusin=\"{{action('grouperFocusIn')}}\" onfocusout=\"{{action('grouperFocusOut')}}\" class=\"lyteGroupWrap lyteGroup{{ltPropAlignment}} {{ltPropAppearance}}Type {{if(isFocused,'lyteGrouperFocused')}}\" role=\"group\"> </lyte-yield> </template>";;
+LyteGrouperComponent._dynamicNodes = [{"t":"a","p":[1]},{"t":"i","p":[1],"in":0},{"type":"dc","trans":true,"hc":true,"p":[0]}];;
+
+LyteGrouperComponent._observedAttributes = [
+    "ltPropAlignment",
+    "ltPropAppearance",
+    "ltPropWidth",
+    "ltPropSelectedClass",
+    "currentClass",
+    "isFocused"
+];
+
+/* unwanted code 
+document.addEventListener("click",function(event){
+	var groupers = document.querySelectorAll("lyte-grouper"),target = event.target;
+	groupers.forEach(function(node){
+		var comp = node.component,
+		container = comp.getContainer();
+		if(container){
+			if(!container.contains(target) && comp.data.currentClass){
+				comp.removeOldClass(container);
+			}
+		}
+	});
+},true);
+
+actions:{
+		onclick : function(event){
+			var container = this.getContainer();
+			// this.removeOldClass(container);
+			// this.addNewClass(event.target);
+		}
+	},
+	classChange : function(changes){
+		var oldClasses = changes.oldValue, indexOfOldClass, currentClassClass = this.data.currentClass,newClass,
+		container = this.getContainer(); 
+		indexOfOldClass = oldClasses.indexOf(currentClassClass);
+		if(indexOfOldClass > -1){
+			newClass =  this.getClass(indexOfOldClass);
+			this.removeOldClass(container);
+			if(newClass){
+				container.classList.add(newClass);
+				this.storeCurrentClassAsOld(newClass);
+			}
+		}
+	}.observes("ltPropSelectedClass")
+getClass : function(index){
+		var selectedClass = this.data.ltPropSelectedClass;
+		return selectedClass[index]? selectedClass[index] : selectedClass[0];
+	},
+		removeOldClass : function(container){
+		var currentClass = this.data.currentClass;
+		if(currentClass){
+			container.classList.remove(currentClass);
+			this.storeCurrentClassAsOld("");
+		}
+	},
+	addNewClass : function(target){
+		var container = this.getContainer(),
+		children = container.children;
+		for(var index=0;index<children.length;index++){
+			var child  =  children[index],newClass;
+			if(child.contains(target)){
+				newClass = this.getClass( index );
+				if(newClass){
+					container.classList.add(newClass);
+					this.storeCurrentClassAsOld(newClass);
+				}
+				break;
+			} 
+		}
+	},
+	storeCurrentClassAsOld : function(className){
+		this.setData("currentClass",className);
+	},
+*/
+
+export { LyteGrouperComponent };
+
+LyteGrouperComponent.register("lyte-grouper", {
+    hash: "LyteGrouperComponent_4",
+    refHash: "C_lyte-ui-component_@zoho/lyte-ui-component_2"
+});

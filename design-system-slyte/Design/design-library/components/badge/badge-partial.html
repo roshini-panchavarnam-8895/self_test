@@ -1,0 +1,244 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-circle"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Badge</h1>
+                            <p class="detail-description">Status indicator and notification badge using <code>&lt;lyte-badge&gt;</code> Slyte DOM for count/dot overlays on icons, and custom HTML for standalone status dots.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Indicators</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 4 Statuses × 2 Sizes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchBadgeStyleTab('status-types', this)">Status Types</button>
+                        <button class="btn-style-tab" onclick="switchBadgeStyleTab('sizes', this)">Sizes</button>
+                        <button class="btn-style-tab" onclick="switchBadgeStyleTab('with-text', this)">With Text</button>
+                        <button class="btn-style-tab" onclick="switchBadgeStyleTab('positions', this)">Positions</button>
+                    </div>
+
+                    <div id="badge-component-variants">
+
+                        <!-- ==== STATUS TYPES ==== -->
+                        <!-- Custom HTML — lyte-badge is a positioned overlay badge; standalone status indicator dots use custom spans -->
+                        <div class="btn-variant-group" data-style="status-types">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Status Types — Default Size (8px)</span><button class="btn-variant-card__toggle" onclick="toggleBadgeCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Active</span><span class="zc-badge zc-badge-active"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><span class="zc-badge zc-badge-warning"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><span class="zc-badge zc-badge-error"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Inactive</span><span class="zc-badge zc-badge-inactive"></span></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBadgeCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBadgeCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Standalone status dots — custom HTML (lyte-badge is an overlay badge) --&gt;
+&lt;span class="zc-badge zc-badge-active"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-warning"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-error"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-inactive"&gt;&lt;/span&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-badge {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--zc-color-neutral-surface-neutral-surface-default, #9EA0A7);
+}
+.zc-badge-active {
+  background-color: var(--zc-color-success-surface-success-surface-default, #078841);
+}
+.zc-badge-warning {
+  background-color: var(--zc-color-warning-surface-warning-surface-default, #D25704);
+}
+.zc-badge-error {
+  background-color: var(--zc-color-error-surface-error-surface-default, #CC1914);
+}
+.zc-badge-inactive {
+  background-color: var(--zc-color-neutral-surface-neutral-surface-default, #9EA0A7);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SIZES ==== -->
+                        <!-- Custom HTML — standalone status dots (not overlay badges) -->
+                        <div class="btn-variant-group" data-style="sizes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default Size (8×8px)</span><button class="btn-variant-card__toggle" onclick="toggleBadgeCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Active</span><span class="zc-badge zc-badge-active"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><span class="zc-badge zc-badge-warning"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><span class="zc-badge zc-badge-error"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Inactive</span><span class="zc-badge zc-badge-inactive"></span></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBadgeCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBadgeCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Default size (8px) --&gt;
+&lt;span class="zc-badge zc-badge-active"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-warning"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-error"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-inactive"&gt;&lt;/span&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-badge {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Small Size (4×4px)</span><button class="btn-variant-card__toggle" onclick="toggleBadgeCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Active</span><span class="zc-badge zc-badge-active zc-badge-sm"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><span class="zc-badge zc-badge-warning zc-badge-sm"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><span class="zc-badge zc-badge-error zc-badge-sm"></span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Inactive</span><span class="zc-badge zc-badge-inactive zc-badge-sm"></span></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBadgeCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBadgeCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Small size (4px) --&gt;
+&lt;span class="zc-badge zc-badge-active zc-badge-sm"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-warning zc-badge-sm"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-error zc-badge-sm"&gt;&lt;/span&gt;
+&lt;span class="zc-badge zc-badge-inactive zc-badge-sm"&gt;&lt;/span&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-badge-sm {
+  width: 4px;
+  height: 4px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH TEXT ==== -->
+                        <div class="btn-variant-group" data-style="with-text" style="display:none">
+                            <!-- Custom HTML — badge + text label layout is not what lyte-badge provides -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Badge with Text Label</span><button class="btn-variant-card__toggle" onclick="toggleBadgeCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Active</span><span class="zc-badge-inline"><span class="zc-badge zc-badge-active"></span>Active</span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Warning</span><span class="zc-badge-inline"><span class="zc-badge zc-badge-warning"></span>Warning</span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error</span><span class="zc-badge-inline"><span class="zc-badge zc-badge-error"></span>Error</span></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Inactive</span><span class="zc-badge-inline"><span class="zc-badge zc-badge-inactive"></span>Inactive</span></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBadgeCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBadgeCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — badge + text label layout --&gt;
+&lt;span class="zc-badge-inline"&gt;
+  &lt;span class="zc-badge zc-badge-active"&gt;&lt;/span&gt;
+  Active
+&lt;/span&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-badge-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'ZohoPuvi', sans-serif;
+  font-size: 14px;
+  color: #37383C;
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Badge Count — <code>&lt;lyte-badge&gt;</code></span><button class="btn-variant-card__toggle" onclick="toggleBadgeCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Count 3</span><lyte-badge lt-prop-data="3"></lyte-badge></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Count 12</span><lyte-badge lt-prop-data="12"></lyte-badge></div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Count 99+</span><lyte-badge lt-prop-data="100" lt-prop-max-length="2"></lyte-badge></div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBadgeCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Count badge using lyte-badge --&gt;
+&lt;lyte-badge lt-prop-data="3"&gt;&lt;/lyte-badge&gt;
+
+&lt;lyte-badge lt-prop-data="12"&gt;&lt;/lyte-badge&gt;
+
+&lt;!-- Max 2 digits → shows 99+ --&gt;
+&lt;lyte-badge lt-prop-data="100" lt-prop-max-length="2"&gt;&lt;/lyte-badge&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== POSITIONS ==== -->
+                        <div class="btn-variant-group" data-style="positions" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Badge on Icon — Dot (<code>&lt;lyte-badge&gt;</code>)</span><button class="btn-variant-card__toggle" onclick="toggleBadgeCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Notification</span>
+                                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-error-surface-error-surface-default, #CC1914)"}'>
+                                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-bell" style="font-size:20px;color:#5B5D6B;"></i></template>
+                                        </lyte-badge>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Mail</span>
+                                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-success-surface-success-surface-default, #078841)"}'>
+                                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-envelope" style="font-size:20px;color:#5B5D6B;"></i></template>
+                                        </lyte-badge>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Chat</span>
+                                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-warning-surface-warning-surface-default, #D25704)"}'>
+                                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-comment" style="font-size:20px;color:#5B5D6B;"></i></template>
+                                        </lyte-badge>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Settings</span>
+                                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-neutral-surface-neutral-surface-default, #9EA0A7)"}'>
+                                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-cog" style="font-size:20px;color:#5B5D6B;"></i></template>
+                                        </lyte-badge>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBadgeCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Dot badge on icon using lyte-badge --&gt;
+&lt;lyte-badge lt-prop-position="topRight"
+            lt-prop-badge-style='{"background-color":"#CC1914"}'&gt;
+  &lt;template is="registerYield" yield-name="lyteBadgeYield"&gt;
+    &lt;i class="fas fa-bell"&gt;&lt;/i&gt;
+  &lt;/template&gt;
+&lt;/lyte-badge&gt;
+
+&lt;lyte-badge lt-prop-position="topRight"
+            lt-prop-badge-style='{"background-color":"#078841"}'&gt;
+  &lt;template is="registerYield" yield-name="lyteBadgeYield"&gt;
+    &lt;i class="fas fa-envelope"&gt;&lt;/i&gt;
+  &lt;/template&gt;
+&lt;/lyte-badge&gt;</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Badge on Icon — Count (<code>&lt;lyte-badge&gt;</code>)</span><button class="btn-variant-card__toggle" onclick="toggleBadgeCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Notification</span>
+                                        <lyte-badge lt-prop-data="5" lt-prop-position="topRight">
+                                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-bell" style="font-size:20px;color:#5B5D6B;"></i></template>
+                                        </lyte-badge>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Mail</span>
+                                        <lyte-badge lt-prop-data="23" lt-prop-position="topRight">
+                                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-envelope" style="font-size:20px;color:#5B5D6B;"></i></template>
+                                        </lyte-badge>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Chat</span>
+                                        <lyte-badge lt-prop-data="150" lt-prop-position="topRight" lt-prop-max-length="2">
+                                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-comment" style="font-size:20px;color:#5B5D6B;"></i></template>
+                                        </lyte-badge>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBadgeCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBadgeCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Count badge on icon using lyte-badge --&gt;
+&lt;lyte-badge lt-prop-data="5" lt-prop-position="topRight"&gt;
+  &lt;template is="registerYield" yield-name="lyteBadgeYield"&gt;
+    &lt;i class="fas fa-bell"&gt;&lt;/i&gt;
+  &lt;/template&gt;
+&lt;/lyte-badge&gt;
+
+&lt;!-- With max-length (shows 99+) --&gt;
+&lt;lyte-badge lt-prop-data="150" lt-prop-position="topRight" lt-prop-max-length="2"&gt;
+  &lt;template is="registerYield" yield-name="lyteBadgeYield"&gt;
+    &lt;i class="fas fa-comment"&gt;&lt;/i&gt;
+  &lt;/template&gt;
+&lt;/lyte-badge&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

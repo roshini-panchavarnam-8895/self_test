@@ -1,0 +1,388 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-tags"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Dropdown + Tags (TagArea)</h1>
+                            <p class="detail-description">A dropdown input that shows selected values as tags/chips inside the input area. Combines <code>&lt;lyte-dropdown&gt;</code> multi-select with tag chips display for multi-tag selection, filter builders, and assignee selectors.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 5 Variants</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchInputTagareaStyleTab('empty', this)">Empty</button>
+                        <button class="btn-style-tab" onclick="switchInputTagareaStyleTab('with-tags', this)">With Tags</button>
+                        <button class="btn-style-tab" onclick="switchInputTagareaStyleTab('search', this)">Search</button>
+                        <button class="btn-style-tab" onclick="switchInputTagareaStyleTab('overflow', this)">Overflow</button>
+                        <button class="btn-style-tab" onclick="switchInputTagareaStyleTab('disabled', this)">Disabled</button>
+                    </div>
+
+                    <div id="input-tagarea-component-variants">
+
+                        <!-- ==== EMPTY ==== -->
+                        <div class="btn-variant-group" data-style="empty">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Empty — No Tags Selected</span><button class="btn-variant-card__toggle" onclick="toggleInputTagareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-tagarea">
+                                            <div class="zc-tagarea-tags"></div>
+                                            <lyte-dropdown lt-prop-placeholder="Select tags..." class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>Design</lyte-drop-item>
+                                                    <lyte-drop-item>Development</lyte-drop-item>
+                                                    <lyte-drop-item>Marketing</lyte-drop-item>
+                                                    <lyte-drop-item>Sales</lyte-drop-item>
+                                                    <lyte-drop-item>Support</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputTagareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputTagareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Empty TagArea — no tags selected --&gt;
+&lt;div class="zc-tagarea"&gt;
+    &lt;div class="zc-tagarea-tags"&gt;&lt;/div&gt;
+    &lt;lyte-dropdown lt-prop-placeholder="Select tags..."
+                   class="zc-dropdown zc-tagarea-dropdown"&gt;
+        &lt;template is="registerYield" yield-name="yield"&gt;
+            &lt;lyte-drop-item&gt;Design&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Development&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Marketing&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Sales&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Support&lt;/lyte-drop-item&gt;
+        &lt;/template&gt;
+    &lt;/lyte-dropdown&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-tagarea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 4px 8px;
+  border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D0D5DD);
+  border-radius: var(--zc-radius-r, 6px);
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.zc-tagarea:focus-within {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  box-shadow: 0 0 0 2px var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH TAGS ==== -->
+                        <div class="btn-variant-group" data-style="with-tags" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Tags — Selected Values as Chips</span><button class="btn-variant-card__toggle" onclick="toggleInputTagareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">2 Tags</span>
+                                        <div class="zc-tagarea">
+                                            <div class="zc-tagarea-tags">
+                                                <!-- Custom HTML — no lyte-tag component available -->
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Design<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Dev<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                            </div>
+                                            <lyte-dropdown lt-prop-placeholder="Select tags..." class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>Marketing</lyte-drop-item>
+                                                    <lyte-drop-item>Sales</lyte-drop-item>
+                                                    <lyte-drop-item>Support</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">4 Tags</span>
+                                        <div class="zc-tagarea">
+                                            <div class="zc-tagarea-tags">
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Design<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Dev<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-success zc-tag-sm zc-tag-removable">Marketing<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-warning zc-tag-sm zc-tag-removable">Sales<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                            </div>
+                                            <lyte-dropdown lt-prop-placeholder="Add more..." class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>Support</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputTagareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputTagareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- TagArea with selected tags --&gt;
+&lt;div class="zc-tagarea"&gt;
+    &lt;div class="zc-tagarea-tags"&gt;
+        &lt;span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"&gt;
+            Design
+            &lt;button class="zc-tag-close"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+        &lt;span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"&gt;
+            Dev
+            &lt;button class="zc-tag-close"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;lyte-dropdown lt-prop-placeholder="Select tags..."
+                   class="zc-dropdown zc-tagarea-dropdown"&gt;
+        &lt;template is="registerYield" yield-name="yield"&gt;
+            &lt;lyte-drop-item&gt;Marketing&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Sales&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Support&lt;/lyte-drop-item&gt;
+        &lt;/template&gt;
+    &lt;/lyte-dropdown&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-tagarea-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.zc-tagarea-dropdown {
+  flex: 1 1 120px;
+  min-width: 120px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SEARCH ==== -->
+                        <div class="btn-variant-group" data-style="search" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Search — Searchable Dropdown</span><button class="btn-variant-card__toggle" onclick="toggleInputTagareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Search Enabled</span>
+                                        <div class="zc-tagarea">
+                                            <div class="zc-tagarea-tags">
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Design<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                            </div>
+                                            <lyte-dropdown lt-prop-placeholder="Search tags..." lt-prop-search="true" class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>Development</lyte-drop-item>
+                                                    <lyte-drop-item>Marketing</lyte-drop-item>
+                                                    <lyte-drop-item>Sales</lyte-drop-item>
+                                                    <lyte-drop-item>Support</lyte-drop-item>
+                                                    <lyte-drop-item>QA</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">No Tags + Search</span>
+                                        <div class="zc-tagarea">
+                                            <div class="zc-tagarea-tags"></div>
+                                            <lyte-dropdown lt-prop-placeholder="Type to search..." lt-prop-search="true" class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>Design</lyte-drop-item>
+                                                    <lyte-drop-item>Development</lyte-drop-item>
+                                                    <lyte-drop-item>Marketing</lyte-drop-item>
+                                                    <lyte-drop-item>Sales</lyte-drop-item>
+                                                    <lyte-drop-item>Support</lyte-drop-item>
+                                                    <lyte-drop-item>QA</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputTagareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputTagareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- TagArea with searchable dropdown --&gt;
+&lt;div class="zc-tagarea"&gt;
+    &lt;div class="zc-tagarea-tags"&gt;
+        &lt;span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"&gt;
+            Design
+            &lt;button class="zc-tag-close"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;lyte-dropdown lt-prop-placeholder="Search tags..."
+                   lt-prop-search="true"
+                   class="zc-dropdown zc-tagarea-dropdown"&gt;
+        &lt;template is="registerYield" yield-name="yield"&gt;
+            &lt;lyte-drop-item&gt;Development&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Marketing&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Sales&lt;/lyte-drop-item&gt;
+        &lt;/template&gt;
+    &lt;/lyte-dropdown&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Search-enabled dropdown inherits standard styles.
+   Add lt-prop-search="true" to &lt;lyte-dropdown&gt;. */
+
+.zc-tagarea-dropdown[lt-prop-search="true"] {
+  /* Lyte handles the search input automatically */
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== OVERFLOW ==== -->
+                        <div class="btn-variant-group" data-style="overflow" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Overflow — Many Tags with "+N more"</span><button class="btn-variant-card__toggle" onclick="toggleInputTagareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Overflow (8 tags)</span>
+                                        <div class="zc-tagarea">
+                                            <div class="zc-tagarea-tags">
+                                                <!-- Custom HTML — no lyte-tag component available -->
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Design<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Dev<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-success zc-tag-sm zc-tag-removable">Marketing<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-warning zc-tag-sm zc-tag-removable">Sales<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-error zc-tag-sm zc-tag-removable">Support<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tagarea-overflow">+3 more</span>
+                                            </div>
+                                            <lyte-dropdown lt-prop-placeholder="Add more..." class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>QA</lyte-drop-item>
+                                                    <lyte-drop-item>DevOps</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Overflow (12 tags)</span>
+                                        <div class="zc-tagarea">
+                                            <div class="zc-tagarea-tags">
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Design<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Dev<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-success zc-tag-sm zc-tag-removable">Marketing<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tagarea-overflow">+9 more</span>
+                                            </div>
+                                            <lyte-dropdown lt-prop-placeholder="Add more..." class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>HR</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputTagareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputTagareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Overflow TagArea with "+N more" indicator --&gt;
+&lt;div class="zc-tagarea"&gt;
+    &lt;div class="zc-tagarea-tags"&gt;
+        &lt;span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"&gt;
+            Design
+            &lt;button class="zc-tag-close"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+        &lt;span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"&gt;
+            Dev
+            &lt;button class="zc-tag-close"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+        &lt;span class="zc-tag zc-tag-success zc-tag-sm zc-tag-removable"&gt;
+            Marketing
+            &lt;button class="zc-tag-close"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+        &lt;!-- ... more tags ... --&gt;
+        &lt;span class="zc-tagarea-overflow"&gt;+3 more&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;lyte-dropdown lt-prop-placeholder="Add more..."
+                   class="zc-dropdown zc-tagarea-dropdown"&gt;
+        &lt;template is="registerYield" yield-name="yield"&gt;
+            &lt;lyte-drop-item&gt;QA&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;DevOps&lt;/lyte-drop-item&gt;
+        &lt;/template&gt;
+    &lt;/lyte-dropdown&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-tagarea-overflow {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--zc-color-neutral-text-neutral-text-default, #475467);
+  background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F2F4F7);
+  border-radius: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.zc-tagarea-overflow:hover {
+  background: var(--zc-color-neutral-surface-neutral-surface-subtle-hover, #E4E7EC);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive State</span><button class="btn-variant-card__toggle" onclick="toggleInputTagareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled (empty)</span>
+                                        <div class="zc-tagarea zc-tagarea-disabled">
+                                            <div class="zc-tagarea-tags"></div>
+                                            <lyte-dropdown lt-prop-placeholder="Select tags..." lt-prop-disabled="true" class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>Design</lyte-drop-item>
+                                                    <lyte-drop-item>Development</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled (with tags)</span>
+                                        <div class="zc-tagarea zc-tagarea-disabled">
+                                            <div class="zc-tagarea-tags">
+                                                <!-- Custom HTML — no lyte-tag component available -->
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Design<button class="zc-tag-close" disabled><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Dev<button class="zc-tag-close" disabled><i class="fas fa-times"></i></button></span>
+                                            </div>
+                                            <lyte-dropdown lt-prop-placeholder="Select tags..." lt-prop-disabled="true" class="zc-dropdown zc-tagarea-dropdown">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-item>Marketing</lyte-drop-item>
+                                                    <lyte-drop-item>Sales</lyte-drop-item>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputTagareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputTagareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled TagArea --&gt;
+&lt;div class="zc-tagarea zc-tagarea-disabled"&gt;
+    &lt;div class="zc-tagarea-tags"&gt;
+        &lt;span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"&gt;
+            Design
+            &lt;button class="zc-tag-close" disabled&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+        &lt;span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"&gt;
+            Dev
+            &lt;button class="zc-tag-close" disabled&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;lyte-dropdown lt-prop-placeholder="Select tags..."
+                   lt-prop-disabled="true"
+                   class="zc-dropdown zc-tagarea-dropdown"&gt;
+        &lt;template is="registerYield" yield-name="yield"&gt;
+            &lt;lyte-drop-item&gt;Marketing&lt;/lyte-drop-item&gt;
+            &lt;lyte-drop-item&gt;Sales&lt;/lyte-drop-item&gt;
+        &lt;/template&gt;
+    &lt;/lyte-dropdown&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputTagareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-tagarea-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F2F4F7);
+}
+.zc-tagarea-disabled .zc-tag-close {
+  cursor: not-allowed;
+  pointer-events: none;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

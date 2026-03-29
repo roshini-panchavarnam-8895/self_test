@@ -1,0 +1,93 @@
+/* =============================================================================
+   CREATABLE DROPDOWN COMPONENT — CSS (Compiled)
+   Figma Source: Input Creatable Dropdown (node 5251:5963)
+   ============================================================================= */
+
+/* BASE */
+.zc-creatable-dropdown {
+    display: inline-flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 240px;
+}
+
+.zc-creatable-dropdown .lyteDDHeader {
+    border: 1px solid var(--zc-color-neutral-border-default, #D5D6D9);
+    border-radius: var(--zc-radius-r, 6px);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* FOCUS / OPEN STATE */
+.zc-creatable-dropdown-focus .lyteDDHeader,
+.zc-creatable-dropdown:focus-within .lyteDDHeader {
+    border-color: var(--zc-color-primary-border-default, #0D4EF2);
+    box-shadow: 0 0 0 2px rgba(13, 78, 242, 0.15);
+}
+
+/* CREATE ROW */
+.zc-creatable-dropdown-create-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    cursor: pointer;
+    border-top: 1px solid var(--zc-color-neutral-border-default, #D5D6D9);
+    transition: background 0.15s ease;
+}
+
+.zc-creatable-dropdown-create-row:hover {
+    background: var(--zc-color-primary-surface-subtle, #F5F8FE);
+}
+
+.zc-creatable-dropdown-create-row i {
+    font-size: 12px;
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+}
+
+.zc-creatable-dropdown-create-row strong {
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+}
+
+/* NO MATCH MESSAGE */
+.zc-creatable-dropdown-no-match {
+    padding: 8px 12px;
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+    font-size: var(--zc-p3-font-size, 12px);
+    font-style: italic;
+}
+
+/* DISABLED STATE */
+.zc-creatable-dropdown.zc-creatable-dropdown-disabled .lyteDDHeader,
+lyte-dropdown.zc-creatable-dropdown[lt-prop-disabled="true"] .lyteDDHeader {
+    background: var(--zc-color-neutral-surface-disabled, #F5F5F5);
+    border-color: var(--zc-color-neutral-border-default, #D5D6D9);
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.zc-creatable-dropdown.zc-creatable-dropdown-disabled .lyteDDHeaderText,
+lyte-dropdown.zc-creatable-dropdown[lt-prop-disabled="true"] .lyteDDHeaderText {
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+}
+
+/* DEMO HELPERS — showcase only */
+.zc-creatable-dropdown-demo-open,
+.zc-creatable-dropdown-demo-create {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    min-width: 240px;
+}
+
+.zc-creatable-dropdown-panel-demo {
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    border: 1px solid var(--zc-color-neutral-border-default, #D5D6D9);
+    border-radius: 0 0 var(--zc-radius-r, 6px) var(--zc-radius-r, 6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: -1px;
+    padding: 4px 0;
+}

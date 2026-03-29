@@ -1,0 +1,136 @@
+/* ============================================================
+   DROPDOWN OPTGROUP SCSS — Figma: Dropdown Optgroup (2573:6623)
+   ============================================================ */
+
+.zc-dropdown-optgroup {
+    display: inline-flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 200px;
+
+    /* Group header — non-selectable separator label */
+    lyte-drop-header.zc-dropdown-optgroup-header {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--zc-color-neutral-text-neutral-text-subtle, #6B7075);
+        padding: 8px 12px 4px;
+        pointer-events: none;
+        user-select: none;
+        cursor: default;
+        border-bottom: none;
+
+        /* Subtle separator between group headers */
+        & ~ lyte-drop-header.zc-dropdown-optgroup-header {
+            margin-top: 4px;
+            border-top: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+            padding-top: 8px;
+        }
+    }
+
+    /* Trigger button — Figma: State=Default — border #D5D6D9 */
+    lyte-drop-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 36px;
+        padding: 9px 10px;
+        border: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+        border-radius: var(--zc-radius-r, 6px);
+        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+        cursor: pointer;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        gap: 8px;
+        box-sizing: border-box;
+
+        &:hover {
+            border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+        }
+    }
+
+    /* Active / Open — border #0D4EF2 + primary elevation */
+    &.lyteDropdownActive lyte-drop-button {
+        border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+        box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05),
+                    0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+    }
+
+    &.lyteDropdownActive lyte-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Drop box — Figma: stroke #EAEBEC, shadow */
+    lyte-drop-box {
+        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+        border: 1px solid var(--zc-color-huegrey-border-huegrey-border-minimal, #EAEBEC);
+        border-radius: var(--zc-radius-r, 6px);
+        box-shadow: 0px 2px 2px 0px rgba(38, 40, 43, 0.05),
+                    0px 12px 16px -4px rgba(38, 40, 43, 0.08);
+        padding: 4px 0;
+        max-height: 240px;
+        overflow-y: auto;
+    }
+
+    /* Drop items — indented under group headers */
+    lyte-drop-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px 8px 20px;
+        font-size: var(--zc-p2-font-size, 14px);
+        color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+        cursor: pointer;
+        transition: background 0.1s ease;
+        border-radius: 4px;
+        margin: 0 4px;
+
+        &:hover {
+            background: var(--zc-color-primary-surface-primary-surface-subtle-hover, #F7F9FD);
+        }
+
+        &.lyteDropdownSelection,
+        &[selected] {
+            background: var(--zc-color-primary-surface-primary-surface-subtle, #EFF2F9);
+            color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+            font-weight: 600;
+        }
+    }
+
+    /* Placeholder text */
+    .lyteDropPlaceholderNormal {
+        color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+        font-size: var(--zc-p2-font-size, 14px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+    }
+
+    /* Selected value label */
+    .lyteDropdownLabel {
+        color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+        font-size: var(--zc-p2-font-size, 14px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+    }
+
+    /* Chevron icon */
+    lyte-icon {
+        color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+        font-size: 12px;
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    /* Disabled — bg #F5F5F5, border #D5D6D9 */
+    &.lyteDropdown-disabled lyte-drop-button,
+    &[lt-prop-disabled="true"] lyte-drop-button {
+        background: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover, #F5F5F5);
+        border-color: var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.65;
+    }
+}

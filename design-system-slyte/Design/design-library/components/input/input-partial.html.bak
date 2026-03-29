@@ -1,0 +1,464 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-keyboard"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Text Input</h1>
+                            <p class="detail-description">Text input field using <code>&lt;lyte-input&gt;</code> Slyte DOM. States: Empty, Filled, Focus, Hover, Disabled, Read-only, Error, Success with optional prefix/suffix icons and label support.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 10 States × 1 Size</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchInputStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('filled', this)">Filled</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('focus', this)">Focus</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('hover', this)">Hover</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('disabled', this)">Disabled</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('readonly', this)">Read-only</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('error', this)">Error</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('success', this)">Success</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('with-icons', this)">With Icons</button>
+                        <button class="btn-style-tab" onclick="switchInputStyleTab('with-label', this)">With Label</button>
+                    </div>
+
+                    <div id="input-component-variants">
+
+                        <!-- ==== DEFAULT (EMPTY) ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Empty Input</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <div class="zc-input-wrapper">
+                                            <input class="zc-input" type="text" placeholder="Enter text..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Default empty input --&gt;
+&lt;div class="zc-input-wrapper"&gt;
+  &lt;input class="zc-input" type="text" placeholder="Enter text..." /&gt;
+&lt;/div&gt;
+
+&lt;!-- Using Lyte component --&gt;
+&lt;lyte-input class="zc-input-wrapper"&gt;
+  &lt;template is="registerYield" yield-name="input"&gt;
+    &lt;input class="zc-input" type="text" placeholder="Enter text..." /&gt;
+  &lt;/template&gt;
+&lt;/lyte-input&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+  border-radius: var(--zc-radius-r, 6px);
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+.zc-input {
+  flex: 1;
+  height: 100%;
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'ZohoPuvi', sans-serif;
+  font-size: var(--zc-p2-font-size, 14px);
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+}
+.zc-input::placeholder {
+  color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FILLED ==== -->
+                        <div class="btn-variant-group" data-style="filled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Filled — Input with Value</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <div class="zc-input-wrapper zc-input-wrapper-filled">
+                                            <input class="zc-input" type="text" value="John Doe" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-input-wrapper zc-input-wrapper-filled"&gt;
+  &lt;input class="zc-input" type="text" value="John Doe" /&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper-filled .zc-input {
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FOCUS ==== -->
+                        <div class="btn-variant-group" data-style="focus" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Focus — Blue Border with Shadow</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <div class="zc-input-wrapper zc-input-wrapper-focus">
+                                            <input class="zc-input" type="text" placeholder="Focused input..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Focus state applied automatically via :focus-within --&gt;
+&lt;div class="zc-input-wrapper"&gt;
+  &lt;input class="zc-input" type="text" placeholder="Focused input..." /&gt;
+&lt;/div&gt;
+
+&lt;!-- Or force with class --&gt;
+&lt;div class="zc-input-wrapper zc-input-wrapper-focus"&gt;
+  &lt;input class="zc-input" type="text" placeholder="Focused input..." /&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper-focus,
+.zc-input-wrapper:focus-within {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== HOVER ==== -->
+                        <div class="btn-variant-group" data-style="hover" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Hover — Primary Border</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <div class="zc-input-wrapper" style="border-color: #0D4EF2;">
+                                            <input class="zc-input" type="text" placeholder="Hover over me..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Hover state applied automatically via :hover --&gt;
+&lt;div class="zc-input-wrapper"&gt;
+  &lt;input class="zc-input" type="text" placeholder="Hover over me..." /&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper:hover {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Empty</span>
+                                        <div class="zc-input-wrapper zc-input-wrapper-disabled">
+                                            <input class="zc-input" type="text" placeholder="Disabled input" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Value</span>
+                                        <div class="zc-input-wrapper zc-input-wrapper-disabled">
+                                            <input class="zc-input" type="text" value="Cannot edit" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-input-wrapper zc-input-wrapper-disabled"&gt;
+  &lt;input class="zc-input" type="text" placeholder="Disabled input" disabled /&gt;
+&lt;/div&gt;
+
+&lt;div class="zc-input-wrapper zc-input-wrapper-disabled"&gt;
+  &lt;input class="zc-input" type="text" value="Cannot edit" disabled /&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper-disabled {
+  background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
+  border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+  cursor: not-allowed;
+}
+.zc-input-wrapper-disabled .zc-input {
+  cursor: not-allowed;
+  color: #9EA0A7;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== READ-ONLY ==== -->
+                        <div class="btn-variant-group" data-style="readonly" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Read-only — View Only</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <div class="zc-input-wrapper zc-input-wrapper-readonly">
+                                            <input class="zc-input" type="text" value="Read-only value" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-input-wrapper zc-input-wrapper-readonly"&gt;
+  &lt;input class="zc-input" type="text" value="Read-only value" readonly /&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper-readonly {
+  background: #FAFAFA;
+}
+.zc-input-wrapper-readonly .zc-input {
+  cursor: default;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ERROR ==== -->
+                        <div class="btn-variant-group" data-style="error" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Error — Validation Failed</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Empty Error</span>
+                                        <div class="zc-input-field zc-input-field-error">
+                                            <div class="zc-input-wrapper zc-input-wrapper-error">
+                                                <input class="zc-input" type="text" placeholder="Required field" />
+                                            </div>
+                                            <span class="zc-input-hint">This field is required</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Filled Error</span>
+                                        <div class="zc-input-field zc-input-field-error">
+                                            <div class="zc-input-wrapper zc-input-wrapper-error">
+                                                <input class="zc-input" type="text" value="invalid@" />
+                                            </div>
+                                            <span class="zc-input-hint">Please enter a valid email address</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-input-field zc-input-field-error"&gt;
+  &lt;div class="zc-input-wrapper zc-input-wrapper-error"&gt;
+    &lt;input class="zc-input" type="text" placeholder="Required field" /&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-input-hint"&gt;This field is required&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper-error {
+  border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+  background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
+}
+.zc-input-field-error .zc-input-hint {
+  color: var(--zc-color-error-text-error-text-default, #CC1914);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SUCCESS ==== -->
+                        <div class="btn-variant-group" data-style="success" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Success — Validation Passed</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <div class="zc-input-field">
+                                            <div class="zc-input-wrapper zc-input-wrapper-success">
+                                                <input class="zc-input" type="text" value="john@example.com" />
+                                            </div>
+                                            <span class="zc-input-hint" style="color: #078841;">Email is valid</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-input-field"&gt;
+  &lt;div class="zc-input-wrapper zc-input-wrapper-success"&gt;
+    &lt;input class="zc-input" type="text" value="john@example.com" /&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-input-hint" style="color: #078841;"&gt;Email is valid&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-wrapper-success {
+  border-color: var(--zc-color-success-border-success-border-default, #078841);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH ICONS ==== -->
+                        <div class="btn-variant-group" data-style="with-icons" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Icons — Prefix &amp; Suffix</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Prefix Icon</span>
+                                        <div class="zc-input-wrapper">
+                                            <span class="zc-input-icon zc-input-icon-prefix"><i class="fas fa-search"></i></span>
+                                            <input class="zc-input" type="text" placeholder="Search..." />
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Suffix Icon</span>
+                                        <div class="zc-input-wrapper">
+                                            <input class="zc-input" type="text" value="Some text" />
+                                            <span class="zc-input-icon zc-input-icon-suffix"><i class="fas fa-times"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Both Icons</span>
+                                        <div class="zc-input-wrapper">
+                                            <span class="zc-input-icon zc-input-icon-prefix"><i class="fas fa-search"></i></span>
+                                            <input class="zc-input" type="text" placeholder="Search..." />
+                                            <span class="zc-input-icon zc-input-icon-suffix"><i class="fas fa-times"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Prefix icon (search) --&gt;
+&lt;div class="zc-input-wrapper"&gt;
+  &lt;span class="zc-input-icon zc-input-icon-prefix"&gt;&lt;i class="fas fa-search"&gt;&lt;/i&gt;&lt;/span&gt;
+  &lt;input class="zc-input" type="text" placeholder="Search..." /&gt;
+&lt;/div&gt;
+
+&lt;!-- Suffix icon (clear) --&gt;
+&lt;div class="zc-input-wrapper"&gt;
+  &lt;input class="zc-input" type="text" value="Some text" /&gt;
+  &lt;span class="zc-input-icon zc-input-icon-suffix"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Both prefix &amp; suffix icons --&gt;
+&lt;div class="zc-input-wrapper"&gt;
+  &lt;span class="zc-input-icon zc-input-icon-prefix"&gt;&lt;i class="fas fa-search"&gt;&lt;/i&gt;&lt;/span&gt;
+  &lt;input class="zc-input" type="text" placeholder="Search..." /&gt;
+  &lt;span class="zc-input-icon zc-input-icon-suffix"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+  flex-shrink: 0;
+  font-size: 14px;
+}
+.zc-input-icon-prefix { padding-left: 4px; }
+.zc-input-icon-suffix { padding-right: 4px; cursor: pointer; }</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH LABEL ==== -->
+                        <div class="btn-variant-group" data-style="with-label" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Label — Label + Input + Hint</span><button class="btn-variant-card__toggle" onclick="toggleInputCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-input-field">
+                                            <label class="zc-input-label">Full Name</label>
+                                            <div class="zc-input-wrapper">
+                                                <input class="zc-input" type="text" placeholder="Enter your full name" />
+                                            </div>
+                                            <span class="zc-input-hint">First and last name</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Error</span>
+                                        <div class="zc-input-field zc-input-field-error">
+                                            <label class="zc-input-label">Email Address</label>
+                                            <div class="zc-input-wrapper zc-input-wrapper-error">
+                                                <input class="zc-input" type="text" value="invalid@" />
+                                            </div>
+                                            <span class="zc-input-hint">Please enter a valid email address</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled</span>
+                                        <div class="zc-input-field">
+                                            <label class="zc-input-label">Username</label>
+                                            <div class="zc-input-wrapper zc-input-wrapper-disabled">
+                                                <input class="zc-input" type="text" value="johndoe" disabled />
+                                            </div>
+                                            <span class="zc-input-hint">Cannot be changed</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Prefix Icon</span>
+                                        <div class="zc-input-field">
+                                            <label class="zc-input-label">Search</label>
+                                            <div class="zc-input-wrapper">
+                                                <span class="zc-input-icon zc-input-icon-prefix"><i class="fas fa-search"></i></span>
+                                                <input class="zc-input" type="text" placeholder="Search records..." />
+                                            </div>
+                                            <span class="zc-input-hint">Search by name or ID</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Full input field with label and hint --&gt;
+&lt;div class="zc-input-field"&gt;
+  &lt;label class="zc-input-label"&gt;Label&lt;/label&gt;
+  &lt;div class="zc-input-wrapper"&gt;
+    &lt;input class="zc-input" type="text" placeholder="Placeholder" /&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-input-hint"&gt;Helper text&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- With error state --&gt;
+&lt;div class="zc-input-field zc-input-field-error"&gt;
+  &lt;label class="zc-input-label"&gt;Email Address&lt;/label&gt;
+  &lt;div class="zc-input-wrapper zc-input-wrapper-error"&gt;
+    &lt;input class="zc-input" type="text" value="invalid@" /&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-input-hint"&gt;Please enter a valid email address&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- With prefix icon --&gt;
+&lt;div class="zc-input-field"&gt;
+  &lt;label class="zc-input-label"&gt;Search&lt;/label&gt;
+  &lt;div class="zc-input-wrapper"&gt;
+    &lt;span class="zc-input-icon zc-input-icon-prefix"&gt;&lt;i class="fas fa-search"&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;input class="zc-input" type="text" placeholder="Search records..." /&gt;
+  &lt;/div&gt;
+  &lt;span class="zc-input-hint"&gt;Search by name or ID&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-field {
+  display: flex;
+  flex-direction: column;
+  font-family: 'ZohoPuvi', sans-serif;
+  min-width: 200px;
+}
+.zc-input-label {
+  font-size: var(--zc-p2-font-size, 14px);
+  font-weight: var(--zc-p2-font-weight-semibold, 600);
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+  margin-bottom: 6px;
+}
+.zc-input-hint {
+  font-size: var(--zc-p3-font-size, 12px);
+  color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+  margin-top: 4px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

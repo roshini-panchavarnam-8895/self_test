@@ -1,0 +1,90 @@
+/* Radio Button SCSS - Figma: Radio_Base (2205:46587) */
+
+/* ── Base ── */
+.zc-radio {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+.zc-radio-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    border-radius: 50%;
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+    margin-top: 2px;
+}
+
+.zc-radio-text {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    line-height: 20px;
+}
+
+/* ── Hover ── */
+.zc-radio:hover .zc-radio-circle {
+    border-color: var(--zc-color-neutral-border-neutral-border-default-hover, #696C74);
+}
+
+/* ── Selected ── */
+.zc-radio-selected .zc-radio-circle {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    border-width: 5px;
+}
+
+.zc-radio-selected:hover .zc-radio-circle {
+    border-color: var(--zc-color-primary-border-primary-border-default-hover, #0B44D5);
+}
+
+/* ── Disabled ── */
+.zc-radio-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── Error ── */
+.zc-radio-error .zc-radio-circle {
+    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+}
+
+/* ── Focus ── */
+.zc-radio:focus-within .zc-radio-circle {
+    outline: 2px solid var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    outline-offset: 2px;
+}
+
+/* ── Label & Hint ── */
+.zc-radio-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #37383C;
+    margin-bottom: 6px;
+}
+
+.zc-radio-hint {
+    font-size: 12px;
+    color: #9EA0A7;
+    margin-top: 4px;
+}
+
+/* ── Group ── */
+.zc-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.zc-radio-group-horizontal {
+    flex-direction: row;
+    gap: 24px;
+}

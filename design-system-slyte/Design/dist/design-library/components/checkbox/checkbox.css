@@ -1,0 +1,254 @@
+/* =============================================================================
+   CHECKBOX COMPONENT — CSS (Compiled)
+   Figma Source: Input_Checkbox (node 2352:2268)
+   Overrides Lyte sprite-based checkbox with CSS-only Figma design
+   ============================================================================= */
+
+/* ==========================================================================
+   SECTION 1 — LYTE-CHECKBOX OVERRIDES
+   ========================================================================== */
+
+/* --- Base box (unchecked) --- */
+.lyteCheckBoxDefault:before,
+.lyteCheckBoxPrimary:before {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 4px !important;
+    border: 1px solid #D5D6D9 !important;
+    background: #FFFFFF !important;
+    background-image: none !important;
+    box-sizing: border-box !important;
+    content: "" !important;
+    display: inline-block !important;
+    margin: -1px 6px 0 0 !important;
+    vertical-align: middle !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+/* --- Unchecked hover → blue border + subtle halo --- */
+lyte-checkbox:hover .lyteCheckBoxDefault:before,
+lyte-checkbox:hover .lyteCheckBoxPrimary:before {
+    border-color: #0D4EF2 !important;
+    box-shadow: 0 0 0 2px #F5F8FE !important;
+}
+
+/* --- Checked → blue fill + white tick SVG --- */
+.lyteCheckbox input:checked + .lyteCheckBoxDefault:before,
+.lyteCheckbox input:checked + .lyteCheckBoxPrimary:before {
+    background: #0D4EF2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 7.2L5.8 9.5L10.5 4.5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center !important;
+    background-size: 14px 14px !important;
+    border-color: #0B44D5 !important;
+    box-shadow: none !important;
+}
+
+/* --- Checked hover → darker blue --- */
+lyte-checkbox:hover .lyteCheckbox input:checked + .lyteCheckBoxDefault:before,
+lyte-checkbox:hover .lyteCheckbox input:checked + .lyteCheckBoxPrimary:before,
+.lyteCheckbox:hover input:checked + .lyteCheckBoxDefault:before,
+.lyteCheckbox:hover input:checked + .lyteCheckBoxPrimary:before {
+    background-color: #0B44D5 !important;
+    border-color: #0D4EF2 !important;
+}
+
+/* --- Disabled unchecked → light grey fill --- */
+lyte-checkbox[lt-prop-disabled="true"] .lyteCheckBoxDefault:before,
+lyte-checkbox[lt-prop-disabled="true"] .lyteCheckBoxPrimary:before {
+    background: #E5E5E7 !important;
+    border-color: #D5D6D9 !important;
+    cursor: not-allowed !important;
+    opacity: 1 !important;
+}
+
+/* --- Disabled checked → grey fill + grey tick --- */
+lyte-checkbox[lt-prop-disabled="true"] .lyteCheckbox input:checked + .lyteCheckBoxDefault:before,
+lyte-checkbox[lt-prop-disabled="true"] .lyteCheckbox input:checked + .lyteCheckBoxPrimary:before {
+    background: #E5E5E7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 7.2L5.8 9.5L10.5 4.5' stroke='%239EA0A7' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center !important;
+    background-size: 14px 14px !important;
+    border-color: #D5D6D9 !important;
+    cursor: not-allowed !important;
+}
+
+/* --- Disabled label + wrapper --- */
+lyte-checkbox[lt-prop-disabled="true"] {
+    pointer-events: none;
+}
+
+lyte-checkbox[lt-prop-disabled="true"] label {
+    cursor: not-allowed !important;
+    color: #9EA0A7 !important;
+}
+
+/* --- Error unchecked → red border --- */
+lyte-checkbox.zc-checkbox-error .lyteCheckBoxDefault:before,
+lyte-checkbox.zc-checkbox-error .lyteCheckBoxPrimary:before {
+    border-color: #CC1914 !important;
+}
+
+/* --- Error checked → red fill + white tick --- */
+lyte-checkbox.zc-checkbox-error .lyteCheckbox input:checked + .lyteCheckBoxDefault:before,
+lyte-checkbox.zc-checkbox-error .lyteCheckbox input:checked + .lyteCheckBoxPrimary:before {
+    background: #CC1914 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 7.2L5.8 9.5L10.5 4.5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center !important;
+    background-size: 14px 14px !important;
+    border-color: #BA1812 !important;
+}
+
+/* --- Error hover → darker red --- */
+lyte-checkbox.zc-checkbox-error:hover .lyteCheckBoxDefault:before,
+lyte-checkbox.zc-checkbox-error:hover .lyteCheckBoxPrimary:before {
+    border-color: #BA1812 !important;
+    box-shadow: 0 0 0 2px rgba(204, 25, 20, 0.08) !important;
+}
+
+/* ==========================================================================
+   SECTION 2 — CUSTOM .zc-checkbox (for indeterminate & manual HTML)
+   ========================================================================== */
+
+/* --- Base — Wrapper --- */
+.zc-checkbox {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* --- Checkbox Box — 14×14 visual indicator --- */
+.zc-checkbox-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #D5D6D9;
+    border-radius: 4px;
+    background: #FFFFFF;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+    margin-top: 3px;
+    box-sizing: border-box;
+}
+
+.zc-checkbox-box i,
+.zc-checkbox-box svg {
+    display: none;
+    color: #FFFFFF;
+    font-size: 8px;
+    line-height: 1;
+}
+
+/* --- Label Text --- */
+.zc-checkbox-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #37383C;
+    line-height: 20px;
+}
+
+/* --- State: Hover --- */
+.zc-checkbox:hover .zc-checkbox-box {
+    border-color: #0D4EF2;
+    box-shadow: 0 0 0 2px #F5F8FE;
+}
+
+/* --- Selection: Checked --- */
+.zc-checkbox-checked .zc-checkbox-box {
+    background: #0D4EF2;
+    border-color: #0B44D5;
+}
+
+.zc-checkbox-checked .zc-checkbox-box i,
+.zc-checkbox-checked .zc-checkbox-box svg {
+    display: inline-flex;
+}
+
+.zc-checkbox-checked:hover .zc-checkbox-box {
+    background: #0B44D5;
+    border-color: #0D4EF2;
+}
+
+/* --- Selection: Indeterminate → grey fill + dark minus --- */
+.zc-checkbox-indeterminate .zc-checkbox-box {
+    background: #E5E5E7;
+    border-color: #D5D6D9;
+}
+
+.zc-checkbox-indeterminate .zc-checkbox-box i {
+    display: inline-flex;
+    color: #37383C;
+    font-size: 8px;
+}
+
+.zc-checkbox-indeterminate:hover .zc-checkbox-box {
+    border-color: #0D4EF2;
+    box-shadow: 0 0 0 2px #F5F8FE;
+}
+
+/* --- State: Disabled --- */
+.zc-checkbox-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.zc-checkbox-disabled .zc-checkbox-box {
+    background: #E5E5E7;
+    border-color: #D5D6D9;
+}
+
+.zc-checkbox-disabled .zc-checkbox-box i {
+    color: #9EA0A7;
+}
+
+.zc-checkbox-disabled .zc-checkbox-text {
+    color: #9EA0A7;
+}
+
+/* --- State: Error --- */
+.zc-checkbox-error .zc-checkbox-box {
+    border-color: #CC1914;
+}
+
+/* --- Focus --- */
+.zc-checkbox:focus-within .zc-checkbox-box {
+    outline: 2px solid #0D4EF2;
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   SECTION 3 — SHARED: Labels, Hints, Groups
+   ========================================================================== */
+
+/* --- Group label --- */
+.zc-checkbox-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #37383C;
+    margin-bottom: 6px;
+}
+
+/* --- Hint text below checkbox --- */
+.zc-checkbox-hint {
+    font-size: 12px;
+    color: #9EA0A7;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+
+/* --- Checkbox group layout --- */
+.zc-checkbox-group {
+    display: flex;
+    gap: 12px;
+}
+
+.zc-checkbox-group-vertical {
+    flex-direction: column;
+}
+
+/* --- Lyte label typography --- */
+lyte-checkbox label {
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #37383C;
+    line-height: 20px;
+}

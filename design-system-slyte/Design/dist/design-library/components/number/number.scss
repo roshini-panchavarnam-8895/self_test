@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Number Input SCSS — Zoho Creator Design System
+   Figma Source: Input_Feild_Core (node 2156:32425)
+   File: 88Zeos2AXPni7858flxLP2
+   ========================================================================== */
+
+/* -- Field container (label + number + hint) -- */
+.zc-number-field {
+    display: flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 160px;
+}
+
+/* -- Label -- */
+.zc-number-label {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    margin-bottom: 6px;
+}
+
+/* -- Number wrapper (border box) -- */
+.zc-number-wrapper {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    border-radius: var(--zc-radius-r, 6px);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    overflow: hidden;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* -- Number input element -- */
+.zc-number-input {
+    flex: 1;
+    height: 100%;
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: var(--zc-p2-font-size, 14px);
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    -moz-appearance: textfield;
+}
+
+.zc-number-input::-webkit-inner-spin-button,
+.zc-number-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.zc-number-input::placeholder {
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+}
+
+/* -- Hint / Helper text -- */
+.zc-number-hint {
+    font-size: var(--zc-p3-font-size, 12px);
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   Stepper Buttons (stacked right — default)
+   ========================================================================== */
+
+.zc-number-stepper {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #D5D6D9;
+    height: 100%;
+}
+
+.zc-number-step-up,
+.zc-number-step-down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    flex: 1;
+    border: none;
+    background: #F0F1F3;
+    color: #696C74;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background 0.15s;
+    padding: 0;
+}
+
+.zc-number-step-up:hover,
+.zc-number-step-down:hover {
+    background: #E4E5E8;
+}
+
+.zc-number-step-up {
+    border-bottom: 1px solid #D5D6D9;
+}
+
+/* ==========================================================================
+   Inline Stepper (side-by-side left/right)
+   ========================================================================== */
+
+.zc-number-inline .zc-number-step-down,
+.zc-number-inline .zc-number-step-up {
+    width: 36px;
+    height: 100%;
+    flex: none;
+    font-size: 12px;
+}
+
+.zc-number-inline .zc-number-step-down {
+    border-right: 1px solid #D5D6D9;
+    border-left: none;
+    order: -1;
+}
+
+.zc-number-inline .zc-number-step-up {
+    border-left: 1px solid #D5D6D9;
+}
+
+.zc-number-inline .zc-number-input {
+    text-align: center;
+}
+
+/* ==========================================================================
+   STATE VARIANTS
+   ========================================================================== */
+
+/* -- Hover -- */
+.zc-number-wrapper:hover {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+}
+
+/* -- Focus -- */
+.zc-number-wrapper-focus,
+.zc-number-wrapper:focus-within {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}
+
+/* -- Disabled -- */
+.zc-number-wrapper-disabled {
+    background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
+    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.zc-number-wrapper-disabled:hover {
+    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+}
+
+.zc-number-wrapper-disabled .zc-number-input {
+    cursor: not-allowed;
+}
+
+.zc-number-wrapper-disabled .zc-number-step-up,
+.zc-number-wrapper-disabled .zc-number-step-down {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* -- Error -- */
+.zc-number-wrapper-error {
+    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+}
+
+.zc-number-wrapper-error:hover {
+    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+}
+
+.zc-number-field-error .zc-number-hint {
+    color: var(--zc-color-error-text-error-text-default, #CC1914);
+}
+

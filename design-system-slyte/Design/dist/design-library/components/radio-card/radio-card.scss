@@ -1,0 +1,112 @@
+/* Radio Card SCSS - Figma: Radio Card (2352:2858) */
+
+/* ── Base Card ── */
+.zc-radio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    border-radius: 8px;
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* ── Small Size ── */
+.zc-radio-card-sm {
+    padding: 12px;
+}
+
+.zc-radio-card-sm .zc-radio-card-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+}
+
+/* ── Hover ── */
+.zc-radio-card:hover {
+    border-color: var(--zc-color-neutral-border-neutral-border-default-hover, #696C74);
+    box-shadow: 0 1px 4px rgba(38, 40, 43, 0.06);
+}
+
+/* ── Selected ── */
+.zc-radio-card-selected {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+}
+
+.zc-radio-card-selected:hover {
+    border-color: var(--zc-color-primary-border-primary-border-default-hover, #0B44D5);
+}
+
+/* ── Disabled ── */
+.zc-radio-card-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── Icon Holder ── */
+.zc-radio-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/* ── Content Wrapper ── */
+.zc-radio-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ── Label (title text) ── */
+.zc-radio-card-label {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    line-height: 20px;
+}
+
+/* ── Description ── */
+.zc-radio-card-desc {
+    font-size: var(--zc-p3-font-size, 12px);
+    font-weight: var(--zc-p3-font-weight-regular, 400);
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #696C74);
+    line-height: 18px;
+}
+
+/* ── Group: Horizontal Layout ── */
+.zc-radio-card-group-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.zc-radio-card-group-horizontal > .zc-radio-card {
+    flex: 1 1 0;
+    min-width: 160px;
+}
+
+/* ── Group: Vertical Layout ── */
+.zc-radio-card-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ── Focus ── */
+.zc-radio-card:focus-within {
+    outline: 2px solid var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    outline-offset: 2px;
+}

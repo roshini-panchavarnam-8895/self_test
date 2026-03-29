@@ -1,0 +1,394 @@
+/* =============================================================================
+   COMBOBOX (CREATABLE DROPDOWN) COMPONENT — SCSS
+   Figma Source: Input Creatable Dropdown (5251:5457)
+   
+   VARIANTS:
+     Types  → Default | Searchable | Creatable | Multi-Select
+     States → Default | Hover | Open | Filled | Disabled | Error | Success
+   
+   NAMING: Single-hyphen modifier (zc-combobox-error NOT zc-combobox--error)
+   DOM:    Uses .zc-combobox wrapper around <lyte-combobox> or .zc-combobox-input-wrapper
+
+   CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
+     --zc-color-primary-border-primary-border-default          (#0D4EF2)
+     --zc-color-primary-surface-primary-surface-subtle         (#F5F8FE)
+     --zc-color-primary-surface-primary-surface-subtle-hover   (#E7EDFE)
+     --zc-color-primary-text-primary-text-default              (#0D4EF2)
+     --zc-color-error-border-error-border-default              (#CC1914)
+     --zc-color-success-border-success-border-default          (#078841)
+     --zc-color-black-white-surface-white-surface              (#FFFFFF)
+     --zc-font-family-default                                  (ZohoPuvi)
+     --zc-radius-r                                             (6px)
+     --zc-radius-s                                             (4px)
+     --zc-p2-font-size                                         (14px)
+     --zc-p2-font-weight-regular                               (400)
+     --zc-p2-line-height                                       (18px)
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   BASE — .zc-combobox wrapper
+   --------------------------------------------------------------------------- */
+.zc-combobox {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 280px;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   TRIGGER — lyte-combobox element (single-select mode)
+   --------------------------------------------------------------------------- */
+.zc-combobox lyte-combobox {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #D5D6D9;
+    border-radius: var(--zc-radius-r, 6px);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    line-height: var(--zc-p2-line-height, 18px);
+    color: #25272C;
+    cursor: pointer;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
+}
+
+/* Placeholder text */
+.zc-combobox lyte-combobox .lyteComboboxPlaceholder {
+    color: #9EA0A7;
+    font-size: var(--zc-p2-font-size, 14px);
+}
+
+/* Chevron icon */
+.zc-combobox lyte-combobox .lyteComboboxArrow {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    color: #696C74;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   TEXT INPUT — .zc-combobox-input (inline search / create input)
+   --------------------------------------------------------------------------- */
+.zc-combobox .zc-combobox-input {
+    flex: 1;
+    min-width: 60px;
+    height: 28px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    line-height: var(--zc-p2-line-height, 18px);
+    color: #25272C;
+
+    &::placeholder {
+        color: #9EA0A7;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   INPUT WRAPPER — multi-select / tag mode container
+   --------------------------------------------------------------------------- */
+.zc-combobox-input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    min-height: 36px;
+    padding: 4px 8px;
+    border: 1px solid #D5D6D9;
+    border-radius: var(--zc-radius-r, 6px);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    cursor: text;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
+}
+
+/* Arrow inside wrapper */
+.zc-combobox-arrow {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    color: #696C74;
+    font-size: 12px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   TAGS — .zc-combobox-tag (multi-select pills)
+   --------------------------------------------------------------------------- */
+.zc-combobox-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+    padding: 0 8px;
+    background: var(--zc-color-primary-surface-primary-surface-subtle-hover, #E7EDFE);
+    border-radius: var(--zc-radius-s, 4px);
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    white-space: nowrap;
+}
+
+.zc-combobox-tag-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    padding: 0;
+    margin-left: 2px;
+    cursor: pointer;
+    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    font-size: 10px;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   STATE: Hover
+   --------------------------------------------------------------------------- */
+.zc-combobox:hover lyte-combobox,
+.zc-combobox.zc-combobox-hover lyte-combobox,
+.zc-combobox:hover .zc-combobox-input-wrapper,
+.zc-combobox.zc-combobox-hover .zc-combobox-input-wrapper {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+}
+
+/* ---------------------------------------------------------------------------
+   STATE: Open / Active
+   --------------------------------------------------------------------------- */
+.zc-combobox-open lyte-combobox,
+.zc-combobox lyte-combobox.lyteComboboxOpen,
+.zc-combobox-open .zc-combobox-input-wrapper {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    box-shadow: 0 0 0 2px rgba(13, 78, 242, 0.12);
+}
+
+.zc-combobox-open lyte-combobox .lyteComboboxArrow,
+.zc-combobox lyte-combobox.lyteComboboxOpen .lyteComboboxArrow,
+.zc-combobox-open .zc-combobox-arrow {
+    transform: rotate(180deg);
+}
+
+/* ---------------------------------------------------------------------------
+   STATE: Filled — A value has been selected
+   --------------------------------------------------------------------------- */
+.zc-combobox-filled lyte-combobox {
+    border-color: #D5D6D9;
+    color: #25272C;
+}
+
+/* ---------------------------------------------------------------------------
+   STATE: Disabled
+   --------------------------------------------------------------------------- */
+.zc-combobox-disabled,
+.zc-combobox lyte-combobox[lt-prop-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.zc-combobox-disabled lyte-combobox,
+.zc-combobox-disabled .zc-combobox-input-wrapper {
+    background: #E5E5E7;
+    border-color: #D5D6D9;
+    color: #9EA0A7;
+}
+
+.zc-combobox-disabled .zc-combobox-tag {
+    opacity: 0.6;
+}
+
+/* ---------------------------------------------------------------------------
+   STATE: Error
+   --------------------------------------------------------------------------- */
+.zc-combobox-error lyte-combobox,
+.zc-combobox-error .zc-combobox-input-wrapper {
+    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+    background: #FEF6F6;
+}
+
+.zc-combobox-error:hover lyte-combobox,
+.zc-combobox-error:hover .zc-combobox-input-wrapper {
+    border-color: #BA1812;
+}
+
+.zc-combobox-error .zc-combobox-hint {
+    color: #CC1914;
+}
+
+/* ---------------------------------------------------------------------------
+   STATE: Success
+   --------------------------------------------------------------------------- */
+.zc-combobox-success lyte-combobox,
+.zc-combobox-success .zc-combobox-input-wrapper {
+    border-color: var(--zc-color-success-border-success-border-default, #078841);
+    background: #F6FEF9;
+}
+
+.zc-combobox-success .zc-combobox-hint {
+    color: #078841;
+}
+
+/* ---------------------------------------------------------------------------
+   OVERLAY LIST — lyte-drop-box / lyte-drop-body
+   --------------------------------------------------------------------------- */
+.zc-combobox lyte-drop-box {
+    border: 1px solid #D5D6D9;
+    border-radius: var(--zc-radius-r, 6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    margin-top: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.zc-combobox lyte-drop-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------------------------------------------------------------------------
+   DROP ITEM — individual option
+   --------------------------------------------------------------------------- */
+.zc-combobox lyte-drop-item {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 12px;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    line-height: var(--zc-p2-line-height, 18px);
+    color: #25272C;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.zc-combobox lyte-drop-item:hover {
+    background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+}
+
+.zc-combobox lyte-drop-item.lyteComboboxActive,
+.zc-combobox lyte-drop-item[data-selected="true"] {
+    background: var(--zc-color-primary-surface-primary-surface-subtle-hover, #E7EDFE);
+    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    font-weight: 500;
+}
+
+/* ---------------------------------------------------------------------------
+   CREATE OPTION — "Create new" row at bottom of dropdown
+   --------------------------------------------------------------------------- */
+.zc-combobox-create-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 12px;
+    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: 500;
+    cursor: pointer;
+    border-top: 1px solid #EBEBEB;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+    }
+
+    i {
+        font-size: 12px;
+    }
+
+    em {
+        font-style: normal;
+        font-weight: 600;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   SEARCH INPUT — inside drop-box when lt-prop-search="true"
+   --------------------------------------------------------------------------- */
+.zc-combobox lyte-combobox .lyteComboboxSearch {
+    height: 32px;
+    padding: 0 10px;
+    border: none;
+    border-bottom: 1px solid #EBEBEB;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 13px;
+    color: #25272C;
+    background: transparent;
+    outline: none;
+    width: 100%;
+
+    &::placeholder {
+        color: #9EA0A7;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   LABEL & HINT
+   --------------------------------------------------------------------------- */
+.zc-combobox-label {
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    color: #000;
+}
+
+.zc-combobox-label .zc-label-optional {
+    font-size: 12px;
+    font-weight: 400;
+    color: #9EA0A7;
+    margin-left: 4px;
+}
+
+.zc-combobox-label .zc-label-required {
+    color: #CC1914;
+    margin-left: 2px;
+}
+
+.zc-combobox-hint {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #696C74;
+    margin-top: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   FOCUS-VISIBLE
+   --------------------------------------------------------------------------- */
+.zc-combobox lyte-combobox:focus-visible,
+.zc-combobox .zc-combobox-input-wrapper:focus-within {
+    outline: 2px solid var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    outline-offset: 2px;
+}
+
+/* Focus-within on wrapper also triggers open-like border */
+.zc-combobox .zc-combobox-input-wrapper:focus-within {
+    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    box-shadow: 0 0 0 2px rgba(13, 78, 242, 0.12);
+}

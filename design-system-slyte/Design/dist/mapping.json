@@ -1,0 +1,23 @@
+{
+ "path": {
+  "/app-init.js": [
+   "/app-init.js",
+   "/lyte.js"
+  ],
+  "/components/javascript/welcome-comp.js": [
+   "/lyte.js",
+   "/app-init.js",
+   "/components/javascript/welcome-comp.js"
+  ],
+  "/lyte.js": [
+   "/lyte.js",
+   "/app-init.js"
+  ],
+  "/runtime.js": [
+   "/runtime.js",
+   "/app-init.js",
+   "/lyte.js"
+  ]
+ },
+ "component": {}
+}

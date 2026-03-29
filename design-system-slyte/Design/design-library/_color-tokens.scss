@@ -1,0 +1,525 @@
+:root{
+
+    /* =============================================
+       COLOR TOKENS
+       ============================================= */
+
+    /* --- Primary --- */
+    --zc-color-primary-surface-bold: #041644;
+    --zc-color-primary-surface-bold-hover: #020C27;
+    --zc-color-primary-surface-default: #0D4EF2;
+    --zc-color-primary-surface-default-hover: #0B44D5;
+    --zc-color-primary-surface-minimal: #C0D1FC;
+    --zc-color-primary-surface-minimal-hover: #A3BCFA;
+    --zc-color-primary-surface-low: #DDE6FD;
+    --zc-color-primary-surface-low-hover: #C0D1FC;
+    --zc-color-primary-surface-subtle: #F5F8FE;
+    --zc-color-primary-surface-subtle-hover: #E7EDFE;
+    --zc-color-primary-border-bold: #041644;
+    --zc-color-primary-border-bold-hover: #020C27;
+    --zc-color-primary-border-default: #0D4EF2;
+    --zc-color-primary-border-default-hover: #0B44D5;
+    --zc-color-primary-border-minimal: #C0D1FC;
+    --zc-color-primary-border-minimal-hover: #A3BCFA;
+    --zc-color-primary-border-low: #DDE6FD;
+    --zc-color-primary-border-low-hover: #C0D1FC;
+    --zc-color-primary-border-subtle: #F5F8FE;
+    --zc-color-primary-border-subtle-hover: #E7EDFE;
+    --zc-color-primary-text-dark: #041644;
+    --zc-color-primary-text-dark-hover: #020C27;
+    --zc-color-primary-text-bold: #051F61;
+    --zc-color-primary-text-bold-hover: #041644;
+    --zc-color-primary-text-default: #0D4EF2;
+    --zc-color-primary-text-default-hover: #0B44D5;
+    --zc-color-primary-text-minimal: #C0D1FC;
+    --zc-color-primary-text-minimal-hover: #A3BCFA;
+    --zc-color-primary-text-low: #DDE6FD;
+    --zc-color-primary-text-low-hover: #C0D1FC;
+    --zc-color-primary-text-subtle: #F5F8FE;
+    --zc-color-primary-text-subtle-hover: #E7EDFE;
+
+    /* --- Secondary --- */
+    --zc-color-secondary-surface-bold: #0E162B;
+    --zc-color-secondary-surface-bold-hover: #090E1B;
+    --zc-color-secondary-surface-default: #1E2E59;
+    --zc-color-secondary-surface-default-hover: #182649;
+    --zc-color-secondary-surface-minimal: #E1E7F5;
+    --zc-color-secondary-surface-minimal-hover: #C5D0EC;
+    --zc-color-secondary-surface-low: #E8ECF7;
+    --zc-color-secondary-surface-low-hover: #E1E7F5;
+    --zc-color-secondary-surface-subtle: #F7F9FD;
+    --zc-color-secondary-surface-subtle-hover: #EFF2F9;
+    --zc-color-secondary-border-bold: #0E162B;
+    --zc-color-secondary-border-bold-hover: #090E1B;
+    --zc-color-secondary-border-default: #1E2E59;
+    --zc-color-secondary-border-default-hover: #182649;
+    --zc-color-secondary-border-minimal: #E1E7F5;
+    --zc-color-secondary-border-minimal-hover: #C5D0EC;
+    --zc-color-secondary-border-low: #E8ECF7;
+    --zc-color-secondary-border-low-hover: #E1E7F5;
+    --zc-color-secondary-border-subtle: #F7F9FD;
+    --zc-color-secondary-border-subtle-hover: #EFF2F9;
+    --zc-color-secondary-text-dark: #0E162B;
+    --zc-color-secondary-text-dark-hover: #090E1B;
+    --zc-color-secondary-text-bold: #131E39;
+    --zc-color-secondary-text-bold-hover: #0E162B;
+    --zc-color-secondary-text-default: #1E2E59;
+    --zc-color-secondary-text-default-hover: #182649;
+    --zc-color-secondary-text-minimal: #E1E7F5;
+    --zc-color-secondary-text-minimal-hover: #C5D0EC;
+    --zc-color-secondary-text-low: #E8ECF7;
+    --zc-color-secondary-text-low-hover: #E1E7F5;
+    --zc-color-secondary-text-subtle: #F7F9FD;
+    --zc-color-secondary-text-subtle-hover: #EFF2F9;
+
+    /* --- Info --- */
+    --zc-color-info-surface-bold: #041644;
+    --zc-color-info-surface-bold-hover: #020C27;
+    --zc-color-info-surface-default: #0D4EF2;
+    --zc-color-info-surface-default-hover: #0B44D5;
+    --zc-color-info-surface-minimal: #C0D1FC;
+    --zc-color-info-surface-minimal-hover: #A3BCFA;
+    --zc-color-info-surface-low: #DDE6FD;
+    --zc-color-info-surface-low-hover: #C0D1FC;
+    --zc-color-info-surface-subtle: #F5F8FE;
+    --zc-color-info-surface-subtle-hover: #E7EDFE;
+    --zc-color-info-border-bold: #041644;
+    --zc-color-info-border-bold-hover: #020C27;
+    --zc-color-info-border-default: #0D4EF2;
+    --zc-color-info-border-default-hover: #0B44D5;
+    --zc-color-info-border-minimal: #C0D1FC;
+    --zc-color-info-border-minimal-hover: #A3BCFA;
+    --zc-color-info-border-low: #DDE6FD;
+    --zc-color-info-border-low-hover: #C0D1FC;
+    --zc-color-info-border-subtle: #F5F8FE;
+    --zc-color-info-border-subtle-hover: #E7EDFE;
+    --zc-color-info-text-dark: #041644;
+    --zc-color-info-text-dark-hover: #020C27;
+    --zc-color-info-text-bold: #051F61;
+    --zc-color-info-text-bold-hover: #041644;
+    --zc-color-info-text-default: #0D4EF2;
+    --zc-color-info-text-default-hover: #0B44D5;
+    --zc-color-info-text-minimal: #C0D1FC;
+    --zc-color-info-text-minimal-hover: #A3BCFA;
+    --zc-color-info-text-low: #DDE6FD;
+    --zc-color-info-text-low-hover: #C0D1FC;
+    --zc-color-info-text-subtle: #F5F8FE;
+    --zc-color-info-text-subtle-hover: #E7EDFE;
+
+    /* --- Success --- */
+    --zc-color-success-surface-bold: #023117;
+    --zc-color-success-surface-bold-hover: #012210;
+    --zc-color-success-surface-default: #078841;
+    --zc-color-success-surface-default-hover: #06793A;
+    --zc-color-success-surface-minimal: #D1FAE3;
+    --zc-color-success-surface-minimal-hover: #9AF4C2;
+    --zc-color-success-surface-low: #E3FCEE;
+    --zc-color-success-surface-low-hover: #D1FAE3;
+    --zc-color-success-surface-subtle: #F6FEF9;
+    --zc-color-success-surface-subtle-hover: #EDFDF4;
+    --zc-color-success-border-bold: #023117;
+    --zc-color-success-border-bold-hover: #012210;
+    --zc-color-success-border-default: #078841;
+    --zc-color-success-border-default-hover: #06793A;
+    --zc-color-success-border-minimal: #D1FAE3;
+    --zc-color-success-border-minimal-hover: #9AF4C2;
+    --zc-color-success-border-low: #E3FCEE;
+    --zc-color-success-border-low-hover: #D1FAE3;
+    --zc-color-success-border-subtle: #F6FEF9;
+    --zc-color-success-border-subtle-hover: #EDFDF4;
+    --zc-color-success-text-dark: #023117;
+    --zc-color-success-text-dark-hover: #012210;
+    --zc-color-success-text-bold: #033F1E;
+    --zc-color-success-text-bold-hover: #023117;
+    --zc-color-success-text-default: #078841;
+    --zc-color-success-text-default-hover: #06793A;
+    --zc-color-success-text-minimal: #D1FAE3;
+    --zc-color-success-text-minimal-hover: #9AF4C2;
+    --zc-color-success-text-low: #E3FCEE;
+    --zc-color-success-text-low-hover: #D1FAE3;
+    --zc-color-success-text-subtle: #F6FEF9;
+    --zc-color-success-text-subtle-hover: #EDFDF4;
+
+    /* --- Warning --- */
+    --zc-color-warning-surface-bold: #502102;
+    --zc-color-warning-surface-bold-hover: #3C1901;
+    --zc-color-warning-surface-default: #D25704;
+    --zc-color-warning-surface-default-hover: #BE4E04;
+    --zc-color-warning-surface-minimal: #FEE1CD;
+    --zc-color-warning-surface-minimal-hover: #FDC29B;
+    --zc-color-warning-surface-low: #FEEDE1;
+    --zc-color-warning-surface-low-hover: #FEE1CD;
+    --zc-color-warning-surface-subtle: #FFF9F5;
+    --zc-color-warning-surface-subtle-hover: #FFF6F0;
+    --zc-color-warning-border-bold: #502102;
+    --zc-color-warning-border-bold-hover: #3C1901;
+    --zc-color-warning-border-default: #D25704;
+    --zc-color-warning-border-default-hover: #BE4E04;
+    --zc-color-warning-border-minimal: #FEE1CD;
+    --zc-color-warning-border-minimal-hover: #FDC29B;
+    --zc-color-warning-border-low: #FEEDE1;
+    --zc-color-warning-border-low-hover: #FEE1CD;
+    --zc-color-warning-border-subtle: #FFF9F5;
+    --zc-color-warning-border-subtle-hover: #FFF6F0;
+    --zc-color-warning-text-dark: #502102;
+    --zc-color-warning-text-dark-hover: #3C1901;
+    --zc-color-warning-text-bold: #642902;
+    --zc-color-warning-text-bold-hover: #502102;
+    --zc-color-warning-text-default: #D25704;
+    --zc-color-warning-text-default-hover: #BE4E04;
+    --zc-color-warning-text-minimal: #FEE1CD;
+    --zc-color-warning-text-minimal-hover: #FDC29B;
+    --zc-color-warning-text-low: #FEEDE1;
+    --zc-color-warning-text-low-hover: #FEE1CD;
+    --zc-color-warning-text-subtle: #FFF9F5;
+    --zc-color-warning-text-subtle-hover: #FFF6F0;
+
+    /* --- Error --- */
+    --zc-color-error-surface-bold: #470806;
+    --zc-color-error-surface-bold-hover: #2F0504;
+    --zc-color-error-surface-default: #CC1914;
+    --zc-color-error-surface-default-hover: #BA1812;
+    --zc-color-error-surface-minimal: #FAD2D1;
+    --zc-color-error-surface-minimal-hover: #F6A5A2;
+    --zc-color-error-surface-low: #FCE4E3;
+    --zc-color-error-surface-low-hover: #FAD2D1;
+    --zc-color-error-surface-subtle: #FEF6F6;
+    --zc-color-error-surface-subtle-hover: #FEF1F1;
+    --zc-color-error-border-bold: #470806;
+    --zc-color-error-border-bold-hover: #2F0504;
+    --zc-color-error-border-default: #CC1914;
+    --zc-color-error-border-default-hover: #BA1812;
+    --zc-color-error-border-minimal: #FAD2D1;
+    --zc-color-error-border-minimal-hover: #F6A5A2;
+    --zc-color-error-border-low: #FCE4E3;
+    --zc-color-error-border-low-hover: #FAD2D1;
+    --zc-color-error-border-subtle: #FEF6F6;
+    --zc-color-error-border-subtle-hover: #FEF1F1;
+    --zc-color-error-text-dark: #470806;
+    --zc-color-error-text-dark-hover: #2F0504;
+    --zc-color-error-text-bold: #5F0A07;
+    --zc-color-error-text-bold-hover: #470806;
+    --zc-color-error-text-default: #CC1914;
+    --zc-color-error-text-default-hover: #BA1812;
+    --zc-color-error-text-minimal: #FAD2D1;
+    --zc-color-error-text-minimal-hover: #F6A5A2;
+    --zc-color-error-text-low: #FCE4E3;
+    --zc-color-error-text-low-hover: #FAD2D1;
+    --zc-color-error-text-subtle: #FEF6F6;
+    --zc-color-error-text-subtle-hover: #FEF1F1;
+
+    /* --- Neutral --- */
+    --zc-color-neutral-surface-bold: #25272C;
+    --zc-color-neutral-surface-bold-hover: #13161B;
+    --zc-color-neutral-surface-default: #6C6D71;
+    --zc-color-neutral-surface-default-hover: #5A5C60;
+    --zc-color-neutral-surface-fairish: #D6D7D8;
+    --zc-color-neutral-surface-fairish-hover: #A1A2A4;
+    --zc-color-neutral-surface-minimal: #EBEBEB;
+    --zc-color-neutral-surface-minimal-hover: #E6E6E6;
+    --zc-color-neutral-surface-low: #F0F0F0;
+    --zc-color-neutral-surface-low-hover: #EBEBEB;
+    --zc-color-neutral-surface-subtle: #FAFAFA;
+    --zc-color-neutral-surface-subtle-hover: #F5F5F5;
+    --zc-color-neutral-border-bold: #25272C;
+    --zc-color-neutral-border-bold-hover: #13161B;
+    --zc-color-neutral-border-default: #6C6D71;
+    --zc-color-neutral-border-default-hover: #5A5C60;
+    --zc-color-neutral-border-fairish: #D6D7D8;
+    --zc-color-neutral-border-fairish-hover: #A1A2A4;
+    --zc-color-neutral-border-minimal: #EBEBEB;
+    --zc-color-neutral-border-minimal-hover: #E6E6E6;
+    --zc-color-neutral-border-low: #F0F0F0;
+    --zc-color-neutral-border-low-hover: #EBEBEB;
+    --zc-color-neutral-border-subtle: #FAFAFA;
+    --zc-color-neutral-border-subtle-hover: #F5F5F5;
+    --zc-color-neutral-text-dark: #25272C;
+    --zc-color-neutral-text-dark-hover: #13161B;
+    --zc-color-neutral-text-bold: #36393D;
+    --zc-color-neutral-text-bold-hover: #25272C;
+    --zc-color-neutral-text-default: #6C6D71;
+    --zc-color-neutral-text-default-hover: #5A5C60;
+    --zc-color-neutral-text-fairish: #D6D7D8;
+    --zc-color-neutral-text-fairish-hover: #A1A2A4;
+    --zc-color-neutral-text-minimal: #EBEBEB;
+    --zc-color-neutral-text-minimal-hover: #E6E6E6;
+    --zc-color-neutral-text-low: #F0F0F0;
+    --zc-color-neutral-text-low-hover: #EBEBEB;
+    --zc-color-neutral-text-subtle: #FAFAFA;
+    --zc-color-neutral-text-subtle-hover: #F5F5F5;
+
+    /* --- HueGrey --- */
+    --zc-color-huegrey-surface-dark: #26282B;
+    --zc-color-huegrey-surface-dark-hover: #161718;
+    --zc-color-huegrey-surface-bold: #37383C;
+    --zc-color-huegrey-surface-bold-hover: #26282B;
+    --zc-color-huegrey-surface-default: #696C74;
+    --zc-color-huegrey-surface-default-hover: #585B62;
+    --zc-color-huegrey-surface-fairish: #D5D6D9;
+    --zc-color-huegrey-surface-fairish-hover: #9EA0A7;
+    --zc-color-huegrey-surface-minimal: #EAEBEC;
+    --zc-color-huegrey-surface-minimal-hover: #E5E5E7;
+    --zc-color-huegrey-surface-low: #EFF0F1;
+    --zc-color-huegrey-surface-low-hover: #EAEBEC;
+    --zc-color-huegrey-surface-subtle: #FAFAFA;
+    --zc-color-huegrey-surface-subtle-hover: #F5F5F5;
+    --zc-color-huegrey-border-dark: #26282B;
+    --zc-color-huegrey-border-dark-hover: #161718;
+    --zc-color-huegrey-border-bold: #37383C;
+    --zc-color-huegrey-border-bold-hover: #26282B;
+    --zc-color-huegrey-border-default: #696C74;
+    --zc-color-huegrey-border-default-hover: #585B62;
+    --zc-color-huegrey-border-fairish: #D5D6D9;
+    --zc-color-huegrey-border-fairish-hover: #9EA0A7;
+    --zc-color-huegrey-border-minimal: #EAEBEC;
+    --zc-color-huegrey-border-minimal-hover: #E5E5E7;
+    --zc-color-huegrey-border-low: #EFF0F1;
+    --zc-color-huegrey-border-low-hover: #EAEBEC;
+    --zc-color-huegrey-border-subtle: #FAFAFA;
+    --zc-color-huegrey-border-subtle-hover: #F5F5F5;
+    --zc-color-huegrey-text-dark: #26282B;
+    --zc-color-huegrey-text-dark-hover: #161718;
+    --zc-color-huegrey-text-bold: #37383C;
+    --zc-color-huegrey-text-bold-hover: #26282B;
+    --zc-color-huegrey-text-default: #696C74;
+    --zc-color-huegrey-text-default-hover: #585B62;
+    --zc-color-huegrey-text-fairish: #D5D6D9;
+    --zc-color-huegrey-text-fairish-hover: #9EA0A7;
+    --zc-color-huegrey-text-minimal: #EAEBEC;
+    --zc-color-huegrey-text-minimal-hover: #E5E5E7;
+    --zc-color-huegrey-text-low: #EFF0F1;
+    --zc-color-huegrey-text-low-hover: #EAEBEC;
+    --zc-color-huegrey-text-subtle: #FAFAFA;
+    --zc-color-huegrey-text-subtle-hover: #F5F5F5;
+
+    /* --- Black&White --- */
+    --zc-color-black-white-surface-white-surface: #FFFFFF;
+    --zc-color-black-white-surface-black-surface: #000000;
+    --zc-color-black-white-surface-white-surface-fixed: #FFFFFF;
+    --zc-color-black-white-surface-black-surface-fixed: #000000;
+    --zc-color-black-white-border-white-border: #FFFFFF;
+    --zc-color-black-white-border-black-border: #000000;
+    --zc-color-black-white-border-white-border-fixed: #FFFFFF;
+    --zc-color-black-white-border-black-border-fixed: #000000;
+    --zc-color-black-white-text-white-text: #FFFFFF;
+    --zc-color-black-white-text-black-text: #000000;
+    --zc-color-black-white-text-white-text-fixed: #FFFFFF;
+    --zc-color-black-white-text-black-text-fixed: #000000;
+
+    /* --- Alpha --- */
+
+    /* =============================================
+       FONT WEIGHT TOKENS
+       ============================================= */
+    --zc-font-weight-light: 300;
+    --zc-font-weight-regular: 400;
+    --zc-font-weight-regular-italic: 400;
+    --zc-font-weight-semibold: 500;
+    --zc-font-weight-bold: 600;
+    --zc-font-weight-bold-italic: 600;
+
+    /* =============================================
+       FONT SIZE TOKENS
+       ============================================= */
+    --zc-font-size-9: 9px;
+    --zc-font-size-10: 10px;
+    --zc-font-size-11: 11px;
+    --zc-font-size-12: 12px;
+    --zc-font-size-14: 14px;
+    --zc-font-size-16: 16px;
+    --zc-font-size-18: 18px;
+    --zc-font-size-20: 20px;
+    --zc-font-size-22: 22px;
+    --zc-font-size-23: 23px;
+    --zc-font-size-26: 26px;
+    --zc-font-size-29: 29px;
+    --zc-font-size-33: 33px;
+    --zc-font-size-37: 37px;
+    --zc-font-size-42: 42px;
+    --zc-font-size-47: 47px;
+    --zc-font-size-53: 53px;
+    --zc-font-size-60: 60px;
+
+    /* =============================================
+       LINE HEIGHT TOKENS
+       ============================================= */
+    --zc-line-height-12: 12px;
+    --zc-line-height-13: 13px;
+    --zc-line-height-14: 14px;
+    --zc-line-height-16: 15px;
+    --zc-line-height-18: 18px;
+    --zc-line-height-21: 21px;
+    --zc-line-height-24: 24px;
+    --zc-line-height-26: 26px;
+    --zc-line-height-29: 29px;
+    --zc-line-height-30: 30px;
+    --zc-line-height-34: 34px;
+    --zc-line-height-38: 38px;
+    --zc-line-height-44: 44px;
+    --zc-line-height-49: 49px;
+    --zc-line-height-56: 56px;
+    --zc-line-height-62: 62px;
+    --zc-line-height-70: 70px;
+    --zc-line-height-80: 80px;
+
+    /* =============================================
+       FONT FAMILY TOKENS
+       ============================================= */
+    --zc-font-family-default: "ZohoPuvi";
+    --zc-font-family-mono: "PT Mono";
+    --zc-font-family-display: "DM Serif Display";
+
+    /* =============================================
+       SEMANTIC TYPOGRAPHY (H1-H6, P1-P6)
+       ============================================= */
+
+    /* --- H1 --- */
+    --zc-h1-font-family: var(--zc-font-family-default);
+    --zc-h1-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-h1-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-h1-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-h1-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-h1-font-weight-bold-talic: var(--zc-font-weight-bold-italic);
+    --zc-h1-font-size: var(--zc-font-size-29);
+    --zc-h1-line-height: var(--zc-line-height-38);
+
+    /* --- H2 --- */
+    --zc-h2-font-family: var(--zc-font-family-default);
+    --zc-h2-font-size: var(--zc-font-size-26);
+    --zc-h2-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-h2-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-h2-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-h2-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-h2-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-h2-line-height: var(--zc-line-height-34);
+
+    /* --- H3 --- */
+    --zc-h3-font-family: var(--zc-font-family-default);
+    --zc-h3-font-size: var(--zc-font-size-23);
+    --zc-h3-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-h3-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-h3-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-h3-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-h3-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-h3-line-height: var(--zc-line-height-30);
+
+    /* --- H4 --- */
+    --zc-h4-font-family: var(--zc-font-family-default);
+    --zc-h4-font-size: var(--zc-font-size-22);
+    --zc-h4-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-h4-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-h4-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-h4-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-h4-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-h4-line-height: var(--zc-line-height-29);
+
+    /* --- H5 --- */
+    --zc-h5-font-family: var(--zc-font-family-default);
+    --zc-h5-font-size: var(--zc-font-size-20);
+    --zc-h5-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-h5-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-h5-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-h5-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-h5-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-h5-line-height: var(--zc-line-height-26);
+
+    /* --- H6 --- */
+    --zc-h6-font-family: var(--zc-font-family-default);
+    --zc-h6-font-size: var(--zc-font-size-18);
+    --zc-h6-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-h6-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-h6-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-h6-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-h6-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-h6-line-height: var(--zc-line-height-24);
+
+    /* --- P1 --- */
+    --zc-p1-font-family: var(--zc-font-family-default);
+    --zc-p1-font-size: var(--zc-font-size-16);
+    --zc-p1-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-p1-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-p1-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-p1-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-p1-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-p1-line-height: var(--zc-line-height-21);
+
+    /* --- P2 ✦ --- */
+    --zc-p2-font-family: var(--zc-font-family-default);
+    --zc-p2-font-size: var(--zc-font-size-14);
+    --zc-p2-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-p2-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-p2-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-p2-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-p2-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-p2-line-height: var(--zc-line-height-18);
+
+    /* --- P3 --- */
+    --zc-p3-font-family: var(--zc-font-family-default);
+    --zc-p3-font-size: var(--zc-font-size-12);
+    --zc-p3-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-p3-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-p3-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-p3-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-p3-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-p3-line-height: var(--zc-line-height-16);
+
+    /* --- P4 --- */
+    --zc-p4-font-family: var(--zc-font-family-default);
+    --zc-p4-font-size: var(--zc-font-size-11);
+    --zc-p4-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-p4-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-p4-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-p4-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-p4-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-p4-line-height: var(--zc-line-height-14);
+
+    /* --- P5 --- */
+    --zc-p5-font-family: var(--zc-font-family-default);
+    --zc-p5-font-size: var(--zc-font-size-10);
+    --zc-p5-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-p5-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-p5-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-p5-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-p5-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-p5-line-height: var(--zc-line-height-13);
+
+    /* --- P6 --- */
+    --zc-p6-font-family: var(--zc-font-family-default);
+    --zc-p6-font-size: var(--zc-font-size-9);
+    --zc-p6-font-weight-regular: var(--zc-font-weight-regular);
+    --zc-p6-font-weight-regular-italic: var(--zc-font-weight-regular-italic);
+    --zc-p6-font-weight-semibold: var(--zc-font-weight-semibold);
+    --zc-p6-font-weight-bold: var(--zc-font-weight-bold);
+    --zc-p6-font-weight-bold-italic: var(--zc-font-weight-bold-italic);
+    --zc-p6-line-height: var(--zc-line-height-12);
+
+    /* =============================================
+       RADIUS TOKENS
+       ============================================= */
+
+    /* Primitive */
+    --zc-radius-0: 0px;
+    --zc-radius-2: 2px;
+    --zc-radius-4: 4px;
+    --zc-radius-6: 6px;
+    --zc-radius-8: 8px;
+    --zc-radius-10: 10px;
+    --zc-radius-12: 12px;
+    --zc-radius-14: 14px;
+    --zc-radius-16: 16px;
+    --zc-radius-18: 18px;
+    --zc-radius-20: 20px;
+    --zc-radius-999: 999px;
+
+    /* Semantic */
+    --zc-radius-null: var(--zc-radius-0);
+    --zc-radius-xs: var(--zc-radius-2);
+    --zc-radius-s: var(--zc-radius-4);
+    --zc-radius-r: var(--zc-radius-6);
+    --zc-radius-rl: var(--zc-radius-8);
+    --zc-radius-l: var(--zc-radius-10);
+    --zc-radius-xl: var(--zc-radius-14);
+    --zc-radius-2xl: var(--zc-radius-18);
+    --zc-radius-3xl: var(--zc-radius-20);
+    --zc-radius-full: var(--zc-radius-999);
+}

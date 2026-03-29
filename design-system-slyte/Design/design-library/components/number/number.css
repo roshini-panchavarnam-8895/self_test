@@ -1,0 +1,344 @@
+/* ==========================================================================
+   Number Input CSS — Zoho Creator Design System (Compiled)
+   Figma Source: Number_Input_Base ✦ (node 2745:2199)
+   File: 88Zeos2AXPni7858flxLP2
+   ========================================================================== */
+
+/* ==========================================================================
+   LYTE-NUMBER OVERRIDES (targets framework-rendered DOM)
+   ========================================================================== */
+
+/* -- Base layout -- */
+lyte-number {
+    display: flex;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* -- Label -- */
+lyte-number .lyteLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    padding-right: 0;
+}
+
+lyte-number.vertical .lyteLabel {
+    margin-bottom: 6px;
+}
+
+/* -- Field box (overrides .lyteInputBox > div from lyte-ui-input.css) -- */
+lyte-number.lyteInputBox .lyteField {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    background: #FFFFFF;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* -- Input -- */
+lyte-number input {
+    flex: 1;
+    height: 100%;
+    padding: 0 0 0 12px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    -moz-appearance: textfield;
+}
+
+lyte-number input::-webkit-inner-spin-button,
+lyte-number input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+lyte-number input::placeholder {
+    color: #9EA0A7;
+    font-family: inherit;
+}
+
+/* -- Error message -- */
+lyte-number .lyteNumberErrorMessage {
+    font-size: 12px;
+    color: #CC1914;
+    margin-top: 6px;
+}
+
+/* -- Arrow container -- */
+lyte-number .lyteNumberArrowContainer {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   LYTE-NUMBER STATE VARIANTS
+   ========================================================================== */
+
+/* -- Hover -- */
+lyte-number.lyteInputBox .lyteField:hover {
+    border-color: #0D4EF2;
+}
+
+/* -- Focus -- */
+lyte-number.lyteInputFocus.lyteInputBox .lyteField {
+    border-color: #0D4EF2;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}
+
+/* -- Disabled -- */
+lyte-number.lyteNumberDisabled .lyteLabel {
+    color: #9EA0A7;
+}
+
+lyte-number.lyteNumberDisabled.lyteInputBox .lyteField {
+    background: #F5F5F5;
+    border-color: #D5D6D9;
+    cursor: not-allowed;
+}
+
+lyte-number.lyteNumberDisabled.lyteInputBox .lyteField:hover {
+    border-color: #D5D6D9;
+}
+
+lyte-number.lyteNumberDisabled input {
+    cursor: not-allowed;
+    color: #D5D6D9;
+}
+
+lyte-number.lyteNumberDisabled input::placeholder {
+    color: #D5D6D9;
+}
+
+/* -- Error -- */
+lyte-number.lyteErrorInput.lyteInputBox .lyteField,
+lyte-number.lyteErrorInput.lyteInputBox .lyteField:hover {
+    border-color: #CC1914;
+    background: #FEF6F6;
+}
+
+/* Hide framework error icon pseudo-element */
+lyte-number.lyteErrorInput .lyteField::after {
+    display: none;
+}
+
+/* -- Success (custom class) -- */
+lyte-number.zc-number-success.lyteInputBox .lyteField,
+lyte-number.zc-number-success.lyteInputBox .lyteField:hover {
+    border-color: #078841;
+    background: #F6FEF9;
+}
+
+/* ==========================================================================
+   CUSTOM HTML CLASSES (.zc-number-*)
+   Used for inline-stepper variant and standalone custom markup
+   ========================================================================== */
+
+/* -- Field container (label + number + hint) -- */
+.zc-number-field {
+    display: flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 160px;
+}
+
+/* -- Label -- */
+.zc-number-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 6px;
+}
+
+/* -- Number wrapper (border box) -- */
+.zc-number-wrapper {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    background: #FFFFFF;
+    overflow: hidden;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* -- Number input element -- */
+.zc-number-input {
+    flex: 1;
+    height: 100%;
+    padding: 0 0 0 12px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    -moz-appearance: textfield;
+}
+
+.zc-number-input::-webkit-inner-spin-button,
+.zc-number-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.zc-number-input::placeholder {
+    color: #9EA0A7;
+}
+
+/* -- Hint / Helper text -- */
+.zc-number-hint {
+    font-size: 12px;
+    color: #26282B;
+    margin-top: 6px;
+}
+
+/* ==========================================================================
+   Stepper Buttons (stacked right — default)
+   ========================================================================== */
+
+.zc-number-stepper {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #D5D6D9;
+    height: 100%;
+}
+
+.zc-number-step-up,
+.zc-number-step-down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    flex: 1;
+    border: none;
+    background: #F0F1F3;
+    color: #696C74;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background 0.15s;
+    padding: 0;
+}
+
+.zc-number-step-up:hover,
+.zc-number-step-down:hover {
+    background: #E4E5E8;
+}
+
+.zc-number-step-up {
+    border-bottom: 1px solid #D5D6D9;
+}
+
+/* ==========================================================================
+   Inline Stepper (side-by-side left/right)
+   ========================================================================== */
+
+.zc-number-inline .zc-number-step-down,
+.zc-number-inline .zc-number-step-up {
+    width: 36px;
+    height: 100%;
+    flex: none;
+    font-size: 12px;
+}
+
+.zc-number-inline .zc-number-step-down {
+    border-right: 1px solid #D5D6D9;
+    border-left: none;
+    order: -1;
+}
+
+.zc-number-inline .zc-number-step-up {
+    border-left: 1px solid #D5D6D9;
+}
+
+.zc-number-inline .zc-number-input {
+    text-align: center;
+}
+
+/* ==========================================================================
+   CUSTOM HTML STATE VARIANTS
+   ========================================================================== */
+
+/* -- Hover -- */
+.zc-number-wrapper:hover {
+    border-color: #0D4EF2;
+}
+
+/* -- Focus -- */
+.zc-number-wrapper-focus,
+.zc-number-wrapper:focus-within {
+    border-color: #0D4EF2;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}
+
+/* -- Disabled -- */
+.zc-number-field-disabled .zc-number-label {
+    color: #9EA0A7;
+}
+
+.zc-number-wrapper-disabled {
+    background: #F5F5F5;
+    border-color: #D5D6D9;
+    cursor: not-allowed;
+}
+
+.zc-number-wrapper-disabled:hover {
+    border-color: #D5D6D9;
+}
+
+.zc-number-wrapper-disabled .zc-number-input {
+    cursor: not-allowed;
+    color: #D5D6D9;
+}
+
+.zc-number-wrapper-disabled .zc-number-input::placeholder {
+    color: #D5D6D9;
+}
+
+.zc-number-wrapper-disabled .zc-number-step-up,
+.zc-number-wrapper-disabled .zc-number-step-down {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.zc-number-field-disabled .zc-number-hint {
+    color: #9EA0A7;
+}
+
+/* -- Error -- */
+.zc-number-wrapper-error {
+    border-color: #CC1914;
+    background: #FEF6F6;
+}
+
+.zc-number-wrapper-error:hover {
+    border-color: #CC1914;
+}
+
+.zc-number-field-error .zc-number-hint {
+    color: #CC1914;
+}
+
+/* -- Success -- */
+.zc-number-wrapper-success {
+    border-color: #078841;
+    background: #F6FEF9;
+}
+
+.zc-number-wrapper-success:hover {
+    border-color: #078841;
+}
+
+.zc-number-field-success .zc-number-hint {
+    color: #078841;
+}
+

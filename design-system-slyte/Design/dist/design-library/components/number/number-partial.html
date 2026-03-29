@@ -1,0 +1,243 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-hashtag"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Number Input</h1>
+                            <p class="detail-description">Numeric input field with optional stepper controls using <code>&lt;lyte-number&gt;</code> Slyte DOM. Supports inline and stacked steppers, validation states, and disabled mode.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 6 States × 2 Stepper Variants</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchNumberStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchNumberStyleTab('filled', this)">Filled</button>
+                        <button class="btn-style-tab" onclick="switchNumberStyleTab('disabled', this)">Disabled</button>
+                        <button class="btn-style-tab" onclick="switchNumberStyleTab('error', this)">Error</button>
+                        <button class="btn-style-tab" onclick="switchNumberStyleTab('stepper', this)">Stepper</button>
+                        <button class="btn-style-tab" onclick="switchNumberStyleTab('stepper-inline', this)">Stepper Inline</button>
+                    </div>
+
+                    <div id="number-component-variants">
+
+                        <!-- ==== DEFAULT (Empty) ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Empty Number Input</span><button class="btn-variant-card__toggle" onclick="toggleNumberCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <lyte-number lt-prop-placeholder="0" lt-prop-label="Quantity" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Min/Max</span>
+                                        <lyte-number lt-prop-placeholder="0" lt-prop-label="Amount" lt-prop-min="0" lt-prop-max="1000" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNumberCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNumberCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Lyte Number — Default empty --&gt;
+&lt;lyte-number lt-prop-placeholder="0" lt-prop-label="Quantity" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;
+
+&lt;!-- With min/max --&gt;
+&lt;lyte-number lt-prop-placeholder="0" lt-prop-label="Amount" lt-prop-min="0" lt-prop-max="1000" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* lyte-number renders: .lyteField > input[type="text"] */
+lyte-number .lyteField {
+  border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+  border-radius: var(--zc-radius-r, 6px);
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+}
+lyte-number .lyteField input {
+  font-size: var(--zc-p2-font-size, 14px);
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FILLED ==== -->
+                        <div class="btn-variant-group" data-style="filled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Filled — With Value</span><button class="btn-variant-card__toggle" onclick="toggleNumberCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Numeric Value</span>
+                                        <lyte-number lt-prop-value="42" lt-prop-label="Quantity" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Decimal Value</span>
+                                        <lyte-number lt-prop-value="99.95" lt-prop-label="Price" lt-prop-step="0.01" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNumberCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-number lt-prop-value="42" lt-prop-label="Quantity" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;
+
+&lt;!-- Decimal --&gt;
+&lt;lyte-number lt-prop-value="99.95" lt-prop-label="Price" lt-prop-step="0.01" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive</span><button class="btn-variant-card__toggle" onclick="toggleNumberCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled Empty</span>
+                                        <lyte-number lt-prop-placeholder="0" lt-prop-label="Quantity" lt-prop-disabled="true" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled Filled</span>
+                                        <lyte-number lt-prop-value="7" lt-prop-label="Quantity" lt-prop-disabled="true" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNumberCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNumberCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-number lt-prop-placeholder="0" lt-prop-label="Quantity" lt-prop-disabled="true" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;
+
+&lt;lyte-number lt-prop-value="7" lt-prop-label="Quantity" lt-prop-disabled="true" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>lyte-number[lt-prop-disabled="true"] .lyteField {
+  background: #F5F5F5;
+  cursor: not-allowed;
+  opacity: 0.65;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ERROR ==== -->
+                        <div class="btn-variant-group" data-style="error" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Error — Validation Failed</span><button class="btn-variant-card__toggle" onclick="toggleNumberCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Error</span>
+                                        <lyte-number lt-prop-value="-5" lt-prop-label="Quantity" lt-prop-error="true" lt-prop-default-error-message="Value must be a positive number" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Error Empty</span>
+                                        <lyte-number lt-prop-placeholder="0" lt-prop-label="Required Field" lt-prop-mandatory="true" lt-prop-error="true" lt-prop-default-error-message="This field is required" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNumberCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNumberCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- lyte-number has built-in error support via lt-prop-error --&gt;
+&lt;lyte-number lt-prop-value="-5" lt-prop-label="Quantity" lt-prop-error="true" lt-prop-default-error-message="Value must be a positive number" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;
+
+&lt;lyte-number lt-prop-placeholder="0" lt-prop-label="Required Field" lt-prop-mandatory="true" lt-prop-error="true" lt-prop-default-error-message="This field is required" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>lyte-number .lyteNumberErrorMessage {
+  color: #CC1914;
+  font-size: var(--zc-p3-font-size, 12px);
+  margin-top: 4px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== STEPPER (Stacked Right via lt-prop-controls) ==== -->
+                        <div class="btn-variant-group" data-style="stepper" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Stepper — Stacked Right (Controls)</span><button class="btn-variant-card__toggle" onclick="toggleNumberCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <lyte-number lt-prop-value="1" lt-prop-label="Quantity" lt-prop-controls="true" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Min/Max</span>
+                                        <lyte-number lt-prop-value="25" lt-prop-label="Items" lt-prop-controls="true" lt-prop-min="0" lt-prop-max="100" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled</span>
+                                        <lyte-number lt-prop-value="3" lt-prop-label="Count" lt-prop-controls="true" lt-prop-disabled="true" lt-prop-appearance="box"></lyte-number>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNumberCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNumberCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- lt-prop-controls adds up/down arrow buttons --&gt;
+&lt;lyte-number lt-prop-value="1" lt-prop-label="Quantity" lt-prop-controls="true" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;
+
+&lt;!-- With min/max range --&gt;
+&lt;lyte-number lt-prop-value="25" lt-prop-label="Items" lt-prop-controls="true" lt-prop-min="0" lt-prop-max="100" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;
+
+&lt;!-- Disabled with controls --&gt;
+&lt;lyte-number lt-prop-value="3" lt-prop-label="Count" lt-prop-controls="true" lt-prop-disabled="true" lt-prop-appearance="box"&gt;&lt;/lyte-number&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* lyte-number renders: .lyteNumberArrowContainer > .lyteNumberUpArrow + .lyteNumberDownArrow */
+lyte-number .lyteNumberArrowContainer {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #D5D6D9;
+  height: 100%;
+}
+lyte-number .lyteNumberUpArrow,
+lyte-number .lyteNumberDownArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  cursor: pointer;
+  color: #696C74;
+}
+lyte-number .lyteNumberUpArrow:hover,
+lyte-number .lyteNumberDownArrow:hover { background: #E4E5E8; }</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== STEPPER INLINE (Custom — no Lyte equivalent) ==== -->
+                        <div class="btn-variant-group" data-style="stepper-inline" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Stepper Inline — Left/Right Buttons (Custom HTML)</span><button class="btn-variant-card__toggle" onclick="toggleNumberCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-number-field">
+                                            <label class="zc-number-label">Quantity</label>
+                                            <div class="zc-number-wrapper zc-number-inline">
+                                                <button class="zc-number-step-down"><i class="fas fa-minus"></i></button>
+                                                <input class="zc-number-input" type="number" value="5" />
+                                                <button class="zc-number-step-up"><i class="fas fa-plus"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled</span>
+                                        <div class="zc-number-field">
+                                            <label class="zc-number-label">Tickets</label>
+                                            <div class="zc-number-wrapper zc-number-inline zc-number-wrapper-disabled">
+                                                <button class="zc-number-step-down" disabled><i class="fas fa-minus"></i></button>
+                                                <input class="zc-number-input" type="number" value="2" disabled />
+                                                <button class="zc-number-step-up" disabled><i class="fas fa-plus"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNumberCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNumberCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Inline stepper: Custom HTML (no lyte-number equivalent for horizontal +/- buttons) --&gt;
+&lt;div class="zc-number-field"&gt;
+  &lt;label class="zc-number-label"&gt;Quantity&lt;/label&gt;
+  &lt;div class="zc-number-wrapper zc-number-inline"&gt;
+    &lt;button class="zc-number-step-down"&gt;&lt;i class="fas fa-minus"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;input class="zc-number-input" type="number" value="5" /&gt;
+    &lt;button class="zc-number-step-up"&gt;&lt;i class="fas fa-plus"&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNumberCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-number-inline .zc-number-step-down,
+.zc-number-inline .zc-number-step-up {
+  width: 36px;
+  height: 100%;
+  flex: none;
+  font-size: 12px;
+}
+.zc-number-inline .zc-number-input { text-align: center; }</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

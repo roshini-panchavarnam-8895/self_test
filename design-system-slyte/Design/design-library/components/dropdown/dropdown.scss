@@ -1,0 +1,309 @@
+/* ============================================================
+   DROPDOWN SCSS — Figma: Input_Dropdown_Core (2167:33859)
+   ============================================================
+   NOTE: lyte-ui-dropdown.css uses high-specificity selectors
+   like :not([lt-prop-type="multiple"]):not([lt-prop-type="multisearch"])
+   on lyte-drop-button (specificity 0,2,2). We MUST match or exceed
+   that specificity, otherwise framework defaults win.
+   ============================================================ */
+
+/* ---------------------------------------------------------------
+   SECTION 1 — LYTE OVERRIDE
+   --------------------------------------------------------------- */
+
+lyte-dropdown {
+
+    /* Base width — Figma: layout_O33513 width 304 */
+    width: 304px;
+
+    /* 1a. Base trigger — Figma: State=Default — border #D5D6D9, bg #FFFFFF
+       Match framework specificity: :not():not() = (0,2,2) + lyte-drop-button */
+    &:not([lt-prop-type="multiple"]):not([lt-prop-type="multisearch"]) lyte-drop-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 36px;
+        padding: 9px 12px;
+        border: 1px solid var(--zc-color-huegrey-border-fairish, #D5D6D9);
+        border-radius: var(--zc-radius-r, 6px);
+        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+        cursor: pointer;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        gap: 8px;
+        font-family: 'ZohoPuvi', sans-serif;
+        box-sizing: border-box;
+        color: inherit;
+        font-size: var(--zc-p2-font-size, 14px);
+
+        /* Hover — Figma: State=Hover — border #0D4EF2 */
+        &:hover {
+            border-color: var(--zc-color-primary-border-default, #0D4EF2);
+        }
+    }
+
+    /* Placeholder text */
+    .lyteDropPlaceholderNormal,
+    .lyteDropPlaceholderMultiple {
+        color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+        font-size: var(--zc-p2-font-size, 14px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+    }
+
+    /* Selected value label */
+    .lyteDropdownLabel {
+        color: var(--zc-color-neutral-text-black, #000000);
+        font-size: var(--zc-p2-font-size, 14px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+    }
+
+    /* Chevron icon */
+    lyte-icon {
+        color: var(--zc-color-neutral-text-secondary, #696C74);
+        font-size: 14px;
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    /* Active / Open — Figma: State=Active, Re-Active — specificity (0,3,2) beats framework */
+    &.lyteDropdownActive:not([lt-prop-type="multiple"]):not([lt-prop-type="multisearch"]) {
+        lyte-drop-button {
+            border-color: var(--zc-color-primary-border-default, #0D4EF2);
+            box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+        }
+        lyte-icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    /* Disabled — Figma: State=Disabled Before / After — bg #F5F5F5, border #D5D6D9
+       specificity (0,3,2) beats framework */
+    &.lyteDropdown-disabled:not([lt-prop-type="multiple"]):not([lt-prop-type="multisearch"]) lyte-drop-button,
+    &[lt-prop-disabled="true"]:not([lt-prop-type="multiple"]):not([lt-prop-type="multisearch"]) lyte-drop-button {
+        background: var(--zc-color-huegrey-surface-subtle-hover, #F5F5F5);
+        border-color: var(--zc-color-huegrey-border-fairish, #D5D6D9);
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.65;
+    }
+
+    /* Drop box (overlay) — Figma: Dropdown_Overlay_List — stroke #EAEBEC */
+    lyte-drop-box {
+        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+        border: 1px solid var(--zc-color-neutral-border-default, #EAEBEC);
+        border-radius: var(--zc-radius-r, 6px);
+        box-shadow: 0px 2px 2px 0px rgba(38, 40, 43, 0.05), 0px 12px 16px -4px rgba(38, 40, 43, 0.08);
+        padding: 10px;
+        max-height: 200px;
+        overflow-y: auto;
+
+        /* Override global .lyteDropdownDown / .lyteDropdownUp (specificity 0,1,1)
+           — this nested selector compiles to (0,1,2) which beats (0,1,1) */
+        &.lyteDropdownDown,
+        &.lyteDropdownUp {
+            border-radius: var(--zc-radius-r, 6px);
+            box-shadow: 0px 2px 2px 0px rgba(38, 40, 43, 0.05), 0px 12px 16px -4px rgba(38, 40, 43, 0.08);
+            margin-top: 4px;
+        }
+    }
+
+    /* Drop body — reset global padding, Figma: gap 1px between items */
+    lyte-drop-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        padding: 0;
+    }
+
+    /* Drop items — Figma: List_Vertical_Core */
+    lyte-drop-item {
+        display: flex;
+        align-items: center;
+        padding: 9px 10px;
+        font-size: var(--zc-p2-font-size, 14px);
+        color: var(--zc-color-neutral-text-secondary, #696C74);
+        cursor: pointer;
+        transition: background 0.1s ease, color 0.1s ease;
+        border-radius: 6px;
+        gap: 10px;
+
+        /* Hover On Default — Figma bg #EFF2F9, text #000000 */
+        &:hover {
+            background: var(--zc-color-primary-surface-subtle, #EFF2F9);
+            color: var(--zc-color-neutral-text-black, #000000);
+        }
+
+        /* Selected — Figma bg #F7F9FD */
+        &.lyteDropdownSelection,
+        &[selected] {
+            background: var(--zc-color-primary-surface-subtle-hover, #F7F9FD);
+            color: var(--zc-color-neutral-text-black, #000000);
+
+            &:hover {
+                background: var(--zc-color-primary-surface-subtle, #EFF2F9);
+            }
+        }
+
+        /* Disabled item — Figma bg #FAFAFA */
+        &[disabled],
+        &.lyteDropdown-disabled {
+            background: var(--zc-color-neutral-surface-disabled, #FAFAFA);
+            color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+
+    /* Deselect / Clear icon */
+    lyte-drop-remove {
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+}
+
+
+/* ---------------------------------------------------------------
+   SECTION 2 — CUSTOM .zc-dropdown WRAPPER
+   --------------------------------------------------------------- */
+
+.zc-dropdown {
+    display: inline-flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    width: 304px;
+    gap: 6px;
+
+    lyte-dropdown {
+        width: 100%;
+    }
+}
+
+.zc-dropdown-label {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 500);
+    color: var(--zc-color-neutral-text-black, #000000);
+}
+
+.zc-dropdown-hint {
+    font-size: var(--zc-p3-font-size, 12px);
+    color: var(--zc-color-neutral-text-hint, #26282B);
+}
+
+/* Error — Figma: State=Error — bg #FEF6F6, border #CC1914 */
+.zc-dropdown-error lyte-dropdown lyte-drop-button {
+    border-color: var(--zc-color-error-border-default, #CC1914);
+    background: var(--zc-color-error-surface-subtle, #FEF6F6);
+}
+
+.zc-dropdown-hint-error,
+.zc-dropdown-error .zc-dropdown-hint {
+    color: var(--zc-color-error-text-default, #CC1914);
+}
+
+/* Success — Figma: State=Success — bg #F6FEF9, border #078841 */
+.zc-dropdown-success lyte-dropdown lyte-drop-button {
+    border-color: var(--zc-color-success-border-default, #078841);
+    background: var(--zc-color-success-surface-subtle, #F6FEF9);
+}
+
+.zc-dropdown-hint-success,
+.zc-dropdown-success .zc-dropdown-hint {
+    color: var(--zc-color-success-text-default, #078841);
+}
+
+/* ---------------------------------------------------------------
+   SECTION 3 — CREATABLE DROPDOWN (merged from creatable-dropdown)
+   --------------------------------------------------------------- */
+
+.zc-creatable-dropdown {
+    display: inline-flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 240px;
+
+    .lyteDDHeader {
+        border: 1px solid var(--zc-color-huegrey-border-fairish, #D5D6D9);
+        border-radius: var(--zc-radius-r, 6px);
+        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+}
+
+/* Focus / Open State */
+.zc-creatable-dropdown-focus .lyteDDHeader,
+.zc-creatable-dropdown:focus-within .lyteDDHeader {
+    border-color: var(--zc-color-primary-border-default, #0D4EF2);
+    box-shadow: 0 0 0 2px rgba(13, 78, 242, 0.15);
+}
+
+/* Create Row */
+.zc-creatable-dropdown-create-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    cursor: pointer;
+    border-top: 1px solid var(--zc-color-huegrey-border-fairish, #D5D6D9);
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: var(--zc-color-primary-surface-subtle, #F5F8FE);
+    }
+
+    i {
+        font-size: 12px;
+        color: var(--zc-color-primary-text-default, #0D4EF2);
+    }
+
+    strong {
+        font-weight: var(--zc-p2-font-weight-semibold, 600);
+    }
+}
+
+/* No Match Message */
+.zc-creatable-dropdown-no-match {
+    padding: 8px 12px;
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+    font-size: var(--zc-p3-font-size, 12px);
+    font-style: italic;
+}
+
+/* Disabled State */
+.zc-creatable-dropdown.zc-creatable-dropdown-disabled .lyteDDHeader,
+lyte-dropdown.zc-creatable-dropdown[lt-prop-disabled="true"] .lyteDDHeader {
+    background: var(--zc-color-huegrey-surface-subtle-hover, #F5F5F5);
+    border-color: var(--zc-color-huegrey-border-fairish, #D5D6D9);
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.zc-creatable-dropdown.zc-creatable-dropdown-disabled .lyteDDHeaderText,
+lyte-dropdown.zc-creatable-dropdown[lt-prop-disabled="true"] .lyteDDHeaderText {
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+}
+
+/* Demo Helpers — showcase only */
+.zc-creatable-dropdown-demo-open,
+.zc-creatable-dropdown-demo-create {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    min-width: 240px;
+}
+
+.zc-creatable-dropdown-panel-demo {
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    border: 1px solid var(--zc-color-huegrey-border-fairish, #D5D6D9);
+    border-radius: 0 0 var(--zc-radius-r, 6px) var(--zc-radius-r, 6px);
+    box-shadow: 0px 2px 2px 0px rgba(38, 40, 43, 0.05), 0px 12px 16px -4px rgba(38, 40, 43, 0.08);
+    margin-top: -1px;
+    padding: 4px 0;
+}
