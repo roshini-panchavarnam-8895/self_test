@@ -646,7 +646,7 @@ function setupCardGridMode(view) {
 
     var variantGroups = view.querySelectorAll('.btn-variant-group');
 
-    // Add readable labels and click handlers to each variant group
+    // Add readable labels to each variant group
     variantGroups.forEach(function(group) {
         var styleName = group.getAttribute('data-style') || '';
         var displayName = '';
@@ -657,27 +657,6 @@ function setupCardGridMode(view) {
             if (firstTitle) displayName = firstTitle.textContent.trim();
         }
         group.setAttribute('data-label', displayName);
-
-        // Make cards clickable — exit card-grid mode and show variant detail
-        group.style.cursor = 'pointer';
-        group.addEventListener('click', function(e) {
-            // Don't trigger if clicking a button or interactive element inside
-            if (e.target.closest('button, a, input, .btn-variant-card__toggle')) return;
-
-            var styleKey = group.dataset.style;
-            // Exit card-grid mode
-            view.classList.remove('card-grid-mode');
-
-            // Activate the matching style tab and show only this variant
-            if (typeof window.switchButtonStyleTab === 'function') {
-                var matchingTab = view.querySelector('.btn-style-tab[onclick*="' + styleKey + '"]');
-                window.switchButtonStyleTab(styleKey, matchingTab);
-            }
-
-            // Scroll to top of the detail view
-            view.scrollTop = 0;
-            window.scrollTo(0, 0);
-        });
     });
 
     // Make the variant container a grid
@@ -696,7 +675,7 @@ function setupCardGridMode(view) {
         header.className = 'card-grid-header';
         header.innerHTML =
             '<div class="card-grid-header-left">' +
-                '<button class="card-grid-back" onclick="handleCardGridBack(this)" title="Back to components"><i class="fas fa-arrow-left"></i></button>' +
+                '<button class="card-grid-back" onclick="closeComponentDetail()" title="Back to components"><i class="fas fa-arrow-left"></i></button>' +
                 '<h2 class="card-grid-title">' + componentName + ' <span class="card-grid-count">(' + count + ')</span></h2>' +
             '</div>' +
             '<input type="text" class="card-grid-search" placeholder="Search variants..." oninput="filterVariantCards(this)">';
@@ -704,31 +683,6 @@ function setupCardGridMode(view) {
     }
 
     view.dataset.cardGridReady = 'true';
-}
-
-/**
- * Handle the back button in card-grid header.
- * If currently showing a single variant detail, go back to card grid.
- * If already in card-grid mode, go back to the component list.
- */
-function handleCardGridBack(btn) {
-    var view = btn.closest('.component-detail-view');
-    if (!view) return;
-
-    if (view.classList.contains('card-grid-mode')) {
-        // Already in grid mode — go back to component list
-        closeComponentDetail();
-    } else {
-        // In detail mode — go back to card grid
-        view.classList.add('card-grid-mode');
-        // Show all variant groups again
-        view.querySelectorAll('.btn-variant-group').forEach(function(group) {
-            group.style.display = '';
-        });
-        // Clear search
-        var search = view.querySelector('.card-grid-search');
-        if (search) search.value = '';
-    }
 }
 
 /**

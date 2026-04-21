@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Components</title>
+    <link rel="stylesheet" href="components.css">
+</head>
+
+
+<body>
+
+<!-- ...Buttons... -->
+
+<div class="form-group ">
+    <span class="zc-label-text">Buttons</span>
+    <button type="submit" class="zc-live-primary-btn" name="submit" value="Example" title="">Submit</button>
+    <button type="submit" class="zc-live-primary-btn zc-primary-line-btn" name="Cancel" value="Cancel" title="">Cancel</button>
+</div>
+
+
+<!-- ...Multiline... -->
+
+<div class="form-group">
+    <span class="zc-label-text">Multiline</span>
+    <textarea id="zc-Multi_Line" class="form-control zc_textareafield zc-Multi_Line" name="Multi_Line" type="text" data-zbp-bound="true" spellcheck="false"></textarea>
+</div>
+
+
+<!-- ...Single Line... -->
+
+<div class="form-group">
+    <span class="zc-label-text">Single Line</span>
+    <input id="zc-Single_Line" class="form-control zc_textfield zc-Single_Line" maxlength="255" name="Single_Line" type="text" autocomplete="off">
+</div>
+
+
+
+<!-- ...Radio Buttons ... -->
+
+<div class="form-group">
+    <span class="zc-label-text">Radio</span>
+    <div class="choice-table-row">
+        <div class="choice-table-cell">
+            <span class="added-placeholder">
+                <input id="radio1" class="customRadio zc_radio" name="Radio" type="radio" value="Free">
+                <label for="radio1"></label>
+                <label class="choice-label-text" for="radio1">Radio - 1</label>
+            </span>
+        </div>
+    </div>
+    <div class="choice-table-row">
+        <div class="choice-table-cell">
+            <span class="added-placeholder">
+                <input id="radio2" class="customRadio zc_radio" name="Radio" type="radio" value="Free">
+                <label for="radio2"></label>
+                <label class="choice-label-text" for="radio2">Radio - 2</label>
+            </span>
+        </div>
+    </div>
+    <div class="choice-table-row">
+        <div class="choice-table-cell">
+            <span class="added-placeholder">
+                <input id="radio3" class="customRadio zc_radio" name="Radio" type="radio" value="Free">
+                <label for="radio3"></label>
+                <label class="choice-label-text" for="radio3">Radio - 3</label>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ...Checkbox ... -->
+
+<div class="form-group">
+    <span class="zc-label-text">Check Box</span>
+    <div class="choice-table-row">
+        <div class="choice-table-cell">
+            <label>
+                <span class="added-placeholder">
+                    <input id="checkbox1" class="customCheckbox zc_checkbox zc-elem-focus-field" name="Radio" type="checkbox" value="Free">
+                    <label for="checkbox1"></label>
+                    <label class="choice-label-text" for="checkbox1">Checkbox - 1</label>
+                </span>
+            </label>
+        </div>
+  </div>
+  <div class="choice-table-row">
+        <div class="choice-table-cell">
+            <label>
+                <span class="added-placeholder">
+                    <input id="checkbox2" class="customCheckbox zc_checkbox zc-elem-focus-field" name="Radio" type="checkbox" value="Free">
+                    <label for="checkbox2"></label>
+                    <label class="choice-label-text" for="checkbox2">Checkbox - 2</label>
+                </span>
+            </label>
+        </div>
+  </div>
+  <div class="choice-table-row">
+        <div class="choice-table-cell">
+            <label>
+                <span class="added-placeholder">
+                    <input id="checkbox3" class="customCheckbox zc_checkbox zc-elem-focus-field" name="Radio" type="checkbox" value="Free">
+                    <label for="checkbox3"></label>
+                    <label class="choice-label-text" for="checkbox3">Checkbox - 3</label>
+                </span>
+            </label>
+        </div>
+  </div>
+</div>
+
+
+
+<!-- ...Phone Number Field ... -->
+
+<div class="form-group">
+    <span class="zc-label-text">Phone</span>
+    <div class="intl-tel-input allow-dropdown separate-dial-code">
+        <div class="flag-container">
+            <div class="selected-flag zc-elem-focus-field" role="combobox" aria-owns="country-listbox" tabindex="0" title="India (भारत): +91">
+                <div class="iti-flag in"></div>
+                <div class="selected-dial-code">+91</div>
+                <div class="iti-arrow"></div>
+            </div>
+        </div> 
+        <input class="form-control textfield zc-Phone_Number zc-elem-focus-field" name="Phone_Number" type="tel" autocomplete="off" placeholder="81234 56789" data-intl-tel-input-id="2" style="padding-left: 82px;">
+    </div>
+</div>
+
+
+
+<!-- ...Audio Field ... -->
+         
+<div class="form-group form-fileupload-field  zc-Audio-group ">
+    <label class="form-label zc-dem-clearfix zc-Audio-label zc_audio_label">
+        <span class="zc-label-text">Upload your audio</span>
+    </label>
+    <div class="form-field clearfix mediumSizeLive ">
+        <input name="Audio" type="hidden">
+        <div class="local-fileupload zc-audio-fld zc-uploadComponents ">
+            <div class="zc-file-upload single">
+                <div class="filedrag">
+                    <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div>
+                    <input class="textfield zc-elem-focus-field" name="uploadFile" duration="60" type="file">
+                </div>
+            </div>
+            <div class="zc-dem-clearfix zc-image-icons">
+                <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field">
+                  <i class="zc-li-outline arrows-4-undo-29"></i>
+                </span>
+                <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="32" viewBox="0 0 37 32">
+                          <path d="M35.43 18.29c.63 0 1.14.5 1.14 1.14V24a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8v-4.57a1.14 1.14 0 0 1 2.29 0V24A5.71 5.71 0 0 0 8 29.71h20.57A5.71 5.71 0 0 0 34.3 24v-4.57c0-.63.5-1.14 1.14-1.14zM18.29 0h.02l.15.01-.17-.01a1.2 1.2 0 0 1 .53.13 1.07 1.07 0 0 1 .25.18l.02.02 8 8a1.14 1.14 0 0 1-1.61 1.62L19.43 3.9v16.8a1.14 1.14 0 0 1-2.29 0V3.9L11.1 9.95c-.4.4-1 .44-1.45.13l-.16-.13a1.14 1.14 0 0 1 0-1.61L17.5.3l.09-.08-.12.1.2-.15.08-.05a1 1 0 0 1 .29-.1 1.45 1.45 0 0 1 .21-.03h.03z"></path>
+                      </svg>
+                </span>
+                <span tabindex="0" class="calcIcon audioIcon zc-elem-focus-field" title="Microphone">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="32" viewBox="0 0 25 32">
+                      <path d="M23.98 11.52c.52 0 .94.42.94.94v2.56c0 6.52-5.02 11.88-11.4 12.42v3.62c0 .52-.45.94-1 .94s-1-.42-1-.94v-3.61A12.47 12.47 0 0 1 0 15.02v-2.56a.94.94 0 1 1 1.88 0v2.56a10.59 10.59 0 0 0 21.16 0v-2.56c0-.52.42-.94.94-.94zM12.46 0a6.96 6.96 0 0 1 6.97 6.96v8.29a6.96 6.96 0 1 1-13.93 0V6.96A6.96 6.96 0 0 1 12.46 0zm0 1.88a5.08 5.08 0 0 0-5.08 5.08v8.29a5.08 5.08 0 1 0 10.16 0V6.96c0-2.8-2.27-5.08-5.08-5.08z"></path>
+                  </svg>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- ...File Upload Field ... -->
+
+<div class="form-group form-fileupload-field clearfix zc-File_upload-group zc-label-float"> <label
+    class="form-label zc-dem-clearfix zc-File_upload-label zc_upload_label"> <span
+        class="zc-label-text">Upload your resume</span></label>
+    <div class="form-field clearfix mediumSizeLive "><input name="File_upload" type="hidden">
+        <div class="local-fileupload zc-uploadComponents clearfix">
+            <div class="zc-file-upload single">
+                <div class="filedrag">
+                    <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div><input
+                        id="zc-File_upload_FILE" class="textfield zc-elem-focus-field" name="uploadFile"
+                        type="file">
+                </div>
+                <ul class="filename"></ul>
+            </div>
+            <div class="zc-dem-clearfix zc-image-icons">
+                <span tabindex="0"
+                class="calcIcon restoreIcon hide zc-elem-focus-field"><i
+                    class="zc-li-outline arrows-4-undo-29"></i>
+                </span>
+                <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" isrestictedcor="false"
+                title="Local Computer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="32" viewBox="0 0 37 32">
+                        <path
+                            d="M35.43 18.29c.63 0 1.14.5 1.14 1.14V24a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8v-4.57a1.14 1.14 0 0 1 2.29 0V24A5.71 5.71 0 0 0 8 29.71h20.57A5.71 5.71 0 0 0 34.3 24v-4.57c0-.63.5-1.14 1.14-1.14zM18.29 0h.02l.15.01-.17-.01a1.2 1.2 0 0 1 .53.13 1.07 1.07 0 0 1 .25.18l.02.02 8 8a1.14 1.14 0 0 1-1.61 1.62L19.43 3.9v16.8a1.14 1.14 0 0 1-2.29 0V3.9L11.1 9.95c-.4.4-1 .44-1.45.13l-.16-.13a1.14 1.14 0 0 1 0-1.61L17.5.3l.09-.08-.12.1.2-.15.08-.05a1 1 0 0 1 .29-.1 1.45 1.45 0 0 1 .21-.03h.03z">
+                        </path>
+                    </svg>
+                </span>
+                <span tabindex="0" class="calcIcon cloudIcon zc-elem-focus-field" isrestictedcno="false" title="Cloud Storage">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    width="15" height="32" viewBox="0 0 32 32">
+                        <path
+                            d="M20.3 18.7a1 1 0 0 0 1.4 0 1 1 0 0 0 0-1.4l-5-5a1 1 0 0 0-1.42 0l-4.99 5a1 1 0 1 0 1.42 1.4L15 15.42V24a1 1 0 1 0 2 0v-8.59l3.3 3.3zm6.54-4.55A10.95 10.95 0 0 0 16 5c-4.68 0-8.76 2.88-10.34 7.23A7.47 7.47 0 0 0 0 19.5c0 3.9 3.04 7.2 7 7.5h5a1 1 0 1 0 0-2H7.08A5.53 5.53 0 0 1 2 19.5c0-2.7 1.93-4.98 4.6-5.42a1 1 0 0 0 .79-.7A8.95 8.95 0 0 1 16 7c4.66 0 8.5 3.49 8.95 8.12a1 1 0 0 0 .92.9A4.52 4.52 0 0 1 26 25h-6a1 1 0 1 0 0 2h6.09A6.56 6.56 0 0 0 32 20.5c0-3.08-2.2-5.73-5.16-6.36z">
+                        </path>
+                    </svg>
+                </span>
+           </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- ...Image Upload Field ... -->
+
+        <div class="form-group clearfix form-image-field imageopetion zc-Image-group zc-label-float"> 
+            <label
+                class="form-label zc-dem-clearfix zc-Image-label zc_image_label">
+                <span class="zc-label-text">Image</span>
+            </label>
+            <div class="form-field clearfix mediumSizeLive " name="Image" type="image">
+                <div class="imageComponents zc-uploadComponents clearfix">
+                    <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select Image</div>
+                    <div class="zc-file-upload single">
+                        <div class="filedrag">
+                            <div class="zc-image-local"><input name="Image-LOCAL" type="hidden"><input
+                                    id="zc-Image_FILE" class="textfield zc-elem-focus-field" tagfor="formComp"
+                                    name="uploadFile" imagetype="6" dimension="1" accept="image/*" type="file"
+                                    contenteditable="false"></div>
+                        </div>
+                        <ul class="filename"></ul>
+                    </div>
+                   <!--  <div class="zc-image-link" style="display:none"><input name="Image.source" type="text"
+                            placeholder="https://" elname="zcsource-Image-Field"
+                            class="form-control textfield image-source zc-elem-focus-field" imagetype="6" dimension="1"
+                            hasalt="false" hastitle="false" hasurl="false">
+                        <ul class="filename hide">
+                            <li><i class="zc-li-outline ui-1-simple-remove zc-elem-focus-field" tabindex="0"></i></li>
+                        </ul>
+                    </div> -->
+                    <div class="zc-dem-clearfix zc-image-icons linkCameraIcon" style="z-index: 1;">
+                        <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field"><i
+                            class="zc-li-outline arrows-4-undo-29"></i>
+                        </span>
+                        <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer">  
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="15" height="32" viewBox="0 0 37 32">
+                                <path
+                                    d="M35.43 18.29c.63 0 1.14.5 1.14 1.14V24a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8v-4.57a1.14 1.14 0 0 1 2.29 0V24A5.71 5.71 0 0 0 8 29.71h20.57A5.71 5.71 0 0 0 34.3 24v-4.57c0-.63.5-1.14 1.14-1.14zM18.29 0h.02l.15.01-.17-.01a1.2 1.2 0 0 1 .53.13 1.07 1.07 0 0 1 .25.18l.02.02 8 8a1.14 1.14 0 0 1-1.61 1.62L19.43 3.9v16.8a1.14 1.14 0 0 1-2.29 0V3.9L11.1 9.95c-.4.4-1 .44-1.45.13l-.16-.13a1.14 1.14 0 0 1 0-1.61L17.5.3l.09-.08-.12.1.2-.15.08-.05a1 1 0 0 1 .29-.1 1.45 1.45 0 0 1 .21-.03h.03z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span tabindex="0" class="calcIcon cameraIcon zc-elem-focus-field" title="Camera"> 
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg" width="15" height="32" viewBox="0 0 36 32">
+                                <path
+                                    d="M22.68 0c1.35 0 2.51.95 2.78 2.28a5.15 5.15 0 0 0 2.31 3.46c.63.41 1.36.63 2.11.63H33c.1 0 .2.01.29.04.52.05.9.17 1.28.38.55.29.98.72 1.27 1.27.31.58.42 1.13.42 2.17v17.91c0 1.04-.1 1.6-.42 2.17-.29.55-.72.98-1.27 1.27-.58.31-1.13.42-2.17.42H3.86c-1.04 0-1.6-.1-2.17-.42-.55-.29-.98-.72-1.27-1.27A4.17 4.17 0 0 1 0 28.14V10.23c0-1.04.1-1.6.42-2.17.29-.55.72-.98 1.27-1.27a3.55 3.55 0 0 1 1.78-.42h3.11c.75 0 1.48-.22 2.1-.63a5.14 5.14 0 0 0 2.33-3.46A2.83 2.83 0 0 1 13.78 0h8.9zm-8.9 2.27c-.27 0-.5.19-.55.45a7.4 7.4 0 0 1-3.3 4.92c-.6.38-1.24.66-1.92.83-.17.1-.38.17-.6.17H3.85c-.69 0-.9.04-1.1.15a.8.8 0 0 0-.34.34c-.1.2-.15.4-.15 1.1v17.91c0 .7.04.9.15 1.1a.8.8 0 0 0 .34.34c.2.12.41.15 1.1.15H32.4c.7 0 .9-.03 1.1-.15a.8.8 0 0 0 .34-.33c.11-.21.15-.41.15-1.1V10.22c0-.7-.04-.9-.15-1.1a.8.8 0 0 0-.34-.34c-.2-.11-.4-.15-1.1-.15h-2.51a6.13 6.13 0 0 1-3.35-1 7.4 7.4 0 0 1-3.3-4.92.57.57 0 0 0-.55-.45h-8.9zm4.34 8.42a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17zm0 2.27a6.23 6.23 0 1 0 0 12.46 6.23 6.23 0 0 0 0-12.46zm12.22-2.27a1.6 1.6 0 1 1 0 3.19 1.6 1.6 0 0 1 0-3.19z">
+                                </path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+<!-- ...Video Upload Field ... -->
+
+<div class="form-group form-fileupload-field clearfix zc-Video-group"> 
+    <label class="form-label zc-dem-clearfix zc-Video-label zc_video_label">
+        <span class="zc-label-text">Video</span>
+    </label>
+    <div class="form-field clearfix mediumSizeLive "><input name="Video" type="hidden">
+        <div class="local-fileupload zc-video-fld zc-uploadComponents clearfix">
+            <div class="zc-file-upload single">
+                <div class="filedrag">
+                    <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div><input
+                        id="zc-Video_FILE" class="textfield zc-elem-focus-field" name="uploadFile" duration="30"
+                        accept="video/*" type="file">
+                </div>
+                <ul class="filename"></ul>
+            </div>
+            <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+                <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field">
+                    <i class="zc-li-outline arrows-4-undo-29"></i>
+                </span>
+                    <span tabindex="-1"
+                class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            width="15" height="32" viewBox="0 0 37 32">
+                            <path
+                                d="M35.43 18.29c.63 0 1.14.5 1.14 1.14V24a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8v-4.57a1.14 1.14 0 0 1 2.29 0V24A5.71 5.71 0 0 0 8 29.71h20.57A5.71 5.71 0 0 0 34.3 24v-4.57c0-.63.5-1.14 1.14-1.14zM18.29 0h.02l.15.01-.17-.01a1.2 1.2 0 0 1 .53.13 1.07 1.07 0 0 1 .25.18l.02.02 8 8a1.14 1.14 0 0 1-1.61 1.62L19.43 3.9v16.8a1.14 1.14 0 0 1-2.29 0V3.9L11.1 9.95c-.4.4-1 .44-1.45.13l-.16-.13a1.14 1.14 0 0 1 0-1.61L17.5.3l.09-.08-.12.1.2-.15.08-.05a1 1 0 0 1 .29-.1 1.45 1.45 0 0 1 .21-.03h.03z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span tabindex="0" class="calcIcon videoIcon zc-elem-focus-field"
+                    title="Camera">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="32" viewBox="0 0 42 32">
+                            <path
+                                d="M17.61 1.23c3.19 0 4.7.3 6.27 1.13a7.93 7.93 0 0 1 3.3 3.3c.77 1.44 1.07 2.83 1.12 5.52l6.5-4.55a3.7 3.7 0 0 1 5.81 3.02v12.7a3.7 3.7 0 0 1-5.8 3.02l-6.5-4.55c-.06 2.69-.36 4.08-1.14 5.52a7.93 7.93 0 0 1-3.3 3.3c-1.56.84-3.07 1.13-6.26 1.13h-5.68c-3.19 0-4.7-.3-6.27-1.13a7.93 7.93 0 0 1-3.3-3.3c-.84-1.57-1.13-3.08-1.13-6.27v-8.14c0-3.19.3-4.7 1.13-6.27a7.93 7.93 0 0 1 3.3-3.3c1.57-.84 3.08-1.13 6.27-1.13h5.68zm0 2.46h-5.68c-2.82 0-3.95.22-5.11.84a5.48 5.48 0 0 0-2.29 2.29c-.62 1.17-.84 2.3-.84 5.1v8.15c0 2.82.22 3.95.84 5.11.53.99 1.3 1.76 2.29 2.29 1.16.62 2.3.84 5.1.84h5.69c2.81 0 3.94-.22 5.1-.84a5.48 5.48 0 0 0 2.3-2.29c.62-1.16.84-2.3.84-5.1v-8.15c0-2.82-.22-3.94-.85-5.11a5.48 5.48 0 0 0-2.28-2.29c-1.17-.62-2.3-.84-5.11-.84zm19.31 4.73c-.25 0-.5.08-.7.22l-7.91 5.53v3.65l7.9 5.54a1.23 1.23 0 0 0 1.94-1.01V9.65c0-.68-.55-1.23-1.23-1.23z">
+                            </path>
+                        </svg>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- ...Currency Field ... -->
+
+<div class="form-group clearfix zc-Currency-group"> 
+    <label class="form-label zc-dem-clearfix zc-Currency-label zc_currency_label">
+        <span class="zc-label-text">Currency</span>
+    </label>
+    <div class="form-field clearfix zc-email-field mediumSizeLive">
+        <input class="form-control zc_numberfield zc_currency_field zc-Currency" name="Currency" type="text"
+        currencyscriptval="INR" placeholder="##,##,###.##">
+    </div>
+</div>
+
+
+
+<!-- ...Decimal Field ... -->
+
+<div class="form-group clearfix zc-Decimal-group"> 
+    <label
+        class="form-label zc-dem-clearfix zc-Decimal-label zc_number_label"> <span class="zc-label-text">Decimal
+        </span> 
+    </label>
+    <div class="form-field clearfix mediumSizeLive "> 
+        <input class="form-control zc_numberfield zc_number_field zc-Decimal" name="Decimal" type="text" placeholder="#######.##">
+    </div>
+</div>
+
+
+
+
+<!-- ...Number Field ... -->
+
+<div class="form-group clearfix zc-Number-group"> 
+    <label class="form-label zc-dem-clearfix zc-Number-label zc_number_label"> 
+        <span class="zc-label-text">Number</span> 
+    </label>
+    <div class="form-field clearfix mediumSizeLive "> 
+        <input id="zc-Number" class="form-control zc_numberfield zc_number_field zc-Number" name="Number" type="text" placeholder="#######">
+    </div>
+</div>
+
+
+
+
+<!-- ...URL Field ... -->
+
+<div class="form-group clearfix zc-Url-group"> 
+    <label class="form-label zc-dem-clearfix zc-Url-label zc_url_label"> 
+        <span class="zc-label-text">Url</span>
+    </label>
+    <div class="form-field clearfix mediumSizeLive ">
+        <div class="urlWrapper" type="url" name="Url"> 
+            <input class="form-control zc-elem-focus-field zc-Url" name="Url.url" placeholder="https://" type="text"> 
+            <input class="form-control zc-elem-focus-field zc-Url urlOpts" name="Url.link" placeholder="Link Name" type="text" style="display: none;">
+        </div>
+    </div>
+</div>
+
+    <!-- Decision box -->
+    <div class="form-group clearfix zc-Decision_box-group zc-decisionbox-field-group">
+        <span class="zc-label-text">Decision box</span>
+        <div class="decision-box-field form-field clearfix added-placeholder">
+            <input id="ZC_WIS3E4_Decision_box_1" elname="Decision_box_1" class="customCheckbox zc_decisionbox"
+                name="Decision_box" type="checkbox">
+            <label for="ZC_WIS3E4_Decision_box_1" elname="Decision_box_1" class="zc_decision_box_label"></label>
+        </div>
+        <label for="ZC_WIS3E4_Decision_box_1" elname="Decision_box_1" class="form-label decision-box-label">Send email
+            notifications for this Event.</label>
+    </div>
+    <!-- Dropdown starts-->
+    <div class="form-group clearfix zc-Dropdown-group">
+        <label class="form-label zc-dem-clearfix zc-Dropdown-label zc_picklist_label">
+            <span class="zc-label-text">Drop Down</span>
+        </label>
+        <div class="form-field clearfix searchable-lookup mediumSizeLive zc-Default">
+            <div class="select2-container zc-Dropdown form-choice-field zc_picklist_field" id="s2id_autogen7">
+                <a href="javascript:void(0)" class="select2-choice select2-default" tabindex="-1">
+                    <span class="select2-chosen" id="select2-chosen-8">-Select-</span>
+                    <abbr class="select2-search-choice-close"></abbr>
+                    <span class="select2-arrow" role="presentation">
+                        <b role="presentation"></b>
+                    </span>
+                </a>
+                <label for="s2id_autogen8" class="select2-offscreen"></label>
+                <input class="select2-focusser select2-offscreen zc-elem-focus-field" type="text" aria-haspopup="true"
+                    role="button" aria-labelledby="select2-chosen-8" id="s2id_autogen8" name="zc-sel2-foc-Dropdown"
+                    autocomplete="new-zc-sel2-foc-Dropdown" />
+            </div>
+            <input class="zc-Dropdown form-choice-field zc_picklist_field" name="Dropdown" type="text" tabindex="-1"
+                title="" style="display: none" />
+        </div>
+    </div>
+    <div class="select2-drop select2-display-none Dropdown-switch-search select2-with-searchbox select2-drop-active"
+        id="select2-drop">
+        <div class="select2-search select2-search-hidden select2-offscreen">
+            <label for="s2id_autogen5_search" class="select2-offscreen"></label>
+            <input type="text" autocomplete="new-zc-sel2-inp-Dropdown" autocorrect="off" autocapitalize="off"
+                spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list"
+                aria-owns="select2-results-5" id="s2id_autogen5_search" placeholder="" name="zc-sel2-inp-Dropdown"
+                aria-activedescendant="select2-result-label-8" />
+        </div>
+        <ul class="select2-results" role="listbox" id="select2-results-5">
+            <li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation">
+                <div class="select2-result-label" id="select2-result-label-6" role="option">
+                    <span class="select2-match"></span>Choice 1
+                </div>
+            </li>
+            <li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation">
+                <div class="select2-result-label" id="select2-result-label-7" role="option">
+                    <span class="select2-match"></span>Choice 2
+                </div>
+            </li>
+            <li class="select2-results-dept-0 select2-result select2-result-selectable select2-highlighted"
+                role="presentation">
+                <div class="select2-result-label" id="select2-result-label-8" role="option">
+                    <span class="select2-match"></span>Choice 3
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- Dropdown ends-->
+
+<!-- ...Slider ... -->
+
+<div role="region" aria-label="slider" aria-describedby="sliderDescription" class="zc-slider-right zc-slider-with-header zc-slider-with-footer zc-slider-admin main " style="">
+    <div role="banner" aria-label="slider header" class="zc-slider-header clearfix">
+        <div class="flLeft">
+            <span class="zc-title">Connections</span>
+        </div>
+        <ul class="flRight clearfix">
+            <li id="authorizationCloseIcon" class="zc-slider-close">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.9404 1L0.913086 12" stroke="#71718C" stroke-linecap="round"/>
+                    <path d="M0.913086 1L11.9404 12" stroke="#71718C" stroke-linecap="round"/>
+                </svg>
+            </li>
+        </ul>
+    </div>
+    <div id="zcintegsliderContent" role="region" aria-label="slider content" class="zc-slider-content" style="overflow: hidden;"></div>
+    <div id="zcintegsliderFooter" role="region" aria-label="slider footer" class="zc-slider-footer"></div>
+</div>
+
+
+
+
+<!-- ...Card ... -->
+
+<div style="background: #f3f4f8; padding: 20px; margin-top: 30px;">
+    <p>Card</p>
+    <div class="record-container">
+        <div class="record record recordlive " >
+          <div class="recordTab">
+            <div class="gridpad">
+              <div class="gridTitle"> Creator </div>
+              <div class="gridCont vT-Spacer">Kodaikanal</div>
+            </div>
+          </div>
+          <div elname="zc-dem-card-more" class="zc-dem-card-more">
+            <a href="javascript:;" class="clearfix">
+              <i class="zc-dem-card-more-dot">
+                <span></span>
+                <span></span>
+                <span></span>
+              </i>
+            </a>
+          </div>
+        </div>
+        <div class="record record recordlive " >
+          <div class="recordTab">
+            <div class="gridpad">
+              <div class="gridTitle"> Creator </div>
+              <div class="gridCont vT-Spacer">Kodaikanal</div>
+            </div>
+          </div>
+          <div elname="zc-dem-card-more" class="zc-dem-card-more">
+            <a href="javascript:;" class="clearfix">
+              <i class="zc-dem-card-more-dot">
+                <span></span>
+                <span></span>
+                <span></span>
+              </i>
+            </a>
+          </div>
+        </div>
+        <div class="record record recordlive " >
+          <div class="recordTab">
+            <div class="gridpad">
+              <div class="gridTitle"> Creator </div>
+              <div class="gridCont vT-Spacer">Kodaikanal</div>
+            </div>
+          </div>
+          <div elname="zc-dem-card-more" class="zc-dem-card-more">
+            <a href="javascript:;" class="clearfix">
+              <i class="zc-dem-card-more-dot">
+                <span></span>
+                <span></span>
+                <span></span>
+              </i>
+            </a>
+          </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

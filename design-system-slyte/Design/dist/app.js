@@ -1,0 +1,37 @@
+import { LyteUiComponentAddon } from "@zoho/lyte-ui-component/addon.js";
+import { Lyte } from "@slyte/core";
+import  {DesignDb} from "./data-store/db";
+import  {DesignComponentRegistry}  from "./components/component";
+import  {DesignRouter}  from "./router/router";
+
+class DesignApp extends Lyte{
+    lookups(){
+        return [
+            LyteUiComponentAddon,
+            {component : DesignComponentRegistry},
+            {router : DesignRouter},
+            {db : DesignDb}
+        ];
+    }
+}
+export {DesignApp};
+
+
+/* No import/export here: lyte-cli componentCopy uses espree without sourceType:module. */
+Lyte.Component.register("welcome-comp", {
+_template:"<template tag-name=\"welcome-comp\"> <h1>Available features of SLYTE</h1> <ul> <template items=\"{{features}}\" item=\"item\" index=\"index\" is=\"for\"><li> <a href=\"{{item.url}}\" target=\"_blank\">{{item.module}}</a> </li></template> <lyte-button> <template is=\"registerYield\" yield-name=\"text\"> Default </template> </lyte-button> <lyte-button lt-prop-appearance=\"primary zc-col-common\"> <template is=\"registerYield\" yield-name=\"text\"> Primary </template> </lyte-button> <lyte-dropdown class=\"zc-custom-dropdown\" lt-prop-selected=\"supplier\"> <template is=\"registerYield\" yield-name=\"yield\"> <lyte-drop-box> <lyte-drop-body> <lyte-drop-item data-value=\"prospect\">Prospects Found</lyte-drop-item> <lyte-drop-item data-value=\"supplier\">Suppliers Found</lyte-drop-item> <lyte-drop-item data-value=\"vendor\">Vendors Found</lyte-drop-item> <lyte-drop-item data-value=\"influencer\">Influencers Found</lyte-drop-item> </lyte-drop-body> </lyte-drop-box> </template> </lyte-dropdown> </ul> <div style=\"display:none\"> <lyte-accordion></lyte-accordion> <lyte-badge></lyte-badge> <lyte-breadcrumb></lyte-breadcrumb> <lyte-button-group></lyte-button-group> <lyte-carousel></lyte-carousel> <lyte-code-snippet></lyte-code-snippet> <lyte-daterangepicker></lyte-daterangepicker> <lyte-drawer></lyte-drawer> <lyte-fileupload></lyte-fileupload> <lyte-kanbanview></lyte-kanbanview> <lyte-nav></lyte-nav> <lyte-navigator></lyte-navigator> <lyte-progressbar></lyte-progressbar> <lyte-rating></lyte-rating> <lyte-search></lyte-search> <lyte-signature></lyte-signature> <lyte-slider></lyte-slider> <lyte-tabs></lyte-tabs> <lyte-table></lyte-table> <lyte-text></lyte-text> <lyte-tree></lyte-tree> <lyte-video></lyte-video> <lyte-voicenote></lyte-voicenote> <lyte-alert></lyte-alert> <lyte-banner></lyte-banner> <lyte-calendar></lyte-calendar> <lyte-colorbox></lyte-colorbox> <lyte-combobox></lyte-combobox> <lyte-dateselect></lyte-dateselect> <lyte-loader></lyte-loader> <lyte-menu></lyte-menu> <lyte-messagebox></lyte-messagebox> <lyte-modal></lyte-modal> <lyte-multi-dropdown></lyte-multi-dropdown> <lyte-popover></lyte-popover> <lyte-tooltip></lyte-tooltip> <lyte-checkbox></lyte-checkbox> <lyte-checkbox-group></lyte-checkbox-group> <lyte-datetime-input></lyte-datetime-input> <lyte-input></lyte-input> <lyte-number></lyte-number> <lyte-radiobutton></lyte-radiobutton> <lyte-radiobutton-group></lyte-radiobutton-group> <lyte-avatar-navigator></lyte-avatar-navigator> </div> </template>\n<style>.zc-custom-dropdown lyte-drop-button {\n    border-radius: 6px;\n    padding: 10px 25px 10px 11px;\n    min-width: 240px;\n}\n.zc-custom-dropdown lyte-drop-button{\n    font-size: 12px;\n}\nlyte-dropdown lyte-icon.dropdown{\n    background-position: -14px -2px;\n    width: 9px;\n    height: 5px;\n}\nlyte-drop-box.lyteDropdownDown{border-radius: 6px;margin-top: 4px;box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);}\n\nlyte-drop-item {\n    padding: 11px 25px 11px 10px;\n    border-radius: 6px;\n    font-size: 12px;\n}\n\nlyte-drop-body {\n    padding: 10px;\n}\n\nlyte-drop-item[selected=\"true\"]::before {\n    left: auto;\n    right: 10px;\n}\n\n.lyteDropdownSelection {\n    background: #f4f5ff;\n}\n.lyteDropdownSelection:hover{\n    background: #f7f8ff;\n}\n</style>",
+_dynamicNodes : [{"type":"attr","position":[3,1]},{"type":"for","position":[3,1],"dynamicNodes":[{"type":"attr","position":[0,1]},{"type":"text","position":[0,1,0]}]},{"type":"registerYield","position":[3,3,1],"dynamicNodes":[]},{"type":"componentDynamic","position":[3,3]},{"type":"registerYield","position":[3,5,1],"dynamicNodes":[]},{"type":"componentDynamic","position":[3,5]},{"type":"registerYield","position":[3,7,1],"dynamicNodes":[{"type":"componentDynamic","position":[1,1,1]},{"type":"componentDynamic","position":[1,1,3]},{"type":"componentDynamic","position":[1,1,5]},{"type":"componentDynamic","position":[1,1,7]},{"type":"componentDynamic","position":[1,1]},{"type":"componentDynamic","position":[1]}]},{"type":"componentDynamic","position":[3,7]},{"type":"componentDynamic","position":[5,1]},{"type":"componentDynamic","position":[5,3]},{"type":"componentDynamic","position":[5,5]},{"type":"componentDynamic","position":[5,7]},{"type":"componentDynamic","position":[5,9]},{"type":"componentDynamic","position":[5,11]},{"type":"componentDynamic","position":[5,13]},{"type":"componentDynamic","position":[5,15]},{"type":"componentDynamic","position":[5,17]},{"type":"componentDynamic","position":[5,19]},{"type":"componentDynamic","position":[5,21]},{"type":"componentDynamic","position":[5,23]},{"type":"componentDynamic","position":[5,25]},{"type":"componentDynamic","position":[5,27]},{"type":"componentDynamic","position":[5,29]},{"type":"componentDynamic","position":[5,31]},{"type":"componentDynamic","position":[5,33]},{"type":"componentDynamic","position":[5,35]},{"type":"componentDynamic","position":[5,37]},{"type":"componentDynamic","position":[5,39]},{"type":"componentDynamic","position":[5,41]},{"type":"componentDynamic","position":[5,43]},{"type":"componentDynamic","position":[5,45]},{"type":"componentDynamic","position":[5,47]},{"type":"componentDynamic","position":[5,49]},{"type":"componentDynamic","position":[5,51]},{"type":"componentDynamic","position":[5,53]},{"type":"componentDynamic","position":[5,55]},{"type":"componentDynamic","position":[5,57]},{"type":"componentDynamic","position":[5,59]},{"type":"componentDynamic","position":[5,61]},{"type":"componentDynamic","position":[5,63]},{"type":"componentDynamic","position":[5,65]},{"type":"componentDynamic","position":[5,67]},{"type":"componentDynamic","position":[5,69]},{"type":"componentDynamic","position":[5,71]},{"type":"componentDynamic","position":[5,73]},{"type":"componentDynamic","position":[5,75]},{"type":"componentDynamic","position":[5,77]},{"type":"componentDynamic","position":[5,79]},{"type":"componentDynamic","position":[5,81]},{"type":"componentDynamic","position":[5,83]},{"type":"componentDynamic","position":[5,85]},{"type":"componentDynamic","position":[5,87]}],
+_observedAttributes :["features"],
+	data: function () {
+		return {
+			features: Lyte.attr("array", {
+				default: [
+					{ module: "Router", url: "http://lyte/2.0/doc/route/introduction" },
+					{ module: "Components", url: "http://lyte/2.0/doc/components/introduction" },
+					{ module: "Data", url: "http://lyte/2.0/doc/data/introduction" },
+					{ module: "CLI", url: "http://lyte/2.0/doc/cli/introduction" }
+				]
+			})
+		};
+	}
+});

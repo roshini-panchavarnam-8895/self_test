@@ -157,7 +157,7 @@
         /* ==================== SIDEBAR ==================== */
         .sidebar {
             width: 200px;
-            background: var(--brand-gradient-vibrant);
+            background: #072b89;
             z-index: 100;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 8px 0 40px rgba(0, 0, 0, 0.15);
@@ -3669,8 +3669,8 @@ lyte-drop-box.lyteDropdownUp{
 
 /* Variant grid container */
 .variant-grid-container {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex !important;
+    flex-direction: column;
     gap: 20px;
 }
 

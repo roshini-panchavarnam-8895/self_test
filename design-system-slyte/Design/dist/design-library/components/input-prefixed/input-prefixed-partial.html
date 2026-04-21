@@ -1,0 +1,499 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-i-cursor"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Input Prefixed</h1>
+                            <p class="detail-description">Text input with a prefix addon (left-side element) using <code>&lt;lyte-input&gt;</code> Slyte DOM with a custom prefix wrapper. Supports text, icon, and dropdown prefixes.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 3 Variants × 3 Sizes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchInputPrefixedStyleTab('text-prefix', this)">Text Prefix</button>
+                        <button class="btn-style-tab" onclick="switchInputPrefixedStyleTab('icon-prefix', this)">Icon Prefix</button>
+                        <button class="btn-style-tab" onclick="switchInputPrefixedStyleTab('dropdown-prefix', this)">Dropdown Prefix</button>
+                        <button class="btn-style-tab" onclick="switchInputPrefixedStyleTab('states', this)">States</button>
+                        <button class="btn-style-tab" onclick="switchInputPrefixedStyleTab('sizes', this)">Sizes</button>
+                        <button class="btn-style-tab" onclick="switchInputPrefixedStyleTab('disabled', this)">Disabled</button>
+                    </div>
+
+                    <div id="input-prefixed-component-variants">
+
+                        <!-- ==== TEXT PREFIX ==== -->
+                        <div class="btn-variant-group" data-style="text-prefix">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Text Prefix — Left-side text addon</span><button class="btn-variant-card__toggle" onclick="toggleInputPrefixedCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">URL prefix</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Enter URL" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Currency prefix</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix">$</span>
+                                            <lyte-input lt-prop-placeholder="Amount" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Phone prefix</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix">+1</span>
+                                            <lyte-input lt-prop-placeholder="Phone number" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputPrefixedCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputPrefixedCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Input with Text Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Enter URL" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Currency Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix"&gt;$&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Amount" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Phone Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix"&gt;+1&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Phone number" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-affixed {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+  border-radius: var(--zc-radius-r, 6px);
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.zc-input-prefix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F8F8F9);
+  border-right: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+  font-size: var(--zc-p2-font-size, 14px);
+  color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+  white-space: nowrap;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ICON PREFIX ==== -->
+                        <div class="btn-variant-group" data-style="icon-prefix" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Icon Prefix — Left-side icon addon</span><button class="btn-variant-card__toggle" onclick="toggleInputPrefixedCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Email icon</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix zc-input-prefix-icon"><i class="fas fa-envelope"></i></span>
+                                            <lyte-input lt-prop-placeholder="Email address" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">User icon</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix zc-input-prefix-icon"><i class="fas fa-user"></i></span>
+                                            <lyte-input lt-prop-placeholder="Username" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Lock icon</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix zc-input-prefix-icon"><i class="fas fa-lock"></i></span>
+                                            <lyte-input lt-prop-placeholder="Password" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputPrefixedCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputPrefixedCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Input with Icon Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-icon"&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Email address" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- User Icon Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-icon"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Username" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Lock Icon Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-icon"&gt;&lt;i class="fas fa-lock"&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Password" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-prefix-icon {
+  padding: 0 10px;
+  font-size: 14px;
+  color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+  cursor: pointer;
+}
+
+.zc-input-prefix-icon:hover {
+  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DROPDOWN PREFIX ==== -->
+                        <div class="btn-variant-group" data-style="dropdown-prefix" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Dropdown Prefix — Left-side dropdown addon</span><button class="btn-variant-card__toggle" onclick="toggleInputPrefixedCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Country code</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix zc-input-prefix-dropdown">
+                                                <select class="zc-input-prefix-select">
+                                                    <option>+1</option>
+                                                    <option>+44</option>
+                                                    <option>+91</option>
+                                                </select>
+                                            </span>
+                                            <lyte-input lt-prop-placeholder="Phone number" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Protocol selector</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix zc-input-prefix-dropdown">
+                                                <select class="zc-input-prefix-select">
+                                                    <option>https://</option>
+                                                    <option>http://</option>
+                                                    <option>ftp://</option>
+                                                </select>
+                                            </span>
+                                            <lyte-input lt-prop-placeholder="Domain name" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Currency selector</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix zc-input-prefix-dropdown">
+                                                <select class="zc-input-prefix-select">
+                                                    <option>USD</option>
+                                                    <option>EUR</option>
+                                                    <option>GBP</option>
+                                                </select>
+                                            </span>
+                                            <lyte-input lt-prop-placeholder="Amount" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputPrefixedCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputPrefixedCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Input with Dropdown Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-dropdown"&gt;
+        &lt;select class="zc-input-prefix-select"&gt;
+            &lt;option&gt;+1&lt;/option&gt;
+            &lt;option&gt;+44&lt;/option&gt;
+            &lt;option&gt;+91&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Phone number" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Protocol Selector Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-dropdown"&gt;
+        &lt;select class="zc-input-prefix-select"&gt;
+            &lt;option&gt;https://&lt;/option&gt;
+            &lt;option&gt;http://&lt;/option&gt;
+            &lt;option&gt;ftp://&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Domain name" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Currency Selector Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-dropdown"&gt;
+        &lt;select class="zc-input-prefix-select"&gt;
+            &lt;option&gt;USD&lt;/option&gt;
+            &lt;option&gt;EUR&lt;/option&gt;
+            &lt;option&gt;GBP&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Amount" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-prefix-dropdown {
+  padding: 0;
+}
+
+.zc-input-prefix-select {
+  height: 100%;
+  padding: 0 8px 0 12px;
+  border: none;
+  background: transparent;
+  font-family: 'ZohoPuvi', sans-serif;
+  font-size: var(--zc-p2-font-size, 14px);
+  color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+  cursor: pointer;
+  outline: none;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== STATES ==== -->
+                        <div class="btn-variant-group" data-style="states" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">States — Focus, Filled, Error, Success</span><button class="btn-variant-card__toggle" onclick="toggleInputPrefixedCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Default state" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Focus</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-focus">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Focused input" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Filled</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Enter URL" lt-prop-value="example.com" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Error</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-error">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Invalid URL" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Success</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-success">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Valid URL" lt-prop-value="mysite.com" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputPrefixedCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputPrefixedCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Default --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Default state" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Focus --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-focus"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Focused input" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Error --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-error"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Invalid URL" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Success --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-success"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Valid URL" lt-prop-value="mysite.com" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Focus */
+.zc-input-affixed-focus,
+.zc-input-affixed:focus-within {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05),
+              0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}
+
+/* Error */
+.zc-input-affixed-error {
+  border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+  background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
+}
+
+.zc-input-affixed-error .zc-input-prefix {
+  border-right-color: var(--zc-color-error-border-error-border-default, #CC1914);
+  background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
+}
+
+/* Success */
+.zc-input-affixed-success {
+  border-color: var(--zc-color-success-border-success-border-default, #078841);
+}
+
+.zc-input-affixed-success .zc-input-prefix {
+  border-right-color: var(--zc-color-success-border-success-border-default, #078841);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SIZES ==== -->
+                        <div class="btn-variant-group" data-style="sizes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Sizes — SM, MD (Base), LG</span><button class="btn-variant-card__toggle" onclick="toggleInputPrefixedCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">SM (28px)</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-sm">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Small input" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">MD — Base (36px)</span>
+                                        <div class="zc-input-affixed zc-input-prefixed">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Medium input" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">LG (44px)</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-lg">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Large input" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputPrefixedCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputPrefixedCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Small (SM) --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-sm"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Small input" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Medium / Base (MD) — default, no size class needed --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Medium input" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Large (LG) --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-lg"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Large input" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* SM — 28px height */
+.zc-input-affixed-sm {
+  height: 28px;
+}
+.zc-input-affixed-sm .zc-input-prefix {
+  padding: 0 8px;
+  font-size: var(--zc-p3-font-size, 12px);
+}
+
+/* MD — 36px (default, no class needed) */
+
+/* LG — 44px height */
+.zc-input-affixed-lg {
+  height: 44px;
+}
+.zc-input-affixed-lg .zc-input-prefix {
+  padding: 0 16px;
+  font-size: var(--zc-p2-font-size, 14px);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive</span><button class="btn-variant-card__toggle" onclick="toggleInputPrefixedCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Text prefix disabled</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled">
+                                            <span class="zc-input-prefix">https://</span>
+                                            <lyte-input lt-prop-placeholder="Disabled" lt-prop-disabled="true" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Icon prefix disabled</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled">
+                                            <span class="zc-input-prefix zc-input-prefix-icon"><i class="fas fa-envelope"></i></span>
+                                            <lyte-input lt-prop-placeholder="Disabled" lt-prop-disabled="true" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Dropdown prefix disabled</span>
+                                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled">
+                                            <span class="zc-input-prefix zc-input-prefix-dropdown">
+                                                <select class="zc-input-prefix-select" disabled>
+                                                    <option>+1</option>
+                                                    <option>+44</option>
+                                                </select>
+                                            </span>
+                                            <lyte-input lt-prop-placeholder="Disabled" lt-prop-disabled="true" class="zc-input"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputPrefixedCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputPrefixedCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled Text Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled"&gt;
+    &lt;span class="zc-input-prefix"&gt;https://&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Disabled" lt-prop-disabled="true" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Disabled Icon Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-icon"&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Disabled" lt-prop-disabled="true" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;
+
+&lt;!-- Disabled Dropdown Prefix --&gt;
+&lt;div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled"&gt;
+    &lt;span class="zc-input-prefix zc-input-prefix-dropdown"&gt;
+        &lt;select class="zc-input-prefix-select" disabled&gt;
+            &lt;option&gt;+1&lt;/option&gt;
+            &lt;option&gt;+44&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;lyte-input lt-prop-placeholder="Disabled" lt-prop-disabled="true" class="zc-input"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputPrefixedCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-input-affixed-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
+  border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+}
+
+.zc-input-affixed-disabled .zc-input-prefix {
+  background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
+}
+
+.zc-input-affixed-disabled .zc-input-prefix-select {
+  opacity: 0.6;
+  cursor: not-allowed;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

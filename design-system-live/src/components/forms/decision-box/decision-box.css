@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap");
 :root {
   --zc-font-family: "Lato", sans-serif;
-  --zc-font-size: 14.5px;
+  --zc-font-size: 14px;
   --zc-color-text: rgb(18, 19, 43);
   --zc-color-label: rgb(51, 51, 51);
   --zc-color-border: rgb(203, 203, 220);
@@ -133,7 +133,7 @@ input.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
 }
@@ -245,15 +245,12 @@ textarea.form-control:focus {
   margin-right: 0;
 }
 .zc-decisionbox-field-group .decision-box-field {
-  float: none;
+  float: left;
   margin-left: 0;
 }
 
 .decision-box-field.form-field {
-  display: flex;
-  align-items: center;
   position: relative;
-  gap: 0;
 }
 
 .zc_decisionbox {
@@ -267,15 +264,18 @@ textarea.form-control:focus {
 
 .zc_decision_box_label {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
+  width: 15px;
+  height: 15px;
+  min-width: 15px;
+  margin-right: 10px;
   border: 1px solid var(--zc-color-border);
   border-radius: 4px;
   background: var(--zc-color-bg, #fff);
   box-sizing: border-box;
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  top: 2px;
+  transition: .2s;
 }
 
 .zc_decisionbox:checked + .zc_decision_box_label {
@@ -285,12 +285,12 @@ textarea.form-control:focus {
 .zc_decisionbox:checked + .zc_decision_box_label::after {
   content: "";
   position: absolute;
-  left: 6px;
-  top: 2px;
-  width: 6px;
-  height: 11px;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
   border: solid #fff;
-  border-width: 0 2px 2px 0;
+  border-width: 0 1.5px 1.5px 0;
   transform: rotate(45deg);
 }
 
@@ -304,16 +304,21 @@ textarea.form-control:focus {
   position: relative;
   width: auto;
   max-width: 400px;
-  margin-left: 10px;
-  padding-right: 36px;
-  color: var(--zc-color-text);
+  margin-left: 25px;
+  padding: 0;
+  color: #12132b;
   font-family: var(--zc-font-family);
-  font-size: var(--zc-font-size);
+  font-size: 14px;
   font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.1px;
+  line-height: 1.5;
   cursor: pointer;
   word-break: break-word;
+}
+
+.zc_decision_box_label:hover,
+.zc_decision_box_label:focus {
+  border: 1px solid var(--zc-color-primary);
+  box-shadow: 0 0 0 0.5px var(--zc-color-primary);
 }
 
 .zc-decisionbox-field-group > .zc-help-txt,

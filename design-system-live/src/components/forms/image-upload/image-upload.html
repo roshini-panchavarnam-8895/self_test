@@ -10,73 +10,94 @@
 <form class="form-table label-left">
 
     <!-- With help text -->
-    <div class="form-group clearfix form-imageupload-field">
-      <label class="form-label">
-        <span class="zc-label-text">Image upload</span>
+    <div class="form-group clearfix form-image-field imageopetion zc-Image-group">
+      <label for="zc-Image" id="zc-Image-arialabel" class="form-label zc-dem-clearfix zc-Image-label zc_image_label">
+        <span class="zc-label-text">Image</span>
       </label>
-      <div class="form-field mediumSizeLive clearfix">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive zc-multi-upload" name="Image" type="image">
+        <div class="imageComponents zc-uploadComponents clearfix">
+          <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select Image</div>
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select Image</div>
-              <input class="zc-file-input" type="file" name="uploadFile" accept="image/*" title="" aria-label="Upload file">
+              <div class="zc-image-local">
+                <input id="zc-Image_FILE" class="textfield zc-elem-focus-field" tagfor="formComp" name="uploadFile" accept="image/*" type="file" title="" aria-labelledby="zc-Image-arialabel" multiple="">
+              </div>
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-image-link" style="display:none">
+            <input name="Image.source" type="text" placeholder="https://" class="form-control textfield image-source zc-elem-focus-field">
+            <ul class="filename hide" role="button" aria-label="clear"><li><i role="button" class="zc-li-outline ui-1-simple-remove zc-elem-focus-field" tabindex="0" aria-label="Remove"></i></li></ul>
+          </div>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" aria-label="Image Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="Image Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon linkIcon zc-elem-focus-field" title="Link" role="button" aria-label="Image Link"><i class="zc-li-outline ui-outline-2_link-72"></i></span>
+            <span tabindex="0" class="calcIcon cameraIcon zc-elem-focus-field" title="Camera" role="button" aria-label="Image Camera"><i class="zc-li-outline media-1-camera-19"></i></span>
           </div>
         </div>
-        <div id="zc-image-upload-help" class="zc-help-txt">Help text goes here</div>
+        <div id="zc-Image-helpText" class="zc-help-txt">Help text goes here</div>
       </div>
     </div>
 
     <!-- Error state -->
-    <div class="form-group clearfix form-imageupload-field">
-      <label class="form-label">
-        <span class="zc-label-text">Image upload<span class="fieldMandate" aria-hidden="true">*</span></span>
+    <div class="form-group clearfix form-image-field imageopetion zc-Image_Err-group">
+      <label for="zc-Image_Err" id="zc-Image_Err-arialabel" class="form-label zc-dem-clearfix zc-Image_Err-label zc_image_label">
+        <span class="zc-label-text">Image<span class="fieldMandate" aria-hidden="true">*</span></span>
       </label>
-      <div class="form-field mediumSizeLive clearfix validationError">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive zc-multi-upload validationError" name="Image_Err" type="image">
+        <div class="imageComponents zc-uploadComponents clearfix">
+          <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select Image</div>
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select Image</div>
-              <input class="zc-file-input" type="file" name="uploadFile_Err" accept="image/*" title="" aria-label="Upload file">
+              <div class="zc-image-local">
+                <input id="zc-Image_Err_FILE" class="textfield zc-elem-focus-field" tagfor="formComp" name="uploadFile" accept="image/*" type="file" title="" aria-labelledby="zc-Image_Err-arialabel" multiple="">
+              </div>
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-image-link" style="display:none">
+            <input name="Image_Err.source" type="text" placeholder="https://" class="form-control textfield image-source zc-elem-focus-field">
+            <ul class="filename hide" role="button" aria-label="clear"><li><i role="button" class="zc-li-outline ui-1-simple-remove zc-elem-focus-field" tabindex="0" aria-label="Remove"></i></li></ul>
+          </div>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" aria-label="Image Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="Image Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon linkIcon zc-elem-focus-field" title="Link" role="button" aria-label="Image Link"><i class="zc-li-outline ui-outline-2_link-72"></i></span>
+            <span tabindex="0" class="calcIcon cameraIcon zc-elem-focus-field" title="Camera" role="button" aria-label="Image Camera"><i class="zc-li-outline media-1-camera-19"></i></span>
           </div>
         </div>
-        <div id="zc-image-upload-error" class="fieldErrorMsg" role="alert">
+        <div id="zc-Image_Err-errorMsg" class="fieldErrorMsg" role="alert">
           <span>This field is mandatory. Upload a file.</span>
         </div>
       </div>
     </div>
 
     <!-- Disabled state -->
-    <div class="form-group clearfix form-imageupload-field zc-field-disabled">
-      <label class="form-label">
-        <span class="zc-label-text">Image upload</span>
+    <div class="form-group clearfix form-image-field imageopetion zc-Image_Dis-group zc-field-disabled">
+      <label for="zc-Image_Dis" id="zc-Image_Dis-arialabel" class="form-label zc-dem-clearfix zc-Image_Dis-label zc_image_label">
+        <span class="zc-label-text">Image</span>
       </label>
-      <div class="form-field mediumSizeLive clearfix">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive zc-multi-upload" name="Image_Dis" type="image">
+        <div class="imageComponents zc-uploadComponents clearfix">
+          <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select Image</div>
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select Image</div>
-              <input class="zc-file-input" type="file" name="uploadFile_Dis" accept="image/*" title="" aria-label="Upload file">
+              <div class="zc-image-local">
+                <input id="zc-Image_Dis_FILE" class="textfield zc-elem-focus-field" tagfor="formComp" name="uploadFile" accept="image/*" type="file" title="" aria-labelledby="zc-Image_Dis-arialabel" multiple="" disabled>
+              </div>
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-image-link" style="display:none">
+            <input name="Image_Dis.source" type="text" placeholder="https://" class="form-control textfield image-source zc-elem-focus-field" disabled>
+            <ul class="filename hide" role="button" aria-label="clear"><li><i role="button" class="zc-li-outline ui-1-simple-remove zc-elem-focus-field" tabindex="0" aria-label="Remove"></i></li></ul>
+          </div>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" aria-label="Image Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="Image Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon linkIcon zc-elem-focus-field" title="Link" role="button" aria-label="Image Link"><i class="zc-li-outline ui-outline-2_link-72"></i></span>
+            <span tabindex="0" class="calcIcon cameraIcon zc-elem-focus-field" title="Camera" role="button" aria-label="Image Camera"><i class="zc-li-outline media-1-camera-19"></i></span>
           </div>
         </div>
       </div>

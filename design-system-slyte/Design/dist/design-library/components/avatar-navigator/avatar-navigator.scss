@@ -8,7 +8,7 @@
     justify-content: center;
     overflow: hidden;
     flex-shrink: 0;
-    background: var(--zc-color-primary-surface-primary-surface-subtle, #E7EDFE);
+    background: var(--zc-color-primary-surface-subtle, #E7EDFE);
     /* Default: Medium Circle */
     width: 32px;
     height: 32px;
@@ -24,14 +24,14 @@
 .zc-nav-avatar-initials {
     font-family: 'ZohoPuvi', sans-serif;
     font-weight: 600;
-    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    color: var(--zc-color-primary-text-default, #0D4EF2);
     font-size: 14px;
     text-transform: uppercase;
     user-select: none;
 }
 
 .zc-nav-avatar-icon {
-    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    color: var(--zc-color-primary-text-default, #0D4EF2);
     font-size: 16px;
 }
 

@@ -1,23 +1,23 @@
 // Phone Input Component — zc-intl-tel-input style
 document.addEventListener('DOMContentLoaded', function() {
-  var phoneGroups = document.querySelectorAll('.zc-phonenumber-group');
-  var phoneFields = phoneGroups.length ? phoneGroups : document.querySelectorAll('.zc-phonenumber-field');
+  var phoneGroups = document.querySelectorAll('.zc-phonenumber-group'); // No I18N
+  var phoneFields = phoneGroups.length ? phoneGroups : document.querySelectorAll('.zc-phonenumber-field'); // No I18N
 
   phoneFields.forEach(function(root) {
-    var selectedFlag = root.querySelector('.zc-selected-flag');
-    var countryList = root.querySelector('.zc-country-list');
-    var dialCodeEl = root.querySelector('.zc-selected-dial-code');
-    var phoneInput = root.querySelector('input[type="tel"]');
-    var errorEl = root.querySelector('.zc-field-error-text, .zc-field-error-msg');
-    var field = root.querySelector('.zc-form-field') || root.closest('.zc-form-field');
+    var selectedFlag = root.querySelector('.zc-selected-flag'); // No I18N
+    var countryList = root.querySelector('.zc-country-list'); // No I18N
+    var dialCodeEl = root.querySelector('.zc-selected-dial-code'); // No I18N
+    var phoneInput = root.querySelector('input[type="tel"]'); // No I18N
+    var errorEl = root.querySelector('.zc-field-error-text, .zc-field-error-msg'); // No I18N
+    var field = root.querySelector('.zc-form-field') || root.closest('.zc-form-field'); // No I18N
 
     if (!selectedFlag || !countryList || !dialCodeEl || !phoneInput || !field) {
       return;
     }
 
-    var flagEl = selectedFlag.querySelector('.zc-iti-flag');
+    var flagEl = selectedFlag.querySelector('.zc-iti-flag'); // No I18N
     var isDisabled = phoneInput.disabled || selectedFlag.getAttribute('aria-disabled') === 'true';
-    var isRequired = phoneInput.hasAttribute('required') || phoneInput.getAttribute('aria-required') === 'true';
+    var isRequired = phoneInput.hasAttribute('required') || phoneInput.getAttribute('aria-required') === 'true'; // No I18N
 
     function closeCountryList() {
       countryList.hidden = true;
@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function openCountryList() {
-      if (isDisabled) return;
+      if (isDisabled) {
+        return;
+      }
       countryList.hidden = false;
       selectedFlag.setAttribute('aria-expanded', 'true');
     }
@@ -36,27 +38,33 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       var value = phoneInput.value.trim().replace(/[\s\-]/g, '');
-      var errorText = errorEl.querySelector('span');
+      var errorText = errorEl.querySelector('span'); // No I18N
 
       if (!value) {
         phoneInput.setAttribute('aria-invalid', 'true');
-        if (errorText) errorText.textContent = 'This field is required';
+        if (errorText) {
+          errorText.textContent = 'This field is required'; // No I18N
+        }
         errorEl.hidden = false;
-        field.classList.add('validationError');
+        field.classList.add('validationError'); // No I18N
       } else if (value.length < 7 || value.length > 15) {
         phoneInput.setAttribute('aria-invalid', 'true');
-        if (errorText) errorText.textContent = 'Please enter a valid phone number';
+        if (errorText) {
+          errorText.textContent = 'Please enter a valid phone number'; // No I18N
+        }
         errorEl.hidden = false;
-        field.classList.add('validationError');
+        field.classList.add('validationError'); // No I18N
       } else {
         phoneInput.removeAttribute('aria-invalid');
         errorEl.hidden = true;
-        field.classList.remove('validationError');
+        field.classList.remove('validationError'); // No I18N
       }
     }
 
     selectedFlag.addEventListener('click', function(e) {
-      if (isDisabled) return;
+      if (isDisabled) {
+        return;
+      }
       e.stopPropagation();
       if (countryList.hidden) {
         openCountryList();
@@ -66,7 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     selectedFlag.addEventListener('keydown', function(e) {
-      if (isDisabled) return;
+      if (isDisabled) {
+        return;
+      }
 
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -81,10 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     countryList.addEventListener('click', function(e) {
-      if (isDisabled) return;
+      if (isDisabled) {
+        return;
+      }
 
-      var countryOption = e.target.closest('.zc-country');
-      if (!countryOption) return;
+      var countryOption = e.target.closest('.zc-country'); // No I18N
+      if (!countryOption) {
+        return;
+      }
 
       var code = countryOption.getAttribute('data-dial-code');
       var countryCode = countryOption.getAttribute('data-country-code');

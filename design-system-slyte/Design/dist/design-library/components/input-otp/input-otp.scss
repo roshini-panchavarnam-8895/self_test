@@ -1,0 +1,215 @@
+/* =============================================================================
+   INPUT OTP COMPONENT — SCSS
+   Figma Source: OTP_Input_Base ✦ (node 2764:6839)
+   File: 88Zeos2AXPni7858flxLP2
+
+   STATES: Default | Hover On Default | Active | Filled | Hover On Filled |
+           Disabled | Error | Error After | Success
+
+   FIGMA TOKENS:
+     Cell: 36×36, border-radius 6px, gap 10px (spaceValue)
+     Container: column, gap 6px (layout_MEJFQA)
+     Label: P2_Semibold (500, 14px), fill_S6FPW7 #000000
+     Hint: P3_Regular (400, 12px), fill_8XVF9Q #26282B
+     Digit: P2_Bold (600, 14px), fill_S6FPW7 #000000
+     Default border: stroke_MAEVM1 #D5D6D9
+     Focus border: stroke_WSHYH7 #0D4EF2, Elevation_Primary_Subtle
+     Error: stroke_I93IUH #CC1914, fill_2UVFE3 #FEF6F6 (Error After bg)
+     Success: stroke_CP96XZ #078841, fill_TYJIZR #F6FEF9, digit fill_WR4N41 #078841
+     Disabled: fill_JU6I3Q #EFF0F1, label fill_AVKAHD #9EA0A7
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   OTP FIELD — outer container (label + otp row + hint)
+   Figma: layout_MEJFQA — column, gap 6px
+   --------------------------------------------------------------------------- */
+.zc-otp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* -- Label -- */
+.zc-otp-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+}
+
+/* -- Hint -- */
+.zc-otp-hint {
+    font-size: 12px;
+    font-weight: 400;
+    color: #26282B;
+}
+
+/* ---------------------------------------------------------------------------
+   OTP GROUP — flex row container for digit boxes
+   Figma: layout_LA5ZMO — row, align center, spaceValue 10px gap
+   --------------------------------------------------------------------------- */
+.zc-otp-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ---------------------------------------------------------------------------
+   OTP INPUT — individual digit box
+   Figma: layout_KBDJXX — 36×36 fixed
+   Rectangle 2: fill_BOAUBD #FFFFFF, stroke_MAEVM1 #D5D6D9 1px, radius 6px
+   Digit text: P2_Bold (600, 14px), fill_S6FPW7 #000000
+   --------------------------------------------------------------------------- */
+.zc-otp-input {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    text-align: center;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #000000;
+    background: #FFFFFF;
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Reset framework lyte-input > div wrapper */
+.zc-otp-input > div {
+    width: 100% !important;
+    height: 100%;
+    padding: 0 !important;
+    border: none !important;
+    border-bottom: none !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: static !important;
+    top: auto !important;
+}
+
+/* Reset framework :after pseudo on inner div */
+.zc-otp-input > div:after {
+    display: none !important;
+}
+
+/* Inner input — transparent, fills cell */
+.zc-otp-input input {
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 34px;
+    color: #000000;
+    background: transparent;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Placeholder — dot style */
+.zc-otp-input input::placeholder {
+    color: #D5D6D9;
+    font-size: 14px;
+    line-height: 34px;
+}
+
+/* ---------------------------------------------------------------------------
+   HOVER STATE — border #0D4EF2
+   --------------------------------------------------------------------------- */
+lyte-input.zc-otp-input:hover {
+    border-color: #0D4EF2 !important;
+}
+
+/* ---------------------------------------------------------------------------
+   FOCUS STATE — stroke_WSHYH7 #0D4EF2, Elevation_Primary_Subtle
+   Figma: boxShadow 0px 2px 2px rgba(13,78,242,0.05)
+   --------------------------------------------------------------------------- */
+lyte-input.zc-otp-input:focus-within,
+lyte-input.zc-otp-input.zc-otp-focus {
+    border-color: #0D4EF2 !important;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05);
+}
+
+/* ---------------------------------------------------------------------------
+   ERROR STATE — add .zc-otp-error to .zc-otp-group or .zc-otp-field
+   Figma: stroke_I93IUH #CC1914, bg stays #FFFFFF (Error empty)
+   --------------------------------------------------------------------------- */
+.zc-otp-error lyte-input.zc-otp-input {
+    border-color: #CC1914 !important;
+}
+
+/* Error hint text — fill_R5NOTF #CC1914 */
+.zc-otp-error .zc-otp-hint {
+    color: #CC1914;
+}
+
+/* ---------------------------------------------------------------------------
+   ERROR AFTER STATE — filled cells with error
+   Figma: fill_2UVFE3 #FEF6F6 bg, stroke_I93IUH #CC1914
+   --------------------------------------------------------------------------- */
+.zc-otp-error-after lyte-input.zc-otp-input {
+    border-color: #CC1914 !important;
+    background: #FEF6F6;
+}
+
+.zc-otp-error-after .zc-otp-hint {
+    color: #CC1914;
+}
+
+/* ---------------------------------------------------------------------------
+   SUCCESS STATE — add .zc-otp-success to .zc-otp-group or .zc-otp-field
+   Figma: stroke_CP96XZ #078841, fill_TYJIZR #F6FEF9, digit fill_WR4N41 #078841
+   --------------------------------------------------------------------------- */
+.zc-otp-success lyte-input.zc-otp-input {
+    border-color: #078841 !important;
+    background: #F6FEF9;
+    color: #078841;
+}
+
+.zc-otp-success lyte-input.zc-otp-input input {
+    color: #078841;
+}
+
+/* Success hint text — fill_WR4N41 #078841 */
+.zc-otp-success .zc-otp-hint {
+    color: #078841;
+}
+
+/* ---------------------------------------------------------------------------
+   DISABLED STATE — add .zc-otp-disabled to .zc-otp-group or .zc-otp-field
+   Figma: fill_JU6I3Q #EFF0F1, label fill_AVKAHD #9EA0A7, no opacity
+   --------------------------------------------------------------------------- */
+.zc-otp-disabled .zc-otp-label {
+    color: #9EA0A7;
+}
+
+.zc-otp-disabled lyte-input.zc-otp-input {
+    background: #EFF0F1;
+    border-color: #D5D6D9 !important;
+    cursor: not-allowed;
+    color: #D5D6D9;
+}
+
+.zc-otp-disabled lyte-input.zc-otp-input input {
+    color: #D5D6D9;
+    cursor: not-allowed;
+}
+
+.zc-otp-disabled .zc-otp-hint {
+    color: #9EA0A7;
+}
+
+.zc-otp-disabled .zc-otp-group {
+    pointer-events: none;
+}
