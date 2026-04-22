@@ -436,7 +436,7 @@ function initAllComponentsSection() {
         titleBar.innerHTML = '<span style="font-weight: 600; font-size: 15px;">' + displayName + '</span>' +
             '<span class="all-comp-toggle" style="display:flex; gap:8px;">' +
             '<button onclick="toggleAllCompPreview(this)" style="background:var(--zc-color-primary-surface, #EEF2FF);border:1px solid var(--zc-color-border-default,#E5E7EB);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-text-secondary,#6B7280);"><i class="fas fa-eye"></i> Preview</button>' +
-            '<button onclick="toggleAllCompCode(this)" style="background:none;border:1px solid var(--zc-color-border-default,#E5E7EB);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-text-secondary,#6B7280);"><i class="fas fa-code"></i> Code</button>' +
+            '<button onclick="toggleAllCompCode(this)" style="background:none;border:1px solid var(--zc-color-border-default,#E5E7EB);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-text-secondary,#6B7280);"><i class="fas fa-code"></i> Show Code</button>' +
             '</span>';
         cardEl.appendChild(titleBar);
 
@@ -447,7 +447,7 @@ function initAllComponentsSection() {
 
         var codeArea = document.createElement('div');
         codeArea.className = 'all-comp-code';
-        codeArea.style.cssText = 'display: none; background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; font-family: monospace; font-size: 13px; white-space: pre-wrap; overflow-x: auto; max-height: 500px; overflow-y: auto; position: relative;';
+        codeArea.style.cssText = 'display: none; border-top: 1px solid var(--zc-color-border-default, #E5E7EB);';
         cardEl.appendChild(codeArea);
 
         container.appendChild(cardEl);
@@ -455,39 +455,37 @@ function initAllComponentsSection() {
         var isInsideDist = window.location.pathname.indexOf('/dist/') !== -1;
         var partialBase = isInsideDist ? 'design-library/components/' : 'dist/design-library/components/';
         var partialUrl = partialBase + name + '/' + name + '-partial.html';
-        fetch(partialUrl).then(function(resp) {
-            if (!resp.ok) throw new Error('Not found');
-            return resp.text();
-        }).then(function(html) {
-            var sourceCode = extractComponentSource(html);
-            codeArea.innerHTML = '';
-            var copyBtn = document.createElement('button');
-            copyBtn.style.cssText = 'position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.1);border:none;color:#cdd6f4;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;';
-            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-            copyBtn.onclick = function() {
-                navigator.clipboard.writeText(sourceCode).then(function() {
-                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                    setTimeout(function() { copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 2000);
-                });
-            };
-            codeArea.appendChild(copyBtn);
-            var pre = document.createElement('pre');
-            pre.style.cssText = 'margin:0;';
-            var code = document.createElement('code');
-            code.textContent = sourceCode;
-            pre.appendChild(code);
-            codeArea.appendChild(pre);
 
-            renderAllCompPreview(previewArea, html);
+        (function(cardName, pArea, cArea, pBase) {
+            var htmlContent = null;
+            var scssContent = null;
+            var jsContent = null;
 
-            loaded++;
-            updateAllCompCount(loaded, total);
-        }).catch(function() {
-            previewArea.innerHTML = '<span style="color:#ef4444;font-size:13px;padding:20px;display:block;">Component partial not found.</span>';
-            codeArea.textContent = '<!-- Partial not available for ' + name + ' -->';
-            loaded++;
-            updateAllCompCount(loaded, total);
-        });
+            var partUrl = pBase + cardName + '/' + cardName + '-partial.html';
+            var scssUrl = pBase + cardName + '/' + cardName + '.scss';
+            var jsUrl = pBase + cardName + '/' + cardName + '.js';
+
+            var fetchPartial = fetch(partUrl).then(function(r) { return r.ok ? r.text() : null; }).catch(function() { return null; });
+            var fetchScss = fetch(scssUrl).then(function(r) { return r.ok ? r.text() : null; }).catch(function() { return null; });
+            var fetchJs = fetch(jsUrl).then(function(r) { return r.ok ? r.text() : null; }).catch(function() { return null; });
+
+            Promise.all([fetchPartial, fetchScss, fetchJs]).then(function(results) {
+                htmlContent = results[0];
+                scssContent = results[1];
+                jsContent = results[2];
+
+                if (htmlContent) {
+                    var lyteHtml = extractLyteComponentHtml(htmlContent);
+                    renderAllCompPreview(pArea, htmlContent);
+                    buildCodePanel(cArea, lyteHtml, scssContent, jsContent);
+                } else {
+                    pArea.innerHTML = '<span style="color:#ef4444;font-size:13px;padding:20px;display:block;">Component partial not found.</span>';
+                }
+
+                loaded++;
+                updateAllCompCount(loaded, total);
+            });
+        })(name, previewArea, codeArea, partialBase);
     });
 }
 
@@ -522,24 +520,103 @@ function filterAllComponents(query) {
     }
 }
 
-function extractComponentSource(html) {
+function extractLyteComponentHtml(html) {
     var tmp = document.createElement('div');
     tmp.innerHTML = html;
-    var previews = tmp.querySelectorAll('.btn-variant-card__preview, .variant-preview');
-    if (previews.length === 0) {
-        var codeBlocks = tmp.querySelectorAll('.btn-code-block[data-lang="html"] pre code, .variant-code-block[data-lang="html"] pre code');
-        if (codeBlocks.length > 0) {
-            var snippets = [];
-            codeBlocks.forEach(function(cb) { snippets.push(cb.textContent.trim()); });
-            return snippets.join('\n\n');
-        }
-        return html.trim();
+    var codeBlocks = tmp.querySelectorAll('.btn-code-block[data-lang="html"] pre code, .variant-code-block[data-lang="html"] pre code');
+    if (codeBlocks.length > 0) {
+        var snippets = [];
+        codeBlocks.forEach(function(cb) { snippets.push(cb.textContent.trim()); });
+        return snippets.join('\n\n');
     }
-    var snippets = [];
-    previews.forEach(function(preview) {
-        snippets.push(preview.innerHTML.trim());
+    var previews = tmp.querySelectorAll('.btn-variant-card__preview, .variant-preview');
+    if (previews.length > 0) {
+        var snippets = [];
+        previews.forEach(function(p) { snippets.push(p.innerHTML.trim()); });
+        return snippets.join('\n\n');
+    }
+    return html.trim();
+}
+
+function buildCodePanel(codeArea, htmlCode, scssCode, jsCode) {
+    var tabs = [];
+    if (htmlCode) tabs.push({ key: 'html', label: 'HTML', content: htmlCode });
+    if (scssCode) tabs.push({ key: 'scss', label: 'SCSS', content: scssCode });
+    if (jsCode) tabs.push({ key: 'js', label: 'JS', content: jsCode });
+
+    if (tabs.length === 0) {
+        codeArea.innerHTML = '<div style="padding:16px 20px;color:#9EA0A7;font-size:13px;">No code available.</div>';
+        return;
+    }
+
+    var tabBar = document.createElement('div');
+    tabBar.style.cssText = 'display:flex; gap:0; background:#181825; border-bottom:1px solid #313244;';
+
+    tabs.forEach(function(tab, idx) {
+        var tabBtn = document.createElement('button');
+        tabBtn.textContent = tab.label;
+        tabBtn.setAttribute('data-code-tab', tab.key);
+        tabBtn.style.cssText = 'padding:10px 20px; border:none; cursor:pointer; font-size:13px; font-family:"ZohoPuvi",monospace; transition:all 0.15s ease; border-bottom:2px solid transparent;';
+        if (idx === 0) {
+            tabBtn.style.background = '#1e1e2e';
+            tabBtn.style.color = '#89b4fa';
+            tabBtn.style.borderBottomColor = '#89b4fa';
+        } else {
+            tabBtn.style.background = '#181825';
+            tabBtn.style.color = '#6c7086';
+        }
+        tabBtn.onclick = function() {
+            switchAllCompCodeTab(codeArea, tab.key);
+        };
+        tabBar.appendChild(tabBtn);
     });
-    return snippets.join('\n\n');
+
+    codeArea.appendChild(tabBar);
+
+    tabs.forEach(function(tab, idx) {
+        var block = document.createElement('div');
+        block.setAttribute('data-code-lang', tab.key);
+        block.style.cssText = 'position:relative; background:#1e1e2e; display:' + (idx === 0 ? 'block' : 'none') + ';';
+
+        var copyBtn = document.createElement('button');
+        copyBtn.style.cssText = 'position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);color:#cdd6f4;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:12px;font-family:"ZohoPuvi",sans-serif;transition:background 0.15s;';
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+        copyBtn.onmouseenter = function() { copyBtn.style.background = 'rgba(255,255,255,0.15)'; };
+        copyBtn.onmouseleave = function() { copyBtn.style.background = 'rgba(255,255,255,0.08)'; };
+        copyBtn.onclick = function() {
+            navigator.clipboard.writeText(tab.content).then(function() {
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(function() { copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 2000);
+            });
+        };
+        block.appendChild(copyBtn);
+
+        var pre = document.createElement('pre');
+        pre.style.cssText = 'margin:0; padding:16px 20px; padding-right:90px; max-height:400px; overflow:auto; font-size:13px; line-height:1.6; color:#cdd6f4; font-family:"Fira Code",Consolas,monospace; white-space:pre-wrap; word-break:break-word;';
+        var code = document.createElement('code');
+        code.textContent = tab.content;
+        pre.appendChild(code);
+        block.appendChild(pre);
+
+        codeArea.appendChild(block);
+    });
+}
+
+function switchAllCompCodeTab(codeArea, tabKey) {
+    codeArea.querySelectorAll('[data-code-tab]').forEach(function(btn) {
+        if (btn.getAttribute('data-code-tab') === tabKey) {
+            btn.style.background = '#1e1e2e';
+            btn.style.color = '#89b4fa';
+            btn.style.borderBottomColor = '#89b4fa';
+        } else {
+            btn.style.background = '#181825';
+            btn.style.color = '#6c7086';
+            btn.style.borderBottomColor = 'transparent';
+        }
+    });
+    codeArea.querySelectorAll('[data-code-lang]').forEach(function(block) {
+        block.style.display = block.getAttribute('data-code-lang') === tabKey ? 'block' : 'none';
+    });
 }
 
 function updateAllCompCount(loaded, total) {
@@ -614,9 +691,11 @@ function toggleAllCompCode(btn) {
     if (codeArea.style.display === 'none') {
         codeArea.style.display = 'block';
         btn.style.background = 'var(--zc-color-primary-surface, #EEF2FF)';
+        btn.innerHTML = '<i class="fas fa-code"></i> Hide Code';
     } else {
         codeArea.style.display = 'none';
         btn.style.background = 'none';
+        btn.innerHTML = '<i class="fas fa-code"></i> Show Code';
     }
 }
 
