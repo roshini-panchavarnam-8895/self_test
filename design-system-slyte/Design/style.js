@@ -427,10 +427,12 @@ function initAllComponentsSection() {
         var cardEl = document.createElement('div');
         cardEl.className = 'all-comp-card';
         cardEl.style.cssText = 'border: 1px solid var(--zc-color-border-default, #E5E7EB); border-radius: 12px; margin-bottom: 20px; overflow: hidden; background: var(--zc-color-surface-primary, #fff); width: 100%;';
+        var displayName = ALL_COMP_DISPLAY_NAMES[name] || name.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+        cardEl.setAttribute('data-comp-name', name);
+        cardEl.setAttribute('data-comp-display', displayName);
 
         var titleBar = document.createElement('div');
         titleBar.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: var(--zc-color-surface-secondary, #F9FAFB); border-bottom: 1px solid var(--zc-color-border-default, #E5E7EB); cursor: pointer;';
-        var displayName = ALL_COMP_DISPLAY_NAMES[name] || name.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
         titleBar.innerHTML = '<span style="font-weight: 600; font-size: 15px;">' + displayName + '</span>' +
             '<span class="all-comp-toggle" style="display:flex; gap:8px;">' +
             '<button onclick="toggleAllCompPreview(this)" style="background:var(--zc-color-primary-surface, #EEF2FF);border:1px solid var(--zc-color-border-default,#E5E7EB);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-text-secondary,#6B7280);"><i class="fas fa-eye"></i> Preview</button>' +
@@ -487,6 +489,37 @@ function initAllComponentsSection() {
             updateAllCompCount(loaded, total);
         });
     });
+}
+
+function filterAllComponents(query) {
+    var container = document.getElementById('all-comp-list');
+    var noResults = document.getElementById('all-comp-no-results');
+    if (!container) return;
+
+    var cards = container.querySelectorAll('.all-comp-card');
+    var term = query.toLowerCase().trim();
+    var visibleCount = 0;
+
+    cards.forEach(function(card) {
+        var name = (card.getAttribute('data-comp-name') || '').toLowerCase();
+        var display = (card.getAttribute('data-comp-display') || '').toLowerCase();
+        var match = !term || name.indexOf(term) !== -1 || display.indexOf(term) !== -1;
+        card.style.display = match ? '' : 'none';
+        if (match) visibleCount++;
+    });
+
+    if (noResults) {
+        noResults.style.display = visibleCount === 0 && term ? 'block' : 'none';
+    }
+
+    var countEl = document.querySelector('.all-comp-count');
+    if (countEl) {
+        if (term) {
+            countEl.textContent = visibleCount + ' of ' + cards.length + ' components';
+        } else {
+            countEl.textContent = cards.length + ' components';
+        }
+    }
 }
 
 function extractComponentSource(html) {
