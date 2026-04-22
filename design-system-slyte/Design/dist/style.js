@@ -450,7 +450,9 @@ function initAllComponentsSection() {
 
         container.appendChild(cardEl);
 
-        var partialUrl = 'dist/design-library/components/' + name + '/' + name + '-partial.html';
+        var isInsideDist = window.location.pathname.indexOf('/dist/') !== -1;
+        var partialBase = isInsideDist ? 'design-library/components/' : 'dist/design-library/components/';
+        var partialUrl = partialBase + name + '/' + name + '-partial.html';
         fetch(partialUrl).then(function(resp) {
             if (!resp.ok) throw new Error('Not found');
             return resp.text();
