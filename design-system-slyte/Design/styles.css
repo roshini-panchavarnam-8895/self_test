@@ -157,7 +157,7 @@
         /* ==================== SIDEBAR ==================== */
         .sidebar {
             width: 200px;
-            background: #072b89;
+            background: green;
             z-index: 100;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 8px 0 40px rgba(0, 0, 0, 0.15);
