@@ -3525,14 +3525,15 @@ lyte-drop-box.lyteDropdownUp{
 
 /* Code panel */
 .btn-code-panel {
-    border-top: 1px solid #EBEBEB;
-    background: #FAFAFA;
+    border-top: 1px solid #313244;
+    background: #1e1e2e;
 }
 .btn-code-tabs {
     display: flex;
     gap: 0;
     padding: 0 20px;
-    border-bottom: 1px solid #EBEBEB;
+    border-bottom: 1px solid #313244;
+    background: #181825;
 }
 .btn-code-tab {
     background: none;
@@ -3542,16 +3543,16 @@ lyte-drop-box.lyteDropdownUp{
     font-size: 12px;
     font-weight: 500;
     font-family: var(--zc-font-family-default);
-    color: #696C74;
+    color: #6c7086;
     cursor: pointer;
     transition: color 0.2s, border-color 0.2s;
 }
 .btn-code-tab:hover {
-    color: #25272C;
+    color: #cdd6f4;
 }
 .btn-code-tab.active {
-    color: #0D4EF2;
-    border-bottom-color: #0D4EF2;
+    color: #89b4fa;
+    border-bottom-color: #89b4fa;
 }
 .btn-code-block {
     position: relative;
@@ -3562,22 +3563,22 @@ lyte-drop-box.lyteDropdownUp{
     justify-content: space-between;
     padding: 8px 20px;
     font-size: 11px;
-    color: #94A3B8;
+    color: #6c7086;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 .btn-code-header button {
     background: none;
     border: none;
-    color: #94A3B8;
+    color: #6c7086;
     cursor: pointer;
     padding: 4px;
     border-radius: 4px;
     transition: color 0.2s, background 0.2s;
 }
 .btn-code-header button:hover {
-    color: #0D4EF2;
-    background: #E7EDFE;
+    color: #89b4fa;
+    background: rgba(137, 180, 250, 0.1);
 }
 .btn-code-block pre {
     margin: 0;
@@ -3588,7 +3589,7 @@ lyte-drop-box.lyteDropdownUp{
     font-family: 'PT Mono', 'SF Mono', 'Monaco', monospace;
     font-size: 12px;
     line-height: 1.6;
-    color: #1E2E59;
+    color: #cdd6f4;
 }
 
 /* ============================================
