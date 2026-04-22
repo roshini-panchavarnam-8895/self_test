@@ -1,321 +1,488 @@
                     <div class="detail-header">
-                        <div class="detail-icon"><i class="fas fa-ellipsis-h"></i></div>
+                        <div class="detail-icon"><i class="fas fa-angle-double-right"></i></div>
                         <div class="detail-info">
-                            <h1 class="detail-title">Breadcrumbs</h1>
-                            <p class="detail-description">Navigation breadcrumb trail showing the user's current location within a page hierarchy. Uses semantic <code>&lt;nav&gt;</code> + <code>&lt;ol&gt;</code> with ARIA landmark. Variants: 2–6 items, 3 sizes, with overflow ellipsis support.</p>
+                            <h1 class="detail-title">Breadcrumb</h1>
+                            <p class="detail-description">Navigation breadcrumb using <code>&lt;lyte-breadcrumb&gt;</code> Slyte DOM for Default and Sizes (with custom size classes on the host element). Custom HTML is used for Icons, Overflow, and Separator variants not natively supported by Lyte. Figma: <code>Breadcrumb_Base</code> (2464:19).</p>
                             <div class="detail-meta">
                                 <span class="meta-tag"><i class="fas fa-folder"></i> Navigation</span>
                                 <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
-                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 5 Item Counts × 3 Sizes</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 6 Variants &times; 2 Separators</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Style Tabs -->
                     <div class="btn-style-tabs zc-mb-16 zc-mt-8">
-                        <button class="btn-style-tab active" onclick="switchBreadcrumbTab('items', this)">Item Counts</button>
-                        <button class="btn-style-tab" onclick="switchBreadcrumbTab('sizes', this)">Sizes</button>
-                        <button class="btn-style-tab" onclick="switchBreadcrumbTab('overflow', this)">Overflow</button>
+                        <button class="btn-style-tab active" onclick="switchBreadcrumbStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchBreadcrumbStyleTab('sizes', this)">Sizes</button>
+                        <button class="btn-style-tab" onclick="switchBreadcrumbStyleTab('icons', this)">With Icons</button>
+                        <button class="btn-style-tab" onclick="switchBreadcrumbStyleTab('overflow', this)">Overflow</button>
+                        <button class="btn-style-tab" onclick="switchBreadcrumbStyleTab('separators', this)">Separator Styles</button>
                     </div>
 
                     <div id="breadcrumb-component-variants">
 
-                        <!-- ==== ITEM COUNTS ==== -->
-                        <div class="btn-variant-group" data-style="items">
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">2 Items</span><button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Default &mdash; Link Type (Medium)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
                                 <div class="btn-variant-card__preview">
-                                    <div class="btn-size-row">
-                                        <nav class="zc-breadcrumb" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Settings</span></li>
-                                            </ol>
-                                        </nav>
+                                    <div class="btn-size-row"><span class="btn-size-label">3 Items</span>
+                                        <lyte-breadcrumb lt-prop-label="name" lt-prop-data='[{"name":"Home","href":"#"},{"name":"Settings","href":"#"},{"name":"Profile"}]'></lyte-breadcrumb>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">4 Items</span>
+                                        <lyte-breadcrumb lt-prop-label="name" lt-prop-data='[{"name":"Home","href":"#"},{"name":"Products","href":"#"},{"name":"Category","href":"#"},{"name":"Details"}]'></lyte-breadcrumb>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
-                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchBreadcrumbCodeTab('scss', this)">SCSS</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;nav class="zc-breadcrumb" aria-label="Breadcrumb"&gt;
-  &lt;ol&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;
-      &lt;svg viewBox="0 0 10 10"&gt;
-        &lt;path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor"
-              stroke-width="1.2" stroke-linecap="round"
-              stroke-linejoin="round"/&gt;
-      &lt;/svg&gt;
-    &lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"
-        aria-current="page"&gt;&lt;span&gt;Settings&lt;/span&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</code></pre></div>
-                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-breadcrumb {
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchBreadcrumbCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-breadcrumb lt-prop-label="name" lt-prop-data='[
+  {"name":"Home","href":"#"},
+  {"name":"Settings","href":"#"},
+  {"name":"Profile"}
+]'&gt;&lt;/lyte-breadcrumb&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* lyte-breadcrumb renders its own list structure */
+lyte-breadcrumb {
   display: flex;
   align-items: center;
   font-family: 'ZohoPuvi', sans-serif;
 }
-.zc-breadcrumb-item a {
-  color: var(--zc-color-primary-text-default);
+lyte-breadcrumb .lyteBreadcrumbItem a {
+  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
   text-decoration: none;
-  padding: 4px 6px;
-  border-radius: var(--zc-radius-s);
-  &amp;:hover {
-    color: var(--zc-color-primary-text-default-hover);
-    background: var(--zc-color-primary-surface-subtle);
-  }
 }
-.zc-breadcrumb-current {
-  color: var(--zc-color-huegrey-text-bold);
+lyte-breadcrumb .lyteBreadcrumbCurrent {
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
   font-weight: 600;
 }</code></pre></div>
                                 </div>
                             </div>
 
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">3 Items</span><button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Default &mdash; Text Type (Non-Linked)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
                                 <div class="btn-variant-card__preview">
-                                    <div class="btn-size-row">
-                                        <nav class="zc-breadcrumb" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Components</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
-                                            </ol>
-                                        </nav>
+                                    <div class="btn-size-row"><span class="btn-size-label">Text Only</span>
+                                        <lyte-breadcrumb lt-prop-label="name" lt-prop-data='[{"name":"Home"},{"name":"Settings"},{"name":"Profile"}]'></lyte-breadcrumb>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
-                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;nav class="zc-breadcrumb" aria-label="Breadcrumb"&gt;
-  &lt;ol&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Components&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"
-        aria-current="page"&gt;&lt;span&gt;Breadcrumbs&lt;/span&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</code></pre></div>
-                                </div>
-                            </div>
-
-                            <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4 Items</span><button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
-                                <div class="btn-variant-card__preview">
-                                    <div class="btn-size-row">
-                                        <nav class="zc-breadcrumb" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Application</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Components</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
-                                            </ol>
-                                        </nav>
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
                                     </div>
-                                </div>
-                                <div class="btn-code-panel" style="display:none">
-                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;nav class="zc-breadcrumb" aria-label="Breadcrumb"&gt;
-  &lt;ol&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Application&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Components&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"
-        aria-current="page"&gt;&lt;span&gt;Breadcrumbs&lt;/span&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</code></pre></div>
-                                </div>
-                            </div>
-
-                            <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">5 Items</span><button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
-                                <div class="btn-variant-card__preview">
-                                    <div class="btn-size-row">
-                                        <nav class="zc-breadcrumb" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Application</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Components</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Navigation</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
-                                            </ol>
-                                        </nav>
-                                    </div>
-                                </div>
-                                <div class="btn-code-panel" style="display:none">
-                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 5-item breadcrumb --&gt;
-&lt;nav class="zc-breadcrumb" aria-label="Breadcrumb"&gt;
-  &lt;ol&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Application&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Components&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Navigation&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"
-        aria-current="page"&gt;&lt;span&gt;Breadcrumbs&lt;/span&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</code></pre></div>
-                                </div>
-                            </div>
-
-                            <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">6 Items</span><button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
-                                <div class="btn-variant-card__preview">
-                                    <div class="btn-size-row">
-                                        <nav class="zc-breadcrumb" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Application</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Workspace</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Components</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Navigation</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
-                                            </ol>
-                                        </nav>
-                                    </div>
-                                </div>
-                                <div class="btn-code-panel" style="display:none">
-                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 6-item breadcrumb --&gt;
-&lt;nav class="zc-breadcrumb" aria-label="Breadcrumb"&gt;
-  &lt;ol&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Application&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Workspace&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Components&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Navigation&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"
-        aria-current="page"&gt;&lt;span&gt;Breadcrumbs&lt;/span&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Text type: omit href to render as plain text --&gt;
+&lt;lyte-breadcrumb lt-prop-label="name" lt-prop-data='[
+  {"name":"Home"},
+  {"name":"Settings"},
+  {"name":"Profile"}
+]'&gt;&lt;/lyte-breadcrumb&gt;</code></pre></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- ==== SIZES ==== -->
+                        <!-- ==== SIZES ==== (Lyte DOM + custom size class on host element) -->
                         <div class="btn-variant-group" data-style="sizes" style="display:none">
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Size Variants</span><button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Sizes &mdash; Link Type (S / M / L)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
                                 <div class="btn-variant-card__preview">
-                                    <div class="btn-size-row">
-                                        <span class="btn-size-label">Small</span>
-                                        <nav class="zc-breadcrumb zc-breadcrumb-sm" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Components</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
-                                            </ol>
-                                        </nav>
+                                    <div class="btn-size-row"><span class="btn-size-label">Small (12px / 18px)</span>
+                                        <lyte-breadcrumb class="zc-breadcrumb-sm" lt-prop-label="name" lt-prop-data='[{"name":"Home","href":"#"},{"name":"Products","href":"#"},{"name":"Details"}]'></lyte-breadcrumb>
                                     </div>
-                                    <div class="btn-size-row">
-                                        <span class="btn-size-label">Base (Default)</span>
-                                        <nav class="zc-breadcrumb" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Components</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
-                                            </ol>
-                                        </nav>
+                                    <div class="btn-size-row"><span class="btn-size-label">Medium (14px / 20px)</span>
+                                        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-data='[{"name":"Home","href":"#"},{"name":"Products","href":"#"},{"name":"Details"}]'></lyte-breadcrumb>
                                     </div>
-                                    <div class="btn-size-row">
-                                        <span class="btn-size-label">Large</span>
-                                        <nav class="zc-breadcrumb zc-breadcrumb-lg" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Components</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
-                                            </ol>
-                                        </nav>
+                                    <div class="btn-size-row"><span class="btn-size-label">Large (16px / 24px)</span>
+                                        <lyte-breadcrumb class="zc-breadcrumb-lg" lt-prop-label="name" lt-prop-data='[{"name":"Home","href":"#"},{"name":"Products","href":"#"},{"name":"Details"}]'></lyte-breadcrumb>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
-                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Small --&gt;
-&lt;nav class="zc-breadcrumb zc-breadcrumb-sm" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchBreadcrumbCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Add size class directly on lyte-breadcrumb host --&gt;
+&lt;lyte-breadcrumb class="zc-breadcrumb-sm" lt-prop-label="name"
+  lt-prop-data='[{"name":"Home","href":"#"},{"name":"Products","href":"#"},{"name":"Details"}]'&gt;
+&lt;/lyte-breadcrumb&gt;
 
-&lt;!-- Base (default) --&gt;
-&lt;nav class="zc-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+&lt;!-- Medium --&gt;
+&lt;lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-data='[...]'&gt;&lt;/lyte-breadcrumb&gt;
 
 &lt;!-- Large --&gt;
-&lt;nav class="zc-breadcrumb zc-breadcrumb-lg" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;</code></pre></div>
+&lt;lyte-breadcrumb class="zc-breadcrumb-lg" lt-prop-label="name" lt-prop-data='[...]'&gt;&lt;/lyte-breadcrumb&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Figma: Breadcrumb_Base (2464:19) — Size tokens on Lyte host */
+lyte-breadcrumb.zc-breadcrumb-sm lyte-breadcrumb-item { font-size: 12px; line-height: 18px; }
+lyte-breadcrumb.zc-breadcrumb-md lyte-breadcrumb-item { font-size: 14px; line-height: 20px; }
+lyte-breadcrumb.zc-breadcrumb-lg lyte-breadcrumb-item { font-size: 16px; line-height: 24px; }</code></pre></div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Sizes &mdash; Text Type (Non-Linked)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span>
+                                        <lyte-breadcrumb class="zc-breadcrumb-sm" lt-prop-label="name" lt-prop-data='[{"name":"Dashboard"},{"name":"Reports"},{"name":"Annual"}]'></lyte-breadcrumb>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Medium</span>
+                                        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-data='[{"name":"Dashboard"},{"name":"Reports"},{"name":"Annual"}]'></lyte-breadcrumb>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span>
+                                        <lyte-breadcrumb class="zc-breadcrumb-lg" lt-prop-label="name" lt-prop-data='[{"name":"Dashboard"},{"name":"Reports"},{"name":"Annual"}]'></lyte-breadcrumb>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Text type: omit href for plain text items --&gt;
+&lt;lyte-breadcrumb class="zc-breadcrumb-sm" lt-prop-label="name"
+  lt-prop-data='[{"name":"Dashboard"},{"name":"Reports"},{"name":"Annual"}]'&gt;
+&lt;/lyte-breadcrumb&gt;</code></pre></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- ==== OVERFLOW ==== -->
-                        <div class="btn-variant-group" data-style="overflow" style="display:none">
+                        <!-- ==== WITH ICONS ==== (Custom HTML — lyte-breadcrumb doesn't support icon slots) -->
+                        <div class="btn-variant-group" data-style="icons" style="display:none">
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Overflow with Ellipsis</span><button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">With Icons &mdash; Icon-Prefixed Items</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
                                 <div class="btn-variant-card__preview">
-                                    <div class="btn-size-row">
-                                        <span class="btn-size-label">Collapsed</span>
-                                        <nav class="zc-breadcrumb" aria-label="Breadcrumb">
-                                            <ol>
-                                                <li class="zc-breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><span class="zc-breadcrumb-overflow" title="Show more">...</span></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item"><a href="#">Navigation</a></li>
-                                                <li class="zc-breadcrumb-separator"><svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Breadcrumbs</span></li>
+                                    <!-- Custom HTML: lyte-breadcrumb doesn't support icon slots -->
+                                    <div class="btn-size-row"><span class="btn-size-label">Icons + Links</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><i class="fas fa-folder"></i> <span>Projects</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><i class="fas fa-file"></i> <span>Documents</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><i class="fas fa-file-alt"></i> <span>Report.pdf</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Home Icon Only</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Settings</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Integrations</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>API Keys</span></li>
                                             </ol>
                                         </nav>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
-                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Overflow: collapsed middle items --&gt;
-&lt;nav class="zc-breadcrumb" aria-label="Breadcrumb"&gt;
-  &lt;ol&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchBreadcrumbCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-breadcrumb doesn't support icon slots --&gt;
+&lt;nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb"&gt;
+  &lt;ol class="zc-breadcrumb-list"&gt;
     &lt;li class="zc-breadcrumb-item"&gt;
-      &lt;span class="zc-breadcrumb-overflow"
-            title="Show more"&gt;...&lt;/span&gt;
+      &lt;a href="#"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; &lt;span&gt;Home&lt;/span&gt;&lt;/a&gt;
     &lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Navigation&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-separator"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/li&gt;
-    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"
-        aria-current="page"&gt;&lt;span&gt;Breadcrumbs&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="zc-breadcrumb-separator" aria-hidden="true"&gt;/&lt;/li&gt;
+    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"&gt;
+      &lt;i class="fas fa-file-alt"&gt;&lt;/i&gt; &lt;span&gt;Report.pdf&lt;/span&gt;
+    &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/nav&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-breadcrumb-item i {
+  margin-right: 4px;
+  font-size: 0.85em;
+}</code></pre></div>
                                 </div>
                             </div>
                         </div>
 
-                    </div><!-- /breadcrumb-component-variants -->
+                        <!-- ==== OVERFLOW ==== (Custom HTML — lyte-breadcrumb doesn't support overflow/ellipsis) -->
+                        <div class="btn-variant-group" data-style="overflow" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Overflow &mdash; Ellipsis Truncation</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML: lyte-breadcrumb doesn't support overflow patterns -->
+                                    <div class="btn-size-row"><span class="btn-size-label">Ellipsis</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><span class="zc-breadcrumb-ellipsis" title="Show hidden items">&hellip;</span></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Sub-Category</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Current Page</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Deep Path</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-sm" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Root</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><span class="zc-breadcrumb-ellipsis" title="Show hidden items">&hellip;</span></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Level 5</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Level 6</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Level 7</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchBreadcrumbCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-breadcrumb doesn't support overflow/ellipsis --&gt;
+&lt;nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb"&gt;
+  &lt;ol class="zc-breadcrumb-list"&gt;
+    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="zc-breadcrumb-separator" aria-hidden="true"&gt;/&lt;/li&gt;
+    &lt;li class="zc-breadcrumb-item"&gt;
+      &lt;span class="zc-breadcrumb-ellipsis" title="Show hidden items"&gt;&amp;hellip;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li class="zc-breadcrumb-separator" aria-hidden="true"&gt;/&lt;/li&gt;
+    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"&gt;Current Page&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-breadcrumb-ellipsis {
+  color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: var(--zc-radius-s, 4px);
+}
+.zc-breadcrumb-ellipsis:hover {
+  background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F0F1F3);
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Overflow &mdash; Dropdown Overlay (List &amp; Group)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <p style="font-size:13px;color:var(--text-secondary);margin:0 0 12px">Figma: <code>Breadcrumb_Dropdown_Overlay</code> (2583:3025) &mdash; List &amp; Group variants.</p>
+                                    <div class="btn-size-row"><span class="btn-size-label">List Variant</span>
+                                        <div style="position:relative;display:inline-block">
+                                            <nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb">
+                                                <ol class="zc-breadcrumb-list">
+                                                    <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                    <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                    <li class="zc-breadcrumb-item"><span class="zc-breadcrumb-ellipsis">&hellip;</span></li>
+                                                    <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                    <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Current</span></li>
+                                                </ol>
+                                            </nav>
+                                            <div class="zc-breadcrumb-dropdown" style="display:block;position:relative;margin-top:4px">
+                                                <ul class="zc-breadcrumb-dropdown-list">
+                                                    <li class="zc-breadcrumb-dropdown-item"><a href="#">Products</a></li>
+                                                    <li class="zc-breadcrumb-dropdown-item"><a href="#">Category</a></li>
+                                                    <li class="zc-breadcrumb-dropdown-item"><a href="#">Sub-Category</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Group Variant</span>
+                                        <div style="position:relative;display:inline-block">
+                                            <nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb">
+                                                <ol class="zc-breadcrumb-list">
+                                                    <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                    <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                    <li class="zc-breadcrumb-item"><span class="zc-breadcrumb-ellipsis">&hellip;</span></li>
+                                                    <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                    <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Current</span></li>
+                                                </ol>
+                                            </nav>
+                                            <div class="zc-breadcrumb-dropdown" style="display:block;position:relative;margin-top:4px">
+                                                <div class="zc-breadcrumb-dropdown-group">
+                                                    <div class="zc-breadcrumb-dropdown-group-label">Section A</div>
+                                                    <ul class="zc-breadcrumb-dropdown-list">
+                                                        <li class="zc-breadcrumb-dropdown-item"><a href="#">Products</a></li>
+                                                        <li class="zc-breadcrumb-dropdown-item"><a href="#">Services</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="zc-breadcrumb-dropdown-group">
+                                                    <div class="zc-breadcrumb-dropdown-group-label">Section B</div>
+                                                    <ul class="zc-breadcrumb-dropdown-list">
+                                                        <li class="zc-breadcrumb-dropdown-item"><a href="#">Category</a></li>
+                                                        <li class="zc-breadcrumb-dropdown-item"><a href="#">Sub-Category</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Dropdown Overlay: List variant (custom HTML) --&gt;
+&lt;div class="zc-breadcrumb-dropdown"&gt;
+  &lt;ul class="zc-breadcrumb-dropdown-list"&gt;
+    &lt;li class="zc-breadcrumb-dropdown-item"&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="zc-breadcrumb-dropdown-item"&gt;&lt;a href="#"&gt;Category&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- Dropdown Overlay: Group variant --&gt;
+&lt;div class="zc-breadcrumb-dropdown"&gt;
+  &lt;div class="zc-breadcrumb-dropdown-group"&gt;
+    &lt;div class="zc-breadcrumb-dropdown-group-label"&gt;Section A&lt;/div&gt;
+    &lt;ul class="zc-breadcrumb-dropdown-list"&gt;
+      &lt;li class="zc-breadcrumb-dropdown-item"&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SEPARATOR STYLES ==== (Custom HTML — lyte-breadcrumb doesn't support custom separators) -->
+                        <div class="btn-variant-group" data-style="separators" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Separator &mdash; Slash (/)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-sm" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Library</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Data</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Medium</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-md" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Library</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Data</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-lg" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Library</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true">/</li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Data</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Slash separator (default) --&gt;
+&lt;li class="zc-breadcrumb-separator" aria-hidden="true"&gt;/&lt;/li&gt;</code></pre></div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header">
+                                    <span class="btn-variant-card__title">Separator &mdash; Chevron (&gt;)</span>
+                                    <button class="btn-variant-card__toggle" onclick="toggleBreadcrumbCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button>
+                                </div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Small</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-sm zc-breadcrumb-chevron" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Library</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Data</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Medium</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-md zc-breadcrumb-chevron" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Library</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Data</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Large</span>
+                                        <nav class="zc-breadcrumb zc-breadcrumb-lg zc-breadcrumb-chevron" aria-label="Breadcrumb">
+                                            <ol class="zc-breadcrumb-list">
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Home</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                                                <li class="zc-breadcrumb-item"><a href="#"><span>Library</span></a></li>
+                                                <li class="zc-breadcrumb-separator" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                                                <li class="zc-breadcrumb-item zc-breadcrumb-current" aria-current="page"><span>Data</span></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs">
+                                        <button class="btn-code-tab active" onclick="switchBreadcrumbCodeTab('html', this)">HTML</button>
+                                        <button class="btn-code-tab" onclick="switchBreadcrumbCodeTab('scss', this)">SCSS</button>
+                                    </div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Chevron separator: add zc-breadcrumb-chevron class --&gt;
+&lt;nav class="zc-breadcrumb zc-breadcrumb-md zc-breadcrumb-chevron"&gt;
+  &lt;ol class="zc-breadcrumb-list"&gt;
+    &lt;li class="zc-breadcrumb-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="zc-breadcrumb-separator" aria-hidden="true"&gt;
+      &lt;svg width="14" height="14" viewBox="0 0 16 16" fill="none"&gt;
+        &lt;path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round"/&gt;
+      &lt;/svg&gt;
+    &lt;/li&gt;
+    &lt;li class="zc-breadcrumb-item zc-breadcrumb-current"&gt;Data&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyBreadcrumbCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-breadcrumb-chevron .zc-breadcrumb-separator svg {
+  width: 0.85em;
+  height: 0.85em;
+  vertical-align: middle;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

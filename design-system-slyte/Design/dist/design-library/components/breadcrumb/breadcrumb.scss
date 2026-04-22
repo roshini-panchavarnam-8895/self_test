@@ -1,158 +1,311 @@
 /* =============================================================================
    BREADCRUMB COMPONENT — SCSS
-   Figma Source: Breadcrumb_Base (CTS - AI Test)
-   =============================================================================
+   Figma Source: Breadcrumb_Base (2464:19), Breadcrumb_Dropdown_Overlay (2583:3025)
 
    VARIANTS:
-     Items  → 2 | 3 | 4 | 5 | 6 breadcrumb levels
-     States → Default | Hover | Active (current page)
+     Type       → Link | Text (non-linked)
+     Size       → S (12px/18px) | M (14px/20px) | L (16px/24px)
+     Separator  → Slash "/" (default) | Chevron SVG
+     Features   → Overflow (ellipsis), Dropdown overlay (List / Group)
+     States     → Default | Hover | Current (active page)
 
-   NAMING: Single-hyphen modifier (zc-breadcrumb  NOT  zc-breadcrumb--*)
-   DOM:    Uses <nav> with <ol> list for semantic breadcrumb navigation
+   NAMING: Single-hyphen modifier (zc-breadcrumb-sm NOT zc-breadcrumb--sm)
+   COLORS (from Figma):
+     Enabled:     #37383C (dark, clickable) — fill_7Z96R9
+     Current:     #696C74 (medium gray, non-linked) — fill_0U1EGK
+     Separator:   #696C74 (divider gray)
+     Font:        ZohoPuvi, P2_Regular (14px, 400, ~18px)
 
    CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
-     --zc-color-primary-text-default            (#0D4EF2)
-     --zc-color-primary-text-default-hover      (#0B44D5)
-     --zc-color-huegrey-text-default            (#696C74)
-     --zc-color-huegrey-text-bold               (#25272C)
-     --zc-color-huegrey-border-low              (#E3E3E3)
-     --zc-font-family-default                   (ZohoPuvi)
+     --zc-color-primary-text-default       (#0D4EF2)
+     --zc-color-primary-text-default-hover  (#0B44D5)
+     --zc-color-neutral-text-default        (#37383C)
+     --zc-color-neutral-text-subtle         (#9EA0A7)
+     --zc-color-neutral-surface-subtle   (#F0F1F3)
+     --zc-font-family-default                            (ZohoPuvi)
+     --zc-p2-font-size                                   (14px)
+     --zc-p3-font-size                                   (12px)
+     --zc-p2-font-weight-semibold                        (600)
+     --zc-radius-s                                       (4px)
    ============================================================================= */
 
 /* ---------------------------------------------------------------------------
-   BREADCRUMB CONTAINER
+   BASE — <nav> wrapper
    --------------------------------------------------------------------------- */
 .zc-breadcrumb {
     display: flex;
     align-items: center;
-    font-family: 'ZohoPuvi', sans-serif;
+    font-family: var(--zc-font-family-default, 'ZohoPuvi', sans-serif);
 }
 
-.zc-breadcrumb ol {
+/* ---------------------------------------------------------------------------
+   LIST — ordered list reset
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-list {
     display: flex;
     align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 0;
     flex-wrap: wrap;
+    gap: 6px;
 }
 
 /* ---------------------------------------------------------------------------
-   BREADCRUMB ITEM
+   ITEM — each breadcrumb step
    --------------------------------------------------------------------------- */
 .zc-breadcrumb-item {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: var(--zc-p2-font-size, 14px);
-    line-height: var(--zc-p2-line-height, 20px);
-    font-weight: var(--zc-p2-font-weight-regular, 400);
-    color: var(--zc-color-huegrey-text-default, #696C74);
+    white-space: nowrap;
 }
 
+/* ---------------------------------------------------------------------------
+   LINK — clickable breadcrumb anchors (Link type)
+   --------------------------------------------------------------------------- */
 .zc-breadcrumb-item a {
-    color: var(--zc-color-primary-text-default, #0D4EF2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--zc-color-huegrey-text-bold, #37383C);
     text-decoration: none;
-    cursor: pointer;
     transition: color 0.15s ease;
-    padding: 4px 6px;
-    border-radius: var(--zc-radius-s, 4px);
+    cursor: pointer;
 
-    &:hover {
-        color: var(--zc-color-primary-text-default-hover, #0B44D5);
-        background-color: var(--zc-color-primary-surface-subtle, #F5F8FE);
-    }
-
-    &:active {
-        background-color: var(--zc-color-primary-surface-subtle-hover, #E7EDFE);
+    &:hover,
+    &:focus-visible {
+        color: var(--zc-color-black-white-text-black-text, #000000);
+        text-decoration: none;
     }
 }
 
 /* ---------------------------------------------------------------------------
-   SEPARATOR — chevron icon between items
+   CURRENT — active page (last item, non-clickable)
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-current {
+    color: var(--zc-color-huegrey-text-default, #696C74);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    cursor: default;
+}
+
+/* ---------------------------------------------------------------------------
+   SEPARATOR — "/" or chevron icon between items
    --------------------------------------------------------------------------- */
 .zc-breadcrumb-separator {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
     color: var(--zc-color-huegrey-text-default, #696C74);
-    flex-shrink: 0;
-    margin: 0 2px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    line-height: 1;
 
     svg {
-        width: 10px;
-        height: 10px;
+        display: block;
     }
 }
 
 /* ---------------------------------------------------------------------------
-   CURRENT (ACTIVE) ITEM — last breadcrumb, non-clickable
+   SIZES — S / M / L per Figma Breadcrumb_Base (2464:19)
+   Custom HTML selectors (for Icons/Overflow/Separator tabs)
    --------------------------------------------------------------------------- */
-.zc-breadcrumb-item.zc-breadcrumb-current {
-    color: var(--zc-color-huegrey-text-bold, #25272C);
-    font-weight: var(--zc-p2-font-weight-semibold, 600);
+.zc-breadcrumb-sm {
+    font-size: var(--zc-p3-font-size, 12px);
+    line-height: 18px;
 
-    span {
-        padding: 4px 6px;
+    .zc-breadcrumb-separator {
+        font-size: 10px;
     }
 }
 
-/* ---------------------------------------------------------------------------
-   OVERFLOW TRIGGER — "..." for collapsed items
-   --------------------------------------------------------------------------- */
-.zc-breadcrumb-overflow {
-    display: inline-flex;
-    align-items: center;
-    color: var(--zc-color-huegrey-text-default, #696C74);
-    cursor: pointer;
-    padding: 4px 6px;
-    border-radius: var(--zc-radius-s, 4px);
-    font-size: 14px;
-    letter-spacing: 2px;
-    transition: background-color 0.15s ease, color 0.15s ease;
-
-    &:hover {
-        background-color: var(--zc-color-primary-surface-subtle, #F5F8FE);
-        color: var(--zc-color-primary-text-default, #0D4EF2);
-    }
+.zc-breadcrumb-md {
+    font-size: var(--zc-p2-font-size, 14px);
+    line-height: 20px;
 }
 
-/* ---------------------------------------------------------------------------
-   SIZE VARIANTS
-   --------------------------------------------------------------------------- */
-.zc-breadcrumb.zc-breadcrumb-sm .zc-breadcrumb-item {
-    font-size: 12px;
-    line-height: 16px;
-}
-.zc-breadcrumb.zc-breadcrumb-sm .zc-breadcrumb-item a,
-.zc-breadcrumb.zc-breadcrumb-sm .zc-breadcrumb-current span {
-    padding: 2px 4px;
-}
-.zc-breadcrumb.zc-breadcrumb-sm .zc-breadcrumb-separator {
-    width: 14px;
-    height: 14px;
-}
-.zc-breadcrumb.zc-breadcrumb-sm .zc-breadcrumb-separator svg {
-    width: 8px;
-    height: 8px;
-}
-
-.zc-breadcrumb.zc-breadcrumb-lg .zc-breadcrumb-item {
+.zc-breadcrumb-lg {
     font-size: 16px;
     line-height: 24px;
 }
-.zc-breadcrumb.zc-breadcrumb-lg .zc-breadcrumb-item a,
-.zc-breadcrumb.zc-breadcrumb-lg .zc-breadcrumb-current span {
-    padding: 6px 8px;
+
+/* ---------------------------------------------------------------------------
+   LYTE DOM — Figma Breadcrumb_Base (2464:19) visual overrides
+   Override Lyte breadcrumb default styles to match Figma exactly.
+   --------------------------------------------------------------------------- */
+lyte-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+
+    lyte-breadcrumb-structure.lyteBreadcrumbSlash {
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+    }
+
+    lyte-breadcrumb-item {
+        float: none;
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--zc-font-family-default, 'ZohoPuvi', sans-serif);
+        font-size: var(--zc-p2-font-size, 14px);
+        font-weight: var(--zc-p2-font-weight-regular, 400);
+        line-height: 1.286;
+        color: var(--zc-color-huegrey-text-bold, #37383C);
+        cursor: pointer;
+        padding: 0;
+    }
+
+    lyte-breadcrumb-body {
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        cursor: inherit;
+    }
+
+    /* Current / last item — Figma fill_0U1EGK */
+    lyte-breadcrumb-item.lyteActive {
+        color: var(--zc-color-huegrey-text-default, #696C74);
+        cursor: default;
+
+        lyte-breadcrumb-body {
+            color: inherit;
+        }
+    }
+
+    /* Separator slash — match Figma divider color & spacing (gap: 6px) */
+    .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type) {
+        margin-right: 20px;
+    }
+
+    .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type):after {
+        color: var(--zc-color-huegrey-text-default, #696C74);
+        opacity: 1;
+        font-size: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
-.zc-breadcrumb.zc-breadcrumb-lg .zc-breadcrumb-separator {
-    width: 20px;
-    height: 20px;
+
+/* ---------------------------------------------------------------------------
+   SIZES — Lyte DOM selectors (size class on <lyte-breadcrumb> host)
+   --------------------------------------------------------------------------- */
+lyte-breadcrumb.zc-breadcrumb-sm {
+    lyte-breadcrumb-item {
+        font-size: var(--zc-p3-font-size, 12px);
+        line-height: 18px;
+    }
+    .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type):after {
+        font-size: 10px;
+    }
 }
-.zc-breadcrumb.zc-breadcrumb-lg .zc-breadcrumb-separator svg {
-    width: 12px;
-    height: 12px;
+lyte-breadcrumb.zc-breadcrumb-md {
+    lyte-breadcrumb-item {
+        font-size: var(--zc-p2-font-size, 14px);
+        line-height: 20px;
+    }
+}
+lyte-breadcrumb.zc-breadcrumb-lg {
+    lyte-breadcrumb-item {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   WITH ICON — icon before breadcrumb label
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-item i {
+    font-size: 1em;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------------------------------------------------------------------------
+   OVERFLOW — ellipsis for collapsed middle items
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-ellipsis {
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: var(--zc-radius-s, 4px);
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   CHEVRON SEPARATOR VARIANT — add .zc-breadcrumb-chevron to <nav>
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-chevron {
+    .zc-breadcrumb-separator svg {
+        width: 0.85em;
+        height: 0.85em;
+        vertical-align: middle;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   DROPDOWN OVERLAY — Figma: Breadcrumb_Dropdown_Overlay (2583:3025)
+   Variants: List, Group
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    min-width: 180px;
+    background: var(--zc-color-neutral-surface-default, #FFFFFF);
+    border: 1px solid var(--zc-color-neutral-border-subtle, #E1E2E4);
+    border-radius: var(--zc-radius-s, 4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 4px 0;
+    margin-top: 4px;
+    display: none;
+}
+
+.zc-breadcrumb-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.zc-breadcrumb-dropdown-item {
+    a {
+        display: block;
+        padding: 6px 12px;
+        color: var(--zc-color-neutral-text-default, #37383C);
+        text-decoration: none;
+        font-size: var(--zc-p2-font-size, 14px);
+        line-height: 20px;
+        transition: background 0.15s ease;
+
+        &:hover {
+            background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
+            color: var(--zc-color-primary-text-default, #0D4EF2);
+        }
+    }
+}
+
+/* Group variant */
+.zc-breadcrumb-dropdown-group {
+    &:not(:first-child) {
+        border-top: 1px solid var(--zc-color-neutral-border-subtle, #E1E2E4);
+        margin-top: 4px;
+        padding-top: 4px;
+    }
+}
+
+.zc-breadcrumb-dropdown-group-label {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
