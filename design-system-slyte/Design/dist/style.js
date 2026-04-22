@@ -42,15 +42,16 @@
             preview.innerHTML = '';
         });
     });
-    // Also save listing-comp-preview elements inside hidden all-listing section
+    // Mark listing-comp-preview elements for tracking but do NOT clear them.
+    // Unlike hidden detail views, listing previews contain Lyte custom elements
+    // that must remain in the DOM so the framework can initialize them natively.
     var listingSection = document.getElementById('section-all-listing');
     if (listingSection) {
         var listingPreviews = listingSection.querySelectorAll('.listing-comp-preview');
         listingPreviews.forEach(function(preview, idx) {
             var key = 'listing__' + idx;
             preview.setAttribute('data-lazy-key', key);
-            window._componentPreviewHTML[key] = preview.innerHTML;
-            preview.innerHTML = '';
+            preview.dataset.lazyRendered = 'true';
         });
     }
     window._allListingInitialized = false;
@@ -280,6 +281,10 @@ function switchSection(sectionName, navElement) {
     if (sectionName === 'all-listing' && !window._allListingInitialized) {
         initAllListingSection();
     }
+    // Lazy-init All Components flat listing with code view
+    if (sectionName === 'all-components' && !window._allComponentsInitialized) {
+        initAllComponentsSection();
+    }
 }
 
 /**
@@ -291,17 +296,6 @@ function switchSection(sectionName, navElement) {
 function initAllListingSection() {
     var listingSection = document.getElementById('section-all-listing');
     if (!listingSection) return;
-
-    // Restore lazy-saved preview content
-    listingSection.querySelectorAll('.listing-comp-preview[data-lazy-key]').forEach(function(preview) {
-        if (!preview.dataset.lazyRendered) {
-            var savedHTML = window._componentPreviewHTML[preview.dataset.lazyKey];
-            if (savedHTML) {
-                preview.innerHTML = savedHTML;
-                preview.dataset.lazyRendered = 'true';
-            }
-        }
-    });
 
     // ── Sync Validation ────────────────────────────────────────────────
     // Collect component keys from the Pages sidebar (figma-pages-nav)
@@ -380,6 +374,216 @@ function initAllListingSection() {
     window._allListingInitialized = true;
 }
 
+
+/* ╔═══════════════════════════════════════════════════════════════════════════════╗
+   ║  SECTION 3B: ALL COMPONENTS (FLAT LISTING WITH CODE VIEW)                     ║
+   ╚═══════════════════════════════════════════════════════════════════════════════╝ */
+
+var ALL_COMPONENT_NAMES = [
+    'avatar','breadcrumb','button','content-switcher',
+    'checkbox','dropdown','number','dropdown-optgroup',
+    'input-otp','radiobutton','input-tag','input-tagarea',
+    'input','text','input-suffixed','input-prefixed',
+    'input-affixed','notes','progressbar','tabs',
+    'toast','toggle','popover','tooltip'
+];
+
+var ALL_COMP_DISPLAY_NAMES = {
+    'avatar': 'Avatar',
+    'breadcrumb': 'Breadcrumbs',
+    'button': 'Button',
+    'content-switcher': 'Content Switcher',
+    'checkbox': 'Input CheckBox',
+    'dropdown': 'Input Dropdown',
+    'number': 'Input Number',
+    'dropdown-optgroup': 'Input Optgroup',
+    'input-otp': 'Input OTP',
+    'radiobutton': 'Input Radio',
+    'input-tag': 'Input Tag',
+    'input-tagarea': 'Input TagArea',
+    'input': 'Input Text',
+    'text': 'Input TextArea',
+    'input-suffixed': 'Input Suffixed',
+    'input-prefixed': 'Input Prefixed',
+    'input-affixed': 'Input Affixed',
+    'notes': 'Notes',
+    'progressbar': 'Progress Indicator',
+    'tabs': 'Tab',
+    'toast': 'Toast',
+    'toggle': 'Toggle',
+    'popover': 'Popover',
+    'tooltip': 'Tooltip'
+};
+
+function initAllComponentsSection() {
+    window._allComponentsInitialized = true;
+    var container = document.getElementById('all-comp-list');
+    if (!container) return;
+
+    var loaded = 0;
+    var total = ALL_COMPONENT_NAMES.length;
+
+    ALL_COMPONENT_NAMES.forEach(function(name) {
+        var cardEl = document.createElement('div');
+        cardEl.className = 'all-comp-card';
+        cardEl.style.cssText = 'border: 1px solid var(--zc-color-border-default, #E5E7EB); border-radius: 12px; margin-bottom: 20px; overflow: hidden; background: var(--zc-color-surface-primary, #fff); width: 100%;';
+
+        var titleBar = document.createElement('div');
+        titleBar.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: var(--zc-color-surface-secondary, #F9FAFB); border-bottom: 1px solid var(--zc-color-border-default, #E5E7EB); cursor: pointer;';
+        var displayName = ALL_COMP_DISPLAY_NAMES[name] || name.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+        titleBar.innerHTML = '<span style="font-weight: 600; font-size: 15px;">' + displayName + '</span>' +
+            '<span class="all-comp-toggle" style="display:flex; gap:8px;">' +
+            '<button onclick="toggleAllCompPreview(this)" style="background:var(--zc-color-primary-surface, #EEF2FF);border:1px solid var(--zc-color-border-default,#E5E7EB);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-text-secondary,#6B7280);"><i class="fas fa-eye"></i> Preview</button>' +
+            '<button onclick="toggleAllCompCode(this)" style="background:none;border:1px solid var(--zc-color-border-default,#E5E7EB);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-text-secondary,#6B7280);"><i class="fas fa-code"></i> Code</button>' +
+            '</span>';
+        cardEl.appendChild(titleBar);
+
+        var previewArea = document.createElement('div');
+        previewArea.className = 'all-comp-preview';
+        previewArea.style.cssText = 'display: block;';
+        cardEl.appendChild(previewArea);
+
+        var codeArea = document.createElement('div');
+        codeArea.className = 'all-comp-code';
+        codeArea.style.cssText = 'display: none; background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; font-family: monospace; font-size: 13px; white-space: pre-wrap; overflow-x: auto; max-height: 500px; overflow-y: auto; position: relative;';
+        cardEl.appendChild(codeArea);
+
+        container.appendChild(cardEl);
+
+        var partialUrl = 'dist/design-library/components/' + name + '/' + name + '-partial.html';
+        fetch(partialUrl).then(function(resp) {
+            if (!resp.ok) throw new Error('Not found');
+            return resp.text();
+        }).then(function(html) {
+            var sourceCode = extractComponentSource(html);
+            codeArea.innerHTML = '';
+            var copyBtn = document.createElement('button');
+            copyBtn.style.cssText = 'position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.1);border:none;color:#cdd6f4;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;';
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            copyBtn.onclick = function() {
+                navigator.clipboard.writeText(sourceCode).then(function() {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(function() { copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 2000);
+                });
+            };
+            codeArea.appendChild(copyBtn);
+            var pre = document.createElement('pre');
+            pre.style.cssText = 'margin:0;';
+            var code = document.createElement('code');
+            code.textContent = sourceCode;
+            pre.appendChild(code);
+            codeArea.appendChild(pre);
+
+            renderAllCompPreview(previewArea, html);
+
+            loaded++;
+            updateAllCompCount(loaded, total);
+        }).catch(function() {
+            previewArea.innerHTML = '<span style="color:#ef4444;font-size:13px;padding:20px;display:block;">Component partial not found.</span>';
+            codeArea.textContent = '<!-- Partial not available for ' + name + ' -->';
+            loaded++;
+            updateAllCompCount(loaded, total);
+        });
+    });
+}
+
+function extractComponentSource(html) {
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    var previews = tmp.querySelectorAll('.btn-variant-card__preview, .variant-preview');
+    if (previews.length === 0) {
+        var codeBlocks = tmp.querySelectorAll('.btn-code-block[data-lang="html"] pre code, .variant-code-block[data-lang="html"] pre code');
+        if (codeBlocks.length > 0) {
+            var snippets = [];
+            codeBlocks.forEach(function(cb) { snippets.push(cb.textContent.trim()); });
+            return snippets.join('\n\n');
+        }
+        return html.trim();
+    }
+    var snippets = [];
+    previews.forEach(function(preview) {
+        snippets.push(preview.innerHTML.trim());
+    });
+    return snippets.join('\n\n');
+}
+
+function updateAllCompCount(loaded, total) {
+    var el = document.querySelector('#section-all-components .all-comp-count');
+    if (el) {
+        el.textContent = loaded + ' of ' + total + ' components loaded';
+        if (loaded === total) {
+            el.textContent = 'Showing all ' + total + ' components';
+        }
+    }
+}
+
+var OVERLAY_LYTE_TAGS = [
+    'lyte-alert', 'lyte-banner', 'lyte-modal', 'lyte-drawer',
+    'lyte-messagebox', 'lyte-popover', 'lyte-toast', 'lyte-menu',
+    'lyte-colorpicker', 'lyte-daterangepicker', 'lyte-dateselect',
+    'lyte-datetime-input', 'lyte-combobox', 'lyte-dropdown',
+    'lyte-multi-dropdown', 'lyte-drop-box', 'lyte-drop-body',
+    'lyte-drop-header', 'lyte-drop-item'
+];
+
+function neutralizeOverlayTags(html) {
+    var sanitized = html;
+    OVERLAY_LYTE_TAGS.forEach(function(tag) {
+        var openRegex = new RegExp('<' + tag + '(\\s|>|/)', 'gi');
+        var closeRegex = new RegExp('</' + tag + '>', 'gi');
+        sanitized = sanitized.replace(openRegex, '<div data-orig-tag="' + tag + '"$1');
+        sanitized = sanitized.replace(closeRegex, '</div>');
+    });
+    return sanitized;
+}
+
+function renderAllCompPreview(previewArea, html) {
+    var safeHtml = neutralizeOverlayTags(html);
+
+    var wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position:relative; contain:layout style paint; overflow:hidden; isolation:isolate; z-index:0; padding:20px;';
+    wrapper.innerHTML = safeHtml;
+
+    wrapper.querySelectorAll('.detail-header').forEach(function(el) { el.remove(); });
+    wrapper.querySelectorAll('.btn-style-tabs').forEach(function(el) { el.remove(); });
+    wrapper.querySelectorAll('.btn-code-panel').forEach(function(el) { el.remove(); });
+    wrapper.querySelectorAll('.variant-code').forEach(function(el) { el.remove(); });
+    wrapper.querySelectorAll('.variant-code-toggle').forEach(function(el) { el.remove(); });
+    wrapper.querySelectorAll('.btn-variant-card__toggle').forEach(function(el) { el.remove(); });
+
+    wrapper.querySelectorAll('.btn-variant-group').forEach(function(g) {
+        g.style.display = '';
+    });
+
+    previewArea.innerHTML = '';
+    previewArea.appendChild(wrapper);
+}
+
+function toggleAllCompPreview(btn) {
+    var card = btn.closest('.all-comp-card');
+    if (!card) return;
+    var preview = card.querySelector('.all-comp-preview');
+    if (preview.style.display === 'none') {
+        preview.style.display = 'block';
+        btn.style.background = 'var(--zc-color-primary-surface, #EEF2FF)';
+    } else {
+        preview.style.display = 'none';
+        btn.style.background = 'none';
+    }
+}
+
+function toggleAllCompCode(btn) {
+    var card = btn.closest('.all-comp-card');
+    if (!card) return;
+    var codeArea = card.querySelector('.all-comp-code');
+    if (codeArea.style.display === 'none') {
+        codeArea.style.display = 'block';
+        btn.style.background = 'var(--zc-color-primary-surface, #EEF2FF)';
+    } else {
+        codeArea.style.display = 'none';
+        btn.style.background = 'none';
+    }
+}
 
 /* ╔═══════════════════════════════════════════════════════════════════════════════╗
    ║  SECTION 4: PRODUCT SWITCHER                                                  ║

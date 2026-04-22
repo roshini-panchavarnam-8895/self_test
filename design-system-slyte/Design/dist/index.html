@@ -668,6 +668,7 @@
                     <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="tokens" onclick="switchSection('tokens', this)"><i class="fas fa-swatchbook"></i>Tokens</a>
                     <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="icons" onclick="switchSection('icons', this)"><i class="fas fa-icons"></i>Icons</a>
                     <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="all-listing" onclick="switchSection('all-listing', this)"><i class="fas fa-th-list"></i>All components listing</a>
+                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="all-components" onclick="switchSection('all-components', this)"><i class="fas fa-layer-group"></i>All Components</a>
                 </div>
             </nav>
         </aside>
@@ -2170,6 +2171,17 @@
                                 </div>
                             </div>
                         </section>
+                    </div>
+                </div>
+
+                <!-- ALL COMPONENTS (Flat Listing with Code View) -->
+                <div class="section-container" id="section-all-components" style="display: none;">
+                    <div style="flex: 1; width: 100%; overflow-y: auto; max-height: 100vh; padding: 32px;">
+                        <div class="all-comp-header zc-mb-24">
+                            <h1 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">All Components</h1>
+                            <p class="all-comp-count" style="color: var(--zc-color-text-secondary, #6B7280); font-size: 14px;">Loading components...</p>
+                        </div>
+                        <div id="all-comp-list" style="width: 100%;"></div>
                     </div>
                 </div>
 
