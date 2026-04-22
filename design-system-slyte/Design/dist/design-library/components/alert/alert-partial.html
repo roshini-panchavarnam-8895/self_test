@@ -32,23 +32,10 @@
                                 </div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Default</span>
-                                        <div class="zc-toast zc-toast-info">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM8 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 5Zm.75 7h-1.5V7.5h1.5V12Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">This is an informational message.</span>
-                                        </div>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="This is an informational message." class="zc-toast zc-toast-info"></lyte-alert>
                                     </div>
                                     <div class="btn-size-row"><span class="btn-size-label">Long Text</span>
-                                        <div class="zc-toast zc-toast-info">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM8 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 5Zm.75 7h-1.5V7.5h1.5V12Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Your changes have been saved. The system will process your request shortly and notify you once complete.</span>
-                                        </div>
-                                    </div>
-                                    <div class="btn-size-row"><span class="btn-size-label">Lyte Alert</span>
-                                        <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="This is a lyte-alert info message." class="zc-toast zc-toast-info"></lyte-alert>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="Your changes have been saved. The system will process your request shortly and notify you once complete." class="zc-toast zc-toast-info"></lyte-alert>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none;">
@@ -58,16 +45,9 @@
                                     </div>
                                     <div class="btn-code-block" data-lang="html">
                                         <div class="btn-code-block__header"><span>HTML</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
-                                        <pre><code>&lt;!-- Pure HTML Toast --&gt;
-&lt;div class="zc-toast zc-toast-info"&gt;
-    &lt;span class="zc-toast-icon"&gt;&lt;!-- info svg --&gt;&lt;/span&gt;
-    &lt;span class="zc-toast-message"&gt;This is an informational message.&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;!-- Lyte Alert --&gt;
-&lt;lyte-alert lt-prop-show="true"
+                                        <pre><code>&lt;lyte-alert lt-prop-show="true"
             lt-prop-type="info"
-            lt-prop-message="Info message"
+            lt-prop-message="This is an informational message."
             class="zc-toast zc-toast-info"&gt;
 &lt;/lyte-alert&gt;</code></pre>
                                     </div>
@@ -93,23 +73,10 @@
                                 </div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Default</span>
-                                        <div class="zc-toast zc-toast-success">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm3.03 4.97-4 4a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06L6.5 8.88l3.47-3.47a.75.75 0 1 1 1.06 1.06Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Operation completed successfully!</span>
-                                        </div>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Operation completed successfully!" class="zc-toast zc-toast-success"></lyte-alert>
                                     </div>
                                     <div class="btn-size-row"><span class="btn-size-label">Long Text</span>
-                                        <div class="zc-toast zc-toast-success">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm3.03 4.97-4 4a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06L6.5 8.88l3.47-3.47a.75.75 0 1 1 1.06 1.06Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Your record has been saved successfully. All changes are now reflected in the database.</span>
-                                        </div>
-                                    </div>
-                                    <div class="btn-size-row"><span class="btn-size-label">Lyte Alert</span>
-                                        <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Record saved successfully!" class="zc-toast zc-toast-success"></lyte-alert>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Your record has been saved successfully. All changes are now reflected in the database." class="zc-toast zc-toast-success"></lyte-alert>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none;">
@@ -119,10 +86,11 @@
                                     </div>
                                     <div class="btn-code-block" data-lang="html">
                                         <div class="btn-code-block__header"><span>HTML</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
-                                        <pre><code>&lt;div class="zc-toast zc-toast-success"&gt;
-    &lt;span class="zc-toast-icon"&gt;&lt;!-- check svg --&gt;&lt;/span&gt;
-    &lt;span class="zc-toast-message"&gt;Operation completed successfully!&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+                                        <pre><code>&lt;lyte-alert lt-prop-show="true"
+            lt-prop-type="success"
+            lt-prop-message="Operation completed successfully!"
+            class="zc-toast zc-toast-success"&gt;
+&lt;/lyte-alert&gt;</code></pre>
                                     </div>
                                     <div class="btn-code-block" data-lang="scss" style="display:none;">
                                         <div class="btn-code-block__header"><span>SCSS</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
@@ -146,23 +114,10 @@
                                 </div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Default</span>
-                                        <div class="zc-toast zc-toast-warning">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.87 2.52a1 1 0 0 0-1.74 0L1.42 13a1 1 0 0 0 .87 1.5h11.42a1 1 0 0 0 .87-1.5L8.87 2.52ZM8 5.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5.5ZM8 12a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Please review your input before continuing.</span>
-                                        </div>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-message="Please review your input before continuing." class="zc-toast zc-toast-warning"></lyte-alert>
                                     </div>
                                     <div class="btn-size-row"><span class="btn-size-label">Long Text</span>
-                                        <div class="zc-toast zc-toast-warning">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.87 2.52a1 1 0 0 0-1.74 0L1.42 13a1 1 0 0 0 .87 1.5h11.42a1 1 0 0 0 .87-1.5L8.87 2.52ZM8 5.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5.5ZM8 12a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Your session is about to expire. Save your work to avoid losing changes.</span>
-                                        </div>
-                                    </div>
-                                    <div class="btn-size-row"><span class="btn-size-label">Lyte Alert</span>
-                                        <lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-message="Session expiring soon!" class="zc-toast zc-toast-warning"></lyte-alert>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-message="Your session is about to expire. Save your work to avoid losing changes." class="zc-toast zc-toast-warning"></lyte-alert>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none;">
@@ -172,10 +127,11 @@
                                     </div>
                                     <div class="btn-code-block" data-lang="html">
                                         <div class="btn-code-block__header"><span>HTML</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
-                                        <pre><code>&lt;div class="zc-toast zc-toast-warning"&gt;
-    &lt;span class="zc-toast-icon"&gt;&lt;!-- warning svg --&gt;&lt;/span&gt;
-    &lt;span class="zc-toast-message"&gt;Please review your input.&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+                                        <pre><code>&lt;lyte-alert lt-prop-show="true"
+            lt-prop-type="warning"
+            lt-prop-message="Please review your input before continuing."
+            class="zc-toast zc-toast-warning"&gt;
+&lt;/lyte-alert&gt;</code></pre>
                                     </div>
                                     <div class="btn-code-block" data-lang="scss" style="display:none;">
                                         <div class="btn-code-block__header"><span>SCSS</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
@@ -199,23 +155,10 @@
                                 </div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Default</span>
-                                        <div class="zc-toast zc-toast-error">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.03 5.97a.75.75 0 0 1 1.06 0L8 6.88l.91-.91a.75.75 0 1 1 1.06 1.06L9.06 8l.91.97a.75.75 0 0 1-1.06 1.06L8 9.12l-.91.91a.75.75 0 0 1-1.06-1.06L6.94 8l-.91-.97a.75.75 0 0 1 0-1.06Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Something went wrong. Please try again.</span>
-                                        </div>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-message="Something went wrong. Please try again." class="zc-toast zc-toast-error"></lyte-alert>
                                     </div>
                                     <div class="btn-size-row"><span class="btn-size-label">Long Text</span>
-                                        <div class="zc-toast zc-toast-error">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.03 5.97a.75.75 0 0 1 1.06 0L8 6.88l.91-.91a.75.75 0 1 1 1.06 1.06L9.06 8l.91.97a.75.75 0 0 1-1.06 1.06L8 9.12l-.91.91a.75.75 0 0 1-1.06-1.06L6.94 8l-.91-.97a.75.75 0 0 1 0-1.06Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Failed to save your record. The server returned an unexpected error. Please retry or contact support.</span>
-                                        </div>
-                                    </div>
-                                    <div class="btn-size-row"><span class="btn-size-label">Lyte Alert</span>
-                                        <lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-message="Failed to save record." class="zc-toast zc-toast-error"></lyte-alert>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-message="Failed to save your record. The server returned an unexpected error. Please retry or contact support." class="zc-toast zc-toast-error"></lyte-alert>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none;">
@@ -225,10 +168,11 @@
                                     </div>
                                     <div class="btn-code-block" data-lang="html">
                                         <div class="btn-code-block__header"><span>HTML</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
-                                        <pre><code>&lt;div class="zc-toast zc-toast-error"&gt;
-    &lt;span class="zc-toast-icon"&gt;&lt;!-- error svg --&gt;&lt;/span&gt;
-    &lt;span class="zc-toast-message"&gt;Something went wrong.&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+                                        <pre><code>&lt;lyte-alert lt-prop-show="true"
+            lt-prop-type="error"
+            lt-prop-message="Something went wrong. Please try again."
+            class="zc-toast zc-toast-error"&gt;
+&lt;/lyte-alert&gt;</code></pre>
                                     </div>
                                     <div class="btn-code-block" data-lang="scss" style="display:none;">
                                         <div class="btn-code-block__header"><span>SCSS</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
@@ -252,51 +196,16 @@
                                 </div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Info + Close</span>
-                                        <div class="zc-toast zc-toast-info">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM8 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 5Zm.75 7h-1.5V7.5h1.5V12Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">This is an info toast with a close button.</span>
-                                            <button class="zc-toast-close" onclick="this.parentElement.style.display='none'">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 3 3 9M3 3l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                                            </button>
-                                        </div>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-close-button="true" lt-prop-message="This is an info toast with a close button." class="zc-toast zc-toast-info"></lyte-alert>
                                     </div>
                                     <div class="btn-size-row"><span class="btn-size-label">Success + Close</span>
-                                        <div class="zc-toast zc-toast-success">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm3.03 4.97-4 4a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06L6.5 8.88l3.47-3.47a.75.75 0 1 1 1.06 1.06Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Record saved successfully!</span>
-                                            <button class="zc-toast-close" onclick="this.parentElement.style.display='none'">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 3 3 9M3 3l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                                            </button>
-                                        </div>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-close-button="true" lt-prop-message="Record saved successfully!" class="zc-toast zc-toast-success"></lyte-alert>
                                     </div>
                                     <div class="btn-size-row"><span class="btn-size-label">Warning + Close</span>
-                                        <div class="zc-toast zc-toast-warning">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.87 2.52a1 1 0 0 0-1.74 0L1.42 13a1 1 0 0 0 .87 1.5h11.42a1 1 0 0 0 .87-1.5L8.87 2.52ZM8 5.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5.5ZM8 12a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Session expiring soon!</span>
-                                            <button class="zc-toast-close" onclick="this.parentElement.style.display='none'">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 3 3 9M3 3l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                                            </button>
-                                        </div>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-close-button="true" lt-prop-message="Session expiring soon!" class="zc-toast zc-toast-warning"></lyte-alert>
                                     </div>
                                     <div class="btn-size-row"><span class="btn-size-label">Error + Close</span>
-                                        <div class="zc-toast zc-toast-error">
-                                            <span class="zc-toast-icon">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.03 5.97a.75.75 0 0 1 1.06 0L8 6.88l.91-.91a.75.75 0 1 1 1.06 1.06L9.06 8l.91.97a.75.75 0 0 1-1.06 1.06L8 9.12l-.91.91a.75.75 0 0 1-1.06-1.06L6.94 8l-.91-.97a.75.75 0 0 1 0-1.06Z" fill="currentColor"/></svg>
-                                            </span>
-                                            <span class="zc-toast-message">Failed to delete record.</span>
-                                            <button class="zc-toast-close" onclick="this.parentElement.style.display='none'">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 3 3 9M3 3l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="btn-size-row"><span class="btn-size-label">Lyte Close</span>
-                                        <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-close-button="true" lt-prop-message="Closable lyte-alert toast." class="zc-toast zc-toast-info"></lyte-alert>
+                                        <lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-close-button="true" lt-prop-message="Failed to delete record." class="zc-toast zc-toast-error"></lyte-alert>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none;">
@@ -306,16 +215,7 @@
                                     </div>
                                     <div class="btn-code-block" data-lang="html">
                                         <div class="btn-code-block__header"><span>HTML</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
-                                        <pre><code>&lt;div class="zc-toast zc-toast-info"&gt;
-    &lt;span class="zc-toast-icon"&gt;&lt;!-- icon --&gt;&lt;/span&gt;
-    &lt;span class="zc-toast-message"&gt;Toast with close button.&lt;/span&gt;
-    &lt;button class="zc-toast-close"&gt;
-        &lt;svg ...&gt;&lt;!-- close X --&gt;&lt;/svg&gt;
-    &lt;/button&gt;
-&lt;/div&gt;
-
-&lt;!-- Lyte: close button via lt-prop --&gt;
-&lt;lyte-alert lt-prop-show="true"
+                                        <pre><code>&lt;lyte-alert lt-prop-show="true"
             lt-prop-type="info"
             lt-prop-close-button="true"
             lt-prop-message="Closable toast."
@@ -324,7 +224,8 @@
                                     </div>
                                     <div class="btn-code-block" data-lang="scss" style="display:none;">
                                         <div class="btn-code-block__header"><span>SCSS</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
-                                        <pre><code>.zc-toast-close {
+                                        <pre><code>/* lyte-alert renders its own close button via lt-prop-close-button */
+lyte-alert .lyteAlertClose {
     background: none;
     border: none;
     cursor: pointer;
@@ -341,6 +242,7 @@
                         </div>
 
                         <!-- ==== POSITIONS ==== -->
+                        <!-- Custom HTML — lyte-alert doesn't control positioning containers; this section demonstrates layout placement classes -->
                         <div class="btn-variant-group" data-style="positions" style="display:none;">
                             <div class="btn-variant-card">
                                 <div class="btn-variant-card__header">
@@ -351,52 +253,22 @@
                                     <div class="zc-toast-position-demo">
                                         <div class="zc-toast-demo-viewport">
                                             <div class="zc-toast-container zc-toast-top-right">
-                                                <div class="zc-toast zc-toast-info">
-                                                    <span class="zc-toast-icon">
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM8 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 5Zm.75 7h-1.5V7.5h1.5V12Z" fill="currentColor"/></svg>
-                                                    </span>
-                                                    <span class="zc-toast-message">Top Right</span>
-                                                </div>
+                                                <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="Top Right" class="zc-toast zc-toast-info"></lyte-alert>
                                             </div>
                                             <div class="zc-toast-container zc-toast-top-center">
-                                                <div class="zc-toast zc-toast-success">
-                                                    <span class="zc-toast-icon">
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm3.03 4.97-4 4a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06L6.5 8.88l3.47-3.47a.75.75 0 1 1 1.06 1.06Z" fill="currentColor"/></svg>
-                                                    </span>
-                                                    <span class="zc-toast-message">Top Center</span>
-                                                </div>
+                                                <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Top Center" class="zc-toast zc-toast-success"></lyte-alert>
                                             </div>
                                             <div class="zc-toast-container zc-toast-top-left">
-                                                <div class="zc-toast zc-toast-warning">
-                                                    <span class="zc-toast-icon">
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.87 2.52a1 1 0 0 0-1.74 0L1.42 13a1 1 0 0 0 .87 1.5h11.42a1 1 0 0 0 .87-1.5L8.87 2.52ZM8 5.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5.5ZM8 12a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" fill="currentColor"/></svg>
-                                                    </span>
-                                                    <span class="zc-toast-message">Top Left</span>
-                                                </div>
+                                                <lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-message="Top Left" class="zc-toast zc-toast-warning"></lyte-alert>
                                             </div>
                                             <div class="zc-toast-container zc-toast-bottom-right">
-                                                <div class="zc-toast zc-toast-error">
-                                                    <span class="zc-toast-icon">
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.03 5.97a.75.75 0 0 1 1.06 0L8 6.88l.91-.91a.75.75 0 1 1 1.06 1.06L9.06 8l.91.97a.75.75 0 0 1-1.06 1.06L8 9.12l-.91.91a.75.75 0 0 1-1.06-1.06L6.94 8l-.91-.97a.75.75 0 0 1 0-1.06Z" fill="currentColor"/></svg>
-                                                    </span>
-                                                    <span class="zc-toast-message">Bottom Right</span>
-                                                </div>
+                                                <lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-message="Bottom Right" class="zc-toast zc-toast-error"></lyte-alert>
                                             </div>
                                             <div class="zc-toast-container zc-toast-bottom-center">
-                                                <div class="zc-toast zc-toast-info">
-                                                    <span class="zc-toast-icon">
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM8 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 5Zm.75 7h-1.5V7.5h1.5V12Z" fill="currentColor"/></svg>
-                                                    </span>
-                                                    <span class="zc-toast-message">Bottom Center</span>
-                                                </div>
+                                                <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="Bottom Center" class="zc-toast zc-toast-info"></lyte-alert>
                                             </div>
                                             <div class="zc-toast-container zc-toast-bottom-left">
-                                                <div class="zc-toast zc-toast-success">
-                                                    <span class="zc-toast-icon">
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm3.03 4.97-4 4a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06L6.5 8.88l3.47-3.47a.75.75 0 1 1 1.06 1.06Z" fill="currentColor"/></svg>
-                                                    </span>
-                                                    <span class="zc-toast-message">Bottom Left</span>
-                                                </div>
+                                                <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Bottom Left" class="zc-toast zc-toast-success"></lyte-alert>
                                             </div>
                                         </div>
                                     </div>
@@ -408,9 +280,12 @@
                                     </div>
                                     <div class="btn-code-block" data-lang="html">
                                         <div class="btn-code-block__header"><span>HTML</span><button class="btn-code-block__copy" onclick="copyAlertCode(this)"><i class="fas fa-copy"></i></button></div>
-                                        <pre><code>&lt;!-- Wrap toasts in a positioned container --&gt;
+                                        <pre><code>&lt;!-- Wrap lyte-alert in a positioned container --&gt;
 &lt;div class="zc-toast-container zc-toast-top-right"&gt;
-    &lt;div class="zc-toast zc-toast-info"&gt;...&lt;/div&gt;
+    &lt;lyte-alert lt-prop-show="true" lt-prop-type="info"
+                lt-prop-message="Top Right"
+                class="zc-toast zc-toast-info"&gt;
+    &lt;/lyte-alert&gt;
 &lt;/div&gt;
 
 &lt;!-- Position classes: --&gt;

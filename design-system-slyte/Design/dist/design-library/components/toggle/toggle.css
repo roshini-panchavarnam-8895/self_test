@@ -28,7 +28,7 @@
     align-items: center;
     width: 36px;
     height: 20px;
-    background: var(--zc-color-neutral-surface-neutral-surface-default, #D5D6D9);
+    background: var(--zc-color-neutral-surface-default, #D5D6D9);
     border-radius: 999px;
     position: relative;
     padding: 2px;
@@ -56,14 +56,14 @@
 .zc-toggle [lyte-label] {
     font-size: var(--zc-p2-font-size, 14px);
     font-weight: var(--zc-p2-font-weight-regular, 400);
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    color: var(--zc-color-neutral-text-default, #37383C);
     margin-left: 8px;
     line-height: 20px;
 }
 
 /* CHECKED (On) — primary track */
 .zc-toggle input.on-off-sw:checked + .lyteCheckSwitch {
-    background: var(--zc-color-primary-surface-primary-surface-default, #0D4EF2);
+    background: var(--zc-color-primary-surface-default, #0D4EF2);
 }
 
 /* CHECKED — thumb slides right */
@@ -75,18 +75,18 @@
 
 /* HOVER — off state */
 .zc-toggle:hover .lyteCheckSwitch {
-    background: var(--zc-color-neutral-surface-neutral-surface-default-hover, #C3C4C8);
+    background: var(--zc-color-neutral-surface-default-hover, #C3C4C8);
 }
 
 /* HOVER — on state */
 .zc-toggle input.on-off-sw:checked ~ .lyteCheckSwitch:hover,
 .zc-toggle:hover input.on-off-sw:checked + .lyteCheckSwitch {
-    background: var(--zc-color-primary-surface-primary-surface-default-hover, #0B44D5);
+    background: var(--zc-color-primary-surface-default-hover, #0B44D5);
 }
 
 /* FOCUS */
 .zc-toggle:focus-within .lyteCheckSwitch {
-    outline: 2px solid var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    outline: 2px solid var(--zc-color-primary-border-default, #0D4EF2);
     outline-offset: 2px;
 }
 

@@ -1,0 +1,380 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-user-circle"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Avatar</h1>
+                            <p class="detail-description">User or entity avatar for displaying profile images, initials, or placeholder icons. Custom HTML component — no Lyte equivalent.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Basic</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 2 Types × 3 Shapes × 4 Sizes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchAvatarStyleTab('image', this)">Image</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('initials', this)">Initials</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('shapes', this)">Shapes</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('status', this)">Status</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('sizes', this)">Sizes</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('colors', this)">Color Themes</button>
+                        <button class="btn-style-tab" onclick="switchAvatarStyleTab('group', this)">Group</button>
+                    </div>
+
+                    <div id="avatar-component-variants">
+
+                        <!-- ==== IMAGE ==== -->
+                        <div class="btn-variant-group" data-style="image">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Image Avatar — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML — no Lyte equivalent for Avatar -->
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">XL (36px)</span>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-base">
+                                            <img src="https://i.pravatar.cc/72?img=1" alt="User avatar">
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">LG (24px)</span>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-lg zc-avatar-base">
+                                            <img src="https://i.pravatar.cc/48?img=2" alt="User avatar">
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">SM (16px)</span>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-sm zc-avatar-base">
+                                            <img src="https://i.pravatar.cc/32?img=3" alt="User avatar">
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">XS (14px)</span>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xs zc-avatar-base">
+                                            <img src="https://i.pravatar.cc/28?img=4" alt="User avatar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Image Avatar: XL (36px) --&gt;
+&lt;div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-base"&gt;
+  &lt;img src="photo.jpg" alt="User avatar"&gt;
+&lt;/div&gt;
+
+&lt;!-- Image Avatar: LG (24px) --&gt;
+&lt;div class="zc-avatar zc-avatar-image zc-avatar-lg zc-avatar-base"&gt;
+  &lt;img src="photo.jpg" alt="User avatar"&gt;
+&lt;/div&gt;
+
+&lt;!-- Image Avatar: SM (16px) --&gt;
+&lt;div class="zc-avatar zc-avatar-image zc-avatar-sm zc-avatar-base"&gt;
+  &lt;img src="photo.jpg" alt="User avatar"&gt;
+&lt;/div&gt;
+
+&lt;!-- Image Avatar: XS (14px) --&gt;
+&lt;div class="zc-avatar zc-avatar-image zc-avatar-xs zc-avatar-base"&gt;
+  &lt;img src="photo.jpg" alt="User avatar"&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--zc-color-neutral-border-neutral-border-subtle, #EFF0F1);
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+  overflow: hidden;
+}
+.zc-avatar-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== INITIALS ==== -->
+                        <div class="btn-variant-group" data-style="initials" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Initials Avatar — All Sizes</span><button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML — no Lyte equivalent for Avatar -->
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">XL (36px)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-base">AB</div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">LG (24px)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-lg zc-avatar-base">AB</div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">SM (16px)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-base">A</div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">XS (14px)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xs zc-avatar-base">A</div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Initials Avatar: XL --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-base"&gt;AB&lt;/div&gt;
+
+&lt;!-- Initials Avatar: LG --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-lg zc-avatar-base"&gt;AB&lt;/div&gt;
+
+&lt;!-- Initials Avatar: SM --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-base"&gt;A&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-avatar-solid {
+  background: var(--zc-color-primary-surface-primary-surface-default, #0D4EF2);
+  color: var(--zc-color-black-white-text-white-text, #FFFFFF);
+  font-weight: 400;
+  font-size: 14px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SHAPES ==== -->
+                        <div class="btn-variant-group" data-style="shapes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Border Radius Variants</span><button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML — no Lyte equivalent for Avatar -->
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Minimal (2px)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-minimal">AB</div>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-minimal"><img src="https://i.pravatar.cc/72?img=5" alt="Avatar"></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base (6px)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-base">AB</div>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-base"><img src="https://i.pravatar.cc/72?img=6" alt="Avatar"></div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Full (Circle)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-full">AB</div>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"><img src="https://i.pravatar.cc/72?img=7" alt="Avatar"></div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Minimal (2px radius) --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-minimal"&gt;AB&lt;/div&gt;
+
+&lt;!-- Base (6px radius — default) --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-base"&gt;AB&lt;/div&gt;
+
+&lt;!-- Full (Circle) --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-full"&gt;AB&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-avatar-minimal { border-radius: 2px; }
+.zc-avatar-base    { border-radius: var(--zc-radius-r, 6px); }
+.zc-avatar-full    { border-radius: 999px; }</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== STATUS ==== -->
+                        <div class="btn-variant-group" data-style="status" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Status Indicator</span><button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML — no Lyte equivalent for Avatar status dots -->
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Active</span>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full">
+                                            <img src="https://i.pravatar.cc/72?img=8" alt="Avatar">
+                                            <span class="zc-avatar-status zc-avatar-status-active"></span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Away</span>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full">
+                                            <img src="https://i.pravatar.cc/72?img=9" alt="Avatar">
+                                            <span class="zc-avatar-status zc-avatar-status-away"></span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Offline</span>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full">
+                                            <img src="https://i.pravatar.cc/72?img=10" alt="Avatar">
+                                            <span class="zc-avatar-status zc-avatar-status-offline"></span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Active (Solid)</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-full">
+                                            JD
+                                            <span class="zc-avatar-status zc-avatar-status-active"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Avatar with Active status --&gt;
+&lt;div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"&gt;
+  &lt;img src="photo.jpg" alt="Avatar"&gt;
+  &lt;span class="zc-avatar-status zc-avatar-status-active"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Avatar with Away status --&gt;
+&lt;div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"&gt;
+  &lt;img src="photo.jpg" alt="Avatar"&gt;
+  &lt;span class="zc-avatar-status zc-avatar-status-away"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Avatar with Offline status --&gt;
+&lt;div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"&gt;
+  &lt;img src="photo.jpg" alt="Avatar"&gt;
+  &lt;span class="zc-avatar-status zc-avatar-status-offline"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-avatar-status {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--zc-color-black-white-surface-white-surface, #FFF);
+  bottom: -1px; right: -1px;
+}
+.zc-avatar-status-active  { background: #078841; }
+.zc-avatar-status-away    { background: #E68A00; }
+.zc-avatar-status-offline { background: #6B7075; }</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SIZES ==== -->
+                        <div class="btn-variant-group" data-style="sizes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">All Sizes Overview</span><button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML — no Lyte equivalent for Avatar -->
+                                    <div class="btn-size-row" style="align-items:center;gap:16px">
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-full">AB</div>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-lg zc-avatar-full">AB</div>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full">A</div>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xs zc-avatar-full">A</div>
+                                    </div>
+                                    <div class="btn-size-row" style="align-items:center;gap:16px">
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"><img src="https://i.pravatar.cc/72?img=11" alt="Avatar"></div>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-lg zc-avatar-full"><img src="https://i.pravatar.cc/48?img=12" alt="Avatar"></div>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-sm zc-avatar-full"><img src="https://i.pravatar.cc/32?img=13" alt="Avatar"></div>
+                                        <div class="zc-avatar zc-avatar-image zc-avatar-xs zc-avatar-full"><img src="https://i.pravatar.cc/28?img=14" alt="Avatar"></div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- XL: 36px --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-full"&gt;AB&lt;/div&gt;
+
+&lt;!-- LG: 24px --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-lg zc-avatar-full"&gt;AB&lt;/div&gt;
+
+&lt;!-- SM: 16px --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full"&gt;A&lt;/div&gt;
+
+&lt;!-- XS: 14px --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-xs zc-avatar-full"&gt;A&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== COLOR THEMES ==== -->
+                        <div class="btn-variant-group" data-style="colors" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Color Variants</span><button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML — no Lyte equivalent for Avatar -->
+                                    <div class="btn-size-row" style="align-items:center;gap:12px">
+                                        <span class="btn-size-label">Primary</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-full">AB</div>
+                                    </div>
+                                    <div class="btn-size-row" style="align-items:center;gap:12px">
+                                        <span class="btn-size-label">Success</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-success zc-avatar-xl zc-avatar-full">CD</div>
+                                    </div>
+                                    <div class="btn-size-row" style="align-items:center;gap:12px">
+                                        <span class="btn-size-label">Warning</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-warning zc-avatar-xl zc-avatar-full">EF</div>
+                                    </div>
+                                    <div class="btn-size-row" style="align-items:center;gap:12px">
+                                        <span class="btn-size-label">Danger</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-danger zc-avatar-xl zc-avatar-full">GH</div>
+                                    </div>
+                                    <div class="btn-size-row" style="align-items:center;gap:12px">
+                                        <span class="btn-size-label">Neutral</span>
+                                        <div class="zc-avatar zc-avatar-solid zc-avatar-neutral zc-avatar-xl zc-avatar-full">IJ</div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Primary (default) --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-xl zc-avatar-full"&gt;AB&lt;/div&gt;
+
+&lt;!-- Success --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-success zc-avatar-xl zc-avatar-full"&gt;CD&lt;/div&gt;
+
+&lt;!-- Warning --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-warning zc-avatar-xl zc-avatar-full"&gt;EF&lt;/div&gt;
+
+&lt;!-- Danger --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-danger zc-avatar-xl zc-avatar-full"&gt;GH&lt;/div&gt;
+
+&lt;!-- Neutral --&gt;
+&lt;div class="zc-avatar zc-avatar-solid zc-avatar-neutral zc-avatar-xl zc-avatar-full"&gt;IJ&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== GROUP ==== -->
+                        <div class="btn-variant-group" data-style="group" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Avatar Group (Stacked)</span><button class="btn-variant-card__toggle" onclick="toggleAvatarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML — no Lyte equivalent for Avatar -->
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Group (XL)</span>
+                                        <div class="zc-avatar-group">
+                                            <div class="zc-avatar zc-avatar-solid zc-avatar-neutral zc-avatar-xl zc-avatar-full" style="font-size:11px">+3</div>
+                                            <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"><img src="https://i.pravatar.cc/72?img=15" alt=""></div>
+                                            <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"><img src="https://i.pravatar.cc/72?img=16" alt=""></div>
+                                            <div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"><img src="https://i.pravatar.cc/72?img=17" alt=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Group (LG)</span>
+                                        <div class="zc-avatar-group">
+                                            <div class="zc-avatar zc-avatar-solid zc-avatar-neutral zc-avatar-lg zc-avatar-full" style="font-size:9px">+2</div>
+                                            <div class="zc-avatar zc-avatar-image zc-avatar-lg zc-avatar-full"><img src="https://i.pravatar.cc/48?img=18" alt=""></div>
+                                            <div class="zc-avatar zc-avatar-image zc-avatar-lg zc-avatar-full"><img src="https://i.pravatar.cc/48?img=19" alt=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchAvatarCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchAvatarCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Avatar Group (stacked, right-to-left) --&gt;
+&lt;div class="zc-avatar-group"&gt;
+  &lt;div class="zc-avatar zc-avatar-solid zc-avatar-neutral zc-avatar-xl zc-avatar-full"&gt;+3&lt;/div&gt;
+  &lt;div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"&gt;
+    &lt;img src="photo1.jpg" alt=""&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-avatar zc-avatar-image zc-avatar-xl zc-avatar-full"&gt;
+    &lt;img src="photo2.jpg" alt=""&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyAvatarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-avatar-group {
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+.zc-avatar-group .zc-avatar {
+  margin-left: -8px;
+  box-shadow: 0 0 0 2px #FFFFFF;
+}
+.zc-avatar-group .zc-avatar:last-child {
+  margin-left: 0;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

@@ -30,7 +30,7 @@
     margin: 0;
     padding: 0;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 6px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -46,7 +46,10 @@
    LINK — clickable breadcrumb anchors (Link type)
    --------------------------------------------------------------------------- */
 .zc-breadcrumb-item a {
-    color: var(--zc-color-huegrey-text-huegrey-text-bold, #37383C);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--zc-color-huegrey-text-bold, #37383C);
     text-decoration: none;
     transition: color 0.15s ease;
     cursor: pointer;
@@ -54,7 +57,7 @@
 
 .zc-breadcrumb-item a:hover,
 .zc-breadcrumb-item a:focus-visible {
-    color: var(--zc-color-huegrey-text-huegrey-text-default, #696C74);
+    color: var(--zc-color-black-white-text-black-text, #000000);
     text-decoration: none;
 }
 
@@ -62,7 +65,7 @@
    CURRENT — active page (last item, non-clickable)
    --------------------------------------------------------------------------- */
 .zc-breadcrumb-current {
-    color: var(--zc-color-huegrey-text-huegrey-text-default, #696C74);
+    color: var(--zc-color-huegrey-text-default, #696C74);
     font-weight: var(--zc-p2-font-weight-regular, 400);
     cursor: default;
 }
@@ -71,7 +74,7 @@
    SEPARATOR — "/" or chevron icon between items
    --------------------------------------------------------------------------- */
 .zc-breadcrumb-separator {
-    color: var(--zc-color-huegrey-text-huegrey-text-default, #696C74);
+    color: var(--zc-color-huegrey-text-default, #696C74);
     user-select: none;
     display: flex;
     align-items: center;
@@ -128,7 +131,7 @@ lyte-breadcrumb lyte-breadcrumb-item {
     font-size: var(--zc-p2-font-size, 14px);
     font-weight: var(--zc-p2-font-weight-regular, 400);
     line-height: 1.286;
-    color: var(--zc-color-huegrey-text-huegrey-text-bold, #37383C);
+    color: var(--zc-color-huegrey-text-bold, #37383C);
     cursor: pointer;
     padding: 0;
 }
@@ -143,7 +146,7 @@ lyte-breadcrumb lyte-breadcrumb-body {
 
 /* Current / last item — Figma fill_0U1EGK */
 lyte-breadcrumb lyte-breadcrumb-item.lyteActive {
-    color: var(--zc-color-huegrey-text-huegrey-text-default, #696C74);
+    color: var(--zc-color-huegrey-text-default, #696C74);
     cursor: default;
 }
 
@@ -157,7 +160,7 @@ lyte-breadcrumb .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type) {
 }
 
 lyte-breadcrumb .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type):after {
-    color: var(--zc-color-huegrey-text-huegrey-text-default, #696C74);
+    color: var(--zc-color-huegrey-text-default, #696C74);
     opacity: 1;
     font-size: 14px;
     top: 50%;
@@ -187,15 +190,19 @@ lyte-breadcrumb.zc-breadcrumb-lg lyte-breadcrumb-item {
    WITH ICON — icon before breadcrumb label
    --------------------------------------------------------------------------- */
 .zc-breadcrumb-item i {
-    margin-right: 4px;
-    font-size: 0.85em;
+    font-size: 1em;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ---------------------------------------------------------------------------
    OVERFLOW — ellipsis for collapsed middle items
    --------------------------------------------------------------------------- */
 .zc-breadcrumb-ellipsis {
-    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
     cursor: pointer;
     padding: 2px 4px;
     border-radius: var(--zc-radius-s, 4px);
@@ -205,7 +212,7 @@ lyte-breadcrumb.zc-breadcrumb-lg lyte-breadcrumb-item {
 }
 
 .zc-breadcrumb-ellipsis:hover {
-    background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F0F1F3);
+    background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
 }
 
 /* ---------------------------------------------------------------------------
@@ -227,8 +234,8 @@ lyte-breadcrumb.zc-breadcrumb-lg lyte-breadcrumb-item {
     left: 0;
     z-index: 100;
     min-width: 180px;
-    background: var(--zc-color-neutral-surface-neutral-surface-default, #FFFFFF);
-    border: 1px solid var(--zc-color-neutral-border-neutral-border-subtle, #E1E2E4);
+    background: var(--zc-color-neutral-surface-default, #FFFFFF);
+    border: 1px solid var(--zc-color-neutral-border-subtle, #E1E2E4);
     border-radius: var(--zc-radius-s, 4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 4px 0;
@@ -245,7 +252,7 @@ lyte-breadcrumb.zc-breadcrumb-lg lyte-breadcrumb-item {
 .zc-breadcrumb-dropdown-item a {
     display: block;
     padding: 6px 12px;
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    color: var(--zc-color-neutral-text-default, #37383C);
     text-decoration: none;
     font-size: var(--zc-p2-font-size, 14px);
     line-height: 20px;
@@ -253,13 +260,13 @@ lyte-breadcrumb.zc-breadcrumb-lg lyte-breadcrumb-item {
 }
 
 .zc-breadcrumb-dropdown-item a:hover {
-    background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F0F1F3);
-    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
+    color: var(--zc-color-primary-text-default, #0D4EF2);
 }
 
 /* Group variant */
 .zc-breadcrumb-dropdown-group:not(:first-child) {
-    border-top: 1px solid var(--zc-color-neutral-border-neutral-border-subtle, #E1E2E4);
+    border-top: 1px solid var(--zc-color-neutral-border-subtle, #E1E2E4);
     margin-top: 4px;
     padding-top: 4px;
 }
@@ -268,7 +275,7 @@ lyte-breadcrumb.zc-breadcrumb-lg lyte-breadcrumb-item {
     padding: 4px 12px;
     font-size: 11px;
     font-weight: var(--zc-p2-font-weight-semibold, 600);
-    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+    color: var(--zc-color-neutral-text-subtle, #9EA0A7);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }

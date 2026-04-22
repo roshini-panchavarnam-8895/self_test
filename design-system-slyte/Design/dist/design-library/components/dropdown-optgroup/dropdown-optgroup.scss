@@ -1,136 +1,72 @@
 /* ============================================================
-   DROPDOWN OPTGROUP SCSS — Figma: Dropdown Optgroup (2573:6623)
+   DROPDOWN OPTGROUP SCSS — Figma: Input_Optgroup_Core (2573:6634)
+   ============================================================
+   NOTE: Shares the same lyte-dropdown framework DOM as regular
+   dropdown. Uses .zc-dropdown-optgroup on lyte-dropdown root.
+   Inherits base trigger/overlay styles from dropdown.css.
+   This file only adds optgroup-specific rules.
    ============================================================ */
 
 .zc-dropdown-optgroup {
-    display: inline-flex;
-    flex-direction: column;
-    font-family: 'ZohoPuvi', sans-serif;
-    min-width: 200px;
 
     /* Group header — non-selectable separator label */
+    /* Figma: Optgroup_Head — P2_Regular (14px, weight 400), fill_ZCBS96 (#9EA0A7) */
     lyte-drop-header.zc-dropdown-optgroup-header {
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--zc-color-neutral-text-neutral-text-subtle, #6B7075);
-        padding: 8px 12px 4px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #9EA0A7;
+        padding: 10px 10px 6px;
         pointer-events: none;
         user-select: none;
         cursor: default;
         border-bottom: none;
+        line-height: 18px;
 
-        /* Subtle separator between group headers */
+        /* Separator between group headers (except first) */
         & ~ lyte-drop-header.zc-dropdown-optgroup-header {
             margin-top: 4px;
-            border-top: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
-            padding-top: 8px;
+            border-top: 1px solid #D5D6D9;
+            padding-top: 10px;
         }
     }
 
-    /* Trigger button — Figma: State=Default — border #D5D6D9 */
-    lyte-drop-button {
+    /* Optgroup list body — Figma: layout_892BML — padding 6px 10px 10px, gap 1px */
+    lyte-drop-body {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 36px;
-        padding: 9px 10px;
-        border: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
-        border-radius: var(--zc-radius-r, 6px);
-        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
-        cursor: pointer;
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
-        gap: 8px;
-        box-sizing: border-box;
-
-        &:hover {
-            border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
-        }
+        flex-direction: column;
+        gap: 1px;
+        padding: 0;
     }
 
-    /* Active / Open — border #0D4EF2 + primary elevation */
-    &.lyteDropdownActive lyte-drop-button {
-        border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
-        box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05),
-                    0px 2px 4px 0px rgba(13, 78, 242, 0.08);
-    }
-
-    &.lyteDropdownActive lyte-icon {
-        transform: rotate(180deg);
-    }
-
-    /* Drop box — Figma: stroke #EAEBEC, shadow */
-    lyte-drop-box {
-        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
-        border: 1px solid var(--zc-color-huegrey-border-huegrey-border-minimal, #EAEBEC);
-        border-radius: var(--zc-radius-r, 6px);
-        box-shadow: 0px 2px 2px 0px rgba(38, 40, 43, 0.05),
-                    0px 12px 16px -4px rgba(38, 40, 43, 0.08);
-        padding: 4px 0;
-        max-height: 240px;
-        overflow-y: auto;
-    }
-
-    /* Drop items — indented under group headers */
+    /* Drop items — Figma: List_Vertical_Core / layout_5L316Y
+       padding 9px 10px, gap 10px, radius 6px, fill_J02H9N #696C74 */
     lyte-drop-item {
         display: flex;
         align-items: center;
-        padding: 8px 12px 8px 20px;
-        font-size: var(--zc-p2-font-size, 14px);
-        color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+        padding: 9px 10px;
+        font-size: 14px;
+        color: #696C74;
         cursor: pointer;
-        transition: background 0.1s ease;
-        border-radius: 4px;
-        margin: 0 4px;
+        transition: background 0.1s ease, color 0.1s ease;
+        border-radius: 6px;
+        gap: 10px;
 
+        /* Figma: Status=Hover On Default — bg #EFF2F9, text #000000 */
         &:hover {
-            background: var(--zc-color-primary-surface-primary-surface-subtle-hover, #F7F9FD);
+            background: #EFF2F9;
+            color: #000000;
         }
 
+        /* Figma: Status=Selected — bg fill_K4CRDS #F7F9FD, text fill_NTZOO6 #000000 */
         &.lyteDropdownSelection,
         &[selected] {
-            background: var(--zc-color-primary-surface-primary-surface-subtle, #EFF2F9);
-            color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
-            font-weight: 600;
+            background: #F7F9FD;
+            color: #000000;
         }
-    }
 
-    /* Placeholder text */
-    .lyteDropPlaceholderNormal {
-        color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
-        font-size: var(--zc-p2-font-size, 14px);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        flex: 1;
-    }
-
-    /* Selected value label */
-    .lyteDropdownLabel {
-        color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
-        font-size: var(--zc-p2-font-size, 14px);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        flex: 1;
-    }
-
-    /* Chevron icon */
-    lyte-icon {
-        color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
-        font-size: 12px;
-        transition: transform 0.2s ease;
-        flex-shrink: 0;
-    }
-
-    /* Disabled — bg #F5F5F5, border #D5D6D9 */
-    &.lyteDropdown-disabled lyte-drop-button,
-    &[lt-prop-disabled="true"] lyte-drop-button {
-        background: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover, #F5F5F5);
-        border-color: var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
-        cursor: not-allowed;
-        pointer-events: none;
-        opacity: 0.65;
+        /* Figma: Hover on selected — bg #EFF2F9 */
+        &.lyteDropdownSelection:hover {
+            background: #EFF2F9;
+        }
     }
 }

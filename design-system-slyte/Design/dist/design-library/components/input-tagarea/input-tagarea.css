@@ -14,12 +14,12 @@
 
    CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
      --zc-color-black-white-surface-white-surface              (#FFFFFF)
-     --zc-color-neutral-border-neutral-border-default          (#D0D5DD)
-     --zc-color-neutral-surface-neutral-surface-subtle         (#F2F4F7)
-     --zc-color-neutral-surface-neutral-surface-subtle-hover   (#E4E7EC)
-     --zc-color-neutral-text-neutral-text-default              (#475467)
-     --zc-color-primary-border-primary-border-default          (#0D4EF2)
-     --zc-color-primary-surface-primary-surface-subtle         (#F5F8FE)
+     --zc-color-neutral-border-default          (#D0D5DD)
+     --zc-color-neutral-surface-subtle         (#F2F4F7)
+     --zc-color-neutral-surface-subtle-hover   (#E4E7EC)
+     --zc-color-neutral-text-default              (#475467)
+     --zc-color-primary-border-default          (#0D4EF2)
+     --zc-color-primary-surface-subtle         (#F5F8FE)
      --zc-radius-r                                             (6px)
    ============================================================================= */
 /* ---------------------------------------------------------------------------
@@ -32,7 +32,7 @@
   gap: 6px;
   min-height: 38px;
   padding: 4px 8px;
-  border: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+  border: 1px solid var(--zc-color-huegrey-border-fairish, #D5D6D9);
   border-radius: var(--zc-radius-r, 6px);
   background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
   font-family: "ZohoPuvi", sans-serif;
@@ -40,8 +40,8 @@
   cursor: text;
 }
 .zc-tagarea:focus-within {
-  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
-  box-shadow: 0 0 0 2px var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+  border-color: var(--zc-color-primary-border-default, #0D4EF2);
+  box-shadow: 0 0 0 2px var(--zc-color-primary-surface-subtle, #F5F8FE);
 }
 
 /* ---------------------------------------------------------------------------
@@ -78,15 +78,15 @@
   padding: 2px 8px;
   font-size: 12px;
   font-weight: 500;
-  color: var(--zc-color-neutral-text-neutral-text-default, #475467);
-  background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F2F4F7);
+  color: var(--zc-color-neutral-text-default, #475467);
+  background: var(--zc-color-neutral-surface-subtle, #F2F4F7);
   border-radius: 10px;
   white-space: nowrap;
   cursor: pointer;
   transition: background 0.15s ease;
 }
 .zc-tagarea-overflow:hover {
-  background: var(--zc-color-neutral-surface-neutral-surface-subtle-hover, #E4E7EC);
+  background: var(--zc-color-neutral-surface-subtle-hover, #E4E7EC);
 }
 
 /* ---------------------------------------------------------------------------
@@ -96,7 +96,7 @@
   opacity: 0.45;
   cursor: not-allowed;
   pointer-events: none;
-  background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F2F4F7);
+  background: var(--zc-color-neutral-surface-subtle, #F2F4F7);
 }
 .zc-tagarea-disabled .zc-tag-close {
   cursor: not-allowed;

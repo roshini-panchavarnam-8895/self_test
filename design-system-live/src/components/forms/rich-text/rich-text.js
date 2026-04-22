@@ -1,15 +1,15 @@
 // Rich Text Editor Component
 document.addEventListener('DOMContentLoaded', function() {
-  var editorRoots = document.querySelectorAll('.zc-rich-text-editor');
+  var editorRoots = document.querySelectorAll('.zc-rich-text-editor'); // No I18N
 
   editorRoots.forEach(function(editorRoot) {
-    var root = editorRoot.closest('.zc-richtext-group') || editorRoot.closest('.zc-form-field');
-    var field = root ? (root.querySelector('.zc-form-field') || root.closest('.zc-form-field')) : null;
-    var editor = editorRoot.querySelector('.zc-rich-text-content');
-    var hiddenInput = editorRoot.querySelector('textarea');
-    var toolbarBtns = editorRoot.querySelectorAll('.zc-toolbar-btn[data-command]');
-    var errorEl = root ? root.querySelector('.zc-field-error-text, .zc-field-error-msg') : null;
-    var isDisabled = editorRoot.classList.contains('zc-rich-text-disabled') ||
+    var root = editorRoot.closest('.zc-richtext-group') || editorRoot.closest('.zc-form-field'); // No I18N
+    var field = root ? (root.querySelector('.zc-form-field') || root.closest('.zc-form-field')) : null; // No I18N
+    var editor = editorRoot.querySelector('.zc-rich-text-content'); // No I18N
+    var hiddenInput = editorRoot.querySelector('textarea'); // No I18N
+    var toolbarBtns = editorRoot.querySelectorAll('.zc-toolbar-btn[data-command]'); // No I18N
+    var errorEl = root ? root.querySelector('.zc-field-error-text, .zc-field-error-msg') : null; // No I18N
+    var isDisabled = editorRoot.classList.contains('zc-rich-text-disabled') || // No I18N
       editorRoot.getAttribute('aria-disabled') === 'true' ||
       !editor ||
       editor.getAttribute('contenteditable') !== 'true';
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function isRequired() {
-      return hiddenInput.hasAttribute('required') ||
+      return hiddenInput.hasAttribute('required') || // No I18N
         hiddenInput.getAttribute('aria-required') === 'true' ||
         editor.getAttribute('aria-required') === 'true';
     }
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
       editor.setAttribute('aria-invalid', 'true');
       hiddenInput.setAttribute('aria-invalid', 'true');
       if (field) {
-        field.classList.add('validationError');
+        field.classList.add('validationError'); // No I18N
       }
       if (errorEl && showError !== false) {
         errorEl.hidden = false;
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
       editor.removeAttribute('aria-invalid');
       hiddenInput.removeAttribute('aria-invalid');
       if (field) {
-        field.classList.remove('validationError');
+        field.classList.remove('validationError'); // No I18N
       }
       if (errorEl) {
         errorEl.hidden = true;
@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
       toolbarBtns.forEach(function(toolbarBtn) {
         var command = toolbarBtn.getAttribute('data-command');
         if (document.queryCommandState(command)) {
-          toolbarBtn.classList.add('zc-is-active');
+          toolbarBtn.classList.add('zc-is-active'); // No I18N
         } else {
-          toolbarBtn.classList.remove('zc-is-active');
+          toolbarBtn.classList.remove('zc-is-active'); // No I18N
         }
       });
     }

@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var groups = document.querySelectorAll('.zc-otp-component');
+  var groups = document.querySelectorAll('.zc-otp-component'); // No I18N
   groups.forEach(function(root) {
-    var inputs = Array.prototype.slice.call(root.querySelectorAll('.zc-otp-input'));
-    var errorEl = root.querySelector('.zc-field-error-text, .zc-field-error-msg');
-    var field = root.querySelector('.zc-form-field');
+    var inputs = Array.prototype.slice.call(root.querySelectorAll('.zc-otp-input')); // No I18N
+    var errorEl = root.querySelector('.zc-field-error-text, .zc-field-error-msg'); // No I18N
+    var field = root.querySelector('.zc-form-field'); // No I18N
     var isRequired = root.getAttribute('data-otp-required') === 'true' || inputs.some(function(input) { return input.required; });
     var isDisabled = inputs.every(function(input) { return input.disabled; });
 
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
           input.removeAttribute('aria-invalid');
         }
       });
-      field.classList.toggle('validationError', hasError);
-      field.classList.toggle('zc-validation-error', hasError);
+      field.classList.toggle('validationError', hasError); // No I18N
+      field.classList.toggle('zc-validation-error', hasError); // No I18N
       if (errorEl) {
         if (!hasError) {
           errorEl.hidden = true;
@@ -90,7 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       input.addEventListener('keydown', function(event) {
-        if (input.disabled) return;
+        if (input.disabled) {
+          return;
+        }
 
         if (event.key === 'Backspace') {
           if (input.value) {
@@ -115,7 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       input.addEventListener('input', function() {
-        if (input.disabled) return;
+        if (input.disabled) {
+          return;
+        }
         var digits = getDigits(input.value);
         if (digits.length !== 1 || digits !== input.value) {
           applyDigits(index, digits);
@@ -132,13 +136,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       input.addEventListener('paste', function(event) {
-        if (input.disabled) return;
+        if (input.disabled) {
+          return;
+        }
         var clipboard = event.clipboardData || window.clipboardData;
-        var pasted = clipboard ? getDigits(clipboard.getData('text')) : '';
-        if (!pasted) return;
+        var pasted = clipboard ? getDigits(clipboard.getData('text')) : ''; // No I18N
+        if (!pasted) {
+          return;
+        }
         event.preventDefault();
         applyDigits(index, pasted);
-        validate(field.classList.contains('validationError'));
+        validate(field.classList.contains('validationError')); // No I18N
       });
     });
 

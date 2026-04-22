@@ -1,11 +1,10 @@
 // Audio Upload Component
 document.addEventListener('DOMContentLoaded', function() {
-  var audioGroups = document.querySelectorAll('.zc-audioupload-group');
-  var audioFields = audioGroups.length ? audioGroups : document.querySelectorAll('.zc-form-field');
+  var audioGroups = document.querySelectorAll('[class*="zc-Audio-group"]'); // No I18N
 
-  audioFields.forEach(function(root) {
-    var fileInput = root.querySelector('.zc-file-upload-input');
-    var textDisplay = root.querySelector('.zc-file-upload-text');
+  audioGroups.forEach(function(root) {
+    var fileInput = root.querySelector('input[type="file"]'); // No I18N
+    var textDisplay = root.querySelector('.zc-image-hover-msg'); // No I18N
 
     if (!fileInput || !textDisplay) {
       return;
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         textDisplay.textContent = fileInput.files[0].name;
         textDisplay.style.color = '#12132b';
       } else {
-        textDisplay.textContent = 'Select File';
+        textDisplay.textContent = 'Select File'; // No I18N
         textDisplay.style.color = '';
       }
     });

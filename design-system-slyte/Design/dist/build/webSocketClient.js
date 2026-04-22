@@ -1,27 +1,24 @@
 var socket;
 function start() {	
-	socket = new WebSocket('ws://localhost:57160');
+	socket = new WebSocket('ws://localhost:55527');
 	socket.onopen = function() {
 		console.log("Connection is established");
 		socket.send("connected");
 	}
 	socket.onmessage = function(message) {
-		if(message.data != 'reload'){
-			message = JSON.parse(message.data);
-			if(message.errorFlag == true) {	
-				if(document.body) {
-					document.body.innerHTML = message.errorObj;
-				} else {			
-					document.addEventListener('DOMContentLoaded',function() {	   						
-						document.body.innerHTML =  message.errorObj;			
-					});	
-				}
-				//window.location.reload();
-			} else{
+		message = JSON.parse(message.data);
+		if(message.errorFlag == true) {	
+			if(document.body) {
+				document.body.innerHTML = message.errorObj;
+			} else {			
+				document.addEventListener('DOMContentLoaded',function(event) {	   						
+					document.body.innerHTML =  message.errorObj;			
+				});	
+			}	
+		} else {
+			if(message.data == "reload") {
 				window.location.reload();
 			}
-		}else {
-				window.location.reload();
 		}
 	}
 
@@ -35,6 +32,8 @@ function start() {
 	socket.onerror = function(error) {
 		console.log("error "+error);
 	}
+
+
 }
 
 start();

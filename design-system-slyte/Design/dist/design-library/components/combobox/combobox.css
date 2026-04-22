@@ -11,12 +11,12 @@
    DOM:    Uses .zc-combobox wrapper around <lyte-combobox> or .zc-combobox-input-wrapper
 
    CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
-     --zc-color-primary-border-primary-border-default          (#0D4EF2)
-     --zc-color-primary-surface-primary-surface-subtle         (#F5F8FE)
-     --zc-color-primary-surface-primary-surface-subtle-hover   (#E7EDFE)
-     --zc-color-primary-text-primary-text-default              (#0D4EF2)
-     --zc-color-error-border-error-border-default              (#CC1914)
-     --zc-color-success-border-success-border-default          (#078841)
+     --zc-color-primary-border-default          (#0D4EF2)
+     --zc-color-primary-surface-subtle         (#F5F8FE)
+     --zc-color-primary-surface-subtle-hover   (#E7EDFE)
+     --zc-color-primary-text-default              (#0D4EF2)
+     --zc-color-error-border-default              (#CC1914)
+     --zc-color-success-border-default          (#078841)
      --zc-color-black-white-surface-white-surface              (#FFFFFF)
      --zc-font-family-default                                  (ZohoPuvi)
      --zc-radius-r                                             (6px)
@@ -131,13 +131,13 @@
   gap: 4px;
   height: 24px;
   padding: 0 8px;
-  background: var(--zc-color-primary-surface-primary-surface-subtle-hover, #E7EDFE);
+  background: var(--zc-color-primary-surface-subtle-hover, #E7EDFE);
   border-radius: var(--zc-radius-s, 4px);
   font-family: "ZohoPuvi", sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 15px;
-  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  color: var(--zc-color-primary-text-default, #0D4EF2);
   white-space: nowrap;
 }
 
@@ -150,7 +150,7 @@
   padding: 0;
   margin-left: 2px;
   cursor: pointer;
-  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  color: var(--zc-color-primary-text-default, #0D4EF2);
   font-size: 10px;
   line-height: 1;
   opacity: 0.7;
@@ -168,7 +168,7 @@
 .zc-combobox.zc-combobox-hover lyte-combobox,
 .zc-combobox:hover .zc-combobox-input-wrapper,
 .zc-combobox.zc-combobox-hover .zc-combobox-input-wrapper {
-  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  border-color: var(--zc-color-primary-border-default, #0D4EF2);
 }
 
 /* ---------------------------------------------------------------------------
@@ -177,7 +177,7 @@
 .zc-combobox-open lyte-combobox,
 .zc-combobox lyte-combobox.lyteComboboxOpen,
 .zc-combobox-open .zc-combobox-input-wrapper {
-  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  border-color: var(--zc-color-primary-border-default, #0D4EF2);
   box-shadow: 0 0 0 2px rgba(13, 78, 242, 0.12);
 }
 
@@ -221,7 +221,7 @@
    --------------------------------------------------------------------------- */
 .zc-combobox-error lyte-combobox,
 .zc-combobox-error .zc-combobox-input-wrapper {
-  border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+  border-color: var(--zc-color-error-border-default, #CC1914);
   background: #FEF6F6;
 }
 
@@ -239,7 +239,7 @@
    --------------------------------------------------------------------------- */
 .zc-combobox-success lyte-combobox,
 .zc-combobox-success .zc-combobox-input-wrapper {
-  border-color: var(--zc-color-success-border-success-border-default, #078841);
+  border-color: var(--zc-color-success-border-default, #078841);
   background: #F6FEF9;
 }
 
@@ -283,13 +283,13 @@
 }
 
 .zc-combobox lyte-drop-item:hover {
-  background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+  background: var(--zc-color-primary-surface-subtle, #F5F8FE);
 }
 
 .zc-combobox lyte-drop-item.lyteComboboxActive,
 .zc-combobox lyte-drop-item[data-selected="true"] {
-  background: var(--zc-color-primary-surface-primary-surface-subtle-hover, #E7EDFE);
-  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  background: var(--zc-color-primary-surface-subtle-hover, #E7EDFE);
+  color: var(--zc-color-primary-text-default, #0D4EF2);
   font-weight: 500;
 }
 
@@ -302,7 +302,7 @@
   gap: 8px;
   height: 36px;
   padding: 0 12px;
-  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  color: var(--zc-color-primary-text-default, #0D4EF2);
   font-family: "ZohoPuvi", sans-serif;
   font-size: var(--zc-p2-font-size, 14px);
   font-weight: 500;
@@ -312,7 +312,7 @@
 }
 
 .zc-combobox-create-option:hover {
-  background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+  background: var(--zc-color-primary-surface-subtle, #F5F8FE);
 }
 
 .zc-combobox-create-option i {
@@ -380,12 +380,12 @@
    --------------------------------------------------------------------------- */
 .zc-combobox lyte-combobox:focus-visible,
 .zc-combobox .zc-combobox-input-wrapper:focus-within {
-  outline: 2px solid var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  outline: 2px solid var(--zc-color-primary-border-default, #0D4EF2);
   outline-offset: 2px;
 }
 
 /* Focus-within on wrapper also triggers open-like border */
 .zc-combobox .zc-combobox-input-wrapper:focus-within {
-  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  border-color: var(--zc-color-primary-border-default, #0D4EF2);
   box-shadow: 0 0 0 2px rgba(13, 78, 242, 0.12);
 }

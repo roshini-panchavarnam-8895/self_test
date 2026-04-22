@@ -2,11 +2,11 @@
                         <div class="detail-icon"><i class="fas fa-comment-dots"></i></div>
                         <div class="detail-info">
                             <h1 class="detail-title">Tooltip</h1>
-                            <p class="detail-description">Rich tooltip component using <code>&lt;lyte-tooltip&gt;</code> Slyte DOM. Supports Text, List, and Table content types across 4 placements (top, bottom, left, right).</p>
+                            <p class="detail-description">Rich tooltip component using <code>&lt;lyte-tooltip&gt;</code> Slyte DOM for plain text, and custom HTML for rich content (lists, tables). Supports 4 placements (top, bottom, left, right).</p>
                             <div class="detail-meta">
                                 <span class="meta-tag"><i class="fas fa-folder"></i> Floating</span>
                                 <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
-                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 3 Types × 4 Placements</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 3 Types &times; 4 Placements</span>
                             </div>
                         </div>
                     </div>
@@ -24,24 +24,25 @@
                         <!-- ==== TEXT ==== -->
                         <div class="btn-variant-group" data-style="text">
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Text Tooltip — Short</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Text Tooltip &mdash; Short</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Short Text</span>
-                                        <div class="zc-tooltip-demo">
-                                            <div class="zc-tooltip zc-tooltip-bottom">
-                                                <div class="zc-tooltip-arrow"></div>
-                                                <div class="zc-tooltip-content">Save changes</div>
-                                            </div>
-                                        </div>
+                                        <lyte-tooltip lt-prop-tooltip-message="Save changes" lt-prop-show="true" lt-prop-placement="bottom">
+                                            <template is="registerYield" yield-name="yield"><span class="zc-btn-demo">Hover me</span></template>
+                                        </lyte-tooltip>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTooltipCodeTab('scss', this)">SCSS</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
-  &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
-  &lt;div class="zc-tooltip-content"&gt;Save changes&lt;/div&gt;
-&lt;/div&gt;</code></pre></div>
-                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-tooltip {
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-tooltip lt-prop-tooltip-message="Save changes"
+              lt-prop-show="true"
+              lt-prop-placement="bottom"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Hover me&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-tooltip&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* lyte-tooltip renders: .lyteTooltip > .lyteTooltipArrow + .lyteTooltipContent */
+lyte-tooltip .lyteTooltip {
   background: #182649;
   border-radius: var(--zc-radius-r, 6px);
   padding: 8px 12px;
@@ -53,34 +54,32 @@
                             </div>
 
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Text Tooltip — Long</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Text Tooltip &mdash; Long</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Long Text</span>
-                                        <div class="zc-tooltip-demo">
-                                            <div class="zc-tooltip zc-tooltip-bottom">
-                                                <div class="zc-tooltip-arrow"></div>
-                                                <div class="zc-tooltip-content">This tooltip contains a longer description that wraps across multiple lines within the max-width constraint.</div>
-                                            </div>
-                                        </div>
+                                        <lyte-tooltip lt-prop-tooltip-message="This tooltip contains a longer description that wraps across multiple lines within the max-width constraint." lt-prop-show="true" lt-prop-placement="bottom">
+                                            <template is="registerYield" yield-name="yield"><span class="zc-btn-demo">Hover me</span></template>
+                                        </lyte-tooltip>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
-  &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
-  &lt;div class="zc-tooltip-content"&gt;
-    This tooltip contains a longer description that
-    wraps across multiple lines within the max-width constraint.
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-tooltip lt-prop-tooltip-message="This tooltip contains a longer description..."
+              lt-prop-show="true"
+              lt-prop-placement="bottom"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Hover me&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-tooltip&gt;</code></pre></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- ==== LIST ==== -->
+                        <!-- Custom HTML — lyte-tooltip only supports plain text via lt-prop-tooltip-message, not rich content like lists -->
                         <div class="btn-variant-group" data-style="list" style="display:none">
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">List Tooltip — With Title</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">List Tooltip &mdash; With Title</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Title + List</span>
                                         <div class="zc-tooltip-demo">
@@ -100,7 +99,8 @@
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTooltipCodeTab('scss', this)">SCSS</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-tooltip doesn't support rich content --&gt;
+&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
   &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
   &lt;div class="zc-tooltip-content"&gt;
     &lt;div class="zc-tooltip-title"&gt;Keyboard Shortcuts&lt;/div&gt;
@@ -131,7 +131,7 @@
                             </div>
 
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">List Tooltip — No Title</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">List Tooltip &mdash; No Title</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">List Only</span>
                                         <div class="zc-tooltip-demo">
@@ -150,7 +150,8 @@
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-tooltip doesn't support rich content --&gt;
+&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
   &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
   &lt;div class="zc-tooltip-content"&gt;
     &lt;ul class="zc-tooltip-list"&gt;
@@ -165,9 +166,10 @@
                         </div>
 
                         <!-- ==== TABLE ==== -->
+                        <!-- Custom HTML — lyte-tooltip only supports plain text, not rich table content -->
                         <div class="btn-variant-group" data-style="table" style="display:none">
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Table Tooltip — Key-Value Pairs</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Table Tooltip &mdash; Key-Value Pairs</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">With Title</span>
                                         <div class="zc-tooltip-demo">
@@ -187,7 +189,8 @@
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTooltipCodeTab('scss', this)">SCSS</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-tooltip doesn't support tables --&gt;
+&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
   &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
   &lt;div class="zc-tooltip-content"&gt;
     &lt;div class="zc-tooltip-title"&gt;Details&lt;/div&gt;
@@ -195,10 +198,6 @@
       &lt;tr&gt;
         &lt;td class="zc-tooltip-key"&gt;Name&lt;/td&gt;
         &lt;td class="zc-tooltip-val"&gt;John Doe&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td class="zc-tooltip-key"&gt;Role&lt;/td&gt;
-        &lt;td class="zc-tooltip-val"&gt;Developer&lt;/td&gt;
       &lt;/tr&gt;
     &lt;/table&gt;
   &lt;/div&gt;
@@ -224,7 +223,7 @@
                             </div>
 
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Table Tooltip — No Title</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Table Tooltip &mdash; No Title</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">No Title</span>
                                         <div class="zc-tooltip-demo">
@@ -243,17 +242,14 @@
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-tooltip doesn't support tables --&gt;
+&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
   &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
   &lt;div class="zc-tooltip-content"&gt;
     &lt;table class="zc-tooltip-table"&gt;
       &lt;tr&gt;
         &lt;td class="zc-tooltip-key"&gt;Status&lt;/td&gt;
         &lt;td class="zc-tooltip-val"&gt;Active&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td class="zc-tooltip-key"&gt;Created&lt;/td&gt;
-        &lt;td class="zc-tooltip-val"&gt;8 Mar 2026&lt;/td&gt;
       &lt;/tr&gt;
     &lt;/table&gt;
   &lt;/div&gt;
@@ -265,91 +261,92 @@
                         <!-- ==== PLACEMENT ==== -->
                         <div class="btn-variant-group" data-style="placement" style="display:none">
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement — Top</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement &mdash; Top</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Top</span>
-                                        <div class="zc-tooltip-demo">
-                                            <div class="zc-tooltip zc-tooltip-top">
-                                                <div class="zc-tooltip-arrow"></div>
-                                                <div class="zc-tooltip-content">Tooltip on top</div>
-                                            </div>
-                                        </div>
+                                        <lyte-tooltip lt-prop-tooltip-message="Tooltip on top" lt-prop-show="true" lt-prop-placement="top">
+                                            <template is="registerYield" yield-name="yield"><span class="zc-btn-demo">Hover me</span></template>
+                                        </lyte-tooltip>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-top"&gt;
-  &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
-  &lt;div class="zc-tooltip-content"&gt;Tooltip on top&lt;/div&gt;
-&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-tooltip lt-prop-tooltip-message="Tooltip on top"
+              lt-prop-show="true"
+              lt-prop-placement="top"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Hover me&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-tooltip&gt;</code></pre></div>
                                 </div>
                             </div>
 
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement — Bottom</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement &mdash; Bottom</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Bottom</span>
-                                        <div class="zc-tooltip-demo">
-                                            <div class="zc-tooltip zc-tooltip-bottom">
-                                                <div class="zc-tooltip-arrow"></div>
-                                                <div class="zc-tooltip-content">Tooltip on bottom</div>
-                                            </div>
-                                        </div>
+                                        <lyte-tooltip lt-prop-tooltip-message="Tooltip on bottom" lt-prop-show="true" lt-prop-placement="bottom">
+                                            <template is="registerYield" yield-name="yield"><span class="zc-btn-demo">Hover me</span></template>
+                                        </lyte-tooltip>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;
-  &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
-  &lt;div class="zc-tooltip-content"&gt;Tooltip on bottom&lt;/div&gt;
-&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-tooltip lt-prop-tooltip-message="Tooltip on bottom"
+              lt-prop-show="true"
+              lt-prop-placement="bottom"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Hover me&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-tooltip&gt;</code></pre></div>
                                 </div>
                             </div>
 
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement — Left</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement &mdash; Left</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Left</span>
-                                        <div class="zc-tooltip-demo">
-                                            <div class="zc-tooltip zc-tooltip-left">
-                                                <div class="zc-tooltip-arrow"></div>
-                                                <div class="zc-tooltip-content">Tooltip on left</div>
-                                            </div>
-                                        </div>
+                                        <lyte-tooltip lt-prop-tooltip-message="Tooltip on left" lt-prop-show="true" lt-prop-placement="left">
+                                            <template is="registerYield" yield-name="yield"><span class="zc-btn-demo">Hover me</span></template>
+                                        </lyte-tooltip>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-left"&gt;
-  &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
-  &lt;div class="zc-tooltip-content"&gt;Tooltip on left&lt;/div&gt;
-&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-tooltip lt-prop-tooltip-message="Tooltip on left"
+              lt-prop-show="true"
+              lt-prop-placement="left"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Hover me&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-tooltip&gt;</code></pre></div>
                                 </div>
                             </div>
 
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement — Right</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement &mdash; Right</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview">
                                     <div class="btn-size-row"><span class="btn-size-label">Right</span>
-                                        <div class="zc-tooltip-demo">
-                                            <div class="zc-tooltip zc-tooltip-right">
-                                                <div class="zc-tooltip-arrow"></div>
-                                                <div class="zc-tooltip-content">Tooltip on right</div>
-                                            </div>
-                                        </div>
+                                        <lyte-tooltip lt-prop-tooltip-message="Tooltip on right" lt-prop-show="true" lt-prop-placement="right">
+                                            <template is="registerYield" yield-name="yield"><span class="zc-btn-demo">Hover me</span></template>
+                                        </lyte-tooltip>
                                     </div>
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-tooltip zc-tooltip-right"&gt;
-  &lt;div class="zc-tooltip-arrow"&gt;&lt;/div&gt;
-  &lt;div class="zc-tooltip-content"&gt;Tooltip on right&lt;/div&gt;
-&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-tooltip lt-prop-tooltip-message="Tooltip on right"
+              lt-prop-show="true"
+              lt-prop-placement="right"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Hover me&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-tooltip&gt;</code></pre></div>
                                 </div>
                             </div>
 
+                            <!-- Custom HTML — lyte-tooltip doesn't support rich list content for combined placement demo -->
                             <div class="btn-variant-card">
-                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement — All Positions (List Tooltip)</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Placement &mdash; All Positions (List Tooltip)</span><button class="btn-variant-card__toggle" onclick="toggleTooltipCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
                                 <div class="btn-variant-card__preview" style="display:flex; flex-wrap:wrap; gap:24px; justify-content:center;">
                                     <div class="zc-tooltip-demo">
                                         <div class="zc-tooltip zc-tooltip-top">
@@ -390,17 +387,11 @@
                                 </div>
                                 <div class="btn-code-panel" style="display:none">
                                     <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTooltipCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTooltipCodeTab('scss', this)">SCSS</button></div>
-                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Top --&gt;
-&lt;div class="zc-tooltip zc-tooltip-top"&gt;...&lt;/div&gt;
-
-&lt;!-- Bottom --&gt;
-&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;...&lt;/div&gt;
-
-&lt;!-- Left --&gt;
-&lt;div class="zc-tooltip zc-tooltip-left"&gt;...&lt;/div&gt;
-
-&lt;!-- Right --&gt;
-&lt;div class="zc-tooltip zc-tooltip-right"&gt;...&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-tooltip doesn't support rich list content --&gt;
+&lt;div class="zc-tooltip zc-tooltip-top"&gt;...list content...&lt;/div&gt;
+&lt;div class="zc-tooltip zc-tooltip-bottom"&gt;...list content...&lt;/div&gt;
+&lt;div class="zc-tooltip zc-tooltip-left"&gt;...list content...&lt;/div&gt;
+&lt;div class="zc-tooltip zc-tooltip-right"&gt;...list content...&lt;/div&gt;</code></pre></div>
                                     <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTooltipCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-tooltip-top .zc-tooltip-arrow {
   bottom: -3px; left: 50%; margin-left: -3px;
 }

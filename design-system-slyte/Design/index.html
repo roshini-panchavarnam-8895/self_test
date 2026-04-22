@@ -667,7 +667,8 @@
                     <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="patterns" onclick="switchSection('patterns', this)"><i class="fas fa-th-large"></i>Patterns</a>
                     <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="tokens" onclick="switchSection('tokens', this)"><i class="fas fa-swatchbook"></i>Tokens</a>
                     <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="icons" onclick="switchSection('icons', this)"><i class="fas fa-icons"></i>Icons</a>
-                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="all-listing" onclick="switchSection('all-listing', this)"><i class="fas fa-th-list"></i>All components listing</a>
+                    <a href="#" style="display:none;" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="all-listing" onclick="switchSection('all-listing', this)"><i class="fas fa-th-list"></i>All components listing</a>
+                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="all-components" onclick="switchSection('all-components', this)"><i class="fas fa-layer-group"></i>All Components</a>
                 </div>
             </nav>
         </aside>
@@ -2170,6 +2171,26 @@
                                 </div>
                             </div>
                         </section>
+                    </div>
+                </div>
+
+                <!-- ALL COMPONENTS (Flat Listing with Code View) -->
+                <div class="section-container" id="section-all-components" style="display: none;">
+                    <div style="flex: 1; width: 100%; overflow-y: auto; max-height: 100vh; padding: 32px;">
+                        <div class="all-comp-header zc-mb-24">
+                            <h1 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">All Components</h1>
+                            <p class="all-comp-count" style="color: var(--zc-color-text-secondary, #6B7280); font-size: 14px;">Loading components...</p>
+                        </div>
+                        <div class="all-comp-search zc-mb-20" style="position: relative; max-width: 420px;">
+                            <i class="fas fa-search" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--zc-color-text-secondary, #9EA0A7); font-size: 14px; pointer-events: none;"></i>
+                            <input type="text" id="all-comp-search-input" placeholder="Search components..." oninput="filterAllComponents(this.value)" style="width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--zc-color-border-default, #E3E3E3); border-radius: 8px; font-size: 14px; font-family: 'ZohoPuvi', sans-serif; background: var(--zc-color-surface-primary, #fff); color: var(--zc-color-text-primary, #25272C); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;" onfocus="this.style.borderColor='var(--zc-color-primary-border-default, #0D4EF2)';this.style.boxShadow='0 0 0 3px rgba(13,78,242,0.1)'" onblur="this.style.borderColor='var(--zc-color-border-default, #E3E3E3)';this.style.boxShadow='none'" />
+                        </div>
+                        <div id="all-comp-list" style="width: 100%;"></div>
+                        <div id="all-comp-no-results" style="display: none; text-align: center; padding: 40px 20px; color: var(--zc-color-text-secondary, #9EA0A7);">
+                            <i class="fas fa-search" style="font-size: 32px; margin-bottom: 12px; display: block; opacity: 0.4;"></i>
+                            <p style="font-size: 15px; font-weight: 500; margin-bottom: 4px;">No components found</p>
+                            <p style="font-size: 13px;">Try a different search term</p>
+                        </div>
                     </div>
                 </div>
 

@@ -14,17 +14,17 @@
    DOM:    Uses .zc-btn wrapper class on <lyte-button> Slyte component
 
    CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
-     --zc-color-primary-surface-primary-surface-default        (#0D4EF2)
-     --zc-color-primary-surface-primary-surface-default-hover  (#0B44D5)
-     --zc-color-primary-surface-primary-surface-subtle         (#F5F8FE)
-     --zc-color-primary-surface-primary-surface-subtle-hover   (#E7EDFE)
-     --zc-color-primary-surface-primary-surface-low            (#DDE6FD)
-     --zc-color-primary-border-primary-border-default          (#0D4EF2)
-     --zc-color-primary-border-primary-border-default-hover    (#0B44D5)
-     --zc-color-primary-border-primary-border-low              (#DDE6FD)
-     --zc-color-primary-border-primary-border-minimal          (#C0D1FC)
-     --zc-color-primary-text-primary-text-default              (#0D4EF2)
-     --zc-color-primary-text-primary-text-default-hover        (#0B44D5)
+     --zc-color-primary-surface-default        (#0D4EF2)
+     --zc-color-primary-surface-default-hover  (#0B44D5)
+     --zc-color-primary-surface-subtle         (#F5F8FE)
+     --zc-color-primary-surface-subtle-hover   (#E7EDFE)
+     --zc-color-primary-surface-low            (#DDE6FD)
+     --zc-color-primary-border-default          (#0D4EF2)
+     --zc-color-primary-border-default-hover    (#0B44D5)
+     --zc-color-primary-border-low              (#DDE6FD)
+     --zc-color-primary-border-minimal          (#C0D1FC)
+     --zc-color-primary-text-default              (#0D4EF2)
+     --zc-color-primary-text-default-hover        (#0B44D5)
      --zc-color-black-white-surface-white-surface              (#FFFFFF)
      --zc-color-black-white-text-white-text                    (#FFFFFF)
      --zc-font-family-default                                  (ZohoPuvi)
@@ -55,7 +55,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 14px;
     border: 1px solid transparent;
     cursor: pointer;
     font-family: 'ZohoPuvi', sans-serif;
@@ -77,7 +77,7 @@
     border-radius: var(--zc-radius-r);
 
     &:focus-visible {
-        outline: 2px solid var(--zc-color-primary-border-primary-border-default);
+        outline: 2px solid var(--zc-color-primary-border-default);
         outline-offset: 2px;
     }
 
@@ -107,32 +107,32 @@
    SIZE VARIANTS — only target inner <button>
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-lg button {
-    height: 40px; padding: 12px 16px; gap: 8px; border-radius: var(--zc-radius-r);
+    height: 40px; padding: 12px 16px; gap: 16px; border-radius: var(--zc-radius-r);
 }
 .zc-btn.zc-btn-md button {
-    height: 36px; padding: 12px 14px; gap: 8px; border-radius: var(--zc-radius-r);
+    height: 36px; padding: 12px 14px; gap: 14px; border-radius: var(--zc-radius-r);
 }
 .zc-btn.zc-btn-sm button {
-    height: 32px; padding: 6px 12px; gap: 6px; border-radius: var(--zc-radius-r);
+    height: 32px; padding: 6px 12px; gap: 12px; border-radius: var(--zc-radius-r);
 }
 .zc-btn.zc-btn-xs button {
-    height: 26px; padding: 6px 10px; gap: 6px; border-radius: var(--zc-radius-s);
+    height: 26px; padding: 6px 10px; gap: 10px; border-radius: var(--zc-radius-s);
 }
 
 /* ---------------------------------------------------------------------------
    STYLE: FILL — Solid primary background, white text
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-fill button {
-    background-color: var(--zc-color-primary-surface-primary-surface-default);
-    border-color: var(--zc-color-primary-surface-primary-surface-default);
+    background-color: var(--zc-color-primary-surface-default);
+    border-color: var(--zc-color-primary-surface-default);
     color: var(--zc-color-black-white-text-white-text);
     &:hover {
-        background-color: var(--zc-color-primary-surface-primary-surface-default-hover);
-        border-color: var(--zc-color-primary-surface-primary-surface-default-hover);
+        background-color: var(--zc-color-primary-surface-default-hover);
+        border-color: var(--zc-color-primary-surface-default-hover);
     }
     &:active {
-        background-color: var(--zc-color-primary-surface-primary-surface-bold);
-        border-color: var(--zc-color-primary-surface-primary-surface-bold);
+        background-color: var(--zc-color-primary-surface-bold);
+        border-color: var(--zc-color-primary-surface-bold);
     }
 }
 
@@ -141,15 +141,15 @@
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-primary-border-primary-border-default);
-    color: var(--zc-color-primary-text-primary-text-default);
+    border-color: var(--zc-color-primary-border-default);
+    color: var(--zc-color-primary-text-default);
     &:hover {
-        background-color: var(--zc-color-primary-surface-primary-surface-subtle);
-        border-color: var(--zc-color-primary-border-primary-border-default-hover);
-        color: var(--zc-color-primary-text-primary-text-default-hover);
+        background-color: var(--zc-color-primary-surface-subtle);
+        border-color: var(--zc-color-primary-border-default-hover);
+        color: var(--zc-color-primary-text-default-hover);
     }
     &:active {
-        background-color: var(--zc-color-primary-surface-primary-surface-subtle-hover);
+        background-color: var(--zc-color-primary-surface-subtle-hover);
     }
 }
 
@@ -158,15 +158,15 @@
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-minimal-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-primary-border-primary-border-low);
-    color: var(--zc-color-primary-text-primary-text-default);
+    border-color: var(--zc-color-primary-border-low);
+    color: var(--zc-color-primary-text-default);
     &:hover {
-        background-color: var(--zc-color-primary-surface-primary-surface-subtle);
-        border-color: var(--zc-color-primary-border-primary-border-minimal);
-        color: var(--zc-color-primary-text-primary-text-default-hover);
+        background-color: var(--zc-color-primary-surface-subtle);
+        border-color: var(--zc-color-primary-border-minimal);
+        color: var(--zc-color-primary-text-default-hover);
     }
     &:active {
-        background-color: var(--zc-color-primary-surface-primary-surface-subtle-hover);
+        background-color: var(--zc-color-primary-surface-subtle-hover);
     }
 }
 
@@ -174,15 +174,15 @@
    STYLE: MINIMAL FILL — Light primary bg, primary text
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-minimal-fill button {
-    background-color: var(--zc-color-primary-surface-primary-surface-subtle-hover);
+    background-color: var(--zc-color-primary-surface-subtle-hover);
     border-color: transparent;
-    color: var(--zc-color-primary-text-primary-text-default);
+    color: var(--zc-color-primary-text-default);
     &:hover {
-        background-color: var(--zc-color-primary-surface-primary-surface-low);
-        color: var(--zc-color-primary-text-primary-text-default-hover);
+        background-color: var(--zc-color-primary-surface-low);
+        color: var(--zc-color-primary-text-default-hover);
     }
     &:active {
-        background-color: var(--zc-color-primary-surface-primary-surface-minimal);
+        background-color: var(--zc-color-primary-surface-minimal);
     }
 }
 
@@ -192,13 +192,13 @@
 .zc-btn.zc-btn-link button {
     background-color: transparent;
     border-color: transparent;
-    color: var(--zc-color-primary-text-primary-text-default);
+    color: var(--zc-color-primary-text-default);
     &:hover {
-        background-color: var(--zc-color-primary-surface-primary-surface-subtle);
-        color: var(--zc-color-primary-text-primary-text-default-hover);
+        background-color: var(--zc-color-primary-surface-subtle);
+        color: var(--zc-color-primary-text-default-hover);
     }
     &:active {
-        background-color: var(--zc-color-primary-surface-primary-surface-subtle-hover);
+        background-color: var(--zc-color-primary-surface-subtle-hover);
     }
 }
 
@@ -208,12 +208,12 @@
 .zc-btn.zc-btn-hyperlink button {
     background-color: transparent;
     border-color: transparent;
-    color: var(--zc-color-primary-text-primary-text-default);
+    color: var(--zc-color-primary-text-default);
     text-decoration: underline;
     padding: 0;
     height: auto;
-    &:hover  { color: var(--zc-color-primary-text-primary-text-default-hover); }
-    &:active { color: var(--zc-color-primary-text-primary-text-bold); }
+    &:hover  { color: var(--zc-color-primary-text-default-hover); }
+    &:active { color: var(--zc-color-primary-text-bold); }
 }
 
 /* ---------------------------------------------------------------------------
@@ -300,235 +300,235 @@
 .zc-btn-duo-group {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 /* ---------------------------------------------------------------------------
    COLOR THEME: SECONDARY
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-secondary.zc-btn-fill button {
-    background-color: var(--zc-color-secondary-surface-secondary-surface-default);
-    border-color: var(--zc-color-secondary-surface-secondary-surface-default);
+    background-color: var(--zc-color-secondary-surface-default);
+    border-color: var(--zc-color-secondary-surface-default);
     color: var(--zc-color-black-white-text-white-text);
-    &:hover { background-color: var(--zc-color-secondary-surface-secondary-surface-default-hover); border-color: var(--zc-color-secondary-surface-secondary-surface-default-hover); }
-    &:active { background-color: var(--zc-color-secondary-surface-secondary-surface-bold); border-color: var(--zc-color-secondary-surface-secondary-surface-bold); }
+    &:hover { background-color: var(--zc-color-secondary-surface-default-hover); border-color: var(--zc-color-secondary-surface-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-bold); border-color: var(--zc-color-secondary-surface-bold); }
 }
 .zc-btn.zc-btn-secondary.zc-btn-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-secondary-border-secondary-border-default);
-    color: var(--zc-color-secondary-text-secondary-text-default);
-    &:hover { background-color: var(--zc-color-secondary-surface-secondary-surface-subtle); border-color: var(--zc-color-secondary-border-secondary-border-default-hover); color: var(--zc-color-secondary-text-secondary-text-default-hover); }
-    &:active { background-color: var(--zc-color-secondary-surface-secondary-surface-subtle-hover); }
+    border-color: var(--zc-color-secondary-border-default);
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-subtle); border-color: var(--zc-color-secondary-border-default-hover); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-secondary.zc-btn-minimal-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-secondary-border-secondary-border-low);
-    color: var(--zc-color-secondary-text-secondary-text-default);
-    &:hover { background-color: var(--zc-color-secondary-surface-secondary-surface-subtle); border-color: var(--zc-color-secondary-border-secondary-border-minimal); color: var(--zc-color-secondary-text-secondary-text-default-hover); }
-    &:active { background-color: var(--zc-color-secondary-surface-secondary-surface-subtle-hover); }
+    border-color: var(--zc-color-secondary-border-low);
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-subtle); border-color: var(--zc-color-secondary-border-minimal); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-secondary.zc-btn-minimal-fill button {
-    background-color: var(--zc-color-secondary-surface-secondary-surface-subtle-hover);
+    background-color: var(--zc-color-secondary-surface-subtle-hover);
     border-color: transparent;
-    color: var(--zc-color-secondary-text-secondary-text-default);
-    &:hover { background-color: var(--zc-color-secondary-surface-secondary-surface-low); color: var(--zc-color-secondary-text-secondary-text-default-hover); }
-    &:active { background-color: var(--zc-color-secondary-surface-secondary-surface-minimal); }
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-low); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-minimal); }
 }
 .zc-btn.zc-btn-secondary.zc-btn-link button {
     background-color: transparent; border-color: transparent;
-    color: var(--zc-color-secondary-text-secondary-text-default);
-    &:hover { background-color: var(--zc-color-secondary-surface-secondary-surface-subtle); color: var(--zc-color-secondary-text-secondary-text-default-hover); }
-    &:active { background-color: var(--zc-color-secondary-surface-secondary-surface-subtle-hover); }
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-subtle); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-subtle-hover); }
 }
 
 /* ---------------------------------------------------------------------------
    COLOR THEME: INFO
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-info.zc-btn-fill button {
-    background-color: var(--zc-color-info-surface-info-surface-default);
-    border-color: var(--zc-color-info-surface-info-surface-default);
+    background-color: var(--zc-color-info-surface-default);
+    border-color: var(--zc-color-info-surface-default);
     color: var(--zc-color-black-white-text-white-text);
-    &:hover { background-color: var(--zc-color-info-surface-info-surface-default-hover); border-color: var(--zc-color-info-surface-info-surface-default-hover); }
-    &:active { background-color: var(--zc-color-info-surface-info-surface-bold); border-color: var(--zc-color-info-surface-info-surface-bold); }
+    &:hover { background-color: var(--zc-color-info-surface-default-hover); border-color: var(--zc-color-info-surface-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-bold); border-color: var(--zc-color-info-surface-bold); }
 }
 .zc-btn.zc-btn-info.zc-btn-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-info-border-info-border-default);
-    color: var(--zc-color-info-text-info-text-default);
-    &:hover { background-color: var(--zc-color-info-surface-info-surface-subtle); border-color: var(--zc-color-info-border-info-border-default-hover); color: var(--zc-color-info-text-info-text-default-hover); }
-    &:active { background-color: var(--zc-color-info-surface-info-surface-subtle-hover); }
+    border-color: var(--zc-color-info-border-default);
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-subtle); border-color: var(--zc-color-info-border-default-hover); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-info.zc-btn-minimal-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-info-border-info-border-low);
-    color: var(--zc-color-info-text-info-text-default);
-    &:hover { background-color: var(--zc-color-info-surface-info-surface-subtle); border-color: var(--zc-color-info-border-info-border-minimal); color: var(--zc-color-info-text-info-text-default-hover); }
-    &:active { background-color: var(--zc-color-info-surface-info-surface-subtle-hover); }
+    border-color: var(--zc-color-info-border-low);
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-subtle); border-color: var(--zc-color-info-border-minimal); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-info.zc-btn-minimal-fill button {
-    background-color: var(--zc-color-info-surface-info-surface-subtle-hover);
+    background-color: var(--zc-color-info-surface-subtle-hover);
     border-color: transparent;
-    color: var(--zc-color-info-text-info-text-default);
-    &:hover { background-color: var(--zc-color-info-surface-info-surface-low); color: var(--zc-color-info-text-info-text-default-hover); }
-    &:active { background-color: var(--zc-color-info-surface-info-surface-minimal); }
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-low); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-minimal); }
 }
 .zc-btn.zc-btn-info.zc-btn-link button {
     background-color: transparent; border-color: transparent;
-    color: var(--zc-color-info-text-info-text-default);
-    &:hover { background-color: var(--zc-color-info-surface-info-surface-subtle); color: var(--zc-color-info-text-info-text-default-hover); }
-    &:active { background-color: var(--zc-color-info-surface-info-surface-subtle-hover); }
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-subtle); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-subtle-hover); }
 }
 
 /* ---------------------------------------------------------------------------
    COLOR THEME: SUCCESS
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-success.zc-btn-fill button {
-    background-color: var(--zc-color-success-surface-success-surface-default);
-    border-color: var(--zc-color-success-surface-success-surface-default);
+    background-color: var(--zc-color-success-surface-default);
+    border-color: var(--zc-color-success-surface-default);
     color: var(--zc-color-black-white-text-white-text);
-    &:hover { background-color: var(--zc-color-success-surface-success-surface-default-hover); border-color: var(--zc-color-success-surface-success-surface-default-hover); }
-    &:active { background-color: var(--zc-color-success-surface-success-surface-bold); border-color: var(--zc-color-success-surface-success-surface-bold); }
+    &:hover { background-color: var(--zc-color-success-surface-default-hover); border-color: var(--zc-color-success-surface-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-bold); border-color: var(--zc-color-success-surface-bold); }
 }
 .zc-btn.zc-btn-success.zc-btn-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-success-border-success-border-default);
-    color: var(--zc-color-success-text-success-text-default);
-    &:hover { background-color: var(--zc-color-success-surface-success-surface-subtle); border-color: var(--zc-color-success-border-success-border-default-hover); color: var(--zc-color-success-text-success-text-default-hover); }
-    &:active { background-color: var(--zc-color-success-surface-success-surface-subtle-hover); }
+    border-color: var(--zc-color-success-border-default);
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-subtle); border-color: var(--zc-color-success-border-default-hover); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-success.zc-btn-minimal-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-success-border-success-border-low);
-    color: var(--zc-color-success-text-success-text-default);
-    &:hover { background-color: var(--zc-color-success-surface-success-surface-subtle); border-color: var(--zc-color-success-border-success-border-minimal); color: var(--zc-color-success-text-success-text-default-hover); }
-    &:active { background-color: var(--zc-color-success-surface-success-surface-subtle-hover); }
+    border-color: var(--zc-color-success-border-low);
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-subtle); border-color: var(--zc-color-success-border-minimal); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-success.zc-btn-minimal-fill button {
-    background-color: var(--zc-color-success-surface-success-surface-subtle-hover);
+    background-color: var(--zc-color-success-surface-subtle-hover);
     border-color: transparent;
-    color: var(--zc-color-success-text-success-text-default);
-    &:hover { background-color: var(--zc-color-success-surface-success-surface-low); color: var(--zc-color-success-text-success-text-default-hover); }
-    &:active { background-color: var(--zc-color-success-surface-success-surface-minimal); }
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-low); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-minimal); }
 }
 .zc-btn.zc-btn-success.zc-btn-link button {
     background-color: transparent; border-color: transparent;
-    color: var(--zc-color-success-text-success-text-default);
-    &:hover { background-color: var(--zc-color-success-surface-success-surface-subtle); color: var(--zc-color-success-text-success-text-default-hover); }
-    &:active { background-color: var(--zc-color-success-surface-success-surface-subtle-hover); }
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-subtle); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-subtle-hover); }
 }
 
 /* ---------------------------------------------------------------------------
    COLOR THEME: WARNING
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-warning.zc-btn-fill button {
-    background-color: var(--zc-color-warning-surface-warning-surface-default);
-    border-color: var(--zc-color-warning-surface-warning-surface-default);
+    background-color: var(--zc-color-warning-surface-default);
+    border-color: var(--zc-color-warning-surface-default);
     color: var(--zc-color-black-white-text-white-text);
-    &:hover { background-color: var(--zc-color-warning-surface-warning-surface-default-hover); border-color: var(--zc-color-warning-surface-warning-surface-default-hover); }
-    &:active { background-color: var(--zc-color-warning-surface-warning-surface-bold); border-color: var(--zc-color-warning-surface-warning-surface-bold); }
+    &:hover { background-color: var(--zc-color-warning-surface-default-hover); border-color: var(--zc-color-warning-surface-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-bold); border-color: var(--zc-color-warning-surface-bold); }
 }
 .zc-btn.zc-btn-warning.zc-btn-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-warning-border-warning-border-default);
-    color: var(--zc-color-warning-text-warning-text-default);
-    &:hover { background-color: var(--zc-color-warning-surface-warning-surface-subtle); border-color: var(--zc-color-warning-border-warning-border-default-hover); color: var(--zc-color-warning-text-warning-text-default-hover); }
-    &:active { background-color: var(--zc-color-warning-surface-warning-surface-subtle-hover); }
+    border-color: var(--zc-color-warning-border-default);
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-subtle); border-color: var(--zc-color-warning-border-default-hover); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-warning.zc-btn-minimal-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-warning-border-warning-border-low);
-    color: var(--zc-color-warning-text-warning-text-default);
-    &:hover { background-color: var(--zc-color-warning-surface-warning-surface-subtle); border-color: var(--zc-color-warning-border-warning-border-minimal); color: var(--zc-color-warning-text-warning-text-default-hover); }
-    &:active { background-color: var(--zc-color-warning-surface-warning-surface-subtle-hover); }
+    border-color: var(--zc-color-warning-border-low);
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-subtle); border-color: var(--zc-color-warning-border-minimal); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-warning.zc-btn-minimal-fill button {
-    background-color: var(--zc-color-warning-surface-warning-surface-subtle-hover);
+    background-color: var(--zc-color-warning-surface-subtle-hover);
     border-color: transparent;
-    color: var(--zc-color-warning-text-warning-text-default);
-    &:hover { background-color: var(--zc-color-warning-surface-warning-surface-low); color: var(--zc-color-warning-text-warning-text-default-hover); }
-    &:active { background-color: var(--zc-color-warning-surface-warning-surface-minimal); }
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-low); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-minimal); }
 }
 .zc-btn.zc-btn-warning.zc-btn-link button {
     background-color: transparent; border-color: transparent;
-    color: var(--zc-color-warning-text-warning-text-default);
-    &:hover { background-color: var(--zc-color-warning-surface-warning-surface-subtle); color: var(--zc-color-warning-text-warning-text-default-hover); }
-    &:active { background-color: var(--zc-color-warning-surface-warning-surface-subtle-hover); }
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-subtle); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-subtle-hover); }
 }
 
 /* ---------------------------------------------------------------------------
    COLOR THEME: ERROR
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-error.zc-btn-fill button {
-    background-color: var(--zc-color-error-surface-error-surface-default);
-    border-color: var(--zc-color-error-surface-error-surface-default);
+    background-color: var(--zc-color-error-surface-default);
+    border-color: var(--zc-color-error-surface-default);
     color: var(--zc-color-black-white-text-white-text);
-    &:hover { background-color: var(--zc-color-error-surface-error-surface-default-hover); border-color: var(--zc-color-error-surface-error-surface-default-hover); }
-    &:active { background-color: var(--zc-color-error-surface-error-surface-bold); border-color: var(--zc-color-error-surface-error-surface-bold); }
+    &:hover { background-color: var(--zc-color-error-surface-default-hover); border-color: var(--zc-color-error-surface-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-bold); border-color: var(--zc-color-error-surface-bold); }
 }
 .zc-btn.zc-btn-error.zc-btn-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-error-border-error-border-default);
-    color: var(--zc-color-error-text-error-text-default);
-    &:hover { background-color: var(--zc-color-error-surface-error-surface-subtle); border-color: var(--zc-color-error-border-error-border-default-hover); color: var(--zc-color-error-text-error-text-default-hover); }
-    &:active { background-color: var(--zc-color-error-surface-error-surface-subtle-hover); }
+    border-color: var(--zc-color-error-border-default);
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-subtle); border-color: var(--zc-color-error-border-default-hover); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-error.zc-btn-minimal-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-error-border-error-border-low);
-    color: var(--zc-color-error-text-error-text-default);
-    &:hover { background-color: var(--zc-color-error-surface-error-surface-subtle); border-color: var(--zc-color-error-border-error-border-minimal); color: var(--zc-color-error-text-error-text-default-hover); }
-    &:active { background-color: var(--zc-color-error-surface-error-surface-subtle-hover); }
+    border-color: var(--zc-color-error-border-low);
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-subtle); border-color: var(--zc-color-error-border-minimal); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-error.zc-btn-minimal-fill button {
-    background-color: var(--zc-color-error-surface-error-surface-subtle-hover);
+    background-color: var(--zc-color-error-surface-subtle-hover);
     border-color: transparent;
-    color: var(--zc-color-error-text-error-text-default);
-    &:hover { background-color: var(--zc-color-error-surface-error-surface-low); color: var(--zc-color-error-text-error-text-default-hover); }
-    &:active { background-color: var(--zc-color-error-surface-error-surface-minimal); }
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-low); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-minimal); }
 }
 .zc-btn.zc-btn-error.zc-btn-link button {
     background-color: transparent; border-color: transparent;
-    color: var(--zc-color-error-text-error-text-default);
-    &:hover { background-color: var(--zc-color-error-surface-error-surface-subtle); color: var(--zc-color-error-text-error-text-default-hover); }
-    &:active { background-color: var(--zc-color-error-surface-error-surface-subtle-hover); }
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-subtle); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-subtle-hover); }
 }
 
 /* ---------------------------------------------------------------------------
    COLOR THEME: HUEGREY
    --------------------------------------------------------------------------- */
 .zc-btn.zc-btn-huegrey.zc-btn-fill button {
-    background-color: var(--zc-color-huegrey-surface-huegrey-surface-default);
-    border-color: var(--zc-color-huegrey-surface-huegrey-surface-default);
+    background-color: var(--zc-color-huegrey-surface-default);
+    border-color: var(--zc-color-huegrey-surface-default);
     color: var(--zc-color-black-white-text-white-text);
-    &:hover { background-color: var(--zc-color-huegrey-surface-huegrey-surface-default-hover); border-color: var(--zc-color-huegrey-surface-huegrey-surface-default-hover); }
-    &:active { background-color: var(--zc-color-huegrey-surface-huegrey-surface-bold); border-color: var(--zc-color-huegrey-surface-huegrey-surface-bold); }
+    &:hover { background-color: var(--zc-color-huegrey-surface-default-hover); border-color: var(--zc-color-huegrey-surface-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-bold); border-color: var(--zc-color-huegrey-surface-bold); }
 }
 .zc-btn.zc-btn-huegrey.zc-btn-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-huegrey-border-huegrey-border-default);
-    color: var(--zc-color-huegrey-text-huegrey-text-default);
-    &:hover { background-color: var(--zc-color-huegrey-surface-huegrey-surface-subtle); border-color: var(--zc-color-huegrey-border-huegrey-border-default-hover); color: var(--zc-color-huegrey-text-huegrey-text-default-hover); }
-    &:active { background-color: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover); }
+    border-color: var(--zc-color-huegrey-border-default);
+    color: var(--zc-color-huegrey-text-default);
+    &:hover { background-color: var(--zc-color-huegrey-surface-subtle); border-color: var(--zc-color-huegrey-border-default-hover); color: var(--zc-color-huegrey-text-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-huegrey.zc-btn-minimal-border button {
     background-color: var(--zc-color-black-white-surface-white-surface);
-    border-color: var(--zc-color-huegrey-border-huegrey-border-low);
-    color: var(--zc-color-huegrey-text-huegrey-text-default);
-    &:hover { background-color: var(--zc-color-huegrey-surface-huegrey-surface-subtle); border-color: var(--zc-color-huegrey-border-huegrey-border-minimal); color: var(--zc-color-huegrey-text-huegrey-text-default-hover); }
-    &:active { background-color: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover); }
+    border-color: var(--zc-color-huegrey-border-low);
+    color: var(--zc-color-huegrey-text-default);
+    &:hover { background-color: var(--zc-color-huegrey-surface-subtle); border-color: var(--zc-color-huegrey-border-minimal); color: var(--zc-color-huegrey-text-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-subtle-hover); }
 }
 .zc-btn.zc-btn-huegrey.zc-btn-minimal-fill button {
-    background-color: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover);
+    background-color: var(--zc-color-huegrey-surface-subtle-hover);
     border-color: transparent;
-    color: var(--zc-color-huegrey-text-huegrey-text-default);
-    &:hover { background-color: var(--zc-color-huegrey-surface-huegrey-surface-low); color: var(--zc-color-huegrey-text-huegrey-text-default-hover); }
-    &:active { background-color: var(--zc-color-huegrey-surface-huegrey-surface-minimal); }
+    color: var(--zc-color-huegrey-text-default);
+    &:hover { background-color: var(--zc-color-huegrey-surface-low); color: var(--zc-color-huegrey-text-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-minimal); }
 }
 .zc-btn.zc-btn-huegrey.zc-btn-link button {
     background-color: transparent; border-color: transparent;
-    color: var(--zc-color-huegrey-text-huegrey-text-default);
-    &:hover { background-color: var(--zc-color-huegrey-surface-huegrey-surface-subtle); color: var(--zc-color-huegrey-text-huegrey-text-default-hover); }
-    &:active { background-color: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover); }
+    color: var(--zc-color-huegrey-text-default);
+    &:hover { background-color: var(--zc-color-huegrey-surface-subtle); color: var(--zc-color-huegrey-text-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-subtle-hover); }
 }
 
 /* ---------------------------------------------------------------------------
