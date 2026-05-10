@@ -241,12 +241,41 @@ async function applyTokensFromJSON(productKey) {
    ║  Patterns, Tokens, and Icons.                                                 ║
    ╚═══════════════════════════════════════════════════════════════════════════════╝ */
 
+function toggleDarkMode(btn) {
+    var root = document.documentElement;
+    var isDark = root.getAttribute('creator-theme') === 'dark';
+
+    if (isDark) {
+        root.removeAttribute('creator-theme');
+        btn.classList.remove('is-dark');
+        document.getElementById('darkModeIcon').className = 'fas fa-moon';
+        document.getElementById('darkModeLabel').textContent = 'Dark Mode';
+    } else {
+        root.setAttribute('creator-theme', 'dark');
+        btn.classList.add('is-dark');
+        document.getElementById('darkModeIcon').className = 'fas fa-sun';
+        document.getElementById('darkModeLabel').textContent = 'Light Mode';
+    }
+
+    var iframe = document.querySelector('#section-ai-design iframe');
+    if (iframe && iframe.contentDocument) {
+        var iframeRoot = iframe.contentDocument.documentElement;
+        if (isDark) {
+            iframeRoot.removeAttribute('creator-theme');
+            iframeRoot.removeAttribute('data-theme');
+        } else {
+            iframeRoot.setAttribute('creator-theme', 'dark');
+            iframeRoot.setAttribute('data-theme', 'dark');
+        }
+    }
+}
+
 /**
  * Switch to a different main section
  * Hides all sections and shows the selected one
- * 
+ *
  * Called from HTML: onclick="switchSection('home', this)"
- * 
+ *
  * @param {string} sectionName - Section identifier (home, branding, components, etc.)
  * @param {HTMLElement} navElement - The clicked navigation element
  */
@@ -266,7 +295,7 @@ function switchSection(sectionName, navElement) {
     }
     
     // Update active state in sidebar nav
-    document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
+    document.querySelectorAll('.sidebar-nav .nav-item, .sidebar-nav .nav-item--rail').forEach(item => {
         item.classList.remove('active');
     });
     if (navElement) {
@@ -426,15 +455,15 @@ function initAllComponentsSection() {
     ALL_COMPONENT_NAMES.forEach(function(name) {
         var cardEl = document.createElement('div');
         cardEl.className = 'all-comp-card';
-        cardEl.style.cssText = 'border: 1px solid var(--zc-color-border-default, #E5E7EB); border-radius: 12px; margin-bottom: 20px; overflow: hidden; background: var(--zc-color-surface-primary, #fff); width: 100%;';
+        cardEl.style.cssText = 'border: 1px solid var(--zc-color-neutral-border-neutral-border-minimal); border-radius: 12px; margin-bottom: 20px; overflow: hidden; background: var(--zc-color-black-white-surface-white-surface); width: 100%;';
         var displayName = ALL_COMP_DISPLAY_NAMES[name] || name.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
         cardEl.setAttribute('data-comp-name', name);
         cardEl.setAttribute('data-comp-display', displayName);
 
         var titleBar = document.createElement('div');
-        titleBar.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: var(--zc-color-surface-secondary, #F9FAFB); border-bottom: 1px solid var(--zc-color-border-default, #E5E7EB); cursor: pointer;';
+        titleBar.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: var(--zc-color-neutral-surface-neutral-surface-subtle); border-bottom: 1px solid var(--zc-color-neutral-border-neutral-border-minimal); cursor: pointer;';
         titleBar.innerHTML = '<span style="font-weight: 600; font-size: 15px;">' + displayName + '</span>' +
-            '<button onclick="toggleAllCompPreview(this)" style="background:var(--zc-color-primary-surface, #EEF2FF);border:1px solid var(--zc-color-border-default,#E5E7EB);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-text-secondary,#6B7280);"><i class="fas fa-eye"></i> Preview</button>';
+            '<button onclick="toggleAllCompPreview(this)" style="background:var(--zc-color-primary-surface-primary-surface-subtle);border:1px solid var(--zc-color-neutral-border-neutral-border-minimal);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--zc-color-huegrey-text-huegrey-text-default);"><i class="fas fa-eye"></i> Preview</button>';
         cardEl.appendChild(titleBar);
 
         var previewArea = document.createElement('div');
@@ -694,7 +723,7 @@ function toggleAllCompPreview(btn) {
     var preview = card.querySelector('.all-comp-preview');
     if (preview.style.display === 'none') {
         preview.style.display = 'block';
-        btn.style.background = 'var(--zc-color-primary-surface, #EEF2FF)';
+        btn.style.background = 'var(--zc-color-primary-surface-primary-surface-subtle)';
     } else {
         preview.style.display = 'none';
         btn.style.background = 'none';

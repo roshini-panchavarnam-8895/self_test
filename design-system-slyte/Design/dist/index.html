@@ -5,9 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=11;IE12;IE=edge" />
 	<title>Demo</title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-	<script src="runtime.js"></script>
-	<script src="app-init.js"></script>
-	<script src="lyte.js"></script>
+	<script src="dist/runtime.js"></script>
+	<script src="dist/app-init.js"></script>
+	<script src="dist/lyte.js"></script>
 <link rel="stylesheet" href="node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/lyte-ui-components.css" />
 <link rel="stylesheet" href="node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/lyte-ui-button.css" />
 <link rel="stylesheet" href="node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/lyte-ui-buttongroup.css" />
@@ -55,7 +55,8 @@
 <link rel="stylesheet" href="node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/lyte-ui-number.css" />
 <link rel="stylesheet" href="node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/lyte-ui-radiobutton.css" />
 <link rel="stylesheet" href="node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/lyte-ui-radiobutton-group.css" />
-<script src="node_modules/@zoho/lyte-ui-component/dist/I18n/en_US.js"></script>
+<script src="/node_modules/@zoho/lyte-ui-component/dist/I18n/en_US.js"></script>
+<link rel="stylesheet" href="design-library/color-tokens.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="grid.css">
 <link rel="stylesheet" href="design-library/zohopuvi/font-zohopuvi.css">
@@ -622,54 +623,48 @@
 <body>
 <div id="outlet" style="display:none"></div>
 <div class="app-layout zc-row zc-row-nowrap">
-        <!-- Sidebar -->
-        <aside class="sidebar zc-flex zc-direction-column">
-            <!-- Brand Section - Compact -->
-            <div class="brand-section zc-flex zc-direction-column zc-justify-center zc-align-items-center zc-px-24 zc-py-32">
-                <div class="brand-logo-container zc-flex zc-justify-center zc-align-items-center zc-mb-20" id="main-logo-container">
+        <!-- Sidebar — Icon Rail -->
+        <aside class="sidebar">
+            <div class="brand-section">
+                <div class="brand-logo-container" id="main-logo-container" role="button" onclick="switchSection('home', document.querySelector('[data-section=home]'))">
                     <img src="Creator-logo.jpg" alt="Logo" id="main-logo">
                 </div>
-                <div class="brand-name-wrapper zc-flex zc-align-items-center zc-gap-8 zc-mb-6" onclick="toggleSidebarProductDropdown()" style="cursor: pointer;">
-                    <div class="brand-name" id="brand-name">Creator</div>
-                    <i class="fas fa-chevron-up sidebar-product-arrow" id="sidebar-product-arrow"></i>
-                </div>
-                <div class="brand-tagline">Design System</div>
-                
-                <!-- Product Dropdown in Sidebar -->
-                <div class="sidebar-product-dropdown" id="sidebar-product-dropdown">
-                    <div class="sidebar-product-option active" data-product="creator" onclick="event.stopPropagation(); selectProduct('creator')">
-                        <div class="sidebar-product-option-icon">
-                            <img src="Creator-logo.jpg" alt="Creator">
-                        </div>
-                        <span class="sidebar-product-option-name">Creator</span>
-                    </div>
-                    <div class="sidebar-product-option" data-product="bookings" onclick="event.stopPropagation(); selectProduct('bookings')">
-                        <div class="sidebar-product-option-icon">
-                            <img src="Bookings-whiteBG.svg" alt="Bookings">
-                        </div>
-                        <span class="sidebar-product-option-name">Bookings</span>
-                    </div>
-                    <div class="sidebar-product-option" data-product="qengine" onclick="event.stopPropagation(); selectProduct('qengine')">
-                        <div class="sidebar-product-option-icon">
-                            <img src="QEngine-whiteBG.svg" alt="QEngine">
-                        </div>
-                        <span class="sidebar-product-option-name">QEngine</span>
-                    </div>
-                </div>
+                <div class="brand-name" id="brand-name">Creator</div>
             </div>
-            
-            <!-- Navigation -->
-            <nav class="sidebar-nav zc-px-16 zc-py-20 zc-col-common">
-                <div class="nav-section zc-mb-24">
-                    <div class="nav-section-title zc-py-8 zc-px-12 zc-mb-8">Navigation</div>    
-                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="home" onclick="switchSection('home', this)"><i class="fas fa-home"></i>Home</a>
-                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4 active" data-section="components" onclick="switchSection('components', this)"><i class="fas fa-cube"></i>Components</a>
-                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="patterns" onclick="switchSection('patterns', this)"><i class="fas fa-th-large"></i>Patterns</a>
-                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="tokens" onclick="switchSection('tokens', this)"><i class="fas fa-swatchbook"></i>Tokens</a>
-                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="icons" onclick="switchSection('icons', this)"><i class="fas fa-icons"></i>Icons</a>
-                    <a href="#" style="display:none;" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="all-listing" onclick="switchSection('all-listing', this)"><i class="fas fa-th-list"></i>All components listing</a>
-                    <a href="#" class="nav-item zc-flex zc-align-items-center zc-gap-12 zc-px-14 zc-py-12 zc-mb-4" data-section="all-components" onclick="switchSection('all-components', this)"><i class="fas fa-layer-group"></i>All Components</a>
-                </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item--rail active" data-section="home" onclick="switchSection('home', this)">
+                    <span class="nav-rail-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-rail-label">Home</span>
+                </button>
+                <button class="nav-item--rail" data-section="components" onclick="switchSection('components', this)">
+                    <span class="nav-rail-icon"><i class="fas fa-cube"></i></span>
+                    <span class="nav-rail-label">Components</span>
+                </button>
+                <button class="nav-item--rail" data-section="patterns" onclick="switchSection('patterns', this)">
+                    <span class="nav-rail-icon"><i class="fas fa-th-large"></i></span>
+                    <span class="nav-rail-label">Patterns</span>
+                </button>
+                <button class="nav-item--rail" data-section="tokens" onclick="switchSection('tokens', this)">
+                    <span class="nav-rail-icon"><i class="fas fa-swatchbook"></i></span>
+                    <span class="nav-rail-label">Tokens</span>
+                </button>
+                <button class="nav-item--rail" data-section="icons" onclick="switchSection('icons', this)">
+                    <span class="nav-rail-icon"><i class="fas fa-icons"></i></span>
+                    <span class="nav-rail-label">Icons</span>
+                </button>
+                <button class="nav-item--rail" data-section="all-components" onclick="switchSection('all-components', this)">
+                    <span class="nav-rail-icon"><i class="fas fa-layer-group"></i></span>
+                    <span class="nav-rail-label">All Components</span>
+                </button>
+                <button class="nav-item--rail" data-section="ai-design" onclick="switchSection('ai-design', this)">
+                    <span class="nav-rail-icon"><i class="fas fa-wand-magic-sparkles"></i></span>
+                    <span class="nav-rail-label">AI Design</span>
+                </button>
+                <div class="nav-rail-divider"></div>
+                <button class="nav-item--rail dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode(this)">
+                    <span class="nav-rail-icon"><i class="fas fa-moon" id="darkModeIcon"></i></span>
+                    <span class="nav-rail-label" id="darkModeLabel">Dark Mode</span>
+                </button>
             </nav>
         </aside>
         
@@ -682,40 +677,70 @@
                 <div class="section-container" id="section-home" style="display: none;">
                     <div class="content">
                         <div class="page-header">
-                            <h1 class="page-title">Welcome to Design System</h1>
-                            <p class="page-description">Your comprehensive guide to building consistent, beautiful user interfaces. Explore our components, patterns, tokens, and resources.</p>
+                            <h1 class="page-title">Welcome to Zoho Creator Design System</h1>
+                            <p class="page-description">Your guide to building consistent UIs in Zoho Creator: foundation tokens and layout, form fields, reports, common components, and release notes.</p>
                         </div>
                         <div class="home-grid">
-                            <div class="home-card" onclick="switchSection('components', document.querySelector('[data-section=components]'))">
-                                <div class="home-card-icon" style="background: var(--brand-primary);">
+                            <a class="home-card" href="#" onclick="event.preventDefault(); switchSection('tokens', document.querySelector('[data-section=tokens]'))">
+                                <div class="home-card-icon" style="background: linear-gradient(135deg, #0D4EF2, #6366F1);">
+                                    <i class="fas fa-circle-nodes"></i>
+                                </div>
+                                <div class="home-card-content">
+                                    <h3>Foundation</h3>
+                                    <p>Icons, typography, color tokens, spacing, grid &amp; flex</p>
+                                </div>
+                                <i class="fas fa-chevron-right home-card-arrow"></i>
+                            </a>
+                            <a class="home-card" href="#" onclick="event.preventDefault(); switchSection('components', document.querySelector('[data-section=components]'))">
+                                <div class="home-card-icon" style="background: linear-gradient(135deg, #10B981, #059669);">
                                     <i class="fas fa-cube"></i>
                                 </div>
                                 <div class="home-card-content">
-                                    <h3>Components</h3>
-                                    <p>UI building blocks</p>
+                                    <h3>Form Fields</h3>
+                                    <p>Interactive form input components</p>
                                 </div>
-                                <i class="fas fa-arrow-right home-card-arrow"></i>
-                            </div>
-                            <div class="home-card" onclick="switchSection('patterns', document.querySelector('[data-section=patterns]'))">
-                                <div class="home-card-icon" style="background: #10b981;">
+                                <i class="fas fa-chevron-right home-card-arrow"></i>
+                            </a>
+                            <a class="home-card" href="#" onclick="event.preventDefault(); switchSection('patterns', document.querySelector('[data-section=patterns]'))">
+                                <div class="home-card-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">
                                     <i class="fas fa-th-large"></i>
                                 </div>
                                 <div class="home-card-content">
-                                    <h3>Patterns</h3>
-                                    <p>Reusable patterns</p>
+                                    <h3>Reports</h3>
+                                    <p>Calendar, kanban, timeline &amp; cards</p>
                                 </div>
-                                <i class="fas fa-arrow-right home-card-arrow"></i>
-                            </div>
-                            <div class="home-card" onclick="switchSection('tokens', document.querySelector('[data-section=tokens]'))">
-                                <div class="home-card-icon" style="background: #ec4899;">
-                                    <i class="fas fa-swatchbook"></i>
+                                <i class="fas fa-chevron-right home-card-arrow"></i>
+                            </a>
+                            <a class="home-card" href="#" onclick="event.preventDefault(); switchSection('icons', document.querySelector('[data-section=icons]'))">
+                                <div class="home-card-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+                                    <i class="fas fa-icons"></i>
                                 </div>
                                 <div class="home-card-content">
-                                    <h3>Tokens</h3>
-                                    <p>Design variables</p>
+                                    <h3>Icons</h3>
+                                    <p>ZC Live icon library — outline &amp; solid</p>
                                 </div>
-                                <i class="fas fa-arrow-right home-card-arrow"></i>
-                            </div>
+                                <i class="fas fa-chevron-right home-card-arrow"></i>
+                            </a>
+                            <a class="home-card" href="#" onclick="event.preventDefault(); switchSection('all-components', document.querySelector('[data-section=all-components]'))">
+                                <div class="home-card-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <div class="home-card-content">
+                                    <h3>All Components</h3>
+                                    <p>Browse every component with live code preview</p>
+                                </div>
+                                <i class="fas fa-chevron-right home-card-arrow"></i>
+                            </a>
+                            <a class="home-card" href="#" onclick="event.preventDefault(); switchSection('ai-design', document.querySelector('[data-section=ai-design]'))">
+                                <div class="home-card-icon" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">
+                                    <i class="fas fa-wand-magic-sparkles"></i>
+                                </div>
+                                <div class="home-card-content">
+                                    <h3>AI Design Components</h3>
+                                    <p>AI-generated design system prototype</p>
+                                </div>
+                                <i class="fas fa-chevron-right home-card-arrow"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -2183,7 +2208,7 @@
                         </div>
                         <div class="all-comp-search zc-mb-20" style="position: relative; max-width: 420px;">
                             <i class="fas fa-search" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--zc-color-text-secondary, #9EA0A7); font-size: 14px; pointer-events: none;"></i>
-                            <input type="text" id="all-comp-search-input" placeholder="Search components..." oninput="filterAllComponents(this.value)" style="width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--zc-color-border-default, #E3E3E3); border-radius: 8px; font-size: 14px; font-family: 'ZohoPuvi', sans-serif; background: var(--zc-color-surface-primary, #fff); color: var(--zc-color-text-primary, #25272C); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;" onfocus="this.style.borderColor='var(--zc-color-primary-border-default, #0D4EF2)';this.style.boxShadow='0 0 0 3px rgba(13,78,242,0.1)'" onblur="this.style.borderColor='var(--zc-color-border-default, #E3E3E3)';this.style.boxShadow='none'" />
+                            <input type="text" id="all-comp-search-input" placeholder="Search components..." oninput="filterAllComponents(this.value)" style="width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--zc-color-neutral-border-neutral-border-minimal); border-radius: 8px; font-size: 14px; font-family: 'ZohoPuvi', sans-serif; background: var(--zc-color-black-white-surface-white-surface); color: var(--zc-color-huegrey-text-huegrey-text-dark); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;" onfocus="this.style.borderColor='var(--zc-color-primary-border-primary-border-default)';this.style.boxShadow='0 0 0 3px rgba(13,78,242,0.1)'" onblur="this.style.borderColor='var(--zc-color-neutral-border-neutral-border-minimal)';this.style.boxShadow='none'" />
                         </div>
                         <div id="all-comp-list" style="width: 100%;"></div>
                         <div id="all-comp-no-results" style="display: none; text-align: center; padding: 40px 20px; color: var(--zc-color-text-secondary, #9EA0A7);">
@@ -2192,6 +2217,11 @@
                             <p style="font-size: 13px;">Try a different search term</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- AI DESIGN COMPONENTS Section -->
+                <div class="section-container" id="section-ai-design" style="display: none;">
+                    <iframe src="Creator-Design-System/index.html" style="width: 100%; height: 100%; border: none; flex: 1;"></iframe>
                 </div>
 
                 <!-- COMPONENTS Section (with Secondary Sidebar) -->
