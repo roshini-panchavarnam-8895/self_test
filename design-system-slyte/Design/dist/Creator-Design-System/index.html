@@ -333,7 +333,7 @@
             <h2>Buttons</h2>
             <p>Source: Figma <span class="ds-code">Primary_Button (2132:26906)</span> + button color families <span class="ds-code">(2064:273)</span>. P2 Regular text, 14px icons, 8px gap. Sizes XS / Small / Base / Large × 6 styles × 8 color families × hover. Hover styles fire on real <span class="ds-code">:hover</span> in this demo.</p>
           </div>
-          <button class="ds-show-code-btn" onclick="toggleDsCode(this)" style="flex-shrink:0; display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border:1px solid var(--ds-primary); border-radius:6px; background:var(--ds-primary); color:#fff; font-size:12px; font-weight:600; cursor:pointer; font-family:inherit; white-space:nowrap;">&lt;/&gt; Show Code</button>
+          <button class="ds-show-code-btn" onclick="toggleDsCode(this)" style="flex-shrink:0; display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border:1px solid var(--primary-surface-default); border-radius:6px; background:var(--primary-surface-default); color:#fff; font-size:12px; font-weight:600; cursor:pointer; font-family:inherit; white-space:nowrap;">&lt;/&gt; Show Code</button>
         </div>
 
         <!-- Lyte Component Code Panel -->
@@ -5800,11 +5800,11 @@
         panel.style.display = 'block';
         btn.innerHTML = '&lt;/&gt; Hide Code';
         btn.style.background = 'transparent';
-        btn.style.color = 'var(--ds-primary)';
+        btn.style.color = 'var(--primary-surface-default)';
       } else {
         panel.style.display = 'none';
         btn.innerHTML = '&lt;/&gt; Show Code';
-        btn.style.background = 'var(--ds-primary)';
+        btn.style.background = 'var(--primary-surface-default)';
         btn.style.color = '#fff';
       }
     }
