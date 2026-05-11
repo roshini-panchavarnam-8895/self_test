@@ -10,73 +10,76 @@
 <form class="form-table label-left">
 
     <!-- With help text -->
-    <div class="form-group clearfix form-videoupload-field">
-      <label class="form-label">
-        <span class="zc-label-text">Video upload</span>
+    <div class="form-group form-fileupload-field clearfix zc-Video-group">
+      <label for="zc-Video" id="zc-Video-arialabel" class="form-label zc-dem-clearfix zc-Video-label zc_video_label">
+        <span class="zc-label-text">Video</span>
       </label>
-      <div class="form-field mediumSizeLive clearfix">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive">
+        <input name="Video" type="hidden">
+        <div class="local-fileupload zc-video-fld zc-uploadComponents clearfix">
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select Video</div>
-              <input class="zc-file-input" type="file" name="uploadFile" accept="video/*" title="" aria-label="Upload file">
+              <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div>
+              <input id="zc-Video_FILE" class="textfield zc-elem-focus-field" name="uploadFile" duration="30" accept="video/*" type="file" aria-labelledby="zc-Video-arialabel" aria-describedby="zc-Video-helpText zc-Video-errorMsg">
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" role="button" aria-label="Video Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="Video Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon videoIcon zc-elem-focus-field" title="Camera" role="button" aria-label="Video Camera"><i class="zc-li-outline media-1-video-64"></i></span>
           </div>
         </div>
-        <div id="zc-video-upload-help" class="zc-help-txt">Help text goes here</div>
+        <div id="zc-Video-helpText" class="zc-help-txt">Help text goes here</div>
       </div>
     </div>
 
     <!-- Error state -->
-    <div class="form-group clearfix form-videoupload-field">
-      <label class="form-label">
-        <span class="zc-label-text">Video upload<span class="fieldMandate" aria-hidden="true">*</span></span>
+    <div class="form-group form-fileupload-field clearfix zc-Video_Err-group">
+      <label for="zc-Video_Err" id="zc-Video_Err-arialabel" class="form-label zc-dem-clearfix zc-Video_Err-label zc_video_label">
+        <span class="zc-label-text">Video<span class="fieldMandate" aria-hidden="true">*</span></span>
       </label>
-      <div class="form-field mediumSizeLive clearfix validationError">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive validationError">
+        <input name="Video_Err" type="hidden">
+        <div class="local-fileupload zc-video-fld zc-uploadComponents clearfix">
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select Video</div>
-              <input class="zc-file-input" type="file" name="uploadFile_Err" accept="video/*" title="" aria-label="Upload file">
+              <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div>
+              <input id="zc-Video_Err_FILE" class="textfield zc-elem-focus-field" name="uploadFile" duration="30" accept="video/*" type="file" aria-labelledby="zc-Video_Err-arialabel" aria-describedby="zc-Video_Err-errorMsg">
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" role="button" aria-label="Video Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="Video Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon videoIcon zc-elem-focus-field" title="Camera" role="button" aria-label="Video Camera"><i class="zc-li-outline media-1-video-64"></i></span>
           </div>
         </div>
-        <div id="zc-video-upload-error" class="fieldErrorMsg" role="alert">
+        <div id="zc-Video_Err-errorMsg" class="fieldErrorMsg" role="alert">
           <span>This field is mandatory. Upload a file.</span>
         </div>
       </div>
     </div>
 
     <!-- Disabled state -->
-    <div class="form-group clearfix form-videoupload-field zc-field-disabled">
-      <label class="form-label">
-        <span class="zc-label-text">Video upload</span>
+    <div class="form-group form-fileupload-field clearfix zc-Video_Dis-group zc-field-disabled">
+      <label for="zc-Video_Dis" id="zc-Video_Dis-arialabel" class="form-label zc-dem-clearfix zc-Video_Dis-label zc_video_label">
+        <span class="zc-label-text">Video</span>
       </label>
-      <div class="form-field mediumSizeLive clearfix">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive">
+        <input name="Video_Dis" type="hidden">
+        <div class="local-fileupload zc-video-fld zc-uploadComponents clearfix">
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select Video</div>
-              <input class="zc-file-input" type="file" name="uploadFile_Dis" accept="video/*" title="" aria-label="Upload file">
+              <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div>
+              <input id="zc-Video_Dis_FILE" class="textfield zc-elem-focus-field" name="uploadFile" duration="30" accept="video/*" type="file" aria-labelledby="zc-Video_Dis-arialabel" disabled>
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" role="button" aria-label="Video Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="Video Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon videoIcon zc-elem-focus-field" title="Camera" role="button" aria-label="Video Camera"><i class="zc-li-outline media-1-video-64"></i></span>
           </div>
         </div>
       </div>

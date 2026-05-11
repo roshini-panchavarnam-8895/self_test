@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap");
 :root {
   --zc-font-family: "Lato", sans-serif;
-  --zc-font-size: 14.5px;
+  --zc-font-size: 14px;
   --zc-color-text: rgb(18, 19, 43);
   --zc-color-label: rgb(51, 51, 51);
   --zc-color-border: rgb(203, 203, 220);
@@ -133,7 +133,7 @@ input.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
 }
@@ -144,11 +144,11 @@ input.form-control:focus {
 
 textarea.form-control {
   display: block;
-  height: 200px;
-  min-height: 30px;
+  height: 36px;
+  min-height: 100px;
   min-width: var(--zc-input-width);
   max-width: var(--zc-input-width);
-  padding: 7px 12px;
+  padding: 0 12px;
   border: 1px solid var(--zc-color-border);
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-bg);
@@ -156,11 +156,11 @@ textarea.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 18px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
-  white-space: pre-wrap;
-  resize: vertical;
+  resize: none;
+  overflow: auto;
 }
 textarea.form-control:focus {
   border-color: var(--zc-color-primary);
@@ -251,16 +251,16 @@ textarea.form-control:focus {
 .select2-choice {
   display: block;
   width: 100%;
-  height: var(--input-height, 36px);
-  padding: 0 30px 0 12px;
+  height: 36px;
+  padding: 0 12px;
   border: 1px solid var(--zc-color-border);
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-bg);
   color: var(--zc-color-text);
   font-family: var(--zc-font-family);
-  font-size: var(--zc-font-size);
+  font-size: 14px;
   font-weight: 400;
-  line-height: 34px;
+  line-height: 35px;
   box-sizing: border-box;
   cursor: pointer;
   overflow: hidden;
@@ -274,7 +274,7 @@ textarea.form-control:focus {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: var(--color-text-placeholder, #999);
+  color: #b0b0c4;
 }
 
 .select2-search-choice-close {
@@ -290,35 +290,47 @@ textarea.form-control:focus {
 }
 
 .select2-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 30px;
-  height: 100%;
-  pointer-events: none;
+  right: 20px;
+  top: 14px;
+  bottom: 0;
+  background-color: transparent;
 }
 .select2-arrow b {
-  display: block;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #555;
+  position: relative;
+}
+.select2-arrow b::before {
+  transform: rotate(45deg);
+  left: 5px;
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background-color: #71718c;
+  border-radius: 4px;
+}
+.select2-arrow b::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background-color: #71718c;
+  border-radius: 4px;
+  transform: rotate(-45deg);
 }
 
 .select2-drop {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  border: 1px solid var(--zc-color-border);
+  width: 300px;
+  min-width: 200px;
+  padding: 10px 6px !important;
+  box-shadow: 0 4px 13px 0 rgba(18, 19, 43, 0.1);
+  background: var(--zc-color-bg);
+  border: 1px solid #dcdce7;
   border-radius: var(--zc-border-radius);
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #12132b;
+  margin-top: 5px;
+  text-align: left;
+  box-sizing: border-box;
 }
 
 .select2-display-none {
@@ -327,25 +339,31 @@ textarea.form-control:focus {
 
 .select2-results {
   list-style: none;
-  margin: 0;
-  padding: 10px 6px;
   max-height: 200px;
+  padding: 0 0 0 4px;
+  margin: 4px 4px 4px 0;
+  position: relative;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
 .select2-result {
-  padding: 10px 12px;
-  cursor: pointer;
-  font-family: var(--zc-font-family);
-  font-size: var(--zc-font-size);
-  color: var(--zc-color-text);
+  height: auto;
+  font-size: .90625rem;
+  padding: 8px 10px !important;
+  line-height: 20px;
   border-radius: var(--zc-border-radius);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+  box-sizing: border-box;
 }
 .select2-result:hover, .select2-result.select2-highlighted {
-  background-color: #e8e9ff;
+  background: #ededff;
+  color: #12132b;
 }
 .select2-result.select2-result-selected {
-  background-color: #e8e9ff;
+  background: #ededff;
   font-weight: 500;
 }
 
@@ -361,9 +379,11 @@ textarea.form-control:focus {
   border-color: var(--zc-color-primary, #6061a0);
   border-radius: var(--zc-border-radius);
 }
-.select2-dropdown-open .select2-arrow b {
-  border-top: none;
-  border-bottom: 5px solid #555;
+.select2-dropdown-open .select2-arrow b::before {
+  transform: rotate(-45deg);
+}
+.select2-dropdown-open .select2-arrow b::after {
+  transform: rotate(45deg);
 }
 
 /* Selected state (has value) */

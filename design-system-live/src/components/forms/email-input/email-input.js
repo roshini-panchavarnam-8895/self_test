@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var value = emailInput.value.trim();
     if (!value) {
       emailInput.setAttribute('aria-invalid', 'true');
-      errorEl.textContent = 'This field is required';
+      errorEl.textContent = 'This field is required'; // No I18N
       errorEl.hidden = false;
     } else if (!emailPattern.test(value)) {
       emailInput.setAttribute('aria-invalid', 'true');
-      errorEl.textContent = 'Please enter a valid email address';
+      errorEl.textContent = 'Please enter a valid email address'; // No I18N
       errorEl.hidden = false;
     } else {
       emailInput.removeAttribute('aria-invalid');

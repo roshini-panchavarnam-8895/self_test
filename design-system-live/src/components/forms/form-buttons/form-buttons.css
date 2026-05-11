@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap");
 :root {
   --zc-font-family: "Lato", sans-serif;
-  --zc-font-size: 14.5px;
+  --zc-font-size: 14px;
   --zc-color-text: rgb(18, 19, 43);
   --zc-color-label: rgb(51, 51, 51);
   --zc-color-border: rgb(203, 203, 220);
@@ -133,7 +133,7 @@ input.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
 }
@@ -144,11 +144,11 @@ input.form-control:focus {
 
 textarea.form-control {
   display: block;
-  height: 200px;
-  min-height: 30px;
+  height: 36px;
+  min-height: 100px;
   min-width: var(--zc-input-width);
   max-width: var(--zc-input-width);
-  padding: 7px 12px;
+  padding: 0 12px;
   border: 1px solid var(--zc-color-border);
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-bg);
@@ -156,11 +156,11 @@ textarea.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 18px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
-  white-space: pre-wrap;
-  resize: vertical;
+  resize: none;
+  overflow: auto;
 }
 textarea.form-control:focus {
   border-color: var(--zc-color-primary);
@@ -258,52 +258,67 @@ textarea.form-control:focus {
 .zc-live-primary-btn {
   display: inline-block;
   min-width: 70px;
-  min-height: 36px;
-  padding: 8px 24px;
-  border: none;
+  height: 36px;
+  padding: 8px 15px;
+  border: 0;
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-primary);
   color: #fff;
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
-  font-weight: 600;
-  line-height: normal;
+  font-weight: 400;
+  line-height: 18px;
   text-align: center;
+  text-decoration: none;
   box-sizing: border-box;
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: all .2s ease-in-out;
   vertical-align: top;
 }
 .zc-live-primary-btn:hover {
-  background-color: rgb(60, 61, 220);
+  background: #3f40e2;
+  color: #fff;
 }
 
 .zc-live-secondary-btn {
   display: inline-block;
   min-width: 70px;
-  min-height: 36px;
-  padding: 8px 24px;
+  height: 36px;
+  padding: 8px 15px;
   border: 1px solid var(--zc-color-border);
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-bg);
-  color: #333;
+  color: #12132b;
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: normal;
+  line-height: 18px;
   text-align: center;
+  text-decoration: none;
   box-sizing: border-box;
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: all .2s ease-in-out;
   vertical-align: top;
 }
 .zc-live-secondary-btn:hover {
-  background-color: #f4f6fa;
+  border: 1px solid var(--zc-color-border);
+  color: #12132b;
+  background: #f8f8fb;
 }
 
 .zc-draft-btn {
-  border-color: var(--zc-color-primary);
+  background: var(--zc-color-bg);
   color: var(--zc-color-primary);
+  border: 1px solid var(--zc-color-primary);
+}
+.zc-draft-btn:hover {
+  background: #ededff;
+  color: var(--zc-color-primary);
+  border: 1px solid var(--zc-color-primary);
 }

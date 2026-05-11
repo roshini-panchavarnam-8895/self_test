@@ -1,6 +1,6 @@
 // Percent Input - Allow only numbers and a single decimal point across all instances.
 document.addEventListener('DOMContentLoaded', function() {
-  var percentInputs = document.querySelectorAll('.zc-percent-input');
+  var percentInputs = document.querySelectorAll('.zc-percent-input'); // No I18N
 
   percentInputs.forEach(function(percentInput) {
     percentInput.addEventListener('input', function() {

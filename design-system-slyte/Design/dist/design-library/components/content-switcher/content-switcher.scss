@@ -23,14 +23,15 @@
     min-height: auto !important;
     background-color: transparent !important;
     min-width: auto !important;
+    border: none !important;
 
     /* Tab Head — segmented pill container */
     lyte-tab-head {
         display: inline-flex !important;
         align-items: center;
-        background: #EAEBEC;
+        background: #FFFFFF;
         border: 1px solid #D5D6D9;
-        border-radius: 6px;
+        border-radius: 10px;
         padding: 4px;
         gap: 0;
         float: none !important;
@@ -47,15 +48,16 @@
         display: inline-flex !important;
         align-items: center;
         justify-content: center;
-        padding: 12px 14px;
+        height: 36px;
+        padding: 0 14px;
         font-family: 'ZohoPuvi', sans-serif;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.286;
         color: #696C74;
         background: transparent;
         border: none !important;
-        border-radius: 4px;
+        border-radius: 6px;
         cursor: pointer;
         transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
         white-space: nowrap;
@@ -72,7 +74,7 @@
         }
 
         &.lyteTabActive {
-            font-weight: 600;
+            font-weight: 400;
             opacity: 1 !important;
         }
     }
@@ -88,7 +90,7 @@
         background: #0D4EF2 !important;
         color: #FFFFFF !important;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
-        border-radius: 4px;
+        border-radius: 6px;
         border-bottom-color: transparent !important;
 
         &:hover {
@@ -108,7 +110,7 @@
         background: #E7EDFE !important;
         color: #0D4EF2 !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-        border-radius: 4px;
+        border-radius: 6px;
         border-bottom-color: transparent !important;
 
         &:hover {
@@ -120,26 +122,27 @@
 
 /* --- Size: XS (26px) --- */
 .zc-content-switcher-xs {
-    lyte-tab-head { padding: 2px; }
-    lyte-tab-title { padding: 12px 10px; font-size: 12px; }
+    lyte-tab-head { padding: 4px; border-radius: 8px; }
+    lyte-tab-title { height: 26px; padding: 0 10px; font-size: 14px; }
+    lyte-tab-title.lyteTabActive { border-radius: 4px; }
 }
 
 /* --- Size: SM (32px) --- */
 .zc-content-switcher-sm {
-    lyte-tab-head { padding: 3px; }
-    lyte-tab-title { padding: 12px; font-size: 12px; }
+    lyte-tab-head { padding: 4px; }
+    lyte-tab-title { height: 32px; padding: 0 12px; font-size: 14px; }
 }
 
 /* --- Size: MD / Base (36px) --- */
 .zc-content-switcher-md {
     lyte-tab-head { padding: 4px; }
-    lyte-tab-title { padding: 12px 14px; font-size: 14px; }
+    lyte-tab-title { height: 36px; padding: 0 14px; font-size: 14px; }
 }
 
 /* --- Size: LG (40px) --- */
 .zc-content-switcher-lg {
     lyte-tab-head { padding: 4px; }
-    lyte-tab-title { padding: 12px 16px; font-size: 14px; }
+    lyte-tab-title { height: 40px; padding: 0 16px; font-size: 14px; }
 }
 
 /* --- Button Type — Icon + Text --- */
@@ -155,15 +158,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
     svg { width: 100%; height: 100%; }
 }
 
-.zc-content-switcher-xs .zc-cs-icon { width: 12px; height: 12px; }
+.zc-content-switcher-xs .zc-cs-icon { width: 14px; height: 14px; }
 .zc-content-switcher-sm .zc-cs-icon { width: 14px; height: 14px; }
-.zc-content-switcher-lg .zc-cs-icon { width: 18px; height: 18px; }
+.zc-content-switcher-lg .zc-cs-icon { width: 14px; height: 14px; }
 
 /* --- Disabled — no selection yet --- */
 .zc-content-switcher-disabled {

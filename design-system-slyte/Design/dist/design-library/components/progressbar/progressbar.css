@@ -30,13 +30,13 @@
 .zc-progressbar-label {
     font-size: var(--zc-p2-font-size, 14px);
     font-weight: var(--zc-p2-font-weight-semibold, 600);
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    color: var(--zc-color-neutral-text-default, #37383C);
     line-height: 1.4;
 }
 
 .zc-progressbar-percent {
     font-size: var(--zc-p3-font-size, 12px);
-    color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+    color: var(--zc-color-neutral-text-secondary, #696C74);
     line-height: 1.4;
 }
 
@@ -45,7 +45,7 @@
 .zc-progressbar-track {
     width: 100%;
     height: 8px;
-    background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F0F1F3);
+    background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -54,20 +54,20 @@
 .zc-progressbar .lyteProgressStatus,
 .zc-progressbar-fill {
     height: 100%;
-    background: var(--zc-color-primary-surface-primary-surface-default, #0D4EF2);
+    background: var(--zc-color-primary-surface-default, #0D4EF2);
     border-radius: 4px;
     transition: width 0.4s ease;
 }
 
 /* Also target lyte-progressbar directly (without wrapper) */
 lyte-progressbar .lyteProgressBar {
-    background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F0F1F3);
+    background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
     border-radius: 4px;
     overflow: hidden;
 }
 
 lyte-progressbar .lyteProgressStatus {
-    background: var(--zc-color-primary-surface-primary-surface-default, #0D4EF2);
+    background: var(--zc-color-primary-surface-default, #0D4EF2);
     border-radius: 4px;
     transition: width 0.4s ease;
 }
@@ -93,19 +93,19 @@ lyte-progressbar .lyteProgressPercentage {
 /* Color: Success — Green */
 .zc-progressbar-success .lyteProgressStatus,
 .zc-progressbar-success .zc-progressbar-fill {
-    background: var(--zc-color-success-surface-success-surface-default, #078841);
+    background: var(--zc-color-success-surface-default, #078841);
 }
 
 /* Color: Warning — Orange */
 .zc-progressbar-warning .lyteProgressStatus,
 .zc-progressbar-warning .zc-progressbar-fill {
-    background: var(--zc-color-warning-surface-warning-surface-default, #D25704);
+    background: var(--zc-color-warning-surface-default, #D25704);
 }
 
 /* Color: Error — Red */
 .zc-progressbar-error .lyteProgressStatus,
 .zc-progressbar-error .zc-progressbar-fill {
-    background: var(--zc-color-error-surface-error-surface-default, #CC1914);
+    background: var(--zc-color-error-surface-default, #CC1914);
 }
 
 /* Indeterminate Animation */
@@ -118,7 +118,7 @@ lyte-progressbar .lyteProgressPercentage {
 /* Lyte native indeterminate */
 lyte-progressbar .lyteIndeterminate .inc,
 lyte-progressbar .lyteIndeterminate .dec {
-    background: var(--zc-color-primary-surface-primary-surface-default, #0D4EF2);
+    background: var(--zc-color-primary-surface-default, #0D4EF2);
     border-radius: 4px;
 }
 

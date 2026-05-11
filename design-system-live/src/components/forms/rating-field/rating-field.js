@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var groups = document.querySelectorAll('.zc-rating-group');
+  var groups = document.querySelectorAll('.zc-rating-group'); // No I18N
   groups.forEach(function(group) {
-    var inputs = Array.prototype.slice.call(group.querySelectorAll('.zc-rating-input'));
-    var field = group.querySelector('.zc-form-field');
-    var errorEl = group.querySelector('.zc-field-error-text, .zc-field-error-msg');
+    var inputs = Array.prototype.slice.call(group.querySelectorAll('.zc-rating-input')); // No I18N
+    var field = group.querySelector('.zc-form-field'); // No I18N
+    var errorEl = group.querySelector('.zc-field-error-text, .zc-field-error-msg'); // No I18N
     var isRequired = group.getAttribute('aria-required') === 'true';
-    var isDisabled = group.hasAttribute('disabled') || inputs.every(function(input) { return input.disabled; });
+    var isDisabled = group.hasAttribute('disabled') || inputs.every(function(input) { return input.disabled; }); // No I18N
 
     if (!inputs.length || !field) {
       return;
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
           input.removeAttribute('aria-invalid');
         }
       });
-      field.classList.toggle('validationError', hasError);
-      field.classList.toggle('zc-validation-error', hasError);
+      field.classList.toggle('validationError', hasError); // No I18N
+      field.classList.toggle('zc-validation-error', hasError); // No I18N
       if (errorEl) {
         if (!hasError) {
           errorEl.hidden = true;

@@ -1,7 +1,145 @@
 /* ==========================================================================
    Number Input SCSS — Zoho Creator Design System
-   Figma Source: Input_Feild_Core (node 2156:32425)
+   Figma Source: Number_Input_Base ✦ (node 2745:2199)
    File: 88Zeos2AXPni7858flxLP2
+   ========================================================================== */
+
+/* ==========================================================================
+   LYTE-NUMBER OVERRIDES (targets framework-rendered DOM)
+   ========================================================================== */
+
+/* -- Base layout -- */
+lyte-number {
+    display: flex;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* -- Label -- */
+lyte-number .lyteLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    padding-right: 0;
+}
+
+lyte-number.vertical .lyteLabel {
+    margin-bottom: 6px;
+}
+
+/* -- Field box (overrides .lyteInputBox > div from lyte-ui-input.css) -- */
+lyte-number.lyteInputBox .lyteField {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    background: #FFFFFF;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* -- Input -- */
+lyte-number input {
+    flex: 1;
+    height: 100%;
+    padding: 0 0 0 12px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    -moz-appearance: textfield;
+}
+
+lyte-number input::-webkit-inner-spin-button,
+lyte-number input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+lyte-number input::placeholder {
+    color: #9EA0A7;
+    font-family: inherit;
+}
+
+/* -- Error message -- */
+lyte-number .lyteNumberErrorMessage {
+    font-size: 12px;
+    color: #CC1914;
+    margin-top: 6px;
+}
+
+/* -- Arrow container -- */
+lyte-number .lyteNumberArrowContainer {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   LYTE-NUMBER STATE VARIANTS
+   ========================================================================== */
+
+/* -- Hover -- */
+lyte-number.lyteInputBox .lyteField:hover {
+    border-color: #0D4EF2;
+}
+
+/* -- Focus -- */
+lyte-number.lyteInputFocus.lyteInputBox .lyteField {
+    border-color: #0D4EF2;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}
+
+/* -- Disabled -- */
+lyte-number.lyteNumberDisabled .lyteLabel {
+    color: #9EA0A7;
+}
+
+lyte-number.lyteNumberDisabled.lyteInputBox .lyteField {
+    background: #F5F5F5;
+    border-color: #D5D6D9;
+    cursor: not-allowed;
+}
+
+lyte-number.lyteNumberDisabled.lyteInputBox .lyteField:hover {
+    border-color: #D5D6D9;
+}
+
+lyte-number.lyteNumberDisabled input {
+    cursor: not-allowed;
+    color: #D5D6D9;
+}
+
+lyte-number.lyteNumberDisabled input::placeholder {
+    color: #D5D6D9;
+}
+
+/* -- Error -- */
+lyte-number.lyteErrorInput.lyteInputBox .lyteField,
+lyte-number.lyteErrorInput.lyteInputBox .lyteField:hover {
+    border-color: #CC1914;
+    background: #FEF6F6;
+}
+
+/* Hide framework error icon pseudo-element */
+lyte-number.lyteErrorInput .lyteField::after {
+    display: none;
+}
+
+/* -- Success (custom class) -- */
+lyte-number.zc-number-success.lyteInputBox .lyteField,
+lyte-number.zc-number-success.lyteInputBox .lyteField:hover {
+    border-color: #078841;
+    background: #F6FEF9;
+}
+
+/* ==========================================================================
+   CUSTOM HTML CLASSES (.zc-number-*)
+   Used for inline-stepper variant and standalone custom markup
    ========================================================================== */
 
 /* -- Field container (label + number + hint) -- */
@@ -14,9 +152,9 @@
 
 /* -- Label -- */
 .zc-number-label {
-    font-size: var(--zc-p2-font-size, 14px);
-    font-weight: var(--zc-p2-font-weight-semibold, 600);
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
     margin-bottom: 6px;
 }
 
@@ -25,9 +163,9 @@
     display: flex;
     align-items: center;
     height: 36px;
-    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
-    border-radius: var(--zc-radius-r, 6px);
-    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    background: #FFFFFF;
     overflow: hidden;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -36,13 +174,14 @@
 .zc-number-input {
     flex: 1;
     height: 100%;
-    padding: 8px 12px;
+    padding: 0 0 0 12px;
     border: none;
     outline: none;
     background: transparent;
     font-family: inherit;
-    font-size: var(--zc-p2-font-size, 14px);
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
     -moz-appearance: textfield;
 }
 
@@ -53,14 +192,14 @@
 }
 
 .zc-number-input::placeholder {
-    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+    color: #9EA0A7;
 }
 
 /* -- Hint / Helper text -- */
 .zc-number-hint {
-    font-size: var(--zc-p3-font-size, 12px);
-    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
-    margin-top: 4px;
+    font-size: 12px;
+    color: #26282B;
+    margin-top: 6px;
 }
 
 /* ==========================================================================
@@ -126,35 +265,43 @@
 }
 
 /* ==========================================================================
-   STATE VARIANTS
+   CUSTOM HTML STATE VARIANTS
    ========================================================================== */
 
 /* -- Hover -- */
 .zc-number-wrapper:hover {
-    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    border-color: #0D4EF2;
 }
 
 /* -- Focus -- */
 .zc-number-wrapper-focus,
 .zc-number-wrapper:focus-within {
-    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    border-color: #0D4EF2;
     box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
 }
 
 /* -- Disabled -- */
+.zc-number-field-disabled .zc-number-label {
+    color: #9EA0A7;
+}
+
 .zc-number-wrapper-disabled {
-    background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
-    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    background: #F5F5F5;
+    border-color: #D5D6D9;
     cursor: not-allowed;
-    opacity: 0.65;
 }
 
 .zc-number-wrapper-disabled:hover {
-    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    border-color: #D5D6D9;
 }
 
 .zc-number-wrapper-disabled .zc-number-input {
     cursor: not-allowed;
+    color: #D5D6D9;
+}
+
+.zc-number-wrapper-disabled .zc-number-input::placeholder {
+    color: #D5D6D9;
 }
 
 .zc-number-wrapper-disabled .zc-number-step-up,
@@ -163,16 +310,35 @@
     pointer-events: none;
 }
 
+.zc-number-field-disabled .zc-number-hint {
+    color: #9EA0A7;
+}
+
 /* -- Error -- */
 .zc-number-wrapper-error {
-    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+    border-color: #CC1914;
+    background: #FEF6F6;
 }
 
 .zc-number-wrapper-error:hover {
-    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+    border-color: #CC1914;
 }
 
 .zc-number-field-error .zc-number-hint {
-    color: var(--zc-color-error-text-error-text-default, #CC1914);
+    color: #CC1914;
+}
+
+/* -- Success -- */
+.zc-number-wrapper-success {
+    border-color: #078841;
+    background: #F6FEF9;
+}
+
+.zc-number-wrapper-success:hover {
+    border-color: #078841;
+}
+
+.zc-number-field-success .zc-number-hint {
+    color: #078841;
 }
 

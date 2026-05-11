@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Ownership Report — Jan to Mar 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6f9;
+      color: #2d3748;
+      padding: 30px 20px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+
+    /* Header */
+    .report-header {
+      background: linear-gradient(135deg, #1a365d, #2b6cb0);
+      color: white;
+      border-radius: 12px;
+      padding: 30px 36px;
+      margin-bottom: 28px;
+    }
+    .report-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .report-header p { font-size: 14px; opacity: 0.85; }
+    .report-header .meta { margin-top: 14px; display: flex; gap: 24px; flex-wrap: wrap; }
+    .report-header .meta span {
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+    }
+
+    /* Summary Table */
+    .section { margin-bottom: 32px; }
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 14px;
+      padding-left: 12px;
+      border-left: 4px solid #2b6cb0;
+    }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+    thead tr { background: #2b6cb0; color: white; }
+    thead th { padding: 13px 16px; text-align: left; font-size: 13px; font-weight: 600; letter-spacing: 0.4px; }
+    thead th.wi-col { background: #1a4a2e; }
+    tbody tr { border-bottom: 1px solid #e8edf3; transition: background 0.15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f0f5ff; }
+    tbody td { padding: 12px 16px; font-size: 13.5px; }
+    .total-row { background: #eef2ff !important; font-weight: 700; }
+    .total-row td { color: #1a365d; }
+    .badge-num {
+      display: inline-block;
+      background: #ebf4ff;
+      color: #2b6cb0;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .badge-num.zero { background: #f7fafc; color: #a0aec0; }
+    .badge-total { background: #2b6cb0; color: white; border-radius: 12px; padding: 3px 12px; font-weight: 700; font-size: 13px; }
+
+    /* WI badge */
+    .badge-wi {
+      display: inline-block;
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .badge-wi.zero { background: #f7fafc; color: #a0aec0; }
+    td.wi-cell { background: #f0fdf4; }
+    .total-row td.wi-cell { background: #d1fae5 !important; color: #065f46; }
+
+    /* Person Cards */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 20px; }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px; color: white;
+      flex-shrink: 0;
+    }
+    .card-header .name { font-weight: 700; font-size: 15px; }
+    .card-header .count { margin-left: auto; font-size: 22px; font-weight: 800; }
+    .card-header .wi-badge-header {
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 20px;
+      padding: 3px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .card-body { padding: 0 18px 16px; }
+    .month-block { margin-top: 12px; }
+    .month-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #718096;
+      margin-bottom: 6px;
+    }
+    .ticket-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: #edf2ff;
+      color: #3730a3;
+      border-radius: 6px;
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: monospace;
+    }
+    .chip.shared { background: #fff7ed; color: #c05621; }
+    .chip.wi {
+      background: #d1fae5;
+      color: #065f46;
+      border-left: 3px solid #10b981;
+      font-weight: 700;
+    }
+    .chip.wi-parent {
+      background: #d1fae5;
+      color: #065f46;
+      border-left: 3px solid #10b981;
+      font-weight: 700;
+    }
+    .chip.wi-child {
+      background: #ecfdf5;
+      color: #047857;
+      border-left: 3px dashed #6ee7b7;
+      font-style: italic;
+    }
+
+    /* WI section inside card */
+    .wi-block {
+      margin-top: 14px;
+      background: #f0fdf4;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid #bbf7d0;
+    }
+    .wi-block-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #065f46;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .wi-entry { margin-bottom: 6px; }
+    .wi-entry:last-child { margin-bottom: 0; }
+    .wi-entry .wi-main-chip {
+      display: inline-flex;
+      align-items: center;
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 6px;
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: monospace;
+      border-left: 3px solid #10b981;
+    }
+    .wi-entry .wi-children {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+      padding-left: 14px;
+    }
+    .wi-entry .wi-child-chip {
+      display: inline-flex;
+      align-items: center;
+      background: #ecfdf5;
+      color: #047857;
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      font-family: monospace;
+      border-left: 2px dashed #6ee7b7;
+    }
+    .wi-entry .wi-note {
+      font-size: 11px;
+      color: #6b7280;
+      font-style: italic;
+      margin-top: 2px;
+      padding-left: 14px;
+    }
+
+    /* Notes */
+    .notes-box {
+      background: white;
+      border-radius: 10px;
+      padding: 18px 22px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    }
+    .notes-box ul { list-style: none; padding: 0; }
+    .notes-box li { padding: 6px 0; font-size: 13.5px; border-bottom: 1px solid #f0f4f8; display: flex; gap: 8px; }
+    .notes-box li:last-child { border-bottom: none; }
+    .notes-box li::before { content: "ℹ️"; flex-shrink: 0; }
+
+    /* Zero row styling */
+    .zero-row td { color: #a0aec0; }
+
+    /* Colors per person */
+    .c-roshini    { background-color: #276749; }
+    .c-chandru    { background-color: #2b6cb0; }
+    .c-dhatchayini{ background-color: #b7791f; }
+    .c-sankari    { background-color: #c05621; }
+    .c-vignesh    { background-color: #553c9a; }
+    .c-saravanan  { background-color: #b83280; }
+    .c-nivetha    { background-color: #2c7a7b; }
+    .c-arun       { background-color: #744210; }
+
+    .border-roshini    { border-top: 4px solid #276749; }
+    .border-chandru    { border-top: 4px solid #2b6cb0; }
+    .border-dhatchayini{ border-top: 4px solid #b7791f; }
+    .border-sankari    { border-top: 4px solid #c05621; }
+    .border-vignesh    { border-top: 4px solid #553c9a; }
+    .border-saravanan  { border-top: 4px solid #b83280; }
+    .border-nivetha    { border-top: 4px solid #2c7a7b; }
+    .border-arun       { border-top: 4px solid #744210; }
+
+    .text-roshini    { color: #276749; }
+    .text-chandru    { color: #2b6cb0; }
+    .text-dhatchayini{ color: #b7791f; }
+    .text-sankari    { color: #c05621; }
+    .text-vignesh    { color: #553c9a; }
+    .text-saravanan  { color: #b83280; }
+    .text-nivetha    { color: #2c7a7b; }
+    .text-arun       { color: #744210; }
+
+    .footer { text-align: center; margin-top: 36px; font-size: 12px; color: #a0aec0; }
+
+    /* WI legend pill */
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 12px;
+      color: #4a5568;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="report-header">
+    <h1>Ticket Ownership Report</h1>
+    <p>Creator Support UI Discussion — #creatorsupportuidiscussion</p>
+    <div class="meta">
+      <span>📅 Jan – Mar 2026</span>
+      <span>🎟️ 74 Total Tickets</span>
+      <span>✅ 18 WI Converted</span>
+      <span>🔧 23 Workarounds</span>
+      <span>🔀 28 Module Changes</span>
+    </div>
+  </div>
+
+  <!-- Summary Table -->
+  <div class="section">
+    <div class="section-title">Summary by Person</div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span> WI Converted — ticket raised as Work Item</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#6ee7b7;border:1px dashed #10b981"></span> Child ticket under a parent WI</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#b45309"></span> Workaround — resolved with a workaround</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#2b6cb0"></span> Module Change — transferred to another team's ticket</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2" style="vertical-align:middle">Person</th>
+          <th rowspan="2" style="vertical-align:middle;text-align:center">Jan</th>
+          <th rowspan="2" style="vertical-align:middle;text-align:center">Feb</th>
+          <th rowspan="2" style="vertical-align:middle;text-align:center">Mar</th>
+          <th rowspan="2" style="vertical-align:middle;text-align:center">Total</th>
+          <th colspan="4" class="wi-col" style="text-align:center;border-bottom:1px solid rgba(255,255,255,0.2)">✅ WI Converted</th>
+          <th colspan="4" style="text-align:center;background:#92400e;border-bottom:1px solid rgba(255,255,255,0.2)">🔧 Workaround</th>
+          <th colspan="4" style="text-align:center;background:#1e3a5f;border-bottom:1px solid rgba(255,255,255,0.2)">🔀 Module Change</th>
+        </tr>
+        <tr>
+          <th class="wi-col" style="text-align:center;font-size:12px;background:#1a5c38">Jan</th>
+          <th class="wi-col" style="text-align:center;font-size:12px;background:#1a5c38">Feb</th>
+          <th class="wi-col" style="text-align:center;font-size:12px;background:#1a5c38">Mar</th>
+          <th class="wi-col" style="text-align:center;font-size:12px;background:#145230">Total</th>
+          <th style="text-align:center;font-size:12px;background:#7c3210">Jan</th>
+          <th style="text-align:center;font-size:12px;background:#7c3210">Feb</th>
+          <th style="text-align:center;font-size:12px;background:#7c3210">Mar</th>
+          <th style="text-align:center;font-size:12px;background:#5c2409">Total</th>
+          <th style="text-align:center;font-size:12px;background:#172d4a">Jan</th>
+          <th style="text-align:center;font-size:12px;background:#172d4a">Feb</th>
+          <th style="text-align:center;font-size:12px;background:#172d4a">Mar</th>
+          <th style="text-align:center;font-size:12px;background:#0f1e35">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Roshini -->
+        <tr>
+          <td><span class="avatar c-roshini" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">R</span><strong>Roshini</strong></td>
+          <td style="text-align:center"><span class="badge-num">16</span></td>
+          <td style="text-align:center"><span class="badge-num">13</span></td>
+          <td style="text-align:center"><span class="badge-num">13</span></td>
+          <td style="text-align:center"><span class="badge-total">42</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;line-height:1.8">
+            153281293<br>152453889<br>
+            154219923 <span style="font-family:sans-serif;font-size:10px;color:#6b7280">(parent)</span><br>
+            <span style="color:#047857;font-size:10px">↳ 154194055</span><br>
+            <span style="color:#047857;font-size:10px">↳ 154239179</span><br>
+            <span style="color:#047857;font-size:10px">↳ 154188550</span>
+          </td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi">3 (+3)</span></td>
+          <td style="background:#fff8f1;font-family:monospace;font-size:11px;color:#92400e;line-height:1.8">153074735<br>153901624<br>154244694<br>154373311<br>154190926</td>
+          <td style="background:#fff8f1;font-family:monospace;font-size:11px;color:#92400e;line-height:1.8">154474650<br>154477562<br>154522643<br>154954796<br>154920256<br>154380759<br>155596820<br>153586315</td>
+          <td style="background:#fff8f1;font-family:monospace;font-size:11px;color:#92400e;line-height:1.8">155932960<br>156167152<br>156454486</td>
+          <td style="background:#fff8f1;text-align:center"><span style="display:inline-block;background:#92400e;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">16</span></td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;line-height:1.8">152603595<br>153605240<br>153943774</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;line-height:1.8">154487332<br>154508354<br>154588427<br>154976532<br>155125357</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;line-height:1.8">154818545<br>155759422<br>155784102<br>155788845<br>155807580<br>155853491<br>156088594<br>156196179<br>156218197</td>
+          <td style="background:#f0f5ff;text-align:center"><span style="display:inline-block;background:#1e3a5f;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">17</span></td>
+        </tr>
+
+        <!-- Chandru -->
+        <tr>
+          <td><span class="avatar c-chandru" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">C</span><strong>Chandru</strong></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-num">14</span></td>
+          <td style="text-align:center"><span class="badge-total">14</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">153579738</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;line-height:1.8">156580402<br>156338447<br>155916570<br>155832563</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi">5</span></td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;font-family:monospace;font-size:11px;color:#92400e;line-height:1.8">156325496<br>156100728<br>155830909<br>155807244<br>155978753</td>
+          <td style="background:#fff8f1;text-align:center"><span style="display:inline-block;background:#92400e;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">5</span></td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;line-height:1.8">156823959<br>156854485<br>156924670</td>
+          <td style="background:#f0f5ff;text-align:center"><span style="display:inline-block;background:#1e3a5f;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">3</span></td>
+        </tr>
+
+        <!-- Dhatchayini -->
+        <tr>
+          <td><span class="avatar c-dhatchayini" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">D</span><strong>Dhatchayini</strong></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-num">5</span></td>
+          <td style="text-align:center"><span class="badge-total">6</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">148855113</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">155889742</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi">2</span></td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;font-family:monospace;font-size:11px;color:#92400e;text-align:center">156464363</td>
+          <td style="background:#fff8f1;text-align:center"><span style="display:inline-block;background:#92400e;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">1</span></td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;text-align:center">155132156</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;line-height:1.8">156267297<br>156472797<br>156547302<br>156839805</td>
+          <td style="background:#f0f5ff;text-align:center"><span style="display:inline-block;background:#1e3a5f;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">5</span></td>
+        </tr>
+
+        <!-- Sankari -->
+        <tr>
+          <td><span class="avatar c-sankari" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">S</span><strong>Sankari</strong></td>
+          <td style="text-align:center"><span class="badge-num">3</span></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-total">4</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;line-height:1.8">152530195<br>153547183<br>153379367</td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">155349990</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi">4</span></td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+        </tr>
+
+        <!-- Vignesh -->
+        <tr>
+          <td><span class="avatar c-vignesh" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">V</span><strong>Vignesh</strong></td>
+          <td style="text-align:center"><span class="badge-num">2</span></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-total">3</span></td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi zero">—</span></td>
+          <td style="background:#fff8f1;font-family:monospace;font-size:11px;color:#92400e;text-align:center">153329667</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center"><span style="display:inline-block;background:#92400e;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">1</span></td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;text-align:center">155467097</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center"><span style="display:inline-block;background:#1e3a5f;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">1</span></td>
+        </tr>
+
+        <!-- Saravanan -->
+        <tr>
+          <td><span class="avatar c-saravanan" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">S</span><strong>Saravanan</strong></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-total">2</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">154105747</td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">154484255</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi">2</span></td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+        </tr>
+
+        <!-- Nivetha -->
+        <tr>
+          <td><span class="avatar c-nivetha" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">N</span><strong>Nivetha</strong></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-total">2</span></td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi zero">—</span></td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;text-align:center">151861192</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;font-family:monospace;font-size:11px;color:#1e3a5f;text-align:center">155992823</td>
+          <td style="background:#f0f5ff;text-align:center"><span style="display:inline-block;background:#1e3a5f;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">2</span></td>
+        </tr>
+
+        <!-- Arun -->
+        <tr>
+          <td><span class="avatar c-arun" style="width:22px;height:22px;display:inline-flex;font-size:11px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px">A</span><strong>Arun</strong></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-num">1</span></td>
+          <td style="text-align:center"><span class="badge-num zero">0</span></td>
+          <td style="text-align:center"><span class="badge-total">1</span></td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">152275083</td>
+          <td class="wi-cell" style="font-family:monospace;font-size:11px;color:#065f46;text-align:center">155009241</td>
+          <td class="wi-cell" style="text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi">2</span></td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#fff8f1;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+          <td style="background:#f0f5ff;text-align:center;color:#a0aec0;font-size:12px">—</td>
+        </tr>
+
+        <tr class="total-row">
+          <td><strong>Grand Total</strong></td>
+          <td style="text-align:center"><strong>23</strong></td>
+          <td style="text-align:center"><strong>17</strong></td>
+          <td style="text-align:center"><strong>33</strong></td>
+          <td style="text-align:center"><strong>74*</strong></td>
+          <td class="wi-cell" style="text-align:center;font-size:12px;color:#065f46"><strong>5</strong></td>
+          <td class="wi-cell" style="text-align:center;font-size:12px;color:#065f46"><strong>3</strong></td>
+          <td class="wi-cell" style="text-align:center;font-size:12px;color:#065f46"><strong>6</strong></td>
+          <td class="wi-cell" style="text-align:center"><span class="badge-wi" style="background:#065f46;color:white"><strong>18 (+3)</strong></span></td>
+          <td style="background:#fff8f1;text-align:center;color:#92400e;font-size:12px"><strong>6</strong></td>
+          <td style="background:#fff8f1;text-align:center;color:#92400e;font-size:12px"><strong>8</strong></td>
+          <td style="background:#fff8f1;text-align:center;color:#92400e;font-size:12px"><strong>9</strong></td>
+          <td style="background:#fff8f1;text-align:center"><span style="display:inline-block;background:#92400e;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">23</span></td>
+          <td style="background:#f0f5ff;text-align:center;color:#1e3a5f;font-size:12px"><strong>4</strong></td>
+          <td style="background:#f0f5ff;text-align:center;color:#1e3a5f;font-size:12px"><strong>7</strong></td>
+          <td style="background:#f0f5ff;text-align:center;color:#1e3a5f;font-size:12px"><strong>17</strong></td>
+          <td style="background:#f0f5ff;text-align:center"><span style="display:inline-block;background:#1e3a5f;color:white;border-radius:12px;padding:3px 10px;font-weight:700;font-size:13px">28</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#718096;margin-top:8px;">* Total exceeds 66 unique tickets due to shared ownership on 4 tickets. &nbsp;|&nbsp; WI count: 18 unique WI-converted tickets + 3 child tickets under Roshini's 154219923.</p>
+  </div>
+
+  <!-- Person Cards -->
+  <div class="section">
+    <div class="section-title">Ticket Details by Person</div>
+    <div class="cards-grid">
+
+      <!-- Roshini -->
+      <div class="card border-roshini">
+        <div class="card-header">
+          <div class="avatar c-roshini">R</div>
+          <div>
+            <div class="name text-roshini">Roshini</div>
+          </div>
+          <span class="wi-badge-header">✅ 3 WI (+3 child)</span>
+          <span class="wi-badge-header" style="background:#fef3c7;color:#92400e;margin-left:4px">🔧 16 WA</span>
+          <span class="wi-badge-header" style="background:#dbeafe;color:#1e3a5f;margin-left:4px">🔀 17 MC</span>
+          <div class="count text-roshini">42</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 16 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">153074735</span><span class="chip">153547183</span><span class="chip">153379367</span><span class="chip">153605240</span><span class="chip">152603595</span><span class="chip">153943774</span><span class="chip wi">154239179 ✅</span><span class="chip wi-child">↳ child of 154219923</span><span class="chip wi">154188550 ✅</span><span class="chip wi-child">↳ child of 154219923</span><span class="chip wi">154194055 ✅</span><span class="chip wi-child">↳ child of 154219923</span><span class="chip wi">154219923 ✅ (parent)</span><span class="chip wi">152453889 ✅</span><span class="chip">154244694</span><span class="chip">154373311</span><span class="chip">154190926</span><span class="chip shared">153281293 ⚑ ✅</span><span class="chip">153901624</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 13 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">154474650</span><span class="chip">154487332</span><span class="chip">154522643</span><span class="chip">154588427</span><span class="chip">154508354</span><span class="chip">154920256</span><span class="chip">154976532</span><span class="chip">155125357</span><span class="chip">154380759</span><span class="chip">155596820</span><span class="chip">154477562</span><span class="chip">154954796</span><span class="chip">153586315</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 March — 13 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip">155759422</span><span class="chip">155788845</span><span class="chip">155784102</span><span class="chip">155853491</span><span class="chip">155807580</span><span class="chip">155932960</span><span class="chip">154818545</span><span class="chip">156167152</span><span class="chip">156088594</span><span class="chip shared">156218197 ⚑</span><span class="chip">156196179</span><span class="chip">156454486</span><span class="chip shared">156100728 ⚑</span>
+            </div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">153281293</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">(shared with Vignesh)</span>
+            </div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">152453889</span>
+            </div>
+            <div class="wi-entry">
+              <span class="wi-main-chip">154219923</span>
+              <span style="font-size:11px;color:#6b7280;margin-left:6px">parent WI — same issue group</span>
+              <div class="wi-children">
+                <span class="wi-child-chip">154194055</span>
+                <span class="wi-child-chip">154239179</span>
+                <span class="wi-child-chip">154188550</span>
+              </div>
+              <div class="wi-note">↳ 3 child tickets under this parent (same issue)</div>
+            </div>
+          </div>
+          <!-- Workaround Block -->
+          <div class="wi-block" style="border-color:#fcd34d;background:#fffbeb;margin-top:10px">
+            <div class="wi-block-label" style="color:#92400e">🔧 Workaround Tickets</div>
+            <div style="font-size:11px;color:#78350f;font-weight:600;margin-bottom:4px">January</div>
+            <div class="wi-children" style="margin-bottom:8px">
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">153074735</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">153901624</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154244694</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154373311</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154190926</span>
+            </div>
+            <div style="font-size:11px;color:#78350f;font-weight:600;margin-bottom:4px">February</div>
+            <div class="wi-children" style="margin-bottom:8px">
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154474650</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154477562</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154522643</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154954796</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154920256</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">154380759</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">155596820</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">153586315</span>
+            </div>
+            <div style="font-size:11px;color:#78350f;font-weight:600;margin-bottom:4px">March</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">155932960</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">156167152</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">156454486</span>
+            </div>
+          </div>
+          <!-- Module Change Block -->
+          <div class="wi-block" style="border-color:#93c5fd;background:#eff6ff;margin-top:10px">
+            <div class="wi-block-label" style="color:#1e3a5f">🔀 Module Change Tickets</div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">January</div>
+            <div class="wi-children" style="margin-bottom:8px">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">152603595</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">153605240</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">153943774</span>
+            </div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">February</div>
+            <div class="wi-children" style="margin-bottom:8px">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">154487332</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">154508354</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">154588427</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">154976532</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155125357</span>
+            </div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">March</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">154818545</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155759422</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155784102</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155788845</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155807580</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155853491</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156088594</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156196179</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156218197</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chandru -->
+      <div class="card border-chandru">
+        <div class="card-header">
+          <div class="avatar c-chandru">C</div>
+          <div>
+            <div class="name text-chandru">Chandru</div>
+          </div>
+          <span class="wi-badge-header">✅ 5 WI</span>
+          <span class="wi-badge-header" style="background:#fef3c7;color:#92400e;margin-left:4px">🔧 5 WA</span>
+          <span class="wi-badge-header" style="background:#dbeafe;color:#1e3a5f;margin-left:4px">🔀 3 MC</span>
+          <div class="count text-chandru">14</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 March — 14 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip wi">155832563 ✅</span><span class="chip">155830909</span><span class="chip">155807244</span><span class="chip">155978753</span><span class="chip wi">155916570 ✅</span><span class="chip wi">156338447 ✅</span><span class="chip">156325496</span><span class="chip shared">156100728 ⚑</span><span class="chip shared">156472797 ⚑</span><span class="chip wi">156580402 ✅</span><span class="chip shared">156218197 ⚑</span><span class="chip">156823959</span><span class="chip">156924670</span><span class="chip">156854485</span>
+            </div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry"><span class="wi-main-chip">156580402</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">156338447</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">155916570</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">155832563</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">153579738</span></div>
+          </div>
+          <!-- Workaround Block -->
+          <div class="wi-block" style="border-color:#fcd34d;background:#fffbeb;margin-top:10px">
+            <div class="wi-block-label" style="color:#92400e">🔧 Workaround Tickets</div>
+            <div style="font-size:11px;color:#78350f;font-weight:600;margin-bottom:4px">March</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">156325496</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">156100728</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">155830909</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">155807244</span>
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">155978753</span>
+            </div>
+          </div>
+          <!-- Module Change Block -->
+          <div class="wi-block" style="border-color:#93c5fd;background:#eff6ff;margin-top:10px">
+            <div class="wi-block-label" style="color:#1e3a5f">🔀 Module Change Tickets</div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">March</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156823959</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156854485</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156924670</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dhatchayini -->
+      <div class="card border-dhatchayini">
+        <div class="card-header">
+          <div class="avatar c-dhatchayini">D</div>
+          <div>
+            <div class="name text-dhatchayini">Dhatchayini</div>
+          </div>
+          <span class="wi-badge-header">✅ 2 WI</span>
+          <div class="count text-dhatchayini">6</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips">
+              <span class="chip">155132156</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 March — 5 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip wi">155889742 ✅</span><span class="chip">156267297</span><span class="chip">156547302</span><span class="chip shared">156472797 ⚑</span><span class="chip">156839805</span>
+            </div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry"><span class="wi-main-chip">155889742</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">148855113</span></div>
+          </div>
+          <!-- Workaround Block -->
+          <div class="wi-block" style="border-color:#fcd34d;background:#fffbeb;margin-top:10px">
+            <div class="wi-block-label" style="color:#92400e">🔧 Workaround Tickets</div>
+            <div style="font-size:11px;color:#78350f;font-weight:600;margin-bottom:4px">March</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">156464363</span>
+            </div>
+          </div>
+          <!-- Module Change Block -->
+          <div class="wi-block" style="border-color:#93c5fd;background:#eff6ff;margin-top:10px">
+            <div class="wi-block-label" style="color:#1e3a5f">🔀 Module Change Tickets</div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">February</div>
+            <div class="wi-children" style="margin-bottom:8px">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155132156</span>
+            </div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">March</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156267297</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156472797</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156547302</span>
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">156839805</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sankari -->
+      <div class="card border-sankari">
+        <div class="card-header">
+          <div class="avatar c-sankari">S</div>
+          <div>
+            <div class="name text-sankari">Sankari</div>
+            <div style="font-size:12px;color:#718096">👍 Reactions</div>
+          </div>
+          <span class="wi-badge-header">✅ 4 WI</span>
+          <div class="count text-sankari">4</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 3 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip wi">152530195 ✅</span><span class="chip shared wi">153547183 ⚑ ✅</span><span class="chip shared wi">153379367 ⚑ ✅</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips">
+              <span class="chip wi">155349990 ✅</span>
+            </div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets <span style="font-weight:400;font-size:10px;color:#047857">(all 4 tickets converted — 100%)</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">152530195</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">153547183</span> <span style="font-size:11px;color:#6b7280;margin-left:6px">(shared with Roshini)</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">153379367</span> <span style="font-size:11px;color:#6b7280;margin-left:6px">(shared with Roshini)</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">155349990</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vignesh -->
+      <div class="card border-vignesh">
+        <div class="card-header">
+          <div class="avatar c-vignesh">V</div>
+          <div>
+            <div class="name text-vignesh">Vignesh</div>
+          </div>
+          <span class="wi-badge-header" style="background:#fef3c7;color:#92400e">🔧 1 WA</span>
+          <span class="wi-badge-header" style="background:#dbeafe;color:#1e3a5f;margin-left:4px">🔀 1 MC</span>
+          <div class="count text-vignesh">3</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 2 tickets</div>
+            <div class="ticket-chips">
+              <span class="chip shared">153281293 ⚑</span><span class="chip">153329667</span>
+            </div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips">
+              <span class="chip">155467097</span>
+            </div>
+          </div>
+          <!-- Workaround Block -->
+          <div class="wi-block" style="border-color:#fcd34d;background:#fffbeb;margin-top:10px">
+            <div class="wi-block-label" style="color:#92400e">🔧 Workaround Tickets</div>
+            <div style="font-size:11px;color:#78350f;font-weight:600;margin-bottom:4px">January</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#f59e0b;color:#78350f;background:#fef3c7">153329667</span>
+            </div>
+          </div>
+          <!-- Module Change Block -->
+          <div class="wi-block" style="border-color:#93c5fd;background:#eff6ff;margin-top:10px">
+            <div class="wi-block-label" style="color:#1e3a5f">🔀 Module Change Tickets</div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">February</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155467097</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saravanan -->
+      <div class="card border-saravanan">
+        <div class="card-header">
+          <div class="avatar c-saravanan">S</div>
+          <div>
+            <div class="name text-saravanan">Saravanan</div>
+          </div>
+          <span class="wi-badge-header">✅ 2 WI</span>
+          <div class="count text-saravanan">2</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip wi">154105747 ✅</span></div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip wi">154484255 ✅</span></div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry"><span class="wi-main-chip">154105747</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">154484255</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nivetha -->
+      <div class="card border-nivetha">
+        <div class="card-header">
+          <div class="avatar c-nivetha">N</div>
+          <div>
+            <div class="name text-nivetha">Nivetha</div>
+          </div>
+          <span class="wi-badge-header" style="background:#dbeafe;color:#1e3a5f">🔀 2 MC</span>
+          <div class="count text-nivetha">2</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 January — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip">151861192</span></div>
+          </div>
+          <div class="month-block">
+            <div class="month-label">🗓 March — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip">155992823</span></div>
+          </div>
+          <!-- Module Change Block -->
+          <div class="wi-block" style="border-color:#93c5fd;background:#eff6ff;margin-top:10px">
+            <div class="wi-block-label" style="color:#1e3a5f">🔀 Module Change Tickets</div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">January</div>
+            <div class="wi-children" style="margin-bottom:8px">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">151861192</span>
+            </div>
+            <div style="font-size:11px;color:#1e3a5f;font-weight:600;margin-bottom:4px">March</div>
+            <div class="wi-children">
+              <span class="wi-child-chip" style="border-color:#93c5fd;color:#1e3a5f;background:#dbeafe">155992823</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arun -->
+      <div class="card border-arun">
+        <div class="card-header">
+          <div class="avatar c-arun">A</div>
+          <div>
+            <div class="name text-arun">Arun</div>
+          </div>
+          <span class="wi-badge-header">✅ 2 WI</span>
+          <div class="count text-arun">1</div>
+        </div>
+        <div class="card-body">
+          <div class="month-block">
+            <div class="month-label">🗓 February — 1 ticket</div>
+            <div class="ticket-chips"><span class="chip wi">155009241 ✅</span></div>
+          </div>
+          <!-- WI Block -->
+          <div class="wi-block">
+            <div class="wi-block-label">✅ WI Converted Tickets</div>
+            <div class="wi-entry"><span class="wi-main-chip">152275083</span></div>
+            <div class="wi-entry"><span class="wi-main-chip">155009241</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="section">
+    <div class="section-title">Notes</div>
+    <div class="notes-box">
+      <ul>
+        <li>Tickets marked with <strong>⚑</strong> (orange chips) are <strong>shared ownership</strong> — multiple people reacted/replied.</li>
+        <li>Shared tickets: <strong>153547183 &amp; 153379367</strong> (Roshini + Sankari) &nbsp;|&nbsp; <strong>153281293</strong> (Roshini + Vignesh) &nbsp;|&nbsp; <strong>156472797</strong> (Dhatchayini + Chandru) &nbsp;|&nbsp; <strong>156100728 &amp; 156218197</strong> (Roshini + Chandru)</li>
+        <li>Tickets marked with <strong>✅</strong> (green chips) are <strong>WI Converted</strong> — raised as Work Items.</li>
+        <li>Tickets under <strong>🔧 Workaround</strong> were resolved with a workaround provided to the customer.</li>
+        <li>Tickets under <strong>🔀 Module Change</strong> were transferred or tracked under another team's ticket.</li>
+        <li>Data source: #creatorsupportuidiscussion Cliq channel and craft records extracted on 27 March 2026.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">Creator Support UI Team &nbsp;•&nbsp; Ticket Ownership Report Jan–Mar 2026 &nbsp;•&nbsp; Updated 27 Mar 2026</div>
+
+</div>
+</body>
+</html>

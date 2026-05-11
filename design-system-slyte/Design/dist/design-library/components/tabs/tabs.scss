@@ -23,7 +23,7 @@ lyte-tabs {
     lyte-tab-head {
         display: flex !important;
         align-items: center;
-        border-bottom: 1px solid var(--zc-color-neutral-border-neutral-border-subtle, #E4E5E8);
+        border-bottom: 1px solid var(--zc-color-neutral-border-subtle, #E4E5E8);
         gap: 0;
         overflow-x: auto;
     }
@@ -36,7 +36,7 @@ lyte-tabs {
         padding: 10px 16px;
         font-size: var(--zc-p2-font-size, 14px);
         font-weight: var(--zc-p2-font-weight-regular, 400);
-        color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+        color: var(--zc-color-neutral-text-secondary, #696C74);
         background: transparent;
         border: none;
         border-bottom: 2px solid transparent;
@@ -49,13 +49,13 @@ lyte-tabs {
         flex-shrink: 0;
 
         &:hover {
-            color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+            color: var(--zc-color-neutral-text-default, #37383C);
         }
 
         &.lyteTabActive {
-            color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+            color: var(--zc-color-primary-text-default, #0D4EF2);
             font-weight: var(--zc-p2-font-weight-semibold, 600);
-            border-bottom-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+            border-bottom-color: var(--zc-color-primary-border-default, #0D4EF2);
         }
 
         &.zc-tab-disabled {
@@ -72,7 +72,7 @@ lyte-tabs {
         }
 
         &.lyteTabActive i {
-            color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+            color: var(--zc-color-primary-text-default, #0D4EF2);
         }
     }
 
@@ -127,7 +127,7 @@ lyte-tabs {
 .zc-tabs-list {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--zc-color-neutral-border-neutral-border-subtle, #E4E5E8);
+    border-bottom: 1px solid var(--zc-color-neutral-border-subtle, #E4E5E8);
     gap: 0;
     overflow-x: auto;
 }
@@ -140,7 +140,7 @@ lyte-tabs {
     padding: 10px 16px;
     font-size: var(--zc-p2-font-size, 14px);
     font-weight: var(--zc-p2-font-weight-regular, 400);
-    color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+    color: var(--zc-color-neutral-text-secondary, #696C74);
     background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
@@ -151,13 +151,13 @@ lyte-tabs {
 }
 
 .zc-tab:hover {
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    color: var(--zc-color-neutral-text-default, #37383C);
 }
 
 .zc-tab-active {
-    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    color: var(--zc-color-primary-text-default, #0D4EF2);
     font-weight: var(--zc-p2-font-weight-semibold, 600);
-    border-bottom-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    border-bottom-color: var(--zc-color-primary-border-default, #0D4EF2);
 }
 
 .zc-tab-disabled {
@@ -175,7 +175,7 @@ lyte-tabs {
 }
 
 .zc-tab-active i {
-    color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+    color: var(--zc-color-primary-text-default, #0D4EF2);
 }
 
 .zc-tabs-p0 .zc-tabs-list { gap: 0; }

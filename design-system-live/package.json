@@ -2,9 +2,9 @@
   "name": "form-field-design-library",
   "private": true,
   "scripts": {
-    "build:scss": "node scripts/build-design-library.js --compile-scss-only",
-    "build:library": "node scripts/build-design-library.js",
-    "serve:library": "node scripts/design-library-server.js",
+    "build:scss": "node ../../build/scripts/build-design-library.js --compile-scss-only",
+    "build:library": "node ../../build/scripts/build-design-library.js",
+    "serve:library": "node ../../build/scripts/design-library-server.js",
     "test:e2e": "playwright test",
     "test:e2e:ci": "playwright test tests/e2e/design-library-smoke.spec.js",
     "test:e2e:smoke": "playwright test tests/e2e/design-library-smoke.spec.js",

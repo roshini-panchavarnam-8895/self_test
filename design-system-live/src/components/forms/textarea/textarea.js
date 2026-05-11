@@ -8,17 +8,23 @@ document.addEventListener('DOMContentLoaded', function() {
     textarea.addEventListener('blur', function() {
       if (!textarea.value.trim()) {
         textarea.setAttribute('aria-invalid', 'true');
-        if (errorEl) errorEl.hidden = false;
+        if (errorEl) {
+          errorEl.hidden = false;
+        }
       } else {
         textarea.removeAttribute('aria-invalid');
-        if (errorEl) errorEl.hidden = true;
+        if (errorEl) {
+          errorEl.hidden = true;
+        }
       }
     });
 
     textarea.addEventListener('input', function() {
       if (textarea.getAttribute('aria-invalid') === 'true') {
         textarea.removeAttribute('aria-invalid');
-        if (errorEl) errorEl.hidden = true;
+        if (errorEl) {
+          errorEl.hidden = true;
+        }
       }
     });
   });

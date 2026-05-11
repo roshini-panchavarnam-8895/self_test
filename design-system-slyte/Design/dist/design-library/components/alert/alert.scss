@@ -13,22 +13,22 @@
    DOM:    Uses .zc-toast wrapper class, or on <lyte-alert> Slyte component
 
    CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
-     --zc-color-info-surface-info-surface-subtle            (#F5F8FE)
-     --zc-color-info-border-info-border-default             (#0D4EF2)
-     --zc-color-info-text-info-text-default                 (#0D4EF2)
-     --zc-color-info-text-info-text-bold                    (#051F61)
-     --zc-color-success-surface-success-surface-subtle      (#F6FEF9)
-     --zc-color-success-border-success-border-default       (#078841)
-     --zc-color-success-text-success-text-default           (#078841)
-     --zc-color-success-text-success-text-bold              (#033F1E)
-     --zc-color-warning-surface-warning-surface-subtle      (#FFF9F5)
-     --zc-color-warning-border-warning-border-default       (#D25704)
-     --zc-color-warning-text-warning-text-default           (#D25704)
-     --zc-color-warning-text-warning-text-bold              (#642902)
-     --zc-color-error-surface-error-surface-subtle          (#FEF6F6)
-     --zc-color-error-border-error-border-default           (#CC1914)
-     --zc-color-error-text-error-text-default               (#CC1914)
-     --zc-color-error-text-error-text-bold                  (#5F0A07)
+     --zc-color-info-surface-subtle            (#F5F8FE)
+     --zc-color-info-border-default             (#0D4EF2)
+     --zc-color-info-text-default                 (#0D4EF2)
+     --zc-color-info-text-bold                    (#051F61)
+     --zc-color-success-surface-subtle      (#F6FEF9)
+     --zc-color-success-border-default       (#078841)
+     --zc-color-success-text-default           (#078841)
+     --zc-color-success-text-bold              (#033F1E)
+     --zc-color-warning-surface-subtle      (#FFF9F5)
+     --zc-color-warning-border-default       (#D25704)
+     --zc-color-warning-text-default           (#D25704)
+     --zc-color-warning-text-bold              (#642902)
+     --zc-color-error-surface-subtle          (#FEF6F6)
+     --zc-color-error-border-default           (#CC1914)
+     --zc-color-error-text-default               (#CC1914)
+     --zc-color-error-text-bold                  (#5F0A07)
      --zc-color-black-white-text-white-text                 (#FFFFFF)
      --zc-font-family-default                               (ZohoPuvi)
      --zc-radius-rl                                         (8px)
@@ -86,12 +86,12 @@
    TYPE: INFO — Blue
    --------------------------------------------------------------------------- */
 .zc-toast-info {
-    background: var(--zc-color-info-surface-info-surface-subtle, #F5F8FE);
-    border-left-color: var(--zc-color-info-border-info-border-default, #0D4EF2);
-    color: var(--zc-color-info-text-info-text-bold, #051F61);
+    background: var(--zc-color-info-surface-subtle, #F5F8FE);
+    border-left-color: var(--zc-color-info-border-default, #0D4EF2);
+    color: var(--zc-color-info-text-bold, #051F61);
 
     .zc-toast-icon {
-        color: var(--zc-color-info-text-info-text-default, #0D4EF2);
+        color: var(--zc-color-info-text-default, #0D4EF2);
     }
 }
 
@@ -99,12 +99,12 @@
    TYPE: SUCCESS — Green
    --------------------------------------------------------------------------- */
 .zc-toast-success {
-    background: var(--zc-color-success-surface-success-surface-subtle, #F6FEF9);
-    border-left-color: var(--zc-color-success-border-success-border-default, #078841);
-    color: var(--zc-color-success-text-success-text-bold, #033F1E);
+    background: var(--zc-color-success-surface-subtle, #F6FEF9);
+    border-left-color: var(--zc-color-success-border-default, #078841);
+    color: var(--zc-color-success-text-bold, #033F1E);
 
     .zc-toast-icon {
-        color: var(--zc-color-success-text-success-text-default, #078841);
+        color: var(--zc-color-success-text-default, #078841);
     }
 }
 
@@ -112,12 +112,12 @@
    TYPE: WARNING — Orange
    --------------------------------------------------------------------------- */
 .zc-toast-warning {
-    background: var(--zc-color-warning-surface-warning-surface-subtle, #FFF9F5);
-    border-left-color: var(--zc-color-warning-border-warning-border-default, #D25704);
-    color: var(--zc-color-warning-text-warning-text-bold, #642902);
+    background: var(--zc-color-warning-surface-subtle, #FFF9F5);
+    border-left-color: var(--zc-color-warning-border-default, #D25704);
+    color: var(--zc-color-warning-text-bold, #642902);
 
     .zc-toast-icon {
-        color: var(--zc-color-warning-text-warning-text-default, #D25704);
+        color: var(--zc-color-warning-text-default, #D25704);
     }
 }
 
@@ -125,12 +125,12 @@
    TYPE: ERROR — Red
    --------------------------------------------------------------------------- */
 .zc-toast-error {
-    background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
-    border-left-color: var(--zc-color-error-border-error-border-default, #CC1914);
-    color: var(--zc-color-error-text-error-text-bold, #5F0A07);
+    background: var(--zc-color-error-surface-subtle, #FEF6F6);
+    border-left-color: var(--zc-color-error-border-default, #CC1914);
+    color: var(--zc-color-error-text-bold, #5F0A07);
 
     .zc-toast-icon {
-        color: var(--zc-color-error-text-error-text-default, #CC1914);
+        color: var(--zc-color-error-text-default, #CC1914);
     }
 }
 

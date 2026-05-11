@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap");
 :root {
   --zc-font-family: "Lato", sans-serif;
-  --zc-font-size: 14.5px;
+  --zc-font-size: 14px;
   --zc-color-text: rgb(18, 19, 43);
   --zc-color-label: rgb(51, 51, 51);
   --zc-color-border: rgb(203, 203, 220);
@@ -134,7 +134,7 @@ input.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
 }
@@ -145,11 +145,11 @@ input.form-control:focus {
 
 textarea.form-control {
   display: block;
-  height: 200px;
-  min-height: 30px;
+  height: 36px;
+  min-height: 100px;
   min-width: var(--zc-input-width);
   max-width: var(--zc-input-width);
-  padding: 7px 12px;
+  padding: 0 12px;
   border: 1px solid var(--zc-color-border);
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-bg);
@@ -157,11 +157,11 @@ textarea.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 18px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
-  white-space: pre-wrap;
-  resize: vertical;
+  resize: none;
+  overflow: auto;
 }
 textarea.form-control:focus {
   border-color: var(--zc-color-primary);

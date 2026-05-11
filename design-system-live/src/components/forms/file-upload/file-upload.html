@@ -10,73 +10,76 @@
 <form class="form-table label-left">
 
     <!-- With help text -->
-    <div class="form-group clearfix form-fileupload-field">
-      <label class="form-label">
+    <div class="form-group form-fileupload-field clearfix zc-File_upload-group">
+      <label for="zc-File_upload" id="zc-File_upload-arialabel" class="form-label zc-dem-clearfix zc-File_upload-label zc_upload_label">
         <span class="zc-label-text">File upload</span>
       </label>
-      <div class="form-field mediumSizeLive clearfix">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive">
+        <input name="File_upload" type="hidden">
+        <div class="local-fileupload zc-uploadComponents clearfix">
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select File</div>
-              <input class="zc-file-input" type="file" name="uploadFile" title="" aria-label="Upload file">
+              <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div>
+              <input id="zc-File_upload_FILE" class="textfield zc-elem-focus-field" name="uploadFile" type="file" title="" aria-labelledby="zc-File_upload-arialabel" aria-describedby="zc-File_upload-helpText zc-File_upload-errorMsg">
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" role="button" aria-label="File upload Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="File upload Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon cloudIcon zc-elem-focus-field" title="Cloud Storage" role="button" aria-label="File upload Cloud Storage"><i class="zc-li-outline arrows-1-cloud-upload-96"></i></span>
           </div>
         </div>
-        <div id="zc-file-upload-help" class="zc-help-txt">Help text goes here</div>
+        <div id="zc-File_upload-helpText" class="zc-help-txt">Help text goes here</div>
       </div>
     </div>
 
     <!-- Error state -->
-    <div class="form-group clearfix form-fileupload-field">
-      <label class="form-label">
+    <div class="form-group form-fileupload-field clearfix zc-File_upload_Err-group">
+      <label for="zc-File_upload_Err" id="zc-File_upload_Err-arialabel" class="form-label zc-dem-clearfix zc-File_upload_Err-label zc_upload_label">
         <span class="zc-label-text">File upload<span class="fieldMandate" aria-hidden="true">*</span></span>
       </label>
-      <div class="form-field mediumSizeLive clearfix validationError">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive validationError">
+        <input name="File_upload_Err" type="hidden">
+        <div class="local-fileupload zc-uploadComponents clearfix">
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select File</div>
-              <input class="zc-file-input" type="file" name="uploadFile_Err" title="" aria-label="Upload file">
+              <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div>
+              <input id="zc-File_upload_Err_FILE" class="textfield zc-elem-focus-field" name="uploadFile" type="file" title="" aria-labelledby="zc-File_upload_Err-arialabel" aria-describedby="zc-File_upload_Err-errorMsg">
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" role="button" aria-label="File upload Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="File upload Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon cloudIcon zc-elem-focus-field" title="Cloud Storage" role="button" aria-label="File upload Cloud Storage"><i class="zc-li-outline arrows-1-cloud-upload-96"></i></span>
           </div>
         </div>
-        <div id="zc-file-upload-error" class="fieldErrorMsg" role="alert">
+        <div id="zc-File_upload_Err-errorMsg" class="fieldErrorMsg" role="alert">
           <span>This field is mandatory. Upload a file.</span>
         </div>
       </div>
     </div>
 
     <!-- Disabled state -->
-    <div class="form-group clearfix form-fileupload-field zc-field-disabled">
-      <label class="form-label">
+    <div class="form-group form-fileupload-field clearfix zc-File_upload_Dis-group zc-field-disabled">
+      <label for="zc-File_upload_Dis" id="zc-File_upload_Dis-arialabel" class="form-label zc-dem-clearfix zc-File_upload_Dis-label zc_upload_label">
         <span class="zc-label-text">File upload</span>
       </label>
-      <div class="form-field mediumSizeLive clearfix">
-        <div class="zc-uploadComponents clearfix">
-          <div class="zc-file-upload">
+      <div class="form-field clearfix mediumSizeLive">
+        <input name="File_upload_Dis" type="hidden">
+        <div class="local-fileupload zc-uploadComponents clearfix">
+          <div class="zc-file-upload single">
             <div class="filedrag">
-              <div class="zc-upload-msg">Select File</div>
-              <input class="zc-file-input" type="file" name="uploadFile_Dis" title="" aria-label="Upload file">
+              <div class="zc-image-hover-msg zc-dem-text-ellipsis">Select File</div>
+              <input id="zc-File_upload_Dis_FILE" class="textfield zc-elem-focus-field" name="uploadFile" type="file" title="" aria-labelledby="zc-File_upload_Dis-arialabel" disabled>
             </div>
             <ul class="filename"></ul>
           </div>
-          <div class="zc-upload-icons">
-            <span class="calcIcon uploadIcon" role="button" aria-label="Local Computer" title="Local Computer">
-              <i class="zc-li-outline arrows-1-cloud-upload-94" aria-hidden="true"></i>
-            </span>
+          <div class="zc-dem-clearfix zc-image-icons" style="z-index: 1;">
+            <span tabindex="0" class="calcIcon restoreIcon hide zc-elem-focus-field" role="button" aria-label="File upload Restore"><i class="zc-li-outline arrows-4-undo-29"></i></span>
+            <span tabindex="-1" class="calcIcon uploadIcon zc-elem-focus-field" title="Local Computer" role="button" aria-label="File upload Local Computer"><i class="zc-li-outline arrows-2-square-upload"></i></span>
+            <span tabindex="0" class="calcIcon cloudIcon zc-elem-focus-field" title="Cloud Storage" role="button" aria-label="File upload Cloud Storage"><i class="zc-li-outline arrows-1-cloud-upload-96"></i></span>
           </div>
         </div>
       </div>

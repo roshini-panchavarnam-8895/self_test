@@ -2,5 +2,45 @@
  "type": "development",
  "/Users/roshini-8895/Downloads/slyte-app 2/Design": {
   "pid": 54044
- }
+ },
+ "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design": 39975,
+ "templates": [
+  "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/components/templates/welcome-comp.html"
+ ],
+ "styles": [
+  "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/components/styles/welcome-comp.css"
+ ],
+ "adapters": [],
+ "serializers": [],
+ "CSLD": {
+  "$store": {},
+  "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design": {
+   "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/dist/app.js": [
+    "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/app.js",
+    "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/dist/components/javascript/welcome-comp.js"
+   ]
+  },
+  "autoBundlingCss": {
+   "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/dist/app.css": []
+  }
+ },
+ "RCSLD": {
+  "/users/roshini-8895/design_system/self_test/design-system-slyte/design/app.js": [
+   {
+    "_key": "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/dist/app.js",
+    "_path": "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design"
+   }
+  ],
+  "/users/roshini-8895/design_system/self_test/design-system-slyte/design/dist/components/javascript/welcome-comp.js": [
+   {
+    "_key": "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/dist/app.js",
+    "_path": "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design"
+   }
+  ]
+ },
+ "allConsolidateKeys": [
+  "/Users/roshini-8895/design_system/self_test/design-system-slyte/Design/dist/app.js"
+ ],
+ "lessImportMapping": {},
+ "lessReverseImportMapping": {}
 }

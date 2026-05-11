@@ -1,7 +1,8 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap");
 :root {
   --zc-font-family: "Lato", sans-serif;
-  --zc-font-size: 14.5px;
+  --zc-font-size: 14px;
   --zc-color-text: rgb(18, 19, 43);
   --zc-color-label: rgb(51, 51, 51);
   --zc-color-border: rgb(203, 203, 220);
@@ -133,7 +134,7 @@ input.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
 }
@@ -144,11 +145,11 @@ input.form-control:focus {
 
 textarea.form-control {
   display: block;
-  height: 200px;
-  min-height: 30px;
+  height: 36px;
+  min-height: 100px;
   min-width: var(--zc-input-width);
   max-width: var(--zc-input-width);
-  padding: 7px 12px;
+  padding: 0 12px;
   border: 1px solid var(--zc-color-border);
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-bg);
@@ -156,11 +157,11 @@ textarea.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 18px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
-  white-space: pre-wrap;
-  resize: vertical;
+  resize: none;
+  overflow: auto;
 }
 textarea.form-control:focus {
   border-color: var(--zc-color-primary);
@@ -234,67 +235,104 @@ textarea.form-control:focus {
   border-color: var(--zc-color-border);
 }
 
+/* Upload container */
 .zc-uploadComponents {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  max-width: var(--zc-input-width);
-}
-
-.zc-file-upload {
   position: relative;
 }
 
 .filedrag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 120px;
-  min-height: 36px;
-  padding: 6px 16px;
-  border: 1px dashed var(--zc-color-border);
-  border-radius: var(--zc-border-radius);
-  background-color: #fafafa;
-  cursor: pointer;
+  position: relative;
+  border: 1px solid var(--primary_border_color, var(--zc-color-border));
+  border-radius: var(--input_radius, 8px);
+  box-sizing: border-box;
+  background: #fff;
+  color: #12132b;
+  font-size: 0.90625rem;
+  height: 36px;
+  line-height: 35px;
+  padding: 0 12px;
+}
+.filedrag:hover {
+  border: 1px solid var(--zc-color-primary);
+  box-shadow: 0 0 0 0.5px var(--zc-color-primary);
+  outline: 0;
 }
 
-.zc-upload-msg {
-  color: var(--zc-color-text);
-  font-family: var(--zc-font-family);
-  font-size: 13px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* Float layout for inner elements */
+.zc-file-upload .filedrag,
+.zc-file-upload .filename {
+  float: left;
+  margin: 0;
 }
 
-.zc-file-input {
+/* File upload sizing */
+.form-field .zc-file-upload {
+  min-width: 100px;
+  width: auto;
+}
+
+.form-field.mediumSizeLive .zc-file-upload .filedrag {
+  width: var(--zc-input-width, 300px);
+}
+
+.zc-file-upload .filedrag {
+  min-width: 200px;
+}
+
+/* Input is the primary actionable element */
+.filedrag input[type=file] {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
-  cursor: pointer;
+  cursor: var(--zc-cursor-pointer, pointer);
+  z-index: 1;
+}
+
+/* Placeholder / hover message */
+.zc-image-hover-msg {
+  position: absolute;
+  z-index: 1;
+  color: var(--zc-color-placeholder, #8e8ea0);
+  font-family: var(--zc-font-family);
+  font-size: 13px;
+}
+
+.zc-dem-text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .filename {
   list-style: none;
   padding: 0;
-  margin: 4px 0 0;
+  margin: 0;
 }
 
-.zc-upload-icons {
-  display: flex;
-  gap: 4px;
-  z-index: 1;
+/* Icons container — absolute top-right */
+.zc-image-icons {
+  display: inline-block;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+
+/* Icon buttons */
+.local-fileupload .calcIcon {
+  box-sizing: border-box;
+  transition: all ease-in-out 0.2s;
+  margin: 0;
 }
 
 .calcIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 4px;
   cursor: pointer;
   color: #6061a0;
@@ -302,4 +340,44 @@ textarea.form-control:focus {
 }
 .calcIcon:hover {
   background-color: #eef0ff;
+}
+.calcIcon.hide {
+  display: none;
+}
+
+/* Restore icon */
+.zc-uploadComponents .calcIcon.restoreIcon {
+  overflow: hidden;
+}
+
+.restoreIcon .arrows-4-undo-29 {
+  vertical-align: top;
+  margin: 8px 5px 0;
+}
+
+/* File restore button */
+.local-fileupload .zc-file-upload .fa.file-restore {
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+  width: 30px;
+  text-align: center;
+  height: 30px;
+  line-height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Hide icon state */
+.zc-file-upload.zc-hideicon ul.filename li i.fa,
+.zc-file-upload.zc-hideicon .file-restore {
+  display: none !important;
+}
+
+.zc-file-upload.zc-hideicon ul.filename li p {
+  opacity: 0.75;
+}
+
+.zc-file-upload.zc-hideicon ul.filename li i.zc-li-outline {
+  display: none !important;
 }

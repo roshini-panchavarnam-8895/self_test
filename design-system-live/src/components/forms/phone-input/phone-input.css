@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap");
 :root {
   --zc-font-family: "Lato", sans-serif;
-  --zc-font-size: 14.5px;
+  --zc-font-size: 14px;
   --zc-color-text: rgb(18, 19, 43);
   --zc-color-label: rgb(51, 51, 51);
   --zc-color-border: rgb(203, 203, 220);
@@ -133,7 +133,7 @@ input.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 34px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
 }
@@ -144,11 +144,11 @@ input.form-control:focus {
 
 textarea.form-control {
   display: block;
-  height: 200px;
-  min-height: 30px;
+  height: 36px;
+  min-height: 100px;
   min-width: var(--zc-input-width);
   max-width: var(--zc-input-width);
-  padding: 7px 12px;
+  padding: 0 12px;
   border: 1px solid var(--zc-color-border);
   border-radius: var(--zc-border-radius);
   background-color: var(--zc-color-bg);
@@ -156,11 +156,11 @@ textarea.form-control {
   font-family: var(--zc-font-family);
   font-size: var(--zc-font-size);
   font-weight: 400;
-  line-height: 18px;
+  line-height: 35px;
   box-sizing: border-box;
   outline: none;
-  white-space: pre-wrap;
-  resize: vertical;
+  resize: none;
+  overflow: auto;
 }
 textarea.form-control:focus {
   border-color: var(--zc-color-primary);
@@ -248,10 +248,10 @@ textarea.form-control:focus {
 .flag-container {
   display: block;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 85px;
-  height: 100%;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  font-size: 14px;
   padding: 1px;
   box-sizing: border-box;
   z-index: 1;
@@ -290,13 +290,30 @@ textarea.form-control:focus {
   font-weight: 400;
 }
 
-.iti-arrow {
-  margin-left: 4px;
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #555;
+.intl-tel-input .flag-container .iti-arrow {
+  width: 10px;
+  height: 6px;
+  margin-left: 8px;
+  position: relative;
+}
+.intl-tel-input .flag-container .iti-arrow::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background-color: #71718c;
+  border-radius: 4px;
+  transform: rotate(45deg);
+  left: 5px;
+}
+.intl-tel-input .flag-container .iti-arrow::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background-color: #71718c;
+  border-radius: 4px;
+  transform: rotate(-45deg);
 }
 
 .intl-tel-input input.form-control {
@@ -307,4 +324,9 @@ textarea.form-control:focus {
 .validationError .intl-tel-input input.form-control {
   border-color: var(--zc-color-error);
   box-shadow: 0 0 0 0.5px var(--zc-color-error);
+}
+
+.zc-Phone_Number::placeholder {
+  font-size: 14px;
+  font-family: sans-serif;
 }

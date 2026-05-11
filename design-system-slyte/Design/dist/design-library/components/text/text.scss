@@ -1,56 +1,135 @@
-/* ============================================================================
-   TEXTAREA COMPONENT — SCSS
-   Figma Source: TextArea_Base (node 2198:46128), file 88Zeos2AXPni7858flxLP2
+/* ==========================================================================
+   TEXTAREA SCSS — Lyte Framework Overrides + Custom Classes
+   Figma: TextArea_Base (node 2198:46128)
    
-   Multi-line text input for longer form content.
-   Token mapping uses Zoho Creator Design System CSS custom properties.
-   ============================================================================ */
+   Lyte DOM: lyte-input.lyteInputBox[lt-prop-type="textarea"] >
+             label.lyteLabel + div.lyteField > textarea
+   Framework adds: .lyteInputFocus (focus), .lyteInputDisabled (disabled)
+   ========================================================================== */
 
-/* --- Field Container --- */
+/* ==========================================================================
+   SECTION 1 — LYTE-INPUT[TEXTAREA] FRAMEWORK OVERRIDES
+   ========================================================================== */
+
+/* --- Remove default bottom-border, force vertical layout --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"] {
+    border-bottom: none !important;
+    display: block !important;
+}
+
+/* --- Label (Figma: P2_Semibold 500/14 #000000) --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"] > label.lyteLabel {
+    display: block !important;
+    width: 100% !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #000000 !important;
+    font-family: 'ZohoPuvi', sans-serif !important;
+    line-height: 18px !important;
+    padding: 0 0 6px 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* --- Field wrapper (auto height for textarea, 6px radius, #D5D6D9 border) --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"] > div {
+    width: 100% !important;
+    display: block !important;
+    height: auto !important;
+    border: 1px solid #D5D6D9 !important;
+    border-radius: 6px !important;
+    background: #FFFFFF !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+    top: 0 !important;
+}
+
+/* --- Clear pseudo-element --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"] > div:after {
+    display: none !important;
+}
+
+/* --- Textarea element (Figma: 10px 12px padding, P2_Regular 14px #37383C) --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"] textarea {
+    font-family: 'ZohoPuvi', sans-serif !important;
+    font-size: 14px !important;
+    color: #37383C !important;
+    line-height: 18px !important;
+    padding: 10px 12px !important;
+    min-height: 80px !important;
+    resize: vertical !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-type="textarea"] textarea::placeholder {
+    color: #9EA0A7 !important;
+}
+
+/* --- Hover → blue border --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"]:hover > div {
+    border-color: #0D4EF2 !important;
+}
+
+/* --- Focus → blue border + shadow --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"].lyteInputFocus > div,
+lyte-input.lyteInputBox[lt-prop-type="textarea"] > div:focus-within {
+    border-color: #0D4EF2 !important;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08) !important;
+}
+
+/* --- Disabled --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"].lyteInputDisabled > div {
+    background: #F5F5F5 !important;
+    border-color: #D5D6D9 !important;
+    cursor: not-allowed !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-type="textarea"].lyteInputDisabled:hover > div {
+    border-color: #D5D6D9 !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-type="textarea"].lyteInputDisabled textarea {
+    cursor: not-allowed !important;
+    color: #9EA0A7 !important;
+    resize: none !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-type="textarea"].lyteInputDisabled > label.lyteLabel {
+    color: #9EA0A7 !important;
+}
+
+/* --- Error (class="zc-input-error" on lyte-input) --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"].zc-input-error > div {
+    border-color: #CC1914 !important;
+    background: #FEF6F6 !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-type="textarea"].zc-input-error:hover > div {
+    border-color: #CC1914 !important;
+}
+
+/* --- Success (class="zc-input-success" on lyte-input) --- */
+lyte-input.lyteInputBox[lt-prop-type="textarea"].zc-input-success > div {
+    border-color: #078841 !important;
+    background: #F6FEF9 !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-type="textarea"].zc-input-success:hover > div {
+    border-color: #078841 !important;
+}
+
+/* ==========================================================================
+   SECTION 2 — CUSTOM WRAPPER CLASSES (field, footer, hint, counter)
+   ========================================================================== */
+
+/* --- Field container --- */
 .zc-textarea-field {
     display: flex;
     flex-direction: column;
+    gap: 6px;
     font-family: 'ZohoPuvi', sans-serif;
     min-width: 200px;
-}
-
-/* --- Label --- */
-.zc-textarea-label {
-    font-size: var(--zc-p2-font-size, 14px);
-    font-weight: var(--zc-p2-font-weight-semibold, 600);
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
-    margin-bottom: 6px;
-    line-height: 20px;
-}
-
-/* --- Wrapper (border container) --- */
-.zc-textarea-wrapper {
-    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
-    border-radius: var(--zc-radius-r, 6px);
-    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    overflow: hidden;
-}
-
-/* --- Textarea Element --- */
-.zc-textarea {
-    display: block;
-    width: 100%;
-    min-height: 80px;
-    padding: 8px 12px;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: inherit;
-    font-size: var(--zc-p2-font-size, 14px);
-    line-height: 20px;
-    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
-    resize: vertical;
-    box-sizing: border-box;
-}
-
-.zc-textarea::placeholder {
-    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
 }
 
 /* --- Footer (hint + counter) --- */
@@ -58,88 +137,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 4px;
 }
 
+/* --- Hint text --- */
 .zc-textarea-hint {
-    font-size: var(--zc-p3-font-size, 12px);
+    font-size: 12px;
     line-height: 16px;
-    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+    color: #26282B;
 }
 
+/* --- Counter --- */
 .zc-textarea-counter {
-    font-size: var(--zc-p3-font-size, 12px);
+    font-size: 12px;
     line-height: 16px;
-    color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+    color: #26282B;
     margin-left: auto;
 }
 
-/* ========================= STATE VARIANTS ========================= */
-
-/* --- Hover --- */
-.zc-textarea-wrapper:hover {
-    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
-}
-
-/* --- Focus --- */
-.zc-textarea-wrapper-focus,
-.zc-textarea-wrapper:focus-within {
-    border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
-    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
-}
-
-/* --- Disabled --- */
-.zc-textarea-wrapper-disabled {
-    background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
-    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
-    cursor: not-allowed;
-}
-
-.zc-textarea-wrapper-disabled:hover {
-    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
-}
-
-.zc-textarea-wrapper-disabled .zc-textarea {
-    cursor: not-allowed;
-    color: #9EA0A7;
-    resize: none;
-}
-
-/* --- Read-only --- */
-.zc-textarea-wrapper-readonly {
-    background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
-}
-
-.zc-textarea-wrapper-readonly .zc-textarea {
-    cursor: default;
-    resize: none;
-}
-
-/* --- Error --- */
-.zc-textarea-wrapper-error {
-    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
-    background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
-}
-
-.zc-textarea-wrapper-error:hover {
-    border-color: var(--zc-color-error-border-error-border-default, #CC1914);
-}
-
+/* --- Error hint --- */
 .zc-textarea-field-error .zc-textarea-hint {
-    color: var(--zc-color-error-text-error-text-default, #CC1914);
+    color: #CC1914;
 }
 
-/* --- Success --- */
-.zc-textarea-wrapper-success {
-    border-color: var(--zc-color-success-border-success-border-default, #078841);
+/* --- Success hint --- */
+.zc-textarea-field-success .zc-textarea-hint {
+    color: #078841;
 }
 
-.zc-textarea-wrapper-success:hover {
-    border-color: var(--zc-color-success-border-success-border-default, #078841);
-}
-
-/* --- No Resize --- */
-.zc-textarea-noresize .zc-textarea,
-.zc-textarea-noresize {
-    resize: none;
+/* --- Disabled hint --- */
+.zc-textarea-field-disabled .zc-textarea-hint {
+    color: #9EA0A7;
 }

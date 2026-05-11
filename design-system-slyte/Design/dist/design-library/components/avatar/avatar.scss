@@ -1,0 +1,171 @@
+/* =============================================================================
+   AVATAR COMPONENT — SCSS
+   Figma Source: Avatar_Base ✦ (node 2956:1475)
+
+   VARIANTS:
+     Type:   Image | Solid (Initials/Placeholder)
+     Shape:  Minimal (2px) | Base (6px) | Full (circle)
+     Size:   XL (36px) | LG (24px) | SM (16px) | XS (14px)
+     Status: None | Active | Away | Offline
+
+   NAMING: Single-hyphen modifier (zc-avatar-sm NOT zc-avatar--sm)
+   ============================================================================= */
+
+.zc-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--zc-radius-r, 6px);
+    border: 1px solid var(--zc-color-neutral-border-subtle, #EFF0F1);
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    overflow: hidden;
+    font-family: 'ZohoPuvi', sans-serif;
+    flex-shrink: 0;
+}
+
+/* ── TYPE: Image ── */
+.zc-avatar-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── TYPE: Solid (Initials / Placeholder) ── */
+.zc-avatar-solid {
+    background: var(--zc-color-primary-surface-default, #0D4EF2);
+    color: var(--zc-color-black-white-text-white-text, #FFFFFF);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.29;
+}
+
+.zc-avatar-solid.zc-avatar-success {
+    background: var(--zc-color-success-surface-default, #078841);
+}
+
+.zc-avatar-solid.zc-avatar-warning {
+    background: var(--zc-color-warning-surface-default, #E68A00);
+}
+
+.zc-avatar-solid.zc-avatar-danger {
+    background: var(--zc-color-error-surface-default, #CC1914);
+}
+
+.zc-avatar-solid.zc-avatar-neutral {
+    background: var(--zc-color-neutral-surface-default, #6B7075);
+    color: var(--zc-color-black-white-text-white-text, #FFFFFF);
+}
+
+/* ── SHAPE: Border Radius ── */
+.zc-avatar-minimal {
+    border-radius: 2px;
+}
+
+.zc-avatar-base {
+    border-radius: var(--zc-radius-r, 6px);
+}
+
+.zc-avatar-full {
+    border-radius: 999px;
+}
+
+/* ── SIZE VARIANTS ── */
+.zc-avatar-xl {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+}
+
+.zc-avatar-lg {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    line-height: 1.27;
+}
+
+.zc-avatar-sm {
+    width: 16px;
+    height: 16px;
+    font-size: 6px;
+    line-height: 1;
+}
+
+.zc-avatar-xs {
+    width: 14px;
+    height: 14px;
+    font-size: 6px;
+    line-height: 1;
+}
+
+/* ── STATUS INDICATOR ── */
+.zc-avatar-status {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    bottom: -1px;
+    right: -1px;
+}
+
+.zc-avatar-status-active {
+    background: var(--zc-color-success-surface-default, #078841);
+}
+
+.zc-avatar-status-away {
+    background: var(--zc-color-warning-surface-default, #E68A00);
+}
+
+.zc-avatar-status-offline {
+    background: var(--zc-color-neutral-surface-default, #6B7075);
+}
+
+/* Status sizing for small avatars */
+.zc-avatar-lg .zc-avatar-status {
+    width: 8px;
+    height: 8px;
+    bottom: -2px;
+    right: -2px;
+}
+
+.zc-avatar-sm .zc-avatar-status {
+    width: 4px;
+    height: 4px;
+    border-width: 1px;
+    bottom: -1px;
+    right: -1px;
+}
+
+.zc-avatar-xs .zc-avatar-status {
+    width: 4px;
+    height: 4px;
+    border-width: 1px;
+    bottom: -1px;
+    right: -1px;
+}
+
+/* ── AVATAR GROUP ── */
+.zc-avatar-group {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+
+.zc-avatar-group .zc-avatar {
+    margin-left: -8px;
+    box-shadow: 0 0 0 2px var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+}
+
+.zc-avatar-group .zc-avatar:last-child {
+    margin-left: 0;
+}
+
+/* ── PLACEHOLDER ICON ── */
+.zc-avatar-placeholder svg {
+    width: 60%;
+    height: 60%;
+    fill: var(--zc-color-neutral-text-subtle, #6B7075);
+}
