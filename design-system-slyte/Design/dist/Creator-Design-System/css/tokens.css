@@ -1,0 +1,455 @@
+/* =========================================================
+   Creator Design System — Design Tokens
+   Source: Figma file "CTS - AI Test - Ilayavel"
+   Token names mirror Figma variable paths.
+   ========================================================= */
+
+:root {
+  /* ---------- Brand Colors ---------- */
+  --zoho-brand-blue: #226db4;
+  --zoho-brand-red: #e42527;
+  --zoho-brand-green: #089949;
+
+  /* ---------- Primary ---------- */
+  /* Surfaces */
+  --primary-surface-default: #0d4ef2;
+  --primary-surface-default-hover: #0b44d5;
+  --primary-surface-subtle: #f5f8fe;
+  --primary-surface-subtle-hover: #e7edfe;
+  --primary-surface-low: #dde6fd;
+  --primary-surface-minimal: #c0d1fc;
+  --primary-surface-bold: #041644;
+  --primary-surface-bold-hover: #020c27;
+
+  /* Text */
+  --primary-text-default: #0d4ef2;
+  --primary-text-default-hover: #0b44d5;
+  --primary-text-dark: #041644;
+  --primary-text-minimal: #c0d1fc;
+
+  /* Borders */
+  --primary-border-default: #0d4ef2;
+  --primary-border-default-hover: #0b44d5;
+  --primary-border-low: #dde6fd;
+  --primary-border-low-hover: #c0d1fc;
+  --primary-border-minimal-hover: #a3bcfa;
+  --primary-border-subtle-hover: #e7edfe;
+
+  /* Primary alphas (very subtle tints) */
+  --primary-text-alpha-3: rgba(13, 78, 242, 0.03);
+  --primary-text-alpha-5: rgba(13, 78, 242, 0.05);
+
+  /* Fixed (theme-independent) */
+  --white-surface-fixed: #ffffff;
+  --white-text-fixed: #ffffff;
+
+  /* ---------- Secondary (Navy) ---------- */
+  --secondary-surface-default: #1e2e59;
+  --secondary-surface-default-hover: #182649;
+  --secondary-surface-subtle-hover: #eff2f9;
+  --secondary-surface-low: #e8ecf7;
+  --secondary-text-default: #1e2e59;
+  --secondary-text-default-hover: #182649;
+  --secondary-border-default: #1e2e59;
+  --secondary-border-default-hover: #182649;
+  --secondary-border-low: #e8ecf7;
+  --secondary-border-low-hover: #e1e7f5;
+  --secondary-border-subtle-hover: #eff2f9;
+  /* --secondary-surface-subtle is already defined above (#f7f9fd) */
+
+  /* ---------- Success (Green) ---------- */
+  --success-surface-default: #078841;
+  --success-surface-default-hover: #06793a;
+  --success-surface-subtle: #f6fef9;
+  --success-surface-subtle-hover: #edfdf4;
+  --success-surface-low: #e3fcee;
+  --success-surface-alpha-3: rgba(8, 153, 73, 0.03);
+  --success-surface-alpha-5: rgba(8, 153, 73, 0.05);
+  --success-text-default: #078841;
+  --success-text-default-hover: #06793a;
+  --success-border-default: #078841;
+  --success-border-default-hover: #06793a;
+  --success-border-minimal: #d1fae3;
+  --success-border-minimal-hover: #9af4c2;
+  --success-border-low: #e3fcee;
+  --success-border-low-hover: #d1fae3;
+
+  /* ---------- Info (Blue, same hue as Primary) ---------- */
+  --info-surface-default: #0d4ef2;
+  --info-surface-default-hover: #0b44d5;
+  --info-surface-subtle: #f5f8fe;
+  --info-surface-subtle-hover: #e7edfe;
+  --info-surface-low: #dde6fd;
+  --info-text-default: #0d4ef2;
+  --info-text-default-hover: #0b44d5;
+  --info-border-default: #0d4ef2;
+  --info-border-default-hover: #0b44d5;
+  --info-border-minimal: #c0d1fc;
+  --info-border-low: #dde6fd;
+  --info-border-low-hover: #c0d1fc;
+
+  /* ---------- Warning (Orange) ---------- */
+  --warning-surface-default: #d25704;
+  --warning-surface-default-hover: #be4e04;
+  --warning-surface-subtle: #fff9f5;
+  --warning-surface-subtle-hover: #fff6f0;
+  --warning-surface-low: #feede1;
+  --warning-text-default: #d25704;
+  --warning-text-default-hover: #be4e04;
+  --warning-border-default: #d25704;
+  --warning-border-default-hover: #be4e04;
+  --warning-border-minimal: #fee1cd;
+  --warning-border-low: #feede1;
+  --warning-border-low-hover: #fee1cd;
+
+  /* ---------- Error (Red) ---------- */
+  --error-surface-default: #cc1914;
+  --error-surface-default-hover: #ba1812;
+  --error-surface-subtle: #fef6f6;
+  --error-surface-subtle-hover: #fef1f1;
+  --error-surface-low: #fce4e3;
+  --error-surface-alpha-3: rgba(236, 26, 19, 0.03);
+  --error-surface-alpha-5: rgba(236, 26, 19, 0.05);
+  --error-text-default: #cc1914;
+  --error-text-default-hover: #ba1812;
+  --error-border-default: #cc1914;
+  --error-border-default-hover: #ba1812;
+  --error-border-subtle-hover: #fef1f1;
+  --error-border-minimal: #fad2d1;
+  --error-border-minimal-hover: #f6a5a2;
+  --error-border-low: #fce4e3;
+  --error-border-low-hover: #fad2d1;
+
+  /* ---------- Neutral (Light Gray) ---------- */
+  --neutral-surface-default: #6c6d71;
+  --neutral-surface-subtle: #fafafa;
+  --neutral-surface-fairish: #d6d7d8;
+  --neutral-surface-fairish-hover: #a1a2a4;
+  --neutral-surface-minimal: #ebebeb;
+  --neutral-text-default: #6c6d71;
+  --neutral-text-fairish: #d6d7d8;
+  --neutral-text-fairish-hover: #a1a2a4;
+  --neutral-border-fairish: #d6d7d8;
+  --neutral-border-low: #f0f0f0;
+  --neutral-border-low-hover: #ebebeb;
+
+  /* ---------- HueGrey extended (button-related) ---------- */
+  --huegrey-surface-default-hover: #585b62;
+  --huegrey-surface-low: #eff0f1;
+  --huegrey-surface-low-hover: #eaebec;
+  --huegrey-surface-minimal: #eaebec;
+  --huegrey-surface-subtle: #fafafa;
+  --huegrey-surface-subtle-hover: #f5f5f5;
+  --huegrey-surface-dark: #26282b;
+  --huegrey-surface-dark-hover: #161718;
+  --huegrey-text-dark: #26282b;
+  --huegrey-text-dark-hover: #161718;
+  --huegrey-border-default: #696c74;
+  --huegrey-border-default-hover: #585b62;
+  --huegrey-border-bold: #37383c;
+  --huegrey-border-minimal-hover: #e5e5e7;
+
+  /* ---------- Neutral / Greys ---------- */
+  --semantic-surface-black: #000000;
+  --semantic-surface-white: #ffffff;
+  --semantic-surface-gray-default: #8f9193;
+
+  /* Black alpha overlays (used for hover backgrounds on light bg) */
+  --back-surface-alpha-3: rgba(0, 0, 0, 0.03);
+  --back-surface-alpha-5: rgba(0, 0, 0, 0.05);
+  --back-surface-alpha-10: rgba(0, 0, 0, 0.10);
+
+  /* ---------- Accent palettes (used by Card representations + Status Tags) ---------- */
+  --accent-wine-25: #fdf6f8;      --accent-wine-50: #faeaef;      --accent-wine-400: #d65c7a;     --accent-wine-500: #cc3359;
+  --accent-mustard-50: #fefae7;   --accent-mustard-100: #fcf5cf;  --accent-mustard-500: #f2cc0d;  --accent-mustard-600: #c2a30a;  --accent-mustard-700: #917a08; --accent-mustard-900: #302903;
+  --accent-lawn-25: #fafdf6;      --accent-lawn-100: #e8f7d4;     --accent-lawn-500: #8ed926;     --accent-lawn-600: #72ad1f;     --accent-lawn-700: #558217;    --accent-lawn-900: #1c2b08;
+  --accent-aqua-25: #f5fdfe;      --accent-aqua-50: #e7fafe;      --accent-aqua-500: #0dccf2;     --accent-aqua-600: #0aa3c2;     --accent-aqua-700: #087a91;    --accent-aqua-900: #032930;
+  --accent-pumpkin-25: #fef9f5;   --accent-pumpkin-50: #fef1e7;   --accent-pumpkin-400: #f58d3d;  --accent-pumpkin-500: #f2700d;  --accent-pumpkin-600: #c25a0a;  --accent-pumpkin-900: #301603;
+  --accent-lime-25: #f6fdf7;      --accent-lime-50: #e9fbec;      --accent-lime-400: #52e069;     --accent-lime-600: #1fad36;     --accent-lime-700: #178229;    --accent-lime-900: #082b0e;
+  --accent-indigo-25: #f7f7fc;    --accent-indigo-50: #ececf9;    --accent-indigo-500: #4040bf;
+  --accent-lavender-25: #f9f7fd;  --accent-lavender-50: #f0ebfa;  --accent-lavender-500: #6633cc;
+  --accent-lilac-25: #fdf7fd;     --accent-lilac-50: #faebfa;     --accent-lilac-500: #cc33cc;    --accent-lilac-600: #a329a3;
+
+  /* HueGrey scale */
+  --huegrey-surface-bold: #37383c;
+  --huegrey-text-bold: #37383c;
+  --huegrey-surface-default: #696c74;
+  --huegrey-text-default: #696c74;
+  --huegrey-text-subtle: #fafafa;
+  --huegrey-text-fairish: #d5d6d9;
+  --huegrey-text-fairish-hover: #9ea0a7;
+  --huegrey-surface-fairish: #d5d6d9;     /* disabled surface */
+  --huegrey-surface-fairish-hover: #9ea0a7;
+  --huegrey-surface-minimal-hover: #e5e5e7;
+  --huegrey-border-minimal: #eaebec;
+  --huegrey-border-fairish: #d5d6d9;
+  --huegrey-border-low: #eff0f1;
+
+  /* Secondary surfaces */
+  --secondary-surface-subtle: #f7f9fd;
+
+  /* Borders */
+  --black-border: #000000;
+
+  --black-text: #000000;
+  --white-text: #ffffff;
+
+  /* ---------- Semantic Color Palettes ----------
+     Each palette: surface-default, surface-subtle, text-default
+     Used for status, categorical tags, avatars, badges, etc. */
+
+  /* Cardinal (red-pink) */
+  --semantic-surface-cardinal-default: #c33149;
+  --semantic-surface-cardinal-subtle: #f9d9e6;
+  --semantic-text-cardinal-default: #c33149;
+
+  /* Tekhelet (deep purple) */
+  --semantic-surface-tekhelet-default: #46268d;
+  --semantic-surface-tekhelet-subtle: #ddd9f9;
+  --semantic-text-tekhelet-default: #46268d;
+
+  /* Caribbean (teal) */
+  --semantic-surface-caribbean-default: #02798c;
+  --semantic-surface-caribbean-subtle: #d9f4f9;
+  --semantic-text-caribbean-default: #02798c;
+
+  /* Avocado (green) */
+  --semantic-surface-avocado-default: #589906;
+  --semantic-surface-avocado-subtle: #f0ffdd;
+  --semantic-text-avocado-default: #589906;
+
+  /* Russet (warm brown) */
+  --semantic-surface-russet-default: #7d451b;
+  --semantic-surface-russet-subtle: #e8ded6;
+  --semantic-text-russet-default: #7d451b;
+
+  /* Penred (deep red) */
+  --semantic-surface-penred-default: #991604;
+  --semantic-surface-penred-subtle: #f5e8e6;
+  --semantic-text-penred-default: #991604;
+
+  /* Mardigrass (magenta) */
+  --semantic-surface-mardigrass-default: #8a1b7c;
+  --semantic-surface-mardigrass-subtle: #f9d9f2;
+  --semantic-text-mardigrass-default: #8a1b7c;
+
+  /* Biceblue (blue) */
+  --semantic-surface-biceblue-default: #016daa;
+  --semantic-surface-biceblue-subtle: #d9e7f9;
+  --semantic-text-biceblue-default: #016daa;
+
+  /* Seagreen (green) */
+  --semantic-surface-seagreen-default: #068a42;
+  --semantic-surface-seagreen-subtle: #e6f5ec;
+  --semantic-text-seagreen-default: #068a42;
+
+  /* Gold (amber) */
+  --semantic-surface-gold-default: #ba7c00;
+  --semantic-surface-gold-subtle: #fef4df;
+  --semantic-text-gold-default: #ba7c00;
+
+  /* Brown */
+  --semantic-surface-brown-default: #a74a06;
+  --semantic-surface-brown-subtle: #f4e7df;
+  --semantic-text-brown-default: #a74a06;
+
+  /* ---------- Radius ---------- */
+  --radius-semantic-null: 0;
+  --radius-semantic-xs: 2px;
+  --radius-semantic-s: 4px;
+  --radius-semantic-r: 6px;       /* primary radius */
+  --radius-semantic-rl: 8px;
+  --radius-semantic-l: 10px;
+  --radius-semantic-xl: 14px;
+  --radius-semantic-full: 999px;
+
+  /* ---------- Elevation / Shadows ---------- */
+  /* Subtle: 0 2 2 0 rgba(38,40,43,0.05) */
+  --elevation-subtle: 0 2px 2px 0 rgba(38, 40, 43, 0.05);
+  /* Base:    0 12 16 -4 rgba(38,40,43,0.08) */
+  --elevation-base: 0 12px 16px -4px rgba(38, 40, 43, 0.08);
+  /* Combined token: Default ⚫️/Elevation_Default_Base✦ — used by dropdowns/popovers */
+  --elevation-default-base: 0 12px 16px -4px rgba(38, 40, 43, 0.08), 0 2px 2px 0 rgba(38, 40, 43, 0.05);
+  /* Primary 🔵/Elevation_Primary_Minimal — focus ring for active dropdown trigger */
+  --elevation-primary-minimal: 0 2px 4px 0 rgba(13, 78, 242, 0.08), 0 2px 2px 0 rgba(13, 78, 242, 0.05);
+  /* Primary 🔵/Elevation_Primary_Low — card hover lift */
+  --elevation-primary-low: 0 4px 8px 0 rgba(13, 78, 242, 0.08), 0 2px 2px 0 rgba(13, 78, 242, 0.05);
+
+  /* ---------- Typography ---------- */
+  /* Body / P2 — primary body style from the source file */
+  --font-family-base: "Zoho Puvi", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --type-p2-size: 14px;
+  --type-p2-line-height: 18px;
+  --type-p2-weight-regular: 400;
+  --type-p2-weight-semibold: 500;     /* called "Semibold/Medium" in the source */
+  --type-p2-weight-bold: 600;         /* used by Note titles, etc. */
+
+  /* P3 — small body (used for Hint Text, captions) */
+  --type-p3-size: 12px;
+  --type-p3-line-height: 15px;
+  --type-p3-weight-regular: 400;
+  --type-p3-weight-semibold: 500;
+  --type-p2-style-italic: italic;
+
+  /* P1 — large body (used by card titles) */
+  --type-p1-size: 16px;
+  --type-p1-line-height: 21px;
+  --type-p1-weight-regular: 400;
+  --type-p1-weight-semibold: 500;
+  --type-p1-weight-bold: 600;
+
+  /* H4 — sub-heading (used by big metric numbers) */
+  --type-h4-size: 22px;
+  --type-h4-line-height: 29px;
+  --type-h4-weight-bold: 600;
+
+  /* H5 — sub-heading (used by page-header titles) */
+  --type-h5-size: 20px;
+  --type-h5-line-height: 26px;
+  --type-h5-weight-semibold: 500;
+
+  /* H6 — small heading (used by slider/drawer titles) */
+  --type-h6-size: 18px;
+  --type-h6-line-height: 24px;
+  --type-h6-weight-semibold: 500;
+
+  /* P4 — large caption (used by status tags in list rows) */
+  --type-p4-size: 11px;
+  --type-p4-line-height: 14px;
+  --type-p4-weight-semibold: 500;
+
+  /* P5 — caption / progress percentage labels */
+  --type-p5-size: 10px;
+  --type-p5-line-height: 13px;
+  --type-p5-weight-regular: 400;
+
+  /* P6 — micro caption (used by tiny toggle pills) */
+  --type-p6-size: 9px;
+  --type-p6-line-height: 12px;
+  --type-p6-weight-regular: 400;
+
+  /* ---------- Page chrome (local) ----------
+     Local-only tokens for the design-system showcase chrome.
+     Not part of the source design system. */
+  --ds-page-bg: #f7f8fa;
+  --ds-card-bg: #ffffff;
+  --ds-border: #e8eaed;
+  --ds-text-primary: #1f2329;
+  --ds-text-secondary: #6b7180;
+  --ds-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+  --ds-sidebar-bg: #ffffff;
+  --ds-hover-bg: #f1f3f6;
+}
+
+/* =========================================================
+   DARK THEME — overrides applied when [data-theme="dark"]
+   is set on <html> (or <body>).
+   Brand / fixed tokens deliberately stay the same.
+   ========================================================= */
+[data-theme="dark"] {
+  /* Page chrome */
+  --ds-page-bg: #0e1015;
+  --ds-card-bg: #181b22;
+  --ds-border: #2a2e38;
+  --ds-text-primary: #e6e8ee;
+  --ds-text-secondary: #a0a6b3;
+  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --ds-sidebar-bg: #14171d;
+  --ds-hover-bg: #1f232c;
+
+  /* Surfaces (component bodies) */
+  --white-surface: #181b22;
+  --semantic-surface-white: #181b22;
+
+  /* Black text becomes light text */
+  --black-text: #e6e8ee;
+  --black-surface: #ffffff;
+  --black-border: #ffffff;
+
+  /* HueGrey scale — flipped for dark bg */
+  --huegrey-surface-bold: #e6e8ee;
+  --huegrey-text-bold: #e6e8ee;
+  --huegrey-surface-default: #a0a6b3;
+  --huegrey-text-default: #a0a6b3;
+  --huegrey-text-fairish-hover: #6b7180;
+  --huegrey-text-fairish: #4b515c;
+  --huegrey-surface-fairish: #353944;
+  --huegrey-surface-fairish-hover: #4b515c;
+  --huegrey-surface-subtle: #14171d;
+  --huegrey-surface-subtle-hover: #1f232c;
+  --huegrey-surface-low: #232830;
+  --huegrey-surface-low-hover: #2c323c;
+  --huegrey-surface-minimal: #232830;
+  --huegrey-surface-minimal-hover: #2c323c;
+  --huegrey-surface-dark: #ffffff;
+  --huegrey-surface-dark-hover: #e6e8ee;
+  --huegrey-text-dark: #ffffff;
+  --huegrey-text-dark-hover: #e6e8ee;
+  --huegrey-border-minimal: #2a2e38;
+  --huegrey-border-minimal-hover: #353944;
+  --huegrey-border-fairish: #353944;
+  --huegrey-border-low: #2a2e38;
+  --huegrey-border-default: #4b515c;
+  --huegrey-border-default-hover: #6b7180;
+  --huegrey-border-bold: #6b7180;
+
+  /* Neutral */
+  --neutral-surface-subtle: #14171d;
+
+  /* Secondary subtle (used by selected list rows) */
+  --secondary-surface-subtle: #1c2030;
+  --secondary-surface-subtle-hover: #232844;
+
+  /* Primary tinted backgrounds — dark with a blue cast */
+  --primary-surface-subtle: #131a35;
+  --primary-surface-subtle-hover: #1a2147;
+  --primary-surface-low: #1d2454;
+  --primary-surface-minimal: #2a3470;
+  --primary-border-low: #2a3470;
+  --primary-border-low-hover: #3a4a96;
+  --primary-border-minimal-hover: #3a4a96;
+  --primary-border-subtle-hover: #1a2147;
+
+  /* Status surface tints — dark + colored cast */
+  --success-surface-subtle: #0a2316;
+  --success-surface-subtle-hover: #0e2e1d;
+  --success-surface-low: #103a25;
+  --success-border-low: #103a25;
+  --success-border-minimal: #1a5e3a;
+
+  --warning-surface-subtle: #2a1a08;
+  --warning-surface-subtle-hover: #382008;
+  --warning-surface-low: #44260b;
+  --warning-border-low: #44260b;
+  --warning-border-minimal: #6b3a0e;
+
+  --error-surface-subtle: #2a0e0c;
+  --error-surface-subtle-hover: #3a1310;
+  --error-surface-low: #4a1614;
+  --error-border-low: #4a1614;
+  --error-border-minimal: #75201d;
+
+  --info-surface-subtle: #131a35;
+  --info-surface-subtle-hover: #1a2147;
+  --info-surface-low: #1d2454;
+  --info-border-low: #1d2454;
+  --info-border-minimal: #2a3470;
+
+  /* Accent 25/50 tints — dark with colored cast (used by Status Tags) */
+  --accent-wine-25: #2a1419;       --accent-wine-50: #3a1a22;
+  --accent-mustard-50: #2c2510;    --accent-mustard-100: #3a3015;
+  --accent-lawn-25: #1a2410;       --accent-lawn-100: #232f17;
+  --accent-aqua-25: #0e2129;       --accent-aqua-50: #122c36;
+  --accent-pumpkin-25: #2a1c10;    --accent-pumpkin-50: #38240f;
+  --accent-lime-25: #122512;       --accent-lime-50: #163018;
+  --accent-indigo-25: #1a1a2e;     --accent-indigo-50: #20203a;
+  --accent-lavender-25: #1f1730;   --accent-lavender-50: #281e3d;
+  --accent-lilac-25: #2a1428;      --accent-lilac-50: #381a35;
+
+  /* Elevation — darker, more visible shadows */
+  --elevation-subtle: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+  --elevation-base: 0 12px 16px -4px rgba(0, 0, 0, 0.5);
+  --elevation-default-base: 0 12px 16px -4px rgba(0, 0, 0, 0.5), 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+  --elevation-primary-minimal: 0 2px 4px 0 rgba(13, 78, 242, 0.3), 0 2px 2px 0 rgba(13, 78, 242, 0.2);
+  --elevation-primary-low: 0 4px 8px 0 rgba(13, 78, 242, 0.25), 0 2px 2px 0 rgba(13, 78, 242, 0.15);
+}
