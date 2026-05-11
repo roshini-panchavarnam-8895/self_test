@@ -328,9 +328,81 @@
 
       <!-- ============ Buttons ============ -->
       <section class="ds-section" id="buttons">
-        <div class="ds-section__head">
-          <h2>Buttons</h2>
-          <p>Source: Figma <span class="ds-code">Primary_Button (2132:26906)</span> + button color families <span class="ds-code">(2064:273)</span>. P2 Regular text, 14px icons, 8px gap. Sizes XS / Small / Base / Large × 6 styles × 8 color families × hover. Hover styles fire on real <span class="ds-code">:hover</span> in this demo.</p>
+        <div class="ds-section__head" style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+          <div>
+            <h2>Buttons</h2>
+            <p>Source: Figma <span class="ds-code">Primary_Button (2132:26906)</span> + button color families <span class="ds-code">(2064:273)</span>. P2 Regular text, 14px icons, 8px gap. Sizes XS / Small / Base / Large × 6 styles × 8 color families × hover. Hover styles fire on real <span class="ds-code">:hover</span> in this demo.</p>
+          </div>
+          <button class="ds-show-code-btn" onclick="toggleDsCode(this)" style="flex-shrink:0; display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border:1px solid var(--ds-primary); border-radius:6px; background:var(--ds-primary); color:#fff; font-size:12px; font-weight:600; cursor:pointer; font-family:inherit; white-space:nowrap;">&lt;/&gt; Show Code</button>
+        </div>
+
+        <!-- Lyte Component Code Panel -->
+        <div class="ds-code-panel" style="display:none; margin:0 0 24px; border-radius:12px; overflow:hidden; border:1px solid var(--ds-border);">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 20px; background:#1e1e2e; border-bottom:1px solid #313244;">
+            <span style="font-size:12px; font-weight:600; color:#cdd6f4; text-transform:uppercase; letter-spacing:0.5px;">Lyte Component Code</span>
+            <button onclick="copyDsCode(this)" style="background:none; border:none; color:#6c7086; cursor:pointer; padding:4px; border-radius:4px; font-size:12px;">&#x1F4CB; Copy</button>
+          </div>
+          <pre style="margin:0; padding:20px; background:#282840; overflow-x:auto; font-size:12px; line-height:1.7;"><code style="color:#cdd6f4; white-space:pre; font-family:'PT Mono','SF Mono','Monaco',monospace;">&lt;!-- Fill: Extra Small --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-xs"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Fill: Small --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-sm"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Fill: Base (default) --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Fill: Large --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-lg"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Border --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-border zc-lyte-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Minimal Border --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-minimal-border zc-lyte-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Minimal Fill --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-minimal-fill zc-lyte-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Link --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-link zc-lyte-btn-md"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Button&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Color families: add color class --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-md zc-lyte-btn-primary"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Primary&lt;/template&gt;
+&lt;/lyte-button&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-md zc-lyte-btn-secondary"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Secondary&lt;/template&gt;
+&lt;/lyte-button&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-md zc-lyte-btn-success"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Success&lt;/template&gt;
+&lt;/lyte-button&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-md zc-lyte-btn-error"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Error&lt;/template&gt;
+&lt;/lyte-button&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-md zc-lyte-btn-warning"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Warning&lt;/template&gt;
+&lt;/lyte-button&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;lyte-button class="zc-lyte-btn zc-lyte-btn-fill zc-lyte-btn-md" lt-prop-disabled="true"&gt;
+  &lt;template is="registerYield" yield-name="text"&gt;Disabled&lt;/template&gt;
+&lt;/lyte-button&gt;</code></pre>
         </div>
 
         <div class="ds-subsection">
@@ -5719,6 +5791,32 @@
         listRow.classList.toggle('is-selected', box.classList.contains('is-checked'));
       }
     });
+  </script>
+  <script>
+    function toggleDsCode(btn) {
+      var section = btn.closest('.ds-section');
+      var panel = section.querySelector('.ds-code-panel');
+      if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        btn.innerHTML = '&lt;/&gt; Hide Code';
+        btn.style.background = 'transparent';
+        btn.style.color = 'var(--ds-primary)';
+      } else {
+        panel.style.display = 'none';
+        btn.innerHTML = '&lt;/&gt; Show Code';
+        btn.style.background = 'var(--ds-primary)';
+        btn.style.color = '#fff';
+      }
+    }
+    function copyDsCode(btn) {
+      var panel = btn.closest('.ds-code-panel');
+      var code = panel.querySelector('code');
+      var text = code.textContent;
+      navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = '✅ Copied!';
+        setTimeout(function() { btn.innerHTML = '&#x1F4CB; Copy'; }, 2000);
+      });
+    }
   </script>
 </body>
 </html>
