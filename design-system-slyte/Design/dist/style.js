@@ -357,7 +357,8 @@ function filterSvgIcons() {
 }
 
 function copyIconName(name, el) {
-    navigator.clipboard.writeText(name).then(function() {
+    var tag = '<svg class="zc-svg-icon"><use href="#' + name + '"></use></svg>';
+    navigator.clipboard.writeText(tag).then(function() {
         var code = el.querySelector('code');
         if (!code) return;
         var orig = code.textContent;
