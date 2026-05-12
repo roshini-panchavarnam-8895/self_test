@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator Design System — Patterns</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="ds-shell">
+    <aside class="ds-sidebar">
+      <div class="ds-sidebar__head">
+        <div>
+          <h1 class="ds-sidebar__title">Patterns</h1>
+          <p class="ds-sidebar__subtitle">UI pattern library</p>
+        </div>
+      </div>
+      <nav class="ds-nav">
+        <details class="ds-nav__group" open>
+          <summary class="ds-nav__group-head">Patterns</summary>
+          <div class="ds-nav__group-body">
+            <a href="#topbar" class="ds-nav__item">Top Bar</a>
+            <a href="#cards" class="ds-nav__item">Cards</a>
+            <a href="#sidemenu" class="ds-nav__item">Side Menu</a>
+            <a href="#slider" class="ds-nav__item">Slider / Drawer</a>
+            <a href="#banner" class="ds-nav__item">Promo Banner</a>
+            <a href="#modal" class="ds-nav__item">Modal</a>
+            <a href="#pageheader" class="ds-nav__item">Page Header</a>
+            <a href="#formmodal" class="ds-nav__item">Form Modal</a>
+            <a href="#listrow" class="ds-nav__item">List Row</a>
+            <a href="#detailrow" class="ds-nav__item">Detail List</a>
+            <a href="#statustags" class="ds-nav__item">Status Tags</a>
+            <a href="#accordion" class="ds-nav__item">Accordion</a>
+            <a href="#strip" class="ds-nav__item">Inline Banner</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="ds-main">
+      <header class="ds-page-header" id="overview">
+        <h1>UI Patterns</h1>
+        <p>Reusable design patterns for common UI challenges in Zoho Creator.</p>
+      </header>
+
+      <section class="ds-section" id="topbar">
+        <div class="ds-section__head">
+          <h2>Top Bar <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Top Bar (9413:361)</span>. Full app navigation header for Creator. 48px tall, deep navy bg (<span class="ds-code">--primary-surface-bold</span>). Layout: Logo · Workspaces dropdown · Spacer · Right group (apps grid · separator · avatar).</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Default state</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-topbar">
+              <div class="ds-topbar__logo">
+                <span class="ds-topbar__logo-icon"></span>
+                <span>Creator</span>
+              </div>
+
+              <button class="ds-topbar__workspace">
+                <span>All Organizations</span>
+                <span class="ds-topbar__workspace-caret"></span>
+              </button>
+
+              <div class="ds-topbar__spacer"></div>
+
+              <div class="ds-topbar__right">
+                <button class="ds-topbar__apps" aria-label="Zoho apps">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                </button>
+                <span class="ds-topbar__sep"></span>
+                <button class="ds-topbar__avatar" aria-label="Account">JD</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Anatomy</h3>
+          <div class="ds-card ds-card--padded">
+            <ul style="margin:0; padding-left:20px; color: var(--ds-text-primary); font-size: 13px; line-height: 1.7;">
+              <li><strong>Logo</strong> — product wordmark + diamond icon, white</li>
+              <li><strong>Workspace dropdown</strong> — pill button with 1px primary-minimal border, 32px height, transparent until hover</li>
+              <li><strong>Spacer</strong> — flex grow that pushes right group to the end</li>
+              <li><strong>Apps grid icon</strong> — 3×3 dot grid (waffle), opens Zoho apps overlay</li>
+              <li><strong>Separator</strong> — 1px vertical line, 20% white</li>
+              <li><strong>Avatar</strong> — 32px circle with user initials</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Cards ============ -->
+      <section class="ds-section" id="cards">
+        <div class="ds-section__head">
+          <h2>Cards <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Cards (9420:419)</span>. App / list cards with colored representation tile, title, subtext, metrics, and footer actions. 4 card types × 5 states × 12 representation colors × 3 sizes.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Representation tiles</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Colored squircle used in app cards. Type Text shows initials; Icon shows symbol; Image is gradient placeholder. Sizes 32 / 40 / 48.</p>
+
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:24px;">
+            <div>
+              <div style="font-size:12px; color:var(--ds-text-secondary); margin-bottom:8px;">48px · Text · all colors</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <div class="ds-rep ds-rep--wine">EMS</div>
+                <div class="ds-rep ds-rep--mustard">EMS</div>
+                <div class="ds-rep ds-rep--lawn">EMS</div>
+                <div class="ds-rep ds-rep--aqua">EMS</div>
+                <div class="ds-rep ds-rep--pumpkin">EMS</div>
+                <div class="ds-rep ds-rep--lime">EMS</div>
+                <div class="ds-rep ds-rep--indigo">EMS</div>
+                <div class="ds-rep ds-rep--lavender">EMS</div>
+                <div class="ds-rep ds-rep--black">EMS</div>
+                <div class="ds-rep ds-rep--red">EMS</div>
+                <div class="ds-rep ds-rep--green">EMS</div>
+                <div class="ds-rep ds-rep--blue">EMS</div>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:12px; color:var(--ds-text-secondary); margin-bottom:8px;">40px · Icon</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <div class="ds-rep ds-rep--40 ds-rep--wine ds-rep--icon"></div>
+                <div class="ds-rep ds-rep--40 ds-rep--aqua ds-rep--icon"></div>
+                <div class="ds-rep ds-rep--40 ds-rep--lime ds-rep--icon"></div>
+                <div class="ds-rep ds-rep--40 ds-rep--lavender ds-rep--icon"></div>
+                <div class="ds-rep ds-rep--40 ds-rep--blue ds-rep--icon"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:12px; color:var(--ds-text-secondary); margin-bottom:8px;">32px · Image</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <div class="ds-rep ds-rep--32 ds-rep--image"></div>
+                <div class="ds-rep ds-rep--32 ds-rep--image"></div>
+                <div class="ds-rep ds-rep--32 ds-rep--image"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Card types</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg); display:flex; gap:16px; flex-wrap:wrap;">
+
+            <!-- Default -->
+            <div class="ds-pcard">
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--wine">EMS</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Event Management System</div>
+                  <div class="ds-pcard__subtitle">Created on Jan 24, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer">
+                <span class="ds-pcard__footer-action">Application</span>
+                <span class="ds-pcard__footer-spacer"></span>
+                <button class="ds-pcard__footer-action">More</button>
+                <button class="ds-pcard__footer-action">Edit</button>
+              </div>
+            </div>
+
+            <!-- Title & Subtext -->
+            <div class="ds-pcard">
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--wine">EMS</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Event Management System</div>
+                  <div class="ds-pcard__subtitle">Created on Jan 24, 2025</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="ds-pcard">
+              <div class="ds-pcard__metric">
+                <div class="ds-pcard__metric-label">Pending Users</div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div class="ds-pcard__metric-value">10</div>
+                  <span class="ds-pcard__delta">5%</span>
+                </div>
+                <div class="ds-pcard__desc">vs previous 30 days</div>
+              </div>
+            </div>
+
+            <!-- Image/Icon - Value (inline) -->
+            <div class="ds-pcard ds-pcard--inline">
+              <div class="ds-rep ds-rep--40 ds-rep--aqua ds-rep--icon"></div>
+              <div class="ds-pcard__title-block">
+                <div class="ds-pcard__metric-label">Pending Users</div>
+                <div class="ds-pcard__metric-value">10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Card states</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg); display:flex; gap:16px; flex-wrap:wrap;">
+
+            <div class="ds-pcard">
+              <div style="font-size:11px; color:var(--ds-text-secondary); margin-bottom:8px;">Default</div>
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--wine">EMS</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Event Management System</div>
+                  <div class="ds-pcard__subtitle">Created on Jan 24, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer">
+                <span>Application</span><span class="ds-pcard__footer-spacer"></span>
+                <button class="ds-pcard__footer-action">More</button>
+                <button class="ds-pcard__footer-action">Edit</button>
+              </div>
+            </div>
+
+            <div class="ds-pcard" style="border-color: var(--primary-border-default); box-shadow: var(--elevation-primary-low);">
+              <div style="font-size:11px; color:var(--ds-text-secondary); margin-bottom:8px;">Hover (forced)</div>
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--wine">EMS</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Event Management System</div>
+                  <div class="ds-pcard__subtitle">Created on Jan 24, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer">
+                <span>Application</span><span class="ds-pcard__footer-spacer"></span>
+                <button class="ds-pcard__footer-action">More</button>
+                <button class="ds-pcard__footer-action">Edit</button>
+              </div>
+            </div>
+
+            <div class="ds-pcard is-disabled">
+              <div style="font-size:11px; color:var(--ds-text-secondary); margin-bottom:8px;">Disabled</div>
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--wine">EMS</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Event Management System</div>
+                  <div class="ds-pcard__subtitle">Created on Jan 24, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer">
+                <span>Application</span><span class="ds-pcard__footer-spacer"></span>
+                <button class="ds-pcard__footer-action">More</button>
+                <button class="ds-pcard__footer-action">Edit</button>
+              </div>
+            </div>
+
+            <div class="ds-pcard is-unclickable">
+              <div style="font-size:11px; color:var(--ds-text-secondary); margin-bottom:8px;">Unclickable</div>
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--wine">EMS</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Event Management System</div>
+                  <div class="ds-pcard__subtitle">Created on Jan 24, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer">
+                <span>Application</span><span class="ds-pcard__footer-spacer"></span>
+                <button class="ds-pcard__footer-action">More</button>
+                <button class="ds-pcard__footer-action">Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Realistic grid</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Mix of types and colors as you'd see on an actual app dashboard.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg); display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:16px;">
+
+            <div class="ds-pcard">
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--wine">EMS</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Event Management</div>
+                  <div class="ds-pcard__subtitle">Created on Jan 24, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer"><span>Application</span><span class="ds-pcard__footer-spacer"></span><button class="ds-pcard__footer-action">Edit</button></div>
+            </div>
+
+            <div class="ds-pcard">
+              <div class="ds-pcard__metric">
+                <div class="ds-pcard__metric-label">Pending Users</div>
+                <div style="display:flex; align-items:center; gap:8px;"><div class="ds-pcard__metric-value">10</div><span class="ds-pcard__delta">5%</span></div>
+                <div class="ds-pcard__desc">vs previous 30 days</div>
+              </div>
+            </div>
+
+            <div class="ds-pcard">
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--aqua">CRM</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Customer Records</div>
+                  <div class="ds-pcard__subtitle">Created on Feb 10, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer"><span>Application</span><span class="ds-pcard__footer-spacer"></span><button class="ds-pcard__footer-action">Edit</button></div>
+            </div>
+
+            <div class="ds-pcard">
+              <div class="ds-pcard__metric">
+                <div class="ds-pcard__metric-label">Active Sessions</div>
+                <div style="display:flex; align-items:center; gap:8px;"><div class="ds-pcard__metric-value">248</div><span class="ds-pcard__delta ds-pcard__delta--down">2.3%</span></div>
+                <div class="ds-pcard__desc">vs previous 7 days</div>
+              </div>
+            </div>
+
+            <div class="ds-pcard ds-pcard--inline">
+              <div class="ds-rep ds-rep--40 ds-rep--lawn ds-rep--icon"></div>
+              <div class="ds-pcard__title-block">
+                <div class="ds-pcard__metric-label">Inbox</div>
+                <div class="ds-pcard__metric-value">38</div>
+              </div>
+            </div>
+
+            <div class="ds-pcard">
+              <div class="ds-pcard__header">
+                <div class="ds-rep ds-rep--40 ds-rep--lavender">PRJ</div>
+                <div class="ds-pcard__title-block">
+                  <div class="ds-pcard__title">Project Tracker</div>
+                  <div class="ds-pcard__subtitle">Created on Mar 02, 2025</div>
+                </div>
+              </div>
+              <div class="ds-pcard__footer"><span>Application</span><span class="ds-pcard__footer-spacer"></span><button class="ds-pcard__footer-action">Edit</button></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Side Menu ============ -->
+      <section class="ds-section" id="sidemenu">
+        <div class="ds-section__head">
+          <h2>Side Menu <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Side Navigation (9420:1161)</span>. Vertical app navigation sidebar with section titles and grouped menu items. One item active at a time — active item gets a primary-subtle bg, primary text, and left-edge stripe indicator.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Item states</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; gap:24px; flex-wrap:wrap;">
+            <nav class="ds-sidemenu" aria-label="Item states">
+              <div class="ds-sidemenu__section">
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Default</span></button>
+                <button class="ds-sidemenu__item is-active"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Active</span></button>
+                <button class="ds-sidemenu__item is-disabled"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Disabled</span></button>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Full sidebar (Creator-style)</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Click any item to switch the active selection within this nav.</p>
+          <div class="ds-card ds-card--padded" style="background:var(--ds-page-bg); display:flex; gap:24px;">
+            <nav class="ds-sidemenu" aria-label="App navigation">
+              <div class="ds-sidemenu__section">
+                <div class="ds-sidemenu__title">Develop</div>
+                <button class="ds-sidemenu__item is-active"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Solutions</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Microservices</span></button>
+              </div>
+
+              <div class="ds-sidemenu__section">
+                <div class="ds-sidemenu__title">Deploy</div>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Environments</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Mobile</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Portal</span></button>
+              </div>
+
+              <div class="ds-sidemenu__section">
+                <div class="ds-sidemenu__title">Manage</div>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Users</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Organization</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Governance</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Metrics</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Operations</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Billing</span></button>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Section sizes (item counts)</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Independent menus showing 2 / 4 / 6 / 8 items. Click any to activate.</p>
+          <div class="ds-card ds-card--padded" style="background:var(--ds-page-bg); display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start;">
+
+            <nav class="ds-sidemenu" style="width:180px;">
+              <div class="ds-sidemenu__section">
+                <div class="ds-sidemenu__title">Title</div>
+                <button class="ds-sidemenu__item is-active"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+              </div>
+            </nav>
+
+            <nav class="ds-sidemenu" style="width:180px;">
+              <div class="ds-sidemenu__section">
+                <div class="ds-sidemenu__title">Title</div>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item is-active"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+              </div>
+            </nav>
+
+            <nav class="ds-sidemenu" style="width:180px;">
+              <div class="ds-sidemenu__section">
+                <div class="ds-sidemenu__title">Title</div>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item is-active"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+              </div>
+            </nav>
+
+            <nav class="ds-sidemenu" style="width:180px;">
+              <div class="ds-sidemenu__section">
+                <div class="ds-sidemenu__title">Title</div>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item is-active"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+                <button class="ds-sidemenu__item"><span class="ds-sidemenu__item-icon"></span><span class="ds-sidemenu__item-label">Placeholder</span></button>
+              </div>
+            </nav>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Slider / Drawer ============ -->
+      <section class="ds-section" id="slider">
+        <div class="ds-section__head">
+          <h2>Slider / Drawer <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Slider (9420:5051)</span>. Side panel with header (H6 title + optional action buttons + close), scrollable body, and Save / Cancel footer. Header action variants: none, single Button, two Buttons, or large primary CTA.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Header action variants</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:16px;">
+
+            <div class="ds-slider" style="width: 360px; min-height:0;">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div class="ds-slider" style="width: 360px; min-height:0;">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <div class="ds-slider__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                </div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div class="ds-slider" style="width: 420px; min-height:0;">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <div class="ds-slider__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span class="ds-btn__icon"></span><span>Action</span><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                </div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div class="ds-slider" style="width: 360px; min-height:0;">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <div class="ds-slider__actions">
+                  <button class="ds-btn ds-btn--sm ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                </div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Footer (Save / Cancel)</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:0;">
+            <div class="ds-slider__footer" style="border-top:0; padding:8px 0;"><button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button><button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button></div>
+            <div class="ds-slider__footer" style="border-top:0; padding:8px 0;"><button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button><button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button></div>
+            <div class="ds-slider__footer" style="border-top:0; padding:8px 0;"><button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button><button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button></div>
+            <div class="ds-slider__footer" style="border-top:0; padding:8px 0;"><button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button><button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button></div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Full slider panels</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Tall side panels (drawer-style) with various header action configurations.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg); display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start;">
+
+            <div class="ds-slider ds-slider--tall">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <div class="ds-slider__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                </div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-slider__body"></div>
+              <div class="ds-slider__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+
+            <div class="ds-slider ds-slider--tall">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <div class="ds-slider__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                </div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-slider__body"></div>
+              <div class="ds-slider__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+
+            <div class="ds-slider ds-slider--tall">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <div class="ds-slider__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                </div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-slider__body"></div>
+              <div class="ds-slider__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+
+            <div class="ds-slider ds-slider--tall">
+              <div class="ds-slider__header">
+                <div class="ds-slider__title">Slider Title</div>
+                <div class="ds-slider__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                </div>
+                <button class="ds-slider__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-slider__body"></div>
+              <div class="ds-slider__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Promo Banner ============ -->
+      <section class="ds-section" id="banner">
+        <div class="ds-section__head">
+          <h2>Promo Banner <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Banner (9420:5823)</span>. Horizontal banner card promoting a feature. Slots: optional left icon · title + description · right action group · optional bottom strip with status tags. Highlighted variant uses primary border + subtle blue bg.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Default</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:16px;">
+
+            <!-- Plain banner (no icon) -->
+            <div class="ds-banner">
+              <div class="ds-banner__main">
+                <div class="ds-banner__content">
+                  <div class="ds-banner__title">Bring Your Own Encryption Key (BYOK)</div>
+                  <div class="ds-banner__desc">Configure your own encryption key to protect your data. This ensures enhanced security, compliance, and protection against unauthorized access. <a href="#">Learn more</a></div>
+                </div>
+                <div class="ds-banner__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Configure</span></button>
+                  <button class="ds-banner__more" aria-label="More options"></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- With icon -->
+            <div class="ds-banner">
+              <div class="ds-banner__main">
+                <div class="ds-banner__icon"></div>
+                <div class="ds-banner__content">
+                  <div class="ds-banner__title">Bring Your Own Encryption Key (BYOK)</div>
+                  <div class="ds-banner__desc">Configure your own encryption key to protect your data. This ensures enhanced security, compliance, and protection against unauthorized access. <a href="#">Learn more</a></div>
+                </div>
+                <div class="ds-banner__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Configure</span></button>
+                  <button class="ds-banner__more" aria-label="More options"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>With status strip (Current Plan tags)</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:16px;">
+
+            <div class="ds-banner">
+              <div class="ds-banner__main">
+                <div class="ds-banner__content">
+                  <div class="ds-banner__title">Bring Your Own Encryption Key (BYOK)</div>
+                  <div class="ds-banner__desc">Configure your own encryption key to protect your data. This ensures enhanced security, compliance, and protection against unauthorized access. <a href="#">Learn more</a></div>
+                </div>
+              </div>
+              <div class="ds-banner__strip">
+                <div class="ds-banner__plan">
+                  <div class="ds-banner__plan-label">Current Plan</div>
+                  <div class="ds-banner__plan-value ds-banner__plan-value--success">PLACEHOLDER</div>
+                </div>
+                <div class="ds-banner__plan">
+                  <div class="ds-banner__plan-label">Current Plan</div>
+                  <div class="ds-banner__plan-value">Bring Your Own Encryption Key</div>
+                </div>
+                <div class="ds-rep ds-rep--32 ds-rep--lavender ds-rep--icon"></div>
+                <div class="ds-banner__plan">
+                  <div class="ds-banner__plan-label">Current Plan</div>
+                  <div class="ds-banner__plan-value ds-banner__plan-value--placeholder">PLACEHOLDER</div>
+                </div>
+                <div class="ds-banner__strip-spacer"></div>
+                <button class="ds-btn ds-btn--xs ds-btn--fill ds-btn--success"><span>Configure</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Highlighted variant</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Primary border + subtle blue background for promoted/featured items.</p>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:16px;">
+
+            <div class="ds-banner ds-banner--highlighted">
+              <div class="ds-banner__main">
+                <div class="ds-banner__content">
+                  <div class="ds-banner__title">Bring Your Own Encryption Key (BYOK)</div>
+                  <div class="ds-banner__desc">Configure your own encryption key to protect your data. This ensures enhanced security, compliance, and protection against unauthorized access. <a href="#">Learn more</a></div>
+                </div>
+                <div class="ds-banner__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Configure</span></button>
+                  <button class="ds-banner__more" aria-label="More options"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ds-banner ds-banner--highlighted">
+              <div class="ds-banner__main">
+                <div class="ds-banner__icon"></div>
+                <div class="ds-banner__content">
+                  <div class="ds-banner__title">Bring Your Own Encryption Key (BYOK)</div>
+                  <div class="ds-banner__desc">Configure your own encryption key to protect your data. This ensures enhanced security, compliance, and protection against unauthorized access. <a href="#">Learn more</a></div>
+                </div>
+                <div class="ds-banner__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Configure</span></button>
+                  <button class="ds-banner__more" aria-label="More options"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Modal ============ -->
+      <section class="ds-section" id="modal">
+        <div class="ds-section__head">
+          <h2>Modal <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Modal (9420:6436)</span>. Dialog card with header (icon + title + close), body, and footer with primary CTA + Cancel link. 4 type variants (Info / Success / Warning / Alert) — icon and CTA color match the type.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Header action variants</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Compact headers showing different action button placements.</p>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:12px;">
+
+            <div class="ds-modal ds-modal--alert" style="max-width:480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Modal Title</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div class="ds-modal ds-modal--alert" style="max-width:480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Modal Title</div>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div class="ds-modal ds-modal--alert" style="max-width:480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Modal Title</div>
+                <button class="ds-btn ds-btn--xs ds-btn--border"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div class="ds-modal ds-modal--alert" style="max-width:480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Modal Title</div>
+                <button class="ds-btn ds-btn--sm ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Type variants — full modal</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Each type uses a distinct icon background + matching CTA button color.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg); display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:16px;">
+
+            <!-- Info -->
+            <div class="ds-modal ds-modal--info">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Info Modal</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--xs ds-btn--fill ds-btn--info"><span>Okay</span></button>
+                <button class="ds-btn ds-btn--xs ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+
+            <!-- Success -->
+            <div class="ds-modal ds-modal--success">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Success Modal</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--xs ds-btn--fill ds-btn--success"><span>Okay</span></button>
+                <button class="ds-btn ds-btn--xs ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+
+            <!-- Warning -->
+            <div class="ds-modal ds-modal--warning">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Warning Modal</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--xs ds-btn--fill ds-btn--warning"><span>Okay</span></button>
+                <button class="ds-btn ds-btn--xs ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+
+            <!-- Alert (Error) -->
+            <div class="ds-modal ds-modal--alert">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Alert Modal</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--xs ds-btn--fill ds-btn--error"><span>Delete</span></button>
+                <button class="ds-btn ds-btn--xs ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>With body content</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-modal ds-modal--alert" style="max-width:480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Delete this application?</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__body">
+                This action cannot be undone. All associated data, users, and configurations will be permanently removed from the workspace.
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill ds-btn--error"><span>Delete</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Page Header ============ -->
+      <section class="ds-section" id="pageheader">
+        <div class="ds-section__head">
+          <h2>Page Header <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Page Header (9420:7229)</span>. Page-level header with title (H5 / H6 Semibold) + optional description + right-side action group. Multiple rows can stack inside a single bordered container.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Action group (Button row)</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button class="ds-btn ds-btn--xs ds-btn--link"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+            <button class="ds-btn ds-btn--xs ds-btn--border" style="min-width:32px; padding:0;" aria-label="Action"><span class="ds-btn__icon"></span></button>
+            <button class="ds-btn ds-btn--xs ds-btn--border"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+            <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+            <button class="ds-btn ds-btn--xs ds-btn--border" style="min-width:32px; padding:0;" aria-label="Action"><span class="ds-btn__icon"></span></button>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Standalone (no border)</h3>
+          <div class="ds-card ds-card--padded">
+            <div class="ds-pageheader">
+              <div class="ds-pageheader__content">
+                <div class="ds-pageheader__title">Page Title</div>
+                <div class="ds-pageheader__desc">Configure your own encryption key to protect your data. This ensures enhanced security, compliance, and protection against unauthorised access. <a href="#">Learn more</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Stacked (with row dividers)</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-pageheader-stack">
+
+              <div class="ds-pageheader">
+                <div class="ds-pageheader__content">
+                  <div class="ds-pageheader__title">Page Title</div>
+                  <div class="ds-pageheader__desc">Configure your own encryption key to protect your data. This ensures enhanced security, compliance, and protection against unauthorised access. <a href="#">Learn more</a></div>
+                </div>
+                <div class="ds-pageheader__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--link"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--border" style="min-width:32px; padding:0;" aria-label="Action"><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--border" style="min-width:32px; padding:0;" aria-label="Action"><span class="ds-btn__icon"></span></button>
+                </div>
+              </div>
+
+              <div class="ds-pageheader">
+                <div class="ds-pageheader__content">
+                  <div class="ds-pageheader__title">Page Title</div>
+                </div>
+                <div class="ds-pageheader__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--link"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--border" style="min-width:32px; padding:0;" aria-label="Action"><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <button class="ds-btn ds-btn--xs ds-btn--border" style="min-width:32px; padding:0;" aria-label="Action"><span class="ds-btn__icon"></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Smaller title (H6)</h3>
+          <div class="ds-card ds-card--padded">
+            <div class="ds-pageheader ds-pageheader--sm">
+              <div class="ds-pageheader__content">
+                <div class="ds-pageheader__title">Page Title</div>
+                <div class="ds-pageheader__desc">Configure your own encryption key to protect your data.</div>
+              </div>
+              <div class="ds-pageheader__actions">
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Form Modal ============ -->
+      <section class="ds-section" id="formmodal">
+        <div class="ds-section__head">
+          <h2>Form Modal <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Form Modal (9420:7574)</span>. Modal containing a form field (Label + Optional + help · text input · Hint text) and Save / Cancel footer. Pure composition of <span class="ds-code">.ds-modal</span> + <span class="ds-code">.ds-field</span> + <span class="ds-code">.ds-textinput</span> — no new CSS.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Default — single field</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-modal ds-modal--alert" style="max-width: 480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Modal Title</div>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__body">
+                <div class="ds-field" style="gap: 8px;">
+                  <div class="ds-field__head">
+                    <span class="ds-field__label">Label</span>
+                    <span class="ds-field__optional">(Optional)</span>
+                    <span class="ds-field__help"></span>
+                  </div>
+                  <div class="ds-textinput" style="max-width: none;">
+                    <span class="ds-textinput__icon"></span>
+                    <input class="ds-textinput__input" type="text" placeholder="Placeholder" />
+                  </div>
+                  <span class="ds-field__hint ds-field__hint--default">Configure your own encryption key to protect your data. Protect files against unauthorised access. <a href="#" style="color: var(--primary-text-default);">Learn more</a></span>
+                </div>
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill"><span>Save</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Multi-field form</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-modal ds-modal--info" style="max-width: 480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Create Encryption Key</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__body" style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="ds-field" style="gap: 6px;">
+                  <div class="ds-field__head">
+                    <span class="ds-field__label">Key Name</span>
+                    <span class="ds-field__help"></span>
+                  </div>
+                  <div class="ds-textinput" style="max-width: none;">
+                    <input class="ds-textinput__input" type="text" placeholder="my-encryption-key" />
+                  </div>
+                </div>
+
+                <div class="ds-field" style="gap: 6px;">
+                  <div class="ds-field__head">
+                    <span class="ds-field__label">Region</span>
+                    <span class="ds-field__optional">(Optional)</span>
+                    <span class="ds-field__help"></span>
+                  </div>
+                  <div class="ds-dropdown" style="max-width: none;">
+                    <span class="ds-dropdown__value">Select region</span>
+                    <span class="ds-dropdown__caret"></span>
+                  </div>
+                  <span class="ds-field__hint ds-field__hint--info">Defaults to your workspace region</span>
+                </div>
+
+                <div class="ds-field" style="gap: 6px;">
+                  <label class="ds-checkbox-row"><span class="ds-checkbox"></span> Enable rotation policy</label>
+                </div>
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill"><span>Create</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Validation states</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Reuse <span class="ds-code">.ds-field--is-error</span> + colored hint variants to communicate validation.</p>
+
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-modal ds-modal--alert" style="max-width: 480px;">
+              <div class="ds-modal__header">
+                <div class="ds-modal__icon">EM</div>
+                <div class="ds-modal__title">Modal Title</div>
+                <button class="ds-modal__close" aria-label="Close"></button>
+              </div>
+              <div class="ds-modal__body">
+                <div class="ds-field is-error" style="gap: 8px;">
+                  <div class="ds-field__head">
+                    <span class="ds-field__label">Label</span>
+                    <span class="ds-field__help"></span>
+                  </div>
+                  <div class="ds-textinput is-error" style="max-width: none;">
+                    <input class="ds-textinput__input" type="text" value="invalid-key" />
+                  </div>
+                  <span class="ds-field__hint ds-field__hint--error">This name is already in use. Try a different one.</span>
+                </div>
+              </div>
+              <div class="ds-modal__footer">
+                <button class="ds-btn ds-btn--sm ds-btn--fill" disabled><span>Save</span></button>
+                <button class="ds-btn ds-btn--sm ds-btn--link"><span>Cancel</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: List Row ============ -->
+      <section class="ds-section" id="listrow">
+        <div class="ds-section__head">
+          <h2>List Row <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">List Row (9420:8272)</span>. Repeating row for application / file / item lists. Slots: rep tile · name · status tag (P4 Semibold) · optional description · optional metric · action button · close ×. Stack multiple rows in a single bordered container.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Single row variants</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:8px;">
+
+            <!-- Compact: rep + name + tag -->
+            <div class="ds-list-item" style="max-width: 340px;">
+              <div class="ds-rep ds-rep--32 ds-rep--wine">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__name">Application Name</div>
+                <span class="ds-list-item__tag">Approved</span>
+              </div>
+            </div>
+
+            <!-- With description -->
+            <div class="ds-list-item" style="max-width: 340px;">
+              <div class="ds-rep ds-rep--32 ds-rep--wine">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__title-block">
+                  <div class="ds-list-item__name">Application Name <span class="ds-list-item__tag" style="margin-left:6px;">Approved</span></div>
+                  <div class="ds-list-item__desc">Customize SMS templates</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full: rep + name + tag + metric + button + close -->
+            <div class="ds-list-item">
+              <div class="ds-rep ds-rep--32 ds-rep--wine">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__name">Application Name</div>
+                <span class="ds-list-item__tag">Approved</span>
+              </div>
+              <span class="ds-list-item__metric">000 times</span>
+              <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+              <button class="ds-list-item__close" aria-label="Remove"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Stacked list (mixed colors)</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Multiple rows in a single bordered container with row dividers between them. Click × to remove a row.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-list-stack">
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--wine">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--mustard">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--lawn">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--aqua">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--pumpkin">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--lavender">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--blue">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--green">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Application Name</div>
+                  <span class="ds-list-item__tag">Approved</span>
+                </div>
+                <span class="ds-list-item__metric">000 times</span>
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Button</span></button>
+                <button class="ds-list-item__close" aria-label="Remove"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Tag color variants</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:8px;">
+
+            <div class="ds-list-item">
+              <div class="ds-rep ds-rep--32 ds-rep--wine">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__name">Approved tag</div>
+                <span class="ds-list-item__tag">Approved</span>
+              </div>
+            </div>
+
+            <div class="ds-list-item">
+              <div class="ds-rep ds-rep--32 ds-rep--blue">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__name">Info tag</div>
+                <span class="ds-list-item__tag ds-list-item__tag--info">Pending</span>
+              </div>
+            </div>
+
+            <div class="ds-list-item">
+              <div class="ds-rep ds-rep--32 ds-rep--pumpkin">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__name">Warning tag</div>
+                <span class="ds-list-item__tag ds-list-item__tag--warning">Action needed</span>
+              </div>
+            </div>
+
+            <div class="ds-list-item">
+              <div class="ds-rep ds-rep--32 ds-rep--red">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__name">Error tag</div>
+                <span class="ds-list-item__tag ds-list-item__tag--error">Failed</span>
+              </div>
+            </div>
+
+            <div class="ds-list-item">
+              <div class="ds-rep ds-rep--32 ds-rep--black">EM</div>
+              <div class="ds-list-item__main">
+                <div class="ds-list-item__name">Neutral tag</div>
+                <span class="ds-list-item__tag ds-list-item__tag--neutral">Draft</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Detail / Property List ============ -->
+      <section class="ds-section" id="detailrow">
+        <div class="ds-section__head">
+          <h2>Detail List <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Detail List (9420:9606)</span>. Two-line rows: Title (small gray label, P3) + Value (P1 Semibold) with optional inline status tag, right-side action button, and trailing checkmark icon.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Single row variants</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:8px;">
+
+            <!-- Title + Value + Button + Status icon -->
+            <div class="ds-detail-row" style="border:1px solid var(--huegrey-border-minimal); border-radius: var(--radius-semantic-r); max-width: 360px;">
+              <div class="ds-detail-row__main">
+                <div class="ds-detail-row__title">Title</div>
+                <div class="ds-detail-row__value">Value</div>
+              </div>
+              <div class="ds-detail-row__actions">
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                <span class="ds-detail-row__status"></span>
+              </div>
+            </div>
+
+            <!-- With success tag inline -->
+            <div class="ds-detail-row" style="border:1px solid var(--huegrey-border-minimal); border-radius: var(--radius-semantic-r); max-width: 360px;">
+              <div class="ds-detail-row__main">
+                <div class="ds-detail-row__title">Title</div>
+                <div class="ds-detail-row__value-group">
+                  <span class="ds-list-item__tag">Success</span>
+                </div>
+              </div>
+              <div class="ds-detail-row__actions">
+                <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                <span class="ds-detail-row__status ds-detail-row__status--success"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Stacked detail list</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Multiple rows in a single bordered container with auto-dividers.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-detail-stack" style="max-width: 380px;">
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Title</div>
+                  <div class="ds-detail-row__value">Value</div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <span class="ds-detail-row__status"></span>
+                </div>
+              </div>
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Title</div>
+                  <div class="ds-detail-row__value-group">
+                    <span class="ds-list-item__tag">Success</span>
+                  </div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <span class="ds-detail-row__status ds-detail-row__status--success"></span>
+                </div>
+              </div>
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Title</div>
+                  <div class="ds-detail-row__value">Value</div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <span class="ds-detail-row__status"></span>
+                </div>
+              </div>
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Title</div>
+                  <div class="ds-detail-row__value">Value</div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <span class="ds-detail-row__status"></span>
+                </div>
+              </div>
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Title</div>
+                  <div class="ds-detail-row__value">Value</div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span class="ds-btn__icon"></span><span>Button</span><span class="ds-btn__icon"></span></button>
+                  <span class="ds-detail-row__status"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Realistic example — Account details</h3>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-detail-stack" style="max-width: 480px;">
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Email</div>
+                  <div class="ds-detail-row__value">jane@acme.com</div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Edit</span></button>
+                  <span class="ds-detail-row__status ds-detail-row__status--success"></span>
+                </div>
+              </div>
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">2-Factor Authentication</div>
+                  <div class="ds-detail-row__value-group">
+                    <span class="ds-list-item__tag">Enabled</span>
+                  </div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Manage</span></button>
+                  <span class="ds-detail-row__status ds-detail-row__status--success"></span>
+                </div>
+              </div>
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Workspace</div>
+                  <div class="ds-detail-row__value">Acme Inc.</div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Switch</span></button>
+                  <span class="ds-detail-row__status"></span>
+                </div>
+              </div>
+
+              <div class="ds-detail-row">
+                <div class="ds-detail-row__main">
+                  <div class="ds-detail-row__title">Plan</div>
+                  <div class="ds-detail-row__value-group">
+                    <span class="ds-detail-row__value">Professional</span>
+                    <span class="ds-list-item__tag ds-list-item__tag--info">Active</span>
+                  </div>
+                </div>
+                <div class="ds-detail-row__actions">
+                  <button class="ds-btn ds-btn--xs ds-btn--fill"><span>Upgrade</span></button>
+                  <span class="ds-detail-row__status ds-detail-row__status--success"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Status Tags ============ -->
+      <section class="ds-section" id="statustags">
+        <div class="ds-section__head">
+          <h2>Status Tags <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Status Tag grid (9420:10038)</span>. Bordered pill used as a status indicator. P4 Semibold uppercase. 13 color palettes × 4 intensity variants (subtle / low / outline / solid). Pick a color and intensity modifier to compose any cell.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Intensity variants × 13 colors</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Each row is one color; each column is an intensity level.</p>
+          <div class="ds-card ds-card--padded" style="display:grid; grid-template-columns: 100px repeat(4, auto); gap:10px 16px; align-items:center;">
+
+            <div style="font-size:12px; color:var(--ds-text-secondary);">Color</div>
+            <div style="font-size:12px; color:var(--ds-text-secondary);">Subtle</div>
+            <div style="font-size:12px; color:var(--ds-text-secondary);">Low</div>
+            <div style="font-size:12px; color:var(--ds-text-secondary);">Outline</div>
+            <div style="font-size:12px; color:var(--ds-text-secondary);">Solid</div>
+
+            <div style="font-size:12px;">Success</div>
+            <div><span class="ds-stag ds-stag--success">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--success ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--success ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--success ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Info</div>
+            <div><span class="ds-stag ds-stag--info">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--info ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--info ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--info ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Warning</div>
+            <div><span class="ds-stag ds-stag--warning">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--warning ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--warning ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--warning ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Error</div>
+            <div><span class="ds-stag ds-stag--error">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--error ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--error ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--error ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Pumpkin</div>
+            <div><span class="ds-stag ds-stag--pumpkin">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--pumpkin ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--pumpkin ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--pumpkin ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Wine</div>
+            <div><span class="ds-stag ds-stag--wine">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--wine ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--wine ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--wine ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Mustard</div>
+            <div><span class="ds-stag ds-stag--mustard">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--mustard ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--mustard ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--mustard ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Lawn</div>
+            <div><span class="ds-stag ds-stag--lawn">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lawn ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lawn ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lawn ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Lime</div>
+            <div><span class="ds-stag ds-stag--lime">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lime ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lime ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lime ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Aqua</div>
+            <div><span class="ds-stag ds-stag--aqua">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--aqua ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--aqua ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--aqua ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Indigo</div>
+            <div><span class="ds-stag ds-stag--indigo">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--indigo ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--indigo ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--indigo ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Lavender</div>
+            <div><span class="ds-stag ds-stag--lavender">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lavender ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lavender ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lavender ds-stag--solid">Placeholder</span></div>
+
+            <div style="font-size:12px;">Lilac</div>
+            <div><span class="ds-stag ds-stag--lilac">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lilac ds-stag--low">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lilac ds-stag--outline">Placeholder</span></div>
+            <div><span class="ds-stag ds-stag--lilac ds-stag--solid">Placeholder</span></div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>In context</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Status tags inside list rows or detail rows.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-list-stack" style="max-width: 480px;">
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--lawn">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Approved Application</div>
+                  <span class="ds-stag ds-stag--success">Approved</span>
+                </div>
+              </div>
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--mustard">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Pending Review</div>
+                  <span class="ds-stag ds-stag--warning">Pending</span>
+                </div>
+              </div>
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--wine">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Build Failed</div>
+                  <span class="ds-stag ds-stag--error ds-stag--solid">Failed</span>
+                </div>
+              </div>
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--lavender">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">Beta Feature</div>
+                  <span class="ds-stag ds-stag--lavender ds-stag--outline">Beta</span>
+                </div>
+              </div>
+              <div class="ds-list-item">
+                <div class="ds-rep ds-rep--32 ds-rep--aqua">EM</div>
+                <div class="ds-list-item__main">
+                  <div class="ds-list-item__name">In Sync</div>
+                  <span class="ds-stag ds-stag--aqua ds-stag--low">Syncing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Accordion ============ -->
+      <section class="ds-section" id="accordion">
+        <div class="ds-section__head">
+          <h2>Accordion <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Accordion (9420:10329)</span>. Collapsible content section with gray header bar, chevron indicator, and body panel. Uses native <span class="ds-code">&lt;details&gt;</span>/<span class="ds-code">&lt;summary&gt;</span> — no JS needed for collapse/expand.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Bare states</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:8px; max-width: 480px;">
+
+            <details class="ds-accordion">
+              <summary class="ds-accordion__header">
+                <span class="ds-accordion__title">Accordion header (collapsed)</span>
+                <span class="ds-accordion__caret"></span>
+              </summary>
+              <div class="ds-accordion__body">Content goes here.</div>
+            </details>
+
+            <details class="ds-accordion" open>
+              <summary class="ds-accordion__header">
+                <span class="ds-accordion__title">Accordion header (expanded)</span>
+                <span class="ds-accordion__caret"></span>
+              </summary>
+              <div class="ds-accordion__body" style="color: var(--huegrey-text-default);">Accordion content goes here. This area shows details when the section is expanded.</div>
+            </details>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>With provider rows</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Body contains a list of provider rows with icon + name + description + Add button.</p>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:8px; max-width: 480px;">
+
+            <details class="ds-accordion" open>
+              <summary class="ds-accordion__header">
+                <span class="ds-accordion__title">Accordion header</span>
+                <span class="ds-accordion__caret"></span>
+              </summary>
+              <div class="ds-accordion__body">
+                <div class="ds-accordion-row">
+                  <span class="ds-accordion-row__icon"></span>
+                  <div class="ds-accordion-row__main">
+                    <div class="ds-accordion-row__name">Provider Name</div>
+                    <div class="ds-accordion-row__desc">Allows users to login to this portal by using their account.</div>
+                  </div>
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Add</span></button>
+                </div>
+              </div>
+            </details>
+
+            <details class="ds-accordion" open>
+              <summary class="ds-accordion__header">
+                <span class="ds-accordion__title">Accordion header</span>
+                <span class="ds-accordion__caret"></span>
+              </summary>
+              <div class="ds-accordion__body">
+                <div class="ds-accordion-row">
+                  <span class="ds-accordion-row__icon"></span>
+                  <div class="ds-accordion-row__main">
+                    <div class="ds-accordion-row__name">Provider Name</div>
+                    <div class="ds-accordion-row__desc">Allows users to login to this portal by using their account.</div>
+                  </div>
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Add</span></button>
+                </div>
+                <div class="ds-accordion-row">
+                  <span class="ds-accordion-row__icon"></span>
+                  <div class="ds-accordion-row__main">
+                    <div class="ds-accordion-row__name">Provider Name</div>
+                    <div class="ds-accordion-row__desc">Allows users to login to this portal by using their account.</div>
+                  </div>
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Add</span></button>
+                </div>
+                <div class="ds-accordion-row">
+                  <span class="ds-accordion-row__icon"></span>
+                  <div class="ds-accordion-row__main">
+                    <div class="ds-accordion-row__name">Provider Name</div>
+                    <div class="ds-accordion-row__desc">Allows users to login to this portal by using their account.</div>
+                  </div>
+                  <button class="ds-btn ds-btn--xs ds-btn--border"><span>Add</span></button>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Group (multiple sections)</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Multiple independent accordions stacked. Click any header to toggle.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg);">
+            <div class="ds-accordion-group" style="max-width: 480px;">
+
+              <details class="ds-accordion" open>
+                <summary class="ds-accordion__header">
+                  <span class="ds-accordion__title">Authentication providers</span>
+                  <span class="ds-accordion__caret"></span>
+                </summary>
+                <div class="ds-accordion__body">
+                  <div class="ds-accordion-row">
+                    <span class="ds-accordion-row__icon"></span>
+                    <div class="ds-accordion-row__main">
+                      <div class="ds-accordion-row__name">Google</div>
+                      <div class="ds-accordion-row__desc">Allows users to login to this portal by using their Google account.</div>
+                    </div>
+                    <button class="ds-btn ds-btn--xs ds-btn--border"><span>Add</span></button>
+                  </div>
+                  <div class="ds-accordion-row">
+                    <span class="ds-accordion-row__icon"></span>
+                    <div class="ds-accordion-row__main">
+                      <div class="ds-accordion-row__name">SAML</div>
+                      <div class="ds-accordion-row__desc">Configure SAML-based single sign-on for your organization.</div>
+                    </div>
+                    <button class="ds-btn ds-btn--xs ds-btn--border"><span>Add</span></button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="ds-accordion">
+                <summary class="ds-accordion__header">
+                  <span class="ds-accordion__title">API integrations</span>
+                  <span class="ds-accordion__caret"></span>
+                </summary>
+                <div class="ds-accordion__body" style="color: var(--huegrey-text-default);">
+                  Configure API endpoints and webhook handlers for your application.
+                </div>
+              </details>
+
+              <details class="ds-accordion">
+                <summary class="ds-accordion__header">
+                  <span class="ds-accordion__title">Advanced settings</span>
+                  <span class="ds-accordion__caret"></span>
+                </summary>
+                <div class="ds-accordion__body" style="color: var(--huegrey-text-default);">
+                  Fine-tune performance, caching, and rate-limiting parameters.
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PATTERN: Inline Banner ============ -->
+      <section class="ds-section" id="strip">
+        <div class="ds-section__head">
+          <h2>Inline Banner <span style="font-size:13px; color:var(--ds-text-secondary); font-weight:400; margin-left:8px;">— Pattern</span></h2>
+          <p>Source: Figma <span class="ds-code">Inline Banner / Notification Strip (9420:10749)</span>. Full-width horizontal banner with a colored top-border accent, status icon, message, and Close button. 4 type variants (Info / Success / Warning / Error). Click Close to dismiss.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Type variants</h3>
+          <div class="ds-card ds-card--padded" style="display:flex; flex-direction:column; gap:12px;">
+
+            <div class="ds-strip ds-strip--info">
+              <span class="ds-strip__icon"></span>
+              <span class="ds-strip__text">API access is enabled for the Voting Management. API calls made to this app will be deducted from your daily limit.</span>
+              <button class="ds-strip__close">Close</button>
+            </div>
+
+            <div class="ds-strip ds-strip--success">
+              <span class="ds-strip__icon"></span>
+              <span class="ds-strip__text">API access is enabled for the Voting Management. API calls made to this app will be deducted from your daily limit.</span>
+              <button class="ds-strip__close">Close</button>
+            </div>
+
+            <div class="ds-strip ds-strip--warning">
+              <span class="ds-strip__icon"></span>
+              <span class="ds-strip__text">API access is enabled for the Voting Management. API calls made to this app will be deducted from your daily limit.</span>
+              <button class="ds-strip__close">Close</button>
+            </div>
+
+            <div class="ds-strip ds-strip--error">
+              <span class="ds-strip__icon"></span>
+              <span class="ds-strip__text">API access is enabled for the Voting Management. API calls made to this app will be deducted from your daily limit.</span>
+              <button class="ds-strip__close">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Stacked example</h3>
+          <p style="color:var(--ds-text-secondary); font-size:12px; margin: 0 0 12px;">Multiple banners stacked. Click "Close" on any to dismiss it.</p>
+          <div class="ds-card ds-card--padded" style="background: var(--ds-page-bg); display:flex; flex-direction:column; gap:8px;">
+            <div class="ds-strip ds-strip--success">
+              <span class="ds-strip__icon"></span>
+              <span class="ds-strip__text">Configuration saved successfully.</span>
+              <button class="ds-strip__close">Close</button>
+            </div>
+            <div class="ds-strip ds-strip--warning">
+              <span class="ds-strip__icon"></span>
+              <span class="ds-strip__text">Your subscription expires in 7 days. Renew now to avoid service interruption.</span>
+              <button class="ds-strip__close">Close</button>
+            </div>
+            <div class="ds-strip ds-strip--info">
+              <span class="ds-strip__icon"></span>
+              <span class="ds-strip__text">A new version is available. Refresh to get the latest features.</span>
+              <button class="ds-strip__close">Close</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer style="margin-top:64px; padding-top:24px; border-top:1px solid var(--ds-border); color: var(--ds-text-secondary); font-size:12px;">
+        <p>Generated from Figma via Dev Mode MCP. Add additional pages/components to extend this prototype.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // ----------------------------------------------------------------
+    // Theme toggle (light / dark) with localStorage persistence
+    // Sets data-theme="dark" on <html> when active.
+    // ----------------------------------------------------------------
+    (function () {
+      var STORAGE_KEY = 'ds-theme';
+      var root = document.documentElement;
+
+      function apply(theme) {
+        if (theme === 'dark') {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+        }
+      }
+
+      function current() {
+        return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      }
+
+      // Initial: read from localStorage, fall back to OS preference
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === 'dark' || saved === 'light') {
+          apply(saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          apply('dark');
+        }
+      } catch (e) { /* localStorage may be unavailable */ }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var btn = document.getElementById('ds-theme-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var next = current() === 'dark' ? 'light' : 'dark';
+          apply(next);
+          try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+        });
+      });
+    })();
+
+    // Tab-style navigation: show only the section matching the URL hash.
+    // Default to "overview" when no hash is present.
+    (function () {
+      var DEFAULT = 'overview';
+      var HEADER_ID = 'overview'; // the <header> uses this id
+
+      function showOnly(id) {
+        // toggle <header class="ds-page-header" id="overview"> visibility
+        var header = document.querySelector('.ds-page-header');
+        if (header) header.classList.toggle('is-hidden', id !== HEADER_ID);
+
+        // toggle each <section class="ds-section">
+        document.querySelectorAll('.ds-section').forEach(function (sec) {
+          sec.classList.toggle('is-hidden', sec.id !== id);
+        });
+
+        // active state on sidebar nav
+        document.querySelectorAll('.ds-nav__item').forEach(function (a) {
+          var href = a.getAttribute('href') || '';
+          a.classList.toggle('is-active', href === '#' + id);
+        });
+
+        // scroll to top of main content
+        var main = document.querySelector('.ds-main');
+        if (main) main.scrollTop = 0;
+        window.scrollTo(0, 0);
+      }
+
+      function currentId() {
+        var hash = (location.hash || '').replace(/^#/, '');
+        if (!hash) return DEFAULT;
+        // verify the target exists; otherwise fall back to default
+        if (document.getElementById(hash)) return hash;
+        return DEFAULT;
+      }
+
+      window.addEventListener('hashchange', function () {
+        showOnly(currentId());
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        showOnly(currentId());
+      });
+    })();
+
+    // ----------------------------------------------------------------
+    // Interactive checkboxes & radios
+    // Checkbox: toggle .is-checked on click; clears .is-indeterminate.
+    // Radio:    set .is-checked, clear it from siblings sharing
+    //           the same data-radio-group (or the same .ds-radio-group container).
+    // Skips disabled.
+    // ----------------------------------------------------------------
+    document.addEventListener('click', function (e) {
+      var target = e.target;
+      if (!target) return;
+
+      var nativeInteractive = target.closest('a, button, input, select, textarea');
+      var directCbx = target.closest && target.closest('.ds-checkbox');
+      var directRdo = target.closest && target.closest('.ds-radio');
+      if (nativeInteractive && !directCbx && !directRdo) return;
+
+      // ---- Radio handling ----
+      var radio = directRdo
+        || (target.closest && target.closest('.ds-radio-row, .ds-radio-card')
+            ? target.closest('.ds-radio-row, .ds-radio-card').querySelector('.ds-radio')
+            : null);
+
+      if (radio) {
+        if (radio.classList.contains('is-disabled')) return;
+        e.preventDefault();
+
+        // Find the group: either via data-radio-group attr, or all .ds-radio inside the same .ds-radio-group container
+        var group = radio.getAttribute('data-radio-group');
+        var siblings;
+        if (group) {
+          siblings = document.querySelectorAll('.ds-radio[data-radio-group="' + group + '"]');
+        } else {
+          var groupEl = radio.closest('.ds-radio-group, .ds-card');
+          siblings = groupEl ? groupEl.querySelectorAll('.ds-radio') : [radio];
+        }
+
+        siblings.forEach(function (r) {
+          r.classList.remove('is-checked');
+          // also drop is-checked on parent radio-card if any
+          var card = r.closest('.ds-radio-card');
+          if (card) card.classList.remove('is-checked');
+        });
+
+        radio.classList.add('is-checked');
+        var ownCard = radio.closest('.ds-radio-card');
+        if (ownCard) ownCard.classList.add('is-checked');
+        return;
+      }
+
+      // ---- Side menu item activation (single-active per .ds-sidemenu) ----
+      var clickedSideItem = target.closest && target.closest('.ds-sidemenu__item');
+      if (clickedSideItem && !clickedSideItem.classList.contains('is-disabled')) {
+        var menu = clickedSideItem.closest('.ds-sidemenu');
+        if (menu) {
+          menu.querySelectorAll('.ds-sidemenu__item').forEach(function (i) {
+            i.classList.remove('is-active');
+          });
+          clickedSideItem.classList.add('is-active');
+          return;
+        }
+      }
+
+      // ---- Toggle (selectable pill) — flip is-on on click ----
+      var toggle = target.closest && target.closest('.ds-toggle');
+      if (toggle && !toggle.classList.contains('is-disabled') && !toggle.classList.contains('is-disabled-before') && !toggle.classList.contains('is-disabled-after')) {
+        toggle.classList.toggle('is-on');
+        return;
+      }
+
+      // ---- Tab activation (single-active per .ds-tabs strip) ----
+      var clickedTab = target.closest && target.closest('.ds-tab');
+      if (clickedTab && !clickedTab.classList.contains('is-disabled')) {
+        var strip = clickedTab.closest('.ds-tabs');
+        if (strip) {
+          strip.querySelectorAll('.ds-tab').forEach(function (t) {
+            t.classList.remove('is-active');
+          });
+          clickedTab.classList.add('is-active');
+          return;
+        }
+      }
+
+      // ---- Dismissable close handling (tag / toast / list item / strip / etc.) ----
+      var close = target.closest && target.closest('.ds-tag__close, .ds-toast__close, .ds-list-item__close, .ds-strip__close');
+      if (close) {
+        e.preventDefault();
+        e.stopPropagation();
+        var dismissible = close.closest('.ds-tag, .ds-toast, .ds-list-item, .ds-strip');
+        if (dismissible) dismissible.remove();
+        return;
+      }
+
+      // ---- Checkbox handling ----
+      var box = directCbx
+        || (target.closest && target.closest('.ds-checkbox-row, .ds-list-row')
+            ? target.closest('.ds-checkbox-row, .ds-list-row').querySelector('.ds-checkbox')
+            : null);
+
+      if (!box) return;
+      if (box.classList.contains('is-disabled')) return;
+
+      if (box.classList.contains('is-indeterminate')) {
+        box.classList.remove('is-indeterminate');
+        box.classList.add('is-checked');
+      } else {
+        box.classList.toggle('is-checked');
+      }
+
+      var listRow = box.closest('.ds-list-row');
+      if (listRow) {
+        listRow.classList.toggle('is-selected', box.classList.contains('is-checked'));
+      }
+    });
+  </script>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var DEFAULT = 'topbar';
+
+      function showOnly(id) {
+        var header = document.querySelector('.ds-page-header');
+        if (header) header.classList.add('is-hidden');
+
+        document.querySelectorAll('.ds-section').forEach(function (sec) {
+          sec.classList.toggle('is-hidden', sec.id !== id);
+        });
+
+        document.querySelectorAll('.ds-nav__item').forEach(function (a) {
+          var href = a.getAttribute('href') || '';
+          a.classList.toggle('is-active', href === '#' + id);
+        });
+
+        var main = document.querySelector('.ds-main');
+        if (main) main.scrollTop = 0;
+      }
+
+      function currentId() {
+        var hash = (location.hash || '').replace(/^#/, '');
+        if (!hash) return DEFAULT;
+        if (document.getElementById(hash)) return hash;
+        return DEFAULT;
+      }
+
+      window.addEventListener('hashchange', function () {
+        showOnly(currentId());
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        showOnly(currentId());
+      });
+    })();
+  </script>
+  <script>
+    function toggleDsCode(btn) {
+      var section = btn.closest('.ds-section');
+      var panel = section.querySelector('.ds-code-panel');
+      if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        btn.innerHTML = '&lt;/&gt; Hide Code';
+        btn.style.background = 'transparent';
+        btn.style.color = 'var(--primary-surface-default)';
+      } else {
+        panel.style.display = 'none';
+        btn.innerHTML = '&lt;/&gt; Show Code';
+        btn.style.background = 'var(--primary-surface-default)';
+        btn.style.color = '#fff';
+      }
+    }
+    function copyDsCode(btn) {
+      var panel = btn.closest('.ds-code-panel');
+      var code = panel.querySelector('code');
+      var text = code.textContent;
+      navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = '✅ Copied!';
+        setTimeout(function() { btn.innerHTML = '&#x1F4CB; Copy'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
