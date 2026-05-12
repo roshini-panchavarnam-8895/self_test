@@ -3217,8 +3217,88 @@ lyte-drop-box.lyteDropdownUp{
     color: var(--zc-color-primary-text-primary-text-default);
 }
 
+/* --- Elevation token cards --- */
+.elevation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.elevation-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--zc-color-black-white-surface-white-surface);
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-minimal);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.elevation-card:hover {
+    border-color: var(--zc-color-primary-border-primary-border-default);
+    box-shadow: 0 2px 12px rgba(15, 82, 186, 0.10);
+}
+
+.elevation-shape {
+    width: 56px;
+    height: 56px;
+    background: var(--zc-color-black-white-surface-white-surface);
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-minimal);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.elevation-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.elevation-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--zc-color-huegrey-text-huegrey-text-dark);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.elevation-value {
+    font-size: 11px;
+    color: var(--zc-color-huegrey-text-huegrey-text-light);
+    margin-top: 2px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    word-break: break-all;
+}
+
+.elevation-badge {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.elevation-badge.color {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--zc-color-success-surface-success-surface-default);
+}
+
+.elevation-badge.shadow {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--zc-color-primary-text-primary-text-default);
+}
+
 @media (max-width: 768px) {
     .radius-grid {
+        grid-template-columns: 1fr;
+    }
+    .elevation-grid {
         grid-template-columns: 1fr;
     }
     .typo-header,

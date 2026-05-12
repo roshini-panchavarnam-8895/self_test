@@ -616,6 +616,74 @@
     --zc-radius-2xl: var(--zc-radius-18);
     --zc-radius-3xl: var(--zc-radius-20);
     --zc-radius-full: var(--zc-radius-999);
+
+    /* =============================================
+       ELEVATION TOKENS
+       ============================================= */
+
+    /* Primitive - Color */
+    --zc-elevation-color-default-5: rgba(38, 40, 43, 0.05);
+    --zc-elevation-color-default-8: rgba(38, 40, 43, 0.08);
+    --zc-elevation-color-default-12: rgba(38, 40, 43, 0.12);
+    --zc-elevation-color-default-18: rgba(38, 40, 43, 0.18);
+    --zc-elevation-color-primary-5: rgba(13, 78, 242, 0.05);
+    --zc-elevation-color-primary-8: rgba(13, 78, 242, 0.08);
+    --zc-elevation-color-primary-12: rgba(13, 78, 242, 0.12);
+    --zc-elevation-color-primary-18: rgba(13, 78, 242, 0.18);
+    --zc-elevation-color-info-5: rgba(13, 78, 242, 0.05);
+    --zc-elevation-color-info-8: rgba(13, 78, 242, 0.08);
+    --zc-elevation-color-info-12: rgba(13, 78, 242, 0.12);
+    --zc-elevation-color-info-18: rgba(13, 78, 242, 0.18);
+    --zc-elevation-color-warning-5: rgba(242, 116, 13, 0.05);
+    --zc-elevation-color-warning-8: rgba(242, 116, 13, 0.08);
+    --zc-elevation-color-warning-12: rgba(242, 116, 13, 0.12);
+    --zc-elevation-color-warning-18: rgba(242, 116, 13, 0.18);
+    --zc-elevation-color-error-5: rgba(236, 26, 19, 0.05);
+    --zc-elevation-color-error-8: rgba(236, 26, 19, 0.08);
+    --zc-elevation-color-error-12: rgba(236, 26, 19, 0.12);
+    --zc-elevation-color-error-18: rgba(236, 26, 19, 0.18);
+    --zc-elevation-color-success-5: rgba(8, 153, 73, 0.05);
+    --zc-elevation-color-success-8: rgba(8, 153, 73, 0.08);
+    --zc-elevation-color-success-12: rgba(8, 153, 73, 0.12);
+    --zc-elevation-color-success-18: rgba(8, 153, 73, 0.18);
+
+    /* Semantic Elevations (box-shadow) */
+    --zc-elevation-subtle-default: 0px 2px 2px 0px var(--zc-elevation-color-default-5);
+    --zc-elevation-subtle-primary: 0px 2px 2px 0px var(--zc-elevation-color-primary-5);
+    --zc-elevation-subtle-info: 0px 2px 2px 0px var(--zc-elevation-color-info-5);
+    --zc-elevation-subtle-success: 0px 2px 2px 0px var(--zc-elevation-color-success-5);
+    --zc-elevation-subtle-warning: 0px 2px 2px 0px var(--zc-elevation-color-warning-5);
+    --zc-elevation-subtle-error: 0px 2px 2px 0px var(--zc-elevation-color-error-5);
+    --zc-elevation-minimal-default: 0px 2px 4px 0px var(--zc-elevation-color-default-8);
+    --zc-elevation-minimal-primary: 0px 2px 4px 0px var(--zc-elevation-color-primary-8);
+    --zc-elevation-minimal-info: 0px 2px 4px 0px var(--zc-elevation-color-info-8);
+    --zc-elevation-minimal-success: 0px 2px 4px 0px var(--zc-elevation-color-success-8);
+    --zc-elevation-minimal-warning: 0px 2px 4px 0px var(--zc-elevation-color-warning-8);
+    --zc-elevation-minimal-error: 0px 2px 4px 0px var(--zc-elevation-color-error-8);
+    --zc-elevation-low-default: 0px 4px 8px 0px var(--zc-elevation-color-default-8);
+    --zc-elevation-low-primary: 0px 4px 8px 0px var(--zc-elevation-color-primary-8);
+    --zc-elevation-low-info: 0px 4px 8px 0px var(--zc-elevation-color-info-8);
+    --zc-elevation-low-success: 0px 4px 8px 0px var(--zc-elevation-color-success-8);
+    --zc-elevation-low-warning: 0px 4px 8px 0px var(--zc-elevation-color-warning-8);
+    --zc-elevation-low-error: 0px 4px 8px 0px var(--zc-elevation-color-error-8);
+    --zc-elevation-base-default: 0px 12px 16px -4px var(--zc-elevation-color-default-8);
+    --zc-elevation-base-primary: 0px 12px 16px -4px var(--zc-elevation-color-primary-8);
+    --zc-elevation-base-info: 0px 12px 16px -4px var(--zc-elevation-color-info-8);
+    --zc-elevation-base-success: 0px 12px 16px -4px var(--zc-elevation-color-success-8);
+    --zc-elevation-base-warning: 0px 12px 16px -4px var(--zc-elevation-color-warning-8);
+    --zc-elevation-base-error: 0px 12px 16px -4px var(--zc-elevation-color-error-8);
+    --zc-elevation-bold-default: 0px 20px 24px -4px var(--zc-elevation-color-default-12);
+    --zc-elevation-bold-primary: 0px 20px 24px -4px var(--zc-elevation-color-primary-12);
+    --zc-elevation-bold-info: 0px 20px 24px -4px var(--zc-elevation-color-info-12);
+    --zc-elevation-bold-success: 0px 20px 24px -4px var(--zc-elevation-color-success-12);
+    --zc-elevation-bold-warning: 0px 20px 24px -4px var(--zc-elevation-color-warning-12);
+    --zc-elevation-bold-error: 0px 20px 24px -4px var(--zc-elevation-color-error-12);
+    --zc-elevation-strong-default: 0px 24px 46px -12px var(--zc-elevation-color-default-18);
+    --zc-elevation-strong-primary: 0px 24px 46px -12px var(--zc-elevation-color-primary-18);
+    --zc-elevation-strong-info: 0px 24px 46px -12px var(--zc-elevation-color-info-18);
+    --zc-elevation-strong-success: 0px 24px 46px -12px var(--zc-elevation-color-success-18);
+    --zc-elevation-strong-warning: 0px 24px 46px -12px var(--zc-elevation-color-warning-18);
+    --zc-elevation-strong-error: 0px 24px 46px -12px var(--zc-elevation-color-error-18);
 }
 
 </style>
@@ -794,6 +862,7 @@
                             <button class="token-category-tab active" onclick="switchTokenCategory('color', this)">Color Tokens</button>
                             <button class="token-category-tab" onclick="switchTokenCategory('typography', this)">Typography Tokens</button>
                             <button class="token-category-tab" onclick="switchTokenCategory('radius', this)">Radius Tokens</button>
+                            <button class="token-category-tab" onclick="switchTokenCategory('elevation', this)">Elevation Tokens</button>
                         </div>
 
                         <!-- COLOR panel -->
@@ -874,6 +943,24 @@
                                 </div>
                                 <div class="radius-grid" id="radiusGrid"></div>
                                 <div class="token-count" id="radiusCount"></div>
+                            </div>
+                        </section>
+
+                        <!-- ELEVATION panel -->
+                        <section class="token-panel" id="tokenPanel-elevation" style="display:none;">
+                            <p class="token-section-desc">Elevation tokens define box-shadow values for layered depth. Colors come in opacity variants (5/8/12/18) and semantic shadows range from Subtle to Strong.</p>
+
+                            <div class="token-tabs" id="elevTabs">
+                                <button class="token-tab active" data-elev="color" onclick="switchElevGroup('color', this)">Color Primitives</button>
+                                <button class="token-tab" data-elev="semantic" onclick="switchElevGroup('semantic', this)">Semantic Shadows</button>
+                            </div>
+
+                            <div class="token-table-wrap">
+                                <div class="token-filter-bar">
+                                    <input type="text" class="token-search" id="elevSearch" placeholder="Search elevation tokens..." oninput="renderElevTable()">
+                                </div>
+                                <div class="elevation-grid" id="elevGrid"></div>
+                                <div class="token-count" id="elevCount"></div>
                             </div>
                         </section>
                     </div>
