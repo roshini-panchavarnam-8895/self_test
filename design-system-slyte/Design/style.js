@@ -1547,6 +1547,8 @@ function switchTokenCategory(category, btn) {
         setTimeout(renderTypoTable, 50);
     } else if (category === 'radius') {
         setTimeout(renderRadiusTable, 50);
+    } else if (category === 'elevation') {
+        setTimeout(renderElevTable, 50);
     }
 }
 
@@ -1962,6 +1964,100 @@ function renderRadiusTable() {
     if (c) c.textContent = filtered.length + ' tokens';
 }
 
+
+/* --- Elevation Tokens --- */
+
+var _elevData = null;
+var _currentElevGroup = 'color';
+
+function _parseElevationTokens() {
+    var el = document.getElementById('colorTokenStyles');
+    if (!el) return { color: [], semantic: [] };
+
+    var cssText = el.textContent || el.innerText;
+    var result = { color: [], semantic: [] };
+    var re = /--(zc-elevation-[\w-]+)\s*:\s*([^;]+)/g;
+    var m;
+    while ((m = re.exec(cssText)) !== null) {
+        var name = '--' + m[1];
+        var value = m[2].trim();
+        var isColor = name.indexOf('-color-') !== -1;
+        var slug = m[1].replace('zc-elevation-', '');
+
+        if (isColor) {
+            result.color.push({ name: name, value: value, slug: slug });
+        } else {
+            result.semantic.push({ name: name, value: value, slug: slug });
+        }
+    }
+    return result;
+}
+
+function _getElevData() {
+    if (!_elevData) _elevData = _parseElevationTokens();
+    return _elevData;
+}
+
+function switchElevGroup(group, tabEl) {
+    _currentElevGroup = group;
+    document.querySelectorAll('#elevTabs .token-tab').forEach(function(t) {
+        t.classList.remove('active');
+    });
+    if (tabEl) tabEl.classList.add('active');
+    renderElevTable();
+}
+
+function renderElevTable() {
+    var data = _getElevData();
+    var items = data[_currentElevGroup] || [];
+    var search = (document.getElementById('elevSearch') || {}).value || '';
+    search = search.toLowerCase();
+
+    var filtered = items.filter(function(t) {
+        if (!search) return true;
+        return t.name.toLowerCase().indexOf(search) !== -1 ||
+               t.value.toLowerCase().indexOf(search) !== -1;
+    });
+
+    var grid = document.getElementById('elevGrid');
+    if (!grid) return;
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div class="token-empty">No elevation tokens found.</div>';
+        var c = document.getElementById('elevCount');
+        if (c) c.textContent = '0 tokens';
+        return;
+    }
+
+    var isSemantic = _currentElevGroup === 'semantic';
+    var html = '';
+
+    filtered.forEach(function(t) {
+        var resolvedShadow = t.value.replace(/var\(([^)]+)\)/g, function(_, v) {
+            return getComputedStyle(document.documentElement).getPropertyValue(v).trim() || '';
+        });
+
+        var shapeStyle = isSemantic
+            ? 'box-shadow:' + resolvedShadow + ';'
+            : 'background:' + t.value + ';border:none;';
+
+        var badgeClass = isSemantic ? 'shadow' : 'color';
+        var badgeLabel = isSemantic ? 'Shadow' : 'Color';
+
+        html += '<div class="elevation-card" onclick="copyTokenValue(this.querySelector(\'.elevation-name\'), \'' + t.name + '\')">';
+        html += '  <div class="elevation-shape" style="' + shapeStyle + '"></div>';
+        html += '  <div class="elevation-info">';
+        html += '    <div class="elevation-name">' + t.name + '</div>';
+        html += '    <div class="elevation-value">' + t.value + '</div>';
+        html += '    <span class="elevation-badge ' + badgeClass + '">' + badgeLabel + '</span>';
+        html += '  </div>';
+        html += '</div>';
+    });
+
+    grid.innerHTML = html;
+    var c = document.getElementById('elevCount');
+    if (c) c.textContent = filtered.length + ' tokens';
+}
 
 /* ╔═══════════════════════════════════════════════════════════════════════════════╗
    ║  LISTING CARD – SHOW CODE TOGGLE / TAB SWITCH / COPY                        ║
