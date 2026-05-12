@@ -314,6 +314,56 @@ function switchSection(sectionName, navElement) {
     if (sectionName === 'all-components' && !window._allComponentsInitialized) {
         initAllComponentsSection();
     }
+    // Icons page: build grid from zc-common-icons sprite (first visit)
+    if (sectionName === 'icons' && !window._iconsSectionInitialized) {
+        initIconsSection();
+    }
+}
+
+var _svgIconIds = [];
+function initIconsSection() {
+    var sprite = document.getElementById('zcIconSprite');
+    if (!sprite) return;
+    var nodes = sprite.querySelectorAll('svg[id^="zc-"]');
+    _svgIconIds = [];
+    nodes.forEach(function(n) { if (n.id) _svgIconIds.push(n.id); });
+    _svgIconIds.sort();
+    renderSvgIcons(_svgIconIds);
+    window._iconsSectionInitialized = true;
+}
+
+function renderSvgIcons(ids) {
+    var grid = document.getElementById('zcIconGrid');
+    if (!grid) return;
+    var html = '';
+    ids.forEach(function(id) {
+        html += '<figure class="icon-library-card" onclick="copyIconName(\'' + id + '\', this)">';
+        html += '  <div class="icon-library-preview" aria-hidden="true">';
+        html += '    <svg class="zc-svg-icon" width="28" height="28" aria-hidden="true"><use href="#' + id + '"></use></svg>';
+        html += '  </div>';
+        html += '  <figcaption class="icon-library-id"><code>' + id + '</code></figcaption>';
+        html += '</figure>';
+    });
+    grid.innerHTML = html || '<p class="token-section-desc">No icons match your search.</p>';
+    var c = document.getElementById('svgIconCount');
+    if (c) c.textContent = ids.length + ' icons';
+}
+
+function filterSvgIcons() {
+    var q = (document.getElementById('iconSvgSearch') || {}).value || '';
+    q = q.toLowerCase();
+    var filtered = _svgIconIds.filter(function(id) { return !q || id.toLowerCase().indexOf(q) !== -1; });
+    renderSvgIcons(filtered);
+}
+
+function copyIconName(name, el) {
+    navigator.clipboard.writeText(name).then(function() {
+        var code = el.querySelector('code');
+        if (!code) return;
+        var orig = code.textContent;
+        code.textContent = 'Copied!';
+        setTimeout(function() { code.textContent = orig; }, 1200);
+    });
 }
 
 /**

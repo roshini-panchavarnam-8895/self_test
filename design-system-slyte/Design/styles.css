@@ -3952,3 +3952,69 @@ lyte-input input {
 .zc-input-wrapper input::placeholder {
     color: var(--zc-color-huegrey-text-huegrey-text-fairish) !important;
 }
+
+/* C6 builder SVG sprite (zc-common-icons) — use with <use href="#zc-…"> */
+.zc-svg-icon {
+    display: inline-block;
+    vertical-align: middle;
+    fill: none;
+    color: inherit;
+    flex-shrink: 0;
+}
+
+/* Icons page — zc-common-icons sprite preview grid */
+.icon-library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.icon-library-card {
+    margin: 0;
+    padding: 16px 12px;
+    background: var(--zc-color-black-white-surface-white-surface);
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-minimal);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.icon-library-card:hover {
+    border-color: var(--zc-color-primary-border-primary-border-default);
+    box-shadow: 0 2px 8px rgba(13, 78, 242, 0.08);
+}
+
+.icon-library-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    color: var(--zc-color-huegrey-text-huegrey-text-dark);
+}
+
+.icon-library-card .zc-svg-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.icon-library-id {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--zc-color-huegrey-text-huegrey-text-default);
+    word-break: break-all;
+}
+
+.icon-library-id code {
+    font-size: 11px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    background: var(--zc-color-neutral-surface-neutral-surface-subtle);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
