@@ -257,17 +257,19 @@ function toggleDarkMode(btn) {
         document.getElementById('darkModeLabel').textContent = 'Light Mode';
     }
 
-    var iframe = document.querySelector('#section-ai-design iframe');
-    if (iframe && iframe.contentDocument) {
-        var iframeRoot = iframe.contentDocument.documentElement;
-        if (isDark) {
-            iframeRoot.removeAttribute('creator-theme');
-            iframeRoot.removeAttribute('data-theme');
-        } else {
-            iframeRoot.setAttribute('creator-theme', 'dark');
-            iframeRoot.setAttribute('data-theme', 'dark');
+    var iframes = document.querySelectorAll('#section-ai-design iframe, #patternsIframe');
+    iframes.forEach(function(iframe) {
+        if (iframe && iframe.contentDocument) {
+            var iframeRoot = iframe.contentDocument.documentElement;
+            if (isDark) {
+                iframeRoot.removeAttribute('creator-theme');
+                iframeRoot.removeAttribute('data-theme');
+            } else {
+                iframeRoot.setAttribute('creator-theme', 'dark');
+                iframeRoot.setAttribute('data-theme', 'dark');
+            }
         }
-    }
+    });
 }
 
 /**
@@ -317,6 +319,19 @@ function switchSection(sectionName, navElement) {
     // Icons page: build grid from zc-common-icons sprite (first visit)
     if (sectionName === 'icons' && !window._iconsSectionInitialized) {
         initIconsSection();
+    }
+    // Sync dark mode into iframes when switching to their sections
+    if (sectionName === 'patterns' || sectionName === 'ai-design') {
+        var isDark = document.documentElement.getAttribute('creator-theme') === 'dark';
+        if (isDark) {
+            var iframes = document.querySelectorAll('#section-ai-design iframe, #patternsIframe');
+            iframes.forEach(function(iframe) {
+                if (iframe && iframe.contentDocument) {
+                    iframe.contentDocument.documentElement.setAttribute('creator-theme', 'dark');
+                    iframe.contentDocument.documentElement.setAttribute('data-theme', 'dark');
+                }
+            });
+        }
     }
 }
 
