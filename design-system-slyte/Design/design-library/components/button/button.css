@@ -795,3 +795,32 @@
 .zc-btn.zc-btn-full button {
   width: 100%;
 }
+
+/* ---------------------------------------------------------------------------
+   FORCED HOVER — .zc-btn-hover shows hover appearance without interaction
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-fill.zc-btn-hover button {
+  background-color: var(--zc-color-primary-surface-default-hover);
+  border-color: var(--zc-color-primary-surface-default-hover);
+}
+.zc-btn.zc-btn-border.zc-btn-hover button {
+  background-color: var(--zc-color-primary-surface-subtle);
+  border-color: var(--zc-color-primary-border-default-hover);
+  color: var(--zc-color-primary-text-default-hover);
+}
+.zc-btn.zc-btn-minimal-border.zc-btn-hover button {
+  background-color: var(--zc-color-primary-surface-subtle);
+  border-color: var(--zc-color-primary-border-minimal);
+  color: var(--zc-color-primary-text-default-hover);
+}
+.zc-btn.zc-btn-minimal-fill.zc-btn-hover button {
+  background-color: var(--zc-color-primary-surface-low);
+  color: var(--zc-color-primary-text-default-hover);
+}
+.zc-btn.zc-btn-link.zc-btn-hover button {
+  background-color: var(--zc-color-primary-surface-subtle);
+  color: var(--zc-color-primary-text-default-hover);
+}
+.zc-btn.zc-btn-hyperlink.zc-btn-hover button {
+  color: var(--zc-color-primary-text-default-hover);
+}
