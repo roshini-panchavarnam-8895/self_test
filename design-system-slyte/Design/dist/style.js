@@ -1058,6 +1058,13 @@ function addRippleEffect(element) {
  */
 function setupCardGridMode(view) {
     if (view.dataset.cardGridReady) return;
+
+    // New section-based layout uses .btn-section — skip card-grid conversion
+    if (view.querySelector('.btn-section')) {
+        view.dataset.cardGridReady = 'true';
+        return;
+    }
+
     view.classList.add('card-grid-mode');
 
     var variantGroups = view.querySelectorAll('.btn-variant-group');
@@ -1202,7 +1209,7 @@ function navigateToComponent(componentName) {
             }
 
             if (!isFileProtocol) {
-                fetch(componentSrc)
+                fetch(componentSrc + '?v=' + Date.now())
                     .then(function(response) {
                         if (!response.ok) throw new Error('HTTP ' + response.status);
                         return response.text();
