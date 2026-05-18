@@ -1,0 +1,99 @@
+:root {
+    /* Primary / Accent colors */
+    --primary-color: #5051F9;
+    --primary-opacity: #5353f91f;
+
+    /* Common Colors */
+    --secondary-color: #F6F6F6; /* want to check */
+    --disable-color: #F3F4F8; /* Need to change the color */
+    --tertiary-color: #EDEDF4;
+    
+    /* Background colors */
+    --primary-bg-color: #F3F4F8;
+    --secondary-bg-color: #F8F8FB;
+    --tertiary-bg-color: #F8F8FB;
+    --quaternary-bg-color: #FAFBFF;
+    --primary-background-text-color: #fff;
+
+    /* Text colors */
+    --primary-text-color: #12132B;
+    --secondary-text-color: #2F305D;
+    --tertiary-text-color: #606189;
+    --disable-text-color: var(--tertiary-text-color);
+    --primary-bg-text-color: #fff;
+
+    /* Error colors */
+    --error-bg-color: #ffffff;
+    --error-text-color: #E61F1F;
+    --error-border-color: var(--error-text-color);
+    --error-hover-bg-color: #FFF3F3;
+
+    /* Warning colors */
+    --warning-bg-color: #FFF8E0;
+    --warning-text-color: #2C291D;
+    --warning-border-color: #ECD790;
+
+    /* Border colors */
+    --primary-border-color: #CBCBDC;
+    --secondary-border-color: #DCDCE7; 
+    --tertiary-border-color: #E7E7EE;
+    --quaternary-border-color: #F6F6F9;
+
+    /* Icons colors */
+    --primary-icons-color: #71718C;
+    --secondary-icons-color: #727793;
+    --tertiary-icons-color: #606189;
+
+    /* Boxshadow colors */
+    --light-box-shadow-color: rgba(176, 176, 194, 0.36);
+    --dark-box-shadow-color: #F1F1F5;
+
+    /* Card colors */
+    --card-bg-color: #fff;
+    --card-hover-bg-color: var(--submenu-hover-bg-color);
+    --card-border-color: var(--secondary-border-color);
+    --card-container-bg-color: #FAFBFF;
+
+    /* Header Colors */
+    --admin-bar-background: #F3F3F7;
+
+    /* Calendar colors */
+    --calendar-selected-bg-color: #F1F1FF;
+
+    /* dark colors */
+    --dark-primary-color: #121219;
+    --dark-secondary-color: #282A57;
+    --dark-tertiary-color: #DBDBE9;
+    --dark-primary-hover-bg: #3F3F68;
+    --dark-border-color: #313367;
+
+    /* Form colors */
+    --form-label-text-color: #111136;
+
+    /* Image border color */
+    --custom-card-image-border-color: #D2D9DB;
+    --custom-card-image-bg-color: #FAFCFC;
+
+    /* Toast colors */
+    --info-toast-border-color: #D7D7EF;
+
+    /* count badge */
+    --count-badge-bg-color: #E9E9F3;
+
+    /* scrollbar */
+    --scrollbar-default-bg-color: #B7B8BF;
+    --scrollbar-hover-bg-color: #A3A4AA;
+    
+    /* Default image icon color */
+    --default-img-color: #96A4AA;
+
+    /* Tooltip */
+    --tooltip-bg-color: var(--primary-text-color);
+    --tooltip-light-bg-color: rgba(255, 255, 255, 0.73);
+
+    /* new variable unification */
+    --zc-primary-text-color: var(--primary-text-color);
+    --zc-secondary-text-color: var(--secondary-text-color);
+    --zc-tertiary-text-color: var(--tertiary-text-color);
+    --zc-tertiary-border-color: var(--tertiary-border-color);
+}

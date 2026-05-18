@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signature Field — Zoho Creator</title>
+  <link rel="stylesheet" href="signature-field.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix zc-signature-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Signature</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="signature-outer">
+          <div class="signature-header">
+            <div class="signature-fieldtext">Draw your signature</div>
+            <div class="signature-clear"><a class="signature-clear-btn" role="button">[Clear]</a></div>
+          </div>
+          <div class="signature-div">
+            <div class="signature-line-div"></div>
+            <canvas class="jSignature" width="300" height="101" aria-label="Signature pad"></canvas>
+          </div>
+        </div>
+        <div class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix zc-signature-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Signature<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="signature-outer">
+          <div class="signature-header">
+            <div class="signature-fieldtext">Draw your signature</div>
+            <div class="signature-clear"><a class="signature-clear-btn" role="button">[Clear]</a></div>
+          </div>
+          <div class="signature-div">
+            <div class="signature-line-div"></div>
+            <canvas class="jSignature" width="300" height="101" aria-label="Signature pad"></canvas>
+          </div>
+        </div>
+        <div class="fieldErrorMsg" role="alert"><span>This field is mandatory. Provide a signature.</span></div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-signature-field-group zc-field-disabled">
+      <label class="form-label">
+        <span class="zc-label-text">Signature</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="signature-outer">
+          <div class="signature-header">
+            <div class="signature-fieldtext">Draw your signature</div>
+            <div class="signature-clear"><a class="signature-clear-btn" role="button">[Clear]</a></div>
+          </div>
+          <div class="signature-div">
+            <div class="signature-line-div"></div>
+            <canvas class="jSignature" width="300" height="101" aria-label="Signature pad"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

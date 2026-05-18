@@ -1,0 +1,54 @@
+@use '../common' as c;
+@include c.all();
+
+.section-group {
+  display: block;
+  width: 100%;
+  margin-bottom: 30px;
+  color: rgb(18, 19, 43);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: 20.71px;
+}
+
+.form-section {
+  display: block;
+  width: 100%;
+  color: rgb(18, 19, 43);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: 20.71px;
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  hr {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 1px;
+    margin: 7.25px auto;
+    padding: 0;
+    border: none;
+    background-color: rgb(220, 220, 231);
+  }
+}
+
+.section-label {
+  color: rgb(18, 19, 43);
+  font-family: var(--zc-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22.86px;
+}
+
+.section-description {
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgb(47, 48, 93);
+}

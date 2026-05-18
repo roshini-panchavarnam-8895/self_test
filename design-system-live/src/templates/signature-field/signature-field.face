@@ -1,0 +1,47 @@
+{% comment %} Signature Field — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "signature" %}
+{% assign field_name = field.name | default: "Signature" %}
+{% assign field_label = field.label | default: "Signature" %}
+{% assign canvas_width = field.canvas_width | default: "300" %}
+{% assign canvas_height = field.canvas_height | default: "101" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-signature-field-group" data-element-type="signature-field" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_signature_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix">
+    <div name="{{ field_name }}">
+      <div>
+        <div class="signature-outer zc-elem-focus-field">
+          <div class="signature-header">
+            <div class="signature-fieldtext" id="zc-{{ field_name }}-fieldtext">{{ field.placeholder | default: "Draw your signature" }}</div>
+            <div class="signature-clear">
+              <span style="display:none;"><a class="zc-elem-focus-field">[Restore]</a></span>
+              <span><a class="zc-elem-focus-field" role="button">[Clear]</a></span>
+            </div>
+          </div>
+          <textarea name="{{ field_name }}" style="display:none;"></textarea>
+          <div class="signature-div">
+            <div class="signature-line-div"></div>
+            <div style="padding:0 !important; margin:0 !important;width: 100% !important; height: 0 !important; -ms-touch-action: none; touch-action: none;margin-top:-1em !important; margin-bottom:1em !important;"></div>
+            <canvas class="jSignature" width="{{ canvas_width }}" height="{{ canvas_height }}" style="margin: 0px; padding: 0px; border: none; height: 100px; width: 300px; touch-action: none; background-color: rgb(255, 255, 255);"></canvas>
+            <div style="padding:0 !important; margin:0 !important;width: 100% !important; height: 0 !important; -ms-touch-action: none; touch-action: none;margin-top:-1.5em !important; margin-bottom:1.5em !important; position: relative;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="signature_field" style="display:none;">
+        <a class="zc-elem-focus-field">[Change]</a>
+      </div>
+    </div>
+  </div>
+
+</div>

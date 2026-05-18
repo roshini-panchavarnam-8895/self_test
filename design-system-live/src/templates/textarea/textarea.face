@@ -1,0 +1,39 @@
+{% comment %} Textarea — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "multi-line" %}
+{% assign field_name = field.name | default: "Multi_Line" %}
+{% assign field_label = field.label | default: "Multi Line" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group" data-element-type="textarea" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_textarea_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="clearfix form-field smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <textarea
+      class="form-control zc_textareafield zc-{{ field_name }}"
+      type="text"
+      name="{{ field_name }}"
+      id="zc-{{ field_name }}"
+      {% if field.required %}
+        required
+        aria-required="true"
+      {% endif %}
+    ></textarea>
+
+    {% if field.error %}
+      <div class="fieldErrorMsg zc-field-error-msg zc-dem-box-sizing" id="zc-{{ field_name }}-errorMsg" style="min-width:240px;width:240px">
+        {% block error_icon %}{% endblock %}
+        <span>{{ field.error_message | default: "This field is mandatory. Enter a value." }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+</div>

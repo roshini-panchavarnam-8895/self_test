@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar Report Component</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ====== CSS RESET & BASE ====== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 14.5px;
+  color: #12132b;
+  background: #f0eff4;
+  padding: 30px;
+}
+
+/* ====== CALENDAR COMPONENT CONTAINER ====== */
+.calendar-component {
+  background: #fff;
+  border: 1px solid #e7e7ee;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 5px 5px 20px rgba(20,21,30,0.05);
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ====== REPORT HEADER ====== */
+.report-header {
+  background: #f7f6f9;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+}
+.report-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #12132b;
+  letter-spacing: 0.1px;
+}
+.toolbar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #cbcbdc;
+  background: #fff;
+  color: #71718c;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.toolbar-btn:hover { background: #f0eff4; border-color: #b0b0c0; }
+.toolbar-btn.add-btn { background: #8643f4; border-color: transparent; color: #fff; }
+.toolbar-btn.add-btn:hover { background: #7d31f6; }
+.toolbar-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ====== CALENDAR CONTROLS ====== */
+.calendar-controls {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.view-toggle { display: flex; }
+.view-toggle-btn {
+  padding: 8px 15px;
+  font-size: 14.5px;
+  font-family: 'Lato', sans-serif;
+  border: 1px solid #cbcbdc;
+  background: #fff;
+  color: #12132b;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+.view-toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+.view-toggle-btn:nth-child(2) { margin-left: -1px; }
+.view-toggle-btn:last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }
+.view-toggle-btn.active { background: #7d31f6; border-color: transparent; color: #fff; }
+.view-toggle-btn:not(.active):hover { background: #f7f6f9; }
+
+.date-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #12132b;
+  text-align: center;
+  flex: 1;
+}
+.nav-controls { display: flex; align-items: center; gap: 10px; }
+.nav-btn-group { display: flex; }
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid #cbcbdc;
+  background: #fff;
+  color: #12132b;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 18px;
+  line-height: 1;
+}
+.nav-btn:first-child { border-radius: 8px 0 0 8px; }
+.nav-btn:last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }
+.nav-btn:hover { background: #f0eff4; }
+.today-btn {
+  font-size: 14.5px;
+  font-family: 'Lato', sans-serif;
+  color: #12132b;
+  background: none;
+  border: 1px solid #cbcbdc;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.today-btn:hover { background: #f0eff4; }
+.datepicker-btn {
+  width: 34px; height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #cbcbdc;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #71718c;
+  transition: background 0.15s;
+}
+.datepicker-btn:hover { background: #f0eff4; }
+.datepicker-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* ====== CALENDAR GRID ====== */
+.calendar-grid-wrapper {
+  padding: 0 14px;
+  overflow: auto;
+}
+
+/* ---- MONTH VIEW ---- */
+.cal-month-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.cal-month-table thead th {
+  background: #fafbff;
+  color: #333;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #cbcbdc;
+  text-align: center;
+  height: 40px;
+  padding: 0;
+}
+.cal-month-table tbody td {
+  border: 1px solid #cbcbdc;
+  height: 100px;
+  vertical-align: top;
+  padding: 0;
+  position: relative;
+  background: #fff;
+}
+.cal-month-table tbody td.today {
+  background: rgba(135, 67, 244, 0.12);
+}
+.cal-month-table tbody td .day-num {
+  display: block;
+  text-align: right;
+  padding: 4px 10px;
+  font-size: 14.5px;
+  color: #12132b;
+  cursor: pointer;
+}
+.cal-month-table tbody td .day-num:hover {
+  color: #7d31f6;
+}
+.cal-month-table tbody td.other-month .day-num {
+  opacity: 0.3;
+}
+
+/* ---- WEEK VIEW ---- */
+.cal-week-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.cal-week-table thead th {
+  background: #fafbff;
+  color: #333;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #cbcbdc;
+  text-align: center;
+  height: 40px;
+  padding: 0;
+}
+.cal-week-table tbody td {
+  border: 1px solid #cbcbdc;
+  height: 450px;
+  vertical-align: top;
+  padding: 0;
+  background: #fff;
+}
+.cal-week-table tbody td.today {
+  background: rgba(135, 67, 244, 0.12);
+}
+
+/* ---- DAY VIEW ---- */
+.cal-day-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.cal-day-table thead th {
+  background: #fafbff;
+  color: #333;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #cbcbdc;
+  text-align: center;
+  height: 40px;
+  padding: 0;
+}
+.cal-day-table tbody td {
+  border: 1px solid #cbcbdc;
+  height: 500px;
+  vertical-align: top;
+  padding: 0;
+  background: rgba(135, 67, 244, 0.12);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  body { padding: 10px; }
+  .calendar-controls { flex-wrap: wrap; gap: 10px; }
+  .date-label { order: -1; width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="calendar-component" id="calendarComponent">
+  <!-- Report Header -->
+  <div class="report-header">
+    <span class="report-title">calendar report</span>
+    <div class="toolbar">
+      <button class="toolbar-btn search-btn" title="Search">
+        <svg viewBox="0 0 512 512"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+      </button>
+      <button class="toolbar-btn add-btn" title="Add">
+        <svg viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg>
+      </button>
+      <button class="toolbar-btn more-btn" title="More Options">
+        <svg viewBox="0 0 512 192"><circle cx="60" cy="96" r="48"/><circle cx="256" cy="96" r="48"/><circle cx="452" cy="96" r="48"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Calendar Controls -->
+  <div class="calendar-controls">
+    <div class="view-toggle">
+      <button class="view-toggle-btn active" id="monthViewBtn" onclick="switchView('month')">Month</button>
+      <button class="view-toggle-btn" id="weekViewBtn" onclick="switchView('week')">Week</button>
+      <button class="view-toggle-btn" id="dayViewBtn" onclick="switchView('day')">Day</button>
+    </div>
+    <div class="date-label" id="dateLabel"></div>
+    <div class="nav-controls">
+      <div class="nav-btn-group">
+        <button class="nav-btn" onclick="navigateCal(-1)" title="Previous">&#8249;</button>
+        <button class="nav-btn" onclick="navigateCal(1)" title="Next">&#8250;</button>
+      </div>
+      <button class="today-btn" onclick="goToday()">Today</button>
+      <button class="datepicker-btn" title="Pick Date">
+        <svg viewBox="0 0 448 512"><path d="M12 192h424c6.6 0 12 5.4 12 12v260c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V204c0-6.6 5.4-12 12-12zm436-44v-36c0-26.5-21.5-48-48-48h-48V12c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v52H160V12c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v52H48C21.5 64 0 85.5 0 112v36c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div class="calendar-grid-wrapper" id="gridWrapper"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var currentView = 'month';
+  var currentDate = new Date();
+  var todayDate = new Date();
+
+  var dayNamesShort = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var dayNamesFull = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var monthNamesShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function isSameDay(a, b) {
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+
+  function getWeekStart(d) {
+    var s = new Date(d);
+    s.setDate(d.getDate() - d.getDay());
+    s.setHours(0,0,0,0);
+    return s;
+  }
+
+  /* ---- Date label ---- */
+  function updateDateLabel() {
+    var label = document.getElementById('dateLabel');
+    if (currentView === 'month') {
+      label.textContent = monthNames[currentDate.getMonth()] + ', ' + currentDate.getFullYear();
+    } else if (currentView === 'week') {
+      var start = getWeekStart(currentDate);
+      var end = new Date(start); end.setDate(start.getDate() + 6);
+      if (start.getMonth() === end.getMonth()) {
+        label.textContent = monthNames[start.getMonth()] + ' ' + pad(start.getDate()) + ' \u2013 ' + pad(end.getDate()) + ', ' + start.getFullYear();
+      } else {
+        label.textContent = monthNames[start.getMonth()] + ' ' + pad(start.getDate()) + ' \u2013 ' + monthNames[end.getMonth()] + ' ' + pad(end.getDate()) + ', ' + end.getFullYear();
+      }
+    } else {
+      label.textContent = dayNamesFull[currentDate.getDay()] + ', ' + monthNames[currentDate.getMonth()] + ' ' + pad(currentDate.getDate()) + ', ' + currentDate.getFullYear();
+    }
+  }
+
+  /* ---- Render ---- */
+  function render() {
+    var w = document.getElementById('gridWrapper');
+    if (currentView === 'month') renderMonth(w);
+    else if (currentView === 'week') renderWeek(w);
+    else renderDay(w);
+    updateDateLabel();
+  }
+
+  /* ---- Month View ---- */
+  function renderMonth(w) {
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth();
+    var firstDay = new Date(year, month, 1);
+    var lastDay = new Date(year, month + 1, 0);
+    var startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - startDate.getDay()); // back to Sunday
+
+    var html = '<table class="cal-month-table"><thead><tr>';
+    for (var d = 0; d < 7; d++) html += '<th>' + dayNamesFull[d] + '</th>';
+    html += '</tr></thead><tbody>';
+
+    var current = new Date(startDate);
+    for (var row = 0; row < 6; row++) {
+      html += '<tr>';
+      for (var col = 0; col < 7; col++) {
+        var isToday = isSameDay(current, todayDate);
+        var isOther = current.getMonth() !== month;
+        var cls = [];
+        if (isToday) cls.push('today');
+        if (isOther) cls.push('other-month');
+        html += '<td class="' + cls.join(' ') + '"><span class="day-num">' + current.getDate() + '</span></td>';
+        current.setDate(current.getDate() + 1);
+      }
+      html += '</tr>';
+    }
+    html += '</tbody></table>';
+    w.innerHTML = html;
+  }
+
+  /* ---- Week View ---- */
+  function renderWeek(w) {
+    var start = getWeekStart(currentDate);
+    var html = '<table class="cal-week-table"><thead><tr>';
+    for (var d = 0; d < 7; d++) {
+      var dd = new Date(start); dd.setDate(start.getDate() + d);
+      html += '<th>' + dayNamesShort[dd.getDay()] + ', ' + pad(dd.getDate()) + ' ' + monthNamesShort[dd.getMonth()] + '</th>';
+    }
+    html += '</tr></thead><tbody><tr>';
+    for (var d2 = 0; d2 < 7; d2++) {
+      var dd2 = new Date(start); dd2.setDate(start.getDate() + d2);
+      var isToday = isSameDay(dd2, todayDate);
+      html += '<td class="' + (isToday ? 'today' : '') + '"></td>';
+    }
+    html += '</tr></tbody></table>';
+    w.innerHTML = html;
+  }
+
+  /* ---- Day View ---- */
+  function renderDay(w) {
+    var html = '<table class="cal-day-table"><thead><tr>';
+    html += '<th>' + dayNamesFull[currentDate.getDay()] + '</th>';
+    html += '</tr></thead><tbody><tr>';
+    html += '<td></td>';
+    html += '</tr></tbody></table>';
+    w.innerHTML = html;
+  }
+
+  /* ---- Public API ---- */
+  window.switchView = function(view) {
+    currentView = view;
+    document.getElementById('monthViewBtn').classList.toggle('active', view === 'month');
+    document.getElementById('weekViewBtn').classList.toggle('active', view === 'week');
+    document.getElementById('dayViewBtn').classList.toggle('active', view === 'day');
+    render();
+  };
+
+  window.navigateCal = function(dir) {
+    if (currentView === 'month') {
+      currentDate.setMonth(currentDate.getMonth() + dir);
+    } else if (currentView === 'week') {
+      currentDate.setDate(currentDate.getDate() + dir * 7);
+    } else {
+      currentDate.setDate(currentDate.getDate() + dir);
+    }
+    render();
+  };
+
+  window.goToday = function() {
+    currentDate = new Date();
+    render();
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>

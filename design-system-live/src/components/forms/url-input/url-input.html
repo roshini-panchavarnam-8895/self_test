@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Url Input — Zoho Creator</title>
+  <link rel="stylesheet" href="url-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-url">
+        <span class="zc-label-text">URL</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control" type="url" name="URL" id="zc-url" maxlength="2083" placeholder="https://example.com" autocomplete="url" aria-describedby="zc-url-help">
+        <div id="zc-url-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-url-err">
+        <span class="zc-label-text">URL<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <input class="form-control" type="url" name="URL_Err" id="zc-url-err" maxlength="2083" autocomplete="url" required aria-required="true" aria-invalid="true" aria-describedby="zc-url-error">
+        <div id="zc-url-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-url-dis">
+        <span class="zc-label-text">URL</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control" type="url" name="URL_Dis" id="zc-url-dis" placeholder="Disabled" disabled aria-disabled="true">
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

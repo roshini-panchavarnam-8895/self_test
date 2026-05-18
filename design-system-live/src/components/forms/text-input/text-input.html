@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Input — Zoho Creator</title>
+  <link rel="stylesheet" href="text-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-single-line">
+        <span class="zc-label-text">Single Line</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control" type="text" name="Single_Line" id="zc-single-line" maxlength="255" autocomplete="off" placeholder="Enter text" aria-describedby="zc-single-line-help">
+        <div id="zc-single-line-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-single-line-err">
+        <span class="zc-label-text">Single Line<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <input class="form-control" type="text" name="Single_Line_Err" id="zc-single-line-err" maxlength="255" required aria-required="true" aria-invalid="true" aria-describedby="zc-single-line-error" autocomplete="off">
+        <div id="zc-single-line-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-single-line-dis">
+        <span class="zc-label-text">Single Line</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <input class="form-control" type="text" name="Single_Line_Dis" id="zc-single-line-dis" placeholder="Disabled field" disabled aria-disabled="true">
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

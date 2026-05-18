@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percent Input — Zoho Creator</title>
+  <link rel="stylesheet" href="percent-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-percent">
+        <span class="zc-label-text">Percent</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix zc-percent-field">
+        <input class="form-control zc-numberfield" type="text" name="Percent" id="zc-percent" placeholder="##.##" inputmode="decimal" aria-describedby="zc-percent-help">
+        <div id="zc-percent-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-percent-err">
+        <span class="zc-label-text">Percent<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix zc-percent-field validationError">
+        <input class="form-control zc-numberfield" type="text" name="Percent_Err" id="zc-percent-err" placeholder="##.##" inputmode="decimal" required aria-required="true" aria-invalid="true" aria-describedby="zc-percent-error">
+        <div id="zc-percent-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-percent-dis">
+        <span class="zc-label-text">Percent</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix zc-percent-field">
+        <input class="form-control zc-numberfield" type="text" name="Percent_Dis" id="zc-percent-dis" placeholder="Disabled" inputmode="decimal" disabled aria-disabled="true">
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

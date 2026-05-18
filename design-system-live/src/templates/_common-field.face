@@ -1,0 +1,59 @@
+{% comment %}
+  Common Form Field Components — Reusable FACE includes
+  These blocks are shared across all form field .face templates.
+{% endcomment %}
+
+{% comment %} ===== Error SVG Icon ===== {% endcomment %}
+{% block error_icon %}
+<svg class="zc-field-error-msg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+  <line x1="12" y1="9" x2="12" y2="13"/>
+  <line x1="12" y1="17" x2="12.01" y2="17"/>
+</svg>
+{% endblock %}
+
+{% comment %} ===== Upload SVG Icon ===== {% endcomment %}
+{% block upload_icon %}
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6061a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+  <polyline points="17 8 12 3 7 8"/>
+  <line x1="12" y1="3" x2="12" y2="15"/>
+</svg>
+{% endblock %}
+
+{% comment %} ===== Field Label (standard) ===== {% endcomment %}
+{% block field_label %}
+<label for="{{ field.id }}" class="form-label">
+  {{ field.label }}
+  {% if field.required %}
+    <span class="zc-form-required" aria-hidden="true">*</span>
+    <span class="zc-sr-only">(required)</span>
+  {% endif %}
+</label>
+{% endblock %}
+
+{% comment %} ===== Field Label (fieldset / legend) ===== {% endcomment %}
+{% block field_legend %}
+<legend class="form-label">
+  {{ field.label }}
+  {% if field.required %}
+    <span class="zc-form-required" aria-hidden="true">*</span>
+    <span class="zc-sr-only">(required)</span>
+  {% endif %}
+</legend>
+{% endblock %}
+
+{% comment %} ===== Help Text ===== {% endcomment %}
+{% block help_text %}
+{% if field.help_text %}
+<span id="{{ field.id }}-hint" class="zc-help-txt">{{ field.help_text }}</span>
+{% endif %}
+{% endblock %}
+
+{% comment %} ===== Error Text ===== {% endcomment %}
+{% block error_text %}
+<div id="{{ field.id }}-error" class="fieldErrorMsg zc-field-error-msg zc-dem-box-sizing" role="alert" hidden>
+  {% block error_icon %}{% endblock %}
+  <span>{{ field.error_message }}</span>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% comment %} Currency Input — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "currency" %}
+{% assign field_name = field.name | default: "Currency" %}
+{% assign field_label = field.label | default: "Currency" %}
+{% assign field_placeholder = field.placeholder | default: "#,###,###.##" %}
+{% assign currency_symbol = field.currency_symbol | default: "£" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group" data-element-type="currency-input" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_currency_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix zc-email-field smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <input
+      class="form-control zc_numberfield zc_currency_field zc-{{ field_name }}"
+      type="text"
+      placeholder="{{ field_placeholder }}"
+      name="{{ field_name }}"
+      id="zc-{{ field_name }}"
+      {% if field.required %}
+        required
+        aria-required="true"
+      {% endif %}
+      autocomplete="off">
+    <i class="zc-prepend-icon">{{ currency_symbol }}</i>
+  </div>
+
+</div>

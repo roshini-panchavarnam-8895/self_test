@@ -1,0 +1,375 @@
+{
+  "_meta": {
+    "description": "Two-way design system sync map between Figma (CDS Tokens collection) and design-library.html CSS custom properties",
+    "figmaFile": "Live Mode Design Library (Rose)",
+    "figmaFileKey": "gxa4RQDibjzUe7BnyPn221",
+    "figmaPage": "form field components",
+    "figmaCollection": "CDS Tokens",
+    "figmaCollectionId": "VariableCollectionId:5:2",
+    "figmaModeId": "5:0",
+    "figmaModeName": "Live Mode",
+    "codeFile": "design-library.html",
+    "cssRootLines": "11312-11370",
+    "lastFullSync": "2026-03-13T14:44:28.758Z",
+    "lastFullSyncResult": null,
+    "instructions": "When syncing: read this file + Figma variables via figma_get_variables (collection: CDS Tokens, resolveAliases: true, refreshCache: true) + CSS :root blocks from design-library.html. Diff all three, show preview table, wait for approval, apply changes, update lastSync."
+  },
+  "tokens": {
+    "colors": {
+      "--primary-color": {
+        "cssProperty": "--primary-color",
+        "cssValue": "#5051F9",
+        "figmaVariable": "Color/Alias/Primary/Primary_Base ✦",
+        "figmaVariableId": "VariableID:5:250",
+        "figmaResolvedValue": "#5051F9",
+        "type": "COLOR",
+        "role": "brand-primary",
+        "description": "Brand primary color - buttons, active states, focus accents",
+        "lastSync": "2026-03-13T10:41:58.329Z",
+        "lastSyncResult": "figma→code: #e0f950 → #5051F9"
+      },
+      "--primary-text-color": {
+        "cssProperty": "--primary-text-color",
+        "cssValue": "#12132B",
+        "figmaVariable": "Color/Primitive/Grey/Grey180",
+        "figmaVariableId": "VariableID:5:130",
+        "figmaResolvedValue": "#12132B",
+        "type": "COLOR",
+        "role": "text-primary",
+        "description": "Primary text color for labels, headings, input values",
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--secondary-text-color": {
+        "cssProperty": "--secondary-text-color",
+        "cssValue": "#2F305D",
+        "figmaVariable": "Color/Semantic/Neutral/Text/Neutral_Text_Dark",
+        "figmaVariableId": "VariableID:5:543",
+        "figmaResolvedValue": "#2F305D",
+        "type": "COLOR",
+        "role": "text-secondary",
+        "description": "Secondary heading/body text color",
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--tertiary-text-color": {
+        "cssProperty": "--tertiary-text-color",
+        "cssValue": "#606189",
+        "figmaVariable": "Color/Semantic/Neutral/Text/Neutral_Text_Default",
+        "figmaVariableId": "VariableID:5:547",
+        "figmaResolvedValue": "#606189",
+        "type": "COLOR",
+        "role": "text-tertiary",
+        "description": "Tertiary text, icons, muted content",
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--primary-border-color": {
+        "cssProperty": "--primary-border-color",
+        "cssValue": "#CBCBDC",
+        "figmaVariable": "Color/Semantic/Neutral/Border/Neutral_Border_Minimal",
+        "figmaVariableId": "VariableID:5:559",
+        "figmaResolvedValue": "#CBCBDC",
+        "type": "COLOR",
+        "role": "border-default",
+        "description": "Default border for inputs, cards, dividers",
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--secondary-border-color": {
+        "cssProperty": "--secondary-border-color",
+        "cssValue": "#DCDCE7",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "figmaResolvedValue": null,
+        "type": "COLOR",
+        "role": "border-secondary",
+        "description": "Secondary border - no exact Figma match",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--tertiary-border-color": {
+        "cssProperty": "--tertiary-border-color",
+        "cssValue": "#E7E7EE",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "figmaResolvedValue": null,
+        "type": "COLOR",
+        "role": "border-tertiary",
+        "description": "Tertiary border - no exact Figma match",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--card-bg-color": {
+        "cssProperty": "--card-bg-color",
+        "cssValue": "#FFFFFF",
+        "figmaVariable": "Color/Primitive/Black&White/White",
+        "figmaVariableId": "VariableID:5:204",
+        "figmaResolvedValue": "#FFFFFF",
+        "type": "COLOR",
+        "role": "surface-card",
+        "description": "Card and white background surfaces",
+        "lastSync": "2026-03-13T10:33:36.882Z",
+        "lastSyncResult": "figma→code: #fff → #FFFFFF"
+      },
+      "--error-text-color": {
+        "cssProperty": "--error-text-color",
+        "cssValue": "#CC1914",
+        "figmaVariable": "Color/Semantic/Error/Text/Error_Text_Default",
+        "figmaVariableId": "VariableID:5:387",
+        "figmaResolvedValue": "#CC1914",
+        "type": "COLOR",
+        "role": "text-error",
+        "description": "Error text color - CSS #E61F1F vs Figma #CC1914 (will sync on change)",
+        "lastSync": "2026-03-13T10:33:36.890Z",
+        "lastSyncResult": "figma→code: #E61F1F → #CC1914"
+      },
+      "--color-primary": {
+        "cssProperty": "--color-primary",
+        "cssValue": "#9F50F9",
+        "figmaVariable": "Color/Semantic/Primary/Border/Primary_Border_Default",
+        "figmaVariableId": "VariableID:5:365",
+        "figmaResolvedValue": "#9F50F9",
+        "type": "COLOR",
+        "role": "color-primary",
+        "description": "Primary color - synced with Primary_Border_Default",
+        "lastSync": "2026-03-13T14:44:28.736Z",
+        "lastSyncResult": "figma→code: #50D2F9 → #9F50F9"
+      },
+      "--color-border-focus": {
+        "cssProperty": "--color-border-focus",
+        "cssValue": "#9F50F9",
+        "figmaVariable": "Color/Semantic/Primary/Border/Primary_Border_Default",
+        "figmaVariableId": "VariableID:5:365",
+        "figmaResolvedValue": "#9F50F9",
+        "type": "COLOR",
+        "role": "border-focus",
+        "description": "Focus border color for inputs, dropdowns - mapped to Primary_Border_Default",
+        "lastSync": "2026-03-13T14:44:28.740Z",
+        "lastSyncResult": "figma→code: #50D2F9 → #9F50F9"
+      },
+      "--form-label-text-color": {
+        "cssProperty": "--form-label-text-color",
+        "cssValue": "#111136",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "figmaResolvedValue": null,
+        "type": "COLOR",
+        "role": "text-form-label",
+        "description": "Form label text - no exact Figma match",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--primary-bg-color": {
+        "cssProperty": "--primary-bg-color",
+        "cssValue": "#F3F4F8",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "figmaResolvedValue": null,
+        "type": "COLOR",
+        "role": "surface-primary-bg",
+        "description": "Primary background - no exact Figma match",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--secondary-color": {
+        "cssProperty": "--secondary-color",
+        "cssValue": "#F5F5F5",
+        "figmaVariable": "Color/Semantic/Neutral/Surface/Neutral_Surface_Low",
+        "figmaVariableId": "VariableID:5:539",
+        "figmaResolvedValue": "#F5F5F5",
+        "type": "COLOR",
+        "role": "surface-secondary",
+        "description": "Secondary surface - Figma Neutral_Surface_Low #F5F5F5 (close to CSS #F6F6F6)",
+        "lastSync": "2026-03-13T10:33:36.892Z",
+        "lastSyncResult": "figma→code: #F6F6F6 → #F5F5F5"
+      },
+      "--tertiary-color": {
+        "cssProperty": "--tertiary-color",
+        "cssValue": "#EDEDF4",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "figmaResolvedValue": null,
+        "type": "COLOR",
+        "role": "surface-tertiary",
+        "description": "Tertiary surface - no exact Figma match",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--primary-icons-color": {
+        "cssProperty": "--primary-icons-color",
+        "cssValue": "#71718C",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "figmaResolvedValue": null,
+        "type": "COLOR",
+        "role": "icon-primary",
+        "description": "Primary icon color - no exact Figma match",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      }
+    },
+    "typography": {
+      "--font-size-base": {
+        "cssProperty": "--font-size-base",
+        "cssValue": "14px",
+        "figmaVariable": "Type/Primitive/Size/Size_14 ✦",
+        "figmaVariableId": "VariableID:5:676",
+        "figmaResolvedValue": "14px",
+        "type": "FLOAT",
+        "role": "font-size-base",
+        "description": "Base font size - CSS 14.5px vs Figma 14px",
+        "lastSync": "2026-03-13T10:33:36.894Z",
+        "lastSyncResult": "figma→code: 14.5px → 14px"
+      },
+      "--font-family": {
+        "cssProperty": "--font-family",
+        "cssValue": "'Lato', sans-serif",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "figmaResolvedValue": null,
+        "type": "STRING",
+        "role": "font-family-primary",
+        "description": "Primary font family - no STRING variable in Figma CDS Tokens",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      }
+    },
+    "radius": {
+      "--input-border-radius": {
+        "cssProperty": "--input-border-radius",
+        "cssValue": "8px",
+        "figmaVariable": "Radius/Semantic/L",
+        "figmaVariableId": "VariableID:5:827",
+        "figmaResolvedValue": "8px",
+        "type": "FLOAT",
+        "role": "radius-input",
+        "description": "Border radius for input fields, dropdowns, buttons",
+        "lastSync": null,
+        "lastSyncResult": null
+      }
+    },
+    "spacing": {
+      "--input-height": {
+        "cssProperty": "--input-height",
+        "cssValue": "36px",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "type": "FLOAT",
+        "role": "size-input-height",
+        "description": "Input field height - no Figma variable",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      },
+      "--field-margin-bottom": {
+        "cssProperty": "--field-margin-bottom",
+        "cssValue": "24px",
+        "figmaVariable": null,
+        "figmaVariableId": null,
+        "type": "FLOAT",
+        "role": "spacing-field-bottom",
+        "description": "Field margin bottom - no Figma variable",
+        "unmapped": true,
+        "lastSync": null,
+        "lastSyncResult": null
+      }
+    }
+  },
+  "figmaOnlyVariables": {
+    "_note": "Notable Figma variables in CDS Tokens that exist but have no direct CSS custom property in design-library.html.",
+    "colors": [
+      {
+        "name": "Color/Primitive/Black&White/Black",
+        "id": "VariableID:5:203",
+        "value": "#000000"
+      },
+      {
+        "name": "Color/Alias/Primary/Primary_Subtle",
+        "id": "VariableID:5:244",
+        "value": "#E0E0FE"
+      },
+      {
+        "name": "Color/Alias/Primary/Primary_Dark",
+        "id": "VariableID:5:253",
+        "value": "#3535AD"
+      },
+      {
+        "name": "Color/Semantic/Primary/Surface/Primary_Surface_Default",
+        "id": "VariableID:5:343",
+        "value": "#5051F9"
+      },
+      {
+        "name": "Color/Semantic/Error/Surface/Error_Surface_Default",
+        "id": "VariableID:5:375",
+        "value": "#CC1914"
+      },
+      {
+        "name": "Color/Semantic/Error/Border/Error_Border_Default",
+        "id": "VariableID:5:397",
+        "value": "#CC1914"
+      },
+      {
+        "name": "Color/Semantic/Neutral/Surface/Neutral_Surface_Bold",
+        "id": "VariableID:5:533",
+        "value": "#393A5D"
+      },
+      {
+        "name": "Color/Semantic/Neutral/Text/Neutral_Text_Bold",
+        "id": "VariableID:5:545",
+        "value": "#393A5D"
+      },
+      {
+        "name": "Color/Semantic/Neutral/Text/Neutral_Text_Minimal",
+        "id": "VariableID:5:549",
+        "value": "#B0B0C4"
+      }
+    ],
+    "radius": [
+      {
+        "name": "Radius/Semantic/R✦",
+        "id": "VariableID:5:825",
+        "value": 6
+      },
+      {
+        "name": "Radius/Semantic/XL",
+        "id": "VariableID:5:828",
+        "value": 10
+      },
+      {
+        "name": "Radius/Semantic/2XL",
+        "id": "VariableID:5:829",
+        "value": 12
+      }
+    ],
+    "typography": [
+      {
+        "name": "Type/Primitive/Size/Size_12",
+        "id": "VariableID:5:675",
+        "value": 12
+      },
+      {
+        "name": "Type/Primitive/Size/Size_16",
+        "id": "VariableID:5:677",
+        "value": 16
+      },
+      {
+        "name": "Type/Semantic/Type Default ✦/H5/Size",
+        "id": "VariableID:5:747",
+        "value": 18
+      },
+      {
+        "name": "Type/Semantic/Type Default ✦/P1/Size",
+        "id": "VariableID:5:763",
+        "value": 16
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Field Component</title>
+  <link rel="stylesheet" href="qr-code-field.css">
+  <script defer src="qr-code-field.js"></script>
+</head>
+<body>
+<form class="zc-form-table zc-label-left">
+  <div class="zc-field-group zc-qrcode-group">
+    <label for="qr-code-field-default" class="zc-form-label"><span class="zc-label-text">QR Code Field</span></label>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-qr-input-group">
+          <input type="text" id="qr-code-field-default" name="qr_code_field" class="zc-field-input zc-form-control" maxlength="255" autocomplete="off" aria-describedby="qr-code-field-hint">
+          <span class="zc-qr-scan-btn" role="button" tabindex="0" aria-label="Scan QR code"><i class="zc-li-outline ui-3-search" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+    <span id="qr-code-field-hint" class="zc-field-help-text">Enter text or scan QR code</span>
+  </div>
+
+  <div class="zc-field-group zc-qrcode-group">
+    <label for="qr-code-field-required" class="zc-form-label"><span class="zc-label-text">QR Code Field</span><span class="zc-form-required" aria-hidden="true">*</span><span class="zc-sr-only">(required)</span></label>
+    <div class="zc-form-field validationError">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-qr-input-group">
+          <input type="text" id="qr-code-field-required" name="qr_code_field_required" class="zc-field-input zc-form-control" maxlength="255" autocomplete="off" required aria-required="true" aria-invalid="true" aria-describedby="qr-code-field-required-error">
+          <span class="zc-qr-scan-btn" role="button" tabindex="0" aria-label="Scan QR code"><i class="zc-li-outline ui-3-search" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+    <div id="qr-code-field-required-error" class="zc-field-error-text zc-field-error-msg" role="alert" aria-live="assertive" hidden><i class="zc-field-error-msg-icon zc-li-outline ui-3-alert" aria-hidden="true"></i><span>This field is mandatory. Enter a value.</span></div>
+  </div>
+
+  <div class="zc-field-group zc-qrcode-group zc-field-disabled">
+    <label for="qr-code-field-disabled" class="zc-form-label"><span class="zc-label-text">QR Code Field (Disabled)</span></label>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-qr-input-group">
+          <input type="text" id="qr-code-field-disabled" name="qr_code_field_disabled" class="zc-field-input zc-form-control" placeholder="Disabled field" disabled aria-disabled="true">
+          <span class="zc-qr-scan-btn zc-qr-scan-btn-disabled" aria-label="Scan QR code" aria-disabled="true"><i class="zc-li-outline ui-3-search" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

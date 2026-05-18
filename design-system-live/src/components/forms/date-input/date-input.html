@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Input — Zoho Creator</title>
+  <link rel="stylesheet" href="date-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-date">
+        <span class="zc-label-text">Date</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">dd-MMMM-yy</div>
+          <input class="form-control zc-datefield" type="text" name="Date" id="zc-date" autocomplete="off" aria-describedby="zc-date-help">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-1-calendar-60" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div id="zc-date-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-date-err">
+        <span class="zc-label-text">Date<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper validationError">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">dd-MMMM-yy</div>
+          <input class="form-control zc-datefield" type="text" name="Date_Err" id="zc-date-err" autocomplete="off" required aria-required="true" aria-invalid="true" aria-describedby="zc-date-error">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-1-calendar-60" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div id="zc-date-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-date-dis">
+        <span class="zc-label-text">Date</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">dd-MMMM-yy</div>
+          <input class="form-control zc-datefield" type="text" name="Date_Dis" id="zc-date-dis" autocomplete="off" disabled aria-disabled="true">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-1-calendar-60" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

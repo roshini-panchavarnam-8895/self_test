@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Input — Zoho Creator</title>
+  <link rel="stylesheet" href="phone-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix zc-phonenumber-field">
+      <label class="form-label" for="zc-phone">
+        <span class="zc-label-text">Phone</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="intl-tel-input allow-dropdown separate-dial-code">
+          <div class="flag-container">
+            <div class="selected-flag" role="combobox" tabindex="0" title="India: +91" aria-expanded="false">
+              <div class="iti-flag in"></div>
+              <div class="selected-dial-code">+91</div>
+              <div class="iti-arrow"></div>
+            </div>
+          </div>
+          <input class="form-control" type="tel" name="Phone" id="zc-phone" autocomplete="off" placeholder="Phone" aria-describedby="zc-phone-help" style="padding-left: 89px;">
+        </div>
+        <div id="zc-phone-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix zc-phonenumber-field">
+      <label class="form-label" for="zc-phone-err">
+        <span class="zc-label-text">Phone<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="intl-tel-input allow-dropdown separate-dial-code">
+          <div class="flag-container">
+            <div class="selected-flag" role="combobox" tabindex="0" title="India: +91" aria-expanded="false">
+              <div class="iti-flag in"></div>
+              <div class="selected-dial-code">+91</div>
+              <div class="iti-arrow"></div>
+            </div>
+          </div>
+          <input class="form-control" type="tel" name="Phone_Err" id="zc-phone-err" autocomplete="off" placeholder="Phone" required aria-required="true" aria-invalid="true" aria-describedby="zc-phone-error" style="padding-left: 89px;">
+        </div>
+        <div id="zc-phone-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-phonenumber-field zc-field-disabled">
+      <label class="form-label" for="zc-phone-dis">
+        <span class="zc-label-text">Phone</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="intl-tel-input allow-dropdown separate-dial-code">
+          <div class="flag-container">
+            <div class="selected-flag" role="combobox" tabindex="0" title="India: +91" aria-expanded="false" aria-disabled="true">
+              <div class="iti-flag in"></div>
+              <div class="selected-dial-code">+91</div>
+              <div class="iti-arrow"></div>
+            </div>
+          </div>
+          <input class="form-control" type="tel" name="Phone_Dis" id="zc-phone-dis" placeholder="Disabled" disabled aria-disabled="true" style="padding-left: 89px;">
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

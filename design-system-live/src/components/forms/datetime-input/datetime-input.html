@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datetime Input — Zoho Creator</title>
+  <link rel="stylesheet" href="datetime-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-datetime">
+        <span class="zc-label-text">Date Time</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">dd-MMMM-yy hh:mm</div>
+          <input class="form-control zc-datefield" type="text" name="Date_Time" id="zc-datetime" autocomplete="off" aria-describedby="zc-datetime-help">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-1-calendar-60" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div id="zc-datetime-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-datetime-err">
+        <span class="zc-label-text">Date Time<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper validationError">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">dd-MMMM-yy hh:mm</div>
+          <input class="form-control zc-datefield" type="text" name="Date_Time_Err" id="zc-datetime-err" autocomplete="off" required aria-required="true" aria-invalid="true" aria-describedby="zc-datetime-error">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-1-calendar-60" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div id="zc-datetime-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-datetime-dis">
+        <span class="zc-label-text">Date Time</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">dd-MMMM-yy hh:mm</div>
+          <input class="form-control zc-datefield" type="text" name="Date_Time_Dis" id="zc-datetime-dis" autocomplete="off" disabled aria-disabled="true">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-1-calendar-60" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

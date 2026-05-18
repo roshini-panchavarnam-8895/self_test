@@ -1,0 +1,14 @@
+@use '../common' as c;
+@include c.all();
+
+.urlWrapper {
+  display: inline-block;
+}
+
+.urlWrapper input.form-control {
+  width: 240px;
+}
+
+.urlWrapper .urlOpts {
+  margin-top: 8px;
+}

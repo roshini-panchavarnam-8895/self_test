@@ -1,0 +1,94 @@
+@use '../common' as c;
+@include c.all();
+
+.zc-decisionbox-field-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .form-label.decision-box-label {
+    float: none;
+    width: auto;
+    margin-right: 0;
+  }
+
+  .decision-box-field {
+    float: none;
+    margin-left: 0;
+  }
+}
+
+.decision-box-field.form-field {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 0;
+}
+
+.zc_decisionbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.zc_decision_box_label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 1px solid var(--zc-color-border);
+  border-radius: 4px;
+  background: var(--zc-color-bg, #fff);
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+}
+
+.zc_decisionbox:checked + .zc_decision_box_label {
+  background: var(--zc-color-primary);
+  border-color: var(--zc-color-primary);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+.zc_decisionbox:disabled + .zc_decision_box_label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.decision-box-label {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  max-width: 400px;
+  margin-left: 10px;
+  padding-right: 36px;
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  word-break: break-word;
+}
+
+.zc-decisionbox-field-group > .zc-help-txt,
+.zc-decisionbox-field-group > .fieldErrorMsg {
+  width: 100%;
+  padding-left: 30px;
+  box-sizing: border-box;
+}

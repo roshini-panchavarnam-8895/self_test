@@ -1,0 +1,74 @@
+@use '../common' as c;
+@include c.all();
+
+.zc-checkbox-choices {
+  display: block;
+}
+
+.choice-table-row {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.choice-table-cell {
+  display: block;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.customCheckbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+
+  & + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid var(--zc-color-border);
+    border-radius: 4px;
+    cursor: pointer;
+    background: var(--zc-color-bg, #fff);
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  &:checked + label {
+    background: var(--zc-color-primary);
+    border-color: var(--zc-color-primary);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 11px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:disabled + label {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.choice-label-text {
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1.4;
+}

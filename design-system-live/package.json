@@ -1,0 +1,20 @@
+{
+  "name": "form-field-design-library",
+  "private": true,
+  "scripts": {
+    "build:scss": "node scripts/build-design-library.js --compile-scss-only",
+    "build:library": "node scripts/build-design-library.js",
+    "serve:library": "node scripts/design-library-server.js",
+    "test:e2e": "playwright test",
+    "test:e2e:ci": "playwright test tests/e2e/design-library-smoke.spec.js",
+    "test:e2e:smoke": "playwright test tests/e2e/design-library-smoke.spec.js",
+    "test:e2e:visual": "playwright test tests/e2e/design-library-visual.spec.js",
+    "test:e2e:visual:update": "playwright test tests/e2e/design-library-visual.spec.js --update-snapshots",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "sass": "^1.93.2"
+  }
+}

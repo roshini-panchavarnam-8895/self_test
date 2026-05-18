@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Box — Zoho Creator</title>
+  <link rel="stylesheet" href="decision-box.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix zc-decisionbox-field-group">
+      <div class="decision-box-field form-field clearfix">
+        <input class="customCheckbox zc_decisionbox" type="checkbox" name="Decision_box" id="zc-decision-box">
+        <label class="zc_decision_box_label" for="zc-decision-box"></label>
+      </div>
+      <label class="form-label decision-box-label" for="zc-decision-box">Decision box</label>
+      <div class="zc-help-txt">Help text goes here</div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix zc-decisionbox-field-group">
+      <div class="decision-box-field form-field clearfix validationError">
+        <input class="customCheckbox zc_decisionbox" type="checkbox" name="Decision_box_Err" id="zc-decision-box-err" aria-invalid="true" aria-describedby="zc-decision-box-error">
+        <label class="zc_decision_box_label" for="zc-decision-box-err"></label>
+      </div>
+      <label class="form-label decision-box-label" for="zc-decision-box-err">Decision box</label>
+      <div id="zc-decision-box-error" class="fieldErrorMsg" role="alert">
+        <span>This field is mandatory.</span>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-decisionbox-field-group zc-field-disabled">
+      <div class="decision-box-field form-field clearfix">
+        <input class="customCheckbox zc_decisionbox" type="checkbox" name="Decision_box_Dis" id="zc-decision-box-dis" disabled aria-disabled="true">
+        <label class="zc_decision_box_label" for="zc-decision-box-dis"></label>
+      </div>
+      <label class="form-label decision-box-label" for="zc-decision-box-dis">Decision box (Disabled)</label>
+    </div>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address Field — Zoho Creator</title>
+  <link rel="stylesheet" href="address-field.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix zc-address-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Address</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="compositeWrapper zc-address-composite">
+          <span class="ADDRESS_LINE_1-wrapper"><input class="form-control" type="text" name="Address.address_line_1" id="addr-line1" maxlength="255" autocomplete="address-line1" aria-label="Address Line 1" placeholder="Address Line 1"></span>
+          <span class="ADDRESS_LINE_2-wrapper"><input class="form-control" type="text" name="Address.address_line_2" id="addr-line2" maxlength="255" autocomplete="address-line2" aria-label="Address Line 2" placeholder="Address Line 2"></span>
+          <div class="composite-two-col-wrapper">
+            <span class="CITY-wrapper"><input class="form-control" type="text" name="Address.district_city" id="addr-city" maxlength="255" autocomplete="address-level2" aria-label="City / District" placeholder="City / District"></span>
+            <span class="STATE-wrapper"><input class="form-control" type="text" name="Address.state_province" id="addr-state" maxlength="255" autocomplete="address-level1" aria-label="State / Province" placeholder="State / Province"></span>
+          </div>
+          <div class="composite-two-col-wrapper">
+            <span class="ZIP-wrapper"><input class="form-control" type="text" name="Address.postal_code" id="addr-zip" maxlength="20" autocomplete="postal-code" aria-label="Postal Code" placeholder="Postal Code"></span>
+            <span class="COUNTRY-wrapper"><select class="form-control" name="Address.country" id="addr-country" autocomplete="country-name" aria-label="Country"><option value="">Country</option><option value="India">India</option><option value="United States">United States</option><option value="United Kingdom">United Kingdom</option></select></span>
+          </div>
+        </div>
+        <div class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix zc-address-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Address<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="compositeWrapper zc-address-composite">
+          <span class="ADDRESS_LINE_1-wrapper"><input class="form-control" type="text" name="Address_Err.address_line_1" id="addr-line1-err" maxlength="255" required aria-required="true" aria-invalid="true" aria-label="Address Line 1" placeholder="Address Line 1"></span>
+          <span class="ADDRESS_LINE_2-wrapper"><input class="form-control" type="text" name="Address_Err.address_line_2" id="addr-line2-err" maxlength="255" aria-label="Address Line 2" placeholder="Address Line 2"></span>
+          <div class="composite-two-col-wrapper">
+            <span class="CITY-wrapper"><input class="form-control" type="text" name="Address_Err.district_city" id="addr-city-err" maxlength="255" required aria-required="true" aria-invalid="true" aria-label="City / District" placeholder="City / District"></span>
+            <span class="STATE-wrapper"><input class="form-control" type="text" name="Address_Err.state_province" id="addr-state-err" maxlength="255" aria-label="State / Province" placeholder="State / Province"></span>
+          </div>
+          <div class="composite-two-col-wrapper">
+            <span class="ZIP-wrapper"><input class="form-control" type="text" name="Address_Err.postal_code" id="addr-zip-err" maxlength="20" aria-label="Postal Code" placeholder="Postal Code"></span>
+            <span class="COUNTRY-wrapper"><select class="form-control" name="Address_Err.country" id="addr-country-err" aria-label="Country"><option value="">Country</option></select></span>
+          </div>
+        </div>
+        <div class="fieldErrorMsg" role="alert"><span>This field is mandatory. Enter a value.</span></div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-address-field-group zc-field-disabled">
+      <label class="form-label">
+        <span class="zc-label-text">Address</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="compositeWrapper zc-address-composite">
+          <span class="ADDRESS_LINE_1-wrapper"><input class="form-control" type="text" name="Address_Dis.address_line_1" id="addr-line1-dis" disabled aria-disabled="true" aria-label="Address Line 1" placeholder="Address Line 1"></span>
+          <span class="ADDRESS_LINE_2-wrapper"><input class="form-control" type="text" name="Address_Dis.address_line_2" id="addr-line2-dis" disabled aria-disabled="true" aria-label="Address Line 2" placeholder="Address Line 2"></span>
+          <div class="composite-two-col-wrapper">
+            <span class="CITY-wrapper"><input class="form-control" type="text" name="Address_Dis.district_city" id="addr-city-dis" disabled aria-disabled="true" aria-label="City / District" placeholder="City / District"></span>
+            <span class="STATE-wrapper"><input class="form-control" type="text" name="Address_Dis.state_province" id="addr-state-dis" disabled aria-disabled="true" aria-label="State / Province" placeholder="State / Province"></span>
+          </div>
+          <div class="composite-two-col-wrapper">
+            <span class="ZIP-wrapper"><input class="form-control" type="text" name="Address_Dis.postal_code" id="addr-zip-dis" disabled aria-disabled="true" aria-label="Postal Code" placeholder="Postal Code"></span>
+            <span class="COUNTRY-wrapper"><select class="form-control" name="Address_Dis.country" id="addr-country-dis" disabled aria-disabled="true" aria-label="Country"><option value="">Country</option></select></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

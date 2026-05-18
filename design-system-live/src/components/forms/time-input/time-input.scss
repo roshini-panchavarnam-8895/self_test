@@ -1,0 +1,50 @@
+@use '../common' as c;
+@include c.all();
+
+.date-field-wrapper .zc-date-input-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: var(--zc-input-width);
+}
+
+.date-field-wrapper .zc-datefield-placeholder {
+  position: absolute;
+  left: 12px;
+  top: 0;
+  line-height: 36px;
+  color: var(--zc-color-subfield-label);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  pointer-events: none;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.date-field-wrapper input.form-control {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  padding-right: 36px;
+}
+
+.input-group-addon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--zc-color-icon);
+  font-size: 16px;
+}
+
+.zc-clock-icon,
+.zc-calendar-icon {
+  font-size: 16px;
+  line-height: 1;
+}
