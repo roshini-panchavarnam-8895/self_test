@@ -1,3 +1,4 @@
+.DS_Store
 node_modules/
 !design-system-slyte/Design/dist/node_modules/
 !design-system-slyte/Design/dist/node_modules/@zoho/
@@ -8,3 +9,6 @@ node_modules/
 !design-system-slyte/Design/dist/node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/
 !design-system-slyte/Design/dist/node_modules/@zoho/lyte-ui-component/dist/themes/compiledCSS/default/ltr/
 !design-system-slyte/Design/dist/node_modules/@zoho/lyte-ui-component/dist/I18n/
+.cursor/
+snapshot.txt
+*.png

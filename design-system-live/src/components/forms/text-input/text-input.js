@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   requiredInputs.forEach(function(input) {
     const errorEl = document.getElementById(input.getAttribute('aria-describedby'));
-    const field = input.closest('.zc-form-field'); // No I18N
+    const field = input.closest('.zc-form-field');
 
     input.addEventListener('blur', function() {
       validateInput(input, errorEl, field);
@@ -20,20 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function validateInput(input, errorEl, field) {
     if (!input.value.trim()) {
       input.setAttribute('aria-invalid', 'true');
-      if (errorEl) {
-        errorEl.hidden = false;
-      }
-      if (field) {
-        field.classList.add('zc-validation-error'); // No I18N
-      }
+      if (errorEl) errorEl.hidden = false;
+      if (field) field.classList.add('zc-validation-error');
     } else {
       input.removeAttribute('aria-invalid');
-      if (errorEl) {
-        errorEl.hidden = true;
-      }
-      if (field) {
-        field.classList.remove('zc-validation-error'); // No I18N
-      }
+      if (errorEl) errorEl.hidden = true;
+      if (field) field.classList.remove('zc-validation-error');
     }
   }
 });

@@ -1,11 +1,11 @@
 // File Upload Component
 document.addEventListener('DOMContentLoaded', function() {
-  var fileGroups = document.querySelectorAll('.form-fileupload-field:not(.zc-Audio-group):not(.zc-Video-group)'); // No I18N
+  var fileGroups = document.querySelectorAll('.form-fileupload-field:not(.zc-Audio-group):not(.zc-Video-group)');
 
   fileGroups.forEach(function(root) {
-    var fileUpload = root.querySelector('.zc-file-upload'); // No I18N
-    var fileInput = root.querySelector('input[type="file"]'); // No I18N
-    var textDisplay = root.querySelector('.zc-image-hover-msg'); // No I18N
+    var fileUpload = root.querySelector('.zc-file-upload');
+    var fileInput = root.querySelector('input[type="file"]');
+    var textDisplay = root.querySelector('.zc-image-hover-msg');
 
     if (!fileUpload || !fileInput || !textDisplay) {
       return;
@@ -16,32 +16,28 @@ document.addEventListener('DOMContentLoaded', function() {
         textDisplay.textContent = fileInput.files[0].name;
         textDisplay.style.color = '#12132b';
       } else {
-        textDisplay.textContent = 'Select File'; // No I18N
+        textDisplay.textContent = 'Select File';
         textDisplay.style.color = '';
       }
     });
 
     fileUpload.addEventListener('dragover', function(e) {
-      if (fileInput.disabled) {
-        return;
-      }
+      if (fileInput.disabled) return;
       e.preventDefault();
-      fileUpload.classList.add('zc-is-dragover'); // No I18N
+      fileUpload.classList.add('zc-is-dragover');
     });
 
     fileUpload.addEventListener('dragleave', function() {
-      fileUpload.classList.remove('zc-is-dragover'); // No I18N
+      fileUpload.classList.remove('zc-is-dragover');
     });
 
     fileUpload.addEventListener('drop', function(e) {
-      if (fileInput.disabled) {
-        return;
-      }
+      if (fileInput.disabled) return;
       e.preventDefault();
-      fileUpload.classList.remove('zc-is-dragover'); // No I18N
+      fileUpload.classList.remove('zc-is-dragover');
       if (e.dataTransfer.files.length > 0) {
         fileInput.files = e.dataTransfer.files;
-        fileInput.dispatchEvent(new Event('change')); // No I18N
+        fileInput.dispatchEvent(new Event('change'));
       }
     });
   });
