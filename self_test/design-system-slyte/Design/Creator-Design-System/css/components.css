@@ -1,0 +1,5088 @@
+/* =========================================================
+   Creator Design System — Components
+   ========================================================= */
+
+/* ---------- Avatar / Placeholder_Default ----------
+   Source: Figma "Placeholder_Default" (3252:3245)
+   Variants: 14 colors × {default, inverse}
+   Default = saturated bg + white text
+   Inverse = subtle bg + colored text
+   Size 36×36, radius 2px.
+*/
+.ds-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-semantic-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+  letter-spacing: 0;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Default (saturated bg, white text) */
+.ds-avatar--cardinal      { background: var(--semantic-surface-cardinal-default);   color: var(--white-text); }
+.ds-avatar--tekhelet      { background: var(--semantic-surface-tekhelet-default);   color: var(--white-text); }
+.ds-avatar--caribbean     { background: var(--semantic-surface-caribbean-default);  color: var(--white-text); }
+.ds-avatar--avocado       { background: var(--semantic-surface-avocado-default);    color: var(--white-text); }
+.ds-avatar--russet        { background: var(--semantic-surface-russet-default);     color: var(--white-text); }
+.ds-avatar--penred        { background: var(--semantic-surface-penred-default);     color: var(--white-text); }
+.ds-avatar--mardigrass    { background: var(--semantic-surface-mardigrass-default); color: var(--white-text); }
+.ds-avatar--biceblue      { background: var(--semantic-surface-biceblue-default);   color: var(--white-text); }
+.ds-avatar--seagreen      { background: var(--semantic-surface-seagreen-default);   color: var(--white-text); }
+.ds-avatar--gold          { background: var(--semantic-surface-gold-default);       color: var(--white-text); }
+.ds-avatar--brown         { background: var(--semantic-surface-brown-default);      color: var(--white-text); }
+.ds-avatar--black         { background: var(--semantic-surface-black);              color: var(--white-text); }
+.ds-avatar--primary       { background: var(--primary-surface-default);             color: var(--white-text); }
+.ds-avatar--disabled      { background: var(--semantic-surface-gray-default);       color: var(--white-text); }
+
+/* Inverse (subtle bg, colored text) */
+.ds-avatar--inverse.ds-avatar--cardinal   { background: var(--semantic-surface-cardinal-subtle);   color: var(--semantic-text-cardinal-default); }
+.ds-avatar--inverse.ds-avatar--tekhelet   { background: var(--semantic-surface-tekhelet-subtle);   color: var(--semantic-text-tekhelet-default); }
+.ds-avatar--inverse.ds-avatar--caribbean  { background: var(--semantic-surface-caribbean-subtle);  color: var(--semantic-text-caribbean-default); }
+.ds-avatar--inverse.ds-avatar--avocado    { background: var(--semantic-surface-avocado-subtle);    color: var(--semantic-text-avocado-default); }
+.ds-avatar--inverse.ds-avatar--russet     { background: var(--semantic-surface-russet-subtle);     color: var(--semantic-text-russet-default); }
+.ds-avatar--inverse.ds-avatar--penred     { background: var(--semantic-surface-penred-subtle);     color: var(--semantic-text-penred-default); }
+.ds-avatar--inverse.ds-avatar--mardigrass { background: var(--semantic-surface-mardigrass-subtle); color: var(--semantic-text-mardigrass-default); }
+.ds-avatar--inverse.ds-avatar--biceblue   { background: var(--semantic-surface-biceblue-subtle);   color: var(--semantic-text-biceblue-default); }
+.ds-avatar--inverse.ds-avatar--seagreen   { background: var(--semantic-surface-seagreen-subtle);   color: var(--semantic-text-seagreen-default); }
+.ds-avatar--inverse.ds-avatar--gold       { background: var(--semantic-surface-gold-subtle);       color: var(--semantic-text-gold-default); }
+.ds-avatar--inverse.ds-avatar--brown      { background: var(--semantic-surface-brown-subtle);      color: var(--semantic-text-brown-default); }
+.ds-avatar--inverse.ds-avatar--black      { background: var(--semantic-surface-white);             color: var(--black-text); border: 1px solid var(--ds-border); }
+.ds-avatar--inverse.ds-avatar--primary    { background: var(--primary-surface-minimal);            color: var(--primary-text-dark); }
+.ds-avatar--inverse.ds-avatar--disabled   { background: var(--huegrey-surface-fairish);            color: var(--white-text); }
+
+/* ---------- Color Swatch ---------- */
+.ds-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ds-swatch__chip {
+  width: 100%;
+  height: 64px;
+  border-radius: 6px;
+  border: 1px solid var(--ds-border);
+}
+
+.ds-swatch__name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ds-text-primary);
+}
+
+.ds-swatch__value {
+  font-size: 12px;
+  color: var(--ds-text-secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ---------- Token row (typography, radius) ---------- */
+.ds-token-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 120px;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ds-border);
+  align-items: center;
+}
+
+.ds-token-row:last-child { border-bottom: none; }
+
+.ds-token-row__name {
+  font-weight: 500;
+  color: var(--ds-text-primary);
+  font-size: 13px;
+}
+
+.ds-token-row__demo {
+  color: var(--ds-text-primary);
+}
+
+.ds-token-row__value {
+  font-size: 12px;
+  color: var(--ds-text-secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  text-align: right;
+}
+
+/* =========================================================
+   Breadcrumb (Breadcrumb_Base ✦, 2464:19)
+   Variants:
+     - Type: Default | With Dropdown
+     - Size: 2 | 4 | 6  (number of items)
+   Sub-elements:
+     - Text item (states: enabled / hover / current)
+     - Dropdown item (states: enabled / hover / active)
+     - Overflow "..." (states: default / active)
+   Tokens used: P2 typography, HueGrey text scale,
+     White/Secondary surfaces, Radius R = 6px,
+     Border huegrey-minimal, Elevation default-base.
+   ========================================================= */
+.ds-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--huegrey-text-bold);   /* enabled */
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ds-breadcrumb__item:hover,
+.ds-breadcrumb__item.is-hover {
+  color: var(--black-text);
+}
+
+.ds-breadcrumb__item.is-current {
+  color: var(--huegrey-text-default);
+  cursor: default;
+}
+
+/* 14×14 inline icon slot (for left/right icons & dropdown caret) */
+.ds-breadcrumb__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Generic icon stand-in: small filled circle */
+.ds-breadcrumb__icon--placeholder::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
+
+/* Caret/chevron-down for dropdown items */
+.ds-breadcrumb__icon--caret::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* Separator chevron between items: › */
+.ds-breadcrumb__sep {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--huegrey-text-default);
+  flex-shrink: 0;
+}
+
+.ds-breadcrumb__sep::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-top: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* Overflow "..." */
+.ds-breadcrumb__overflow {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-bold);
+  padding: 0;
+}
+
+.ds-breadcrumb__overflow::before {
+  content: "\2026";   /* … horizontal ellipsis */
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.ds-breadcrumb__overflow.is-active {
+  color: var(--black-text);
+}
+
+/* =========================================================
+   Dropdown overlay (Breadcrumb_Dropdown_Overlay, 2583:3025)
+   Two variants: List | Group
+   ========================================================= */
+.ds-overlay {
+  background: var(--semantic-surface-white);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  box-shadow: var(--elevation-default-base);
+  width: 175px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+}
+
+.ds-overlay--list {
+  padding: 10px;
+  gap: 1px;
+}
+
+.ds-overlay--group {
+  padding: 0 0 0 0;
+}
+
+.ds-overlay__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius-semantic-r);
+  background: var(--semantic-surface-white);
+  color: var(--huegrey-text-default);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ds-overlay__item:hover {
+  background: var(--secondary-surface-subtle);
+}
+
+.ds-overlay__item.is-selected {
+  background: var(--secondary-surface-subtle);
+  color: var(--black-text);
+}
+
+.ds-overlay__item-tick {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--black-text);
+}
+
+.ds-overlay__item-tick::before {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+.ds-overlay__item:not(.is-selected) .ds-overlay__item-tick {
+  visibility: hidden;
+}
+
+/* Group variant */
+.ds-overlay__group {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 10px 10px;
+  gap: 1px;
+}
+
+.ds-overlay__group-head {
+  padding: 10px 10px 0;
+  color: var(--huegrey-text-fairish-hover);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  white-space: nowrap;
+}
+
+.ds-overlay__group + .ds-overlay__group-head {
+  margin-top: 4px;
+}
+
+/* =========================================================
+   Button family (Primary_Button + color variants from 2064:273)
+   Sizes:  Extra Small (26) · Small (32) · Base ✦ (36) · Large (40)
+   Styles: Fill · Border · Minimal Border · Minimal Fill · Link · Hyperlink (XS only)
+   Color families: Primary · Secondary · HueGrey · Success · Info · Warning · Error · Neutral
+   States: Default / Hover (interactive — :hover) / Disabled
+   Source spec (Primary/Base/Fill): h-36, px-14, gap-8, radius R(6),
+     bg surface-default, text white-text-fixed, P2 Regular.
+
+   Color theming uses local custom properties on .ds-btn.
+   To make a new color, set --btn-* tokens (see below).
+   ========================================================= */
+.ds-btn {
+  /* Color theme — defaults to Primary. Override via .ds-btn--<color> */
+  --btn-fill-bg: var(--primary-surface-default);
+  --btn-fill-bg-hover: var(--primary-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--primary-text-default);
+  --btn-text-hover: var(--primary-text-default-hover);
+  --btn-border: var(--primary-border-default);
+  --btn-border-hover: var(--primary-border-default-hover);
+  --btn-border-low: var(--primary-border-low);
+  --btn-border-low-hover: var(--primary-border-low-hover);
+  --btn-subtle: var(--primary-surface-subtle);
+  --btn-subtle-hover: var(--primary-surface-subtle-hover);
+  --btn-focus-ring: var(--primary-surface-default);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+  letter-spacing: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-semantic-r);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.ds-btn:focus-visible {
+  outline: 2px solid var(--btn-focus-ring);
+  outline-offset: 2px;
+}
+
+.ds-btn__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ds-btn__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
+
+/* ---------- Sizes ---------- */
+.ds-btn--xs   { height: 26px; min-width: 50px; padding: 0 10px; }
+.ds-btn--sm   { height: 32px; min-width: 60px; padding: 0 12px; border-radius: var(--radius-semantic-s); }
+.ds-btn--base { height: 36px; min-width: 70px; padding: 0 14px; }
+.ds-btn--lg   { height: 40px; min-width: 80px; padding: 0 16px; }
+
+/* ---------- Styles ---------- */
+.ds-btn--fill {
+  background: var(--btn-fill-bg);
+  color: var(--btn-fill-text);
+  border-color: var(--btn-fill-bg);
+}
+.ds-btn--fill:hover,
+.ds-btn--fill.is-hover {
+  background: var(--btn-fill-bg-hover);
+  border-color: var(--btn-fill-bg-hover);
+}
+
+.ds-btn--border {
+  background: var(--white-surface-fixed);
+  color: var(--btn-text);
+  border-color: var(--btn-border);
+}
+.ds-btn--border:hover,
+.ds-btn--border.is-hover {
+  color: var(--btn-text-hover);
+  border-color: var(--btn-border-hover);
+}
+
+.ds-btn--minimal-border {
+  background: transparent;
+  color: var(--btn-text);
+  border-color: var(--btn-border-low);
+}
+.ds-btn--minimal-border:hover,
+.ds-btn--minimal-border.is-hover {
+  border-color: var(--btn-border-low-hover);
+  color: var(--btn-text-hover);
+}
+
+.ds-btn--minimal-fill {
+  background: var(--btn-subtle);
+  color: var(--btn-text);
+  border-color: transparent;
+}
+.ds-btn--minimal-fill:hover,
+.ds-btn--minimal-fill.is-hover {
+  background: var(--btn-subtle-hover);
+  color: var(--btn-text-hover);
+}
+
+.ds-btn--link {
+  background: transparent;
+  color: var(--btn-text);
+  border-color: transparent;
+}
+.ds-btn--link:hover,
+.ds-btn--link.is-hover {
+  color: var(--btn-text-hover);
+  background: var(--btn-subtle);
+}
+
+.ds-btn--hyperlink {
+  background: transparent;
+  color: var(--btn-text);
+  border: 0;
+  padding: 0;
+  height: auto;
+  min-width: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ds-btn--hyperlink:hover,
+.ds-btn--hyperlink.is-hover {
+  color: var(--btn-text-hover);
+}
+
+/* ---------- Disabled ---------- */
+.ds-btn:disabled,
+.ds-btn.is-disabled {
+  background: var(--huegrey-surface-fairish);
+  color: var(--white-text-fixed);
+  border-color: var(--huegrey-surface-fairish);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------- Color modifiers ----------
+   Each modifier just remaps the local --btn-* properties.
+   Apply alongside any .ds-btn--<style> to get the variant.
+*/
+
+/* Primary (default — listed for clarity) */
+.ds-btn--primary {
+  --btn-fill-bg: var(--primary-surface-default);
+  --btn-fill-bg-hover: var(--primary-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--primary-text-default);
+  --btn-text-hover: var(--primary-text-default-hover);
+  --btn-border: var(--primary-border-default);
+  --btn-border-hover: var(--primary-border-default-hover);
+  --btn-border-low: var(--primary-border-low);
+  --btn-border-low-hover: var(--primary-border-low-hover);
+  --btn-subtle: var(--primary-surface-subtle);
+  --btn-subtle-hover: var(--primary-surface-subtle-hover);
+  --btn-focus-ring: var(--primary-surface-default);
+}
+
+.ds-btn--secondary {
+  --btn-fill-bg: var(--secondary-surface-default);
+  --btn-fill-bg-hover: var(--secondary-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--secondary-text-default);
+  --btn-text-hover: var(--secondary-text-default-hover);
+  --btn-border: var(--secondary-border-default);
+  --btn-border-hover: var(--secondary-border-default-hover);
+  --btn-border-low: var(--secondary-border-low);
+  --btn-border-low-hover: var(--secondary-border-low-hover);
+  --btn-subtle: var(--secondary-surface-subtle);
+  --btn-subtle-hover: var(--secondary-surface-subtle-hover);
+  --btn-focus-ring: var(--secondary-surface-default);
+}
+
+.ds-btn--success {
+  --btn-fill-bg: var(--success-surface-default);
+  --btn-fill-bg-hover: var(--success-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--success-text-default);
+  --btn-text-hover: var(--success-text-default-hover);
+  --btn-border: var(--success-border-default);
+  --btn-border-hover: var(--success-border-default-hover);
+  --btn-border-low: var(--success-border-low);
+  --btn-border-low-hover: var(--success-border-low-hover);
+  --btn-subtle: var(--success-surface-subtle);
+  --btn-subtle-hover: var(--success-surface-subtle-hover);
+  --btn-focus-ring: var(--success-surface-default);
+}
+
+.ds-btn--info {
+  --btn-fill-bg: var(--info-surface-default);
+  --btn-fill-bg-hover: var(--info-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--info-text-default);
+  --btn-text-hover: var(--info-text-default-hover);
+  --btn-border: var(--info-border-default);
+  --btn-border-hover: var(--info-border-default-hover);
+  --btn-border-low: var(--info-border-low);
+  --btn-border-low-hover: var(--info-border-low-hover);
+  --btn-subtle: var(--info-surface-subtle);
+  --btn-subtle-hover: var(--info-surface-subtle-hover);
+  --btn-focus-ring: var(--info-surface-default);
+}
+
+.ds-btn--warning {
+  --btn-fill-bg: var(--warning-surface-default);
+  --btn-fill-bg-hover: var(--warning-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--warning-text-default);
+  --btn-text-hover: var(--warning-text-default-hover);
+  --btn-border: var(--warning-border-default);
+  --btn-border-hover: var(--warning-border-default-hover);
+  --btn-border-low: var(--warning-border-low);
+  --btn-border-low-hover: var(--warning-border-low-hover);
+  --btn-subtle: var(--warning-surface-subtle);
+  --btn-subtle-hover: var(--warning-surface-subtle-hover);
+  --btn-focus-ring: var(--warning-surface-default);
+}
+
+.ds-btn--error {
+  --btn-fill-bg: var(--error-surface-default);
+  --btn-fill-bg-hover: var(--error-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--error-text-default);
+  --btn-text-hover: var(--error-text-default-hover);
+  --btn-border: var(--error-border-default);
+  --btn-border-hover: var(--error-border-default-hover);
+  --btn-border-low: var(--error-border-low);
+  --btn-border-low-hover: var(--error-border-low-hover);
+  --btn-subtle: var(--error-surface-subtle);
+  --btn-subtle-hover: var(--error-surface-subtle-hover);
+  --btn-focus-ring: var(--error-surface-default);
+}
+
+.ds-btn--huegrey {
+  --btn-fill-bg: var(--huegrey-surface-default);
+  --btn-fill-bg-hover: var(--huegrey-surface-default-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--huegrey-text-bold);
+  --btn-text-hover: var(--huegrey-text-dark);
+  --btn-border: var(--huegrey-border-default);
+  --btn-border-hover: var(--huegrey-border-default-hover);
+  --btn-border-low: var(--huegrey-border-minimal);
+  --btn-border-low-hover: var(--huegrey-border-minimal-hover);
+  --btn-subtle: var(--huegrey-surface-subtle);
+  --btn-subtle-hover: var(--huegrey-surface-subtle-hover);
+  --btn-focus-ring: var(--huegrey-surface-default);
+}
+
+.ds-btn--neutral {
+  --btn-fill-bg: var(--neutral-surface-fairish);
+  --btn-fill-bg-hover: var(--neutral-surface-fairish-hover);
+  --btn-fill-text: var(--white-text-fixed);
+  --btn-text: var(--neutral-text-fairish);
+  --btn-text-hover: var(--neutral-text-fairish-hover);
+  --btn-border: var(--neutral-border-fairish);
+  --btn-border-hover: var(--neutral-surface-fairish-hover);
+  --btn-border-low: var(--neutral-border-low);
+  --btn-border-low-hover: var(--neutral-border-low-hover);
+  --btn-subtle: var(--huegrey-surface-subtle);
+  --btn-subtle-hover: var(--huegrey-surface-subtle-hover);
+  --btn-focus-ring: var(--neutral-surface-fairish-hover);
+}
+
+/* =========================================================
+   Content Switcher (segmented control) — 2630:5644
+   Sub-components: Left / Middle / Right segments + Divider
+   Sizes:  XS (26) · Small (32) · Base ✦ (36) · Large (40)
+   Types:  Fill · Fill Minimal
+   States: Default · Hover On Default · Active · Hover On Active · Disabled · Disabled After
+   Radius (overall): R (6px). Inner radii sealed by overflow:hidden on container.
+   Source spec (Large/Fill): h-40, content text P2 + 14px icons, gap-6, primary border 1px,
+     active = primary fill / white text, default = white bg / primary text.
+   ========================================================= */
+.ds-switcher {
+  display: inline-flex;
+  border: 1px solid var(--primary-border-default);
+  border-radius: var(--radius-semantic-r);
+  overflow: hidden;
+  background: var(--white-surface-fixed);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+}
+
+/* Fill Minimal type uses neutral border + transparent bg */
+.ds-switcher--minimal {
+  border-color: var(--huegrey-border-minimal);
+  background: transparent;
+}
+
+/* ---------- Sizes (height + horizontal padding) ---------- */
+.ds-switcher--xs   .ds-switcher__seg { height: 26px; padding: 0 12px; min-width: 60px; }
+.ds-switcher--sm   .ds-switcher__seg { height: 32px; padding: 0 12px; min-width: 80px; }
+.ds-switcher--base .ds-switcher__seg { height: 36px; padding: 0 14px; min-width: 90px; }
+.ds-switcher--lg   .ds-switcher__seg { height: 40px; padding: 0 16px; min-width: 100px; }
+
+/* ---------- Segments ---------- */
+.ds-switcher__seg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  background: var(--white-surface-fixed);
+  color: var(--primary-text-default);
+  cursor: pointer;
+  font: inherit;
+  white-space: nowrap;
+  position: relative;
+  border-right: 1px solid var(--primary-border-default);
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.ds-switcher__seg:last-child {
+  border-right: 0;
+}
+
+.ds-switcher__seg-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ds-switcher__seg-icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
+
+/* ---------- Fill states ---------- */
+.ds-switcher:not(.ds-switcher--minimal) .ds-switcher__seg:hover:not(.is-active):not(:disabled),
+.ds-switcher:not(.ds-switcher--minimal) .ds-switcher__seg.is-hover-default {
+  background: var(--primary-surface-subtle-hover);
+  color: var(--primary-text-default);
+}
+
+.ds-switcher:not(.ds-switcher--minimal) .ds-switcher__seg.is-active {
+  background: var(--primary-surface-default);
+  color: var(--white-text-fixed);
+}
+
+.ds-switcher:not(.ds-switcher--minimal) .ds-switcher__seg.is-active:hover,
+.ds-switcher:not(.ds-switcher--minimal) .ds-switcher__seg.is-hover-active {
+  background: var(--primary-surface-default-hover);
+  color: var(--white-text-fixed);
+}
+
+/* ---------- Fill Minimal: neutral borders, primary text, subtle active ---------- */
+.ds-switcher--minimal .ds-switcher__seg {
+  background: transparent;
+  border-right-color: var(--huegrey-border-minimal);
+  color: var(--primary-text-default);
+}
+
+.ds-switcher--minimal .ds-switcher__seg:hover:not(.is-active):not(:disabled),
+.ds-switcher--minimal .ds-switcher__seg.is-hover-default {
+  background: var(--primary-surface-subtle-hover);
+}
+
+.ds-switcher--minimal .ds-switcher__seg.is-active {
+  background: var(--primary-surface-low);
+  color: var(--primary-text-default);
+}
+
+.ds-switcher--minimal .ds-switcher__seg.is-active:hover,
+.ds-switcher--minimal .ds-switcher__seg.is-hover-active {
+  background: var(--primary-surface-subtle-hover);
+  color: var(--primary-text-default-hover);
+}
+
+/* ---------- Disabled ---------- */
+.ds-switcher__seg:disabled,
+.ds-switcher__seg.is-disabled {
+  background: var(--white-surface-fixed);
+  color: var(--neutral-text-fairish);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ds-switcher--minimal .ds-switcher__seg:disabled,
+.ds-switcher--minimal .ds-switcher__seg.is-disabled {
+  background: transparent;
+}
+
+/* "Disabled After" affects the segment immediately after a disabled one — its left border */
+.ds-switcher__seg.is-disabled-after {
+  /* hide the inherited divider on the LEFT of this segment by overlaying the previous segment's right border */
+  /* In the source design, disabled-after is purely a visual fix for the shared border between disabled and active states */
+}
+
+/* ---------- Icon-only switcher (32×32 segments) ---------- */
+.ds-switcher--icon .ds-switcher__seg {
+  width: 32px;
+  height: 32px;
+  min-width: 0;
+  padding: 0;
+}
+
+/* =========================================================
+   Checkbox (Input_Checkbox 2352:2268, CheckBox_Base ✦ 2352:2180)
+   Bare box sizes:
+     - Base ✦: 14×14, radius S (4px)
+     - Small:  12×12, radius S (4px)
+   States: Default · Default Hover · Checked · Checked Hover ·
+           Disabled · Indeterminate · Error · Error Hover · Success · Success Hover
+   ========================================================= */
+.ds-checkbox {
+  --cbx-size: 14px;
+  --cbx-bg: var(--white-surface-fixed);
+  --cbx-border: var(--huegrey-border-fairish);
+  --cbx-mark: var(--white-text-fixed);
+  --cbx-fill: transparent;
+  display: inline-block;
+  position: relative;
+  width: var(--cbx-size);
+  height: var(--cbx-size);
+  vertical-align: middle;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ds-checkbox--sm { --cbx-size: 12px; }
+
+/* Box surface */
+.ds-checkbox::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cbx-bg);
+  border: 1px solid var(--cbx-border);
+  border-radius: var(--radius-semantic-s);
+  box-sizing: border-box;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+/* Checkmark / indeterminate line */
+.ds-checkbox::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* ---- States ---- */
+.ds-checkbox:hover:not(.is-disabled)::before,
+.ds-checkbox.is-hover::before {
+  border-color: var(--huegrey-text-default);
+}
+
+/* Checked */
+.ds-checkbox.is-checked::before {
+  background: var(--primary-surface-default);
+  border-color: var(--primary-surface-default);
+}
+.ds-checkbox.is-checked:hover:not(.is-disabled)::before,
+.ds-checkbox.is-checked.is-hover::before {
+  background: var(--primary-surface-default-hover);
+  border-color: var(--primary-surface-default-hover);
+}
+.ds-checkbox.is-checked::after {
+  opacity: 1;
+  /* Tick: drawn via two borders */
+  left: 50%;
+  top: 50%;
+  width: calc(var(--cbx-size) * 0.55);
+  height: calc(var(--cbx-size) * 0.30);
+  border-left: 1.5px solid var(--cbx-mark);
+  border-bottom: 1.5px solid var(--cbx-mark);
+  transform: translate(-50%, -65%) rotate(-45deg);
+}
+
+/* Indeterminate */
+.ds-checkbox.is-indeterminate::before {
+  background: var(--huegrey-surface-default);
+  border-color: var(--huegrey-surface-default);
+}
+.ds-checkbox.is-indeterminate::after {
+  opacity: 1;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--cbx-size) * 0.55);
+  height: 1.5px;
+  background: var(--cbx-mark);
+  transform: translate(-50%, -50%);
+}
+
+/* Disabled */
+.ds-checkbox.is-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.ds-checkbox.is-disabled::before {
+  background: var(--huegrey-surface-minimal);
+  border-color: var(--huegrey-border-fairish);
+}
+.ds-checkbox.is-disabled.is-checked::before {
+  background: var(--huegrey-surface-fairish);
+  border-color: var(--huegrey-surface-fairish);
+}
+.ds-checkbox.is-disabled::after {
+  /* keep mark white but at low opacity since bg is light */
+  border-color: var(--white-text-fixed);
+  background: var(--white-text-fixed);
+}
+
+/* Error */
+.ds-checkbox.is-error::before {
+  border-color: var(--error-border-default);
+}
+.ds-checkbox.is-error.is-checked::before {
+  background: var(--error-surface-default);
+  border-color: var(--error-surface-default);
+}
+.ds-checkbox.is-error:hover:not(.is-disabled)::before,
+.ds-checkbox.is-error.is-hover::before {
+  border-color: var(--error-border-default-hover);
+}
+.ds-checkbox.is-error.is-checked:hover::before,
+.ds-checkbox.is-error.is-checked.is-hover::before {
+  background: var(--error-surface-default-hover);
+  border-color: var(--error-surface-default-hover);
+}
+
+/* Success */
+.ds-checkbox.is-success::before {
+  border-color: var(--success-border-default);
+}
+.ds-checkbox.is-success.is-checked::before {
+  background: var(--success-surface-default);
+  border-color: var(--success-surface-default);
+}
+.ds-checkbox.is-success:hover:not(.is-disabled)::before,
+.ds-checkbox.is-success.is-hover::before {
+  border-color: var(--success-border-default-hover);
+}
+.ds-checkbox.is-success.is-checked:hover::before,
+.ds-checkbox.is-success.is-checked.is-hover::before {
+  background: var(--success-surface-default-hover);
+  border-color: var(--success-surface-default-hover);
+}
+
+/* ---- Checkbox + label inline (Input_Checkbox_Core) ---- */
+.ds-checkbox-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+  color: var(--black-text);
+}
+
+.ds-checkbox-row.is-disabled {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-checkbox-row.is-error {
+  color: var(--error-text-default);
+}
+
+/* ---- Group of checkboxes ---- */
+.ds-checkbox-group {
+  display: inline-flex;
+  gap: 16px;
+}
+
+.ds-checkbox-group--horizontal { flex-direction: row; }
+.ds-checkbox-group--vertical   { flex-direction: column; gap: 12px; }
+
+
+/* =========================================================
+   Field (CheckBox_Base ✦ 2352:2180 — generic field shell)
+   Slots: Label · Optional tag · Help icon · Control row · Hint
+   Reusable across checkbox/radio/text inputs.
+   ========================================================= */
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ds-field__head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-field__label {
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-semibold);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-field__optional {
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  font-weight: var(--type-p2-weight-regular);
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-field__help {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--huegrey-border-fairish);
+  color: var(--huegrey-text-default);
+  font-size: 9px;
+  font-weight: 600;
+  cursor: help;
+}
+
+.ds-field__help::before { content: "?"; line-height: 1; }
+
+.ds-field__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-field__hint {
+  font-family: var(--font-family-base);
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  font-weight: var(--type-p3-weight-regular);
+  color: var(--huegrey-text-default);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ds-field__hint::before {
+  content: "i";
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Times New Roman", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Hint type modifiers (Common_Hint variants in Figma) */
+.ds-field__hint--default  { color: var(--huegrey-text-default); }
+.ds-field__hint--info     { color: var(--info-text-default); }
+.ds-field__hint--success  { color: var(--success-text-default); }
+.ds-field__hint--success::before { content: "\2713"; font-family: inherit; font-style: normal; font-weight: 700; font-size: 8px; }   /* ✓ */
+.ds-field__hint--warning  { color: var(--warning-text-default); }
+.ds-field__hint--warning::before { content: "!"; font-family: inherit; font-style: normal; font-weight: 700; font-size: 9px; }
+.ds-field__hint--error    { color: var(--error-text-default); }
+.ds-field__hint--disabled { color: var(--huegrey-text-fairish-hover); }
+
+.ds-field.is-disabled .ds-field__label,
+.ds-field.is-disabled .ds-field__optional,
+.ds-field.is-disabled .ds-field__hint {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-field.is-error .ds-field__hint { color: var(--error-text-default); }
+
+
+/* =========================================================
+   Input Dropdown (2149:31431)
+   Sub-components:
+     - Trigger field   → .ds-dropdown
+     - Floating menu   → .ds-dropdown-menu
+     - Search input    → .ds-dropdown-search
+     - List row        → .ds-list-row
+     - Bottom CTA link → .ds-dropdown-link
+     - Bottom button   → .ds-dropdown-bottombtn
+   Trigger spec (default): h-36, white bg, 1px huegrey-fairish border, radius R(6),
+     placeholder text P2 huegrey-text-default. Active = primary border + primary
+     elevation focus ring.
+   ========================================================= */
+
+/* ---------- Trigger field ---------- */
+.ds-dropdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  width: 100%;
+  max-width: 280px;
+  padding: 0 12px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--huegrey-text-default);
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+  position: relative;
+}
+
+.ds-dropdown__value {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-dropdown__value.is-selected {
+  color: var(--black-text);
+}
+
+/* Caret on the right */
+.ds-dropdown__caret {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+}
+
+.ds-dropdown__caret::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* Optional clear (×) button before caret */
+.ds-dropdown__clear {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-default);
+  padding: 0;
+}
+
+.ds-dropdown__clear::before {
+  content: "\00D7";  /* × */
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* States */
+.ds-dropdown:hover:not(.is-disabled) {
+  border-color: var(--primary-border-default);
+}
+
+.ds-dropdown.is-active {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+}
+
+.ds-dropdown.is-disabled {
+  background: var(--huegrey-surface-subtle-hover);
+  color: var(--huegrey-text-fairish-hover);
+  border-color: var(--huegrey-border-fairish);
+  cursor: not-allowed;
+}
+
+.ds-dropdown.is-disabled-after {
+  background: var(--huegrey-surface-subtle-hover);
+  color: var(--huegrey-text-bold);
+  border-color: var(--huegrey-border-fairish);
+  cursor: not-allowed;
+}
+
+.ds-dropdown.is-success { border-color: var(--success-border-default); background: var(--success-surface-subtle); }
+.ds-dropdown.is-error   { border-color: var(--error-border-default); background: var(--error-surface-subtle); }
+
+/* Multi-selected (chips inside) */
+.ds-dropdown.is-multi {
+  height: auto;
+  min-height: 36px;
+  padding: 4px 12px;
+}
+
+.ds-dropdown__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  height: 22px;
+  background: var(--secondary-surface-subtle);
+  color: var(--black-text);
+  border-radius: var(--radius-semantic-s);
+  font-size: var(--type-p3-size);
+  line-height: 1;
+}
+
+.ds-dropdown__chip-close {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Re-Active (already selected, dropdown open) */
+.ds-dropdown.is-re-active .ds-dropdown__value { color: var(--black-text); }
+
+/* ---------- Floating menu ---------- */
+.ds-dropdown-menu {
+  display: inline-flex;
+  flex-direction: column;
+  width: 236px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  box-shadow: var(--elevation-default-base);
+  overflow: hidden;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+}
+
+.ds-dropdown-menu__header,
+.ds-dropdown-menu__footer {
+  padding: 8px;
+  border-bottom: 1px solid var(--huegrey-border-minimal);
+}
+
+.ds-dropdown-menu__footer {
+  border-top: 1px solid var(--huegrey-border-minimal);
+  border-bottom: 0;
+}
+
+.ds-dropdown-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  max-height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ds-dropdown-menu__no-results {
+  padding: 16px 12px;
+  text-align: center;
+  color: var(--huegrey-text-default);
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+}
+
+/* ---------- Search input inside the menu ---------- */
+.ds-dropdown-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  background: var(--neutral-surface-subtle);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-s);
+  color: var(--huegrey-text-default);
+}
+
+.ds-dropdown-search:focus-within {
+  border-color: var(--primary-border-default);
+  background: var(--white-surface-fixed);
+}
+
+.ds-dropdown-search__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ds-dropdown-search__icon::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  position: relative;
+}
+
+.ds-dropdown-search__input {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  font: inherit;
+  color: var(--black-text);
+}
+
+.ds-dropdown-search__input::placeholder {
+  color: var(--huegrey-text-default);
+}
+
+.ds-dropdown-search__clear {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-default);
+  font-size: 14px;
+}
+
+.ds-dropdown-search__clear::before { content: "\00D7"; line-height: 1; }
+
+/* ---------- List row (List_Vertical_Core) ---------- */
+.ds-list-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: var(--radius-semantic-r);
+  background: var(--white-surface-fixed);
+  color: var(--huegrey-text-default);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.ds-list-row:hover:not(.is-disabled),
+.ds-list-row.is-hover {
+  background: var(--secondary-surface-subtle-hover);
+  color: var(--black-text);
+}
+
+.ds-list-row.is-selected {
+  background: var(--secondary-surface-subtle);
+  color: var(--black-text);
+}
+
+.ds-list-row.is-selected:hover,
+.ds-list-row.is-selected.is-hover {
+  background: var(--secondary-surface-subtle-hover);
+}
+
+.ds-list-row.is-disabled {
+  color: var(--huegrey-text-fairish-hover);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ds-list-row__label {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tick at right when selected (Type=Text) */
+.ds-list-row__tick {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--black-text);
+}
+
+.ds-list-row__tick::before {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+.ds-list-row:not(.is-selected) .ds-list-row__tick {
+  visibility: hidden;
+}
+
+/* Avatar slot (14×14) for "App Icon / Users" rows */
+.ds-list-row__avatar {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-semantic-xs);
+  background: var(--primary-surface-default);
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-text-fixed);
+  font-size: 8px;
+  font-weight: 500;
+}
+
+/* ---------- Bottom CTA link ---------- */
+.ds-dropdown-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  width: 100%;
+  padding: 0 12px;
+  border: 0;
+  background: transparent;
+  color: var(--primary-text-default);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  border-radius: var(--radius-semantic-s);
+}
+
+.ds-dropdown-link:hover { background: var(--primary-surface-subtle-hover); }
+.ds-dropdown-link.is-disabled { color: var(--huegrey-text-fairish-hover); cursor: not-allowed; }
+
+.ds-dropdown-link__plus {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: currentColor;
+}
+
+.ds-dropdown-link__plus::before,
+.ds-dropdown-link__plus::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+
+.ds-dropdown-link__plus::before { width: 12px; height: 1.5px; top: 50%; left: 0; transform: translateY(-50%); }
+.ds-dropdown-link__plus::after  { height: 12px; width: 1.5px; left: 50%; top: 0; transform: translateX(-50%); }
+
+/* =========================================================
+   Input Number (2743:1798)
+   Text input with +/− stepper buttons.
+   States: Default · Hover · Active · Filled · Disabled · Disabled After · Error · Success
+   Spec: h-36, radius R(6), 1px huegrey-fairish border. P2 Regular. Icon 14px.
+   Stepper: 2 square buttons separated by 1px divider, attached to the right.
+   ========================================================= */
+.ds-numinput {
+  display: inline-flex;
+  align-items: stretch;
+  height: 36px;
+  width: 100%;
+  max-width: 200px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--black-text);
+  overflow: hidden;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.ds-numinput__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 6px 0 10px;
+  align-self: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+}
+
+.ds-numinput__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+.ds-numinput__value {
+  flex: 1 0 0;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0 6px 0 0;
+  font: inherit;
+  color: inherit;
+  -moz-appearance: textfield;
+}
+
+.ds-numinput__value::-webkit-outer-spin-button,
+.ds-numinput__value::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ds-numinput__value::placeholder {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+/* Stepper container — attached to right edge */
+.ds-numinput__steppers {
+  display: inline-flex;
+  border-left: 1px solid var(--huegrey-border-fairish);
+  flex-shrink: 0;
+}
+
+.ds-numinput__step {
+  width: 34px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-bold);
+  padding: 0;
+  font: inherit;
+}
+
+.ds-numinput__step + .ds-numinput__step {
+  border-left: 1px solid var(--huegrey-border-fairish);
+}
+
+.ds-numinput__step:hover:not(:disabled) {
+  background: var(--huegrey-surface-subtle-hover);
+  color: var(--black-text);
+}
+
+.ds-numinput__step:disabled {
+  color: var(--huegrey-text-fairish-hover);
+  cursor: not-allowed;
+}
+
+/* Plus / minus glyphs (drawn) */
+.ds-numinput__step--minus::before {
+  content: "";
+  width: 10px;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.ds-numinput__step--plus {
+  position: relative;
+}
+
+.ds-numinput__step--plus::before,
+.ds-numinput__step--plus::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+
+.ds-numinput__step--plus::before { width: 10px; height: 1.5px; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.ds-numinput__step--plus::after  { width: 1.5px; height: 10px; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+/* States */
+.ds-numinput:hover:not(.is-disabled):not(.is-active) {
+  border-color: var(--huegrey-border-default);
+}
+
+.ds-numinput.is-active {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+}
+
+.ds-numinput.is-disabled,
+.ds-numinput.is-disabled-after {
+  background: var(--neutral-surface-subtle);
+  color: var(--huegrey-text-fairish-hover);
+  border-color: var(--huegrey-border-minimal);
+  cursor: not-allowed;
+}
+
+.ds-numinput.is-disabled .ds-numinput__icon,
+.ds-numinput.is-disabled-after .ds-numinput__icon {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-numinput.is-error   { border-color: var(--error-border-default); }
+.ds-numinput.is-success { border-color: var(--success-border-default); }
+
+/* When error/success, give the +/− divider a matching tint */
+.ds-numinput.is-error .ds-numinput__steppers,
+.ds-numinput.is-error .ds-numinput__step + .ds-numinput__step {
+  border-left-color: var(--error-border-default);
+}
+.ds-numinput.is-success .ds-numinput__steppers,
+.ds-numinput.is-success .ds-numinput__step + .ds-numinput__step {
+  border-left-color: var(--success-border-default);
+}
+
+
+/* =========================================================
+   Input Optgroup (2573:6533)
+   Dropdown with grouped sections.
+   Reuses .ds-dropdown trigger, .ds-dropdown-menu shell, .ds-list-row items.
+   Adds:
+     - .ds-optgroup        (a section: optional head + list)
+     - .ds-optgroup-head   (the section label)
+       Types: --default · --bold · --subtle
+       Sizes: 14px (default) · --sm (12px)
+       --selectable (adds checkbox/radio slot)
+     - .ds-optgroup__no-data (empty group state)
+   ========================================================= */
+.ds-optgroup {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+}
+
+.ds-optgroup + .ds-optgroup {
+  border-top: 1px solid var(--huegrey-border-minimal);
+  margin-top: 2px;
+  padding-top: 6px;
+}
+
+.ds-optgroup__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ds-optgroup__no-data {
+  padding: 8px 12px;
+  color: var(--huegrey-text-fairish-hover);
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  font-style: var(--type-p2-style-italic);
+}
+
+/* ---- Group head ---- */
+.ds-optgroup-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 4px;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+  color: var(--huegrey-text-default);
+  white-space: nowrap;
+}
+
+/* Type variants */
+.ds-optgroup-head--default { color: var(--huegrey-text-default); }
+.ds-optgroup-head--bold    { color: var(--huegrey-text-bold);    font-weight: var(--type-p2-weight-semibold); }
+.ds-optgroup-head--subtle  { color: var(--huegrey-text-fairish-hover); }
+
+/* Size variant */
+.ds-optgroup-head--sm {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  padding: 4px 12px 2px;
+}
+
+.ds-optgroup-head--sm.ds-optgroup-head--bold {
+  font-weight: var(--type-p3-weight-semibold);
+}
+
+/* Selectable hint (checkbox/radio slot at left of head) */
+.ds-optgroup-head__select {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Radio (Input Radio 2352:2602)
+   Bare 14×14 circle, primary fill + center dot when checked.
+   States: Default · Default Hover · Checked · Checked Hover ·
+           Disabled (Before/After) · Error · Hover On Error
+   Sub-components:
+     - .ds-radio              (bare circle)
+     - .ds-radio-row          (radio + label)
+     - .ds-radio-group--*     (horizontal / vertical layouts)
+     - .ds-radio-card         (large card variant with title + description)
+   ========================================================= */
+.ds-radio {
+  --rdo-size: 14px;
+  --rdo-bg: var(--white-surface-fixed);
+  --rdo-border: var(--huegrey-border-fairish);
+  --rdo-dot: var(--white-text-fixed);
+  display: inline-block;
+  position: relative;
+  width: var(--rdo-size);
+  height: var(--rdo-size);
+  vertical-align: middle;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Outer circle */
+.ds-radio::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--rdo-bg);
+  border: 1px solid var(--rdo-border);
+  border-radius: var(--radius-semantic-full);
+  box-sizing: border-box;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+/* Center dot (hidden by default) */
+.ds-radio::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--rdo-dot);
+  border-radius: var(--radius-semantic-full);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hover */
+.ds-radio:hover:not(.is-disabled)::before,
+.ds-radio.is-hover::before {
+  border-color: var(--huegrey-text-default);
+}
+
+/* Checked */
+.ds-radio.is-checked::before {
+  background: var(--primary-surface-default);
+  border-color: var(--primary-surface-default);
+}
+.ds-radio.is-checked:hover:not(.is-disabled)::before,
+.ds-radio.is-checked.is-hover::before {
+  background: var(--primary-surface-default-hover);
+  border-color: var(--primary-surface-default-hover);
+}
+.ds-radio.is-checked::after { opacity: 1; }
+
+/* Disabled */
+.ds-radio.is-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.ds-radio.is-disabled::before {
+  background: var(--huegrey-surface-subtle);
+  border-color: var(--huegrey-border-fairish);
+}
+.ds-radio.is-disabled.is-checked::before {
+  background: var(--huegrey-surface-fairish);
+  border-color: var(--huegrey-surface-fairish);
+}
+
+/* Error */
+.ds-radio.is-error::before {
+  border-color: var(--error-border-default);
+}
+.ds-radio.is-error.is-checked::before {
+  background: var(--error-surface-default);
+  border-color: var(--error-surface-default);
+}
+.ds-radio.is-error:hover:not(.is-disabled)::before,
+.ds-radio.is-error.is-hover::before {
+  border-color: var(--error-border-default-hover);
+}
+.ds-radio.is-error.is-checked:hover::before,
+.ds-radio.is-error.is-checked.is-hover::before {
+  background: var(--error-surface-default-hover);
+  border-color: var(--error-surface-default-hover);
+}
+
+/* ---- Radio + label inline ---- */
+.ds-radio-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+  color: var(--black-text);
+  cursor: pointer;
+}
+
+.ds-radio-row.is-disabled {
+  color: var(--huegrey-text-fairish-hover);
+  cursor: not-allowed;
+}
+
+.ds-radio-row.is-error {
+  color: var(--error-text-default);
+}
+
+/* ---- Radio group ---- */
+.ds-radio-group {
+  display: inline-flex;
+  gap: 16px;
+}
+
+.ds-radio-group--horizontal { flex-direction: row; }
+.ds-radio-group--vertical   { flex-direction: column; gap: 12px; }
+
+/* ---- Radio Card (Radio_Card_Base ✦) ---- */
+.ds-radio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.ds-radio-card:hover:not(.is-disabled) {
+  border-color: var(--huegrey-text-default);
+}
+
+.ds-radio-card.is-checked {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+  background: var(--primary-surface-subtle);
+}
+
+.ds-radio-card.is-checked:hover {
+  border-color: var(--primary-border-default-hover);
+}
+
+.ds-radio-card.is-disabled {
+  cursor: not-allowed;
+  background: var(--huegrey-surface-subtle);
+  pointer-events: none;
+}
+
+.ds-radio-card__body {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-radio-card__head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-radio-card__title {
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-semibold);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-radio-card.is-disabled .ds-radio-card__title,
+.ds-radio-card.is-disabled .ds-radio-card__desc {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-radio-card__optional {
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  font-weight: var(--type-p2-weight-regular);
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-radio-card__help {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--huegrey-border-fairish);
+  color: var(--huegrey-text-default);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.ds-radio-card__help::before { content: "?"; line-height: 1; }
+
+.ds-radio-card__desc {
+  font-family: var(--font-family-base);
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  font-weight: var(--type-p3-weight-regular);
+  color: var(--huegrey-text-default);
+}
+
+
+/* =========================================================
+   Tag (Tags / Tag Picker — 2947:9730)
+   Inline pill chip used inside tag-picker fields, multi-select
+   dropdowns, filter strips, and as standalone status indicators.
+   Sizes:  Base (24h)  ·  Small (20h)
+   Colors: Default (gray) · Primary (blue) · Success · Error
+   Slots:  __icon (left, 14×14) · __label · __close (×, right)
+   States: hover (interactive)  ·  is-disabled  ·  is-active (focus/selected ring)
+   ========================================================= */
+.ds-tag {
+  --tag-bg: var(--neutral-surface-subtle);
+  --tag-bg-hover: var(--huegrey-surface-low);
+  --tag-text: var(--neutral-text-default);
+  --tag-border: var(--huegrey-border-minimal);
+  --tag-close: var(--neutral-text-default);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 10px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid var(--tag-border);
+  border-radius: var(--radius-semantic-s);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: 24px;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.ds-tag--sm {
+  height: 20px;
+  padding: 0 6px;
+  font-size: 11px;
+  line-height: 18px;
+  gap: 3px;
+}
+
+.ds-tag--lg {
+  height: 28px;
+  padding: 0 10px;
+  font-size: var(--type-p2-size);
+  line-height: 26px;
+}
+
+.ds-tag--lg .ds-tag__close {
+  width: 18px;
+  height: 18px;
+  font-size: 16px;
+}
+
+.ds-tag--lg .ds-tag__icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Color modifiers ---- */
+.ds-tag--primary {
+  --tag-bg: var(--primary-surface-subtle);
+  --tag-bg-hover: var(--primary-surface-subtle-hover);
+  --tag-text: var(--primary-text-default);
+  --tag-border: var(--primary-border-low);
+  --tag-close: var(--primary-text-default);
+}
+
+.ds-tag--success {
+  --tag-bg: var(--success-surface-subtle);
+  --tag-bg-hover: var(--success-surface-subtle-hover);
+  --tag-text: var(--success-text-default);
+  --tag-border: var(--success-border-minimal);
+  --tag-close: var(--success-text-default);
+}
+
+.ds-tag--warning {
+  --tag-bg: var(--warning-surface-subtle);
+  --tag-bg-hover: var(--warning-surface-subtle-hover);
+  --tag-text: var(--warning-text-default);
+  --tag-border: var(--warning-border-minimal);
+  --tag-close: var(--warning-text-default);
+}
+
+.ds-tag--error {
+  --tag-bg: var(--error-surface-subtle);
+  --tag-bg-hover: var(--error-surface-subtle-hover);
+  --tag-text: var(--error-text-default);
+  --tag-border: var(--error-border-minimal);
+  --tag-close: var(--error-text-default);
+}
+
+/* ---- Solid (filled) variant — used for stronger emphasis ---- */
+.ds-tag--solid           { --tag-bg: var(--huegrey-surface-default); --tag-text: var(--white-text-fixed); --tag-close: var(--white-text-fixed); --tag-border: transparent; --tag-bg-hover: var(--huegrey-surface-default-hover); }
+.ds-tag--solid.ds-tag--primary { --tag-bg: var(--primary-surface-default); --tag-bg-hover: var(--primary-surface-default-hover); --tag-text: var(--white-text-fixed); --tag-close: var(--white-text-fixed); --tag-border: transparent; }
+.ds-tag--solid.ds-tag--success { --tag-bg: var(--success-surface-default); --tag-bg-hover: var(--success-surface-default-hover); --tag-text: var(--white-text-fixed); --tag-close: var(--white-text-fixed); --tag-border: transparent; }
+.ds-tag--solid.ds-tag--warning { --tag-bg: var(--warning-surface-default); --tag-bg-hover: var(--warning-surface-default-hover); --tag-text: var(--white-text-fixed); --tag-close: var(--white-text-fixed); --tag-border: transparent; }
+.ds-tag--solid.ds-tag--error   { --tag-bg: var(--error-surface-default);   --tag-bg-hover: var(--error-surface-default-hover);   --tag-text: var(--white-text-fixed); --tag-close: var(--white-text-fixed); --tag-border: transparent; }
+
+/* ---- Outlined variant ---- */
+.ds-tag--outline           { --tag-bg: transparent; --tag-bg-hover: var(--back-surface-alpha-3); --tag-border: var(--huegrey-border-fairish); }
+.ds-tag--outline.ds-tag--primary { --tag-border: var(--primary-border-low); }
+.ds-tag--outline.ds-tag--success { --tag-border: var(--success-border-low); }
+.ds-tag--outline.ds-tag--warning { --tag-border: var(--warning-border-low); }
+.ds-tag--outline.ds-tag--error   { --tag-border: var(--error-border-low); }
+
+/* ---- Hover (interactive tag) ---- */
+.ds-tag.is-interactive { cursor: pointer; transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
+.ds-tag.is-interactive:hover:not(.is-disabled) { background: var(--tag-bg-hover); }
+
+.ds-tag.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Slots ---- */
+.ds-tag__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.ds-tag__icon::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
+
+/* User/avatar mini icon — solid filled circle */
+.ds-tag__icon--avatar::before {
+  background: currentColor;
+  border: 0;
+  width: 10px;
+  height: 10px;
+}
+
+.ds-tag__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-tag__close {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--tag-close);
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 2px;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.ds-tag__close::before {
+  content: "\00D7";   /* × */
+  line-height: 1;
+}
+
+.ds-tag__close:hover { opacity: 1; background: rgba(0, 0, 0, 0.08); }
+
+/* "+N more" counter chip variant — same as default but tighter */
+.ds-tag--counter {
+  padding: 0 6px;
+  background: transparent;
+  color: var(--huegrey-text-default);
+  border: 0;
+}
+
+/* ---- Tag list wrapper ---- */
+.ds-tag-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+
+/* =========================================================
+   Text Input (Input Text 2352:2606)
+   Single-line text field. Optional left and right icon slots.
+   Spec: h-36, radius R(6), 1px huegrey-fairish border, P2 Regular, white bg.
+   States: Default · Hover · Active · Filled · Hover On Filled ·
+           Disabled · Disabled After · Error · Error After · Success
+   ========================================================= */
+.ds-textinput {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  width: 100%;
+  max-width: 280px;
+  padding: 0 12px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--black-text);
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.ds-textinput__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+}
+
+.ds-textinput__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+.ds-textinput__input {
+  flex: 1 0 0;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.ds-textinput__input::placeholder {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+/* States */
+.ds-textinput:hover:not(.is-disabled):not(.is-active) {
+  border-color: var(--huegrey-border-default);
+}
+
+.ds-textinput:focus-within,
+.ds-textinput.is-active {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+}
+
+.ds-textinput.is-disabled,
+.ds-textinput.is-disabled-after {
+  background: var(--neutral-surface-subtle);
+  color: var(--huegrey-text-fairish-hover);
+  border-color: var(--huegrey-border-minimal);
+  cursor: not-allowed;
+}
+
+.ds-textinput.is-disabled .ds-textinput__icon,
+.ds-textinput.is-disabled-after .ds-textinput__icon {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-textinput.is-error {
+  border-color: var(--error-border-default);
+  background: var(--error-surface-subtle);
+}
+
+.ds-textinput.is-error:focus-within {
+  box-shadow: 0 0 0 3px rgba(204, 25, 20, 0.10);
+}
+
+.ds-textinput.is-success {
+  border-color: var(--success-border-default);
+  background: var(--success-surface-subtle);
+}
+
+
+/* =========================================================
+   Text Area (Input TextArea 2352:2604)
+   Multi-line text input. Same state system as .ds-textinput
+   but variable height and top-aligned icon.
+   States: Default · Hover · Active · Filled · Hover On Filled ·
+           Disabled · Disabled After · Error · Error After · Success
+   ========================================================= */
+.ds-textarea {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+  min-height: 99px;
+  padding: 9px 12px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--black-text);
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.ds-textarea__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+  margin-top: 2px;          /* align to first text line */
+}
+
+.ds-textarea__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+.ds-textarea__input {
+  flex: 1 0 0;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  resize: vertical;
+  min-height: 78px;
+}
+
+.ds-textarea__input::placeholder {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+/* States — mirror .ds-textinput */
+.ds-textarea:hover:not(.is-disabled):not(.is-active) {
+  border-color: var(--huegrey-border-default);
+}
+
+.ds-textarea:focus-within,
+.ds-textarea.is-active {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+}
+
+.ds-textarea.is-disabled,
+.ds-textarea.is-disabled-after {
+  background: var(--neutral-surface-subtle);
+  color: var(--huegrey-text-fairish-hover);
+  border-color: var(--huegrey-border-minimal);
+  cursor: not-allowed;
+}
+
+.ds-textarea.is-disabled .ds-textarea__icon,
+.ds-textarea.is-disabled-after .ds-textarea__icon {
+  color: var(--huegrey-text-fairish-hover);
+}
+
+.ds-textarea.is-error {
+  border-color: var(--error-border-default);
+  background: var(--error-surface-subtle);
+}
+
+.ds-textarea.is-error:focus-within {
+  box-shadow: 0 0 0 3px rgba(204, 25, 20, 0.10);
+}
+
+.ds-textarea.is-success {
+  border-color: var(--success-border-default);
+  background: var(--success-surface-subtle);
+}
+
+
+/* =========================================================
+   Suffixed Input (Input Suffixed 2980:5315)
+   Text input with a right-side suffix. Two types:
+     - Actionable    → clickable CTA button (text and/or icon)
+     - Non-Actionable→ static info label
+   Plus a "close" pattern: full-width input with a × at the right.
+   States match Text Input + Hover On CTA, Selected, Hover On Selected.
+   Spec: h-36, radius R(6). Suffix attached with shared 1px border.
+   ========================================================= */
+.ds-suffixed {
+  display: inline-flex;
+  align-items: stretch;
+  height: 36px;
+  width: 100%;
+  max-width: 320px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--black-text);
+  overflow: hidden;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.ds-suffixed__field {
+  flex: 1 0 0;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.ds-suffixed__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+}
+
+.ds-suffixed__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+.ds-suffixed__input {
+  flex: 1 0 0;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.ds-suffixed__input::placeholder { color: var(--huegrey-text-fairish-hover); }
+
+/* ---- Suffix slot ---- */
+.ds-suffixed__suffix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 12px;
+  border-left: 1px solid var(--huegrey-border-fairish);
+  background: transparent;
+  color: var(--huegrey-text-bold);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Actionable: button — primary text, hover bg subtle */
+.ds-suffixed__suffix--actionable {
+  background: transparent;
+  color: var(--primary-text-default);
+  border: 0;
+  border-left: 1px solid var(--huegrey-border-fairish);
+  cursor: pointer;
+  font: inherit;
+}
+
+.ds-suffixed__suffix--actionable:hover:not(:disabled) {
+  background: var(--primary-surface-subtle);
+  color: var(--primary-text-default-hover);
+}
+
+/* Selected: filled primary background */
+.ds-suffixed.is-selected .ds-suffixed__suffix--actionable {
+  background: var(--primary-surface-default);
+  color: var(--white-text-fixed);
+}
+
+.ds-suffixed.is-selected .ds-suffixed__suffix--actionable:hover {
+  background: var(--primary-surface-default-hover);
+}
+
+/* Non-Actionable: static label */
+.ds-suffixed__suffix--label {
+  cursor: default;
+  color: var(--huegrey-text-default);
+}
+
+/* Close (×) variant — sits inside the input area, no border-left */
+.ds-suffixed__close {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin-right: 12px;
+  cursor: pointer;
+  color: var(--huegrey-text-default);
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.ds-suffixed__close::before { content: "\00D7"; }
+.ds-suffixed__close:hover   { background: var(--huegrey-surface-subtle-hover); color: var(--black-text); }
+
+/* ---- States ---- */
+.ds-suffixed:hover:not(.is-disabled):not(.is-active):not(.is-selected) {
+  border-color: var(--huegrey-border-default);
+}
+
+.ds-suffixed:focus-within,
+.ds-suffixed.is-active {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+}
+
+.ds-suffixed.is-selected {
+  border-color: var(--primary-border-default);
+}
+
+.ds-suffixed.is-disabled,
+.ds-suffixed.is-disabled-after {
+  background: var(--neutral-surface-subtle);
+  color: var(--huegrey-text-fairish-hover);
+  border-color: var(--huegrey-border-minimal);
+  cursor: not-allowed;
+}
+
+.ds-suffixed.is-disabled .ds-suffixed__icon,
+.ds-suffixed.is-disabled .ds-suffixed__suffix,
+.ds-suffixed.is-disabled-after .ds-suffixed__suffix {
+  color: var(--huegrey-text-fairish-hover);
+  pointer-events: none;
+}
+
+.ds-suffixed.is-error {
+  border-color: var(--error-border-default);
+  background: var(--error-surface-subtle);
+}
+
+.ds-suffixed.is-error .ds-suffixed__suffix { border-left-color: var(--error-border-default); }
+
+.ds-suffixed.is-success {
+  border-color: var(--success-border-default);
+  background: var(--success-surface-subtle);
+}
+
+.ds-suffixed.is-success .ds-suffixed__suffix { border-left-color: var(--success-border-default); }
+
+
+/* =========================================================
+   Prefixed Input (Input Preffixed 3037:965)
+   Mirror of Suffixed Input — prefix on the LEFT, plus optional
+   right-side action icon (search / dropdown / close).
+   Two types: Actionable / Non-Actionable. 11 states.
+   ========================================================= */
+.ds-prefixed {
+  display: inline-flex;
+  align-items: stretch;
+  height: 36px;
+  width: 100%;
+  max-width: 320px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--black-text);
+  overflow: hidden;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+/* Prefix slot (left) */
+.ds-prefixed__prefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 12px;
+  border-right: 1px solid var(--huegrey-border-fairish);
+  background: transparent;
+  color: var(--huegrey-text-bold);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Actionable prefix (button) — primary text */
+.ds-prefixed__prefix--actionable {
+  background: transparent;
+  color: var(--primary-text-default);
+  border: 0;
+  border-right: 1px solid var(--huegrey-border-fairish);
+  cursor: pointer;
+  font: inherit;
+}
+
+.ds-prefixed__prefix--actionable:hover:not(:disabled) {
+  background: var(--primary-surface-subtle);
+  color: var(--primary-text-default-hover);
+}
+
+/* Selected: filled primary */
+.ds-prefixed.is-selected .ds-prefixed__prefix--actionable {
+  background: var(--primary-surface-default);
+  color: var(--white-text-fixed);
+}
+
+.ds-prefixed.is-selected .ds-prefixed__prefix--actionable:hover {
+  background: var(--primary-surface-default-hover);
+}
+
+/* Non-Actionable */
+.ds-prefixed__prefix--label {
+  cursor: default;
+  color: var(--huegrey-text-default);
+}
+
+/* Field area */
+.ds-prefixed__field {
+  flex: 1 0 0;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.ds-prefixed__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+}
+
+.ds-prefixed__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+.ds-prefixed__input {
+  flex: 1 0 0;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.ds-prefixed__input::placeholder { color: var(--huegrey-text-fairish-hover); }
+
+/* Right-side action icon (Input_Right_Action: Search/Dropdown/Close) */
+.ds-prefixed__action {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-default);
+  flex-shrink: 0;
+}
+
+.ds-prefixed__action:hover { color: var(--black-text); }
+
+.ds-prefixed__action--search::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  box-shadow: 5px 5px 0 -3.5px currentColor;
+}
+
+.ds-prefixed__action--dropdown::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.ds-prefixed__action--close::before {
+  content: "\00D7";
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ---- States ---- */
+.ds-prefixed:hover:not(.is-disabled):not(.is-active):not(.is-selected) {
+  border-color: var(--huegrey-border-default);
+}
+
+.ds-prefixed:focus-within,
+.ds-prefixed.is-active {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+}
+
+.ds-prefixed.is-selected {
+  border-color: var(--primary-border-default);
+}
+
+.ds-prefixed.is-disabled,
+.ds-prefixed.is-disabled-after {
+  background: var(--neutral-surface-subtle);
+  color: var(--huegrey-text-fairish-hover);
+  border-color: var(--huegrey-border-minimal);
+  cursor: not-allowed;
+}
+
+.ds-prefixed.is-disabled .ds-prefixed__prefix,
+.ds-prefixed.is-disabled .ds-prefixed__icon,
+.ds-prefixed.is-disabled .ds-prefixed__action,
+.ds-prefixed.is-disabled-after .ds-prefixed__prefix {
+  color: var(--huegrey-text-fairish-hover);
+  pointer-events: none;
+}
+
+.ds-prefixed.is-error {
+  border-color: var(--error-border-default);
+  background: var(--error-surface-subtle);
+}
+
+.ds-prefixed.is-error .ds-prefixed__prefix { border-right-color: var(--error-border-default); }
+
+.ds-prefixed.is-success {
+  border-color: var(--success-border-default);
+  background: var(--success-surface-subtle);
+}
+
+.ds-prefixed.is-success .ds-prefixed__prefix { border-right-color: var(--success-border-default); }
+
+
+/* =========================================================
+   Affixed Input (Input Affixed 3079:8009)
+   Text input with BOTH a left prefix AND a right suffix.
+   Sub-types: Actionable Left · Actionable Right · Non-Actionable
+   States match Suffixed/Prefixed (11 each).
+   Implementation note: reuses .ds-prefixed structure, just
+   adds an extra trailing affix slot.
+   ========================================================= */
+.ds-affixed {
+  display: inline-flex;
+  align-items: stretch;
+  height: 36px;
+  width: 100%;
+  max-width: 420px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--black-text);
+  overflow: hidden;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+/* Field area in the middle */
+.ds-affixed__field {
+  flex: 1 0 0;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.ds-affixed__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+}
+
+.ds-affixed__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+.ds-affixed__input {
+  flex: 1 0 0;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.ds-affixed__input::placeholder { color: var(--huegrey-text-fairish-hover); }
+
+/* Affix slot — used for both prefix and suffix */
+.ds-affixed__affix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 12px;
+  background: transparent;
+  color: var(--huegrey-text-bold);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.ds-affixed__affix--prefix { border-right: 1px solid var(--huegrey-border-fairish); }
+.ds-affixed__affix--suffix { border-left:  1px solid var(--huegrey-border-fairish); }
+
+/* Actionable affix (CTA) */
+.ds-affixed__affix--actionable {
+  background: transparent;
+  color: var(--primary-text-default);
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.ds-affixed__affix--actionable.ds-affixed__affix--prefix { border-right: 1px solid var(--huegrey-border-fairish); }
+.ds-affixed__affix--actionable.ds-affixed__affix--suffix { border-left:  1px solid var(--huegrey-border-fairish); }
+
+.ds-affixed__affix--actionable:hover:not(:disabled) {
+  background: var(--primary-surface-subtle);
+  color: var(--primary-text-default-hover);
+}
+
+/* Selected: filled primary */
+.ds-affixed.is-selected-left  .ds-affixed__affix--prefix.ds-affixed__affix--actionable,
+.ds-affixed.is-selected-right .ds-affixed__affix--suffix.ds-affixed__affix--actionable,
+.ds-affixed.is-selected       .ds-affixed__affix--actionable {
+  background: var(--primary-surface-default);
+  color: var(--white-text-fixed);
+}
+
+.ds-affixed.is-selected-left  .ds-affixed__affix--prefix.ds-affixed__affix--actionable:hover,
+.ds-affixed.is-selected-right .ds-affixed__affix--suffix.ds-affixed__affix--actionable:hover,
+.ds-affixed.is-selected       .ds-affixed__affix--actionable:hover {
+  background: var(--primary-surface-default-hover);
+}
+
+/* Non-Actionable label */
+.ds-affixed__affix--label {
+  cursor: default;
+  color: var(--huegrey-text-default);
+}
+
+/* ---- States (mirror suffixed/prefixed) ---- */
+.ds-affixed:hover:not(.is-disabled):not(.is-active):not(.is-selected):not(.is-selected-left):not(.is-selected-right) {
+  border-color: var(--huegrey-border-default);
+}
+
+.ds-affixed:focus-within,
+.ds-affixed.is-active {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-minimal);
+}
+
+.ds-affixed.is-disabled,
+.ds-affixed.is-disabled-after {
+  background: var(--neutral-surface-subtle);
+  color: var(--huegrey-text-fairish-hover);
+  border-color: var(--huegrey-border-minimal);
+  cursor: not-allowed;
+}
+
+.ds-affixed.is-disabled .ds-affixed__affix,
+.ds-affixed.is-disabled .ds-affixed__icon,
+.ds-affixed.is-disabled-after .ds-affixed__affix {
+  color: var(--huegrey-text-fairish-hover);
+  pointer-events: none;
+}
+
+.ds-affixed.is-error {
+  border-color: var(--error-border-default);
+  background: var(--error-surface-subtle);
+}
+
+.ds-affixed.is-error .ds-affixed__affix--prefix { border-right-color: var(--error-border-default); }
+.ds-affixed.is-error .ds-affixed__affix--suffix { border-left-color: var(--error-border-default); }
+
+.ds-affixed.is-success {
+  border-color: var(--success-border-default);
+  background: var(--success-surface-subtle);
+}
+
+.ds-affixed.is-success .ds-affixed__affix--prefix { border-right-color: var(--success-border-default); }
+.ds-affixed.is-success .ds-affixed__affix--suffix { border-left-color: var(--success-border-default); }
+
+
+/* =========================================================
+   Notes (Notes_Base ✦ 2393:3616)
+   Banner / alert card. Header (icon + title) + body + optional CTA.
+   States (color variants): Default · Info · Warning · Success · Error
+   CTA Position: Left · Center · Right (Notes_CTA_Position)
+   ========================================================= */
+.ds-note {
+  --note-bg: var(--huegrey-surface-subtle);
+  --note-border: var(--huegrey-border-minimal);
+  --note-icon: var(--black-text);
+  --note-title: var(--black-text);
+  --note-body: var(--huegrey-text-bold);
+  --note-cta: var(--primary-text-default);
+
+  background: var(--note-bg);
+  border: 1px solid var(--note-border);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--note-body);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ds-note__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.ds-note__icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--note-icon);
+  border-radius: 999px;
+  font-family: "Times New Roman", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.ds-note__icon::before {
+  content: "i";
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid currentColor;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Per-color icons */
+.ds-note--warning .ds-note__icon::before { content: "!"; }
+.ds-note--success .ds-note__icon::before { content: "\2713"; font-family: inherit; font-style: normal; font-size: 9px; }
+.ds-note--error   .ds-note__icon::before { content: "\00D7"; font-family: inherit; font-style: normal; font-weight: 700; font-size: 12px; }
+
+.ds-note__content {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-note__title {
+  font-weight: var(--type-p2-weight-bold);
+  color: var(--note-title);
+}
+
+.ds-note__text {
+  color: var(--note-body);
+}
+
+.ds-note__footer {
+  border-top: 1px solid var(--note-border);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.ds-note__footer--left   { justify-content: flex-start; }
+.ds-note__footer--center { justify-content: center; }
+.ds-note__footer--right  { justify-content: flex-end; }
+
+/* The CTA button reuses .ds-btn--link with the note's color theme.
+   To do that we just override .ds-btn local properties via a wrapper class.
+*/
+.ds-note__footer .ds-btn {
+  --btn-text: var(--note-cta);
+  --btn-text-hover: var(--note-cta);
+  --btn-subtle: transparent;
+  --btn-subtle-hover: transparent;
+}
+
+/* ---- Color modifiers (override locals) ---- */
+.ds-note--info {
+  --note-bg: var(--info-surface-subtle);
+  --note-border: var(--info-border-minimal);
+  --note-icon: var(--info-text-default);
+  --note-title: var(--info-text-default);
+  --note-cta: var(--info-text-default);
+}
+
+.ds-note--warning {
+  --note-bg: var(--warning-surface-subtle);
+  --note-border: var(--warning-border-minimal);
+  --note-icon: var(--warning-text-default);
+  --note-title: var(--warning-text-default);
+  --note-cta: var(--warning-text-default);
+}
+
+.ds-note--success {
+  --note-bg: var(--success-surface-subtle);
+  --note-border: var(--success-border-minimal);
+  --note-icon: var(--success-text-default);
+  --note-title: var(--success-text-default);
+  --note-cta: var(--success-text-default);
+}
+
+.ds-note--error {
+  --note-bg: var(--error-surface-subtle);
+  --note-border: var(--error-border-minimal);
+  --note-icon: var(--error-text-default);
+  --note-title: var(--error-text-default);
+  --note-cta: var(--error-text-default);
+}
+
+
+/* =========================================================
+   Progress Indicator (Progres_Bar 2349:2)
+   Horizontal 6px progress bar.
+   Types: Default · Primary · Hard · Success · Warning · Error
+   Optional X% caption below (Progres_Bar_Core_With_Hint).
+   ========================================================= */
+.ds-progress {
+  --progress-fill: var(--huegrey-surface-default);
+  --progress-track: var(--huegrey-surface-minimal);
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.ds-progress__track {
+  width: 100%;
+  height: 6px;
+  background: var(--progress-track);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ds-progress__fill {
+  height: 100%;
+  background: var(--progress-fill);
+  border-radius: 999px;
+  transition: width 200ms ease;
+}
+
+/* Type modifiers */
+.ds-progress--primary { --progress-fill: var(--primary-surface-default); }
+.ds-progress--hard    { --progress-fill: var(--huegrey-surface-dark); }
+.ds-progress--success { --progress-fill: var(--success-surface-default); }
+.ds-progress--warning { --progress-fill: var(--warning-surface-default); }
+.ds-progress--error   { --progress-fill: var(--error-surface-default); }
+
+/* Caption (X%) — positioned at the end of the fill */
+.ds-progress__caption {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p5-size);
+  line-height: var(--type-p5-line-height);
+  font-weight: var(--type-p5-weight-regular);
+  color: var(--black-text);
+  /* The caller positions this via inline left/transform if they want it
+     anchored to the fill end. By default it sits left-aligned below. */
+}
+
+/* When using --with-hint, caption can be positioned at fill-end via
+   inline style: style="margin-left: <fill%>; transform: translateX(-50%);"
+   Or just place it inline-block with the right gap. */
+
+
+/* =========================================================
+   Tabs (Tabs 2294:4392)
+   Horizontal text tabs with bottom-border indicator.
+   Different from the Content Switcher segmented control —
+   this is the typical "underlined tabs" navigation pattern.
+   States: Default · Hover On Default · Active · Hover On Active ·
+           Active Border · Hover On Active Border · Disabled
+   Sizes: bottom padding 6 / 10 / 12 / 14 / 16 px
+          horizontal padding 0 / 2 / 4 / 8 / 10 / 12 / 14 px
+   ========================================================= */
+.ds-tabs {
+  --tabs-padding-y: 12px;       /* default bottom padding */
+  --tabs-padding-x: 14px;       /* default horizontal padding per tab */
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border-bottom: 1px solid var(--huegrey-border-minimal);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+}
+
+/* Bottom padding modifiers */
+.ds-tabs--py-6  { --tabs-padding-y: 6px; }
+.ds-tabs--py-10 { --tabs-padding-y: 10px; }
+.ds-tabs--py-12 { --tabs-padding-y: 12px; }
+.ds-tabs--py-14 { --tabs-padding-y: 14px; }
+.ds-tabs--py-16 { --tabs-padding-y: 16px; }
+
+/* Horizontal padding modifiers */
+.ds-tabs--px-0  { --tabs-padding-x: 0; }
+.ds-tabs--px-2  { --tabs-padding-x: 2px; }
+.ds-tabs--px-4  { --tabs-padding-x: 4px; }
+.ds-tabs--px-8  { --tabs-padding-x: 8px; }
+.ds-tabs--px-10 { --tabs-padding-x: 10px; }
+.ds-tabs--px-12 { --tabs-padding-x: 12px; }
+.ds-tabs--px-14 { --tabs-padding-x: 14px; }
+
+.ds-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 var(--tabs-padding-x) var(--tabs-padding-y);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;          /* sit on top of container's 1px border */
+  color: var(--huegrey-text-bold);
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+.ds-tab__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.ds-tab__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+/* States */
+.ds-tab:hover:not(.is-disabled):not(.is-active),
+.ds-tab.is-hover {
+  color: var(--huegrey-text-dark);
+}
+
+.ds-tab.is-active {
+  color: var(--primary-text-default);
+  border-bottom-color: var(--primary-border-default);
+}
+
+.ds-tab.is-active:hover,
+.ds-tab.is-active.is-hover {
+  color: var(--primary-text-default-hover);
+  border-bottom-color: var(--primary-border-default-hover);
+}
+
+/* Active Border — just the underline, no color change (e.g. current section indicator) */
+.ds-tab.is-active-border {
+  border-bottom-color: var(--primary-border-default);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-tab.is-active-border:hover,
+.ds-tab.is-active-border.is-hover {
+  color: var(--huegrey-text-dark);
+  border-bottom-color: var(--primary-border-default-hover);
+}
+
+.ds-tab.is-disabled {
+  color: var(--huegrey-text-fairish-hover);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   Toast (Toast 2255:53185)
+   Compact single-line notification banner. 4 type variants
+   (Info / Success / Warning / Error), each with a × close button.
+   Spec: 42h, radius R(6), subtle bg + minimal border, P2 Regular.
+   ========================================================= */
+.ds-toast {
+  --toast-bg: var(--info-surface-subtle);
+  --toast-border: var(--info-border-minimal);
+  --toast-icon: var(--info-text-default);
+  --toast-text: var(--black-text);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  width: 100%;
+  max-width: 320px;
+  padding: 0 12px;
+  background: var(--toast-bg);
+  border: 1px solid var(--toast-border);
+  border-radius: var(--radius-semantic-r);
+  color: var(--toast-text);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+}
+
+.ds-toast__icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--toast-icon);
+  font-family: "Times New Roman", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.ds-toast__icon::before {
+  content: "i";
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid currentColor;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-toast--warning .ds-toast__icon::before { content: "!"; }
+.ds-toast--success .ds-toast__icon::before { content: "\2713"; font-family: inherit; font-style: normal; font-size: 9px; }
+.ds-toast--error   .ds-toast__icon::before { content: "\00D7"; font-family: inherit; font-style: normal; font-weight: 700; font-size: 12px; }
+
+.ds-toast__text {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-toast__close {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--huegrey-surface-default);
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.ds-toast__close::before { content: "\00D7"; }
+.ds-toast__close:hover   { color: var(--huegrey-surface-dark); background: rgba(0, 0, 0, 0.05); }
+
+/* ---- Color modifiers ---- */
+.ds-toast--info {
+  --toast-bg: var(--info-surface-subtle);
+  --toast-border: var(--info-border-minimal);
+  --toast-icon: var(--info-text-default);
+}
+
+.ds-toast--success {
+  --toast-bg: var(--success-surface-subtle);
+  --toast-border: var(--success-border-minimal);
+  --toast-icon: var(--success-text-default);
+}
+
+.ds-toast--warning {
+  --toast-bg: var(--warning-surface-subtle);
+  --toast-border: var(--warning-border-minimal);
+  --toast-icon: var(--warning-text-default);
+}
+
+.ds-toast--error {
+  --toast-bg: var(--error-surface-subtle);
+  --toast-border: var(--error-border-minimal);
+  --toast-icon: var(--error-text-default);
+}
+
+
+/* =========================================================
+   Toggle (Toggle 2359:348)
+   Selectable pill / chip with circle indicator + label.
+   Click to toggle between off (default outline) and on (color fill).
+   Sizes:  14 · 16 · 18 px (text-sized) · XS (26) · Small (30)
+   Radii:  Full · R(6) · S(4)
+   Types:  Fill · Border · Subtle
+   Color states (when on): Primary · Success · Info · Warning · Error · HueGray
+   Disabled: Before (off+disabled) · After (on+disabled)
+   ========================================================= */
+.ds-toggle {
+  --toggle-bg: var(--white-surface-fixed);
+  --toggle-border: var(--huegrey-border-fairish);
+  --toggle-text: var(--huegrey-text-bold);
+  --toggle-mark: var(--huegrey-text-bold);
+  --toggle-bg-hover: var(--huegrey-surface-subtle-hover);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 26px;
+  min-width: 0;
+  padding: 0 8px;
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: var(--radius-semantic-full);
+  color: var(--toggle-text);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p3-size);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.ds-toggle:hover:not(.is-disabled) { background: var(--toggle-bg-hover); }
+
+/* ---- Mark (circle indicator) ---- */
+.ds-toggle__mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1.25px solid currentColor;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+.ds-toggle__mark--right { order: 2; }
+
+/* When toggled on, mark becomes a filled dot */
+.ds-toggle.is-on .ds-toggle__mark {
+  background: currentColor;
+  border-color: currentColor;
+}
+
+/* ---- Sizes ---- */
+.ds-toggle--14 { height: 14px; padding: 0 5px; font-size: var(--type-p6-size); gap: 3px; }
+.ds-toggle--14 .ds-toggle__mark { width: 6px; height: 6px; border-width: 1px; }
+
+.ds-toggle--16 { height: 16px; padding: 0 5px; font-size: var(--type-p6-size); gap: 3px; }
+.ds-toggle--16 .ds-toggle__mark { width: 7px; height: 7px; border-width: 1px; }
+
+.ds-toggle--18 { height: 18px; padding: 0 6px; font-size: var(--type-p5-size); gap: 4px; }
+.ds-toggle--18 .ds-toggle__mark { width: 8px; height: 8px; border-width: 1px; }
+
+.ds-toggle--xs { height: 26px; padding: 0 8px; font-size: var(--type-p3-size); }
+.ds-toggle--sm { height: 30px; padding: 0 10px; font-size: var(--type-p2-size); }
+
+/* ---- Radius ---- */
+.ds-toggle--r-6  { border-radius: var(--radius-semantic-r); }
+.ds-toggle--r-4  { border-radius: var(--radius-semantic-s); }
+
+/* ---- Type modifiers (apply when is-on) ---- */
+.ds-toggle.is-on { color: var(--toggle-mark); border-color: var(--toggle-mark); }
+
+/* Fill: saturated bg + white text */
+.ds-toggle--type-fill.is-on {
+  background: var(--toggle-mark);
+  color: var(--white-text-fixed);
+  border-color: var(--toggle-mark);
+}
+
+.ds-toggle--type-fill.is-on:hover {
+  background: var(--toggle-mark-hover, var(--toggle-mark));
+}
+
+.ds-toggle--type-fill.is-on .ds-toggle__mark {
+  background: var(--white-text-fixed);
+  border-color: var(--white-text-fixed);
+}
+
+/* Border: just colored border + colored text */
+.ds-toggle--type-border.is-on {
+  background: var(--white-surface-fixed);
+  color: var(--toggle-mark);
+  border-color: var(--toggle-mark);
+}
+
+/* Subtle: subtle bg + colored text */
+.ds-toggle--type-subtle.is-on {
+  background: var(--toggle-subtle, var(--huegrey-surface-low));
+  color: var(--toggle-mark);
+  border-color: transparent;
+}
+
+.ds-toggle--type-subtle.is-on:hover {
+  background: var(--toggle-subtle-hover, var(--huegrey-surface-low-hover));
+}
+
+/* ---- On-state color modifiers (set --toggle-mark) ---- */
+.ds-toggle--primary { --toggle-mark: var(--primary-surface-default); --toggle-mark-hover: var(--primary-surface-default-hover); --toggle-subtle: var(--primary-surface-low); --toggle-subtle-hover: var(--primary-surface-low-hover); }
+.ds-toggle--success { --toggle-mark: var(--success-surface-default); --toggle-mark-hover: var(--success-surface-default-hover); --toggle-subtle: var(--success-surface-low); --toggle-subtle-hover: var(--success-surface-low-hover); }
+.ds-toggle--info    { --toggle-mark: var(--info-surface-default);    --toggle-mark-hover: var(--info-surface-default-hover);    --toggle-subtle: var(--info-surface-low);    --toggle-subtle-hover: var(--info-surface-low-hover); }
+.ds-toggle--warning { --toggle-mark: var(--warning-surface-default); --toggle-mark-hover: var(--warning-surface-default-hover); --toggle-subtle: var(--warning-surface-low); --toggle-subtle-hover: var(--warning-surface-low-hover); }
+.ds-toggle--error   { --toggle-mark: var(--error-surface-default);   --toggle-mark-hover: var(--error-surface-default-hover);   --toggle-subtle: var(--error-surface-low);   --toggle-subtle-hover: var(--error-surface-low-hover); }
+.ds-toggle--huegray { --toggle-mark: var(--huegrey-surface-bold);    --toggle-mark-hover: var(--huegrey-surface-dark);             --toggle-subtle: var(--huegrey-surface-minimal); --toggle-subtle-hover: var(--huegrey-surface-minimal-hover); }
+
+/* Disabled */
+.ds-toggle.is-disabled,
+.ds-toggle.is-disabled-before,
+.ds-toggle.is-disabled-after {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+
+/* =========================================================
+   Popover (Popover 3472:8028)
+   Floating card with arrow tip pointing to anchor.
+   Positions: Top · Bottom · Left · Right
+   Alignment (within position): Start · Center · End
+   Content types: Text (heading + body) · List (heading + ordered list)
+   CTA position: Left · Center · Right
+   ========================================================= */
+.ds-popover {
+  --popover-bg: var(--white-surface-fixed);
+  --popover-border: var(--huegrey-border-minimal);
+  --popover-text: var(--huegrey-text-bold);
+
+  position: relative;
+  display: inline-block;
+  width: 281px;
+  background: var(--popover-bg);
+  border: 1px solid var(--popover-border);
+  border-radius: var(--radius-semantic-r);
+  box-shadow: var(--elevation-default-base);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--popover-text);
+}
+
+.ds-popover__body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ds-popover__heading {
+  font-weight: var(--type-p2-weight-semibold);
+  color: var(--black-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-popover__heading::before,
+.ds-popover__heading::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--huegrey-text-default);
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.ds-popover__heading::after { margin-left: auto; }
+
+.ds-popover__text {
+  color: var(--huegrey-text-bold);
+}
+
+.ds-popover__list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-popover__list li { color: var(--huegrey-text-bold); }
+
+.ds-popover__footer {
+  border-top: 1px solid var(--huegrey-border-minimal);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.ds-popover__footer--left   { justify-content: flex-start; }
+.ds-popover__footer--center { justify-content: center; }
+.ds-popover__footer--right  { justify-content: flex-end; }
+
+.ds-popover__footer .ds-btn {
+  --btn-text: var(--primary-text-default);
+  --btn-text-hover: var(--primary-text-default-hover);
+  --btn-subtle: transparent;
+  --btn-subtle-hover: var(--primary-surface-subtle);
+}
+
+/* ---- Arrow tip (8px square, rotated 45°) ---- */
+.ds-popover__arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--popover-bg);
+  border: 1px solid var(--popover-border);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* Position + Alignment */
+.ds-popover--top    .ds-popover__arrow { bottom: -6px; }
+.ds-popover--bottom .ds-popover__arrow { top: -6px; }
+.ds-popover--left   .ds-popover__arrow { right: -6px; }
+.ds-popover--right  .ds-popover__arrow { left: -6px; }
+
+/* Center alignment */
+.ds-popover--top.ds-popover--align-center    .ds-popover__arrow,
+.ds-popover--bottom.ds-popover--align-center .ds-popover__arrow { left: 50%; transform: translateX(-50%) rotate(45deg); }
+.ds-popover--left.ds-popover--align-center   .ds-popover__arrow,
+.ds-popover--right.ds-popover--align-center  .ds-popover__arrow { top: 50%; transform: translateY(-50%) rotate(45deg); }
+
+/* Start (top-left of vertical positions, left of horizontal positions) */
+.ds-popover--top.ds-popover--align-start    .ds-popover__arrow,
+.ds-popover--bottom.ds-popover--align-start .ds-popover__arrow { left: 16px; }
+.ds-popover--left.ds-popover--align-start   .ds-popover__arrow,
+.ds-popover--right.ds-popover--align-start  .ds-popover__arrow { top: 16px; }
+
+/* End */
+.ds-popover--top.ds-popover--align-end    .ds-popover__arrow,
+.ds-popover--bottom.ds-popover--align-end .ds-popover__arrow { right: 16px; }
+.ds-popover--left.ds-popover--align-end   .ds-popover__arrow,
+.ds-popover--right.ds-popover--align-end  .ds-popover__arrow { bottom: 16px; }
+
+/* Dark mode */
+.ds-popover--dark {
+  --popover-bg: var(--huegrey-surface-dark);
+  --popover-border: var(--huegrey-surface-dark);
+  --popover-text: var(--white-text-fixed);
+}
+
+.ds-popover--dark .ds-popover__heading { color: var(--white-text-fixed); }
+.ds-popover--dark .ds-popover__text,
+.ds-popover--dark .ds-popover__list li { color: var(--white-text-fixed); }
+.ds-popover--dark .ds-popover__footer { border-top-color: rgba(255, 255, 255, 0.12); }
+.ds-popover--dark .ds-popover__heading::before,
+.ds-popover--dark .ds-popover__heading::after { border-color: var(--white-text-fixed); }
+
+
+/* =========================================================
+   Tooltip (Tooltip 2393:3790)
+   Dark floating tip with arrow. Two flavors:
+     .ds-tooltip       — compact single-line text
+     .ds-tooltip--rich — larger panel with heading + body / list / table
+   Positions: Top · Bottom · Left · Right
+   Alignment: Start · Center · End
+   ========================================================= */
+.ds-tooltip {
+  --tooltip-bg: var(--secondary-surface-default-hover);   /* dark navy */
+  --tooltip-text: var(--white-text-fixed);
+  --tooltip-muted: var(--huegrey-text-fairish);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-regular);
+  white-space: nowrap;
+  box-shadow: var(--elevation-default-base);
+}
+
+.ds-tooltip__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.ds-tooltip__icon::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+/* ---- Rich tooltip ---- */
+.ds-tooltip--rich {
+  display: block;
+  height: auto;
+  padding: 0;
+  white-space: normal;
+  width: 281px;
+}
+
+.ds-tooltip--rich .ds-tooltip__body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ds-tooltip__heading {
+  font-weight: var(--type-p2-weight-semibold);
+  color: var(--white-text-fixed);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-tooltip__heading::before,
+.ds-tooltip__heading::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.ds-tooltip__heading::after { margin-left: auto; }
+
+.ds-tooltip__text {
+  color: var(--white-text-fixed);
+}
+
+.ds-tooltip__list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-tooltip__list li { color: var(--white-text-fixed); }
+
+/* Table inside rich tooltip */
+.ds-tooltip__table {
+  display: grid;
+  grid-template-columns: auto 8px 1fr;
+  gap: 4px 8px;
+  font-size: var(--type-p3-size);
+}
+
+.ds-tooltip__table > .ds-tooltip__table-key   { color: var(--tooltip-muted); }
+.ds-tooltip__table > .ds-tooltip__table-colon { color: var(--tooltip-muted); text-align: center; }
+.ds-tooltip__table > .ds-tooltip__table-val   { color: var(--white-text-fixed); }
+
+/* ---- Arrow tip (uses same approach as popover) ---- */
+.ds-tooltip__arrow {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--tooltip-bg);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.ds-tooltip--top    .ds-tooltip__arrow { bottom: -4px; }
+.ds-tooltip--bottom .ds-tooltip__arrow { top: -4px; }
+.ds-tooltip--left   .ds-tooltip__arrow { right: -4px; }
+.ds-tooltip--right  .ds-tooltip__arrow { left: -4px; }
+
+.ds-tooltip--top.ds-tooltip--align-center    .ds-tooltip__arrow,
+.ds-tooltip--bottom.ds-tooltip--align-center .ds-tooltip__arrow { left: 50%; transform: translateX(-50%) rotate(45deg); }
+
+.ds-tooltip--left.ds-tooltip--align-center   .ds-tooltip__arrow,
+.ds-tooltip--right.ds-tooltip--align-center  .ds-tooltip__arrow { top: 50%; transform: translateY(-50%) rotate(45deg); }
+
+.ds-tooltip--top.ds-tooltip--align-start    .ds-tooltip__arrow,
+.ds-tooltip--bottom.ds-tooltip--align-start .ds-tooltip__arrow { left: 12px; }
+.ds-tooltip--left.ds-tooltip--align-start   .ds-tooltip__arrow,
+.ds-tooltip--right.ds-tooltip--align-start  .ds-tooltip__arrow { top: 10px; }
+
+.ds-tooltip--top.ds-tooltip--align-end    .ds-tooltip__arrow,
+.ds-tooltip--bottom.ds-tooltip--align-end .ds-tooltip__arrow { right: 12px; }
+.ds-tooltip--left.ds-tooltip--align-end   .ds-tooltip__arrow,
+.ds-tooltip--right.ds-tooltip--align-end  .ds-tooltip__arrow { bottom: 10px; }
+
+
+/* =========================================================
+   PATTERN: Top Bar (Top Bar 9413:361)
+   App navigation header for Creator. 48px tall, deep navy bg.
+   Slots: logo · workspaces dropdown · spacer · right group
+     (apps-grid icon, separator, avatar)
+   Resolutions: 1280 / 1366 / 1440 / 1920 / 2560 / 3840
+   (use full-width container; height + content are constant)
+   ========================================================= */
+.ds-topbar {
+  width: 100%;
+  height: 48px;
+  background: var(--primary-surface-bold);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 16px;
+  color: var(--white-text-fixed);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  border-radius: var(--radius-semantic-r);
+  overflow: hidden;
+}
+
+/* Logo block (icon + product wordmark) */
+.ds-topbar__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: var(--white-text-fixed);
+  font-weight: var(--type-p2-weight-semibold);
+}
+
+.ds-topbar__logo-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #5d8aff, #0d4ef2);
+  border-radius: var(--radius-semantic-xs);
+  color: var(--white-text-fixed);
+  font-size: 10px;
+  font-weight: 700;
+  transform: rotate(45deg);
+}
+
+.ds-topbar__logo-icon::before {
+  content: "C";
+  transform: rotate(-45deg);
+  display: inline-block;
+}
+
+/* Workspaces dropdown */
+.ds-topbar__workspace {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  background: transparent;
+  border: 1px solid var(--primary-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  color: var(--white-text-fixed);
+  cursor: pointer;
+  font: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 120ms ease;
+}
+
+.ds-topbar__workspace:hover {
+  background: var(--primary-surface-bold-hover);
+}
+
+.ds-topbar__workspace-caret {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ds-topbar__workspace-caret::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* Spacer pushes the right group to the end */
+.ds-topbar__spacer { flex: 1; }
+
+/* Right end group */
+.ds-topbar__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Apps-grid waffle icon */
+.ds-topbar__apps {
+  width: 32px;
+  height: 32px;
+  display: inline-grid;
+  grid-template-columns: repeat(3, 4px);
+  grid-template-rows: repeat(3, 4px);
+  gap: 2px;
+  align-content: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-semantic-r);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 120ms ease;
+}
+
+.ds-topbar__apps:hover { background: var(--primary-surface-bold-hover); }
+
+.ds-topbar__apps span {
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  background: var(--white-text-fixed);
+}
+
+/* Separator line */
+.ds-topbar__sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+/* Topbar avatar (overrides .ds-avatar default radius for pill style) */
+.ds-topbar__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--semantic-surface-tekhelet-default);
+  color: var(--white-text-fixed);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: var(--type-p2-weight-semibold);
+  border: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Tiny icon button container */
+.ds-topbar__iconbtn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: var(--white-text-fixed);
+  cursor: pointer;
+  border-radius: var(--radius-semantic-r);
+  flex-shrink: 0;
+  transition: background-color 120ms ease;
+}
+
+.ds-topbar__iconbtn:hover { background: var(--primary-surface-bold-hover); }
+
+.ds-topbar__iconbtn::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   PATTERN: Cards (Cards 9420:419)
+   App / list cards with colored "representation" tile,
+   title, subtext, metrics, and footer actions.
+   ========================================================= */
+
+/* ---- Representation tile (icon/text/image) ----
+   Sizes: 32 / 40 / 48 (default)
+   Colors (accent variants): Wine, Mustard, Lawn, Aqua, Pumpkin, Lime,
+     Indigo, Lavender, Black, Red, Green, Blue
+   Types: Text (initials) · Icon · Image
+*/
+.ds-rep {
+  --rep-bg: var(--accent-wine-500);
+  --rep-fg: var(--white-text-fixed);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-semantic-l);
+  background: var(--rep-bg);
+  color: var(--rep-fg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-weight: var(--type-p2-weight-semibold);
+  font-size: 14px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.ds-rep--32 { width: 32px; height: 32px; border-radius: var(--radius-semantic-r); font-size: 11px; }
+.ds-rep--40 { width: 40px; height: 40px; border-radius: var(--radius-semantic-rl); font-size: 12px; }
+
+/* Type=Icon — drawn open circle as placeholder */
+.ds-rep--icon::before {
+  content: "";
+  width: 60%;
+  height: 60%;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+}
+
+.ds-rep--icon { color: var(--rep-fg); }
+.ds-rep--icon > * { display: none; }
+
+/* Type=Image — gradient placeholder */
+.ds-rep--image {
+  background: linear-gradient(135deg, var(--accent-aqua-500), var(--accent-lavender-500));
+  color: var(--white-text-fixed);
+}
+
+/* Color modifiers */
+.ds-rep--wine     { --rep-bg: var(--accent-wine-500); }
+.ds-rep--mustard  { --rep-bg: var(--accent-mustard-500); --rep-fg: var(--accent-mustard-900); }
+.ds-rep--lawn     { --rep-bg: var(--accent-lawn-500);    --rep-fg: var(--accent-lawn-900); }
+.ds-rep--aqua     { --rep-bg: var(--accent-aqua-500);    --rep-fg: var(--accent-aqua-900); }
+.ds-rep--pumpkin  { --rep-bg: var(--accent-pumpkin-500); --rep-fg: var(--white-text-fixed); }
+.ds-rep--lime     { --rep-bg: var(--accent-lime-400);    --rep-fg: var(--accent-lime-900); }
+.ds-rep--indigo   { --rep-bg: var(--accent-indigo-500);  --rep-fg: var(--white-text-fixed); }
+.ds-rep--lavender { --rep-bg: var(--accent-lavender-500);--rep-fg: var(--white-text-fixed); }
+.ds-rep--black    { --rep-bg: var(--semantic-surface-black); --rep-fg: var(--white-text-fixed); }
+.ds-rep--red      { --rep-bg: var(--error-surface-default);  --rep-fg: var(--white-text-fixed); }
+.ds-rep--green    { --rep-bg: var(--success-surface-default);--rep-fg: var(--white-text-fixed); }
+.ds-rep--blue     { --rep-bg: var(--primary-surface-default);--rep-fg: var(--white-text-fixed); }
+
+
+/* ---- Pattern Card (.ds-pcard) ---- */
+.ds-pcard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 274px;
+  padding: 16px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  color: var(--huegrey-text-bold);
+  cursor: pointer;
+  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+  position: relative;
+}
+
+.ds-pcard:hover:not(.is-disabled):not(.is-unclickable):not(.is-initial-unclickable) {
+  border-color: var(--primary-border-default);
+  box-shadow: var(--elevation-primary-low);
+}
+
+.ds-pcard.is-unclickable,
+.ds-pcard.is-initial-unclickable {
+  cursor: default;
+}
+
+.ds-pcard.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ds-pcard__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ds-pcard__title-block {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-pcard__title {
+  font-size: var(--type-p1-size);
+  line-height: var(--type-p1-line-height);
+  font-weight: var(--type-p1-weight-bold);
+  color: var(--huegrey-text-dark);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-pcard__subtitle {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--huegrey-text-default);
+}
+
+/* Metric value (big number) */
+.ds-pcard__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-pcard__metric-label {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--huegrey-text-default);
+}
+
+.ds-pcard__metric-value {
+  font-size: var(--type-h4-size);
+  line-height: var(--type-h4-line-height);
+  font-weight: var(--type-h4-weight-bold);
+  color: var(--huegrey-text-dark);
+}
+
+.ds-pcard__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--success-text-default);
+}
+
+.ds-pcard__delta--down { color: var(--error-text-default); }
+
+.ds-pcard__delta::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 4px solid currentColor;
+}
+
+.ds-pcard__delta--down::before {
+  border-bottom: 0;
+  border-top: 4px solid currentColor;
+}
+
+/* Description (faint label) */
+.ds-pcard__desc {
+  color: var(--huegrey-text-default);
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+}
+
+/* Footer with chips/actions */
+.ds-pcard__footer {
+  border-top: 1px solid var(--huegrey-border-minimal);
+  padding-top: 10px;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--type-p3-size);
+  color: var(--huegrey-text-default);
+}
+
+.ds-pcard__footer-spacer { flex: 1; }
+
+.ds-pcard__footer-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-default);
+  font: inherit;
+}
+
+.ds-pcard__footer-action:hover { color: var(--huegrey-text-dark); }
+
+.ds-pcard__footer-action::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border: 1.25px solid currentColor;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* Image+Icon-Value horizontal mini-card */
+.ds-pcard--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  width: 274px;
+}
+
+
+/* =========================================================
+   PATTERN: Side Menu (Side Navigation 9420:1161)
+   Vertical app navigation sidebar with section titles
+   and grouped menu items. One item active at a time.
+   ========================================================= */
+.ds-sidemenu {
+  width: 220px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+}
+
+/* Section block: title + items */
+.ds-sidemenu__section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-sidemenu__section + .ds-sidemenu__section {
+  margin-top: 8px;
+}
+
+.ds-sidemenu__title {
+  padding: 8px 12px 4px;
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  font-weight: var(--type-p2-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--huegrey-text-default);
+}
+
+/* Menu item */
+.ds-sidemenu__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-semantic-r);
+  background: transparent;
+  border: 0;
+  color: var(--huegrey-text-bold);
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  position: relative;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.ds-sidemenu__item-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.ds-sidemenu__item-icon::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid currentColor;
+  border-radius: var(--radius-semantic-xs);
+}
+
+.ds-sidemenu__item-label {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* States */
+.ds-sidemenu__item:hover:not(.is-active):not(.is-disabled) {
+  background: var(--huegrey-surface-subtle-hover);
+  color: var(--huegrey-text-dark);
+}
+
+.ds-sidemenu__item.is-active {
+  background: var(--primary-surface-subtle);
+  color: var(--primary-text-default);
+  font-weight: var(--type-p2-weight-semibold);
+}
+
+.ds-sidemenu__item.is-active:hover {
+  background: var(--primary-surface-subtle-hover);
+  color: var(--primary-text-default-hover);
+}
+
+/* Left-edge active indicator */
+.ds-sidemenu__item.is-active::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--primary-surface-default);
+  border-radius: 999px;
+}
+
+.ds-sidemenu__item.is-disabled {
+  color: var(--huegrey-text-fairish-hover);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   PATTERN: Slider / Drawer (Slider 9420:5051)
+   Side panel with header (H6 title + actions + close),
+   body, and Save / Cancel footer.
+   ========================================================= */
+.ds-slider {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  min-height: 240px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  overflow: hidden;
+  font-family: var(--font-family-base);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-slider__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--huegrey-border-minimal);
+}
+
+.ds-slider__title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--type-h6-size);
+  line-height: var(--type-h6-line-height);
+  font-weight: var(--type-h6-weight-semibold);
+  color: var(--huegrey-text-bold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-slider__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ds-slider__close {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--huegrey-surface-default);
+  border-radius: 999px;
+  flex-shrink: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.ds-slider__close::before { content: "\00D7"; }
+.ds-slider__close:hover { background: var(--huegrey-surface-subtle-hover); color: var(--black-text); }
+
+.ds-slider__body {
+  flex: 1 0 0;
+  min-height: 80px;
+  padding: 16px;
+  overflow-y: auto;
+  background: var(--white-surface-fixed);
+}
+
+.ds-slider__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--huegrey-border-minimal);
+}
+
+/* Tall variant — full app drawer height */
+.ds-slider--tall { min-height: 480px; }
+
+
+/* =========================================================
+   PATTERN: Promo Banner (Banner 9420:5823)
+   Horizontal banner card promoting a feature.
+   Slots: Optional left icon/image · Title + description ·
+          Right action group (CTA button + overflow ⋯)
+   Optional bottom tag-strip with "Current Plan" chips.
+   Variants: default · with icon · highlighted (primary border).
+   ========================================================= */
+.ds-banner {
+  display: flex;
+  flex-direction: column;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-fairish);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  width: 100%;
+  max-width: 720px;
+  overflow: hidden;
+}
+
+.ds-banner__main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.ds-banner__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-semantic-rl);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--accent-aqua-500), var(--primary-surface-default));
+  color: var(--white-text-fixed);
+  font-size: 14px;
+  font-weight: var(--type-p1-weight-semibold);
+}
+
+.ds-banner__icon::before {
+  content: "Z";
+}
+
+.ds-banner__content {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-banner__title {
+  font-size: var(--type-p1-size);
+  line-height: var(--type-p1-line-height);
+  font-weight: var(--type-p1-weight-semibold);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-banner__desc {
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--huegrey-text-default);
+}
+
+.ds-banner__desc a {
+  color: var(--primary-text-default);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ds-banner__desc a:hover { color: var(--primary-text-default-hover); }
+
+.ds-banner__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ds-banner__more {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-default);
+  border-radius: var(--radius-semantic-r);
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.ds-banner__more::before { content: "\2026"; }
+.ds-banner__more:hover { background: var(--huegrey-surface-subtle-hover); color: var(--black-text); }
+
+/* Bottom strip with status tags + CTA */
+.ds-banner__strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--huegrey-border-minimal);
+  background: var(--white-surface-fixed);
+}
+
+.ds-banner__plan {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.ds-banner__plan-label {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--huegrey-text-default);
+  text-transform: capitalize;
+}
+
+.ds-banner__plan-value {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  font-weight: var(--type-p3-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ds-banner__plan-value--success     { color: var(--success-text-default); }
+.ds-banner__plan-value--placeholder { color: var(--huegrey-text-fairish-hover); }
+
+.ds-banner__strip-spacer { flex: 1; }
+
+/* Highlighted variant — primary border + subtle bg */
+.ds-banner--highlighted {
+  border-color: var(--primary-border-default);
+  background: var(--primary-surface-subtle);
+}
+
+.ds-banner--highlighted .ds-banner__strip {
+  background: var(--primary-surface-subtle);
+}
+
+
+/* =========================================================
+   PATTERN: Modal (Modal 9420:6436)
+   Dialog card. Header (icon + title + close) · body · footer
+   with primary CTA + Cancel link. 4 type variants (Info /
+   Success / Warning / Alert) — CTA button color matches type.
+   ========================================================= */
+.ds-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-l);
+  font-family: var(--font-family-base);
+  color: var(--huegrey-text-bold);
+  box-shadow: var(--elevation-default-base);
+  overflow: hidden;
+}
+
+.ds-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+}
+
+.ds-modal__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-semantic-rl);
+  background: var(--accent-wine-25);
+  color: var(--accent-wine-500);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: var(--type-p1-weight-semibold);
+  flex-shrink: 0;
+}
+
+.ds-modal__title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--type-p1-size);
+  line-height: var(--type-p1-line-height);
+  font-weight: var(--type-p1-weight-semibold);
+  color: var(--huegrey-text-bold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-modal__close {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--huegrey-surface-default);
+  border-radius: 999px;
+  flex-shrink: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.ds-modal__close::before { content: "\00D7"; }
+.ds-modal__close:hover  { background: var(--huegrey-surface-subtle-hover); color: var(--black-text); }
+
+.ds-modal__body {
+  padding: 0 20px 16px;
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--huegrey-text-default);
+}
+
+.ds-modal__body:empty { padding: 0; }
+
+.ds-modal__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--huegrey-border-minimal);
+}
+
+/* Type variants — recolor the icon and the primary CTA */
+.ds-modal--info    .ds-modal__icon { background: var(--info-surface-subtle);    color: var(--info-text-default); }
+.ds-modal--success .ds-modal__icon { background: var(--success-surface-subtle); color: var(--success-text-default); }
+.ds-modal--warning .ds-modal__icon { background: var(--warning-surface-subtle); color: var(--warning-text-default); }
+.ds-modal--alert   .ds-modal__icon { background: var(--error-surface-subtle);   color: var(--error-text-default); }
+
+
+/* =========================================================
+   PATTERN: Page Header (Page Header 9420:7229)
+   Page-level header with title (H5/H6 Semibold) +
+   optional description (with inline "Learn more" link) +
+   right-side action group.
+   Multiple rows can stack with 1px divider between them.
+   ========================================================= */
+.ds-pageheader {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 16px 0;
+  font-family: var(--font-family-base);
+}
+
+.ds-pageheader__content {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-pageheader__title {
+  font-size: var(--type-h5-size);
+  line-height: var(--type-h5-line-height);
+  font-weight: var(--type-h5-weight-semibold);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-pageheader--sm .ds-pageheader__title {
+  font-size: var(--type-h6-size);
+  line-height: var(--type-h6-line-height);
+  font-weight: var(--type-h6-weight-semibold);
+}
+
+.ds-pageheader__desc {
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--huegrey-text-default);
+  max-width: 720px;
+}
+
+.ds-pageheader__desc a {
+  color: var(--primary-text-default);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ds-pageheader__desc a:hover { color: var(--primary-text-default-hover); }
+
+.ds-pageheader__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Container that stacks multiple page-headers with dividers */
+.ds-pageheader-stack {
+  display: flex;
+  flex-direction: column;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  padding: 0 20px;
+}
+
+.ds-pageheader-stack > .ds-pageheader + .ds-pageheader {
+  border-top: 1px solid var(--huegrey-border-minimal);
+}
+
+
+/* =========================================================
+   PATTERN: List Row (List Row 9420:8272)
+   Repeating list row used for app/file/item lists.
+   Slots: rep tile · name · status tag · description · metric ·
+          action button · close ×
+   Different from .ds-list-row (used inside dropdowns).
+   ========================================================= */
+.ds-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  color: var(--huegrey-text-bold);
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.ds-list-item:hover { background: var(--huegrey-surface-subtle); }
+
+.ds-list-item__rep {
+  flex-shrink: 0;
+}
+
+.ds-list-item__main {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ds-list-item__title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ds-list-item__name {
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-semibold);
+  color: var(--huegrey-text-bold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-list-item__desc {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--huegrey-text-default);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Status tag (P4 Semibold, uppercase, colored bg + border) */
+.ds-list-item__tag {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: var(--radius-semantic-s);
+  font-size: var(--type-p4-size);
+  line-height: var(--type-p4-line-height);
+  font-weight: var(--type-p4-weight-semibold);
+  letter-spacing: 0.02em;
+  background: var(--success-surface-subtle);
+  border: 1px solid var(--success-border-default);
+  color: var(--success-text-default);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.ds-list-item__tag--info    { background: var(--info-surface-subtle);    border-color: var(--info-border-default);    color: var(--info-text-default); }
+.ds-list-item__tag--warning { background: var(--warning-surface-subtle); border-color: var(--warning-border-default); color: var(--warning-text-default); }
+.ds-list-item__tag--error   { background: var(--error-surface-subtle);   border-color: var(--error-border-default);   color: var(--error-text-default); }
+.ds-list-item__tag--neutral { background: var(--huegrey-surface-subtle); border-color: var(--huegrey-border-fairish); color: var(--huegrey-text-default); }
+
+.ds-list-item__metric {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--huegrey-text-default);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.ds-list-item__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ds-list-item__close {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--huegrey-text-default);
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ds-list-item__close::before { content: "\00D7"; }
+.ds-list-item__close:hover { background: var(--huegrey-surface-subtle-hover); color: var(--black-text); }
+
+/* Stack multiple rows in a single bordered container */
+.ds-list-stack {
+  display: flex;
+  flex-direction: column;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  overflow: hidden;
+}
+
+.ds-list-stack > .ds-list-item {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--huegrey-border-minimal);
+}
+
+.ds-list-stack > .ds-list-item:last-child { border-bottom: 0; }
+
+
+/* =========================================================
+   PATTERN: Detail / Property List (Detail List 9420:9606)
+   Two-line rows: Title (small label) + Value (P1 Semibold)
+   with optional inline status tag, right-side action button,
+   and trailing status icon (checkmark ✓).
+   ========================================================= */
+.ds-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--white-surface-fixed);
+  font-family: var(--font-family-base);
+}
+
+.ds-detail-row__main {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-detail-row__title {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--huegrey-text-default);
+}
+
+.ds-detail-row__value-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-detail-row__value {
+  font-size: var(--type-p1-size);
+  line-height: var(--type-p1-line-height);
+  font-weight: var(--type-p1-weight-semibold);
+  color: var(--black-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-detail-row__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ds-detail-row__status {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1.5px solid var(--huegrey-border-fairish);
+  color: var(--huegrey-text-default);
+  flex-shrink: 0;
+}
+
+.ds-detail-row__status--success {
+  border-color: var(--success-border-default);
+  color: var(--success-text-default);
+}
+
+.ds-detail-row__status::before {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+/* Stack — multiple rows in a single bordered container with row dividers */
+.ds-detail-stack {
+  display: flex;
+  flex-direction: column;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  overflow: hidden;
+}
+
+.ds-detail-stack > .ds-detail-row + .ds-detail-row {
+  border-top: 1px solid var(--huegrey-border-minimal);
+}
+
+
+/* =========================================================
+   PATTERN: Status Tags (Status Tag grid 9420:10038)
+   Bordered pill used as a status indicator. P4 Semibold uppercase.
+   13 color palettes × 3 intensity variants (subtle / outline / solid).
+   Local custom properties drive theme — pick a color modifier and
+   an intensity modifier to compose any cell of the grid.
+   ========================================================= */
+.ds-stag {
+  --stag-text: var(--success-text-default);
+  --stag-bg: var(--success-surface-subtle);
+  --stag-border: var(--success-border-default);
+
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: var(--radius-semantic-s);
+  border: 1px solid var(--stag-border);
+  background: var(--stag-bg);
+  color: var(--stag-text);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p4-size);
+  line-height: var(--type-p4-line-height);
+  font-weight: var(--type-p4-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Intensity variants */
+.ds-stag--outline { background: transparent; }
+
+.ds-stag--solid {
+  background: var(--stag-border);
+  color: var(--white-text-fixed);
+}
+
+.ds-stag--low { background: var(--stag-low, var(--stag-bg)); border-color: transparent; }
+
+/* ---- Color modifiers (set --stag-*) ---- */
+.ds-stag--success  { --stag-text: var(--success-text-default);  --stag-bg: var(--success-surface-subtle);  --stag-border: var(--success-border-default);  --stag-low: var(--success-surface-low); }
+.ds-stag--info     { --stag-text: var(--info-text-default);     --stag-bg: var(--info-surface-subtle);     --stag-border: var(--info-border-default);     --stag-low: var(--info-surface-low); }
+.ds-stag--warning  { --stag-text: var(--warning-text-default);  --stag-bg: var(--warning-surface-subtle);  --stag-border: var(--warning-border-default);  --stag-low: var(--warning-surface-low); }
+.ds-stag--error    { --stag-text: var(--error-text-default);    --stag-bg: var(--error-surface-subtle);    --stag-border: var(--error-border-default);    --stag-low: var(--error-surface-low); }
+
+.ds-stag--wine     { --stag-text: var(--accent-wine-500);       --stag-bg: var(--accent-wine-25);          --stag-border: var(--accent-wine-500);          --stag-low: var(--accent-wine-50); }
+.ds-stag--mustard  { --stag-text: var(--accent-mustard-700);    --stag-bg: var(--accent-mustard-50);       --stag-border: var(--accent-mustard-600);       --stag-low: var(--accent-mustard-100); }
+.ds-stag--lawn     { --stag-text: var(--accent-lawn-700);       --stag-bg: var(--accent-lawn-25);          --stag-border: var(--accent-lawn-600);          --stag-low: var(--accent-lawn-100); }
+.ds-stag--lime     { --stag-text: var(--accent-lime-700);       --stag-bg: var(--accent-lime-25);          --stag-border: var(--accent-lime-600);          --stag-low: var(--accent-lime-50); }
+.ds-stag--aqua     { --stag-text: var(--accent-aqua-700);       --stag-bg: var(--accent-aqua-25);          --stag-border: var(--accent-aqua-600);          --stag-low: var(--accent-aqua-50); }
+.ds-stag--pumpkin  { --stag-text: var(--accent-pumpkin-600);    --stag-bg: var(--accent-pumpkin-25);       --stag-border: var(--accent-pumpkin-500);       --stag-low: var(--accent-pumpkin-50); }
+.ds-stag--indigo   { --stag-text: var(--accent-indigo-500);     --stag-bg: var(--accent-indigo-25);        --stag-border: var(--accent-indigo-500);        --stag-low: var(--accent-indigo-50); }
+.ds-stag--lavender { --stag-text: var(--accent-lavender-500);   --stag-bg: var(--accent-lavender-25);      --stag-border: var(--accent-lavender-500);      --stag-low: var(--accent-lavender-50); }
+.ds-stag--lilac    { --stag-text: var(--accent-lilac-600);      --stag-bg: var(--accent-lilac-25);         --stag-border: var(--accent-lilac-500);         --stag-low: var(--accent-lilac-50); }
+
+
+/* =========================================================
+   PATTERN: Accordion (Accordion 9420:10329)
+   Collapsible content section. Uses native <details>/<summary>
+   so collapse/expand works without JS.
+   States: collapsed (gray header) · expanded (header + body panel).
+   ========================================================= */
+.ds-accordion {
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-radius: var(--radius-semantic-r);
+  overflow: hidden;
+  font-family: var(--font-family-base);
+}
+
+.ds-accordion[open] { background: var(--white-surface-fixed); }
+
+.ds-accordion__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--huegrey-surface-low);
+  cursor: pointer;
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  font-weight: var(--type-p2-weight-semibold);
+  color: var(--huegrey-text-bold);
+  list-style: none;        /* hide default marker (Firefox) */
+  user-select: none;
+  transition: background-color 120ms ease;
+}
+
+.ds-accordion__header::-webkit-details-marker { display: none; }
+.ds-accordion__header:hover { background: var(--huegrey-surface-low-hover); }
+
+.ds-accordion[open] > .ds-accordion__header {
+  background: var(--white-surface-fixed);
+  border-bottom: 1px solid var(--huegrey-border-minimal);
+}
+
+.ds-accordion__title {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.ds-accordion__caret {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--huegrey-text-default);
+  transition: transform 150ms ease;
+}
+
+.ds-accordion__caret::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.ds-accordion[open] > .ds-accordion__header .ds-accordion__caret {
+  transform: rotate(180deg);
+}
+
+.ds-accordion__body {
+  padding: 12px 16px;
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--huegrey-text-bold);
+}
+
+/* Provider row inside accordion (matches the source) */
+.ds-accordion-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.ds-accordion-row + .ds-accordion-row {
+  border-top: 1px solid var(--huegrey-border-minimal);
+}
+
+.ds-accordion-row__icon {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-semantic-s);
+  background: var(--huegrey-surface-subtle);
+  border: 1px solid var(--huegrey-border-minimal);
+  flex-shrink: 0;
+}
+
+.ds-accordion-row__main {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-accordion-row__name {
+  font-weight: var(--type-p2-weight-semibold);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-accordion-row__desc {
+  font-size: var(--type-p3-size);
+  line-height: var(--type-p3-line-height);
+  color: var(--huegrey-text-default);
+}
+
+/* Group of accordions with shared dividers */
+.ds-accordion-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+/* =========================================================
+   PATTERN: Inline Banner / Notification Strip (9420:10749)
+   Full-width horizontal banner with a colored top-border accent,
+   left status icon, message, and right "Close" link.
+   4 type variants: Info · Success · Warning · Error.
+   ========================================================= */
+.ds-strip {
+  --strip-accent: var(--info-surface-default);
+  --strip-icon-bg: var(--info-surface-subtle);
+  --strip-icon-fg: var(--info-text-default);
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--white-surface-fixed);
+  border: 1px solid var(--huegrey-border-minimal);
+  border-top: 2px solid var(--strip-accent);
+  border-radius: var(--radius-semantic-r);
+  font-family: var(--font-family-base);
+  font-size: var(--type-p2-size);
+  line-height: var(--type-p2-line-height);
+  color: var(--huegrey-text-bold);
+}
+
+.ds-strip__icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1.5px solid var(--strip-icon-fg);
+  color: var(--strip-icon-fg);
+  flex-shrink: 0;
+  font-family: "Times New Roman", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.ds-strip__icon::before { content: "i"; }
+
+.ds-strip--success .ds-strip__icon::before { content: "\2713"; font-family: inherit; font-style: normal; font-weight: 700; font-size: 11px; }
+.ds-strip--warning .ds-strip__icon::before { content: "!"; font-family: inherit; font-style: normal; font-weight: 700; font-size: 13px; }
+.ds-strip--error   .ds-strip__icon::before { content: "\00D7"; font-family: inherit; font-style: normal; font-weight: 700; font-size: 14px; }
+
+.ds-strip__text {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--huegrey-text-bold);
+}
+
+.ds-strip__close {
+  background: transparent;
+  border: 0;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: var(--huegrey-text-bold);
+  font: inherit;
+  border-radius: var(--radius-semantic-r);
+  flex-shrink: 0;
+}
+
+.ds-strip__close:hover { background: var(--huegrey-surface-subtle-hover); color: var(--black-text); }
+
+/* Type modifiers */
+.ds-strip--info    { --strip-accent: var(--info-surface-default);    --strip-icon-fg: var(--info-text-default); }
+.ds-strip--success { --strip-accent: var(--success-surface-default); --strip-icon-fg: var(--success-text-default); }
+.ds-strip--warning { --strip-accent: var(--warning-surface-default); --strip-icon-fg: var(--warning-text-default); }
+.ds-strip--error   { --strip-accent: var(--error-surface-default);   --strip-icon-fg: var(--error-text-default); }
+
+
+/* =========================================================
+   Brand logo tile (existing)
+   ========================================================= */
+.ds-logo-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--ds-border);
+  border-radius: 8px;
+  background: var(--ds-card-bg);
+  min-height: 120px;
+}
+
+.ds-logo-tile__art {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-logo-tile__name {
+  font-size: 12px;
+  color: var(--ds-text-secondary);
+}
+
+/* Generic fallback "logo" tiles (placeholders styled with brand colors) */
+.ds-logo-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: var(--font-family-base);
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Input — Zoho Creator</title>
+  <link rel="stylesheet" href="time-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-time">
+        <span class="zc-label-text">Time</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">hh:mm a</div>
+          <input class="form-control zc-datefield" type="text" name="Time" id="zc-time" autocomplete="off" aria-describedby="zc-time-help">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-2-time-clock" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div id="zc-time-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-time-err">
+        <span class="zc-label-text">Time<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper validationError">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">hh:mm a</div>
+          <input class="form-control zc-datefield" type="text" name="Time_Err" id="zc-time-err" autocomplete="off" required aria-required="true" aria-invalid="true" aria-describedby="zc-time-error">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-2-time-clock" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div id="zc-time-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-time-dis">
+        <span class="zc-label-text">Time</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix date-field-wrapper">
+        <div class="zc-date-input-group">
+          <div class="zc-datefield-placeholder">hh:mm a</div>
+          <input class="form-control zc-datefield" type="text" name="Time_Dis" id="zc-time-dis" autocomplete="off" disabled aria-disabled="true">
+          <span class="input-group-addon calcIcon" aria-hidden="true">
+            <i class="zc-calendar-icon zc-li-outline ui-2-time-clock" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

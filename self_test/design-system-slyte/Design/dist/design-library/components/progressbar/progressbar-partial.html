@@ -1,0 +1,87 @@
+<style>
+    .pb-section { margin-bottom: 28px; }
+    .pb-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .pb-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .pb-table { width: 100%; border-collapse: collapse; }
+    .pb-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .pb-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .pb-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .pb-table .pb-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .pb-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .pb-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .pb-variant-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); margin-bottom: 6px; }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2>Progress Indicator</h2>
+</div>
+
+<p class="pb-desc">Source: Figma <code>Progress Indicator (2349:2)</code>. 6px horizontal bar with type variants and optional <em>X%</em> caption below.</p>
+
+<!-- BARE BAR — 6 TYPE VARIANTS -->
+<div class="pb-section">
+    <div class="pb-section-title">Bare bar — 6 type variants</div>
+    <div class="pb-section-card" class="zc-flex zc-direction-column zc-gap-18" style="max-width:540px">
+
+        <div>
+            <div class="pb-variant-label">Default &middot; 40%</div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"40"},"width":"100%","height":"6px"}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <div class="pb-variant-label">Primary &middot; 50%</div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"50"},"width":"100%","height":"6px"}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <div class="pb-variant-label">Hard &middot; 35%</div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"35"},"width":"100%","height":"6px","background":"#333"}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <div class="pb-variant-label">Success &middot; 70%</div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"70"},"width":"100%","height":"6px","background":"#078841"}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <div class="pb-variant-label">Warning &middot; 60%</div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"6px","background":"#D25704"}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <div class="pb-variant-label">Error &middot; 25%</div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"25"},"width":"100%","height":"6px","background":"#CC1914"}'></lyte-progressbar>
+        </div>
+
+    </div>
+</div>
+
+<!-- WITH HINT (Progres_Bar_Core_With_Hint) -->
+<div class="pb-section">
+    <div class="pb-section-title">With hint (Progres_Bar_Core_With_Hint)</div>
+    <p style="color: var(--zc-color-huegrey-text-default); font-size: 12px; margin: 0 0 12px;">X% caption sits below the fill end. P5 (10/13).</p>
+    <div class="pb-section-card" class="zc-flex zc-direction-column zc-gap-18" style="max-width:440px">
+
+        <div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"30"},"width":"100%","height":"6px","showPercentage":true}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"80"},"width":"100%","height":"6px","showPercentage":true}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"35"},"width":"100%","height":"6px","background":"#CC1914","showPercentage":true}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"95"},"width":"100%","height":"6px","background":"#078841","showPercentage":true}'></lyte-progressbar>
+        </div>
+
+        <div>
+            <lyte-progressbar lt-prop='{"progressProperty":{"value":"45"},"width":"100%","height":"6px","background":"#D25704","showPercentage":true}'></lyte-progressbar>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,736 @@
+/* =============================================================================
+   PRIMARY BUTTON COMPONENT — SCSS
+   Figma Source: Primary_Button (2132:26906), Primary_Duo_Button (2136:30087)
+   File: hnKVGoVxd2CN6RTqIKGM4e (CTS — AI Test)
+   ============================================================================= 
+   
+   VARIANTS:
+     Styles  → Fill | Border | Minimal Border | Minimal Fill | Link | Hyperlink
+     Types   → Default | Icon Button | Duo Icon | Split | Duo Combo
+     Sizes   → Large (lg) | Base (md) | Small (sm) | Extra Small (xs)
+     States  → Default | Hover | Active | Disabled
+   
+   NAMING: Single-hyphen modifier  (zc-btn-fill  NOT  zc-btn--fill)
+   DOM:    Uses .zc-btn wrapper class on <lyte-button> Slyte component
+
+   CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
+     --zc-color-primary-surface-default        (#0D4EF2)
+     --zc-color-primary-surface-default-hover  (#0B44D5)
+     --zc-color-primary-surface-subtle         (#F5F8FE)
+     --zc-color-primary-surface-subtle-hover   (#E7EDFE)
+     --zc-color-primary-surface-low            (#DDE6FD)
+     --zc-color-primary-border-default          (#0D4EF2)
+     --zc-color-primary-border-default-hover    (#0B44D5)
+     --zc-color-primary-border-low              (#DDE6FD)
+     --zc-color-primary-border-minimal          (#C0D1FC)
+     --zc-color-primary-text-default              (#0D4EF2)
+     --zc-color-primary-text-default-hover        (#0B44D5)
+     --zc-color-black-white-surface-white-surface              (#FFFFFF)
+     --zc-color-black-white-text-white-text                    (#FFFFFF)
+     --zc-font-family-default                                  (ZohoPuvi)
+     --zc-radius-r                                             (6px)
+     --zc-radius-s                                             (4px)
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   RESET .zc-btn wrapper — make it transparent, unstyled container
+   --------------------------------------------------------------------------- */
+.zc-btn {
+    /* Host wrapper — visual styles live on inner <button> */
+    display: inline-flex;
+    vertical-align: middle;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-shadow: none;
+    font: inherit;
+    line-height: inherit;
+}
+
+/* ---------------------------------------------------------------------------
+   BASE BUTTON — targets ONLY .zc-btn's inner <button> element
+   --------------------------------------------------------------------------- */
+.zc-btn button {
+    /* Figma: inline-flex, items-center, gap 8px (6px on SM/XS) — must be on <button>, not lyte host */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    font-family: var(--zc-font-family-default, 'ZohoPuvi', sans-serif);
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: background-color 0.12s ease,
+                border-color 0.12s ease,
+                color 0.12s ease;
+
+    /* Default = Base/md — Figma 2132:26907: px-14, gap-8, min-w-70 */
+    height: 36px;
+    min-width: 70px;
+    padding-block: 0;
+    padding-inline: 14px;
+    border-radius: var(--zc-radius-r);
+
+    &:focus-visible {
+        outline: 2px solid var(--zc-color-primary-border-default);
+        outline-offset: 2px;
+    }
+
+    &:disabled,
+    &.zc-btn-disabled {
+        opacity: 1 !important;
+        background-color: var(--zc-color-huegrey-surface-fairish) !important;
+        border-color: var(--zc-color-huegrey-surface-fairish) !important;
+        color: var(--zc-color-black-white-text-white-text-fixed) !important;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+    }
+}
+
+/* Yield wrappers — flatten so icons + label are direct flex children of <button> */
+lyte-button.zc-btn lyte-yield,
+lyte-button.zc-btn .zc-btn-content {
+    display: contents;
+}
+
+lyte-button.zc-btn .zc-btn-label {
+    display: inline-block;
+    line-height: var(--zc-p2-line-height, 18px);
+    font-size: inherit;
+    font-weight: inherit;
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+/* Duo icon — Figma: 14px inset to icons, 8px gaps; label flexes with centered text */
+lyte-button.zc-btn.zc-btn-duo-icon button {
+    justify-content: flex-start;
+}
+
+lyte-button.zc-btn.zc-btn-duo-icon .zc-btn-label {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+}
+
+/* Text-only — symmetric px padding, centered label */
+lyte-button.zc-btn:not(.zc-btn-duo-icon):not(.zc-btn-icon-only):not(.zc-btn-duo-icon-only) button {
+    justify-content: center;
+}
+
+lyte-button.zc-btn .zc-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    line-height: 0;
+
+    svg, img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   SIZE VARIANTS — only target inner <button>
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-lg button {
+    height: 40px;
+    min-width: 78px;
+    padding-inline: 16px;
+    border-radius: var(--zc-radius-r);
+}
+.zc-btn.zc-btn-md button {
+    height: 36px;
+    min-width: 70px;
+    padding-inline: 14px;
+    border-radius: var(--zc-radius-r);
+}
+.zc-btn.zc-btn-sm button {
+    height: 32px;
+    min-width: 66px;
+    padding-inline: 12px;
+    gap: 6px;
+    border-radius: var(--zc-radius-r);
+}
+
+.zc-btn.zc-btn-xs button {
+    height: 26px;
+    min-width: 62px;
+    padding-inline: 10px;
+    gap: 6px;
+    border-radius: var(--zc-radius-s);
+}
+
+/* ---------------------------------------------------------------------------
+   STYLE: FILL — Solid primary background, white text
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-fill button {
+    background-color: var(--zc-color-primary-surface-default);
+    border-color: var(--zc-color-primary-surface-default);
+    color: var(--zc-color-black-white-text-white-text-fixed);
+    &:hover {
+        background-color: var(--zc-color-primary-surface-default-hover);
+        border-color: var(--zc-color-primary-surface-default-hover);
+        border-bottom-color: var(--zc-color-primary-surface-default-hover);
+        color: var(--zc-color-black-white-text-white-text-fixed);
+    }
+    &:active {
+        background-color: var(--zc-color-primary-surface-bold);
+        border-color: var(--zc-color-primary-surface-bold);
+        border-bottom-color: var(--zc-color-primary-surface-bold);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   STYLE: BORDER — White bg, primary border, primary text
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-primary-border-default);
+    color: var(--zc-color-primary-text-default);
+    &:hover {
+        background-color: var(--zc-color-primary-surface-subtle);
+        border-color: var(--zc-color-primary-border-default-hover);
+        border-bottom-color: var(--zc-color-primary-border-default-hover);
+        color: var(--zc-color-primary-text-default-hover);
+    }
+    &:active {
+        background-color: var(--zc-color-primary-surface-subtle-hover);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   STYLE: MINIMAL BORDER — White bg, subtle border, primary text
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-minimal-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-primary-border-low);
+    color: var(--zc-color-primary-text-default);
+    &:hover {
+        background-color: var(--zc-color-primary-surface-subtle);
+        border-color: var(--zc-color-primary-border-low-hover);
+        border-bottom-color: var(--zc-color-primary-border-low-hover);
+        color: var(--zc-color-primary-text-default-hover);
+    }
+    &:active {
+        background-color: var(--zc-color-primary-surface-subtle-hover);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   STYLE: MINIMAL FILL — Light primary bg, primary text
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-primary-surface-subtle-hover);
+    border-color: transparent;
+    color: var(--zc-color-primary-text-default);
+    &:hover {
+        background-color: var(--zc-color-primary-surface-low);
+        border-color: transparent;
+        border-bottom-color: transparent;
+        color: var(--zc-color-primary-text-default-hover);
+    }
+    &:active {
+        background-color: var(--zc-color-primary-surface-low-hover);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   STYLE: LINK — No background, no border, primary text
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-link button {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--zc-color-primary-text-default);
+    &:hover {
+        background-color: var(--zc-color-primary-surface-subtle);
+        color: var(--zc-color-primary-text-default-hover);
+    }
+    &:active {
+        background-color: var(--zc-color-primary-surface-subtle-hover);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   STYLE: HYPERLINK — No background, underlined text
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-hyperlink button {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--zc-color-primary-text-default);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    padding: 0;
+    height: auto;
+    min-width: 0;
+    border-radius: 0;
+    overflow: visible;
+    &:hover  {
+        color: var(--zc-color-primary-text-default-hover);
+        border-color: transparent;
+        border-bottom-color: transparent;
+    }
+    &:active { color: var(--zc-color-primary-text-bold); }
+}
+
+/* ---------------------------------------------------------------------------
+   FORCED HOVER — showcase rows (Figma Hover=True)
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-hover.zc-btn-fill button {
+    background-color: var(--zc-color-primary-surface-default-hover) !important;
+    border-color: var(--zc-color-primary-surface-default-hover) !important;
+    border-bottom-color: var(--zc-color-primary-surface-default-hover) !important;
+    color: var(--zc-color-black-white-text-white-text-fixed) !important;
+}
+.zc-btn.zc-btn-hover.zc-btn-border button {
+    background-color: var(--zc-color-primary-surface-subtle) !important;
+    border-color: var(--zc-color-primary-border-default-hover) !important;
+    border-bottom-color: var(--zc-color-primary-border-default-hover) !important;
+    color: var(--zc-color-primary-text-default-hover) !important;
+}
+.zc-btn.zc-btn-hover.zc-btn-minimal-border button {
+    background-color: var(--zc-color-primary-surface-subtle) !important;
+    border-color: var(--zc-color-primary-border-low-hover) !important;
+    border-bottom-color: var(--zc-color-primary-border-low-hover) !important;
+    color: var(--zc-color-primary-text-default-hover) !important;
+}
+.zc-btn.zc-btn-hover.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-primary-surface-low) !important;
+    border-color: transparent !important;
+    color: var(--zc-color-primary-text-default-hover) !important;
+}
+.zc-btn.zc-btn-hover.zc-btn-link button {
+    background-color: var(--zc-color-primary-surface-subtle) !important;
+    color: var(--zc-color-primary-text-default-hover) !important;
+}
+.zc-btn.zc-btn-hover.zc-btn-hyperlink button {
+    color: var(--zc-color-primary-text-default-hover) !important;
+}
+
+/* ---------------------------------------------------------------------------
+   LYTE UI RESET — prevent default lyte-ui-button theme from overriding Figma styles
+   --------------------------------------------------------------------------- */
+lyte-button.zc-btn button.lytePrimaryBtn,
+lyte-button.zc-btn button.lyteDefaultBtn,
+lyte-button.zc-btn button.lyteSecondary,
+lyte-button.zc-btn button.lyteSuccess,
+lyte-button.zc-btn button.lyteFailure {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1;
+    min-height: 0;
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Lyte default border-radius is 2px — enforce Figma tokens per size */
+lyte-button.zc-btn.zc-btn-lg:not(.zc-btn-icon-only):not(.zc-btn-duo-icon-only) button {
+    border-radius: var(--zc-radius-r) !important;
+    padding-inline: 16px !important;
+}
+lyte-button.zc-btn.zc-btn-md:not(.zc-btn-icon-only):not(.zc-btn-duo-icon-only) button,
+lyte-button.zc-btn:not(.zc-btn-lg):not(.zc-btn-sm):not(.zc-btn-xs):not(.zc-btn-circle):not(.zc-btn-hyperlink):not(.zc-btn-icon-only):not(.zc-btn-duo-icon-only) button {
+    border-radius: var(--zc-radius-r) !important;
+    padding-inline: 14px !important;
+}
+lyte-button.zc-btn.zc-btn-sm:not(.zc-btn-icon-only):not(.zc-btn-duo-icon-only) button {
+    border-radius: var(--zc-radius-r) !important;
+    padding-inline: 12px !important;
+}
+lyte-button.zc-btn.zc-btn-xs:not(.zc-btn-icon-only):not(.zc-btn-duo-icon-only) button {
+    border-radius: var(--zc-radius-s) !important;
+    padding-inline: 10px !important;
+}
+lyte-button.zc-btn.zc-btn-icon-only button,
+lyte-button.zc-btn.zc-btn-duo-icon-only button {
+    padding: 0 !important;
+}
+lyte-button.zc-btn.zc-btn-circle button {
+    border-radius: 999px !important;
+}
+lyte-button.zc-btn.zc-btn-hyperlink button {
+    border-radius: 0 !important;
+}
+
+lyte-button.zc-btn button:hover {
+    box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   ICON-ONLY BUTTON — Square button with icon only
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-icon-only button {
+    padding: 0;
+    min-width: 0;
+}
+.zc-btn.zc-btn-icon-only.zc-btn-lg button { width: 40px; }
+.zc-btn.zc-btn-icon-only.zc-btn-md button { width: 36px; }
+.zc-btn.zc-btn-icon-only.zc-btn-sm button { width: 32px; }
+.zc-btn.zc-btn-icon-only.zc-btn-xs button { width: 26px; }
+
+/* ---------------------------------------------------------------------------
+   DUO ICON BUTTON (icons only) — Figma Primary_Duo_Icon_Button (2132:27360)
+   Two 36×36 zones with center divider; 72px wide at Base
+   --------------------------------------------------------------------------- */
+lyte-button.zc-btn.zc-btn-duo-icon-only button {
+    justify-content: stretch;
+    gap: 0;
+}
+
+.zc-btn.zc-btn-duo-icon-only button {
+    padding: 0;
+    min-width: 0;
+}
+.zc-btn.zc-btn-duo-icon-only.zc-btn-lg button { width: 80px; }
+.zc-btn.zc-btn-duo-icon-only.zc-btn-md button { width: 72px; }
+.zc-btn.zc-btn-duo-icon-only.zc-btn-sm button { width: 64px; }
+.zc-btn.zc-btn-duo-icon-only.zc-btn-xs button { width: 52px; }
+
+lyte-button.zc-btn.zc-btn-duo-icon-only .zc-btn-icon {
+    flex: 1 1 0;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    min-height: 100%;
+}
+
+lyte-button.zc-btn.zc-btn-duo-icon-only .zc-btn-icon + .zc-btn-icon {
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.zc-btn.zc-btn-duo-icon-only.zc-btn-border .zc-btn-icon + .zc-btn-icon,
+.zc-btn.zc-btn-duo-icon-only.zc-btn-minimal-border .zc-btn-icon + .zc-btn-icon {
+    border-left-color: var(--zc-color-primary-border-low);
+}
+
+.zc-btn.zc-btn-duo-icon-only.zc-btn-minimal-fill .zc-btn-icon + .zc-btn-icon {
+    border-left-color: var(--zc-color-primary-border-low);
+}
+
+.zc-btn.zc-btn-duo-icon-only.zc-btn-link .zc-btn-icon + .zc-btn-icon {
+    border-left-color: var(--zc-color-primary-border-low);
+}
+
+/* ---------------------------------------------------------------------------
+   SPLIT BUTTON — Primary action + dropdown trigger with divider
+   Layout: zc-inline-flex zc-align-items-stretch zc-gap-0 on wrapper (grid.css)
+   --------------------------------------------------------------------------- */
+.zc-btn-split {
+    border-radius: var(--zc-radius-r);
+    overflow: hidden;
+}
+.zc-btn-split .zc-btn.zc-btn-split-action button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+.zc-btn-split .zc-btn.zc-btn-split-trigger button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0;
+    min-width: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+.zc-btn-split .zc-btn.zc-btn-split-trigger.zc-btn-lg button { width: 40px; }
+.zc-btn-split .zc-btn.zc-btn-split-trigger.zc-btn-md button { width: 36px; }
+.zc-btn-split .zc-btn.zc-btn-split-trigger.zc-btn-sm button { width: 32px; }
+.zc-btn-split .zc-btn.zc-btn-split-trigger.zc-btn-xs button { width: 26px; }
+.zc-btn-split .zc-btn.zc-btn-border.zc-btn-split-trigger button,
+.zc-btn-split .zc-btn.zc-btn-minimal-border.zc-btn-split-trigger button {
+    border-left-color: var(--zc-color-primary-border-low);
+}
+.zc-btn-split .zc-btn.zc-btn-minimal-fill.zc-btn-split-trigger button {
+    border-left-color: var(--zc-color-primary-border-low);
+}
+.zc-btn-split .zc-btn.zc-btn-split-trigger button .zc-btn-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* ---------------------------------------------------------------------------
+   DUO COMBO BUTTON — Two buttons side-by-side in a group
+   --------------------------------------------------------------------------- */
+.zc-btn-duo-combo {
+    border-radius: var(--zc-radius-r);
+    overflow: hidden;
+}
+.zc-btn-duo-combo > .zc-btn:first-child button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.zc-btn-duo-combo > .zc-btn:last-child button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* ---------------------------------------------------------------------------
+   CIRCLE ICON BUTTON — Fully circular icon button (Figma: borderRadius: 999px)
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-circle button { border-radius: 999px; }
+.zc-btn.zc-btn-circle.zc-btn-lg button { width: 40px; height: 40px; padding: 0; }
+.zc-btn.zc-btn-circle.zc-btn-md button { width: 36px; height: 36px; padding: 0; }
+.zc-btn.zc-btn-circle.zc-btn-sm button { width: 32px; height: 32px; padding: 0; }
+.zc-btn.zc-btn-circle.zc-btn-xs button { width: 26px; height: 26px; padding: 0; }
+
+/* ---------------------------------------------------------------------------
+   DUO BUTTON GROUP — CTA + Sub-CTA text button pairing
+   (e.g. "Save" Fill Primary + "Cancel" Minimal Border HueGrey)
+   --------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   COLOR THEME: SECONDARY
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-secondary.zc-btn-fill button {
+    background-color: var(--zc-color-secondary-surface-default);
+    border-color: var(--zc-color-secondary-surface-default);
+    color: var(--zc-color-black-white-text-white-text-fixed);
+    &:hover { background-color: var(--zc-color-secondary-surface-default-hover); border-color: var(--zc-color-secondary-surface-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-bold); border-color: var(--zc-color-secondary-surface-bold); }
+}
+.zc-btn.zc-btn-secondary.zc-btn-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-secondary-border-default);
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-subtle); border-color: var(--zc-color-secondary-border-default-hover); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-secondary.zc-btn-minimal-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-secondary-border-low);
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-subtle); border-color: var(--zc-color-secondary-border-minimal); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-secondary.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-secondary-surface-subtle-hover);
+    border-color: transparent;
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-low); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-minimal); }
+}
+.zc-btn.zc-btn-secondary.zc-btn-link button {
+    background-color: transparent; border-color: transparent;
+    color: var(--zc-color-secondary-text-default);
+    &:hover { background-color: var(--zc-color-secondary-surface-subtle); color: var(--zc-color-secondary-text-default-hover); }
+    &:active { background-color: var(--zc-color-secondary-surface-subtle-hover); }
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR THEME: INFO
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-info.zc-btn-fill button {
+    background-color: var(--zc-color-info-surface-default);
+    border-color: var(--zc-color-info-surface-default);
+    color: var(--zc-color-black-white-text-white-text-fixed);
+    &:hover { background-color: var(--zc-color-info-surface-default-hover); border-color: var(--zc-color-info-surface-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-bold); border-color: var(--zc-color-info-surface-bold); }
+}
+.zc-btn.zc-btn-info.zc-btn-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-info-border-default);
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-subtle); border-color: var(--zc-color-info-border-default-hover); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-info.zc-btn-minimal-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-info-border-low);
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-subtle); border-color: var(--zc-color-info-border-minimal); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-info.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-info-surface-subtle-hover);
+    border-color: transparent;
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-low); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-minimal); }
+}
+.zc-btn.zc-btn-info.zc-btn-link button {
+    background-color: transparent; border-color: transparent;
+    color: var(--zc-color-info-text-default);
+    &:hover { background-color: var(--zc-color-info-surface-subtle); color: var(--zc-color-info-text-default-hover); }
+    &:active { background-color: var(--zc-color-info-surface-subtle-hover); }
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR THEME: SUCCESS
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-success.zc-btn-fill button {
+    background-color: var(--zc-color-success-surface-default);
+    border-color: var(--zc-color-success-surface-default);
+    color: var(--zc-color-black-white-text-white-text-fixed);
+    &:hover { background-color: var(--zc-color-success-surface-default-hover); border-color: var(--zc-color-success-surface-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-bold); border-color: var(--zc-color-success-surface-bold); }
+}
+.zc-btn.zc-btn-success.zc-btn-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-success-border-default);
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-subtle); border-color: var(--zc-color-success-border-default-hover); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-success.zc-btn-minimal-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-success-border-low);
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-subtle); border-color: var(--zc-color-success-border-minimal); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-success.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-success-surface-subtle-hover);
+    border-color: transparent;
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-low); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-minimal); }
+}
+.zc-btn.zc-btn-success.zc-btn-link button {
+    background-color: transparent; border-color: transparent;
+    color: var(--zc-color-success-text-default);
+    &:hover { background-color: var(--zc-color-success-surface-subtle); color: var(--zc-color-success-text-default-hover); }
+    &:active { background-color: var(--zc-color-success-surface-subtle-hover); }
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR THEME: WARNING
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-warning.zc-btn-fill button {
+    background-color: var(--zc-color-warning-surface-default);
+    border-color: var(--zc-color-warning-surface-default);
+    color: var(--zc-color-black-white-text-white-text-fixed);
+    &:hover { background-color: var(--zc-color-warning-surface-default-hover); border-color: var(--zc-color-warning-surface-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-bold); border-color: var(--zc-color-warning-surface-bold); }
+}
+.zc-btn.zc-btn-warning.zc-btn-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-warning-border-default);
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-subtle); border-color: var(--zc-color-warning-border-default-hover); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-warning.zc-btn-minimal-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-warning-border-low);
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-subtle); border-color: var(--zc-color-warning-border-minimal); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-warning.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-warning-surface-subtle-hover);
+    border-color: transparent;
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-low); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-minimal); }
+}
+.zc-btn.zc-btn-warning.zc-btn-link button {
+    background-color: transparent; border-color: transparent;
+    color: var(--zc-color-warning-text-default);
+    &:hover { background-color: var(--zc-color-warning-surface-subtle); color: var(--zc-color-warning-text-default-hover); }
+    &:active { background-color: var(--zc-color-warning-surface-subtle-hover); }
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR THEME: ERROR
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-error.zc-btn-fill button {
+    background-color: var(--zc-color-error-surface-default);
+    border-color: var(--zc-color-error-surface-default);
+    color: var(--zc-color-black-white-text-white-text-fixed);
+    &:hover { background-color: var(--zc-color-error-surface-default-hover); border-color: var(--zc-color-error-surface-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-bold); border-color: var(--zc-color-error-surface-bold); }
+}
+.zc-btn.zc-btn-error.zc-btn-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-error-border-default);
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-subtle); border-color: var(--zc-color-error-border-default-hover); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-error.zc-btn-minimal-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-error-border-low);
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-subtle); border-color: var(--zc-color-error-border-minimal); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-error.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-error-surface-subtle-hover);
+    border-color: transparent;
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-low); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-minimal); }
+}
+.zc-btn.zc-btn-error.zc-btn-link button {
+    background-color: transparent; border-color: transparent;
+    color: var(--zc-color-error-text-default);
+    &:hover { background-color: var(--zc-color-error-surface-subtle); color: var(--zc-color-error-text-default-hover); }
+    &:active { background-color: var(--zc-color-error-surface-subtle-hover); }
+}
+
+/* ---------------------------------------------------------------------------
+   COLOR THEME: HUEGREY
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-huegrey.zc-btn-fill button {
+    background-color: var(--zc-color-huegrey-surface-default);
+    border-color: var(--zc-color-huegrey-surface-default);
+    color: var(--zc-color-black-white-text-white-text-fixed);
+    &:hover { background-color: var(--zc-color-huegrey-surface-default-hover); border-color: var(--zc-color-huegrey-surface-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-bold); border-color: var(--zc-color-huegrey-surface-bold); }
+}
+.zc-btn.zc-btn-huegrey.zc-btn-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-huegrey-border-default);
+    color: var(--zc-color-huegrey-text-default);
+    &:hover { background-color: var(--zc-color-huegrey-surface-subtle); border-color: var(--zc-color-huegrey-border-default-hover); color: var(--zc-color-huegrey-text-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-huegrey.zc-btn-minimal-border button {
+    background-color: var(--zc-color-black-white-surface-white-surface);
+    border-color: var(--zc-color-huegrey-border-fairish);
+    color: var(--zc-color-huegrey-text-bold);
+    &:hover {
+        background-color: var(--zc-color-huegrey-surface-subtle);
+        border-color: var(--zc-color-huegrey-border-fairish);
+        color: var(--zc-color-huegrey-text-dark);
+    }
+    &:active { background-color: var(--zc-color-huegrey-surface-subtle-hover); }
+}
+.zc-btn.zc-btn-huegrey.zc-btn-minimal-fill button {
+    background-color: var(--zc-color-huegrey-surface-subtle-hover);
+    border-color: transparent;
+    color: var(--zc-color-huegrey-text-default);
+    &:hover { background-color: var(--zc-color-huegrey-surface-low); color: var(--zc-color-huegrey-text-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-minimal); }
+}
+.zc-btn.zc-btn-huegrey.zc-btn-link button {
+    background-color: transparent; border-color: transparent;
+    color: var(--zc-color-huegrey-text-default);
+    &:hover { background-color: var(--zc-color-huegrey-surface-subtle); color: var(--zc-color-huegrey-text-default-hover); }
+    &:active { background-color: var(--zc-color-huegrey-surface-subtle-hover); }
+}
+
+/* ---------------------------------------------------------------------------
+   FULL-WIDTH
+   --------------------------------------------------------------------------- */
+.zc-btn.zc-btn-full { width: 100%; display: block; }
+.zc-btn.zc-btn-full button { width: 100%; }

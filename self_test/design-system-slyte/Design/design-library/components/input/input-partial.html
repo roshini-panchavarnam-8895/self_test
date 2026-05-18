@@ -1,0 +1,137 @@
+<style>
+    .inp-section { margin-bottom: 28px; }
+    .inp-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .inp-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .inp-table { width: 100%; border-collapse: collapse; }
+    .inp-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .inp-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .inp-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .inp-table .inp-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .inp-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .inp-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .inp-field-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }.inp-field-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-default); }
+    .inp-field-optional { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .inp-field-hint { font-size: 12px; color: var(--zc-color-huegrey-text-default); margin-top: 2px; }
+    .inp-field-hint--error { color: var(--zc-color-negative-text-negative-text-default); }
+    .inp-field-hint--success { color: var(--zc-color-positive-text-positive-text-default); }
+    .inp-field-hint--info { color: var(--zc-color-info-text-info-text-default); }
+    .inp-field-hint--disabled { color: var(--zc-color-neutral-text-neutral-text-disabled); }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="card-grid-back" onclick="window.goBack()"><i class="fas fa-arrow-left"></i></button>
+    <h2 class="card-grid-title">Text Area</h2>
+</div>
+
+<p class="inp-desc">Source: Figma <code>Input TextArea (2352:2604)</code>. Multi-line text input. Same state system as Text Input but with variable height and top-aligned icon. Native vertical resize handle. 10 states.</p>
+
+<!-- STATES -->
+<div class="inp-section">
+    <div class="inp-section-title">States</div>
+    <div class="inp-section-card">
+        <div style="display:grid; grid-template-columns: 200px 1fr; gap:14px 24px; align-items:start;">
+            <div style="font-size:12px; color:var(--zc-color-neutral-text-neutral-text-fairish); padding-top:8px;">Default</div>
+            <div>
+                <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Placeholder" lt-prop-rows="3" lt-prop-appearance="box"></lyte-input>
+            </div>
+
+            <div style="font-size:12px; color:var(--zc-color-neutral-text-neutral-text-fairish); padding-top:8px;">Hover</div>
+            <div>
+                <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Placeholder" lt-prop-rows="3" lt-prop-appearance="box"></lyte-input>
+            </div>
+
+            <div style="font-size:12px; color:var(--zc-color-neutral-text-neutral-text-fairish); padding-top:8px;">Active (focused)</div>
+            <div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="" lt-prop-rows="3" lt-prop-appearance="box"></lyte-input>
+            </div>
+
+            <div style="font-size:12px; color:var(--zc-color-neutral-text-neutral-text-fairish); padding-top:8px;">Filled</div>
+            <div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="Placeholder" lt-prop-rows="3" lt-prop-appearance="box"></lyte-input>
+            </div>
+
+            <div style="font-size:12px; color:var(--zc-color-neutral-text-neutral-text-fairish); padding-top:8px;">Disabled</div>
+            <div>
+                <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Placeholder" lt-prop-rows="3" lt-prop-disabled="true" lt-prop-appearance="box"></lyte-input>
+            </div>
+
+            <div style="font-size:12px; color:var(--zc-color-neutral-text-neutral-text-fairish); padding-top:8px;">Error</div>
+            <div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="Placeholder" lt-prop-rows="3" lt-prop-appearance="box" class="zc-input-error"></lyte-input>
+            </div>
+
+            <div style="font-size:12px; color:var(--zc-color-neutral-text-neutral-text-fairish); padding-top:8px;">Success</div>
+            <div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="Placeholder" lt-prop-rows="3" lt-prop-appearance="box" class="zc-input-success"></lyte-input>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FULL FIELD -->
+<div class="inp-section">
+    <div class="inp-section-title">Full field (TextArea_Base)</div>
+    <div class="inp-section-card">
+        <div class="inp-field-grid">
+            <!-- Default -->
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="inp-field-label">Label</span>
+                    <span class="inp-field-optional">(Optional)</span>
+                </div>
+                <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Placeholder" lt-prop-rows="3" lt-prop-appearance="box"></lyte-input>
+                <span class="inp-field-hint">Hint Text</span>
+            </div>
+
+            <!-- Active -->
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="inp-field-label">Label</span>
+                    <span class="inp-field-optional">(Optional)</span>
+                </div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="" lt-prop-rows="3" lt-prop-appearance="box"></lyte-input>
+                <span class="inp-field-hint inp-field-hint--info">Hint Text</span>
+            </div>
+
+            <!-- Filled -->
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="inp-field-label">Label</span>
+                    <span class="inp-field-optional">(Optional)</span>
+                </div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="Placeholder" lt-prop-rows="3" lt-prop-appearance="box"></lyte-input>
+                <span class="inp-field-hint">Hint Text</span>
+            </div>
+
+            <!-- Disabled -->
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="inp-field-label">Label</span>
+                    <span class="inp-field-optional">(Optional)</span>
+                </div>
+                <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Placeholder" lt-prop-rows="3" lt-prop-disabled="true" lt-prop-appearance="box"></lyte-input>
+                <span class="inp-field-hint inp-field-hint--disabled">Hint Text</span>
+            </div>
+
+            <!-- Error -->
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="inp-field-label">Label</span>
+                    <span class="inp-field-optional">(Optional)</span>
+                </div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="Placeholder" lt-prop-rows="3" lt-prop-appearance="box" class="zc-input-error"></lyte-input>
+                <span class="inp-field-hint inp-field-hint--error">Hint Text</span>
+            </div>
+
+            <!-- Success -->
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="inp-field-label">Label</span>
+                    <span class="inp-field-optional">(Optional)</span>
+                </div>
+                <lyte-input lt-prop-type="textarea" lt-prop-value="Placeholder" lt-prop-rows="3" lt-prop-appearance="box" class="zc-input-success"></lyte-input>
+                <span class="inp-field-hint inp-field-hint--success">Hint Text</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<style>
+    .itag-section { margin-bottom: 28px; }
+    .itag-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .itag-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .itag-table { width: 100%; border-collapse: collapse; }
+    .itag-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .itag-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .itag-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .itag-table .itag-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .itag-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .itag-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2>Tags</h2>
+</div>
+
+<p class="itag-desc">Source: Figma <code>Tags / Tag Picker (2947:9730)</code>. Inline pill chip used in tag-picker fields, multi-select dropdowns, filter strips, and as standalone status indicators. Sizes Base / Small &times; Colors (Default / Primary / Success / Error) &times; Variants (Subtle / Solid / Outline) &times; Optional icon and &times; close.</p>
+
+<!-- SIZES -->
+<div class="itag-section">
+    <div class="itag-section-title">Sizes</div>
+    <div class="itag-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+        </div>
+    </div>
+</div>
+
+<!-- VARIANTS x COLORS -->
+<div class="itag-section">
+    <div class="itag-section-title">Variants &times; Colors</div>
+    <div class="itag-section-card">
+        <table class="itag-table">
+            <thead>
+                <tr>
+                    <th>Variant</th>
+                    <th>Default</th>
+                    <th>Primary</th>
+                    <th>Success</th>
+                    <th>Error</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="itag-row-label">Subtle</td>
+                    <td><span class="zc-tag zc-tag-neutral zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-success zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-error zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                </tr>
+                <tr>
+                    <td class="itag-row-label">Solid</td>
+                    <td><span class="zc-tag zc-tag-neutral zc-tag-md zc-tag-solid zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-primary zc-tag-md zc-tag-solid zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-success zc-tag-md zc-tag-solid zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-error zc-tag-md zc-tag-solid zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                </tr>
+                <tr>
+                    <td class="itag-row-label">Outline</td>
+                    <td><span class="zc-tag zc-tag-neutral zc-tag-md zc-tag-outline zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-primary zc-tag-md zc-tag-outline zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-success zc-tag-md zc-tag-outline zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                    <td><span class="zc-tag zc-tag-error zc-tag-md zc-tag-outline zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SLOT COMBINATIONS -->
+<div class="itag-section">
+    <div class="itag-section-title">Slot combinations</div>
+    <div class="itag-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <span class="zc-tag zc-tag-primary zc-tag-md">Tag</span>
+            <span class="zc-tag zc-tag-primary zc-tag-md"><i class="fas fa-circle zc-tag-icon"></i>Tag</span>
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable"><i class="fas fa-user-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+        </div>
+    </div>
+</div>
+
+<!-- TAG LIST WITH OVERFLOW COUNTER -->
+<div class="itag-section">
+    <div class="itag-section-title">Tag list with overflow counter</div>
+    <div class="itag-section-card" class="zc-flex zc-direction-column zc-gap-12">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable"><i class="fas fa-circle zc-tag-icon"></i>Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-neutral zc-tag-md">+3</span>
+        </div>
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <span class="zc-tag zc-tag-primary zc-tag-md zc-tag-removable"><i class="fas fa-user-circle zc-tag-icon"></i>Alice<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-success zc-tag-md zc-tag-removable"><i class="fas fa-user-circle zc-tag-icon"></i>Bob<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-error zc-tag-md zc-tag-removable"><i class="fas fa-user-circle zc-tag-icon"></i>Carol<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+            <span class="zc-tag zc-tag-neutral zc-tag-md">+5</span>
+        </div>
+    </div>
+</div>

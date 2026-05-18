@@ -1,0 +1,53 @@
+{% comment %} Dropdown — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "dropdown" %}
+{% assign field_name = field.name | default: "Dropdown" %}
+{% assign field_label = field.label | default: "Drop Down" %}
+{% assign field_placeholder = field.placeholder | default: "-Select-" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group" data-element-type="dropdown" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_picklist_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix searchable-lookup smallSizeLive zc-Default{% if field.error %} select2Err validationError{% endif %}">
+    <div class="select2-container zc-{{ field_name }} form-choice-field zc_picklist_field" id="s2id_autogen_{{ field_name }}">
+      <a class="select2-choice select2-default" tabindex="-1">
+        <span class="select2-chosen" id="select2-chosen-{{ field_name }}">{{ field_placeholder }}</span>
+        <abbr class="select2-search-choice-close"></abbr>
+        <span class="select2-arrow" role="presentation"><b role="presentation"></b></span>
+      </a>
+      <label class="select2-offscreen" for="s2id_autogen_{{ field_name }}_focus"></label>
+      <input class="select2-focusser select2-offscreen zc-elem-focus-field" type="text" role="combobox" name="zc-sel2-foc-{{ field_name }}" id="s2id_autogen_{{ field_name }}_focus" autocomplete="new-zc-sel2-foc-{{ field_name }}">
+      <div class="select2-drop select2-display-none select2-with-searchbox {{ field_name }}-switch-search">
+        <div class="select2-search">
+          <label class="select2-offscreen" for="s2id_autogen_{{ field_name }}_search"></label>
+          <input class="select2-input" type="text" placeholder="" role="combobox" name="zc-sel2-inp-{{ field_name }}" id="s2id_autogen_{{ field_name }}_search" autocomplete="new-zc-sel2-inp-{{ field_name }}">
+        </div>
+        <ul class="select2-results" role="listbox" id="select2-results-{{ field_name }}">
+          {% for option in field.options %}
+            <li class="select2-result" data-value="{{ option.value }}" role="option">
+              <div class="select2-result-label">{{ option.label }}</div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <input class="zc-{{ field_name }} form-choice-field zc_picklist_field" type="text" name="{{ field_name }}" tabindex="-1" title="" style="display: none;">
+
+    {% if field.error %}
+      <div class="fieldErrorMsg zc-field-error-msg zc-dem-box-sizing" id="zc-{{ field_name }}-errorMsg" style="min-width:100px;width:100px">
+        {% block error_icon %}{% endblock %}
+        <span>{{ field.error_message | default: "This field is mandatory. Select a value." }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+</div>

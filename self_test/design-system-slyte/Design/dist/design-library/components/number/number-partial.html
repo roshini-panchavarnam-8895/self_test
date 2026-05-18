@@ -1,0 +1,163 @@
+<style>
+    .num-section { margin-bottom: 28px; }
+    .num-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .num-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .num-table { width: 100%; border-collapse: collapse; }
+    .num-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .num-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .num-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .num-table .num-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 130px; }
+    .num-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .num-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .num-field-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+    .num-field-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-default); }
+    .num-field-optional { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .num-field-hint { font-size: 12px; color: var(--zc-color-huegrey-text-default); margin-top: 2px; }
+    .num-field-hint--error { color: var(--zc-color-negative-text-negative-text-default); }
+    .num-field-hint--success { color: var(--zc-color-positive-text-positive-text-default); }
+    .num-field-hint--disabled { color: var(--zc-color-neutral-text-neutral-text-disabled); }
+    .num-showcase { max-width: 304px; }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="card-grid-back" onclick="window.goBack()"><i class="fas fa-arrow-left"></i></button>
+    <h2 class="card-grid-title">Number Input</h2>
+</div>
+
+<p class="num-desc">Source: Figma <code>Number_Input_Base (2745:2199)</code>. Numeric field with integrated +/- stepper (<code>lt-prop-controls="true"</code> → <code>Input_Number_Stepper</code>). P2 Regular, h-36, radius R(6). Eight states.</p>
+
+<!-- STATES -->
+<div class="num-section">
+    <div class="num-section-title">States (Number_Input_Base)</div>
+    <div class="num-section-card">
+        <table class="num-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="num-row-label">Default</td>
+                    <td class="num-showcase">
+                        <lyte-number lt-prop-placeholder="0" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="num-row-label">Hover</td>
+                    <td class="num-showcase">
+                        <lyte-number lt-prop-placeholder="0" lt-prop-appearance="box" lt-prop-controls="true" class="zc-number-hover"></lyte-number>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="num-row-label">Active (focused)</td>
+                    <td class="num-showcase">
+                        <lyte-number lt-prop-value="1" lt-prop-appearance="box" lt-prop-controls="true" class="zc-number-active"></lyte-number>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="num-row-label">Filled</td>
+                    <td class="num-showcase">
+                        <lyte-number lt-prop-value="1" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="num-row-label">Disabled</td>
+                    <td class="num-showcase">
+                        <lyte-number lt-prop-placeholder="0" lt-prop-disabled="true" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="num-row-label">Disabled After</td>
+                    <td class="num-showcase">
+                        <div class="zc-number-disabled-after">
+                            <lyte-number lt-prop-value="1" lt-prop-disabled="true" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="num-row-label">Error</td>
+                    <td class="num-showcase">
+                        <lyte-number lt-prop-value="1" lt-prop-error="true" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="num-row-label">Success</td>
+                    <td class="num-showcase">
+                        <lyte-number lt-prop-value="1" lt-prop-appearance="box" lt-prop-controls="true" class="zc-number-success"></lyte-number>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- FULL FIELD -->
+<div class="num-section">
+    <div class="num-section-title">Full field (Number_Input_Base)</div>
+    <div class="num-section-card">
+        <div class="num-field-grid">
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="num-field-label">Label</span>
+                    <span class="num-field-optional">(Optional)</span>
+                </div>
+                <lyte-number lt-prop-placeholder="0" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                <span class="num-field-hint">Hint Text</span>
+            </div>
+
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="num-field-label">Label</span>
+                    <span class="num-field-optional">(Optional)</span>
+                </div>
+                <lyte-number lt-prop-value="1" lt-prop-appearance="box" lt-prop-controls="true" class="zc-number-active"></lyte-number>
+                <span class="num-field-hint">Hint Text</span>
+            </div>
+
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="num-field-label">Label</span>
+                    <span class="num-field-optional">(Optional)</span>
+                </div>
+                <lyte-number lt-prop-value="1" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                <span class="num-field-hint">Hint Text</span>
+            </div>
+
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="num-field-label">Label</span>
+                    <span class="num-field-optional">(Optional)</span>
+                </div>
+                <lyte-number lt-prop-placeholder="0" lt-prop-disabled="true" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                <span class="num-field-hint num-field-hint--disabled">Hint Text</span>
+            </div>
+
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="num-field-label">Label</span>
+                    <span class="num-field-optional">(Optional)</span>
+                </div>
+                <div class="zc-number-disabled-after">
+                    <lyte-number lt-prop-value="1" lt-prop-disabled="true" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                </div>
+                <span class="num-field-hint">Hint Text</span>
+            </div>
+
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="num-field-label">Label</span>
+                    <span class="num-field-optional">(Optional)</span>
+                </div>
+                <lyte-number lt-prop-value="1" lt-prop-error="true" lt-prop-appearance="box" lt-prop-controls="true"></lyte-number>
+                <span class="num-field-hint num-field-hint--error">Hint Text</span>
+            </div>
+
+            <div class="zc-flex zc-direction-column zc-gap-4">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="num-field-label">Label</span>
+                    <span class="num-field-optional">(Optional)</span>
+                </div>
+                <lyte-number lt-prop-value="1" lt-prop-appearance="box" lt-prop-controls="true" class="zc-number-success"></lyte-number>
+                <span class="num-field-hint num-field-hint--success">Hint Text</span>
+            </div>
+        </div>
+    </div>
+</div>

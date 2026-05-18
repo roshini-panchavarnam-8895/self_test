@@ -1,0 +1,225 @@
+/* ============================================================
+   DROPDOWN OPTGROUP — Figma: Optgroup_Head (2556:4537)
+              Optgroup_List (2556:4508) / List_Vertical_Core (2081:1893)
+   ============================================================
+   Group head:  P2 Regular 14/18 — huegrey_text_fairish-hover
+   Option:      P2 Regular 14/18 — huegrey_text_default
+   Hover opt:   P2 + black_text — secondary_surface_subtle-hover
+   Selected:    P2 + black_text — secondary_surface_subtle
+   Head → opt:  6px (Optgroup_List pt-6)
+   Opt → opt:   1px (Optgroup_List gap-px)
+   ============================================================ */
+
+.zc-dropdown.zc-dropdown-optgroup {
+
+    &.zc-dropdown-active lyte-drop-box {
+        position: relative !important;
+        top: auto !important;
+        left: 0 !important;
+        display: block !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        margin-top: 6px;
+    }
+
+    lyte-drop-box {
+        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+        border: 1px solid var(--zc-color-huegrey-border-minimal, #EAEBEC);
+        border-radius: var(--zc-radius-r, 6px);
+        box-shadow: var(--zc-elevation-subtle-default), var(--zc-elevation-base-default);
+        padding: 10px 0 0;
+        max-height: 200px;
+        overflow-y: auto;
+        box-sizing: border-box;
+
+        &.lyteDropdownDown,
+        &.lyteDropdownUp {
+            border-radius: var(--zc-radius-r, 6px);
+            box-shadow: var(--zc-elevation-subtle-default), var(--zc-elevation-base-default);
+        }
+    }
+
+    lyte-drop-body {
+        padding: 0 0 10px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: var(--zc-p2-font-family, 'ZohoPuvi', sans-serif);
+    }
+
+    /* Optgroup_Head — P2 Regular, 18px row, #9EA0A7 */
+    lyte-drop-header.zc-dropdown-optgroup-header {
+        display: block;
+        min-height: 18px;
+        height: 18px;
+        padding: 0 10px !important;
+        margin: 0 !important;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: var(--zc-p2-font-family, 'ZohoPuvi', sans-serif) !important;
+        font-size: var(--zc-p2-font-size, 14px) !important;
+        font-weight: var(--zc-p2-font-weight-regular, 400) !important;
+        line-height: var(--zc-p2-line-height, 18px) !important;
+        letter-spacing: 0;
+        color: var(--zc-color-huegrey-text-fairish-hover, #9EA0A7) !important;
+        background: transparent !important;
+        pointer-events: none;
+        user-select: none;
+        cursor: default;
+        border: none;
+        flex-shrink: 0;
+    }
+
+    /* Between groups: 10px after last option + divider */
+    lyte-drop-item + lyte-drop-header.zc-dropdown-optgroup-header {
+        margin-top: 10px !important;
+        padding-top: 10px !important;
+        border-top: 1px solid var(--zc-color-huegrey-border-fairish, #D5D6D9) !important;
+    }
+
+    /* Head → first option: 6px only (Figma Optgroup_List pt-6) */
+    lyte-drop-header.zc-dropdown-optgroup-header + lyte-drop-item {
+        margin-top: 6px !important;
+    }
+
+    /* Option → option: 1px */
+    lyte-drop-item + lyte-drop-item {
+        margin-top: 1px !important;
+    }
+
+    /* List_Vertical_Core */
+    lyte-drop-item {
+        position: relative;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        align-self: stretch !important;
+        width: auto !important;
+        max-width: none !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        margin-top: 0 !important;
+        padding: 9px 10px !important;
+        gap: 10px;
+        box-sizing: border-box !important;
+        border-radius: var(--zc-radius-r, 6px) !important;
+        box-shadow: none !important;
+        cursor: pointer;
+        transition: background 0.1s ease, color 0.1s ease;
+
+        /* P2 Regular — default option */
+        font-family: var(--zc-p2-font-family, 'ZohoPuvi', sans-serif) !important;
+        font-size: var(--zc-p2-font-size, 14px) !important;
+        font-weight: var(--zc-p2-font-weight-regular, 400) !important;
+        line-height: var(--zc-p2-line-height, 18px) !important;
+        letter-spacing: 0;
+        color: var(--zc-color-huegrey-text-default, #696C74) !important;
+        background: var(--zc-color-black-white-surface-white-surface, #FFFFFF) !important;
+
+        &:hover,
+        &.lyteDropdownActive {
+            background: var(--zc-color-secondary-surface-subtle-hover, #EFF2F9) !important;
+            color: var(--zc-color-black-white-text-black-text, #000000) !important;
+        }
+
+        &.lyteDropdownSelection,
+        &[selected="true"],
+        &[selected] {
+            background: var(--zc-color-secondary-surface-subtle, #F7F9FD) !important;
+            color: var(--zc-color-black-white-text-black-text, #000000) !important;
+            justify-content: space-between !important;
+
+            &:hover,
+            &.lyteDropdownActive {
+                background: var(--zc-color-secondary-surface-subtle-hover, #EFF2F9) !important;
+            }
+
+            &::before {
+                display: none !important;
+                content: none !important;
+            }
+
+            &::after {
+                content: '';
+                position: relative;
+                width: 11px;
+                height: 8px;
+                margin-left: auto;
+                flex-shrink: 0;
+                border-right: 2px solid var(--zc-color-black-white-text-black-text, #000000);
+                border-bottom: 2px solid var(--zc-color-black-white-text-black-text, #000000);
+                transform: rotate(45deg);
+                pointer-events: none;
+            }
+        }
+    }
+
+    /* Override global styles.css .lyteDropdownSelection (was primary-surface-low + 12px) */
+    .lyteDropdownSelection {
+        font-family: var(--zc-p2-font-family, 'ZohoPuvi', sans-serif) !important;
+        font-size: var(--zc-p2-font-size, 14px) !important;
+        font-weight: var(--zc-p2-font-weight-regular, 400) !important;
+        line-height: var(--zc-p2-line-height, 18px) !important;
+        background: var(--zc-color-secondary-surface-subtle, #F7F9FD) !important;
+        color: var(--zc-color-black-white-text-black-text, #000000) !important;
+
+        &:hover {
+            background: var(--zc-color-secondary-surface-subtle-hover, #EFF2F9) !important;
+        }
+    }
+
+    lyte-drop-header.zc-dropdown-optgroup-header-bold,
+    .zc-dropdown-optgroup-header-bold {
+        font-weight: var(--zc-p2-font-weight-semibold, 500) !important;
+        color: var(--zc-color-black-white-text-black-text, #000000) !important;
+    }
+
+    lyte-drop-header.zc-dropdown-optgroup-header-subtle,
+    .zc-dropdown-optgroup-header-subtle {
+        font-weight: var(--zc-p2-font-weight-regular, 400) !important;
+        color: var(--zc-color-huegrey-text-fairish-hover, #9EA0A7) !important;
+    }
+
+    lyte-drop-header.zc-dropdown-optgroup-header-sm,
+    .zc-dropdown-optgroup-header-sm {
+        font-size: var(--zc-p3-font-size, 12px) !important;
+        line-height: var(--zc-p3-line-height, 15px) !important;
+        min-height: 15px;
+        height: auto;
+    }
+
+    &.zc-dropdown-optgroup-selectable lyte-drop-header.zc-dropdown-optgroup-header-selectable,
+    lyte-drop-header.zc-dropdown-optgroup-header-selectable {
+        pointer-events: auto;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+/* Showcase samples outside lyte-drop-header */
+.zc-dropdown-optgroup-header {
+    font-family: var(--zc-p2-font-family, 'ZohoPuvi', sans-serif);
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    line-height: var(--zc-p2-line-height, 18px);
+    color: var(--zc-color-huegrey-text-fairish-hover, #9EA0A7);
+}
+
+.zc-dropdown-optgroup-header-bold {
+    font-weight: var(--zc-p2-font-weight-semibold, 500);
+    color: var(--zc-color-black-white-text-black-text, #000000);
+}
+
+.zc-dropdown-optgroup-header-subtle {
+    color: var(--zc-color-huegrey-text-fairish-hover, #9EA0A7);
+}
+
+.zc-dropdown-optgroup-header-sm {
+    font-size: var(--zc-p3-font-size, 12px);
+    line-height: var(--zc-p3-line-height, 15px);
+}

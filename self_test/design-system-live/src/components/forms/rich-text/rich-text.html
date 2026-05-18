@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rich Text — Zoho Creator</title>
+  <link rel="stylesheet" href="rich-text.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix form-richtext-field">
+      <label class="form-label">
+        <span class="zc-label-text">Rich Text</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="form-rtf">
+          <div class="ze" role="application" aria-label="Rich text editor">
+            <div class="ze_SCmb">
+              <div class="ze-toolbar" role="toolbar" aria-label="Formatting options">
+                <ul><li><b title="Bold (Ctrl+B)"><i class="ze-icon zc-li-outline text-bold" aria-hidden="true"></i></b></li><li><b title="Italic (Ctrl+I)"><i class="ze-icon zc-li-outline text-italic" aria-hidden="true"></i></b></li><li><b title="Underline (Ctrl+U)"><i class="ze-icon zc-li-outline text-underline" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b><span class="ze-font-name">DejaVuSans</span><i class="ze-arrow zc-li-outline arrows-1-small-triangle-down" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b><em class="ze-font-size">10</em><i class="ze-arrow zc-li-outline arrows-1-small-triangle-down" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Font Color"><i class="ze-icon zc-li-outline text-color" aria-hidden="true"></i></b></li><li><b title="Background Color"><i class="ze-icon zc-li-outline text-background" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Align Left"><i class="zc-li-outline text-align-left" aria-hidden="true"></i></b></li><li><b title="Align Right"><i class="zc-li-outline text-align-right" aria-hidden="true"></i></b></li><li><b title="Justify"><i class="zc-li-outline text-align-justify" aria-hidden="true"></i></b></li><li><b title="Center"><i class="zc-li-outline text-align-center" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Insert Link"><i class="zc-li-outline ui-2-link-66" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Insert Table"><i class="zc-li-outline ui-2-grid-square" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Bullets"><i class="zc-li-outline text-list-bullet" aria-hidden="true"></i></b></li><li><b title="Numbering"><i class="zc-li-outline text-list-numbers" aria-hidden="true"></i></b></li></ul>
+              </div>
+            </div>
+            <div class="ze_area"><div class="ze_body" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Rich text content"></div></div>
+          </div>
+        </div>
+        <div class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix form-richtext-field">
+      <label class="form-label">
+        <span class="zc-label-text">Rich Text<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="form-rtf">
+          <div class="ze" role="application" aria-label="Rich text editor">
+            <div class="ze_SCmb">
+              <div class="ze-toolbar" role="toolbar" aria-label="Formatting options">
+                <ul><li><b title="Bold (Ctrl+B)"><i class="ze-icon zc-li-outline text-bold" aria-hidden="true"></i></b></li><li><b title="Italic (Ctrl+I)"><i class="ze-icon zc-li-outline text-italic" aria-hidden="true"></i></b></li><li><b title="Underline (Ctrl+U)"><i class="ze-icon zc-li-outline text-underline" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b><span class="ze-font-name">DejaVuSans</span><i class="ze-arrow zc-li-outline arrows-1-small-triangle-down" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b><em class="ze-font-size">10</em><i class="ze-arrow zc-li-outline arrows-1-small-triangle-down" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Font Color"><i class="ze-icon zc-li-outline text-color" aria-hidden="true"></i></b></li><li><b title="Background Color"><i class="ze-icon zc-li-outline text-background" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Align Left"><i class="zc-li-outline text-align-left" aria-hidden="true"></i></b></li><li><b title="Align Right"><i class="zc-li-outline text-align-right" aria-hidden="true"></i></b></li><li><b title="Justify"><i class="zc-li-outline text-align-justify" aria-hidden="true"></i></b></li><li><b title="Center"><i class="zc-li-outline text-align-center" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Insert Link"><i class="zc-li-outline ui-2-link-66" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Insert Table"><i class="zc-li-outline ui-2-grid-square" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Bullets"><i class="zc-li-outline text-list-bullet" aria-hidden="true"></i></b></li><li><b title="Numbering"><i class="zc-li-outline text-list-numbers" aria-hidden="true"></i></b></li></ul>
+              </div>
+            </div>
+            <div class="ze_area"><div class="ze_body" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Rich text content"></div></div>
+          </div>
+        </div>
+        <div class="fieldErrorMsg" role="alert"><span>This field is mandatory. Enter a value.</span></div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix form-richtext-field zc-field-disabled">
+      <label class="form-label">
+        <span class="zc-label-text">Rich Text</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="form-rtf">
+          <div class="ze" role="application" aria-label="Rich text editor">
+            <div class="ze_SCmb">
+              <div class="ze-toolbar" role="toolbar" aria-label="Formatting options">
+                <ul><li><b title="Bold (Ctrl+B)"><i class="ze-icon zc-li-outline text-bold" aria-hidden="true"></i></b></li><li><b title="Italic (Ctrl+I)"><i class="ze-icon zc-li-outline text-italic" aria-hidden="true"></i></b></li><li><b title="Underline (Ctrl+U)"><i class="ze-icon zc-li-outline text-underline" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b><span class="ze-font-name">DejaVuSans</span><i class="ze-arrow zc-li-outline arrows-1-small-triangle-down" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b><em class="ze-font-size">10</em><i class="ze-arrow zc-li-outline arrows-1-small-triangle-down" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Font Color"><i class="ze-icon zc-li-outline text-color" aria-hidden="true"></i></b></li><li><b title="Background Color"><i class="ze-icon zc-li-outline text-background" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Align Left"><i class="zc-li-outline text-align-left" aria-hidden="true"></i></b></li><li><b title="Align Right"><i class="zc-li-outline text-align-right" aria-hidden="true"></i></b></li><li><b title="Justify"><i class="zc-li-outline text-align-justify" aria-hidden="true"></i></b></li><li><b title="Center"><i class="zc-li-outline text-align-center" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Insert Link"><i class="zc-li-outline ui-2-link-66" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Insert Table"><i class="zc-li-outline ui-2-grid-square" aria-hidden="true"></i></b></li></ul>
+                <ul><li><b title="Bullets"><i class="zc-li-outline text-list-bullet" aria-hidden="true"></i></b></li><li><b title="Numbering"><i class="zc-li-outline text-list-numbers" aria-hidden="true"></i></b></li></ul>
+              </div>
+            </div>
+            <div class="ze_area"><div class="ze_body" contenteditable="false" role="textbox" aria-multiline="true" aria-label="Rich text content" aria-disabled="true"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% comment %} Address Field — Composite Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "address" %}
+{% assign field_name = field.name | default: "Address" %}
+{% assign field_label = field.label | default: "Address" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-address-field-group" data-element-type="address-field" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_address_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="clearfix form-field mediumSizeLive">
+    <div class="flLeft compositeWrapper zc_{{ field_name }}_fld zc-{{ field_name }} composite-even" type="composite" name="{{ field_name }}">
+
+      <span class="ADDRESS_LINE_1-wrapper">
+        <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.address_line_1" id="route_{{ field_name }}" maxlength="255" autocomplete="address-line1"
+          {% if field.required %}required aria-required="true"{% endif %}>
+        <p class="zc-subfield-label" id="zc-{{ field_name }}-route">Address Line 1</p>
+      </span>
+
+      <span class="ADDRESS_LINE_2-wrapper">
+        <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.address_line_2" id="locality_{{ field_name }}" maxlength="255" autocomplete="address-line2">
+        <p class="zc-subfield-label" id="zc-{{ field_name }}-locality">Address Line 2</p>
+      </span>
+
+      <div class="composite-two-col-wrapper zc-dem-clearfix">
+        <span class="DISTRICT_CITY-wrapper">
+          <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.district_city" id="administrative_area_level_2_{{ field_name }}" maxlength="80" autocomplete="address-line3">
+          <p class="zc-subfield-label" id="zc-{{ field_name }}-administrative_area_level_2">City / District</p>
+        </span>
+
+        <span class="STATE_PROVINCE-wrapper">
+          <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.state_province" id="administrative_area_level_1_{{ field_name }}" maxlength="50">
+          <p class="zc-subfield-label" id="zc-{{ field_name }}-administrative_area_level_1">State / Province</p>
+        </span>
+
+        <span class="POSTAL_CODE-wrapper">
+          <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.postal_Code" id="postal_code_{{ field_name }}" maxlength="20" autocomplete="postal-code">
+          <p class="zc-subfield-label" id="zc-{{ field_name }}-postal_code">Postal Code</p>
+        </span>
+
+        <span class="COUNTRY-wrapper">
+          <div class="select2-container form-control country-sel" id="s2id_country_{{ field_name }}">
+            <a class="select2-choice select2-default" tabindex="-1">
+              <span class="select2-chosen" id="select2-chosen-country-{{ field_name }}">-Select-</span>
+              <abbr class="select2-search-choice-close"></abbr>
+              <span class="select2-arrow" role="presentation"><b role="presentation"></b></span>
+            </a>
+            <label class="select2-offscreen" for="s2id_autogen_country_{{ field_name }}"></label>
+            <input class="select2-focusser select2-offscreen zc-elem-focus-field" type="text" role="combobox" id="s2id_autogen_country_{{ field_name }}">
+            <div class="select2-drop select2-display-none select2-with-searchbox">
+              <div class="select2-search">
+                <label class="select2-offscreen" for="s2id_autogen_country_{{ field_name }}_search"></label>
+                <input class="select2-input" type="text" placeholder="" role="combobox" id="s2id_autogen_country_{{ field_name }}_search" autocomplete="off">
+              </div>
+              <ul class="select2-results" role="listbox" id="select2-results-country-{{ field_name }}">
+                {% for country in field.countries %}
+                  <li class="select2-result" data-value="{{ country.code }}" role="option">
+                    <div class="select2-result-label">{{ country.name }}</div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <input class="form-control country-sel" type="text" name="{{ field_name }}.country" id="country_{{ field_name }}" tabindex="-1" title="" style="display: none;">
+          <p class="zc-subfield-label" id="zc-{{ field_name }}-country">Country</p>
+        </span>
+      </div>
+
+      <span class="zc-location-container" style="display:none">
+        <span class="zc-location-content">
+          <input class="zc-adjust-latitude" type="hidden" name="{{ field_name }}.latitude" id="latitude_{{ field_name }}" disabled maxlength="20" style="display: none;">
+          <input class="zc-adjust-longitude" type="hidden" name="{{ field_name }}.longitude" id="longitude_{{ field_name }}" disabled maxlength="20" style="display: none;">
+        </span>
+      </span>
+
+    </div>
+    <input type="hidden" name="{{ field_name }}.status" value="add">
+  </div>
+
+</div>

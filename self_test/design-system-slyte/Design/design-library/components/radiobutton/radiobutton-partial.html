@@ -1,0 +1,238 @@
+<style>
+    .rb-section { margin-bottom: 28px; }
+    .rb-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .rb-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .rb-table { width: 100%; border-collapse: collapse; }
+    .rb-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .rb-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .rb-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .rb-table .rb-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .rb-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .rb-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .rb-states-grid { display: grid; grid-template-columns: 200px auto auto; gap: 12px 16px; align-items: center; }
+    .rb-states-grid .rb-state-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); }
+    .rb-states-grid .rb-col-header { font-size: 12px; color: var(--zc-color-huegrey-text-default); }.rb-field-label { font-size: 13px; font-weight: 600; color: var(--zc-color-huegrey-text-default); }
+    .rb-field-optional { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .rb-field-help { font-size: 12px; color: var(--zc-color-huegrey-text-default); cursor: pointer; }
+    .rb-field-hint { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .rb-field.is-disabled { opacity: 0.5; pointer-events: none; }
+    .rb-field.is-error .rb-field-hint { color: var(--zc-color-error-text-error-text-default, #CC1914); }
+    .rb-radio-card {
+        border: 1px solid var(--zc-color-huegrey-border-minimal);
+        border-radius: var(--zc-radius-rl);
+        padding: 16px;
+        cursor: pointer;
+    }
+    .rb-radio-card.is-checked {
+        border-color: var(--zc-color-primary-border-default);
+        background: var(--zc-color-primary-surface-subtle);
+    }
+    .rb-radio-card.is-disabled { opacity: 0.5; pointer-events: none; }
+    .rb-radio-card-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); }
+    .rb-radio-card-optional { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .rb-radio-card-help { font-size: 12px; color: var(--zc-color-huegrey-text-default); cursor: pointer; }
+    .rb-radio-card-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); line-height: var(--zc-p2-line-height); }
+</style>
+
+<!-- Header -->
+<div class="card-grid-header">
+    <div class="card-grid-header-left">
+        <button class="card-grid-back" onclick="closeComponentDetail()" title="Back to components"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="card-grid-title">Radio Button</h2>
+    </div>
+</div>
+<p class="rb-desc">Source: Figma <code>Input Radio (2352:2602)</code>. Bare 14&times;14 circle, primary fill + center dot when checked. Single-selection &mdash; clicking one option in a group deselects the others. 8 box states + group layouts + a Radio Card variant.</p>
+
+<!-- ========== BARE RADIO STATES ========== -->
+<div class="rb-section">
+    <div class="rb-section-title">Bare radio states</div>
+    <div class="rb-section-card">
+        <div class="rb-states-grid">
+            <div class="rb-col-header">State</div>
+            <div class="rb-col-header">Default</div>
+            <div class="rb-col-header">Hover</div>
+
+            <div class="rb-state-label">Default</div>
+            <div><lyte-radiobutton name="bare-def"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+            <div><lyte-radiobutton name="bare-def-hover" class="zc-radio-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+
+            <div class="rb-state-label">Checked</div>
+            <div><lyte-radiobutton name="bare-chk" lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+            <div><lyte-radiobutton name="bare-chk-hover" lt-prop-checked="true" class="zc-radio-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+
+            <div class="rb-state-label">Disabled</div>
+            <div><lyte-radiobutton name="bare-dis" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+            <div></div>
+
+            <div class="rb-state-label">Disabled (checked)</div>
+            <div><lyte-radiobutton name="bare-dis-chk" lt-prop-checked="true" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+            <div></div>
+
+            <div class="rb-state-label">Error</div>
+            <div><lyte-radiobutton name="bare-err" class="zc-radio-error"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+            <div><lyte-radiobutton name="bare-err-hover" class="zc-radio-error zc-radio-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+
+            <div class="rb-state-label">Error (checked)</div>
+            <div><lyte-radiobutton name="bare-err-chk" lt-prop-checked="true" class="zc-radio-error"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+            <div><lyte-radiobutton name="bare-err-chk-hover" lt-prop-checked="true" class="zc-radio-error zc-radio-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton></div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== RADIO + LABEL (INPUT_RADIO_CORE) ========== -->
+<div class="rb-section">
+    <div class="rb-section-title">Radio + Label (Input_Radio_Core)</div>
+    <div class="rb-section-card">
+        <div class="zc-flex zc-direction-column zc-gap-12">
+            <lyte-radiobutton name="label-demo" lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+            <lyte-radiobutton name="label-demo"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+            <lyte-radiobutton name="label-demo"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+            <lyte-radiobutton name="label-demo-dis" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+            <lyte-radiobutton name="label-demo-err" class="zc-radio-error"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+        </div>
+    </div>
+</div>
+
+<!-- ========== GROUPS (INPUT_RADIO_COMBO) ========== -->
+<div class="rb-section">
+    <div class="rb-section-title">Groups (Input_Radio_Combo)</div>
+    <div class="rb-section-card">
+        <div class="zc-flex zc-direction-column zc-gap-24">
+            <div>
+                <div style="font-size:12px; color: var(--zc-color-huegrey-text-default); margin-bottom:8px;">Horizontal &middot; 4 items</div>
+                <div class="zc-radio-group zc-radio-group-horizontal">
+                    <lyte-radiobutton name="combo-h" lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="combo-h"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="combo-h"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="combo-h"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                </div>
+            </div>
+            <div>
+                <div style="font-size:12px; color: var(--zc-color-huegrey-text-default); margin-bottom:8px;">Vertical &middot; 3 items</div>
+                <div class="zc-radio-group">
+                    <lyte-radiobutton name="combo-v"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="combo-v" lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="combo-v"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== FULL FIELD (RADIO_BASE) ========== -->
+<div class="rb-section">
+    <div class="rb-section-title">Full field (Radio_Base &#10022;)</div>
+    <div class="rb-section-card">
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:24px;">
+
+            <div class="rb-field">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="rb-field-label">Label</span>
+                    <span class="rb-field-optional">(Optional)</span>
+                    <span class="rb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <div class="zc-radio-group zc-radio-group-horizontal">
+                    <lyte-radiobutton name="field-1" lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="field-1"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                </div>
+                <span class="rb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="rb-field">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="rb-field-label">Label</span>
+                    <span class="rb-field-optional">(Optional)</span>
+                    <span class="rb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <div class="zc-radio-group zc-radio-group-horizontal">
+                    <lyte-radiobutton name="field-2"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="field-2"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                </div>
+                <span class="rb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="rb-field is-disabled">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="rb-field-label">Label</span>
+                    <span class="rb-field-optional">(Optional)</span>
+                    <span class="rb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <div class="zc-radio-group zc-radio-group-horizontal">
+                    <lyte-radiobutton name="field-dis" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="field-dis" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                </div>
+                <span class="rb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="rb-field is-error">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="rb-field-label">Label</span>
+                    <span class="rb-field-optional">(Optional)</span>
+                    <span class="rb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <div class="zc-radio-group zc-radio-group-horizontal">
+                    <lyte-radiobutton name="field-err" lt-prop-checked="true" class="zc-radio-error"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                    <lyte-radiobutton name="field-err" class="zc-radio-error"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-radiobutton>
+                </div>
+                <span class="rb-field-hint">Hint Text</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== RADIO CARD (RADIO_CARD_BASE) ========== -->
+<div class="rb-section">
+    <div class="rb-section-title">Radio Card (Radio_Card_Base &#10022;)</div>
+    <div class="rb-section-card">
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:16px;">
+
+            <label class="rb-radio-card zc-flex zc-align-items-start zc-gap-12">
+                <lyte-radiobutton name="card-demo"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton>
+                <div class="zc-flex zc-direction-column zc-gap-4">
+                    <div class="zc-flex zc-align-items-center zc-gap-6">
+                        <span class="rb-radio-card-title">Label</span>
+                        <span class="rb-radio-card-optional">(Optional)</span>
+                        <span class="rb-radio-card-help"><i class="fas fa-question-circle"></i></span>
+                    </div>
+                    <div class="rb-radio-card-desc">Nulla vestibulum pretium libero, sit amet mollis est placerat quis. Nulla quis laoreet tortor, ac commodo magna.</div>
+                </div>
+            </label>
+
+            <label class="rb-radio-card is-checked zc-flex zc-align-items-start zc-gap-12">
+                <lyte-radiobutton name="card-demo" lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton>
+                <div class="zc-flex zc-direction-column zc-gap-4">
+                    <div class="zc-flex zc-align-items-center zc-gap-6">
+                        <span class="rb-radio-card-title">Label</span>
+                        <span class="rb-radio-card-optional">(Optional)</span>
+                        <span class="rb-radio-card-help"><i class="fas fa-question-circle"></i></span>
+                    </div>
+                    <div class="rb-radio-card-desc">Nulla vestibulum pretium libero, sit amet mollis est placerat quis. Nulla quis laoreet tortor, ac commodo magna.</div>
+                </div>
+            </label>
+
+            <label class="rb-radio-card zc-flex zc-align-items-start zc-gap-12">
+                <lyte-radiobutton name="card-demo"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton>
+                <div class="zc-flex zc-direction-column zc-gap-4">
+                    <div class="zc-flex zc-align-items-center zc-gap-6">
+                        <span class="rb-radio-card-title">Label</span>
+                        <span class="rb-radio-card-optional">(Optional)</span>
+                        <span class="rb-radio-card-help"><i class="fas fa-question-circle"></i></span>
+                    </div>
+                    <div class="rb-radio-card-desc">Nulla vestibulum pretium libero, sit amet mollis est placerat quis. Nulla quis laoreet tortor, ac commodo magna.</div>
+                </div>
+            </label>
+
+            <label class="rb-radio-card is-disabled zc-flex zc-align-items-start zc-gap-12">
+                <lyte-radiobutton name="card-demo-dis" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-radiobutton>
+                <div class="zc-flex zc-direction-column zc-gap-4">
+                    <div class="zc-flex zc-align-items-center zc-gap-6">
+                        <span class="rb-radio-card-title">Label</span>
+                        <span class="rb-radio-card-optional">(Optional)</span>
+                        <span class="rb-radio-card-help"><i class="fas fa-question-circle"></i></span>
+                    </div>
+                    <div class="rb-radio-card-desc">Nulla vestibulum pretium libero, sit amet mollis est placerat quis. Nulla quis laoreet tortor, ac commodo magna.</div>
+                </div>
+            </label>
+
+        </div>
+    </div>
+</div>

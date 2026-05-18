@@ -1,0 +1,278 @@
+<style>
+    .tip-section { margin-bottom: 28px; }
+    .tip-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .tip-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .tip-table { width: 100%; border-collapse: collapse; }
+    .tip-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .tip-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .tip-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .tip-table .tip-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .tip-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .tip-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .tip-placement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px; padding: 24px 0; }.tip-placement-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+</style>
+
+<div class="card-grid-header">
+    <button class="back-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h1 class="card-grid-title">Tooltip</h1>
+</div>
+
+<p class="tip-desc">Source: Figma <code>Tooltip (2393:3790)</code>. Dark floating tip with arrow. Two flavors: <strong>Tooltip</strong> (compact single-line) and <strong>Rich Tooltip</strong> (heading + body / list / table). Same position+align system as Popover.</p>
+
+<!-- COMPACT TOOLTIP -->
+<div class="tip-section">
+    <div class="tip-section-title">Compact tooltip</div>
+    <div class="tip-section-card">
+        <div class="tip-placement-grid">
+            <!-- Bottom row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Bottom &middot; Start</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-bottom">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Bottom &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-bottom">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Bottom &middot; End</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-bottom">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Top &middot; Start</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-top">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Top &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-top">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Top &middot; End</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-top">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right / Left / Text-only -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Right &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-right">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Left &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-left">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">Placeholder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Text only</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-top" style="height:24px; padding:0 10px;">
+                        Placeholder
+                        <div class="zc-tooltip-arrow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RICH TOOLTIP - CONTENT TYPES -->
+<div class="tip-section">
+    <div class="tip-section-title">Rich Tooltip &mdash; content types</div>
+    <div class="tip-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-start; gap:24px;">
+            <!-- Text body -->
+            <div class="zc-tooltip-demo">
+                <div class="zc-tooltip zc-tooltip-bottom zc-tooltip-rich">
+                    <div class="zc-tooltip-arrow"></div>
+                    <div class="zc-tooltip-content">
+                        <div class="zc-tooltip-title">Heading</div>
+                        <p class="zc-tooltip-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non dolor vel nulla accumsan congue.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List body -->
+            <div class="zc-tooltip-demo">
+                <div class="zc-tooltip zc-tooltip-bottom zc-tooltip-rich">
+                    <div class="zc-tooltip-arrow"></div>
+                    <div class="zc-tooltip-content">
+                        <div class="zc-tooltip-title">Heading</div>
+                        <ol class="zc-tooltip-list">
+                            <li>Lorem ipsum dolor sit amet,</li>
+                            <li>Lorem ipsum dolor sit amet,</li>
+                            <li>Lorem ipsum dolor sit amet,</li>
+                            <li>Lorem ipsum dolor sit amet,</li>
+                            <li>Lorem ipsum dolor sit amet,</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table body -->
+            <div class="zc-tooltip-demo">
+                <div class="zc-tooltip zc-tooltip-bottom zc-tooltip-rich">
+                    <div class="zc-tooltip-arrow"></div>
+                    <div class="zc-tooltip-content">
+                        <div class="zc-tooltip-title">Heading</div>
+                        <table class="zc-tooltip-table">
+                            <tr><td class="zc-tooltip-key">Placeholder</td><td class="zc-tooltip-val">Placeholder</td></tr>
+                            <tr><td class="zc-tooltip-key">Placeholder</td><td class="zc-tooltip-val">Placeholder</td></tr>
+                            <tr><td class="zc-tooltip-key">Placeholder</td><td class="zc-tooltip-val">Placeholder</td></tr>
+                            <tr><td class="zc-tooltip-key">Placeholder</td><td class="zc-tooltip-val">Placeholder</td></tr>
+                            <tr><td class="zc-tooltip-key">Placeholder</td><td class="zc-tooltip-val">Placeholder</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RICH TOOLTIP - POSITIONS x ALIGNMENTS -->
+<div class="tip-section">
+    <div class="tip-section-title">Rich Tooltip &mdash; Positions &times; Alignments</div>
+    <div class="tip-section-card">
+        <div class="tip-placement-grid">
+            <!-- Bottom row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Bottom &middot; Start</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-bottom zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Bottom &middot; Start</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Bottom &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-bottom zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Bottom &middot; Center</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Bottom &middot; End</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-bottom zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Bottom &middot; End</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Top &middot; Start</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-top zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Top &middot; Start</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Top &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-top zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Top &middot; Center</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Top &middot; End</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-top zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Top &middot; End</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right / Left -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Right &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-right zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Right &middot; Center</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="tip-placement-label">Left &middot; Center</span>
+                <div class="zc-tooltip-demo">
+                    <div class="zc-tooltip zc-tooltip-left zc-tooltip-rich">
+                        <div class="zc-tooltip-arrow"></div>
+                        <div class="zc-tooltip-content">
+                            <div class="zc-tooltip-title">Heading</div>
+                            <p class="zc-tooltip-text">Left &middot; Center</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+    </div>
+</div>

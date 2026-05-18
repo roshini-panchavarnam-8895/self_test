@@ -1,0 +1,235 @@
+<style>
+    .cb-section { margin-bottom: 28px; }
+    .cb-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .cb-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .cb-table { width: 100%; border-collapse: collapse; }
+    .cb-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .cb-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .cb-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .cb-table .cb-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .cb-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .cb-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .cb-states-grid { display: grid; grid-template-columns: 160px auto auto; gap: 12px 16px; align-items: center; }
+    .cb-states-grid .cb-state-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); }
+    .cb-states-grid .cb-col-header { font-size: 12px; color: var(--zc-color-huegrey-text-default); }.cb-field-label { font-size: 13px; font-weight: 600; color: var(--zc-color-huegrey-text-default); }
+    .cb-field-optional { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .cb-field-help { font-size: 12px; color: var(--zc-color-huegrey-text-default); cursor: pointer; }
+    .cb-field-hint { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .cb-field.is-disabled { opacity: 0.5; pointer-events: none; }
+    .cb-field.is-error .cb-field-hint { color: var(--zc-color-error-text-error-text-default, #CC1914); }
+</style>
+
+<!-- Header -->
+<div class="card-grid-header">
+    <div class="card-grid-header-left">
+        <button class="card-grid-back" onclick="closeComponentDetail()" title="Back to components"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="card-grid-title">Checkbox</h2>
+    </div>
+</div>
+<p class="cb-desc">Source: Figma <code>Input Checkbox (2352:2179)</code>. Bare 14&times;14 (Base) or 12&times;12 (Small) box, radius S (4px). 10 states. Plus checkbox-with-label rows, horizontal/vertical groups, and a full field with Label / (Optional) / help / Hint.</p>
+
+<!-- ========== BARE CHECKBOX STATES (BASE 14x14) ========== -->
+<div class="cb-section">
+    <div class="cb-section-title">Bare checkbox states (Base 14&times;14)</div>
+    <div class="cb-section-card">
+        <div class="cb-states-grid">
+            <div class="cb-col-header">State</div>
+            <div class="cb-col-header">Default</div>
+            <div class="cb-col-header">Hover</div>
+
+            <div class="cb-state-label">Default</div>
+            <div><lyte-checkbox><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div><lyte-checkbox class="zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+
+            <div class="cb-state-label">Checked</div>
+            <div><lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div><lyte-checkbox lt-prop-checked="true" class="zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+
+            <div class="cb-state-label">Indeterminate</div>
+            <div>
+                <div class="zc-checkbox zc-checkbox-indeterminate">
+                    <div class="zc-checkbox-box"><i class="fas fa-minus"></i></div>
+                </div>
+            </div>
+            <div></div>
+
+            <div class="cb-state-label">Disabled (unchecked)</div>
+            <div><lyte-checkbox lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div></div>
+
+            <div class="cb-state-label">Disabled (checked)</div>
+            <div><lyte-checkbox lt-prop-checked="true" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div></div>
+
+            <div class="cb-state-label">Error</div>
+            <div><lyte-checkbox class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div><lyte-checkbox class="zc-checkbox-error zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+
+            <div class="cb-state-label">Error (checked)</div>
+            <div><lyte-checkbox lt-prop-checked="true" class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div><lyte-checkbox lt-prop-checked="true" class="zc-checkbox-error zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+
+            <div class="cb-state-label">Success</div>
+            <div><lyte-checkbox class="zc-checkbox-success"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div><lyte-checkbox class="zc-checkbox-success zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+
+            <div class="cb-state-label">Success (checked)</div>
+            <div><lyte-checkbox lt-prop-checked="true" class="zc-checkbox-success"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+            <div><lyte-checkbox lt-prop-checked="true" class="zc-checkbox-success zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox></div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== SIZES ========== -->
+<div class="cb-section">
+    <div class="cb-section-title">Sizes</div>
+    <div class="cb-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-24">
+            <div class="zc-flex zc-align-items-center zc-gap-8">
+                <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox>
+                <span style="font-size:12px; color: var(--zc-color-huegrey-text-default);">Base &middot; 14</span>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-8">
+                <lyte-checkbox lt-prop-checked="true" class="zc-checkbox-sm"><template is="registerYield" yield-name="yield"><span></span></template></lyte-checkbox>
+                <span style="font-size:12px; color: var(--zc-color-huegrey-text-default);">Small &middot; 12</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== CHECKBOX + LABEL (INPUT_CHECKBOX_CORE) ========== -->
+<div class="cb-section">
+    <div class="cb-section-title">Checkbox + Label (Input_Checkbox_Core)</div>
+    <div class="cb-section-card">
+        <div class="zc-flex zc-direction-column zc-gap-12">
+            <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+            <lyte-checkbox class="zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+            <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+            <lyte-checkbox lt-prop-checked="true" class="zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+            <div class="zc-checkbox zc-checkbox-indeterminate">
+                <div class="zc-checkbox-box"><i class="fas fa-minus"></i></div>
+                <span class="zc-checkbox-text">Placeholder</span>
+            </div>
+            <lyte-checkbox lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+            <lyte-checkbox lt-prop-checked="true" class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+            <lyte-checkbox lt-prop-checked="true" class="zc-checkbox-error zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+        </div>
+    </div>
+</div>
+
+<!-- ========== GROUPS (INPUT_CHECKBOX_COMBO) ========== -->
+<div class="cb-section">
+    <div class="cb-section-title">Groups (Input_CheckBox_Combo)</div>
+    <div class="cb-section-card">
+        <div class="zc-flex zc-direction-column zc-gap-24">
+            <div>
+                <div style="font-size:12px; color: var(--zc-color-huegrey-text-default); margin-bottom:8px;">Horizontal &middot; 4 items</div>
+                <div class="zc-checkbox-group">
+                    <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                    <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                    <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                    <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                </div>
+            </div>
+            <div>
+                <div style="font-size:12px; color: var(--zc-color-huegrey-text-default); margin-bottom:8px;">Vertical &middot; 3 items</div>
+                <div class="zc-checkbox-group zc-checkbox-group-vertical">
+                    <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                    <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                    <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== FULL FIELD (CHECKBOX_BASE) ========== -->
+<div class="cb-section">
+    <div class="cb-section-title">Full field (CheckBox_Base &#10022;)</div>
+    <div class="cb-section-card">
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:24px;">
+
+            <div class="cb-field">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help" role="button" tabindex="0" aria-label="Help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="cb-field">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <lyte-checkbox class="zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="cb-field">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="cb-field">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <lyte-checkbox lt-prop-checked="true" class="zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="cb-field is-disabled">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <lyte-checkbox lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="cb-field">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <div class="zc-checkbox zc-checkbox-indeterminate">
+                    <div class="zc-checkbox-box"><i class="fas fa-minus"></i></div>
+                    <span class="zc-checkbox-text">Placeholder</span>
+                </div>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="cb-field is-error">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <lyte-checkbox lt-prop-checked="true" class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+
+            <div class="cb-field is-error">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <span class="cb-field-label">Label</span>
+                    <span class="cb-field-optional">(Optional)</span>
+                    <span class="cb-field-help"><i class="fas fa-question-circle"></i></span>
+                </div>
+                <lyte-checkbox lt-prop-checked="true" class="zc-checkbox-error zc-checkbox-hover"><template is="registerYield" yield-name="yield"><span>Placeholder</span></template></lyte-checkbox>
+                <span class="cb-field-hint">Hint Text</span>
+            </div>
+        </div>
+    </div>
+</div>

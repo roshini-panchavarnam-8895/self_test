@@ -1,0 +1,75 @@
+{% comment %} Rich Text — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "rich-text" %}
+{% assign field_name = field.name | default: "Rich_Text" %}
+{% assign field_label = field.label | default: "Rich Text" %}
+{% assign editor_height = field.editor_height | default: "200" %}
+
+<div class="form-group clearfix form-richtext-field zc-{{ field_name }}-group" data-element-type="rich-text" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_richtext_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix">
+    <textarea type="textarea" name="{{ field_name }}" style="display:none;height:{{ editor_height }}px;"></textarea>
+    <div class="zc-{{ field_name }} zc-elem-focus-field form-rtf smallSizeLive" name="{{ field_name }}" id="{{ field_id }}" tabindex="0" style="position: relative">
+      <div class="ze">
+        <div class="ze_SCmb">
+          <div>
+            <ul>
+              <li><b class="" title="Bold (Ctrl+B)"><span class="zei-bold"></span></b></li>
+              <li><b class="" title="Italic (Ctrl+I)"><span class="zei-italic"></span></b></li>
+              <li><b class="" title="Underline (Ctrl+U)"><span class="zei-underline"></span></b></li>
+            </ul>
+            <font></font>
+            <ul class="zc-ze-richtext-ff">
+              <li><b><span class="zeFFce" style="font-family: DejaVuSans, helvetica, sans-serif;">DejaVuSans</span><span class="zei-arrow" title="Font"></span></b></li>
+            </ul>
+            <font></font>
+            <ul class="zc-ze-richtext-fs">
+              <li><b style="min-width: 36px;"><em class="ze_pdl zeFUce" id="fontsizeEditable">10</em><span class="zei-arrow" title="Font Size"></span></b></li>
+            </ul>
+            <font></font>
+            <ul class="zc-ze-richtext-textclr">
+              <li><b title="Font Color"><span class="zei-textclr" style="border-bottom-color: black;"></span></b></li>
+            </ul>
+            <font></font>
+            <ul class="zc-ze-richtext-bgclr">
+              <li><b title="Background Color"><span class="zei-bgclr" style="border-bottom-color: white;"></span></b></li>
+            </ul>
+            <font></font>
+            <ul>
+              <li><b title="Align Text Left (Ctrl+L)"><span class="zei-textleft"></span></b></li>
+              <li><b title="Align Text Right (Ctrl+R)"><span class="zei-textright"></span></b></li>
+              <li><b title="Justify (Ctrl+J)"><span class="zei-textjustify"></span></b></li>
+              <li><b title="Center (Ctrl+E)"><span class="zei-textcenter"></span></b></li>
+            </ul>
+            <font></font>
+            <ul>
+              <li><b title="Insert Link"><span class="zei-link"></span></b></li>
+            </ul>
+            <font></font>
+            <ul>
+              <li><b title="Insert Table"><span class="zei-table"></span></b></li>
+            </ul>
+            <font></font>
+            <ul>
+              <li><b class="" title="Bullets"><span class="zei-unorder"></span></b></li>
+              <li><b class="" title="Numbering"><span class="zei-order"></span></b></li>
+            </ul>
+          </div>
+        </div>
+        <div></div>
+        <iframe class="ze_area" tabindex="-1" style="height: {{ editor_height }}px;"></iframe>
+      </div>
+    </div>
+  </div>
+
+</div>

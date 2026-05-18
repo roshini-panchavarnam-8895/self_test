@@ -1,0 +1,155 @@
+<style>
+    .nt-section { margin-bottom: 28px; }
+    .nt-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .nt-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .nt-table { width: 100%; border-collapse: collapse; }
+    .nt-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .nt-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .nt-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .nt-table .nt-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .nt-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .nt-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .nt-note { border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 16px; background: var(--zc-color-neutral-surface-neutral-surface-default); }
+    .nt-note--info { border-color: var(--zc-color-info-border-info-border-default); background: var(--zc-color-info-surface-info-surface-subtle); }
+    .nt-note--warning { border-color: var(--zc-color-notice-border-notice-border-default); background: var(--zc-color-notice-surface-notice-surface-subtle); }
+    .nt-note--success { border-color: var(--zc-color-positive-border-positive-border-default); background: var(--zc-color-positive-surface-positive-surface-subtle); }
+    .nt-note--error { border-color: var(--zc-color-negative-border-negative-border-default); background: var(--zc-color-negative-surface-negative-surface-subtle); }    .nt-note-icon { width: 20px; height: 20px; border-radius: 50%; background: var(--zc-color-black-white-surface-white-surface); }
+    .nt-note-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); margin-bottom: 4px; }
+    .nt-note-text { font-size: 13px; color: var(--zc-color-huegrey-text-default); line-height: var(--zc-p2-line-height); }
+    .nt-note-footer { border-top: 1px solid var(--zc-color-huegrey-border-minimal); margin-top: 12px; padding-top: 10px; }
+    .nt-note-footer--left { text-align: left; }
+    .nt-note-footer--center { text-align: center; }
+    .nt-note-footer--right { text-align: right; }
+    .nt-note-footer-no-border { border-top: 0; margin-top: 0; }
+    .nt-note-cta { font-size: 12px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-primary-text-primary-text-default); background: none; border: none; cursor: pointer; padding: 4px 0; }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="card-grid-back" onclick="window.goBack()"><i class="fas fa-arrow-left"></i></button>
+    <h2 class="card-grid-title">Notes</h2>
+</div>
+
+<p class="nt-desc">Source: Figma <code>Notes (2379:1845)</code>. Banner / alert card with header (icon + bold title), body text, and optional CTA footer. 5 color variants and 3 CTA positions (Left / Center / Right).</p>
+
+<!-- COLOR VARIANTS -->
+<div class="nt-section">
+    <div class="nt-section-title">Color variants</div>
+    <div class="nt-section-card">
+        <div class="zc-flex zc-direction-column zc-gap-16">
+            <!-- Default -->
+            <div class="nt-note">
+                <div class="zc-flex zc-gap-12 zc-align-items-start">
+                    <span class="nt-note-icon zc-no-shrink"></span>
+                    <div class="nt-note-content zc-col-common">
+                        <div class="nt-note-title">Lorem ipsum dolor sit amet:</div>
+                        <div class="nt-note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vesrulum vitae tincidunt magna, a bibendum mauris.</div>
+                    </div>
+                </div>
+                <div class="nt-note-footer nt-note-footer--left">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="nt-note nt-note--info">
+                <div class="zc-flex zc-gap-12 zc-align-items-start">
+                    <span class="nt-note-icon zc-no-shrink"></span>
+                    <div class="nt-note-content zc-col-common">
+                        <div class="nt-note-title">Lorem ipsum dolor sit amet:</div>
+                        <div class="nt-note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vesrulum vitae tincidunt magna, a bibendum mauris.</div>
+                    </div>
+                </div>
+                <div class="nt-note-footer nt-note-footer--left">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+
+            <!-- Warning -->
+            <div class="nt-note nt-note--warning">
+                <div class="zc-flex zc-gap-12 zc-align-items-start">
+                    <span class="nt-note-icon zc-no-shrink"></span>
+                    <div class="nt-note-content zc-col-common">
+                        <div class="nt-note-title">Lorem ipsum dolor sit amet:</div>
+                        <div class="nt-note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vesrulum vitae tincidunt magna, a bibendum mauris.</div>
+                    </div>
+                </div>
+                <div class="nt-note-footer nt-note-footer--left">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="nt-note nt-note--success">
+                <div class="zc-flex zc-gap-12 zc-align-items-start">
+                    <span class="nt-note-icon zc-no-shrink"></span>
+                    <div class="nt-note-content zc-col-common">
+                        <div class="nt-note-title">Lorem ipsum dolor sit amet:</div>
+                        <div class="nt-note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vesrulum vitae tincidunt magna, a bibendum mauris.</div>
+                    </div>
+                </div>
+                <div class="nt-note-footer nt-note-footer--left">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+
+            <!-- Error -->
+            <div class="nt-note nt-note--error">
+                <div class="zc-flex zc-gap-12 zc-align-items-start">
+                    <span class="nt-note-icon zc-no-shrink"></span>
+                    <div class="nt-note-content zc-col-common">
+                        <div class="nt-note-title">Lorem ipsum dolor sit amet:</div>
+                        <div class="nt-note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vesrulum vitae tincidunt magna, a bibendum mauris.</div>
+                    </div>
+                </div>
+                <div class="nt-note-footer nt-note-footer--left">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA POSITION -->
+<div class="nt-section">
+    <div class="nt-section-title">CTA Position (Notes_CTA_Position)</div>
+    <div class="nt-section-card">
+        <div class="zc-flex zc-direction-column zc-gap-12">
+            <!-- Left -->
+            <div class="nt-note">
+                <div class="nt-note-footer nt-note-footer--left nt-note-footer-no-border">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+
+            <!-- Center -->
+            <div class="nt-note">
+                <div class="nt-note-footer nt-note-footer--center nt-note-footer-no-border">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class="nt-note">
+                <div class="nt-note-footer nt-note-footer--right nt-note-footer-no-border">
+                    <button class="nt-note-cta"><i class="fas fa-link" style="margin-right:4px;"></i> Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BODY-ONLY (NO CTA) -->
+<div class="nt-section">
+    <div class="nt-section-title">Body-only (no CTA)</div>
+    <div class="nt-section-card">
+        <div class="nt-note nt-note--info">
+            <div class="zc-flex zc-gap-12 zc-align-items-start">
+                <span class="nt-note-icon"></span>
+                <div class="nt-note-content">
+                    <div class="nt-note-title">Lorem ipsum dolor sit amet:</div>
+                    <div class="nt-note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vesrulum vitae tincidunt magna, a bibendum mauris.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

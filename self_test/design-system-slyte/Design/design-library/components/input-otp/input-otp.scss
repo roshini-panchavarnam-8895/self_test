@@ -1,0 +1,163 @@
+/* =============================================================================
+   INPUT OTP COMPONENT — SCSS
+   Figma Source: OTP_Input_Base ✦ (node 2764:6839)
+   Tokens: design-library/_color-tokens.scss
+   ============================================================================= */
+
+.zc-otp-field {
+    font-family: var(--zc-p2-font-family, 'ZohoPuvi', sans-serif);
+}
+
+.zc-otp-label {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 500);
+    line-height: var(--zc-p2-line-height, 18px);
+    color: var(--zc-color-black-white-text-black-text, #000000);
+}
+
+.zc-otp-hint {
+    font-size: var(--zc-p3-font-size, 12px);
+    font-weight: var(--zc-p3-font-weight-regular, 400);
+    line-height: var(--zc-p3-line-height, 15px);
+    color: var(--zc-color-huegrey-text-dark, #26282B);
+}
+
+.zc-otp-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+lyte-input.zc-otp-input.lyteInputBox {
+    display: inline-block !important;
+    width: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-bottom: none !important;
+    vertical-align: top !important;
+    cursor: text !important;
+    box-sizing: border-box !important;
+}
+
+lyte-input.zc-otp-input.lyteInputBox > div {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 36px !important;
+    border: 1px solid var(--zc-color-huegrey-border-fairish, #D5D6D9) !important;
+    border-radius: var(--zc-radius-r, 6px) !important;
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    top: 0 !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+
+lyte-input.zc-otp-input.lyteInputBox > div:after {
+    display: none !important;
+    content: none !important;
+}
+
+lyte-input.zc-otp-input.lyteInputBox input {
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center !important;
+    font-family: var(--zc-p2-font-family, 'ZohoPuvi', sans-serif) !important;
+    font-size: var(--zc-p2-font-size, 14px) !important;
+    font-weight: var(--zc-p2-font-weight-bold, 600) !important;
+    line-height: 34px !important;
+    color: var(--zc-color-black-white-text-black-text, #000000) !important;
+    background: transparent !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+}
+
+lyte-input.zc-otp-input.lyteInputBox input::placeholder {
+    color: var(--zc-color-huegrey-border-fairish, #D5D6D9) !important;
+    font-size: var(--zc-p2-font-size, 14px) !important;
+}
+
+lyte-input.zc-otp-input.lyteInputBox:hover > div {
+    border-color: var(--zc-color-primary-border-default, #0D4EF2) !important;
+}
+
+lyte-input.zc-otp-input.lyteInputBox.lyteInputFocus > div,
+lyte-input.zc-otp-input.lyteInputBox.zc-otp-focus > div,
+lyte-input.zc-otp-input.lyteInputBox > div:focus-within {
+    border-color: var(--zc-color-primary-border-default, #0D4EF2) !important;
+    box-shadow: var(--zc-elevation-subtle-primary) !important;
+}
+
+.zc-otp-group.zc-otp-hover lyte-input.zc-otp-input.lyteInputBox > div,
+.zc-otp-group.zc-otp-hover-filled lyte-input.zc-otp-input.lyteInputBox > div {
+    border-color: var(--zc-color-primary-border-default, #0D4EF2) !important;
+}
+
+.zc-otp-error lyte-input.zc-otp-input.lyteInputBox > div {
+    border-color: var(--zc-color-error-surface-default, #CC1914) !important;
+    background: var(--zc-color-error-surface-subtle, #FEF6F6) !important;
+}
+
+.zc-otp-error .zc-otp-hint {
+    color: var(--zc-color-error-surface-default, #CC1914);
+}
+
+.zc-otp-error-after lyte-input.zc-otp-input.lyteInputBox > div {
+    border-color: var(--zc-color-error-surface-default, #CC1914) !important;
+    background: var(--zc-color-error-surface-subtle, #FEF6F6) !important;
+}
+
+.zc-otp-error-after lyte-input.zc-otp-input.lyteInputBox input {
+    color: var(--zc-color-error-surface-default, #CC1914) !important;
+}
+
+.zc-otp-error-after .zc-otp-hint {
+    color: var(--zc-color-error-surface-default, #CC1914);
+}
+
+.zc-otp-success lyte-input.zc-otp-input.lyteInputBox > div {
+    border-color: var(--zc-color-success-surface-default, #078841) !important;
+    background: var(--zc-color-success-surface-subtle, #F6FEF9) !important;
+}
+
+.zc-otp-success lyte-input.zc-otp-input.lyteInputBox input {
+    color: var(--zc-color-success-surface-default, #078841) !important;
+}
+
+.zc-otp-success .zc-otp-hint {
+    color: var(--zc-color-success-surface-default, #078841);
+}
+
+.zc-otp-disabled .zc-otp-label {
+    color: var(--zc-color-huegrey-text-fairish-hover, #9EA0A7);
+}
+
+.zc-otp-disabled lyte-input.zc-otp-input.lyteInputBox > div {
+    background: var(--zc-color-huegrey-surface-low, #EFF0F1) !important;
+    border-color: var(--zc-color-huegrey-border-fairish, #D5D6D9) !important;
+    cursor: not-allowed !important;
+}
+
+.zc-otp-disabled lyte-input.zc-otp-input.lyteInputBox input {
+    color: var(--zc-color-huegrey-border-fairish, #D5D6D9) !important;
+    cursor: not-allowed !important;
+}
+
+.zc-otp-disabled .zc-otp-hint {
+    color: var(--zc-color-huegrey-text-fairish-hover, #9EA0A7);
+}
+
+.zc-otp-disabled .zc-otp-group {
+    pointer-events: none;
+}

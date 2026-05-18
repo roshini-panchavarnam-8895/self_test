@@ -1,0 +1,19 @@
+{
+ "name": "design-system-slyte",
+ "version": "1.0.0",
+ "description": "Description for Design goes here",
+ "scripts": {
+  "start": "slyte serve --port 3000",
+  "build": "slyte build",
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "author": "",
+ "license": "ISC",
+ "dependencies": {
+  "@slyte/core": "1.1.1",
+  "@zoho/lyte-ui-component": "^4.1.13"
+ },
+ "devDependencies": {
+  "@slyte/cli": "^1.1.0"
+ }
+}

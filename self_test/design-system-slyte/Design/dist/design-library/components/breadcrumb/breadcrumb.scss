@@ -1,0 +1,486 @@
+/* =============================================================================
+   BREADCRUMB COMPONENT — SCSS
+   Figma Source: Breadcrumbs page (2463:2), Breadcrumb_Base ✦ (2464:19), Breadcrumb_Dropdown_Overlay (2583:3025)
+
+   VARIANTS:
+     Type       → Link | Text (non-linked)
+     Size       → S (12px/18px) | M (14px/18px P2) | L (16px/24px)
+     Separator  → Slash "/" (default) | Chevron SVG
+     Features   → Overflow (ellipsis), Dropdown overlay (List / Group)
+     States     → Default | Hover | Current (active page)
+
+   NAMING: Single-hyphen modifier (zc-breadcrumb-sm NOT zc-breadcrumb--sm)
+   COLORS (from Figma):
+     Enabled:     #37383C (dark, clickable) — fill_7Z96R9
+     Current:     #696C74 (medium gray, non-linked) — fill_0U1EGK
+     Separator:   #696C74 (divider gray)
+     Font:        ZohoPuvi, P2_Regular (14px, 400, ~18px)
+
+   CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
+     --zc-color-primary-text-default       (#0D4EF2)
+     --zc-color-primary-text-default-hover  (#0B44D5)
+     --zc-color-neutral-text-default        (#37383C)
+     --zc-color-neutral-text-subtle         (#9EA0A7)
+     --zc-color-neutral-surface-subtle   (#F0F1F3)
+     --zc-font-family-default                            (ZohoPuvi)
+     --zc-p2-font-size                                   (14px)
+     --zc-p3-font-size                                   (12px)
+     --zc-p2-font-weight-semibold                        (600)
+     --zc-radius-s                                       (4px)
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   BASE — <nav> wrapper
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb {
+    font-family: var(--zc-font-family-default, 'ZohoPuvi', sans-serif);
+}
+
+/* ---------------------------------------------------------------------------
+   LIST — ordered list reset
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   ITEM — each breadcrumb step
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-item {
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   LINK — clickable breadcrumb anchors (Link type)
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-item a {
+    color: var(--zc-color-huegrey-text-bold, #37383C);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--zc-color-black-white-text-black-text, #000000);
+        text-decoration: none;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   CURRENT — active page (last item, non-clickable)
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-current {
+    color: var(--zc-color-huegrey-text-default, #696C74);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    cursor: default;
+}
+
+/* ---------------------------------------------------------------------------
+   SEPARATOR — "/" or chevron icon between items
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-separator {
+    color: var(--zc-color-huegrey-text-default, #696C74);
+    user-select: none;
+    line-height: 1;
+
+    svg {
+        display: block;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   SIZES — S / M / L per Figma Breadcrumb_Base (2464:19)
+   Custom HTML selectors (for Icons/Overflow/Separator tabs)
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-sm {
+    font-size: var(--zc-p3-font-size, 12px);
+    line-height: 18px;
+
+    .zc-breadcrumb-separator {
+        font-size: 10px;
+    }
+}
+
+.zc-breadcrumb-md {
+    font-size: var(--zc-p2-font-size, 14px);
+    line-height: var(--zc-p2-line-height, 18px);
+}
+
+.zc-breadcrumb-lg {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* ---------------------------------------------------------------------------
+   LYTE DOM — Figma Breadcrumb_Base (2464:19) visual overrides
+   Override Lyte breadcrumb default styles to match Figma exactly.
+   --------------------------------------------------------------------------- */
+lyte-breadcrumb {
+
+    /* Figma Breadcrumb_Base: flex row, gap 6px */
+    lyte-breadcrumb-structure.lyteBreadcrumbSlash,
+    lyte-breadcrumb-structure.lyteBreadcrumbArrow,
+    lyte-breadcrumb-structure.zc-breadcrumb-explicit-sep {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        line-height: 1;
+    }
+
+    lyte-breadcrumb-item {
+        display: inline-flex;
+        align-items: center;
+        float: none;
+        margin-right: 0;
+        font-family: var(--zc-font-family-default, 'ZohoPuvi', sans-serif);
+        font-size: var(--zc-p2-font-size, 14px);
+        font-weight: var(--zc-p2-font-weight-regular, 400);
+        line-height: var(--zc-p2-line-height, 18px);
+        color: var(--zc-color-huegrey-text-bold);
+        cursor: pointer;
+        padding: 0;
+    }
+
+    lyte-breadcrumb-body {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        cursor: inherit;
+    }
+
+    /* Current / last item — Figma huegrey_text_default #696C74 */
+    lyte-breadcrumb-item.lyteActive {
+        color: var(--zc-color-huegrey-text-default);
+        cursor: default;
+
+        lyte-breadcrumb-body {
+            color: inherit;
+        }
+    }
+
+    /* Lyte default uses float + absolute ::after — reset to inline Figma dividers */
+    .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type),
+    .lyteBreadcrumbArrow lyte-breadcrumb-item:not(:last-of-type) {
+        margin-right: 0 !important;
+    }
+
+    .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type):after,
+    .lyteBreadcrumbArrow lyte-breadcrumb-item:not(:last-of-type):after {
+        position: static;
+        right: auto;
+        top: auto;
+        float: none;
+        margin-left: 6px;
+        margin-right: 0;
+        color: var(--zc-color-huegrey-text-default);
+        opacity: 1;
+        flex-shrink: 0;
+        vertical-align: middle;
+        background: none;
+    }
+
+    .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type):after {
+        content: '/';
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 14px;
+        height: 14px;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .lyteBreadcrumbArrow lyte-breadcrumb-item:not(:last-of-type):after {
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border: none;
+        border-right: 1.5px solid var(--zc-color-huegrey-text-default);
+        border-top: 1.5px solid var(--zc-color-huegrey-text-default);
+        transform: rotate(45deg);
+    }
+
+    /* Yield trails with explicit .zc-breadcrumb-sep between items */
+    lyte-breadcrumb-structure.zc-breadcrumb-explicit-sep lyte-breadcrumb-item:after {
+        content: none !important;
+        display: none !important;
+    }
+
+    lyte-breadcrumb-item:not(.lyteActive):hover lyte-breadcrumb-body,
+    lyte-breadcrumb-item:not(.lyteActive):hover lyte-breadcrumb-body a {
+        color: var(--zc-color-black-white-text-black-text);
+    }
+
+    lyte-breadcrumb-item lyte-breadcrumb-body a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.15s ease;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--zc-color-black-white-text-black-text);
+        }
+    }
+
+    lyte-breadcrumb-item lyte-breadcrumb-body i {
+        font-size: 1em;
+        width: 14px;
+        height: 14px;
+        text-align: center;
+    }
+}
+
+/* Showcase: simulated hover on first crumb */
+lyte-breadcrumb.bc-state-hover-demo lyte-breadcrumb-item:not(.lyteActive) lyte-breadcrumb-body,
+lyte-breadcrumb.bc-state-hover-demo lyte-breadcrumb-item:not(.lyteActive) lyte-breadcrumb-body a {
+    color: var(--zc-color-black-white-text-black-text, #000000);
+}
+
+/* Dropdown trigger button inside yield */
+.zc-breadcrumb-trigger-btn {
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* 14×14 chevron divider (Figma Breadcrumb_Base) — explicit yield separators */
+.zc-breadcrumb-sep {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--zc-color-huegrey-text-default);
+
+    &::before {
+        content: '';
+        display: block;
+        width: 5px;
+        height: 5px;
+        margin: 0 auto;
+        border-right: 1.5px solid currentColor;
+        border-top: 1.5px solid currentColor;
+        transform: rotate(45deg);
+    }
+}
+
+/* 14×14 dropdown caret (inline with label, gap 6px) */
+.zc-breadcrumb-caret {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 7px;
+        height: 7px;
+        margin: -5px 0 0 -4px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(45deg);
+    }
+}
+
+.zc-breadcrumb-dropdown-tick {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    position: relative;
+    color: var(--zc-color-black-white-text-black-text);
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 9px;
+        height: 5px;
+        margin: -4px 0 0 -5px;
+        border-left: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(-45deg);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   SIZES — Lyte DOM selectors (size class on <lyte-breadcrumb> host)
+   --------------------------------------------------------------------------- */
+lyte-breadcrumb.zc-breadcrumb-sm {
+    lyte-breadcrumb-item {
+        font-size: var(--zc-p3-font-size, 12px);
+        line-height: 18px;
+    }
+    .lyteBreadcrumbSlash lyte-breadcrumb-item:not(:last-of-type):after,
+    .lyteBreadcrumbArrow lyte-breadcrumb-item:not(:last-of-type):after {
+        font-size: 10px;
+    }
+}
+lyte-breadcrumb.zc-breadcrumb-md {
+    lyte-breadcrumb-item {
+        font-size: var(--zc-p2-font-size, 14px);
+        line-height: var(--zc-p2-line-height, 18px);
+    }
+}
+lyte-breadcrumb.zc-breadcrumb-lg {
+    lyte-breadcrumb-item {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   WITH ICON — icon before breadcrumb label
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-item i {
+    font-size: 1em;
+    width: 14px;
+    height: 14px;
+}
+
+/* ---------------------------------------------------------------------------
+   OVERFLOW — ellipsis for collapsed middle items (Figma 2583:3504)
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-overflow-btn,
+.zc-breadcrumb-ellipsis {
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--zc-color-huegrey-text-bold);
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 1px;
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    transition: color 0.15s ease;
+}
+
+.zc-breadcrumb-overflow-btn::before,
+.zc-breadcrumb-ellipsis::before {
+    content: '\2026';
+}
+
+.zc-breadcrumb-overflow-btn:hover,
+.zc-breadcrumb-ellipsis:hover,
+.zc-breadcrumb-ellipsis-active,
+.zc-breadcrumb-overflow-btn.is-active {
+    color: var(--zc-color-black-white-text-black-text);
+}
+
+/* ---------------------------------------------------------------------------
+   CHEVRON SEPARATOR VARIANT — add .zc-breadcrumb-chevron to <nav>
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-chevron {
+    .zc-breadcrumb-separator svg {
+        width: 0.85em;
+        height: 0.85em;
+        vertical-align: middle;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   DROPDOWN OVERLAY — Figma: Breadcrumb_Dropdown_Overlay (2583:3025)
+   Variants: List, Group
+   --------------------------------------------------------------------------- */
+.zc-breadcrumb-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 175px;
+    box-sizing: border-box;
+    background: var(--zc-color-black-white-surface-white-surface);
+    border: 1px solid var(--zc-color-huegrey-border-minimal);
+    border-radius: var(--zc-radius-r);
+    box-shadow: var(--zc-elevation-subtle-default), var(--zc-elevation-base-default);
+    padding: 10px;
+    margin-top: 4px;
+    display: none;
+    font-family: var(--zc-font-family-default, 'ZohoPuvi', sans-serif);
+    font-size: var(--zc-p2-font-size, 14px);
+    line-height: var(--zc-p2-line-height, 18px);
+}
+
+.zc-breadcrumb-dropdown-static {
+    display: block;
+    position: relative;
+    top: auto;
+    margin-top: 0;
+}
+
+.zc-breadcrumb-dropdown-grouped {
+    padding: 0;
+}
+
+.zc-breadcrumb-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.zc-breadcrumb-dropdown-item {
+    a {
+        padding: 9px 10px;
+        border-radius: var(--zc-radius-r);
+        color: var(--zc-color-huegrey-text-default);
+        text-decoration: none;
+        font-size: inherit;
+        line-height: inherit;
+        white-space: nowrap;
+        transition: background 0.15s ease, color 0.15s ease;
+
+        &:hover {
+            background: var(--zc-color-secondary-surface-subtle);
+            color: var(--zc-color-huegrey-text-default);
+        }
+    }
+}
+
+.zc-breadcrumb-dropdown-selected a {
+    background: var(--zc-color-secondary-surface-subtle);
+    color: var(--zc-color-black-white-text-black-text);
+}
+
+.zc-breadcrumb-dropdown-item:not(.zc-breadcrumb-dropdown-selected) .zc-breadcrumb-dropdown-tick {
+    visibility: hidden;
+}
+
+/* Group variant — Figma Breadcrumb_Dropdown_Overlay */
+.zc-breadcrumb-dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 6px 0 4px;
+
+    &:not(:first-child) {
+        border-top: 1px solid var(--zc-color-huegrey-border-minimal);
+        margin-top: 4px;
+    }
+}
+
+.zc-breadcrumb-dropdown-group-label {
+    padding: 10px 10px 0;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    line-height: var(--zc-p2-line-height, 18px);
+    color: var(--zc-color-huegrey-text-fairish-hover, #9EA0A7);
+    text-transform: uppercase;
+    letter-spacing: 0;
+}

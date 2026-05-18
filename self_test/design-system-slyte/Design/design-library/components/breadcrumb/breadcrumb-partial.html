@@ -1,0 +1,381 @@
+<style>
+    .bc-section { margin-bottom: 28px; }
+    .bc-section-title {
+        font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em;
+        color: var(--zc-color-huegrey-text-default);
+        margin-bottom: 12px;
+    }
+    .bc-section-card {
+        background: var(--zc-color-black-white-surface-white-surface);
+        border: 1px solid var(--zc-color-huegrey-border-minimal);
+        border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default);
+    }
+    .bc-table { width: 100%; border-collapse: collapse; }
+    .bc-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .bc-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .bc-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .bc-table .bc-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }
+    .bc-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .bc-stack { /* layout: zc-flex zc-direction-column zc-gap-18 on markup */ }
+    .bc-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }.bc-chevron-sep svg { width: 12px; height: 12px; fill: none; stroke: var(--zc-color-huegrey-text-default); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+
+<div class="card-grid-header">
+    <div class="card-grid-header-left">
+        <button class="card-grid-back" onclick="closeComponentDetail()" title="Back to components"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="card-grid-title">Breadcrumb</h2>
+    </div>
+</div>
+
+<p class="bc-desc">Source: Figma <a href="https://www.figma.com/design/hnKVGoVxd2CN6RTqIKGM4e/CTS---AI-Test?node-id=2463-2" target="_blank" rel="noopener">Breadcrumbs (2463:2)</a> · <code>Breadcrumb_Base ✦ (2464:19)</code>. <code>&lt;lyte-breadcrumb&gt;</code> with P2 14px/18px, 6px gap, <code>huegrey_text_bold</code> (enabled) · <code>black_text</code> (hover) · <code>huegrey_text_default</code> (current).</p>
+
+<!-- ===== ELEMENT STATES ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">Element States</div>
+    <div class="bc-section-card">
+        <table class="bc-table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bc-row-label">Enabled</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb enabled">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash">
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><a href="#">Placeholder</a></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                </lyte-breadcrumb-structure>
+                            </template>
+                        </lyte-breadcrumb>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">Hover</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md bc-state-hover-demo" aria-label="Breadcrumb hover">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash">
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><a href="#">Placeholder</a></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                </lyte-breadcrumb-structure>
+                            </template>
+                        </lyte-breadcrumb>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">Current</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb current">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash">
+                                    <lyte-breadcrumb-item class="lyteActive">
+                                        <lyte-breadcrumb-body>Placeholder</lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                </lyte-breadcrumb-structure>
+                            </template>
+                        </lyte-breadcrumb>
+                    </div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== SIZES ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">Sizes</div>
+    <div class="bc-section-card">
+        <table class="bc-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bc-row-label">S · 12px</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb class="zc-breadcrumb-sm" lt-prop-label="name" lt-prop-class="lyteBreadcrumbSlash" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]' aria-label="Breadcrumb small"></lyte-breadcrumb>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">M · 14px</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-class="lyteBreadcrumbSlash" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]' aria-label="Breadcrumb medium"></lyte-breadcrumb>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">L · 16px</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb class="zc-breadcrumb-lg" lt-prop-label="name" lt-prop-class="lyteBreadcrumbSlash" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]' aria-label="Breadcrumb large"></lyte-breadcrumb>
+                    </div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== SEPARATOR TYPES ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">Separator Types</div>
+    <div class="bc-section-card">
+        <table class="bc-table">
+            <thead>
+                <tr>
+                    <th>Separator</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bc-row-label">Slash "/"</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-class="lyteBreadcrumbSlash" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]' aria-label="Breadcrumb slash"></lyte-breadcrumb>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">Chevron</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-class="lyteBreadcrumbArrow" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]' aria-label="Breadcrumb chevron"></lyte-breadcrumb>
+                    </div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== ICON VARIANTS ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">Icon Variants</div>
+    <div class="bc-section-card">
+        <table class="bc-table">
+            <thead>
+                <tr>
+                    <th>Variant</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bc-row-label">Icon · Left</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb icon left">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash">
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><a href="#"><i class="fas fa-folder" aria-hidden="true"></i> Placeholder</a></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><a href="#"><i class="fas fa-folder" aria-hidden="true"></i> Placeholder</a></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><i class="fas fa-folder" aria-hidden="true"></i> Placeholder</lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                </lyte-breadcrumb-structure>
+                            </template>
+                        </lyte-breadcrumb></div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">Icon · Right</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb icon right">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash">
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><a href="#">Placeholder <i class="fas fa-folder" aria-hidden="true"></i></a></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><a href="#">Placeholder <i class="fas fa-folder" aria-hidden="true"></i></a></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body>Placeholder <i class="fas fa-folder" aria-hidden="true"></i></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                </lyte-breadcrumb-structure>
+                            </template>
+                        </lyte-breadcrumb></div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">Icon · Both</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb icon both">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash">
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><a href="#"><i class="fas fa-folder" aria-hidden="true"></i> Placeholder <i class="fas fa-folder" aria-hidden="true"></i></a></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><i class="fas fa-folder" aria-hidden="true"></i> Placeholder <i class="fas fa-folder" aria-hidden="true"></i></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                </lyte-breadcrumb-structure>
+                            </template>
+                        </lyte-breadcrumb></div></td>
+                </tr>
+                <tr>
+                    <td class="bc-row-label">Dropdown Trigger</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb dropdown trigger">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash">
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body><button type="button" class="zc-breadcrumb-trigger-btn zc-inline-flex zc-align-items-center zc-gap-6">Placeholder<span class="zc-breadcrumb-caret" aria-hidden="true"></span></button></lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                    <lyte-breadcrumb-item>
+                                        <lyte-breadcrumb-body>Placeholder</lyte-breadcrumb-body>
+                                    </lyte-breadcrumb-item>
+                                </lyte-breadcrumb-structure>
+                            </template>
+                        </lyte-breadcrumb></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== TRAIL LENGTHS ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">Trail Lengths (Size 2 / 4 / 6)</div>
+    <div class="bc-section-card zc-flex zc-direction-column zc-gap-18">
+        <!-- Size 2 -->
+        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-class="lyteBreadcrumbArrow" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]'></lyte-breadcrumb>
+
+        <!-- Size 4 -->
+        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-class="lyteBreadcrumbArrow" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]'></lyte-breadcrumb>
+
+        <!-- Size 6 -->
+        <lyte-breadcrumb class="zc-breadcrumb-md" lt-prop-label="name" lt-prop-class="lyteBreadcrumbArrow" lt-prop-data='[{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder","href":"#"},{"name":"Placeholder"}]'></lyte-breadcrumb>
+    </div>
+</div>
+
+<!-- ===== WITH DROPDOWN ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">With Dropdown</div>
+    <div class="bc-section-card zc-flex zc-direction-column zc-gap-18">
+        <!-- Size 2 with dropdown — Figma slash + inline caret -->
+        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb with dropdown size 2">
+            <template is="registerYield" yield-name="yield">
+                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash zc-inline-flex zc-align-items-center zc-gap-6">
+                    <lyte-breadcrumb-item>
+                        <lyte-breadcrumb-body>
+                            <button type="button" class="zc-breadcrumb-trigger-btn zc-inline-flex zc-align-items-center zc-gap-6">Placeholder<span class="zc-breadcrumb-caret" aria-hidden="true"></span></button>
+                        </lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                    <lyte-breadcrumb-item class="lyteActive">
+                        <lyte-breadcrumb-body>Placeholder</lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                </lyte-breadcrumb-structure>
+            </template>
+        </lyte-breadcrumb>
+
+        <!-- Size 6 with dropdown -->
+        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb with dropdown size 6">
+            <template is="registerYield" yield-name="yield">
+                <lyte-breadcrumb-structure class="lyteBreadcrumbSlash zc-inline-flex zc-align-items-center zc-gap-6">
+                    <lyte-breadcrumb-item>
+                        <lyte-breadcrumb-body><a href="#">Placeholder</a></lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                    <lyte-breadcrumb-item>
+                        <lyte-breadcrumb-body><a href="#">Placeholder</a></lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                    <lyte-breadcrumb-item>
+                        <lyte-breadcrumb-body>
+                            <button type="button" class="zc-breadcrumb-trigger-btn zc-inline-flex zc-align-items-center zc-gap-6">Placeholder<span class="zc-breadcrumb-caret" aria-hidden="true"></span></button>
+                        </lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                    <lyte-breadcrumb-item>
+                        <lyte-breadcrumb-body><a href="#">Placeholder</a></lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                    <lyte-breadcrumb-item>
+                        <lyte-breadcrumb-body><a href="#">Placeholder</a></lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                    <lyte-breadcrumb-item class="lyteActive">
+                        <lyte-breadcrumb-body>Placeholder</lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                </lyte-breadcrumb-structure>
+            </template>
+        </lyte-breadcrumb>
+    </div>
+</div>
+
+<!-- ===== OVERFLOW ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">Overflow</div>
+    <div class="bc-section-card zc-flex zc-direction-column zc-gap-18">
+        <!-- Overflow trail — chevron separators + ellipsis (Figma) -->
+        <lyte-breadcrumb lt-prop-yield="true" class="zc-breadcrumb-md" aria-label="Breadcrumb with overflow">
+            <template is="registerYield" yield-name="yield">
+                <lyte-breadcrumb-structure class="zc-breadcrumb-explicit-sep zc-inline-flex zc-align-items-center zc-gap-6">
+                    <lyte-breadcrumb-item>
+                        <lyte-breadcrumb-body><a href="#">Placeholder</a></lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                    <span class="zc-breadcrumb-sep" aria-hidden="true"></span>
+                    <button type="button" class="zc-breadcrumb-overflow-btn" aria-label="Show hidden breadcrumb items"></button>
+                    <span class="zc-breadcrumb-sep" aria-hidden="true"></span>
+                    <lyte-breadcrumb-item class="lyteActive">
+                        <lyte-breadcrumb-body>Placeholder</lyte-breadcrumb-body>
+                    </lyte-breadcrumb-item>
+                </lyte-breadcrumb-structure>
+            </template>
+        </lyte-breadcrumb>
+        <p style="font-size:12px;color:var(--zc-color-huegrey-text-default);margin:8px 0 0;">Ellipsis control (Figma overflow affordance):</p>
+
+        <!-- Overflow button states -->
+        <div class="zc-flex zc-align-items-center zc-gap-24">
+            <div class="zc-flex zc-align-items-center zc-gap-8">
+                <button type="button" class="zc-breadcrumb-overflow-btn" aria-label="More breadcrumb items"></button>
+                <span style="font-size:12px; color:var(--zc-color-huegrey-text-default);">Default</span>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-8">
+                <button type="button" class="zc-breadcrumb-overflow-btn is-active" aria-label="More breadcrumb items"></button>
+                <span style="font-size:12px; color:var(--zc-color-huegrey-text-default);">Active</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DROPDOWN OVERLAY ===== -->
+<div class="bc-section">
+    <div class="bc-section-title">Dropdown Overlay</div>
+    <div class="bc-section-card">
+        <div class="zc-flex zc-gap-24 zc-row-wrap">
+            <!-- Type List -->
+            <div>
+                <div style="font-size:12px; color:var(--zc-color-huegrey-text-default); margin-bottom:8px;">Type · List</div>
+                <div class="zc-breadcrumb-dropdown zc-breadcrumb-dropdown-static">
+                    <ul class="zc-breadcrumb-dropdown-list">
+                        <li class="zc-breadcrumb-dropdown-item zc-breadcrumb-dropdown-selected"><a href="#" class="zc-flex zc-align-items-center zc-justify-space-between zc-gap-10"><span>Placeholder</span><span class="zc-breadcrumb-dropdown-tick" aria-hidden="true"></span></a></li>
+                        <li class="zc-breadcrumb-dropdown-item"><a href="#" class="zc-flex zc-align-items-center zc-justify-space-between zc-gap-10"><span>Placeholder</span><span class="zc-breadcrumb-dropdown-tick" aria-hidden="true"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Type Group -->
+            <div>
+                <div style="font-size:12px; color:var(--zc-color-huegrey-text-default); margin-bottom:8px;">Type · Group</div>
+                <div class="zc-breadcrumb-dropdown zc-breadcrumb-dropdown-static zc-breadcrumb-dropdown-grouped">
+                    <div class="zc-breadcrumb-dropdown-group">
+                        <div class="zc-breadcrumb-dropdown-group-label">Group Head</div>
+                        <ul class="zc-breadcrumb-dropdown-list">
+                            <li class="zc-breadcrumb-dropdown-item zc-breadcrumb-dropdown-selected"><a href="#" class="zc-flex zc-align-items-center zc-justify-space-between zc-gap-10"><span>Placeholder</span><span class="zc-breadcrumb-dropdown-tick" aria-hidden="true"></span></a></li>
+                            <li class="zc-breadcrumb-dropdown-item"><a href="#" class="zc-flex zc-align-items-center zc-justify-space-between zc-gap-10"><span>Placeholder</span><span class="zc-breadcrumb-dropdown-tick" aria-hidden="true"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="zc-breadcrumb-dropdown-group">
+                        <div class="zc-breadcrumb-dropdown-group-label">Group Head</div>
+                        <ul class="zc-breadcrumb-dropdown-list">
+                            <li class="zc-breadcrumb-dropdown-item"><a href="#" class="zc-flex zc-align-items-center zc-justify-space-between zc-gap-10"><span>Placeholder</span><span class="zc-breadcrumb-dropdown-tick" aria-hidden="true"></span></a></li>
+                            <li class="zc-breadcrumb-dropdown-item"><a href="#" class="zc-flex zc-align-items-center zc-justify-space-between zc-gap-10"><span>Placeholder</span><span class="zc-breadcrumb-dropdown-tick" aria-hidden="true"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

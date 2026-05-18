@@ -1,0 +1,219 @@
+<style>
+    .ia-section { margin-bottom: 28px; }
+    .ia-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .ia-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .ia-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .ia-desc code { font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 12px; background: var(--zc-color-black-white-surface-white-surface); padding: 2px 6px; border-radius: var(--zc-radius-s); border: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .ia-table { width: 100%; border-collapse: collapse; }
+    .ia-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .ia-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .ia-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .ia-table .ia-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .ia-field-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2>Affixed Input</h2>
+</div>
+
+<p class="ia-desc">Source: Figma <code>Input Affixed (3079:8009)</code>. Text input with BOTH a left prefix AND a right suffix. Sub-types: <strong>Actionable Left</strong> (left = CTA), <strong>Actionable Right</strong> (right = CTA), <strong>Non-Actionable</strong> (both static labels). Same 11 states as Prefixed/Suffixed.</p>
+
+<!-- SUB-TYPES -->
+<div class="ia-section">
+    <div class="ia-section-title">Sub-types</div>
+    <div class="ia-section-card">
+        <table class="ia-table">
+            <thead><tr><th>Sub-type</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="ia-row-label">Actionable Left</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Actionable Right</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed">
+                            <span class="zc-input-prefix">Label</span>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <button class="zc-input-suffix zc-input-suffix-btn">Label</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Non-Actionable</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed">
+                            <span class="zc-input-prefix">Label</span>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- STATES (SUB-TYPE = ACTIONABLE LEFT) -->
+<div class="ia-section">
+    <div class="ia-section-title">States (Sub-type = Actionable Left)</div>
+    <div class="ia-section-card">
+        <table class="ia-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="ia-row-label">Default</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Active (focused)</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-focus">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Selected Left (CTA pressed)</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-selected-left">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Selected Right (CTA pressed)</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-selected-right">
+                            <span class="zc-input-prefix">Label</span>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <button class="zc-input-suffix zc-input-suffix-btn">Label</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Disabled</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-disabled">
+                            <button class="zc-input-prefix zc-input-prefix-btn" disabled>Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Error</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-error">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ia-row-label">Success</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-success">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                            <span class="zc-input-suffix">Label</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- FULL FIELD (Input_Affixed_Base) -->
+<div class="ia-section">
+    <div class="ia-section-title">Full field (Input_Affixed_Base)</div>
+    <div class="ia-section-card">
+        <div class="ia-field-grid">
+
+            <div class="zc-form-group">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                    <span class="zc-input-suffix">Label</span>
+                </div>
+                <span class="zc-form-hint">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-focus">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                    <span class="zc-input-suffix">Label</span>
+                </div>
+                <span class="zc-form-hint zc-form-hint-info">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group zc-form-group-disabled">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-disabled">
+                    <span class="zc-input-prefix">Label</span>
+                    <lyte-input lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-input"></lyte-input>
+                    <span class="zc-input-suffix">Label</span>
+                </div>
+                <span class="zc-form-hint zc-form-hint-disabled">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group zc-form-group-error">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-error">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                    <span class="zc-input-suffix">Label</span>
+                </div>
+                <span class="zc-form-hint zc-form-hint-error">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-suffixed zc-input-affixed-success">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                    <span class="zc-input-suffix">Label</span>
+                </div>
+                <span class="zc-form-hint zc-form-hint-success">Hint Text</span>
+            </div>
+
+        </div>
+    </div>
+</div>

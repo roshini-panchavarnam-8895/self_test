@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Field Component</title>
+  <link rel="stylesheet" href="otp-field.css">
+</head>
+<body>
+<form class="zc-form-table zc-label-left">
+  <script defer src="otp-field.js"></script>
+  <div class="zc-field-group zc-otp-component">
+    <label for="otp-field-default-1" id="otp-field-default-label" class="zc-form-label"><span class="zc-label-text">OTP Field</span></label>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-otp-inputs" role="group" aria-labelledby="otp-field-default-label">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" id="otp-field-default-1" name="otp_field_default_digit_1" data-otp-index="0" aria-label="OTP Field digit 1 of 6" aria-describedby="otp-field-hint" autocomplete="one-time-code">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" id="otp-field-default-2" name="otp_field_default_digit_2" data-otp-index="1" aria-label="OTP Field digit 2 of 6" aria-describedby="otp-field-hint" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" id="otp-field-default-3" name="otp_field_default_digit_3" data-otp-index="2" aria-label="OTP Field digit 3 of 6" aria-describedby="otp-field-hint" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" id="otp-field-default-4" name="otp_field_default_digit_4" data-otp-index="3" aria-label="OTP Field digit 4 of 6" aria-describedby="otp-field-hint" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" id="otp-field-default-5" name="otp_field_default_digit_5" data-otp-index="4" aria-label="OTP Field digit 5 of 6" aria-describedby="otp-field-hint" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" id="otp-field-default-6" name="otp_field_default_digit_6" data-otp-index="5" aria-label="OTP Field digit 6 of 6" aria-describedby="otp-field-hint" autocomplete="off">
+        </div>
+      </div>
+    </div>
+    <span id="otp-field-hint" class="zc-field-help-text">Enter the 6-digit verification code.</span>
+  </div>
+  <div class="zc-field-group zc-otp-component" data-otp-required="true">
+    <label for="otp-field-required-1" id="otp-field-required-label" class="zc-form-label"><span class="zc-label-text">OTP Field</span><span class="zc-form-required" aria-hidden="true">*</span><span class="zc-sr-only">(required)</span></label>
+    <div class="zc-form-field validationError">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-otp-inputs" role="group" aria-labelledby="otp-field-required-label">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" required aria-required="true" aria-invalid="true" id="otp-field-required-1" name="otp_field_required_digit_1" data-otp-index="0" aria-label="OTP Field digit 1 of 6" aria-describedby="otp-field-required-error" autocomplete="one-time-code">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" required aria-required="true" aria-invalid="true" id="otp-field-required-2" name="otp_field_required_digit_2" data-otp-index="1" aria-label="OTP Field digit 2 of 6" aria-describedby="otp-field-required-error" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" required aria-required="true" aria-invalid="true" id="otp-field-required-3" name="otp_field_required_digit_3" data-otp-index="2" aria-label="OTP Field digit 3 of 6" aria-describedby="otp-field-required-error" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" required aria-required="true" aria-invalid="true" id="otp-field-required-4" name="otp_field_required_digit_4" data-otp-index="3" aria-label="OTP Field digit 4 of 6" aria-describedby="otp-field-required-error" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" required aria-required="true" aria-invalid="true" id="otp-field-required-5" name="otp_field_required_digit_5" data-otp-index="4" aria-label="OTP Field digit 5 of 6" aria-describedby="otp-field-required-error" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" required aria-required="true" aria-invalid="true" id="otp-field-required-6" name="otp_field_required_digit_6" data-otp-index="5" aria-label="OTP Field digit 6 of 6" aria-describedby="otp-field-required-error" autocomplete="off">
+        </div>
+      </div>
+    </div>
+    <div id="otp-field-required-error" class="zc-field-error-text zc-field-error-msg" role="alert" aria-live="assertive" hidden><i class="zc-field-error-msg-icon zc-li-outline ui-3-alert" aria-hidden="true"></i><span>This field is mandatory. Enter all 6 digits.</span></div>
+  </div>
+  <div class="zc-field-group zc-field-disabled zc-otp-component">
+    <label for="otp-field-disabled-1" id="otp-field-disabled-label" class="zc-form-label"><span class="zc-label-text">OTP Field (Disabled)</span></label>
+    <div class="zc-form-field">
+      <div class="zc-field-input-wrapper">
+        <div class="zc-otp-inputs" role="group" aria-labelledby="otp-field-disabled-label">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" disabled aria-disabled="true" id="otp-field-disabled-1" name="otp_field_disabled_digit_1" data-otp-index="0" aria-label="OTP Field disabled digit 1 of 6" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" disabled aria-disabled="true" id="otp-field-disabled-2" name="otp_field_disabled_digit_2" data-otp-index="1" aria-label="OTP Field disabled digit 2 of 6" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" disabled aria-disabled="true" id="otp-field-disabled-3" name="otp_field_disabled_digit_3" data-otp-index="2" aria-label="OTP Field disabled digit 3 of 6" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" disabled aria-disabled="true" id="otp-field-disabled-4" name="otp_field_disabled_digit_4" data-otp-index="3" aria-label="OTP Field disabled digit 4 of 6" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" disabled aria-disabled="true" id="otp-field-disabled-5" name="otp_field_disabled_digit_5" data-otp-index="4" aria-label="OTP Field disabled digit 5 of 6" autocomplete="off">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="zc-field-input zc-form-control zc-otp-input" disabled aria-disabled="true" id="otp-field-disabled-6" name="otp_field_disabled_digit_6" data-otp-index="5" aria-label="OTP Field disabled digit 6 of 6" autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

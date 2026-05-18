@@ -1,0 +1,401 @@
+<style>
+    .avatar-section { margin-bottom: 28px; }
+    .avatar-section-title {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--zc-color-huegrey-text-default);
+        margin-bottom: 12px;
+    }
+    .avatar-section-card {
+        background: var(--zc-color-black-white-surface-white-surface);
+        border: 1px solid var(--zc-color-huegrey-border-minimal);
+        border-radius: var(--zc-radius-rl);
+        padding: 24px;
+        box-shadow: var(--zc-elevation-subtle-default);
+    }
+    .avatar-table { width: 100%; border-collapse: collapse; }
+    .avatar-table th {
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--zc-color-huegrey-text-default);
+        padding: 0 12px 12px 0;
+        white-space: nowrap;
+    }
+    .avatar-table td {
+        padding: 10px 12px 10px 0;
+        vertical-align: middle;
+    }
+    .avatar-table tr + tr td {
+        border-top: 1px solid var(--zc-color-huegrey-border-minimal);
+    }
+    .avatar-table .avatar-row-label {
+        font-size: 13px;
+        font-weight: var(--zc-font-weight-semibold);
+        color: var(--zc-color-huegrey-text-dark);
+        white-space: nowrap;
+        min-width: 110px;
+    }
+    .avatar-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .avatar-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .avatar-size-label { font-size: 11px; color: var(--zc-color-huegrey-text-default); text-align: center; margin-top: 4px; }
+
+    /* Semantic color classes for avatars */
+    .zc-avatar-cardinal   { background: #c33149 !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-tekhelet   { background: #46268d !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-caribbean  { background: #02798c !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-avocado    { background: #589906 !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-russet     { background: #7d451b !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-penred     { background: #991604 !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-mardigrass { background: #8a1b7c !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-biceblue   { background: #016daa !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-seagreen   { background: #068a42 !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-gold       { background: #ba7c00 !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-brown      { background: #a74a06 !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-black      { background: var(--zc-color-black-white-surface-black-surface) !important; color: var(--zc-color-black-white-text-white-text) !important; }
+    .zc-avatar-disabled   { background: var(--zc-color-huegrey-surface-default) !important; color: var(--zc-color-black-white-text-white-text) !important; }
+
+    /* Inverse color classes */
+    .zc-avatar-inverse.zc-avatar-cardinal   { background: #f9d9e6 !important; color: #c33149 !important; }
+    .zc-avatar-inverse.zc-avatar-tekhelet   { background: #ddd9f9 !important; color: #46268d !important; }
+    .zc-avatar-inverse.zc-avatar-caribbean  { background: #d9f4f9 !important; color: #02798c !important; }
+    .zc-avatar-inverse.zc-avatar-avocado    { background: #f0ffdd !important; color: #589906 !important; }
+    .zc-avatar-inverse.zc-avatar-russet     { background: #e8ded6 !important; color: #7d451b !important; }
+    .zc-avatar-inverse.zc-avatar-penred     { background: #f5e8e6 !important; color: #991604 !important; }
+    .zc-avatar-inverse.zc-avatar-mardigrass { background: #f9d9f2 !important; color: #8a1b7c !important; }
+    .zc-avatar-inverse.zc-avatar-biceblue   { background: #d9e7f9 !important; color: #016daa !important; }
+    .zc-avatar-inverse.zc-avatar-seagreen   { background: #e6f5ec !important; color: #068a42 !important; }
+    .zc-avatar-inverse.zc-avatar-gold       { background: #fef4df !important; color: #ba7c00 !important; }
+    .zc-avatar-inverse.zc-avatar-brown      { background: #f4e7df !important; color: #a74a06 !important; }
+    .zc-avatar-inverse.zc-avatar-black      { background: var(--zc-color-black-white-surface-white-surface) !important; color: var(--zc-color-black-white-text-black-text) !important; border: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .zc-avatar-inverse.zc-avatar-disabled   { background: var(--zc-color-huegrey-surface-fairish) !important; color: var(--zc-color-black-white-text-white-text) !important; }
+</style>
+
+<div class="card-grid-header">
+    <div class="card-grid-header-left">
+        <button class="card-grid-back" onclick="closeComponentDetail()" title="Back to components"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="card-grid-title">Avatar</h2>
+    </div>
+</div>
+
+<p class="avatar-desc">Source: Figma <code>Avatar_Base (2278:4420)</code>. Types: Image | Solid (Initials/Placeholder). Shapes: Square (2px) | Base (6px) | Circle (full). Sizes: XL 36 | LG 24 | SM 16 | XS 14. Status indicators, avatar groups, and 14 semantic colors.</p>
+
+<!-- ===== SQUARE (MINIMAL RADIUS) ===== -->
+<div class="avatar-section">
+    <div class="avatar-section-title">Square (Radius · Minimal)</div>
+    <div class="avatar-section-card">
+        <table class="avatar-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Solid</th>
+                    <th>Image</th>
+                    <th>Placeholder</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avatar-row-label">XL · 36</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-biceblue">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-cardinal">CD</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-seagreen">EF</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-xl zc-avatar-minimal"><img src="https://i.pravatar.cc/36?img=1" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-xl zc-avatar-minimal zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">LG · 24</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-biceblue">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-cardinal">CD</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-seagreen">EF</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-lg zc-avatar-minimal"><img src="https://i.pravatar.cc/24?img=2" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-lg zc-avatar-minimal zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">SM · 16</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-sm zc-avatar-minimal zc-avatar-biceblue">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-sm zc-avatar-minimal zc-avatar-cardinal">CD</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-sm zc-avatar-minimal"><img src="https://i.pravatar.cc/16?img=3" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-sm zc-avatar-minimal zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">XS · 14</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xs zc-avatar-minimal zc-avatar-biceblue">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xs zc-avatar-minimal zc-avatar-cardinal">CD</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-xs zc-avatar-minimal"><img src="https://i.pravatar.cc/14?img=4" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-xs zc-avatar-minimal zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== CIRCLE (FULL RADIUS) ===== -->
+<div class="avatar-section">
+    <div class="avatar-section-title">Circle (Radius · Full)</div>
+    <div class="avatar-section-card">
+        <table class="avatar-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Solid</th>
+                    <th>Image</th>
+                    <th>Placeholder</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avatar-row-label">XL · 36</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-tekhelet">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-avocado">CD</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-gold">EF</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-xl zc-avatar-full"><img src="https://i.pravatar.cc/36?img=5" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-xl zc-avatar-full zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">LG · 24</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-tekhelet">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-avocado">CD</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-gold">EF</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-lg zc-avatar-full"><img src="https://i.pravatar.cc/24?img=6" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-lg zc-avatar-full zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">SM · 16</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-sm zc-avatar-full zc-avatar-tekhelet">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-sm zc-avatar-full zc-avatar-avocado">CD</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-sm zc-avatar-full"><img src="https://i.pravatar.cc/16?img=7" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-sm zc-avatar-full zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">XS · 14</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xs zc-avatar-full zc-avatar-tekhelet">AB</div>
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xs zc-avatar-full zc-avatar-avocado">CD</div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-image zc-avatar-xs zc-avatar-full"><img src="https://i.pravatar.cc/14?img=8" alt="avatar"></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-xs zc-avatar-full zc-avatar-placeholder"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="currentColor"/></svg></div>
+                    </div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== WITH STATUS ===== -->
+<div class="avatar-section">
+    <div class="avatar-section-title">With Status</div>
+    <div class="avatar-section-card">
+        <table class="avatar-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Square · XL</th>
+                    <th>Square · LG</th>
+                    <th>Circle · XL</th>
+                    <th>Circle · LG</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avatar-row-label">Active</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-biceblue">AB<span class="zc-avatar-status zc-avatar-status-active"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-biceblue">AB<span class="zc-avatar-status zc-avatar-status-active"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-tekhelet">CD<span class="zc-avatar-status zc-avatar-status-active"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-tekhelet">CD<span class="zc-avatar-status zc-avatar-status-active"></span></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">Away</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-avocado">EF<span class="zc-avatar-status zc-avatar-status-away"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-avocado">EF<span class="zc-avatar-status zc-avatar-status-away"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-gold">GH<span class="zc-avatar-status zc-avatar-status-away"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-gold">GH<span class="zc-avatar-status zc-avatar-status-away"></span></div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">Offline</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-cardinal">IJ<span class="zc-avatar-status zc-avatar-status-offline"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-cardinal">IJ<span class="zc-avatar-status zc-avatar-status-offline"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-penred">KL<span class="zc-avatar-status zc-avatar-status-offline"></span></div>
+                    </div></td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-penred">KL<span class="zc-avatar-status zc-avatar-status-offline"></span></div>
+                    </div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== STACKED AVATARS (GROUPS) ===== -->
+<div class="avatar-section">
+    <div class="avatar-section-title">Stacked Avatars (Groups)</div>
+    <div class="avatar-section-card">
+        <table class="avatar-table">
+            <thead>
+                <tr>
+                    <th>Shape</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avatar-row-label">Square · XL</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar-group zc-inline-flex zc-direction-row-reverse">
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-cardinal">AB</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-tekhelet">CD</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-caribbean">EF</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-minimal zc-avatar-avocado">GH</div>
+                        </div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">Square · LG</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar-group zc-inline-flex zc-direction-row-reverse">
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-biceblue">AB</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-seagreen">CD</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-gold">EF</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-minimal zc-avatar-brown">GH</div>
+                        </div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">Circle · XL</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar-group zc-inline-flex zc-direction-row-reverse">
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-penred">AB</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-mardigrass">CD</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-russet">EF</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-full zc-avatar-tekhelet">GH</div>
+                        </div>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td class="avatar-row-label">Circle · LG</td>
+                    <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                        <div class="zc-avatar-group zc-inline-flex zc-direction-row-reverse">
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-cardinal">AB</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-avocado">CD</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-caribbean">EF</div>
+                            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-lg zc-avatar-full zc-avatar-biceblue">GH</div>
+                        </div>
+                    </div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== COLORS (DEFAULT) ===== -->
+<div class="avatar-section">
+    <div class="avatar-section-title">Colors · Default</div>
+    <div class="avatar-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-cardinal">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-tekhelet">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-caribbean">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-avocado">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-russet">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-penred">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-mardigrass">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-biceblue">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-seagreen">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-gold">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-brown">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-black">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-xl zc-avatar-base zc-avatar-disabled">AB</div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== COLORS (INVERSE) ===== -->
+<div class="avatar-section">
+    <div class="avatar-section-title">Colors · Inverse</div>
+    <div class="avatar-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-cardinal">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-tekhelet">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-caribbean">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-avocado">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-russet">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-penred">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-mardigrass">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-biceblue">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-seagreen">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-gold">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-brown">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-black">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base">AB</div>
+            <div class="zc-avatar zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink zc-avatar-solid zc-avatar-inverse zc-avatar-xl zc-avatar-base zc-avatar-disabled">AB</div>
+        </div>
+    </div>
+</div>

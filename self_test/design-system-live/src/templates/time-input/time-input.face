@@ -1,0 +1,37 @@
+{% comment %} Time Input — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "time" %}
+{% assign field_name = field.name | default: "Time" %}
+{% assign field_label = field.label | default: "Time" %}
+{% assign time_format = field.time_format | default: "hh:mm:ss A" %}
+
+<div class="form-group zc-{{ field_name }}-group clearfix" data-element-type="time-input" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_time_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field input-group time-field-wrapper clearfix smallSizeLive{% if field.error %} select2Err validationError{% endif %}">
+    <div class="zc-timefield-placeholder adjustInplaceWidth">{{ time_format }}</div>
+    <input
+      class="form-control zc_timefield zc-{{ field_name }}"
+      type="text"
+      name="{{ field_name }}"
+      id="{{ field_name }}"
+      {% if field.required %}
+        required
+        aria-required="true"
+      {% endif %}
+      autocomplete="off">
+    <span class="input-group-addon calcIcon" id="timeButtonEl_{{ field_name }}">
+      <span class="fa fa-clock-o"></span>
+    </span>
+  </div>
+
+</div>

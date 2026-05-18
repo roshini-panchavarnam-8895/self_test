@@ -1,0 +1,310 @@
+<style>
+    .po-section { margin-bottom: 28px; }
+    .po-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .po-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .po-table { width: 100%; border-collapse: collapse; }
+    .po-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .po-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .po-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .po-table .po-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .po-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .po-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .po-placement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px; padding: 24px 0; }.po-placement-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+</style>
+
+<div class="card-grid-header">
+    <button class="back-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h1 class="card-grid-title">Popover</h1>
+</div>
+
+<p class="po-desc">Source: Figma <code>Popover (3472:8028)</code>. Floating card with arrow tip pointing to anchor. 4 positions &times; 3 alignments &times; 2 content types (Text / List) &times; 3 CTA positions &times; Light / Dark modes.</p>
+
+<!-- CONTENT TYPES -->
+<div class="po-section">
+    <div class="po-section-title">Content types</div>
+    <div class="po-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-start; gap:24px;">
+            <!-- Text content -->
+            <div class="zc-popover-demo">
+                <button id="pop-content-text" class="zc-btn-demo">Trigger</button>
+                <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-content-text" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                    <template is="registerYield" yield-name="popover">
+                        <lyte-popover-header>Heading</lyte-popover-header>
+                        <lyte-popover-content>
+                            <p class="zc-popover-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non dolor vel nulla accumsan congue.</p>
+                        </lyte-popover-content>
+                        <lyte-popover-footer>
+                            <div class="zc-popover-actions" style="justify-content:flex-start;">
+                                <button class="zc-popover-btn zc-popover-btn-primary">Button</button>
+                            </div>
+                        </lyte-popover-footer>
+                    </template>
+                </lyte-popover>
+            </div>
+
+            <!-- List content -->
+            <div class="zc-popover-demo">
+                <button id="pop-content-list" class="zc-btn-demo">Trigger</button>
+                <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-content-list" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                    <template is="registerYield" yield-name="popover">
+                        <lyte-popover-header>Heading</lyte-popover-header>
+                        <lyte-popover-content>
+                            <ol class="zc-popover-list">
+                                <li>Lorem ipsum dolor sit amet,</li>
+                                <li>Lorem ipsum dolor sit amet,</li>
+                                <li>Lorem ipsum dolor sit amet,</li>
+                                <li>Lorem ipsum dolor sit amet,</li>
+                            </ol>
+                        </lyte-popover-content>
+                        <lyte-popover-footer>
+                            <div class="zc-popover-actions" style="justify-content:flex-start;">
+                                <button class="zc-popover-btn zc-popover-btn-primary">Button</button>
+                            </div>
+                        </lyte-popover-footer>
+                    </template>
+                </lyte-popover>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- POSITIONS x ALIGNMENTS -->
+<div class="po-section">
+    <div class="po-section-title">Positions &times; Alignments</div>
+    <div class="po-section-card">
+        <p style="color:var(--zc-color-neutral-text-neutral-text-fairish); font-size:12px; margin: 0 0 12px;">Arrow tip rotates to the matching edge.</p>
+        <div class="po-placement-grid">
+            <!-- Bottom row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Bottom &middot; Start (left)</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-bottom" style="left:0;">
+                        <div class="zc-popover-mini-arrow" style="left:12px; margin-left:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Bottom &middot; Center</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-bottom">
+                        <div class="zc-popover-mini-arrow"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Bottom &middot; End (right)</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-bottom" style="right:0; left:auto;">
+                        <div class="zc-popover-mini-arrow" style="right:12px; left:auto; margin-left:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Top &middot; Start</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-top" style="left:0;">
+                        <div class="zc-popover-mini-arrow" style="left:12px; margin-left:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Top &middot; Center</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-top">
+                        <div class="zc-popover-mini-arrow"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Top &middot; End</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-top" style="right:0; left:auto;">
+                        <div class="zc-popover-mini-arrow" style="right:12px; left:auto; margin-left:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Right &middot; Start (top)</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-right" style="top:0;">
+                        <div class="zc-popover-mini-arrow" style="top:8px; margin-top:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Right &middot; Center</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-right">
+                        <div class="zc-popover-mini-arrow"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Right &middot; End (bottom)</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-right" style="bottom:0; top:auto;">
+                        <div class="zc-popover-mini-arrow" style="bottom:8px; top:auto; margin-top:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left row -->
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Left &middot; Start</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-left" style="top:0;">
+                        <div class="zc-popover-mini-arrow" style="top:8px; margin-top:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Left &middot; Center</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-left">
+                        <div class="zc-popover-mini-arrow"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-12">
+                <span class="po-placement-label">Left &middot; End</span>
+                <div class="zc-popover-mini-demo">
+                    <div class="zc-popover-mini-trigger">Trigger</div>
+                    <div class="zc-popover-mini zc-popover-mini-left" style="bottom:0; top:auto;">
+                        <div class="zc-popover-mini-arrow" style="bottom:8px; top:auto; margin-top:0;"></div>
+                        Popover
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA POSITION -->
+<div class="po-section">
+    <div class="po-section-title">CTA Position</div>
+    <div class="po-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-start; gap:24px;">
+            <!-- CTA Left -->
+            <div class="zc-popover-demo">
+                <button id="pop-cta-left" class="zc-btn-demo">Trigger</button>
+                <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-cta-left" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                    <template is="registerYield" yield-name="popover">
+                        <lyte-popover-header>Heading</lyte-popover-header>
+                        <lyte-popover-content>
+                            <p class="zc-popover-body">CTA on left.</p>
+                        </lyte-popover-content>
+                        <lyte-popover-footer>
+                            <div class="zc-popover-actions" style="justify-content:flex-start;">
+                                <button class="zc-popover-btn zc-popover-btn-primary">Button</button>
+                            </div>
+                        </lyte-popover-footer>
+                    </template>
+                </lyte-popover>
+            </div>
+
+            <!-- CTA Center -->
+            <div class="zc-popover-demo">
+                <button id="pop-cta-center" class="zc-btn-demo">Trigger</button>
+                <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-cta-center" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                    <template is="registerYield" yield-name="popover">
+                        <lyte-popover-header>Heading</lyte-popover-header>
+                        <lyte-popover-content>
+                            <p class="zc-popover-body">CTA centered.</p>
+                        </lyte-popover-content>
+                        <lyte-popover-footer>
+                            <div class="zc-popover-actions" style="justify-content:center;">
+                                <button class="zc-popover-btn zc-popover-btn-primary">Button</button>
+                            </div>
+                        </lyte-popover-footer>
+                    </template>
+                </lyte-popover>
+            </div>
+
+            <!-- CTA Right -->
+            <div class="zc-popover-demo">
+                <button id="pop-cta-right" class="zc-btn-demo">Trigger</button>
+                <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-cta-right" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                    <template is="registerYield" yield-name="popover">
+                        <lyte-popover-header>Heading</lyte-popover-header>
+                        <lyte-popover-content>
+                            <p class="zc-popover-body">CTA on right.</p>
+                        </lyte-popover-content>
+                        <lyte-popover-footer>
+                            <div class="zc-popover-actions" style="justify-content:flex-end;">
+                                <button class="zc-popover-btn zc-popover-btn-primary">Button</button>
+                            </div>
+                        </lyte-popover-footer>
+                    </template>
+                </lyte-popover>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DARK MODE -->
+<div class="po-section">
+    <div class="po-section-title">Dark mode</div>
+    <div class="po-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-start; gap:24px;">
+            <!-- Dark Text -->
+            <div class="zc-popover-demo">
+                <button id="pop-dark-text" class="zc-btn-demo">Trigger</button>
+                <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-dark-text" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false" class="zc-popover-dark">
+                    <template is="registerYield" yield-name="popover">
+                        <lyte-popover-header>Heading</lyte-popover-header>
+                        <lyte-popover-content>
+                            <p class="zc-popover-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </lyte-popover-content>
+                        <lyte-popover-footer>
+                            <div class="zc-popover-actions" style="justify-content:flex-start;">
+                                <button class="zc-popover-btn zc-popover-btn-primary">Button</button>
+                            </div>
+                        </lyte-popover-footer>
+                    </template>
+                </lyte-popover>
+            </div>
+
+            <!-- Dark List -->
+            <div class="zc-popover-demo">
+                <button id="pop-dark-list" class="zc-btn-demo">Trigger</button>
+                <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-dark-list" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false" class="zc-popover-dark">
+                    <template is="registerYield" yield-name="popover">
+                        <lyte-popover-header>Heading</lyte-popover-header>
+                        <lyte-popover-content>
+                            <ol class="zc-popover-list">
+                                <li>Lorem ipsum dolor sit amet,</li>
+                                <li>Consectetur adipiscing elit.</li>
+                                <li>Ut non dolor vel nulla.</li>
+                            </ol>
+                        </lyte-popover-content>
+                    </template>
+                </lyte-popover>
+            </div>
+        </div>
+    </div>
+</div>

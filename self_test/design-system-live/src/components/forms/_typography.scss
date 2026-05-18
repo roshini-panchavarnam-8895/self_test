@@ -1,0 +1,50 @@
+$base_font_size: 16px;
+
+:root{
+    font-size: $base_font_size;
+}
+//font size
+$zc-font-extra-tiny: rem(8px);
+$zc-font-tiny: rem(10px);
+$zc-font-extra-small: rem(11px);
+$zc-font-small: rem(12px);
+$zc-font-1x-small: rem(13px);
+$zc-font-medium: rem(14px);
+$zc-font-regular: rem(14.5px);
+$zc-font-extra-regular: rem(15px);
+$zc-font-large: rem(16px);
+$zc-font-extra-large: rem(18px);
+$zc-font-1x-large: rem(20px);
+$zc-font-2x-large: rem(22px);
+$zc-font-3x-large: rem(24px);
+$zc-font-4x-large: rem(26px);
+$zc-font-5x-large: rem(28px);
+$zc-font-6x-large: rem(30px);
+$zc-font-7x-large: rem(32px);
+
+//Font family
+$zc-lato: "Lato", sans-serif;
+$zc-opensans:"OpenSans", sans-serif;
+$zc-monaco: "monaco",monospace,sans-serif;
+$zc-puvi: "ZohoPuvi", sans-serif;
+$zc-custom-font: "Lato", sans-serif;
+$zc-nucleo-icon-solid:"ZC Live Solid";
+$zc-nucleo-icon-outline:"ZC Live Outline";
+$zc-nucleo-icon-smooth: "ZC Smooth Icons";
+$zc-primary-font-family: $zc-puvi;
+
+//Font weight
+$zc-font-weight-light: 300;
+$zc-font-weight-regular: 400;
+$zc-font-weight-medium: 500;
+$zc-font-weight-semibold: 600;
+$zc-font-weight-bold: 700;
+
+/*Border-radius*/
+$zc-radius-extra-small: 2px;
+$zc-radius-small: 4px;
+$zc-radius-medium: 6px;
+$zc-radius-large: 8px;
+$zc-radius-extra-large: 10px;
+$zc-radius-jambo: 16px;
+$zc-radius-circle: 50%;

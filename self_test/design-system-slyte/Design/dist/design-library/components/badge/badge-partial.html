@@ -1,0 +1,205 @@
+<style>
+    .bdg-section { margin-bottom: 28px; }
+    .bdg-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .bdg-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .bdg-table { width: 100%; border-collapse: collapse; }
+    .bdg-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .bdg-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .bdg-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .bdg-table .bdg-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h1 class="card-grid-title">Badge</h1>
+</div>
+
+<!-- SECTION: Status Types -->
+<div class="bdg-section">
+    <div class="bdg-section-title">Status Types</div>
+    <div class="bdg-section-card">
+        <table class="bdg-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Default (8px)</th>
+                    <th>Small (4px)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bdg-row-label">Active</td>
+                    <td><span class="zc-badge zc-badge-active"></span></td>
+                    <td><span class="zc-badge zc-badge-active zc-badge-sm"></span></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Warning</td>
+                    <td><span class="zc-badge zc-badge-warning"></span></td>
+                    <td><span class="zc-badge zc-badge-warning zc-badge-sm"></span></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Error</td>
+                    <td><span class="zc-badge zc-badge-error"></span></td>
+                    <td><span class="zc-badge zc-badge-error zc-badge-sm"></span></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Inactive</td>
+                    <td><span class="zc-badge zc-badge-inactive"></span></td>
+                    <td><span class="zc-badge zc-badge-inactive zc-badge-sm"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SECTION: With Text Label -->
+<div class="bdg-section">
+    <div class="bdg-section-title">With Text Label</div>
+    <div class="bdg-section-card">
+        <table class="bdg-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bdg-row-label">Active</td>
+                    <td><span class="zc-badge-inline"><span class="zc-badge zc-badge-active"></span>Active</span></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Warning</td>
+                    <td><span class="zc-badge-inline"><span class="zc-badge zc-badge-warning"></span>Warning</span></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Error</td>
+                    <td><span class="zc-badge-inline"><span class="zc-badge zc-badge-error"></span>Error</span></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Inactive</td>
+                    <td><span class="zc-badge-inline"><span class="zc-badge zc-badge-inactive"></span>Inactive</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SECTION: Count Badge -->
+<div class="bdg-section">
+    <div class="bdg-section-title">Count Badge</div>
+    <div class="bdg-section-card">
+        <table class="bdg-table">
+            <thead>
+                <tr>
+                    <th>Variant</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bdg-row-label">Count 3</td>
+                    <td><lyte-badge lt-prop-data="3"></lyte-badge></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Count 12</td>
+                    <td><lyte-badge lt-prop-data="12"></lyte-badge></td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Count 99+</td>
+                    <td><lyte-badge lt-prop-data="100" lt-prop-max-length="2"></lyte-badge></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SECTION: Badge on Icon - Dot -->
+<div class="bdg-section">
+    <div class="bdg-section-title">Badge on Icon - Dot</div>
+    <div class="bdg-section-card">
+        <table class="bdg-table">
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bdg-row-label">Notification</td>
+                    <td>
+                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-error-surface-error-surface-default, #CC1914)"}'>
+                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-bell" style="font-size:20px;color:#5B5D6B;"></i></template>
+                        </lyte-badge>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Mail</td>
+                    <td>
+                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-success-surface-success-surface-default, #078841)"}'>
+                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-envelope" style="font-size:20px;color:#5B5D6B;"></i></template>
+                        </lyte-badge>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Chat</td>
+                    <td>
+                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-warning-surface-warning-surface-default, #D25704)"}'>
+                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-comment" style="font-size:20px;color:#5B5D6B;"></i></template>
+                        </lyte-badge>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Settings</td>
+                    <td>
+                        <lyte-badge lt-prop-position="topRight" lt-prop-badge-style='{"background-color":"var(--zc-color-neutral-surface-neutral-surface-default, #9EA0A7)"}'>
+                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-cog" style="font-size:20px;color:#5B5D6B;"></i></template>
+                        </lyte-badge>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SECTION: Badge on Icon - Count -->
+<div class="bdg-section">
+    <div class="bdg-section-title">Badge on Icon - Count</div>
+    <div class="bdg-section-card">
+        <table class="bdg-table">
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bdg-row-label">Notification</td>
+                    <td>
+                        <lyte-badge lt-prop-data="5" lt-prop-position="topRight">
+                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-bell" style="font-size:20px;color:#5B5D6B;"></i></template>
+                        </lyte-badge>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Mail</td>
+                    <td>
+                        <lyte-badge lt-prop-data="23" lt-prop-position="topRight">
+                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-envelope" style="font-size:20px;color:#5B5D6B;"></i></template>
+                        </lyte-badge>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bdg-row-label">Chat (99+)</td>
+                    <td>
+                        <lyte-badge lt-prop-data="150" lt-prop-position="topRight" lt-prop-max-length="2">
+                            <template is="registerYield" yield-name="lyteBadgeYield"><i class="fas fa-comment" style="font-size:20px;color:#5B5D6B;"></i></template>
+                        </lyte-badge>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+@use '../common' as c;
+@include c.all();
+
+.zc-footer-wrapper {
+  display: block;
+  position: relative;
+  clear: both;
+  width: 100%;
+  padding: 20px 0;
+  border-top: 1px solid #e7e7ee;
+  background-color: var(--zc-color-bg);
+  color: var(--zc-color-text);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: 20.71px;
+}
+
+.form-action {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zc-live-primary-btn {
+  display: inline-block;
+  min-width: 70px;
+  min-height: 36px;
+  padding: 8px 24px;
+  border: none;
+  border-radius: var(--zc-border-radius);
+  background-color: var(--zc-color-primary);
+  color: #fff;
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: top;
+
+  &:hover {
+    background-color: rgb(60, 61, 220);
+  }
+}
+
+.zc-live-secondary-btn {
+  display: inline-block;
+  min-width: 70px;
+  min-height: 36px;
+  padding: 8px 24px;
+  border: 1px solid var(--zc-color-border);
+  border-radius: var(--zc-border-radius);
+  background-color: var(--zc-color-bg);
+  color: #333;
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: top;
+
+  &:hover {
+    background-color: #f4f6fa;
+  }
+}
+
+.zc-draft-btn {
+  border-color: var(--zc-color-primary);
+  color: var(--zc-color-primary);
+}

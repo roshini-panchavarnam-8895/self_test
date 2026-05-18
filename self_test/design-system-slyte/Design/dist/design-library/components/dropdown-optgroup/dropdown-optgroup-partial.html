@@ -1,0 +1,487 @@
+<style>
+    .dog-section { margin-bottom: 28px; }
+    .dog-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .dog-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .dog-table { width: 100%; border-collapse: collapse; }
+    .dog-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .dog-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .dog-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .dog-table .dog-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .dog-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .dog-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .dog-overlay-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); margin-bottom: 8px; }
+    .dog-showcase { max-width: 304px; }
+    .dog-field-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .dog-head-grid { display: grid; grid-template-columns: 200px 1fr 1fr; gap: 10px 16px; align-items: center; }
+    .dog-head-col-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .dog-head-type-label { font-size: 12px; color: var(--zc-color-huegrey-text-dark); }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="card-grid-back" onclick="window.goBack()"><i class="fas fa-arrow-left"></i></button>
+    <h2 class="card-grid-title">Input Optgroup</h2>
+</div>
+
+<p class="dog-desc">Source: Figma <code>Input_Optgroup_Base (2573:6623)</code>. Grouped dropdown with labeled sections (<code>Optgroup_Head</code> + list rows). Trigger states match Input Dropdown; open menu uses <code>Dropdown_Overlay_Optgroup</code>.</p>
+
+
+<!-- TRIGGER FIELD STATES -->
+<div class="dog-section">
+    <div class="dog-section-title">Trigger field states (Input_Optgroup_Base)</div>
+    <div class="dog-section-card">
+        <table class="dog-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="dog-row-label">Default</td>
+                    <td class="dog-showcase">
+                        <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Hover</td>
+                    <td class="dog-showcase">
+                        <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup zc-dropdown-hover">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Active (open)</td>
+                    <td class="dog-showcase">
+                        <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-selected="a1" class="zc-dropdown zc-dropdown-optgroup zc-dropdown-active">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="a1" selected="true">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="b2">Placeholder</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Disabled</td>
+                    <td class="dog-showcase">
+                        <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-dropdown zc-dropdown-optgroup">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Disabled After</td>
+                    <td class="dog-showcase">
+                        <div class="zc-dropdown zc-dropdown-disabled-after">
+                            <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-dropdown zc-dropdown-optgroup">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                        <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Selected</td>
+                    <td class="dog-showcase">
+                        <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Multi-Selected</td>
+                    <td class="dog-showcase">
+                        <lyte-multi-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                                    <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                    <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-multi-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Error</td>
+                    <td class="dog-showcase">
+                        <div class="zc-dropdown zc-dropdown-error">
+                            <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                        <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dog-row-label">Success</td>
+                    <td class="dog-showcase">
+                        <div class="zc-dropdown zc-dropdown-success">
+                            <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                                        <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- GROUP HEADS (Optgroup_Head) -->
+<div class="dog-section">
+    <div class="dog-section-title">Group Heads (Optgroup_Head)</div>
+    <div class="dog-section-card">
+        <div class="dog-head-grid">
+            <!-- Column headers -->
+            <div class="dog-head-col-label">Type</div>
+            <div class="dog-head-col-label">14 PX</div>
+            <div class="dog-head-col-label">12 PX</div>
+
+            <!-- Default -->
+            <div class="dog-head-type-label">Default</div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-default">Group Head</span>
+            </div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-default zc-dropdown-optgroup-header-sm">Group Head</span>
+            </div>
+
+            <!-- Bold -->
+            <div class="dog-head-type-label">Bold</div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-bold">Group Head</span>
+            </div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-bold zc-dropdown-optgroup-header-sm">Group Head</span>
+            </div>
+
+            <!-- Subtle -->
+            <div class="dog-head-type-label">Subtle</div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-subtle">Group Head</span>
+            </div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-subtle zc-dropdown-optgroup-header-sm">Group Head</span>
+            </div>
+
+            <!-- Selectable (Checkbox) -->
+            <div class="dog-head-type-label">Selectable (Checkbox)</div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-default">
+                    <input type="checkbox" class="zc-form-checkbox zc-form-checkbox-sm">
+                    Group Head
+                </span>
+            </div>
+            <div>
+                <span class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-default zc-dropdown-optgroup-header-sm">
+                    <input type="checkbox" class="zc-form-checkbox zc-form-checkbox-sm">
+                    Group Head
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- OPTGROUP OVERLAY VARIANTS -->
+<div class="dog-section">
+    <div class="dog-section-title">Optgroup overlay variants</div>
+    <div class="dog-section-card">
+        <div class="zc-flex zc-gap-24 zc-row-wrap">
+            <!-- 2 Groups -->
+            <div>
+                <div class="dog-overlay-label">2 Groups</div>
+                <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Select option" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="b2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- 3 Groups with Search -->
+            <div>
+                <div class="dog-overlay-label">3 Groups &middot; with Search</div>
+                <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Select option" lt-prop-search="true" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="c1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="c2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- Group with Selectable Head -->
+            <div>
+                <div class="dog-overlay-label">Group &middot; With Selectable Head</div>
+                <lyte-dropdown lt-prop-placeholder="Select option" lt-prop-multiple="true" class="zc-dropdown zc-dropdown-optgroup zc-dropdown-optgroup-selectable">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-selectable">
+                                <input type="checkbox" class="zc-form-checkbox zc-form-checkbox-sm" checked> Group Head
+                            </lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header zc-dropdown-optgroup-header-selectable">
+                                <input type="checkbox" class="zc-form-checkbox zc-form-checkbox-sm"> Group Head
+                            </lyte-drop-header>
+                            <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="b2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- No Data -->
+            <div>
+                <div class="dog-overlay-label">No Data</div>
+                <lyte-dropdown lt-prop-placeholder="Select option" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FULL FIELD (Input_Optgroup_Base) -->
+<div class="dog-section">
+    <div class="dog-section-title">Full field (Input_Optgroup_Base)</div>
+    <p style="color: var(--zc-color-huegrey-text-default); font-size: 12px; margin: 0 0 12px;">Trigger states match Input Dropdown -- only the open menu changes (grouped instead of flat list).</p>
+    <div class="dog-section-card">
+        <div class="dog-field-grid">
+            <!-- Default -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Option A1</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Option A2</lyte-drop-item>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="b1">Option B1</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+
+            <!-- Hover -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup zc-dropdown-hover">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Active with open menu -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-selected="a1" class="zc-dropdown zc-dropdown-optgroup zc-dropdown-active">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1" selected="true">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="b2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+
+            <!-- Selected -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Multi-Selected -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-multi-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="b1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="b2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="b3">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-multi-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+
+            <!-- Disabled -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint zc-dropdown-hint-disabled">Hint Text</span>
+            </div>
+
+
+            <!-- Disabled After -->
+            <div class="zc-dropdown zc-dropdown-disabled-after">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Error -->
+            <div class="zc-dropdown zc-dropdown-error">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint zc-dropdown-hint-error">Hint Text</span>
+            </div>
+
+            <!-- Success -->
+            <div class="zc-dropdown zc-dropdown-success">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="a1" lt-prop-placeholder="Placeholder" class="zc-dropdown zc-dropdown-optgroup">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-header class="zc-dropdown-optgroup-header">Group Head</lyte-drop-header>
+                            <lyte-drop-item data-value="a1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="a2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+        </div>
+    </div>
+</div>

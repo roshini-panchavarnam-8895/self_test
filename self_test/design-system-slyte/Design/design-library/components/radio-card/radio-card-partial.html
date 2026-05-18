@@ -1,0 +1,315 @@
+<style>
+    .rc-section { margin-bottom: 28px; }
+    .rc-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .rc-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .rc-table { width: 100%; border-collapse: collapse; }
+    .rc-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .rc-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .rc-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .rc-table .rc-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }</style>
+
+<div class="card-grid-header">
+    <button class="back-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h1 class="card-grid-title">Radio Card</h1>
+</div>
+
+<!-- DEFAULT -->
+<div class="rc-section">
+    <div class="rc-section-title">Default (Unselected)</div>
+    <div class="rc-section-card">
+        <table class="rc-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rc-row-label">Default</td>
+                    <td>
+                        <div class="zc-radio-card">
+                            <lyte-radiobutton name="demo-default">
+                                <template is="registerYield" yield-name="yield">
+                                    <span class="zc-radio-card-label">Option A</span>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rc-row-label">Small</td>
+                    <td>
+                        <div class="zc-radio-card zc-radio-card-sm">
+                            <lyte-radiobutton name="demo-default-sm">
+                                <template is="registerYield" yield-name="yield">
+                                    <span class="zc-radio-card-label">Option A</span>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SELECTED -->
+<div class="rc-section">
+    <div class="rc-section-title">Selected State</div>
+    <div class="rc-section-card">
+        <table class="rc-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rc-row-label">Default</td>
+                    <td>
+                        <div class="zc-radio-card zc-radio-card-selected">
+                            <lyte-radiobutton name="demo-selected" lt-prop-checked="true">
+                                <template is="registerYield" yield-name="yield">
+                                    <span class="zc-radio-card-label">Option A</span>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rc-row-label">Small</td>
+                    <td>
+                        <div class="zc-radio-card zc-radio-card-selected zc-radio-card-sm">
+                            <lyte-radiobutton name="demo-selected-sm" lt-prop-checked="true">
+                                <template is="registerYield" yield-name="yield">
+                                    <span class="zc-radio-card-label">Option A</span>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- WITH ICON -->
+<div class="rc-section">
+    <div class="rc-section-title">With Icon</div>
+    <div class="rc-section-card">
+        <table class="rc-table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rc-row-label">Default</td>
+                    <td>
+                        <div class="zc-radio-card">
+                            <div class="zc-radio-card-icon"><i class="fas fa-star"></i></div>
+                            <lyte-radiobutton name="demo-icon">
+                                <template is="registerYield" yield-name="yield">
+                                    <div class="zc-radio-card-content">
+                                        <span class="zc-radio-card-label">Option A</span>
+                                        <span class="zc-radio-card-desc">Description text for this option</span>
+                                    </div>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rc-row-label">Selected</td>
+                    <td>
+                        <div class="zc-radio-card zc-radio-card-selected">
+                            <div class="zc-radio-card-icon"><i class="fas fa-heart"></i></div>
+                            <lyte-radiobutton name="demo-icon-sel" lt-prop-checked="true">
+                                <template is="registerYield" yield-name="yield">
+                                    <div class="zc-radio-card-content">
+                                        <span class="zc-radio-card-label">Option B</span>
+                                        <span class="zc-radio-card-desc">This option is currently selected</span>
+                                    </div>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- WITH DESCRIPTION -->
+<div class="rc-section">
+    <div class="rc-section-title">With Description</div>
+    <div class="rc-section-card">
+        <table class="rc-table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rc-row-label">Default</td>
+                    <td>
+                        <div class="zc-radio-card">
+                            <lyte-radiobutton name="demo-desc">
+                                <template is="registerYield" yield-name="yield">
+                                    <div class="zc-radio-card-content">
+                                        <span class="zc-radio-card-label">Standard Plan</span>
+                                        <span class="zc-radio-card-desc">Best for small teams with basic needs</span>
+                                    </div>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rc-row-label">Selected</td>
+                    <td>
+                        <div class="zc-radio-card zc-radio-card-selected">
+                            <lyte-radiobutton name="demo-desc-sel" lt-prop-checked="true">
+                                <template is="registerYield" yield-name="yield">
+                                    <div class="zc-radio-card-content">
+                                        <span class="zc-radio-card-label">Professional Plan</span>
+                                        <span class="zc-radio-card-desc">Advanced features for growing teams</span>
+                                    </div>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- HORIZONTAL LAYOUT -->
+<div class="rc-section">
+    <div class="rc-section-title">Layout</div>
+    <div class="rc-section-card">
+        <table class="rc-table">
+            <thead>
+                <tr>
+                    <th>Direction</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rc-row-label">Horizontal</td>
+                    <td>
+                        <div class="zc-radio-card-group-horizontal">
+                            <div class="zc-radio-card">
+                                <lyte-radiobutton name="demo-horiz">
+                                    <template is="registerYield" yield-name="yield">
+                                        <span class="zc-radio-card-label">Option A</span>
+                                    </template>
+                                </lyte-radiobutton>
+                            </div>
+                            <div class="zc-radio-card zc-radio-card-selected">
+                                <lyte-radiobutton name="demo-horiz" lt-prop-checked="true">
+                                    <template is="registerYield" yield-name="yield">
+                                        <span class="zc-radio-card-label">Option B</span>
+                                    </template>
+                                </lyte-radiobutton>
+                            </div>
+                            <div class="zc-radio-card">
+                                <lyte-radiobutton name="demo-horiz">
+                                    <template is="registerYield" yield-name="yield">
+                                        <span class="zc-radio-card-label">Option C</span>
+                                    </template>
+                                </lyte-radiobutton>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rc-row-label">Vertical</td>
+                    <td>
+                        <div class="zc-radio-card-group-vertical">
+                            <div class="zc-radio-card">
+                                <lyte-radiobutton name="demo-vert">
+                                    <template is="registerYield" yield-name="yield">
+                                        <div class="zc-radio-card-content">
+                                            <span class="zc-radio-card-label">Starter</span>
+                                            <span class="zc-radio-card-desc">Free forever</span>
+                                        </div>
+                                    </template>
+                                </lyte-radiobutton>
+                            </div>
+                            <div class="zc-radio-card zc-radio-card-selected">
+                                <lyte-radiobutton name="demo-vert" lt-prop-checked="true">
+                                    <template is="registerYield" yield-name="yield">
+                                        <div class="zc-radio-card-content">
+                                            <span class="zc-radio-card-label">Professional</span>
+                                            <span class="zc-radio-card-desc">$12/month per user</span>
+                                        </div>
+                                    </template>
+                                </lyte-radiobutton>
+                            </div>
+                            <div class="zc-radio-card">
+                                <lyte-radiobutton name="demo-vert">
+                                    <template is="registerYield" yield-name="yield">
+                                        <div class="zc-radio-card-content">
+                                            <span class="zc-radio-card-label">Enterprise</span>
+                                            <span class="zc-radio-card-desc">Custom pricing</span>
+                                        </div>
+                                    </template>
+                                </lyte-radiobutton>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- DISABLED -->
+<div class="rc-section">
+    <div class="rc-section-title">Disabled</div>
+    <div class="rc-section-card">
+        <table class="rc-table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rc-row-label">Disabled Unselected</td>
+                    <td>
+                        <div class="zc-radio-card zc-radio-card-disabled">
+                            <lyte-radiobutton name="demo-dis" lt-prop-disabled="true">
+                                <template is="registerYield" yield-name="yield">
+                                    <span class="zc-radio-card-label">Unavailable</span>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rc-row-label">Disabled Selected</td>
+                    <td>
+                        <div class="zc-radio-card zc-radio-card-selected zc-radio-card-disabled">
+                            <lyte-radiobutton name="demo-dis-sel" lt-prop-checked="true" lt-prop-disabled="true">
+                                <template is="registerYield" yield-name="yield">
+                                    <span class="zc-radio-card-label">Locked Choice</span>
+                                </template>
+                            </lyte-radiobutton>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

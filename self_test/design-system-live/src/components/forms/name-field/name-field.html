@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name Field — Zoho Creator</title>
+  <link rel="stylesheet" href="name-field.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix zc-name-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Name</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="compositeWrapper zc-name-composite">
+          <span class="PREFIX-wrapper"><select class="form-control prefix-sel" name="Name.prefix" id="prefix" aria-label="Prefix"><option value="">Prefix</option><option value="Mr.">Mr.</option><option value="Mrs.">Mrs.</option><option value="Ms.">Ms.</option></select></span>
+          <span class="FIRST_NAME-wrapper"><input class="form-control" type="text" name="Name.first_name" id="firstname" maxlength="255" autocomplete="given-name" aria-label="First Name" placeholder="First Name"></span>
+          <span class="LAST_NAME-wrapper"><input class="form-control" type="text" name="Name.last_name" id="lastname" maxlength="255" autocomplete="family-name" aria-label="Last Name" placeholder="Last Name"></span>
+          <span class="SUFFIX-wrapper"><input class="form-control" type="text" name="Name.suffix" id="suffix" maxlength="15" autocomplete="honorific-suffix" aria-label="Suffix" placeholder="Suffix"></span>
+        </div>
+        <div class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix zc-name-field-group">
+      <label class="form-label">
+        <span class="zc-label-text">Name<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix validationError">
+        <div class="compositeWrapper zc-name-composite">
+          <span class="FIRST_NAME-wrapper"><input class="form-control" type="text" name="Name_Err.first_name" id="firstname-err" maxlength="255" required aria-required="true" aria-invalid="true" aria-label="First Name" placeholder="First Name"></span>
+          <span class="LAST_NAME-wrapper"><input class="form-control" type="text" name="Name_Err.last_name" id="lastname-err" maxlength="255" required aria-required="true" aria-invalid="true" aria-label="Last Name" placeholder="Last Name"></span>
+        </div>
+        <div class="fieldErrorMsg" role="alert"><span>This field is mandatory. Enter a value.</span></div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-name-field-group zc-field-disabled">
+      <label class="form-label">
+        <span class="zc-label-text">Name</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix">
+        <div class="compositeWrapper zc-name-composite">
+          <span class="PREFIX-wrapper"><select class="form-control prefix-sel" name="Name_Dis.prefix" id="prefix-dis" aria-label="Prefix" disabled aria-disabled="true"><option value="">Prefix</option></select></span>
+          <span class="FIRST_NAME-wrapper"><input class="form-control" type="text" name="Name_Dis.first_name" id="firstname-dis" disabled aria-disabled="true" aria-label="First Name" placeholder="First Name"></span>
+          <span class="LAST_NAME-wrapper"><input class="form-control" type="text" name="Name_Dis.last_name" id="lastname-dis" disabled aria-disabled="true" aria-label="Last Name" placeholder="Last Name"></span>
+        </div>
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

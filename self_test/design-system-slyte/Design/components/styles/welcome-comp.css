@@ -1,0 +1,36 @@
+.zc-custom-dropdown lyte-drop-button {
+    border-radius: 6px;
+    padding: 10px 25px 10px 11px;
+    min-width: 240px;
+}
+.zc-custom-dropdown lyte-drop-button{
+    font-size: 12px;
+}
+lyte-dropdown lyte-icon.dropdown{
+    background-position: -14px -2px;
+    width: 9px;
+    height: 5px;
+}
+lyte-drop-box.lyteDropdownDown{border-radius: 6px;margin-top: 4px;box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);}
+
+lyte-drop-item {
+    padding: 11px 25px 11px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+lyte-drop-body {
+    padding: 10px;
+}
+
+lyte-drop-item[selected="true"]::before {
+    left: auto;
+    right: 10px;
+}
+
+.lyteDropdownSelection {
+    background: #f4f5ff;
+}
+.lyteDropdownSelection:hover{
+    background: #f7f8ff;
+}

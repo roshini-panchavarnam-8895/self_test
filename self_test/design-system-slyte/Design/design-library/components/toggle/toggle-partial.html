@@ -1,0 +1,223 @@
+<style>
+    .tgl-section { margin-bottom: 28px; }
+    .tgl-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .tgl-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .tgl-table { width: 100%; border-collapse: collapse; }
+    .tgl-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .tgl-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .tgl-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .tgl-table .tgl-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .tgl-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .tgl-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+</style>
+
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h1 class="card-grid-title">Toggle</h1>
+</div>
+
+<p class="tgl-desc">Source: Figma <code>Toggle (2359:348)</code>. Selectable pill / chip with circle indicator + label. Click to toggle on/off. 5 sizes &times; 3 radii &times; 3 types &times; 6 color states.</p>
+
+<!-- CLICK TO TOGGLE -->
+<div class="tgl-section">
+    <div class="tgl-section-title">Click to toggle</div>
+    <div class="tgl-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <lyte-checkbox lt-prop-type="switch" class="zc-toggle">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" class="zc-toggle zc-toggle-success">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-success">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-warning">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-error">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+        </div>
+    </div>
+</div>
+
+<!-- SIZES -->
+<div class="tgl-section">
+    <div class="tgl-section-title">Sizes</div>
+    <div class="tgl-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:center;">
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-14">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-16">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-18">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-xs">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-sm">
+                <template is="registerYield" yield-name="yield"><span>Label</span></template>
+            </lyte-checkbox>
+        </div>
+    </div>
+</div>
+
+<!-- RADIUS -->
+<div class="tgl-section">
+    <div class="tgl-section-title">Radius</div>
+    <div class="tgl-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:center;">
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-xs">
+                <template is="registerYield" yield-name="yield"><span>Full</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-xs zc-toggle-r6">
+                <template is="registerYield" yield-name="yield"><span>R 6px</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-xs zc-toggle-r4">
+                <template is="registerYield" yield-name="yield"><span>S 4px</span></template>
+            </lyte-checkbox>
+        </div>
+    </div>
+</div>
+
+<!-- TYPES x COLORS (toggled on) -->
+<div class="tgl-section">
+    <div class="tgl-section-title">Types &times; Colors (toggled on)</div>
+    <div class="tgl-section-card">
+        <table class="tgl-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Primary</th>
+                    <th>Success</th>
+                    <th>Info</th>
+                    <th>Warning</th>
+                    <th>Error</th>
+                    <th>HueGray</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tgl-row-label">Fill</td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-fill">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-fill zc-toggle-success">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-fill zc-toggle-info">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-fill zc-toggle-warning">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-fill zc-toggle-error">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-fill zc-toggle-huegray">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tgl-row-label">Border</td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-border">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-border zc-toggle-success">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-border zc-toggle-info">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-border zc-toggle-warning">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-border zc-toggle-error">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-border zc-toggle-huegray">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tgl-row-label">Subtle</td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-subtle">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-subtle zc-toggle-success">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-subtle zc-toggle-info">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-subtle zc-toggle-warning">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-subtle zc-toggle-error">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                    <td>
+                        <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" class="zc-toggle zc-toggle-subtle zc-toggle-huegray">
+                            <template is="registerYield" yield-name="yield"><span>Label</span></template>
+                        </lyte-checkbox>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- DISABLED -->
+<div class="tgl-section">
+    <div class="tgl-section-title">Disabled</div>
+    <div class="tgl-section-card">
+        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+            <lyte-checkbox lt-prop-type="switch" lt-prop-disabled="true" class="zc-toggle">
+                <template is="registerYield" yield-name="yield"><span>Disabled (off)</span></template>
+            </lyte-checkbox>
+            <lyte-checkbox lt-prop-type="switch" lt-prop-checked="true" lt-prop-disabled="true" class="zc-toggle">
+                <template is="registerYield" yield-name="yield"><span>Disabled (on)</span></template>
+            </lyte-checkbox>
+        </div>
+    </div>
+</div>

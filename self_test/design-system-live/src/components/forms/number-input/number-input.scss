@@ -1,0 +1,6 @@
+@use '../common' as c;
+@include c.all();
+
+.zc-numberfield {
+  font-variant-numeric: tabular-nums;
+}

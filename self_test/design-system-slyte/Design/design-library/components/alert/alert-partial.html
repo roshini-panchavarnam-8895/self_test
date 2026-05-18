@@ -1,0 +1,118 @@
+<style>
+    .al-section { margin-bottom: 28px; }
+    .al-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .al-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .al-table { width: 100%; border-collapse: collapse; }
+    .al-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .al-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .al-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .al-table .al-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h1 class="card-grid-title">Toast / Alert</h1>
+</div>
+
+<!-- SECTION: Toast Types -->
+<div class="al-section">
+    <div class="al-section-title">Toast Types</div>
+    <div class="al-section-card">
+        <table class="al-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Long Text</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="al-row-label">Info</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="This is an informational message." class="zc-toast zc-toast-info"></lyte-alert></td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="Your changes have been saved. The system will process your request shortly and notify you once complete." class="zc-toast zc-toast-info"></lyte-alert></td>
+                </tr>
+                <tr>
+                    <td class="al-row-label">Success</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Operation completed successfully!" class="zc-toast zc-toast-success"></lyte-alert></td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Your record has been saved successfully. All changes are now reflected in the database." class="zc-toast zc-toast-success"></lyte-alert></td>
+                </tr>
+                <tr>
+                    <td class="al-row-label">Warning</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-message="Please review your input before continuing." class="zc-toast zc-toast-warning"></lyte-alert></td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-message="Your session is about to expire. Save your work to avoid losing changes." class="zc-toast zc-toast-warning"></lyte-alert></td>
+                </tr>
+                <tr>
+                    <td class="al-row-label">Error</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-message="Something went wrong. Please try again." class="zc-toast zc-toast-error"></lyte-alert></td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-message="Failed to save your record. The server returned an unexpected error. Please retry or contact support." class="zc-toast zc-toast-error"></lyte-alert></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SECTION: With Close Button -->
+<div class="al-section">
+    <div class="al-section-title">With Close Button</div>
+    <div class="al-section-card">
+        <table class="al-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="al-row-label">Info + Close</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-close-button="true" lt-prop-message="This is an info toast with a close button." class="zc-toast zc-toast-info"></lyte-alert></td>
+                </tr>
+                <tr>
+                    <td class="al-row-label">Success + Close</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-close-button="true" lt-prop-message="Record saved successfully!" class="zc-toast zc-toast-success"></lyte-alert></td>
+                </tr>
+                <tr>
+                    <td class="al-row-label">Warning + Close</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-close-button="true" lt-prop-message="Session expiring soon!" class="zc-toast zc-toast-warning"></lyte-alert></td>
+                </tr>
+                <tr>
+                    <td class="al-row-label">Error + Close</td>
+                    <td><lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-close-button="true" lt-prop-message="Failed to delete record." class="zc-toast zc-toast-error"></lyte-alert></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SECTION: Positions -->
+<div class="al-section">
+    <div class="al-section-title">Positions</div>
+    <div class="al-section-card">
+        <div class="zc-toast-position-demo">
+            <div class="zc-toast-demo-viewport">
+                <div class="zc-toast-container zc-toast-top-right">
+                    <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="Top Right" class="zc-toast zc-toast-info"></lyte-alert>
+                </div>
+                <div class="zc-toast-container zc-toast-top-center">
+                    <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Top Center" class="zc-toast zc-toast-success"></lyte-alert>
+                </div>
+                <div class="zc-toast-container zc-toast-top-left">
+                    <lyte-alert lt-prop-show="true" lt-prop-type="warning" lt-prop-message="Top Left" class="zc-toast zc-toast-warning"></lyte-alert>
+                </div>
+                <div class="zc-toast-container zc-toast-bottom-right">
+                    <lyte-alert lt-prop-show="true" lt-prop-type="error" lt-prop-message="Bottom Right" class="zc-toast zc-toast-error"></lyte-alert>
+                </div>
+                <div class="zc-toast-container zc-toast-bottom-center">
+                    <lyte-alert lt-prop-show="true" lt-prop-type="info" lt-prop-message="Bottom Center" class="zc-toast zc-toast-info"></lyte-alert>
+                </div>
+                <div class="zc-toast-container zc-toast-bottom-left">
+                    <lyte-alert lt-prop-show="true" lt-prop-type="success" lt-prop-message="Bottom Left" class="zc-toast zc-toast-success"></lyte-alert>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../design-library/components/alert/alert.js"></script>
+<link rel="stylesheet" href="../../design-library/components/alert/alert.css">

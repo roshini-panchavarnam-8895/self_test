@@ -1,0 +1,251 @@
+<style>
+    .ipfx-section { margin-bottom: 28px; }
+    .ipfx-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .ipfx-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .ipfx-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .ipfx-desc code { font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 12px; background: var(--zc-color-black-white-surface-white-surface); padding: 2px 6px; border-radius: var(--zc-radius-s); border: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .ipfx-table { width: 100%; border-collapse: collapse; }
+    .ipfx-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .ipfx-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .ipfx-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .ipfx-table .ipfx-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }.ipfx-action-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+    .ipfx-field-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2>Prefixed Input</h2>
+</div>
+
+<p class="ipfx-desc">Source: Figma <code>Input Prefixed (3037:965)</code>. Mirror of Suffixed — prefix on the LEFT, plus optional right-side action icon (Search / Dropdown / Close). Two types: Actionable / Non-Actionable. 11 states.</p>
+
+<!-- RIGHT-ACTION ICONS (Input_Right_Action) -->
+<div class="ipfx-section">
+    <div class="ipfx-section-title">Right-action icons (Input_Right_Action)</div>
+    <div class="ipfx-section-card">
+        <div class="zc-flex zc-gap-24 zc-row-wrap">
+            <div class="zc-flex zc-align-items-center zc-gap-8">
+                <button class="zc-input-suffix zc-input-suffix-icon" aria-label="Search"><i class="fas fa-search"></i></button>
+                <span class="ipfx-action-label">Search</span>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-8">
+                <button class="zc-input-suffix zc-input-suffix-icon" aria-label="Dropdown"><i class="fas fa-chevron-down"></i></button>
+                <span class="ipfx-action-label">Dropdown</span>
+            </div>
+            <div class="zc-flex zc-align-items-center zc-gap-8">
+                <button class="zc-input-suffix zc-input-suffix-icon" aria-label="Close"><i class="fas fa-times"></i></button>
+                <span class="ipfx-action-label">Close</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PREFIX TYPES -->
+<div class="ipfx-section">
+    <div class="ipfx-section-title">Prefix types</div>
+    <div class="ipfx-section-card">
+        <table class="ipfx-table">
+            <thead><tr><th>Type</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="ipfx-row-label">Actionable · Text</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Non-Actionable</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed">
+                            <span class="zc-input-prefix">Label</span>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Prefix + Search action</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed">
+                            <span class="zc-input-prefix">Label</span>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <button class="zc-input-suffix zc-input-suffix-icon" aria-label="Search"><i class="fas fa-search"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Prefix + Dropdown</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                            <button class="zc-input-suffix zc-input-suffix-icon" aria-label="Open"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Prefix + Close</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed">
+                            <span class="zc-input-prefix">Label</span>
+                            <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                            <button class="zc-input-suffix zc-input-suffix-icon" aria-label="Clear"><i class="fas fa-times"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- STATES (TYPE = ACTIONABLE) -->
+<div class="ipfx-section">
+    <div class="ipfx-section-title">States (Type = Actionable)</div>
+    <div class="ipfx-section-card">
+        <table class="ipfx-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="ipfx-row-label">Default</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Active (focused)</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-focus">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Selected (CTA pressed)</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-selected">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Disabled</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled">
+                            <button class="zc-input-prefix zc-input-prefix-btn" disabled>Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Error</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-error">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ipfx-row-label">Success</td>
+                    <td>
+                        <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-success">
+                            <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                            <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- FULL FIELD (Input_Preffixed_Base) -->
+<div class="ipfx-section">
+    <div class="ipfx-section-title">Full field (Input_Preffixed_Base)</div>
+    <div class="ipfx-section-card">
+        <div class="ipfx-field-grid">
+
+            <div class="zc-form-group">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                </div>
+                <span class="zc-form-hint">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-focus">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" class="zc-input"></lyte-input>
+                </div>
+                <span class="zc-form-hint zc-form-hint-info">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed">
+                    <span class="zc-input-prefix">Label</span>
+                    <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                    <button class="zc-input-suffix zc-input-suffix-icon" aria-label="Clear"><i class="fas fa-times"></i></button>
+                </div>
+                <span class="zc-form-hint">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group zc-form-group-disabled">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-disabled">
+                    <span class="zc-input-prefix">Label</span>
+                    <lyte-input lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-input"></lyte-input>
+                </div>
+                <span class="zc-form-hint zc-form-hint-disabled">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group zc-form-group-error">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-error">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                </div>
+                <span class="zc-form-hint zc-form-hint-error">Hint Text</span>
+            </div>
+
+            <div class="zc-form-group">
+                <div class="zc-form-label-wrap">
+                    <label class="zc-form-label">Label</label>
+                    <span class="zc-form-optional">(Optional)</span>
+                </div>
+                <div class="zc-input-affixed zc-input-prefixed zc-input-affixed-success">
+                    <button class="zc-input-prefix zc-input-prefix-btn">Label</button>
+                    <lyte-input lt-prop-placeholder="Placeholder" lt-prop-value="Placeholder" class="zc-input"></lyte-input>
+                </div>
+                <span class="zc-form-hint zc-form-hint-success">Hint Text</span>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+<style>
+    .cdd-section { margin-bottom: 28px; }
+    .cdd-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .cdd-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .cdd-table { width: 100%; border-collapse: collapse; }
+    .cdd-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .cdd-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .cdd-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .cdd-table .cdd-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2 class="card-grid-title">Creatable Dropdown</h2>
+</div>
+
+<!-- DEFAULT -->
+<div class="cdd-section">
+    <div class="cdd-section-title">Default</div>
+    <div class="cdd-section-card">
+        <table class="cdd-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="cdd-row-label">Base</td>
+                    <td>
+                        <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- OPEN / SEARCH ACTIVE -->
+<div class="cdd-section">
+    <div class="cdd-section-title">Open / Search Active</div>
+    <div class="cdd-section-card">
+        <table class="cdd-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="cdd-row-label">With Typed Value</td>
+                    <td>
+                        <div class="zc-creatable-dropdown-demo-open">
+                            <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                        <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- CREATE OPTION -->
+<div class="cdd-section">
+    <div class="cdd-section-title">Create Option</div>
+    <div class="cdd-section-card">
+        <table class="cdd-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="cdd-row-label">With Create Row</td>
+                    <td>
+                        <div class="zc-creatable-dropdown-demo-create">
+                            <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                        <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                            <div class="zc-creatable-dropdown-panel-demo">
+                                <div class="zc-creatable-dropdown-create-row">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Create "<strong>New Item</strong>"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cdd-row-label">No Match + Create</td>
+                    <td>
+                        <div class="zc-creatable-dropdown-demo-create">
+                            <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                            <div class="zc-creatable-dropdown-panel-demo">
+                                <div class="zc-creatable-dropdown-no-match">No matching options</div>
+                                <div class="zc-creatable-dropdown-create-row">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Create "<strong>Custom Value</strong>"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- DISABLED -->
+<div class="cdd-section">
+    <div class="cdd-section-title">Disabled</div>
+    <div class="cdd-section-card">
+        <table class="cdd-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="cdd-row-label">Disabled Empty</td>
+                    <td>
+                        <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" lt-prop-disabled="true" class="zc-dropdown zc-creatable-dropdown">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cdd-row-label">Disabled Filled</td>
+                    <td>
+                        <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" lt-prop-disabled="true" lt-prop-selected="opt1" class="zc-dropdown zc-creatable-dropdown">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

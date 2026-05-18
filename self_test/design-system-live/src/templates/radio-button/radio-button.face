@@ -1,0 +1,72 @@
+{% comment %} Radio Button — Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "radio" %}
+{% assign field_name = field.name | default: "Radio" %}
+{% assign field_label = field.label | default: "Radio" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-radio-field-group" data-element-type="radio-button" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_picklist_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="form-field clearfix{% if field.error %} select2Err validationError{% endif %}">
+    <div class="flLeft tempContDiv zc-{{ field_name }}" type="radio" role="radiogroup" name="parentOf-{{ field_name }}">
+      {% for option in field.options %}
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <span>
+              <input class="customRadio zc_radio" type="radio" name="{{ field_name }}" id="radioEl_zc-{{ field_name }}_{{ forloop.index }}" value="{{ option.value }}">
+              <label for="radioEl_zc-{{ field_name }}_{{ forloop.index }}"></label>
+              <label class="choice-label-text" for="radioEl_zc-{{ field_name }}_{{ forloop.index }}">{{ option.label }}</label>
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+      {% if field.options == nil %}
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <span>
+              <input class="customRadio zc_radio" type="radio" name="{{ field_name }}" id="radioEl_zc-{{ field_name }}_1" value="Choice 1">
+              <label for="radioEl_zc-{{ field_name }}_1"></label>
+              <label class="choice-label-text" for="radioEl_zc-{{ field_name }}_1">Choice 1</label>
+            </span>
+          </div>
+        </div>
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <span>
+              <input class="customRadio zc_radio" type="radio" name="{{ field_name }}" id="radioEl_zc-{{ field_name }}_2" value="Choice 2">
+              <label for="radioEl_zc-{{ field_name }}_2"></label>
+              <label class="choice-label-text" for="radioEl_zc-{{ field_name }}_2">Choice 2</label>
+            </span>
+          </div>
+        </div>
+        <div class="choice-table-row">
+          <div class="choice-table-cell">
+            <span>
+              <input class="customRadio zc_radio" type="radio" name="{{ field_name }}" id="radioEl_zc-{{ field_name }}_3" value="Choice 3">
+              <label for="radioEl_zc-{{ field_name }}_3"></label>
+              <label class="choice-label-text" for="radioEl_zc-{{ field_name }}_3">Choice 3</label>
+            </span>
+          </div>
+        </div>
+      {% endif %}
+      <div class="choice-table-row"></div>
+    </div>
+
+    {% if field.error %}
+      <div class="fieldErrorMsg zc-field-error-msg zc-dem-box-sizing" id="zc-{{ field_name }}-errorMsg">
+        {% block error_icon %}{% endblock %}
+        <span>{{ field.error_message | default: "This field is mandatory. Select a value." }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+</div>

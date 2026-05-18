@@ -1,0 +1,101 @@
+<style>
+    .tst-section { margin-bottom: 28px; }
+    .tst-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .tst-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .tst-table { width: 100%; border-collapse: collapse; }
+    .tst-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .tst-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .tst-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .tst-table .tst-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .tst-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .tst-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2>Toast</h2>
+</div>
+
+<p class="tst-desc">Source: Figma <code>Toast (2255:53185)</code>. Compact single-line notification banner. 4 type variants (Info / Success / Warning / Error). Click &times; to dismiss.</p>
+
+<!-- TYPE VARIANTS -->
+<div class="tst-section">
+    <div class="tst-section-title">Type variants</div>
+    <div class="tst-section-card" class="zc-flex zc-direction-column zc-gap-12" style="align-items:flex-start">
+        <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-info">
+            <template is="registerYield" yield-name="yield">
+                <span class="zc-toast-icon"><i class="fas fa-info-circle"></i></span>
+                <span class="zc-toast-message">Placeholder</span>
+                <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+            </template>
+        </lyte-banner>
+
+        <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-success">
+            <template is="registerYield" yield-name="yield">
+                <span class="zc-toast-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="zc-toast-message">Placeholder</span>
+                <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+            </template>
+        </lyte-banner>
+
+        <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-warning">
+            <template is="registerYield" yield-name="yield">
+                <span class="zc-toast-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                <span class="zc-toast-message">Placeholder</span>
+                <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+            </template>
+        </lyte-banner>
+
+        <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-error">
+            <template is="registerYield" yield-name="yield">
+                <span class="zc-toast-icon"><i class="fas fa-times-circle"></i></span>
+                <span class="zc-toast-message">Placeholder</span>
+                <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+            </template>
+        </lyte-banner>
+    </div>
+</div>
+
+<!-- STACK EXAMPLE -->
+<div class="tst-section">
+    <div class="tst-section-title">Stack example</div>
+    <p style="color: var(--zc-color-huegrey-text-default); font-size: 12px; margin: 0 0 12px;">Multiple toasts stacked vertically — typical pattern in app notifications.</p>
+    <div class="tst-section-card" style="background: var(--zc-color-neutral-surface-neutral-surface-default);">
+        <div class="zc-flex zc-direction-column zc-gap-8" style="max-width:320px; margin-left:auto">
+            <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-success">
+                <template is="registerYield" yield-name="yield">
+                    <span class="zc-toast-icon"><i class="fas fa-check-circle"></i></span>
+                    <span class="zc-toast-message">Profile updated</span>
+                    <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+                </template>
+            </lyte-banner>
+
+            <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-info">
+                <template is="registerYield" yield-name="yield">
+                    <span class="zc-toast-icon"><i class="fas fa-info-circle"></i></span>
+                    <span class="zc-toast-message">3 unread messages</span>
+                    <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+                </template>
+            </lyte-banner>
+
+            <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-warning">
+                <template is="registerYield" yield-name="yield">
+                    <span class="zc-toast-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                    <span class="zc-toast-message">Session expires in 2 minutes</span>
+                    <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+                </template>
+            </lyte-banner>
+
+            <lyte-banner lt-prop-floating="false" lt-prop-show="true" lt-prop-show-close-button="false" lt-prop-class="zc-toast zc-toast-error">
+                <template is="registerYield" yield-name="yield">
+                    <span class="zc-toast-icon"><i class="fas fa-times-circle"></i></span>
+                    <span class="zc-toast-message">Save failed — try again</span>
+                    <button class="zc-toast-close" aria-label="Dismiss"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>
+                </template>
+            </lyte-banner>
+        </div>
+    </div>
+</div>
+
+<script src="../../design-library/components/toast/toast.js"></script>
+<link rel="stylesheet" href="../../design-library/components/toast/toast.css">

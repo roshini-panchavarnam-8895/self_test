@@ -1,0 +1,736 @@
+<style>
+    .dd-section { margin-bottom: 28px; }
+    .dd-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .dd-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .dd-table { width: 100%; border-collapse: collapse; }
+    .dd-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .dd-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .dd-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .dd-table .dd-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .dd-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .dd-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }.dd-overlay-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); margin-bottom: 8px; }
+    .dd-field-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .dd-creatable-grid { display: grid; grid-template-columns: 200px 1fr 1fr; gap: 18px 24px; align-items: start; }
+    .dd-creatable-note { font-size: 12px; color: var(--zc-color-huegrey-text-default); }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2 class="card-grid-title">Dropdown</h2>
+</div>
+
+<p class="dd-desc">Source: Figma <code>Input Dropdown (2149:31431)</code>. The biggest component in the system. Includes trigger field (14 states per Input_Dropdown_Base), creatable dropdown (5251:5963), floating menu (with/without search, with/without CTA, no-results), list rows (5 types x 5 statuses), bottom CTA link, and bottom button.</p>
+
+<!-- TRIGGER FIELD STATES -->
+<div class="dd-section">
+    <div class="dd-section-title">Trigger field states</div>
+    <div class="dd-section-card">
+        <table class="dd-table">
+            <thead><tr><th>State</th><th>Preview</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="dd-row-label">Default</td>
+                    <td>
+                        <lyte-dropdown lt-prop-placeholder="Placeholder">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Hover</td>
+                    <td>
+                        <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown-hover">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Hover On Selected</td>
+                    <td>
+                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" class="zc-dropdown-selected-hover">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Hover With Clear</td>
+                    <td>
+                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-show-deselect-icon="true" class="zc-dropdown-selected-hover">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Active (open)</td>
+                    <td>
+                        <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown-active">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Re-Active (open + selected)</td>
+                    <td>
+                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" class="zc-dropdown-active">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Re-Active With Clear</td>
+                    <td>
+                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-show-deselect-icon="true" class="zc-dropdown-active">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Selected</td>
+                    <td>
+                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Selected with Clear</td>
+                    <td>
+                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-show-deselect-icon="true">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Multi-Selected</td>
+                    <td>
+                        <lyte-multi-dropdown lt-prop-placeholder="Placeholder">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt4">Placeholder</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt5">Placeholder</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-multi-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Disabled</td>
+                    <td>
+                        <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-disabled="true">
+                            <template is="registerYield" yield-name="yield">
+                                <lyte-drop-box><lyte-drop-body>
+                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                </lyte-drop-body></lyte-drop-box>
+                            </template>
+                        </lyte-dropdown>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Disabled After</td>
+                    <td>
+                        <div class="zc-dropdown zc-dropdown-disabled-after">
+                            <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-disabled="true">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Success</td>
+                    <td>
+                        <div class="zc-dropdown zc-dropdown-success">
+                            <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="dd-row-label">Error</td>
+                    <td>
+                        <div class="zc-dropdown zc-dropdown-error">
+                            <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder">
+                                <template is="registerYield" yield-name="yield">
+                                    <lyte-drop-box><lyte-drop-body>
+                                        <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                    </lyte-drop-body></lyte-drop-box>
+                                </template>
+                            </lyte-dropdown>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- LIST ROWS (List_Vertical_Core) -->
+<div class="dd-section">
+    <div class="dd-section-title">List rows (List_Vertical_Core)</div>
+    <div class="dd-section-card">
+        <p style="color: var(--zc-color-huegrey-text-default); font-size: 12px; margin: 0 0 12px;">Hover any row to see hover state.</p>
+        <div class="zc-flex zc-gap-24 zc-row-wrap">
+            <!-- Type: Text -->
+            <div>
+                <div class="dd-overlay-label">Type &middot; Text</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt4" disabled="true">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- Type: Checkbox -->
+            <div>
+                <div class="dd-overlay-label">Type &middot; Checkbox</div>
+                <lyte-multi-dropdown lt-prop-placeholder="Select">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt4" disabled="true">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-multi-dropdown>
+            </div>
+
+            <!-- Type: App Icon -->
+            <div>
+                <div class="dd-overlay-label">Type &middot; App Icon</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1"><span class="zc-dropdown-avatar">A</span> Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2"><span class="zc-dropdown-avatar" style="background: var(--zc-color-semantic-surface-avocado-default);">B</span> Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3"><span class="zc-dropdown-avatar" style="background: var(--zc-color-semantic-surface-cardinal-default);">C</span> Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- Type: Radio -->
+            <div>
+                <div class="dd-overlay-label">Type &middot; Radio</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select" class="zc-dropdown-list-radio">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- Type: Checkable App Icon -->
+            <div>
+                <div class="dd-overlay-label">Type &middot; Checkable App Icon</div>
+                <lyte-multi-dropdown lt-prop-placeholder="Select" class="zc-dropdown-list-checkable-icon">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1"><span class="zc-dropdown-avatar">A</span> Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2"><span class="zc-dropdown-avatar" style="background: var(--zc-color-semantic-surface-avocado-default);">B</span> Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-multi-dropdown>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- OVERLAY VARIANTS -->
+<div class="dd-section">
+    <div class="dd-section-title">Overlay variants</div>
+    <div class="dd-section-card">
+        <div class="zc-flex zc-gap-24 zc-row-wrap">
+            <!-- List: 2 items -->
+            <div>
+                <div class="dd-overlay-label">List &middot; 2 items</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- List: 6 items -->
+            <div>
+                <div class="dd-overlay-label">List &middot; 6 items</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt4">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt5">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt6">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- List: 4 items -->
+            <div>
+                <div class="dd-overlay-label">List &middot; 4 items</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt4">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- List with Search -->
+            <div>
+                <div class="dd-overlay-label">List with Search</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select" lt-prop-search="true">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- List with CTA Link -->
+            <div>
+                <div class="dd-overlay-label">List with CTA Link</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select" class="zc-dropdown zc-dropdown-with-cta">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                        </lyte-drop-body>
+                            <lyte-drop-footer>
+                                <button type="button" class="zc-dropdown-bottom-link"><i class="fas fa-external-link-alt" style="margin-right:6px;font-size:12px"></i>View all options</button>
+                            </lyte-drop-footer>
+                        </lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- Search with CTA Link -->
+            <div>
+                <div class="dd-overlay-label">Search with CTA Link</div>
+                <lyte-dropdown lt-prop-placeholder="Select" lt-prop-search="true" class="zc-dropdown zc-dropdown-with-cta">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body>
+                            <lyte-drop-footer>
+                                <button type="button" class="zc-dropdown-bottom-link">Manage options</button>
+                            </lyte-drop-footer>
+                        </lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- Search with Button -->
+            <div>
+                <div class="dd-overlay-label">Search with Button</div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select" lt-prop-search="true" class="zc-dropdown zc-dropdown-with-button">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+
+            <!-- No results -->
+            <div>
+                <div class="dd-overlay-label">No results</div>
+                <lyte-dropdown lt-prop-placeholder="Select" lt-prop-search="true" class="zc-dropdown zc-dropdown-no-results">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CREATABLE (Input_Creatable_Dropdown_Base) -->
+<div class="dd-section">
+    <div class="dd-section-title">Creatable (Input_Creatable_Dropdown_Base)</div>
+    <p class="dd-desc">Source: <code>Input_Creatable_Dropdown_Base (5251:5963)</code>. Identical states to the regular dropdown -- the only difference is the open menu always shows a <strong>Create</strong> CTA at the bottom so users can add a value that isn't in the list.</p>
+    <div class="dd-section-card">
+        <div class="dd-creatable-grid">
+
+            <div class="dd-row-label" style="padding-top: 8px;">Hover</div>
+            <div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-creatable-dropdown zc-dropdown-hover">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+            <div class="dd-creatable-note">Same hover border as standard dropdown.</div>
+
+            <div class="dd-row-label" style="padding-top: 8px;">Disabled</div>
+            <div>
+                <div class="zc-creatable-dropdown zc-creatable-dropdown-disabled">
+                    <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-dropdown zc-creatable-dropdown">
+                        <template is="registerYield" yield-name="yield">
+                            <lyte-drop-box><lyte-drop-body>
+                                <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                            </lyte-drop-body></lyte-drop-box>
+                        </template>
+                    </lyte-dropdown>
+                </div>
+            </div>
+            <div class="dd-creatable-note">Disabled before selection.</div>
+
+            <div class="dd-row-label" style="padding-top: 8px;">Disabled After</div>
+            <div>
+                <div class="zc-dropdown zc-dropdown-disabled-after zc-creatable-dropdown">
+                    <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-disabled="true" class="zc-dropdown zc-creatable-dropdown">
+                        <template is="registerYield" yield-name="yield">
+                            <lyte-drop-box><lyte-drop-body>
+                                <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            </lyte-drop-body></lyte-drop-box>
+                        </template>
+                    </lyte-dropdown>
+                </div>
+            </div>
+            <div class="dd-creatable-note">Disabled after a value exists.</div>
+
+            <div class="dd-row-label" style="padding-top: 8px;">Multi-Selected</div>
+            <div>
+                <lyte-multi-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-creatable-dropdown">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt4">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-multi-dropdown>
+            </div>
+            <div class="dd-creatable-note">Summarized selection label (+N more).</div>
+
+            <div class="dd-row-label" style="padding-top: 8px;">Full field (label + hint)</div>
+            <div>
+                <div class="zc-dropdown zc-creatable-dropdown">
+                    <div class="zc-flex zc-align-items-center zc-gap-6">
+                        <label class="zc-dropdown-label">Label</label>
+                        <span class="zc-form-field-optional">(Optional)</span>
+                    </div>
+                    <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown">
+                        <template is="registerYield" yield-name="yield">
+                            <lyte-drop-box><lyte-drop-body>
+                                <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                            </lyte-drop-body></lyte-drop-box>
+                        </template>
+                    </lyte-dropdown>
+                    <span class="zc-dropdown-hint">Hint Text</span>
+                </div>
+            </div>
+            <div class="dd-creatable-note">Matches Input_Creatable_Dropdown_Base composition.</div>
+
+                        <div class="dd-row-label" style="padding-top: 8px;">Closed (Default)</div>
+            <div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder" class="zc-dropdown zc-creatable-dropdown">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+            <div class="dd-creatable-note">Same as regular dropdown trigger.</div>
+
+            <div class="dd-row-label" style="padding-top: 8px;">Open (Active) with Create CTA</div>
+            <div>
+                <div class="zc-creatable-dropdown-demo-open">
+                    <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus">
+                        <template is="registerYield" yield-name="yield">
+                            <lyte-drop-box><lyte-drop-body>
+                                <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            </lyte-drop-body></lyte-drop-box>
+                        </template>
+                    </lyte-dropdown>
+                    <div class="zc-creatable-dropdown-panel-demo">
+                        <div class="zc-creatable-dropdown-create-row">
+                            <i class="fas fa-plus"></i>
+                            <span>Create "<strong>--Input variable--</strong>"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dd-creatable-note">Active state shows blue focus ring on trigger and the Create CTA below the list.</div>
+
+            <div class="dd-row-label" style="padding-top: 8px;">Selected with Clear</div>
+            <div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-show-deselect-icon="true" class="zc-dropdown zc-creatable-dropdown">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+            </div>
+            <div class="dd-creatable-note">Once a value is created/selected, behaves identically to a regular selected dropdown.</div>
+
+            <div class="dd-row-label" style="padding-top: 8px;">Error &middot; Success</div>
+            <div class="zc-flex zc-direction-column zc-gap-8">
+                <div class="zc-dropdown zc-dropdown-error zc-creatable-dropdown">
+                    <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-show-deselect-icon="true">
+                        <template is="registerYield" yield-name="yield">
+                            <lyte-drop-box><lyte-drop-body>
+                                <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                            </lyte-drop-body></lyte-drop-box>
+                        </template>
+                    </lyte-dropdown>
+                </div>
+                <div class="zc-dropdown zc-dropdown-success zc-creatable-dropdown">
+                    <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder">
+                        <template is="registerYield" yield-name="yield">
+                            <lyte-drop-box><lyte-drop-body>
+                                <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                                <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                            </lyte-drop-body></lyte-drop-box>
+                        </template>
+                    </lyte-dropdown>
+                </div>
+            </div>
+            <div class="dd-creatable-note">Validation states share the same red/green border treatment as the regular dropdown.</div>
+        </div>
+    </div>
+</div>
+
+<!-- FULL FIELD (Input_Dropdown_Base) -->
+<div class="dd-section">
+    <div class="dd-section-title">Full field (Input_Dropdown_Base)</div>
+    <div class="dd-section-card">
+        <div class="dd-field-grid">
+            <!-- Default -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Active -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" class="zc-dropdown-active">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Selected with Clear -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-show-deselect-icon="true">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Disabled -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Placeholder" lt-prop-disabled="true">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Disabled After -->
+            <div class="zc-dropdown zc-dropdown-disabled-after">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder" lt-prop-disabled="true">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+                        <!-- Multi-Selected -->
+            <div class="zc-dropdown">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-multi-dropdown lt-prop-placeholder="Placeholder">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt3">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt4">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt5">Placeholder</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-multi-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+
+            <!-- Error -->
+            <div class="zc-dropdown zc-dropdown-error">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint zc-dropdown-hint-error">Hint Text</span>
+            </div>
+
+            <!-- Success -->
+            <div class="zc-dropdown zc-dropdown-success">
+                <div class="zc-flex zc-align-items-center zc-gap-6">
+                    <label class="zc-dropdown-label">Label</label>
+                    <span class="zc-form-field-optional">(Optional)</span>
+                </div>
+                <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Placeholder">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-box><lyte-drop-body>
+                            <lyte-drop-item data-value="opt1">Placeholder</lyte-drop-item>
+                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                        </lyte-drop-body></lyte-drop-box>
+                    </template>
+                </lyte-dropdown>
+                <span class="zc-dropdown-hint">Hint Text</span>
+            </div>
+        </div>
+    </div>
+</div>

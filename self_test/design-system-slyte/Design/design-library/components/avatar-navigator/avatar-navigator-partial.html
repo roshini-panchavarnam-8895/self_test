@@ -1,0 +1,426 @@
+<style>
+    .an-section { margin-bottom: 28px; }
+    .an-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .an-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .an-table { width: 100%; border-collapse: collapse; }
+    .an-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .an-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .an-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .an-table .an-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }</style>
+
+<div class="card-grid-header">
+    <button class="back-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h1 class="card-grid-title">Avatar</h1>
+</div>
+
+<!-- IMAGE AVATAR -->
+<div class="an-section">
+    <div class="an-section-title">Image Avatar</div>
+    <div class="an-section-card">
+        <table class="an-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Circle</th>
+                    <th>Shapes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="an-row-label">XL (48px)</td>
+                    <td>
+                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                    </td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">L (40px)</td>
+                    <td>
+                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">M (32px)</td>
+                    <td>
+                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">S (24px)</td>
+                    <td>
+                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- INITIALS AVATAR -->
+<div class="an-section">
+    <div class="an-section-title">Initials Avatar</div>
+    <div class="an-section-card">
+        <table class="an-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="an-row-label">XL (48px)</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">L (40px)</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">M (32px)</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">S (24px)</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 20px;">
+            <div class="an-section-title">Initials - All Shapes</div>
+            <table class="an-table">
+                <thead>
+                    <tr>
+                        <th>Shape</th>
+                        <th>XL</th>
+                        <th>L</th>
+                        <th>M</th>
+                        <th>S</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="an-row-label">Square</td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div></td>
+                    </tr>
+                    <tr>
+                        <td class="an-row-label">Rounded</td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div></td>
+                    </tr>
+                    <tr>
+                        <td class="an-row-label">Circle</td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div></td>
+                        <td><div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- SIZES COMPARISON -->
+<div class="an-section">
+    <div class="an-section-title">Sizes Comparison</div>
+    <div class="an-section-card">
+        <table class="an-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="an-row-label">Image</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-end">
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">L</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">M</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">S</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Initials</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-end">
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">L</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">M</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                                <div style="font-size:11px;color:#6B6D74;margin-top:6px">S</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- SHAPES -->
+<div class="an-section">
+    <div class="an-section-title">Shapes</div>
+    <div class="an-section-card">
+        <table class="an-table">
+            <thead>
+                <tr>
+                    <th>Shape</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="an-row-label">Square (4px)</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-end">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-square"><span class="zc-nav-avatar-initials">JD</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Rounded (8px)</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-end">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-rounded" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-rounded" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-rounded"><span class="zc-nav-avatar-initials">ZC</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Circle (50%)</td>
+                    <td>
+                        <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-end">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- STATUS -->
+<div class="an-section">
+    <div class="an-section-title">Status Badge</div>
+    <div class="an-section-card">
+        <table class="an-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="an-row-label">Online</td>
+                    <td>
+                        <div class="zc-nav-avatar-wrapper">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <span class="zc-badge" style="width:12px;height:12px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Offline</td>
+                    <td>
+                        <div class="zc-nav-avatar-wrapper">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                            <span class="zc-badge" style="width:12px;height:12px;background:#9CA0AB;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Busy</td>
+                    <td>
+                        <div class="zc-nav-avatar-wrapper">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <span class="zc-badge" style="width:12px;height:12px;background:#EF4444;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Away</td>
+                    <td>
+                        <div class="zc-nav-avatar-wrapper">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                            <span class="zc-badge" style="width:12px;height:12px;background:#F59E0B;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 20px;">
+            <div class="an-section-title">Status Badge - Size Variants</div>
+            <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap" style="align-items:flex-end; gap:20px;">
+                <div style="text-align:center">
+                    <div class="zc-nav-avatar-wrapper">
+                        <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                        <span class="zc-badge" style="width:12px;height:12px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                    </div>
+                    <div style="font-size:11px;color:#6B6D74;margin-top:6px">XL</div>
+                </div>
+                <div style="text-align:center">
+                    <div class="zc-nav-avatar-wrapper">
+                        <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                        <span class="zc-badge" style="width:10px;height:10px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                    </div>
+                    <div style="font-size:11px;color:#6B6D74;margin-top:6px">L</div>
+                </div>
+                <div style="text-align:center">
+                    <div class="zc-nav-avatar-wrapper">
+                        <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                        <span class="zc-badge" style="width:8px;height:8px;background:#22C55E;position:absolute;bottom:0;right:0;border:2px solid #fff;border-radius:50%"></span>
+                    </div>
+                    <div style="font-size:11px;color:#6B6D74;margin-top:6px">M</div>
+                </div>
+                <div style="text-align:center">
+                    <div class="zc-nav-avatar-wrapper">
+                        <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                        <span class="zc-badge" style="width:7px;height:7px;background:#22C55E;position:absolute;bottom:0;right:0;border:1.5px solid #fff;border-radius:50%"></span>
+                    </div>
+                    <div style="font-size:11px;color:#6B6D74;margin-top:6px">S</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- GROUP -->
+<div class="an-section">
+    <div class="an-section-title">Avatar Group</div>
+    <div class="an-section-card">
+        <table class="an-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="an-row-label">Default (M)</td>
+                    <td>
+                        <div class="zc-nav-avatar-group">
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:14px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-md zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                            <div class="zc-nav-avatar-group-count">+5</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Large (L)</td>
+                    <td>
+                        <div class="zc-nav-avatar-group">
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><i class="fas fa-user" style="color:#fff;font-size:18px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-lg zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar-group-count" style="width:40px;height:40px;font-size:13px">+3</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Extra Large (XL)</td>
+                    <td>
+                        <div class="zc-nav-avatar-group">
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><i class="fas fa-user" style="color:#fff;font-size:22px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">ZC</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-xl zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">AB</span></div>
+                            <div class="zc-nav-avatar-group-count" style="width:48px;height:48px;font-size:14px">+8</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="an-row-label">Small (S)</td>
+                    <td>
+                        <div class="zc-nav-avatar-group">
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle"><span class="zc-nav-avatar-initials">JD</span></div>
+                            <div class="zc-nav-avatar zc-nav-avatar-sm zc-nav-avatar-circle" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><i class="fas fa-user" style="color:#fff;font-size:12px"></i></div>
+                            <div class="zc-nav-avatar-group-count" style="width:24px;height:24px;font-size:10px">+2</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+@use '../common' as c;
+@include c.all();
+
+.zc-percent-field {
+  position: relative;
+}
+
+.zc-percent-symbol {
+  position: absolute;
+  right: calc(100% - var(--zc-input-width));
+  top: 0;
+  line-height: 36px;
+  color: var(--zc-color-icon);
+  font-family: var(--zc-font-family);
+  font-size: var(--zc-font-size);
+  font-weight: 400;
+  pointer-events: none;
+}
+
+.zc-percent-field input.form-control {
+  padding-right: 28px;
+}
+
+.zc-numberfield {
+  font-variant-numeric: tabular-nums;
+}

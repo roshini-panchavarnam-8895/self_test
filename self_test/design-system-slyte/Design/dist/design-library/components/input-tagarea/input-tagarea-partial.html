@@ -1,0 +1,101 @@
+<style>
+    .ita-section { margin-bottom: 28px; }
+    .ita-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .ita-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .ita-table { width: 100%; border-collapse: collapse; }
+    .ita-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .ita-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .ita-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .ita-table .ita-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .ita-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .ita-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2>Tag-input field (multi-select)</h2>
+</div>
+
+<p class="ita-desc">Composes <code>lyte-dropdown</code> + <code>zc-tag</code> chips inside the trigger. The chips replace the multi-select pill markup we had earlier.</p>
+
+<!-- TAG-INPUT FIELD (MULTI-SELECT) -->
+<div class="ita-section">
+    <div class="ita-section-title">Tag-input field (multi-select)</div>
+    <div class="ita-section-card" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:24px;">
+
+        <!-- Default with tags -->
+        <div>
+            <label class="zc-field-label">Label <span style="color: var(--zc-color-huegrey-text-default); font-weight: 400;">(Optional)</span></label>
+            <div class="zc-tagarea">
+                <div class="zc-tagarea-tags">
+                    <span class="zc-tag zc-tag-neutral zc-tag-sm zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                    <span class="zc-tag zc-tag-neutral zc-tag-sm zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                    <span class="zc-tag zc-tag-neutral zc-tag-sm">+3</span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Select tags..." class="zc-dropdown zc-tagarea-dropdown">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-item>Design</lyte-drop-item>
+                        <lyte-drop-item>Development</lyte-drop-item>
+                        <lyte-drop-item>Marketing</lyte-drop-item>
+                    </template>
+                </lyte-dropdown>
+            </div>
+            <span class="zc-field-hint">Hint Text</span>
+        </div>
+
+        <!-- Active with avatar tags -->
+        <div>
+            <label class="zc-field-label">Label <span style="color: var(--zc-color-huegrey-text-default); font-weight: 400;">(Optional)</span></label>
+            <div class="zc-tagarea zc-tagarea-active">
+                <div class="zc-tagarea-tags">
+                    <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"><i class="fas fa-user-circle zc-tag-icon"></i>Alice<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                    <span class="zc-tag zc-tag-primary zc-tag-sm zc-tag-removable"><i class="fas fa-user-circle zc-tag-icon"></i>Bob<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Select tags..." class="zc-dropdown zc-tagarea-dropdown">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-item>Carol</lyte-drop-item>
+                        <lyte-drop-item>Dave</lyte-drop-item>
+                    </template>
+                </lyte-dropdown>
+            </div>
+            <span class="zc-field-hint">Hint Text</span>
+        </div>
+
+        <!-- Error state -->
+        <div>
+            <label class="zc-field-label">Label <span style="color: var(--zc-color-huegrey-text-default); font-weight: 400;">(Optional)</span></label>
+            <div class="zc-tagarea zc-tagarea-error">
+                <div class="zc-tagarea-tags">
+                    <span class="zc-tag zc-tag-error zc-tag-sm zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                    <span class="zc-tag zc-tag-error zc-tag-sm zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Select tags..." class="zc-dropdown zc-tagarea-dropdown">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-item>Design</lyte-drop-item>
+                        <lyte-drop-item>Development</lyte-drop-item>
+                    </template>
+                </lyte-dropdown>
+            </div>
+            <span class="zc-field-hint">Hint Text</span>
+        </div>
+
+        <!-- Success state -->
+        <div>
+            <label class="zc-field-label">Label <span style="color: var(--zc-color-huegrey-text-default); font-weight: 400;">(Optional)</span></label>
+            <div class="zc-tagarea zc-tagarea-success">
+                <div class="zc-tagarea-tags">
+                    <span class="zc-tag zc-tag-success zc-tag-sm zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                    <span class="zc-tag zc-tag-success zc-tag-sm zc-tag-removable">Tag<button class="zc-tag-close"><i class="fas fa-times"></i></button></span>
+                </div>
+                <lyte-dropdown lt-prop-placeholder="Select tags..." class="zc-dropdown zc-tagarea-dropdown">
+                    <template is="registerYield" yield-name="yield">
+                        <lyte-drop-item>Design</lyte-drop-item>
+                        <lyte-drop-item>Development</lyte-drop-item>
+                    </template>
+                </lyte-dropdown>
+            </div>
+            <span class="zc-field-hint">Hint Text</span>
+        </div>
+
+    </div>
+</div>

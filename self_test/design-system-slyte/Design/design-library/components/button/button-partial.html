@@ -1,0 +1,340 @@
+                    <style>
+                        .btn-section { margin-bottom: 28px; }
+                        .btn-section-title {
+                            font-size: 14px;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            letter-spacing: 0.04em;
+                            color: var(--zc-color-huegrey-text-default);
+                            margin-bottom: 12px;
+                        }
+                        .btn-section-card {
+                            background: var(--zc-color-black-white-surface-white-surface);
+                            border: 1px solid var(--zc-color-huegrey-border-minimal);
+                            border-radius: var(--zc-radius-rl);
+                            padding: 24px;
+                            box-shadow: var(--zc-elevation-subtle-default);
+                        }
+                        .btn-table { width: 100%; border-collapse: collapse; }
+                        .btn-table th {
+                            text-align: left;
+                            font-size: 12px;
+                            font-weight: 600;
+                            color: var(--zc-color-huegrey-text-default);
+                            padding: 0 12px 12px 0;
+                            white-space: nowrap;
+                        }
+                        .btn-table td {
+                            padding: 10px 12px 10px 0;
+                            vertical-align: middle;
+                        }
+                        .btn-table tr + tr td {
+                            border-top: 1px solid var(--zc-color-huegrey-border-minimal);
+                        }
+                        .btn-table .btn-row-label {
+                            font-size: 13px;
+                            font-weight: var(--zc-font-weight-semibold);
+                            color: var(--zc-color-huegrey-text-dark);
+                            white-space: nowrap;
+                            min-width: 110px;
+                        }
+                        .btn-note {
+                            font-size: 12px;
+                            color: var(--zc-color-huegrey-text-default);
+                            margin-bottom: 12px;
+                        }
+                        .btn-hover-forced lyte-button button { pointer-events: none; }
+                    </style>
+
+                    <div class="card-grid-header">
+                        <div class="card-grid-header-left">
+                            <button class="card-grid-back" onclick="closeComponentDetail()" title="Back to components"><i class="fas fa-arrow-left"></i></button>
+                            <h2 class="card-grid-title">Primary Button</h2>
+                        </div>
+                    </div>
+
+                    <!-- ===== SIZES (STYLE = FILL) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Sizes (Style = Fill)</div>
+                        <div class="btn-section-card">
+                            <table class="btn-table">
+                                <tbody>
+                                    <tr>
+                                        <td class="btn-row-label">Extra Small · 26</td>
+                                        <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-xs zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-xs"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Small · 32</td>
+                                        <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-sm zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-sm"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Base ★ · 36</td>
+                                        <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Large · 40</td>
+                                        <td><div class="zc-flex zc-align-items-center zc-gap-12">
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-lg zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            <lyte-button class="zc-btn zc-btn-fill zc-btn-lg"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+                                        </div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ===== STYLES (SIZE = BASE) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Styles (Size = Base)</div>
+                        <div class="btn-section-card">
+                            <table class="btn-table">
+                                <thead>
+                                    <tr><th>Style</th><th>Default</th><th>Hover (forced)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="btn-row-label">Fill</td>
+                                        <td><lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                        <td class="btn-hover-forced"><lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-hover zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Border</td>
+                                        <td><lyte-button class="zc-btn zc-btn-border zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                        <td class="btn-hover-forced"><lyte-button class="zc-btn zc-btn-border zc-btn-md zc-btn-hover zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Minimal Border</td>
+                                        <td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                        <td class="btn-hover-forced"><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md zc-btn-hover zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Minimal Fill</td>
+                                        <td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                        <td class="btn-hover-forced"><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md zc-btn-hover zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Link</td>
+                                        <td><lyte-button class="zc-btn zc-btn-link zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                        <td class="btn-hover-forced"><lyte-button class="zc-btn zc-btn-link zc-btn-md zc-btn-hover zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <!-- ===== ICON BUTTON (Figma Primary_Icon_Button 2132:26841) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Icon Button</div>
+                        <p class="btn-note">Square icon-only button — Figma Primary_Icon_Button. Sizes XS–LG across Fill, Border, Minimal Border, Minimal Fill, and Link.</p>
+                        <div class="btn-section-card">
+                            <table class="btn-table">
+                                <thead><tr><th>Size</th><th>Fill</th><th>Border</th><th>Minimal Border</th><th>Minimal Fill</th><th>Link</th></tr></thead>
+                                <tbody><tr><td class="btn-row-label">Extra Small · 26</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-link zc-btn-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr>
+<tr><td class="btn-row-label">Small · 32</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-link zc-btn-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr>
+<tr><td class="btn-row-label">Base ★ · 36</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-link zc-btn-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr>
+<tr><td class="btn-row-label">Large · 40</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-link zc-btn-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ===== DUO ICON BUTTON (Figma Primary_Duo_Icon_Button 2132:27360) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Duo Icon Button</div>
+                        <p class="btn-note">Two icons, no label — use <code>zc-btn-duo-icon-only</code> (72px at Base). For label + icons use <code>zc-btn-duo-icon</code> in sections above.</p>
+                        <div class="btn-section-card">
+                            <table class="btn-table">
+                                <thead><tr><th>Size</th><th>Fill</th><th>Border</th><th>Minimal Border</th><th>Minimal Fill</th></tr></thead>
+                                <tbody><tr><td class="btn-row-label">Extra Small · 26</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-duo-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-duo-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-duo-icon-only zc-btn-xs"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr>
+<tr><td class="btn-row-label">Small · 32</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-duo-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-duo-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-duo-icon-only zc-btn-sm"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr>
+<tr><td class="btn-row-label">Base ★ · 36</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-duo-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-duo-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-duo-icon-only zc-btn-md"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr>
+<tr><td class="btn-row-label">Large · 40</td><td><lyte-button class="zc-btn zc-btn-fill zc-btn-duo-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-border zc-btn-duo-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-duo-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td><td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-duo-icon-only zc-btn-lg"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button></td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ===== SPLIT BUTTON (Figma Primary_Split_Button 2132:27035) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Split Button</div>
+                        <p class="btn-note">Primary action + chevron menu trigger — wrap with <code>zc-btn-split</code>, <code>zc-btn-split-action</code>, and <code>zc-btn-split-trigger</code>.</p>
+                        <div class="btn-section-card">
+                            <table class="btn-table">
+                                <thead><tr><th>Size</th><th>Fill</th><th>Border</th><th>Minimal Border</th><th>Minimal Fill</th></tr></thead>
+                                <tbody><tr><td class="btn-row-label">Extra Small · 26</td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-fill zc-btn-xs zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-fill zc-btn-xs zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-border zc-btn-xs zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-border zc-btn-xs zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-xs zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-xs zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-xs zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-xs zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td></tr>
+<tr><td class="btn-row-label">Small · 32</td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-fill zc-btn-sm zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-fill zc-btn-sm zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-border zc-btn-sm zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-border zc-btn-sm zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-sm zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-sm zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-sm zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-sm zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td></tr>
+<tr><td class="btn-row-label">Base ★ · 36</td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-border zc-btn-md zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-border zc-btn-md zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td></tr>
+<tr><td class="btn-row-label">Large · 40</td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-fill zc-btn-lg zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-fill zc-btn-lg zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-border zc-btn-lg zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-border zc-btn-lg zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-lg zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-border zc-btn-lg zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td><td><div class="zc-btn-split"><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-lg zc-btn-split-action zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Split Button</template></lyte-button><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-lg zc-btn-split-trigger"><template is="registerYield" yield-name="text"><span class="zc-btn-icon"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.25l4 3.5 4-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></template></lyte-button></div></td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ===== PRIMARY DUO BUTTON ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Primary Duo Button</div>
+                        <p class="btn-note">Paired Primary + HueGrey actions (Figma Primary_Duo_Button). 10px gap between buttons; 8px icon spacing inside each Base button.</p>
+                        <div class="btn-section-card">
+                            <table class="btn-table">
+                                <thead>
+                                    <tr><th>Style</th><th>Pairing</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="btn-row-label">Fill</td>
+                                        <td>
+                                            <div class="zc-flex zc-align-items-center zc-gap-10">
+                                                <lyte-button class="zc-btn zc-btn-fill zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                                <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Border</td>
+                                        <td>
+                                            <div class="zc-flex zc-align-items-center zc-gap-10">
+                                                <lyte-button class="zc-btn zc-btn-border zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                                <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Minimal Fill</td>
+                                        <td>
+                                            <div class="zc-flex zc-align-items-center zc-gap-10">
+                                                <lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                                <lyte-button class="zc-btn zc-btn-huegrey zc-btn-link zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Link</td>
+                                        <td>
+                                            <div class="zc-flex zc-align-items-center zc-gap-10">
+                                                <lyte-button class="zc-btn zc-btn-link zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                                <lyte-button class="zc-btn zc-btn-huegrey zc-btn-link zc-btn-md zc-btn-duo-icon"><template is="registerYield" yield-name="text"><span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span>Button<span class="zc-btn-icon zc-inline-flex zc-align-items-center zc-justify-center zc-no-shrink"><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/></svg></span></template></lyte-button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ===== HYPERLINK (EXTRA SMALL ONLY) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Hyperlink (Extra Small Only)</div>
+                        <div class="btn-section-card">
+                            <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                                <lyte-button class="zc-btn zc-btn-hyperlink"><template is="registerYield" yield-name="text">Hyperlink</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-hyperlink zc-btn-hover"><template is="registerYield" yield-name="text">Hyperlink (hover)</template></lyte-button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== COLOR FAMILIES (SIZE = BASE) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Color Families (Size = Base, Style = Fill / Border / Minimal Fill / Link)</div>
+                        <p class="btn-note">Hover any button to see its hover state.</p>
+                        <div class="btn-section-card">
+                            <table class="btn-table">
+                                <thead>
+                                    <tr><th>Color</th><th>Fill</th><th>Border</th><th>Minimal Fill</th><th>Link</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="btn-row-label">Primary</td>
+                                        <td><lyte-button class="zc-btn zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Secondary</td>
+                                        <td><lyte-button class="zc-btn zc-btn-secondary zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-secondary zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-secondary zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-secondary zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Success</td>
+                                        <td><lyte-button class="zc-btn zc-btn-success zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-success zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-success zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-success zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Info</td>
+                                        <td><lyte-button class="zc-btn zc-btn-info zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-info zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-info zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-info zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Warning</td>
+                                        <td><lyte-button class="zc-btn zc-btn-warning zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-warning zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-warning zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-warning zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Error</td>
+                                        <td><lyte-button class="zc-btn zc-btn-error zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-error zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-error zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-error zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">HueGrey</td>
+                                        <td><lyte-button class="zc-btn zc-btn-huegrey zc-btn-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-huegrey zc-btn-border zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-fill zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-huegrey zc-btn-link zc-btn-md"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="btn-row-label">Neutral</td>
+                                        <td><lyte-button class="zc-btn zc-btn-neutral zc-btn-fill zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-neutral zc-btn-border zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-neutral zc-btn-minimal-fill zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                        <td><lyte-button class="zc-btn zc-btn-neutral zc-btn-link zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ===== COLOR FAMILIES · MINIMAL BORDER ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Color Families · Minimal Border</div>
+                        <div class="btn-section-card">
+                            <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                                <lyte-button class="zc-btn zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Primary</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-secondary zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Secondary</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-success zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Success</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-info zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Info</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-warning zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Warning</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-error zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">Error</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-huegrey zc-btn-minimal-border zc-btn-md"><template is="registerYield" yield-name="text">HueGrey</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-neutral zc-btn-minimal-border zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Neutral</template></lyte-button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== DISABLED (UTILITY) ===== -->
+                    <div class="btn-section">
+                        <div class="btn-section-title">Disabled (Utility)</div>
+                        <div class="btn-section-card">
+                            <div class="zc-flex zc-align-items-center zc-gap-16 zc-row-wrap">
+                                <lyte-button class="zc-btn zc-btn-fill zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+                                <lyte-button class="zc-btn zc-btn-border zc-btn-md" lt-prop-disabled="true"><template is="registerYield" yield-name="text">Button</template></lyte-button>
+                                <span style="font-size: 12px; color: var(--zc-color-huegrey-text-default);">Disabled state isn't a Figma variant — added as a utility.</span>
+                            </div>
+                        </div>
+                    </div>

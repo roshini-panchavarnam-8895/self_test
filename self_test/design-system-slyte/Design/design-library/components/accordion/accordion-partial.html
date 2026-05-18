@@ -1,0 +1,31 @@
+<div class="detail-header"><div class="detail-icon"><i class="fas fa-bars"></i></div><div class="detail-info"><h1 class="detail-title">Accordion</h1><p class="detail-description">Expandable panels to show and hide content sections.</p><div class="detail-meta"><span class="meta-tag"><i class="fas fa-folder"></i> Basic</span><span class="meta-tag"><i class="fas fa-code-branch"></i> v2.0.0</span></div></div></div>
+                    <div class="variants-container">
+                        <div class="variant-card" data-variant="accordion-default"><div class="variant-header"><div class="variant-title"><span class="variant-name">Default Accordion</span></div><button class="variant-code-toggle" onclick="toggleVariantCode(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                            <div class="variant-preview">
+                                <lyte-accordion>
+                                    <template is="registerYield" yield-name="yield">
+                                        <lyte-accordion-item>
+                                            <lyte-accordion-header><span>Section 1</span></lyte-accordion-header>
+                                            <lyte-accordion-body><p style="padding:12px">Content for section 1. This is an expandable panel.</p></lyte-accordion-body>
+                                        </lyte-accordion-item>
+                                        <lyte-accordion-item>
+                                            <lyte-accordion-header><span>Section 2</span></lyte-accordion-header>
+                                            <lyte-accordion-body><p style="padding:12px">Content for section 2. Click to expand or collapse.</p></lyte-accordion-body>
+                                        </lyte-accordion-item>
+                                        <lyte-accordion-item>
+                                            <lyte-accordion-header><span>Section 3</span></lyte-accordion-header>
+                                            <lyte-accordion-body><p style="padding:12px">Content for section 3.</p></lyte-accordion-body>
+                                        </lyte-accordion-item>
+                                    </template>
+                                </lyte-accordion>
+                            </div>
+                            <div class="variant-code"><div class="code-block-mini"><div class="code-header"><span>HTML</span><button class="copy-mini-btn" onclick="copyVariantCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-accordion&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-accordion-item&gt;
+      &lt;lyte-accordion-header&gt;Section 1&lt;/lyte-accordion-header&gt;
+      &lt;lyte-accordion-body&gt;Content&lt;/lyte-accordion-body&gt;
+    &lt;/lyte-accordion-item&gt;
+  &lt;/template&gt;
+&lt;/lyte-accordion&gt;</code></pre></div></div>
+                        </div>
+                    </div>

@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zoho Creator — Flex Form Structure Demo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root {
+    --canvas-bg:#f4f5f7;--canvas-font:'DM Sans',sans-serif;--mono-font:'JetBrains Mono',monospace;
+    --header-bg:#fff;--header-border:#e2e4e9;--header-title:#1a1c20;
+    --form-bg:#fff;--form-border:#e2e4e9;--form-radius:10px;
+    --section-title:#1a1c20;--section-line:#e2e4e9;--section-desc:#6b7280;
+    --label-color:#374151;--input-bg:#fff;--input-border:#d1d5db;
+    --input-focus:#3b82f6;--input-text:#1a1c20;--input-placeholder:#9ca3af;--input-radius:6px;--sublabel-color:#9ca3af;
+    --footer-bg:#fff;--footer-border:#e2e4e9;
+    --btn-primary-bg:#2563eb;--btn-primary-hover:#1d4ed8;--btn-primary-text:#fff;
+    --btn-secondary-bg:#f3f4f6;--btn-secondary-hover:#e5e7eb;--btn-secondary-text:#374151;
+    --anno-canvas:#6366f1;--anno-form:#2563eb;--anno-section:#0891b2;
+    --anno-row:#059669;--anno-cell:#d97706;--anno-field:#dc2626;
+    --anno-label:#8b5cf6;--anno-formfield:#ec4899;
+    --column-gap:0px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:var(--canvas-font);background:var(--canvas-bg);color:var(--input-text);min-height:100vh;display:flex;flex-direction:row;}
+  .main-content{flex:1;min-width:0;padding:32px;overflow-y:auto}
+
+  /* ═══ Properties Sidebar ═══ */
+  .props-sidebar{width:300px;flex-shrink:0;background:#fff;border-left:1px solid var(--form-border);overflow-y:auto;height:100vh;position:sticky;top:0}
+  .props-header{padding:16px 20px;border-bottom:1px solid var(--form-border);background:#fafbfc}
+  .props-header h2{font-size:14px;font-weight:600;color:var(--header-title);letter-spacing:-.2px}
+  .props-header p{font-size:11px;color:var(--section-desc);margin-top:2px}
+  .prop-section{padding:16px 20px;border-bottom:1px solid var(--form-border)}
+  .prop-section-title{font-size:12px;font-weight:600;color:var(--header-title);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .prop-section-title .prop-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .prop-section-title .prop-element{font-family:var(--mono-font);font-size:11px;font-weight:500;color:var(--section-desc);margin-left:auto}
+  .prop-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .prop-row:last-child{margin-bottom:0}
+  .prop-radio-label{display:flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;font-weight:500;color:var(--label-color);min-width:32px}
+  .prop-radio-label input[type="radio"]{margin:0;accent-color:var(--btn-primary-bg);cursor:pointer}
+  .prop-input{font-family:var(--mono-font);font-size:12px;width:64px;padding:5px 8px;border:1px solid var(--input-border);border-radius:5px;background:var(--input-bg);color:var(--input-text);outline:none;transition:border-color .15s}
+  .prop-input:focus{border-color:var(--input-focus)}
+  .prop-input:disabled{opacity:.4;cursor:not-allowed;background:#f9fafb}
+  .prop-unit{font-family:var(--mono-font);font-size:10px;color:var(--section-desc);min-width:16px}
+  .prop-reset{font-family:var(--canvas-font);font-size:10px;padding:3px 8px;border:1px solid var(--input-border);border-radius:4px;background:transparent;color:var(--section-desc);cursor:pointer;transition:all .15s;margin-left:auto}
+  .prop-reset:hover{background:var(--btn-secondary-bg);color:var(--label-color)}
+  .prop-note{font-size:10px;color:var(--section-desc);font-style:italic;margin-top:6px;line-height:1.4}
+  .prop-divider{height:1px;background:var(--form-border);margin:8px 0}
+  .prop-applied{font-family:var(--mono-font);font-size:10px;color:#059669;margin-top:4px;display:none}
+  .prop-applied.visible{display:block}
+
+  /* Sidebar tabs */
+  .props-tabs{display:flex;gap:0;margin-top:10px;border-bottom:1px solid var(--form-border);margin:-1px -20px 0}
+  .props-tab{font-family:var(--canvas-font);font-size:12px;font-weight:500;padding:8px 16px;border:none;background:transparent;color:var(--section-desc);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;flex:1;text-align:center}
+  .props-tab.active{color:var(--btn-primary-bg);border-bottom-color:var(--btn-primary-bg)}
+  .props-tab:not(.active):hover{color:var(--label-color);background:#f9fafb}
+  .props-tab-panel{display:none}.props-tab-panel.active{display:block}
+
+  /* Selected field panel */
+  .sel-empty{padding:40px 20px;text-align:center}
+  .sel-empty-icon{font-size:32px;color:var(--input-border);margin-bottom:8px}
+  .sel-empty p{font-size:12px;color:var(--section-desc)}
+  .sel-field-header{padding:12px 20px;background:#f0f7ff;border-bottom:1px solid #dbeafe;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .sel-field-name{font-size:14px;font-weight:600;color:var(--header-title)}
+  .sel-field-type{font-family:var(--mono-font);font-size:10px;color:var(--btn-primary-bg);background:#dbeafe;padding:2px 6px;border-radius:3px}
+  .prop-label-sm{font-family:var(--mono-font);font-size:11px;font-weight:500;color:var(--label-color);min-width:48px;flex-shrink:0}
+  .prop-input-wide{width:80px}
+  .prop-unit-sel{font-family:var(--mono-font);font-size:10px;color:var(--section-desc);min-width:16px}
+  .sel-reset-all{font-family:var(--canvas-font);font-size:11px;padding:6px 14px;border:1px solid var(--input-border);border-radius:5px;background:transparent;color:var(--section-desc);cursor:pointer;transition:all .15s;width:100%}
+  .sel-reset-all:hover{background:#fef2f2;color:#dc2626;border-color:#fca5a5}
+
+  /* Field selection highlight */
+  .form-group.is-selected{outline:2px solid var(--btn-primary-bg) !important;outline-offset:2px;border-radius:4px}
+  .form-group:not(.is-selected){cursor:pointer}
+  .form-group:not(.is-selected):hover{outline:1px dashed rgba(37,99,235,.3);outline-offset:2px;border-radius:4px}
+
+  /* ═══ Canvas grid utilities ═══ */
+  .zc-flex{display:flex}.zc-no-shrink{flex-shrink:0}.zc-direction-column{flex-direction:column}.zc-direction-row{flex-direction:row}
+  .zc-row-wrap{flex-wrap:wrap}.zc-row-nowrap{flex-wrap:nowrap}
+  .zc-align-items-start{align-items:start}.zc-align-items-center{align-items:center}
+  .zc-justify-end{justify-content:end}.zc-justify-space-between{justify-content:space-between}
+  .zc-gap-col-8{column-gap:.5rem;--column-gap:.5rem}.zc-gap-col-10{column-gap:.625rem;--column-gap:.625rem}
+  .zc-gap-col-16{column-gap:1rem;--column-gap:1rem}.zc-gap-row-4{row-gap:.25rem}.zc-gap-row-15{row-gap:.9375rem}.zc-gap-row-20{row-gap:1.25rem}
+  .zc-p-16{padding:1rem}.zc-p-24{padding:1.5rem}
+  .zc-col-2{flex:0 0 calc(16.667% - var(--column-gap)*0.833);max-width:calc(16.667% - var(--column-gap)*0.833)}
+  .zc-col-3{flex:0 0 calc(25% - var(--column-gap)*0.75);max-width:calc(25% - var(--column-gap)*0.75)}
+  .zc-col-4{flex:0 0 calc(33.333% - var(--column-gap)*0.667);max-width:calc(33.333% - var(--column-gap)*0.667)}
+  .zc-col-6{flex:0 0 calc(50% - var(--column-gap)*0.5);max-width:calc(50% - var(--column-gap)*0.5)}
+  .zc-col-12{flex:0 0 100%;max-width:100%}
+  .zc-col-common{flex:1 1 0%}
+
+  /* ═══ Page UI ═══ */
+  .page-intro{max-width:100%;margin:0 0 24px}
+  .page-intro h1{font-size:22px;font-weight:600;letter-spacing:-.3px;color:var(--header-title);margin-bottom:6px}
+  .page-intro p{font-size:14px;color:var(--section-desc);line-height:1.5}
+  .controls-row{max-width:100%;margin:0 0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .toggle-bar{display:flex;gap:4px;background:#fff;padding:4px;border-radius:8px;border:1px solid var(--form-border);width:fit-content}
+  .toggle-btn{font-family:var(--canvas-font);font-size:13px;font-weight:500;padding:8px 18px;border:none;border-radius:6px;cursor:pointer;background:transparent;color:var(--section-desc);transition:all .2s}
+  .toggle-btn.active{background:var(--btn-primary-bg);color:#fff;box-shadow:0 1px 3px rgba(37,99,235,.3)}
+  .toggle-btn:not(.active):hover{background:var(--btn-secondary-bg);color:var(--label-color)}
+  .variant-bar{display:flex;gap:4px;background:#fff;padding:3px;border-radius:7px;border:1px solid var(--form-border);width:fit-content}
+  .variant-btn{font-family:var(--canvas-font);font-size:12px;font-weight:500;padding:6px 14px;border:none;border-radius:5px;cursor:pointer;background:transparent;color:var(--section-desc);transition:all .2s}
+  .variant-btn.active{background:#1a1c20;color:#fff}
+  .variant-btn:not(.active):hover{background:var(--btn-secondary-bg)}
+  .variant-label{font-size:12px;font-weight:500;color:var(--section-desc);text-transform:uppercase;letter-spacing:.5px}
+  .depth-badge{font-family:var(--mono-font);font-size:11px;padding:4px 10px;border-radius:5px;background:#fff;border:1px solid var(--form-border);color:var(--label-color);margin-left:auto}
+  .depth-badge strong{color:var(--btn-primary-bg)}
+
+  /* ═══ Annotations ═══ */
+  .annotated .zc-canvas-container{outline:2px dashed var(--anno-canvas);outline-offset:4px}
+  .annotated [data-element-type="form"]{outline:2px dashed var(--anno-form);outline-offset:2px}
+  .annotated [data-element-type="form_section"]{outline:1.5px dashed var(--anno-section);outline-offset:2px}
+  .annotated [data-element-type="horizontal_flex"]{outline:1.5px dashed var(--anno-row);outline-offset:1px}
+  .annotated [data-element-type="horizontal_flex"]>.zc-no-shrink{outline:1.5px dashed var(--anno-cell);outline-offset:0}
+  .annotated .form-group{outline:1px dashed var(--anno-field);outline-offset:-1px}
+  .annotated .form-label{outline:1px dotted var(--anno-label);outline-offset:-1px}
+  .annotated .form-field{outline:1px dotted var(--anno-formfield);outline-offset:-1px}
+  .annotated .compositeWrapper{outline:1px dotted #f59e0b;outline-offset:-1px}
+  .annotated .zc-canvas-container::before,.annotated [data-element-type="form"]::before,
+  .annotated [data-element-type="form_section"]::before,.annotated [data-element-type="horizontal_flex"]::before,
+  .annotated [data-element-type="horizontal_flex"]>.zc-no-shrink::before,
+  .annotated .form-group::before,.annotated .form-label::before,.annotated .form-field::before{
+    font-family:var(--mono-font);font-size:9px;font-weight:500;padding:0 5px;border-radius:3px;color:#fff;position:absolute;z-index:10;white-space:nowrap;pointer-events:none;
+  }
+  .annotated .zc-canvas-container{position:relative}.annotated .zc-canvas-container::before{content:'canvas-container';background:var(--anno-canvas);top:-18px;left:0}
+  .annotated [data-element-type="form"]{position:relative}.annotated [data-element-type="form"]::before{content:'<form> zc-flex zc-direction-column';background:var(--anno-form);top:-14px;left:8px}
+  .annotated [data-element-type="form_section"]{position:relative}.annotated [data-element-type="form_section"]::before{content:'form_section';background:var(--anno-section);top:-12px;left:4px}
+  .annotated [data-element-type="horizontal_flex"]{position:relative}.annotated [data-element-type="horizontal_flex"]::before{content:'horizontal_flex  zc-direction-row';background:var(--anno-row);top:-12px;left:4px}
+  .annotated [data-element-type="horizontal_flex"]>.zc-no-shrink{position:relative}.annotated [data-element-type="horizontal_flex"]>.zc-no-shrink::before{content:'zc-col-N';background:var(--anno-cell);top:-12px;left:4px}
+  .annotated .form-group{position:relative}.annotated .form-group::before{content:'form-group';background:var(--anno-field);top:-10px;left:4px;font-size:8px}
+  .annotated .form-label{position:relative}.annotated .form-label::before{content:'form-label';background:var(--anno-label);top:-10px;left:4px;font-size:8px}
+  .annotated .form-field{position:relative}.annotated .form-field::before{content:'form-field';background:var(--anno-formfield);top:-10px;left:4px;font-size:8px}
+
+  .legend{max-width:960px;margin:0 auto 16px;display:flex;flex-wrap:wrap;gap:10px;font-size:10px;font-family:var(--mono-font);opacity:0;max-height:0;overflow:hidden;transition:opacity .3s,max-height .3s}
+  .legend.visible{opacity:1;max-height:50px;overflow:visible}
+  .legend-item{display:flex;align-items:center;gap:5px}
+  .legend-swatch{width:12px;height:3px;border-radius:2px}
+
+  /* ═══ Form ═══ */
+  .zc-canvas-container{max-width:100%;margin:0;height:540px;border-radius:var(--form-radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06),0 6px 16px rgba(0,0,0,.04);position:relative;width:100%}
+  .zc-canvas-container>.zc-flex{height:100%}
+  .zc-canvas-container form{flex:1;overflow-y:auto}
+  .zc-canvas-container form::-webkit-scrollbar{width:6px}
+  .zc-canvas-container form::-webkit-scrollbar-track{background:transparent}
+  .zc-canvas-container form::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
+  [data-element-type="form_header"]{background:var(--header-bg);border-bottom:1px solid var(--header-border)}
+  .view-draft{font-size:13px;color:var(--btn-primary-bg);text-decoration:none;font-weight:500}.view-draft:hover{text-decoration:underline}
+  .form-title{font-size:16px;font-weight:600;color:var(--header-title)}
+  .popupClose{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;color:var(--section-desc);transition:background .15s}
+  .popupClose:hover{background:var(--btn-secondary-bg)}
+  .section-label{font-size:14px;font-weight:600;color:var(--section-title);padding-bottom:8px;border-bottom:1px solid var(--section-line)}
+  .zc-label-text{font-size:13px;font-weight:500;color:var(--label-color)}
+  .form-control{font-family:var(--canvas-font);font-size:13px;padding:12px;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);color:var(--input-text);outline:none;transition:border-color .15s,box-shadow .15s;width:100%}
+  .form-control:focus{border-color:var(--input-focus);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+  textarea.form-control{resize:vertical;line-height:1.5}
+  .zc-subfield-label{font-size:11px;color:var(--sublabel-color);margin-top:3px}
+  .select2-choice{display:flex;align-items:center;padding:8px 12px;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);font-size:13px;color:var(--input-text);text-decoration:none;cursor:pointer;transition:border-color .15s;width:100%}
+  .select2-choice:hover{border-color:var(--input-focus)}
+  .select2-chosen{flex:1;color:var(--input-placeholder)}
+  .select2-arrow{margin-left:8px;color:var(--section-desc)}
+  .select2-arrow b::after{content:'▾';font-size:12px}
+  [data-element-type="form_footer"]{background:var(--footer-bg);border-top:1px solid var(--footer-border)}
+  .zc-btn{font-family:var(--canvas-font);font-size:13px;font-weight:500;padding:8px 22px;border-radius:6px;border:none;cursor:pointer;transition:all .15s}
+  .zc-btn-primary{background:var(--btn-primary-bg);color:var(--btn-primary-text)}.zc-btn-primary:hover{background:var(--btn-primary-hover)}
+  .zc-btn-secondary{background:var(--btn-secondary-bg);color:var(--btn-secondary-text)}.zc-btn-secondary:hover{background:var(--btn-secondary-hover)}
+
+  /* label-left overrides */
+  .label-left .form-label{padding-top:8px;padding-right:12px}
+  /* label-right overrides */
+  .label-right .form-label{padding-top:8px;padding-right:12px;text-align:right;justify-content:flex-end}
+  /* label-top overrides */
+  .label-top .form-label{padding-bottom:4px}
+  .label-top .form-field{width:100%}
+  /* ═══ label-inplace: floating label inside input, slides up on focus ═══ */
+  .label-inplace .form-group{position:relative}
+  .label-inplace .form-field{width:100%}
+
+  /* Simple fields: label floats inside the input */
+  .label-inplace .form-group:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label{
+    position:absolute;top:0;left:12px;height:100%;
+    display:flex;align-items:center;
+    padding:0;margin:0;pointer-events:none;
+    transition:all .2s cubic-bezier(.4,0,.2,1);
+    z-index:1;transform-origin:left center;
+  }
+  .label-inplace .form-group:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label .zc-label-text{
+    font-size:13px;color:var(--input-placeholder);
+    transition:all .2s cubic-bezier(.4,0,.2,1);
+  }
+  .label-inplace .form-control{padding:18px 12px 6px 12px}
+  .label-inplace textarea.form-control{padding:18px 12px 6px 12px}
+
+  /* Slid-up state: on focus or has value */
+  .label-inplace .form-group.is-focused:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label,
+  .label-inplace .form-group.has-value:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label{
+    height:auto;top:4px;align-items:flex-start;
+  }
+  .label-inplace .form-group.is-focused:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label .zc-label-text{
+    font-size:10px;color:var(--input-focus);
+  }
+  .label-inplace .form-group.has-value:not([data-element-type="form_name"]):not([data-element-type="form_address"]) .form-label .zc-label-text{
+    font-size:10px;color:var(--label-color);
+  }
+
+  /* Composite fields (Name, Address): main label stays as top label */
+  .label-inplace [data-element-type="form_name"] .form-label,
+  .label-inplace [data-element-type="form_address"] .form-label{
+    position:static;display:flex;padding:0 0 6px 0;pointer-events:auto;
+  }
+  .label-inplace [data-element-type="form_name"] .form-label .zc-label-text,
+  .label-inplace [data-element-type="form_address"] .form-label .zc-label-text{
+    font-size:14px;font-weight:600;color:var(--label-color);
+  }
+  .label-inplace .compositeWrapper{padding-top:0}
+  .label-inplace .compositeWrapper .form-control{padding:18px 12px 6px 12px}
+  /* Sub-field labels float inside each sub-input */
+  .label-inplace .compositeWrapper > span{position:relative}
+  .label-inplace .zc-subfield-label{
+    position:absolute;top:0;left:12px;height:100%;
+    display:flex;align-items:center;
+    margin:0;pointer-events:none;
+    font-size:13px;color:var(--input-placeholder);
+    transition:all .2s cubic-bezier(.4,0,.2,1);
+    transform-origin:left center;
+  }
+  /* Sub-field float up on focus/value */
+  .label-inplace .compositeWrapper > span.is-focused .zc-subfield-label,
+  .label-inplace .compositeWrapper > span.has-value .zc-subfield-label{
+    height:auto;top:4px;align-items:flex-start;font-size:10px;
+  }
+  .label-inplace .compositeWrapper > span.is-focused .zc-subfield-label{color:var(--input-focus)}
+  .label-inplace .compositeWrapper > span.has-value .zc-subfield-label{color:var(--label-color)}
+
+  .view-panel{display:none}.view-panel.active{display:block}
+  .variant-panel{display:none}.variant-panel.active{display:block}
+  /* 1-column: form-groups are direct children — gap handled by form's zc-gap-row-20 */
+  form > .form-group{margin-bottom:0}
+
+  /* ═══ VB ═══ */
+  .vb-container{max-width:100%;margin:0;padding:24px;background:#0f1117;border-radius:12px;overflow-x:auto}
+  .vb-box{border:2px solid;border-radius:8px;padding:10px;position:relative;margin-top:18px;transition:transform .15s,box-shadow .15s}
+  .vb-box:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:2}
+  .vb-box:first-child{margin-top:0}
+  .vb-tag{position:absolute;top:-11px;left:10px;font-family:var(--mono-font);font-size:9px;font-weight:500;padding:1px 7px;border-radius:4px;color:#fff;letter-spacing:.2px}
+  .vb-flex-badge{position:absolute;top:-11px;right:10px;font-family:var(--mono-font);font-size:8px;padding:1px 7px;border-radius:4px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)}
+  .vb-flow{display:flex;align-items:center;gap:6px;margin:6px 0 3px;font-family:var(--mono-font);font-size:9px;color:rgba(255,255,255,.25)}
+  .vb-flow-arrow.down::before{content:'↓';font-size:13px;color:rgba(255,255,255,.3)}
+  .vb-flow-arrow.right::before{content:'→';font-size:13px;color:rgba(255,255,255,.3)}
+  .vb-canvas{border-color:var(--anno-canvas);background:rgba(99,102,241,.06)}.vb-canvas>.vb-tag{background:var(--anno-canvas)}
+  .vb-header,.vb-footer{border-color:var(--anno-field);background:rgba(220,38,38,.06);padding:8px 12px}
+  .vb-header>.vb-tag,.vb-footer>.vb-tag{background:var(--anno-field)}
+  .vb-outside-badge{display:inline-block;font-family:var(--mono-font);font-size:8px;padding:2px 5px;border-radius:3px;background:rgba(220,38,38,.15);color:#f87171;margin-left:6px}
+  .vb-form{border-color:var(--anno-form);background:rgba(37,99,235,.06)}.vb-form>.vb-tag{background:var(--anno-form)}
+  .vb-section{border-color:var(--anno-section);background:rgba(8,145,178,.06)}.vb-section>.vb-tag{background:var(--anno-section)}
+  .vb-row{border-color:var(--anno-row);background:rgba(5,150,105,.06);display:flex;flex-direction:row;gap:8px;flex-wrap:wrap;align-items:stretch}.vb-row>.vb-tag{background:var(--anno-row)}
+  .vb-cell{border-color:var(--anno-cell);background:rgba(217,119,6,.06);flex:1;min-width:90px}.vb-cell>.vb-tag{background:var(--anno-cell)}
+  .vb-field{border:1.5px dashed var(--anno-field);border-radius:6px;background:rgba(220,38,38,.04);padding:6px 8px;margin-top:4px;position:relative}.vb-field>.vb-tag{background:var(--anno-field);top:-9px;font-size:9px}
+  .vb-label-box{border:1px dotted var(--anno-label);border-radius:4px;padding:4px 6px;position:relative;margin-top:2px}.vb-label-box>.vb-tag{background:var(--anno-label);font-size:8px;top:-8px}
+  .vb-formfield-box{border:1px dotted var(--anno-formfield);border-radius:4px;padding:4px 6px;position:relative;margin-top:2px}.vb-formfield-box>.vb-tag{background:var(--anno-formfield);font-size:8px;top:-8px}
+  .vb-composite{border:1px dotted #f59e0b;border-radius:4px;padding:4px;display:flex;gap:6px;margin-top:2px;position:relative}.vb-composite>.vb-tag{background:#f59e0b;font-size:8px;top:-8px}
+  .vb-sub{border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:3px 6px;flex:1}
+  .vb-field-content{font-family:var(--mono-font);font-size:10px;color:rgba(255,255,255,.5);line-height:1.5}
+  .vb-field-content .field-label{color:rgba(255,255,255,.7);font-weight:500}
+  .vb-field-content .field-input{display:inline-block;border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:1px 8px;margin-top:1px;color:rgba(255,255,255,.3);min-width:40px}
+  .vb-field-content .field-textarea{display:block;border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:3px 8px;margin-top:1px;color:rgba(255,255,255,.3);min-height:22px}
+  .vb-submit-note{font-family:var(--mono-font);font-size:9px;color:rgba(255,255,255,.35);margin-top:4px}
+  .vb-submit-note code{background:rgba(255,255,255,.08);padding:1px 4px;border-radius:3px;color:#60a5fa}
+  .vb-section-header{font-family:var(--mono-font);font-size:10px;color:rgba(255,255,255,.4);padding:3px 6px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:4px}
+  .vb-section-header strong{color:rgba(255,255,255,.65);font-weight:500}
+  .vb-btn-mock{display:inline-block;font-family:var(--mono-font);font-size:9px;padding:3px 12px;border-radius:4px;margin-left:4px}
+  .vb-btn-cancel{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+  .vb-btn-submit{background:rgba(37,99,235,.3);color:#93c5fd;border:1px solid rgba(37,99,235,.4)}
+  /* VB layout modes */
+  .vb-field-row{display:flex;flex-direction:row;gap:6px;align-items:flex-start}
+  .vb-field-col{display:flex;flex-direction:column;gap:3px}
+
+  /* ═══ Code ═══ */
+  .code-container{max-width:100%;margin:0;background:#0f1117;border-radius:12px;overflow:hidden}
+  .code-toolbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#1a1c20;border-bottom:1px solid rgba(255,255,255,.06)}
+  .code-toolbar-left{display:flex;align-items:center;gap:8px}
+  .code-toolbar-dot{width:10px;height:10px;border-radius:50%}
+  .code-toolbar-dot.r{background:#f87171}.code-toolbar-dot.y{background:#fbbf24}.code-toolbar-dot.g{background:#34d399}
+  .code-filename{font-family:var(--mono-font);font-size:12px;color:rgba(255,255,255,.4);margin-left:8px}
+  .code-copy-btn{font-family:var(--mono-font);font-size:11px;padding:4px 12px;border-radius:4px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;transition:all .15s}
+  .code-copy-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+  .code-copy-btn.copied{background:rgba(52,211,153,.2);color:#34d399;border-color:rgba(52,211,153,.3)}
+  .code-body{padding:20px;overflow:auto;max-height:520px}
+  .code-body::-webkit-scrollbar{width:6px;height:6px}.code-body::-webkit-scrollbar-track{background:transparent}.code-body::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+  .code-body pre{font-family:var(--mono-font);font-size:11.5px;line-height:1.7;color:#e2e4e9;white-space:pre;margin:0}
+  .code-body .ct{color:#f87171}.code-body .ca{color:#fbbf24}.code-body .cv{color:#34d399}
+  .code-body .cc{color:#4b5563;font-style:italic}.code-body .cp{color:#93c5fd}.code-body .cx{color:#a5b4fc}
+
+  .structure-panel{max-width:100%;margin:32px 0 0;background:#1a1c20;border-radius:10px;padding:20px;overflow-x:auto}
+  .structure-panel pre{font-family:var(--mono-font);font-size:11.5px;line-height:1.7;color:#e2e4e9;white-space:pre}
+  .structure-panel .sc{color:#a5b4fc}.structure-panel .sf{color:#60a5fa}.structure-panel .ss{color:#22d3ee}
+  .structure-panel .sr{color:#34d399}.structure-panel .sl{color:#fbbf24}.structure-panel .sd{color:#f87171}
+  .structure-panel .sg{color:#6b7280}.structure-panel .si{color:#4b5563;font-style:italic}
+  .structure-panel .sp{color:#c084fc}.structure-panel .sm{color:#f472b6}
+</style>
+</head>
+<body>
+
+<div class="main-content">
+
+<div class="page-intro">
+  <h1>Zoho Creator — Flex Form Structure</h1>
+  <p>Canvas utility classes on every element. <code>vertical_flex</code> wraps <code>&lt;form&gt;</code>. Header, fields &amp; footer all inside <code>&lt;form&gt;</code>.</p>
+</div>
+
+<div class="controls-row">
+  <div class="toggle-bar" id="tabBar">
+    <button class="toggle-btn active" onclick="switchTab('clean')">Clean View</button>
+    <button class="toggle-btn" onclick="switchTab('annotated')">Annotated</button>
+    <button class="toggle-btn" onclick="switchTab('breakdown')">Visual Breakdown</button>
+    <button class="toggle-btn" onclick="switchTab('code')">HTML Code</button>
+  </div>
+  <span class="depth-badge" id="depthBadge">Depth: <strong>6</strong></span>
+</div>
+<div class="controls-row">
+  <span class="variant-label">Section:</span>
+  <div class="variant-bar" id="variantBar">
+    <button class="variant-btn active" onclick="switchVariant('flat')">Without Sections</button>
+    <button class="variant-btn" onclick="switchVariant('sections')">With Sections</button>
+  </div>
+  <span class="variant-label">Label:</span>
+  <div class="variant-bar" id="labelBar">
+    <button class="variant-btn" onclick="switchLabel('left')">Left</button>
+    <button class="variant-btn" onclick="switchLabel('right')">Right</button>
+    <button class="variant-btn" onclick="switchLabel('top')">Top</button>
+    <button class="variant-btn active" onclick="switchLabel('inplace')">Inplace</button>
+  </div>
+  <span class="variant-label">Columns:</span>
+  <div class="variant-bar" id="colBar">
+    <button class="variant-btn active" onclick="switchCols('mixed')">Mixed</button>
+    <button class="variant-btn" onclick="switchCols(1)">1</button>
+    <button class="variant-btn" onclick="switchCols(2)">2</button>
+    <button class="variant-btn" onclick="switchCols(3)">3</button>
+    <button class="variant-btn" onclick="switchCols(4)">4</button>
+    <button class="variant-btn" onclick="switchCols(5)">5</button>
+  </div>
+</div>
+
+<div id="legendBar" class="legend">
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-canvas)"></span>canvas</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-form)"></span>&lt;form&gt;</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-section)"></span>section</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-row)"></span>row</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-cell)"></span>cell</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-field)"></span>form-group</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-label)"></span>form-label</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:var(--anno-formfield)"></span>form-field</div>
+</div>
+
+<!-- ═══ FORM PANELS ═══ -->
+<div id="panel-form" class="view-panel active">
+
+  <!-- WITH SECTIONS -->
+  <div id="form-sections" class="variant-panel">
+    <div class="zc-canvas-container label-inplace" id="formCanvasS" data-element-type="canvas">
+      <div data-element-type="vertical_flex" class="zc-flex zc-direction-column" style="height:100%">
+        <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_1" data-element-type="form">
+          <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16 zc-gap-col-10"><span class="form-title" role="heading" aria-level="3">new form 1</span><a href="javascript:;" class="view-draft" role="button" aria-label="View Drafts">View Drafts</a></div>
+          <div data-element-type="form_section" class="zc-flex zc-no-shrink zc-direction-column zc-gap-row-15">
+            <h2 class="section-label">Personal Details</h2>
+            <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+              <div class="zc-no-shrink zc-col-6">
+                <div class="form-group zc-flex zc-direction-column" data-element-type="form_name">
+                  <label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Name</span></label>
+                  <div class="form-field zc-col-common">
+                    <div class="compositeWrapper zc-flex zc-direction-row zc-gap-col-8">
+                      <span class="zc-col-common"><input class="form-control" type="text" placeholder="John"><p class="zc-subfield-label">First Name</p></span>
+                      <span class="zc-col-common"><input class="form-control" type="text" placeholder="Doe"><p class="zc-subfield-label">Last Name</p></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="zc-no-shrink zc-col-6">
+                <div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield">
+                  <label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Single Line</span></label>
+                  <div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Enter text"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-element-type="form_section" class="zc-flex zc-no-shrink zc-direction-column zc-gap-row-15">
+            <h2 class="section-label">Additional Info</h2>
+            <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+              <div class="zc-no-shrink zc-col-12"><div class="form-group zc-flex zc-direction-column" data-element-type="form_multiline"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Multi Line</span></label><div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div></div></div>
+            </div>
+            <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_select"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Drop Down</span></label><div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div></div></div>
+              <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Department</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div></div></div>
+            </div>
+            <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">City</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Chennai"></div></div></div>
+              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">State</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Tamil Nadu"></div></div></div>
+              <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
+            </div>
+          </div>
+          <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- WITHOUT SECTIONS -->
+  <div id="form-flat" class="variant-panel active">
+    <div class="zc-canvas-container label-inplace" id="formCanvasF" data-element-type="canvas">
+      <div data-element-type="vertical_flex" class="zc-flex zc-direction-column" style="height:100%">
+        <form class="zc-flex zc-direction-column zc-gap-row-20 zc-p-24" id="new_form_flat" data-element-type="form">
+          <div data-element-type="form_header" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-space-between zc-p-16 zc-gap-col-10"><span class="form-title" role="heading" aria-level="3">new form 1</span><a href="javascript:;" class="view-draft" role="button" aria-label="View Drafts">View Drafts</a></div>
+          <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_name"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Name</span></label><div class="form-field zc-col-common"><div class="compositeWrapper zc-flex zc-direction-row zc-gap-col-8"><span class="zc-col-common"><input class="form-control" type="text" placeholder="John"><p class="zc-subfield-label">First Name</p></span><span class="zc-col-common"><input class="form-control" type="text" placeholder="Doe"><p class="zc-subfield-label">Last Name</p></span></div></div></div></div>
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Single Line</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Enter text"></div></div></div>
+          </div>
+          <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+            <div class="zc-no-shrink zc-col-12"><div class="form-group zc-flex zc-direction-column" data-element-type="form_multiline"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Multi Line</span></label><div class="form-field zc-col-common"><textarea class="form-control" style="height:80px" placeholder="Description..."></textarea></div></div></div>
+          </div>
+          <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_select"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Drop Down</span></label><div class="form-field zc-col-common"><a href="javascript:void(0)" class="select2-choice"><span class="select2-chosen">-Select-</span><span class="select2-arrow"><b></b></span></a></div></div></div>
+            <div class="zc-no-shrink zc-col-6"><div class="form-group zc-flex zc-direction-column" data-element-type="form_textfield"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">Department</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Engineering"></div></div></div>
+          </div>
+          <div data-element-type="horizontal_flex" class="zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start">
+            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">City</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Chennai"></div></div></div>
+            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">State</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="Tamil Nadu"></div></div></div>
+            <div class="zc-no-shrink zc-col-4"><div class="form-group zc-flex zc-direction-column"><label class="form-label zc-flex zc-no-shrink"><span class="zc-label-text">PIN Code</span></label><div class="form-field zc-col-common"><input class="form-control" type="text" placeholder="600001"></div></div></div>
+          </div>
+          <div data-element-type="form_footer" class="zc-flex zc-no-shrink zc-align-items-center zc-justify-end zc-gap-col-10 zc-p-16"><button type="button" class="zc-btn zc-btn-secondary">Cancel</button><input type="submit" class="zc-btn zc-btn-primary" value="Submit"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VISUAL BREAKDOWN ═══ -->
+<div id="panel-breakdown" class="view-panel">
+  <div id="vb-sections" class="variant-panel">
+    <div class="vb-container">
+      <div class="vb-box vb-canvas"><span class="vb-tag">.zc-canvas-container</span>
+        <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+        <div class="vb-box vb-form"><span class="vb-tag">&lt;form&gt;</span><span class="vb-flex-badge">zc-flex zc-direction-column</span>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+          <div class="vb-box vb-header"><span class="vb-tag">form_header</span><span class="vb-flex-badge">zc-no-shrink</span></div>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-section"><span class="vb-tag">form_section</span><span class="vb-flex-badge">zc-direction-column zc-gap-row-15</span>
+              <div class="vb-section-header"><strong>&lt;h2&gt; Personal Details</strong></div>
+              <div class="vb-box vb-row"><span class="vb-tag">horizontal_flex — ROW 1</span><span class="vb-flex-badge">zc-direction-row zc-gap-col-16</span>
+                <div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span>
+                  <div class="vb-field"><span class="vb-tag">.form-group</span><span class="vb-flex-badge" id="vbFgBadge1">zc-flex zc-direction-row</span>
+                    <div class="vb-field-row" id="vbFgLayout1">
+                      <div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Name</span></div></div>
+                      <div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field zc-col-common</span>
+                        <div class="vb-composite"><span class="vb-tag">compositeWrapper zc-flex zc-direction-row zc-gap-col-8</span>
+                          <div class="vb-sub"><div class="vb-field-content"><span class="field-input">First</span></div></div>
+                          <div class="vb-sub"><div class="vb-field-content"><span class="field-input">Last</span></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span>
+                  <div class="vb-field"><span class="vb-tag">.form-group</span><span class="vb-flex-badge" id="vbFgBadge2">zc-flex zc-direction-row</span>
+                    <div class="vb-field-row" id="vbFgLayout2">
+                      <div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Single Line</span></div></div>
+                      <div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field zc-col-common</span><div class="vb-field-content"><span class="field-input">________</span></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="vb-box vb-section"><span class="vb-tag">form_section</span><span class="vb-flex-badge">zc-direction-column zc-gap-row-15</span>
+              <div class="vb-section-header"><strong>&lt;h2&gt; Additional Info</strong></div>
+              <div class="vb-box vb-row"><span class="vb-tag">ROW 2</span><div class="vb-box vb-cell" style="flex:0 0 100%"><span class="vb-tag">zc-col-12</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Multi Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><div class="field-textarea">textarea</div></div></div></div></div></div></div>
+              <div class="vb-box vb-row"><span class="vb-tag">ROW 3</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Drop Down</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><span class="field-input">-Select-▾</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">.form-label</span><div class="vb-field-content"><span class="field-label">Dept</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">.form-field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
+              <div class="vb-box vb-row"><span class="vb-tag">ROW 4</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">City</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">State</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">PIN</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div></div>
+            </div>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+          <div class="vb-box vb-footer"><span class="vb-tag">form_footer</span><span class="vb-flex-badge">zc-no-shrink zc-justify-end</span><div style="text-align:right;margin-top:4px"><span class="vb-btn-mock vb-btn-cancel">Cancel</span> <span class="vb-btn-mock vb-btn-submit">Submit</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="vb-flat" class="variant-panel active">
+    <div class="vb-container">
+      <div class="vb-box vb-canvas"><span class="vb-tag">.zc-canvas-container</span>
+        <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+        <div class="vb-box vb-form"><span class="vb-tag">&lt;form&gt;</span><span class="vb-flex-badge">zc-flex zc-direction-column</span>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+          <div class="vb-box vb-header"><span class="vb-tag">form_header</span><span class="vb-flex-badge">zc-no-shrink</span></div>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 1</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Name</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-composite"><span class="vb-tag">compositeWrapper</span><div class="vb-sub"><span class="field-input">First</span></div><div class="vb-sub"><span class="field-input">Last</span></div></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Single Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
+            <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 2</span><div class="vb-box vb-cell" style="flex:0 0 100%"><span class="vb-tag">zc-col-12</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Multi Line</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><div class="field-textarea">textarea</div></div></div></div></div></div></div>
+            <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 3</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Drop Down</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">-Select-▾</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-6</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">Dept</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">______</span></div></div></div></div></div></div>
+            <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+            <div class="vb-box vb-row"><span class="vb-tag">ROW 4</span><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">City</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">State</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div><div class="vb-box vb-cell"><span class="vb-tag">zc-col-4</span><div class="vb-field"><span class="vb-tag">.form-group</span><div class="vb-field-row"><div class="vb-label-box"><span class="vb-tag">label</span><div class="vb-field-content"><span class="field-label">PIN</span></div></div><div class="vb-formfield-box" style="flex:1"><span class="vb-tag">field</span><div class="vb-field-content"><span class="field-input">___</span></div></div></div></div></div></div>
+          <div class="vb-flow"><span class="vb-flow-arrow down"></span></div>
+          <div class="vb-box vb-footer"><span class="vb-tag">form_footer</span><span class="vb-flex-badge">zc-no-shrink zc-justify-end</span><div style="text-align:right;margin-top:4px"><span class="vb-btn-mock vb-btn-cancel">Cancel</span> <span class="vb-btn-mock vb-btn-submit">Submit</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HTML CODE ═══ -->
+<div id="panel-code" class="view-panel">
+  <div id="code-sections" class="variant-panel">
+    <div class="code-container"><div class="code-toolbar"><div class="code-toolbar-left"><span class="code-toolbar-dot r"></span><span class="code-toolbar-dot y"></span><span class="code-toolbar-dot g"></span><span class="code-filename" id="codeFilenameS">with-sections-label-left.html</span></div><button class="code-copy-btn" onclick="copyCode('codeS',this)">Copy</button></div>
+      <div class="code-body"><pre id="codeS"></pre></div></div>
+  </div>
+  <div id="code-flat" class="variant-panel active">
+    <div class="code-container"><div class="code-toolbar"><div class="code-toolbar-left"><span class="code-toolbar-dot r"></span><span class="code-toolbar-dot y"></span><span class="code-toolbar-dot g"></span><span class="code-filename" id="codeFilenameF">without-sections-label-left.html</span></div><button class="code-copy-btn" onclick="copyCode('codeF',this)">Copy</button></div>
+      <div class="code-body"><pre id="codeF"></pre></div></div>
+  </div>
+</div>
+
+<!-- ═══ Structure ═══ -->
+<div class="structure-panel">
+  <div id="struct-sections" class="variant-panel"><pre id="structS"></pre></div>
+  <div id="struct-flat" class="variant-panel active"><pre id="structF"></pre></div>
+</div>
+
+</div><!-- /.main-content -->
+
+<!-- ═══ Properties Sidebar ═══ -->
+<div class="props-sidebar" id="propsSidebar">
+  <div class="props-header">
+    <h2>Properties</h2>
+    <div class="props-tabs">
+      <button class="props-tab active" onclick="switchPropsTab('common')">Common</button>
+      <button class="props-tab" onclick="switchPropsTab('selected')">Selected Field</button>
+    </div>
+  </div>
+
+  <!-- ═══ COMMON TAB ═══ -->
+  <div class="props-tab-panel active" id="propsCommon">
+    <div class="prop-section" id="propFG">
+      <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-field)"></span>form-group<span class="prop-element">.form-group</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fg-unit" value="px" checked onchange="togglePropUnit('fg')"> px</label><input type="number" class="prop-input" id="fg-px" placeholder="auto" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fg-unit" value="pct" onchange="togglePropUnit('fg')"> %</label><input type="number" class="prop-input" id="fg-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('fg')">Reset</button></div>
+      <div class="prop-applied" id="fg-applied"></div>
+    </div>
+    <div class="prop-section" id="propFL">
+      <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-label)"></span>form-label<span class="prop-element">.form-label</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fl-unit" value="px" checked onchange="togglePropUnit('fl')"> px</label><input type="number" class="prop-input" id="fl-px" placeholder="200" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="fl-unit" value="pct" onchange="togglePropUnit('fl')"> %</label><input type="number" class="prop-input" id="fl-pct" placeholder="30" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('fl')">Reset</button></div>
+      <div class="prop-applied" id="fl-applied"></div>
+    </div>
+    <div class="prop-section" id="propFF">
+      <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-formfield)"></span>form-field<span class="prop-element">.form-field</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="ff-unit" value="px" checked onchange="togglePropUnit('ff')"> px</label><input type="number" class="prop-input" id="ff-px" placeholder="auto" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="ff-unit" value="pct" onchange="togglePropUnit('ff')"> %</label><input type="number" class="prop-input" id="ff-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('ff')">Reset</button></div>
+      <div class="prop-applied" id="ff-applied"></div>
+    </div>
+    <div class="prop-section" id="propCW">
+      <div class="prop-section-title"><span class="prop-dot" style="background:#f59e0b"></span>compositeWrapper<span class="prop-element">.compositeWrapper</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="cw-unit" value="px" checked onchange="togglePropUnit('cw')"> px</label><input type="number" class="prop-input" id="cw-px" placeholder="auto" min="0" oninput="applyWidths()"><span class="prop-unit">px</span></div>
+      <div class="prop-row"><label class="prop-radio-label"><input type="radio" name="cw-unit" value="pct" onchange="togglePropUnit('cw')"> %</label><input type="number" class="prop-input" id="cw-pct" placeholder="100" min="0" max="100" disabled oninput="applyWidths()"><span class="prop-unit">%</span><button class="prop-reset" onclick="resetProp('cw')">Reset</button></div>
+      <div class="prop-applied" id="cw-applied"></div>
+    </div>
+  </div>
+
+  <!-- ═══ SELECTED FIELD TAB ═══ -->
+  <div class="props-tab-panel" id="propsSelected">
+    <div class="sel-empty" id="selEmpty">
+      <div class="sel-empty-icon">⊹</div>
+      <p>Click a field in the form to select it</p>
+    </div>
+    <div class="sel-content" id="selContent" style="display:none">
+      <div class="sel-field-header">
+        <span class="sel-field-name" id="selFieldName">Name</span>
+        <span class="sel-field-type" id="selFieldType">form_name</span>
+        <button class="prop-reset" onclick="deselectField()">✕ Deselect</button>
+      </div>
+
+      <!-- Selected: form-group -->
+      <div class="prop-section">
+        <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-field)"></span>form-group</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-fg-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-fg-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">gap</span><input type="text" class="prop-input" id="sel-fg-g" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
+
+      <!-- Selected: form-label -->
+      <div class="prop-section">
+        <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-label)"></span>form-label</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-fl-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-fl-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
+
+      <!-- Selected: form-field -->
+      <div class="prop-section">
+        <div class="prop-section-title"><span class="prop-dot" style="background:var(--anno-formfield)"></span>form-field</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-ff-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-ff-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">radius</span><input type="number" class="prop-input" id="sel-ff-r" placeholder="0" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
+
+      <!-- Selected: compositeWrapper (shown only for composite fields) -->
+      <div class="prop-section" id="selCWSection" style="display:none">
+        <div class="prop-section-title"><span class="prop-dot" style="background:#f59e0b"></span>compositeWrapper</div>
+        <div class="prop-row"><span class="prop-label-sm">width</span><input type="number" class="prop-input" id="sel-cw-w" placeholder="auto" min="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">gap</span><input type="text" class="prop-input" id="sel-cw-g" placeholder="8" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+        <div class="prop-row"><span class="prop-label-sm">padding</span><input type="text" class="prop-input prop-input-wide" id="sel-cw-p" placeholder="0" oninput="applySelectedProps()"><span class="prop-unit-sel">px</span></div>
+      </div>
+
+      <div class="prop-section">
+        <button class="sel-reset-all" onclick="resetSelectedProps()">Reset All Overrides</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentTab='clean', currentVariant='flat', currentLabel='inplace', currentCols='mixed';
+
+const FG_LEFT = 'zc-flex zc-direction-row zc-align-items-start';
+const FG_RIGHT = 'zc-flex zc-direction-row zc-align-items-start';
+const FG_TOP  = 'zc-flex zc-direction-column zc-gap-row-4';
+const FG_INPLACE = 'zc-flex zc-direction-column';
+const FL_LEFT = 'zc-flex zc-no-shrink zc-align-items-center';
+const FL_RIGHT = 'zc-flex zc-no-shrink zc-align-items-center';
+const FL_TOP  = 'zc-flex zc-no-shrink';
+const FL_INPLACE = 'zc-flex zc-no-shrink';
+const FF = 'zc-col-common';
+const CW = 'zc-flex zc-direction-row zc-gap-col-8';
+
+const LABEL_MODES = { left: FG_LEFT, right: FG_RIGHT, top: FG_TOP, inplace: FG_INPLACE };
+const LABEL_FL = { left: FL_LEFT, right: FL_RIGHT, top: FL_TOP, inplace: FL_INPLACE };
+
+// Column class for N columns per row (12-col grid)
+const COL_CLASS = { 1:'zc-col-12', 2:'zc-col-6', 3:'zc-col-4', 4:'zc-col-3', 5:'zc-col-2' };
+const ROW_CLASSES = 'zc-flex zc-no-shrink zc-direction-row zc-row-wrap zc-gap-col-16 zc-align-items-start';
+
+// Store original HTML for mixed restore
+let origFormS = null, origFormF = null;
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('#tabBar .toggle-btn').forEach((b,i) => b.classList.toggle('active', i === {clean:0,annotated:1,breakdown:2,code:3}[tab]));
+  document.getElementById('panel-form').classList.toggle('active', tab==='clean'||tab==='annotated');
+  document.getElementById('panel-breakdown').classList.toggle('active', tab==='breakdown');
+  document.getElementById('panel-code').classList.toggle('active', tab==='code');
+  document.getElementById('legendBar').classList.toggle('visible', tab==='annotated'||tab==='breakdown');
+  document.getElementById('formCanvasS').classList.toggle('annotated', tab==='annotated');
+  document.getElementById('formCanvasF').classList.toggle('annotated', tab==='annotated');
+  applyVariant();
+}
+
+function switchVariant(v) {
+  currentVariant = v;
+  document.querySelectorAll('#variantBar .variant-btn').forEach((b,i) => b.classList.toggle('active', (v==='flat')===(i===0)));
+  document.getElementById('depthBadge').innerHTML = v==='sections' ? 'Depth: <strong>6</strong>' : 'Depth: <strong>6</strong>';
+  applyVariant();
+}
+
+function switchLabel(l) {
+  currentLabel = l;
+  const btns = document.querySelectorAll('#labelBar .variant-btn');
+  const idx = {left:0,right:1,top:2,inplace:3};
+  btns.forEach((b,i) => b.classList.toggle('active', i===idx[l]));
+
+  const fgCls = LABEL_MODES[l];
+  const flCls = LABEL_FL[l];
+
+  // Update live form classes
+  document.querySelectorAll('.form-group').forEach(fg => {
+    fg.className = fg.className.replace(/zc-flex zc-direction-(row|column)( zc-align-items-start| zc-gap-row-4)*/g, '');
+    fg.classList.add(...fgCls.split(' '));
+    fg.classList.remove('is-focused','has-value');
+  });
+  document.querySelectorAll('.form-label').forEach(fl => {
+    fl.className = fl.className.replace(/zc-flex zc-no-shrink( zc-align-items-center)*/g, '');
+    fl.classList.add(...flCls.split(' '));
+    if(l==='left'||l==='right') { if(!fl.style.width) fl.style.width='200px'; }
+    else { fl.style.removeProperty('width'); }
+  });
+
+  // Swap canvas-level class
+  document.querySelectorAll('.zc-canvas-container').forEach(c => {
+    c.classList.remove('label-left','label-right','label-top','label-inplace');
+    c.classList.add('label-'+l);
+  });
+
+  // Setup inplace: use label text as placeholder for simple fields,
+  // use subfield text as placeholder for composite fields
+  setupInplacePlaceholders();
+
+  applyVariant();
+}
+
+function setupInplacePlaceholders() {
+  document.querySelectorAll('.zc-canvas-container .form-group').forEach(fg => {
+    const isComposite = fg.dataset.elementType === 'form_name' || fg.dataset.elementType === 'form_address';
+
+    if (currentLabel === 'inplace') {
+      if (isComposite) {
+        // Composite: clear sub-input placeholders — subfield-label floats visually
+        fg.querySelectorAll('.compositeWrapper > span').forEach(span => {
+          const input = span.querySelector('.form-control');
+          if (input) {
+            if (!input.dataset.origPlaceholder) input.dataset.origPlaceholder = input.placeholder || '';
+            input.placeholder = '';
+          }
+        });
+      } else {
+        // Simple: clear placeholder — form-label floats visually
+        const input = fg.querySelector('.form-control');
+        if (input) {
+          if (!input.dataset.origPlaceholder) input.dataset.origPlaceholder = input.placeholder || '';
+          input.placeholder = '';
+        }
+      }
+    } else {
+      // Restore original placeholders, remove float states
+      fg.querySelectorAll('.form-control').forEach(input => {
+        if (input.dataset.origPlaceholder !== undefined) {
+          input.placeholder = input.dataset.origPlaceholder;
+        }
+      });
+      fg.querySelectorAll('.compositeWrapper > span').forEach(span => {
+        span.classList.remove('is-focused', 'has-value');
+      });
+    }
+  });
+
+  // Add focus/blur/input listeners for floating state on form-group level
+  document.querySelectorAll('.zc-canvas-container .form-control').forEach(input => {
+    if (input.dataset.inplaceListenerAdded) return;
+    input.dataset.inplaceListenerAdded = 'true';
+
+    input.addEventListener('focus', function() {
+      // Form-group level (for simple fields)
+      const g = this.closest('.form-group');
+      if (g) g.classList.add('is-focused');
+      // Span level (for composite sub-fields)
+      const span = this.closest('.compositeWrapper > span');
+      if (span) span.classList.add('is-focused');
+    });
+    input.addEventListener('blur', function() {
+      const g = this.closest('.form-group');
+      if (g) {
+        g.classList.remove('is-focused');
+        if (this.value) g.classList.add('has-value');
+        else g.classList.remove('has-value');
+      }
+      const span = this.closest('.compositeWrapper > span');
+      if (span) {
+        span.classList.remove('is-focused');
+        if (this.value) span.classList.add('has-value');
+        else span.classList.remove('has-value');
+      }
+    });
+    input.addEventListener('input', function() {
+      const g = this.closest('.form-group');
+      if (g) {
+        if (this.value) g.classList.add('has-value');
+        else g.classList.remove('has-value');
+      }
+      const span = this.closest('.compositeWrapper > span');
+      if (span) {
+        if (this.value) span.classList.add('has-value');
+        else span.classList.remove('has-value');
+      }
+    });
+  });
+}
+
+function applyVariant() {
+  const s = currentVariant==='sections';
+  ['form-sections','form-flat','vb-sections','vb-flat','code-sections','code-flat','struct-sections','struct-flat'].forEach(id => {
+    document.getElementById(id).classList.toggle('active', id.includes('sections') ? s : !s);
+  });
+  updateCodeAndStruct();
+  applyWidths();
+}
+
+function updateCodeAndStruct() {
+  const l = currentLabel;
+  const colSuffix = currentCols === 'mixed' ? '' : `-${currentCols}col`;
+  document.getElementById('codeFilenameS').textContent = `with-sections-label-${l}${colSuffix}.html`;
+  document.getElementById('codeFilenameF').textContent = `without-sections-label-${l}${colSuffix}.html`;
+
+  // Extract actual HTML from the live DOM
+  const rawS = document.getElementById('formCanvasS').outerHTML;
+  const rawF = document.getElementById('formCanvasF').outerHTML;
+
+  document.getElementById('codeS').innerHTML = hl(cleanHTML(rawS));
+  document.getElementById('codeF').innerHTML = hl(cleanHTML(rawF));
+
+  // Structure trees
+  const dir = (l==='left'||l==='right') ? 'row' : 'column';
+  const alignCls = (l==='left'||l==='right') ? ' .zc-align-items-center' : '';
+  const labelNote = l==='inplace' ? ' (hidden via CSS, text used as placeholder)' : '';
+  const fgExtra = l==='right' ? ' (label text-align: right)' : '';
+  const c = currentCols;
+  const colNote = c === 'mixed' ? 'zc-col-N (mixed)' : c === 1 ? 'no wrapper (block flow)' : COL_CLASS[c] + ` (${c} per row)`;
+  const is1 = (c === 1);
+
+  // With Sections tree
+  let secTree = `<span class="si">/* With Sections — label-${l} — cols: ${c} */</span>
+
+<span class="sc">.zc-canvas-container .label-${l}</span>
+<span class="sg">└─</span> <span class="sc">[vertical_flex]</span> <span class="sg">.zc-flex .zc-direction-column</span>
+<span class="sg">   └─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
+<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>`;
+
+  if (is1) {
+    secTree += `
+<span class="sg">      ├─</span> <span class="ss">[form_section]</span> <span class="sg">display:block  <span class="si">← no flex needed</span></span>
+<span class="sg">      │  ├─</span> <span class="sd">&lt;h2 class="section-label"&gt;</span>
+<span class="sg">      │  └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}  <span class="si">← direct child, no row/cell wrapper</span></span>
+<span class="sg">      │     ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
+<span class="sg">      │     └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>`;
+  } else {
+    secTree += `
+<span class="sg">      ├─</span> <span class="ss">[form_section]</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-15</span>
+<span class="sg">      │  ├─</span> <span class="sd">&lt;h2 class="section-label"&gt;</span>
+<span class="sg">      │  └─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
+<span class="sg">      │     └─</span> <span class="sl">.zc-no-shrink .${colNote}</span>
+<span class="sg">      │        └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}</span>
+<span class="sg">      │           ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
+<span class="sg">      │           └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>
+<span class="sg">      │              └─</span> <span class="sl">.compositeWrapper</span> <span class="sg">.zc-flex .zc-direction-row .zc-gap-col-8</span>`;
+  }
+
+  secTree += `
+<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-no-shrink</span>`;
+
+  // Without Sections tree
+  let flatTree = `<span class="si">/* Without Sections — label-${l} — cols: ${c} */</span>
+
+<span class="sc">.zc-canvas-container .label-${l}</span>
+<span class="sg">└─</span> <span class="sc">[vertical_flex]</span> <span class="sg">.zc-flex .zc-direction-column</span>
+<span class="sg">   └─</span> <span class="sf">&lt;form&gt;</span> <span class="sg">.zc-flex .zc-direction-column .zc-gap-row-20</span>
+<span class="sg">      ├─</span> <span class="sd">[form_header]</span> <span class="sg">.zc-no-shrink</span>`;
+
+  if (is1) {
+    flatTree += `
+<span class="sg">      ├─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}  <span class="si">← direct child, no row/cell wrapper</span></span>
+<span class="sg">      │  ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
+<span class="sg">      │  └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>`;
+  } else {
+    flatTree += `
+<span class="sg">      ├─</span> <span class="sr">[horizontal_flex]</span> <span class="sg">.zc-flex .zc-direction-row .zc-row-wrap .zc-gap-col-16</span>
+<span class="sg">      │  └─</span> <span class="sl">.zc-no-shrink .${colNote}</span>
+<span class="sg">      │     └─</span> <span class="sd">.form-group</span> <span class="sg">.zc-flex .zc-direction-${dir}${fgExtra}</span>
+<span class="sg">      │        ├─</span> <span class="sp">.form-label</span> <span class="sg">.zc-flex .zc-no-shrink${alignCls}${labelNote}</span>
+<span class="sg">      │        └─</span> <span class="sm">.form-field</span> <span class="sg">.zc-col-common</span>`;
+  }
+
+  flatTree += `
+<span class="sg">      └─</span> <span class="sd">[form_footer]</span> <span class="sg">.zc-no-shrink</span>`;
+
+  document.getElementById('structS').innerHTML = secTree;
+  document.getElementById('structF').innerHTML = flatTree;
+}
+
+function cleanHTML(html) {
+  // Remove demo-only attributes
+  let s = html;
+  s = s.replace(/\s*id="formCanvas[SF]"/g, '');
+  s = s.replace(/\s*style="height:100%"/g, '');
+  s = s.replace(/\s*style="flex:1;overflow-y:auto"/g, '');
+  // Remove annotation class
+  s = s.replace(/\s*annotated/g, '');
+  // Clean up multiple spaces in class attributes
+  s = s.replace(/class="([^"]*)"/g, (m, cls) => 'class="' + cls.replace(/\s+/g,' ').trim() + '"');
+  // Format: pretty-print with indentation
+  s = formatHTML(s);
+  return s;
+}
+
+function formatHTML(html) {
+  // Simple HTML formatter
+  const selfClosing = /^(input|br|hr|img|meta|link)$/i;
+  let result = '';
+  let indent = 0;
+  // Split on tags
+  const parts = html.replace(/>\s*</g, '>\n<').split('\n');
+  for (let p of parts) {
+    p = p.trim();
+    if (!p) continue;
+    // Closing tag
+    if (p.startsWith('</')) {
+      indent = Math.max(0, indent - 1);
+      result += '  '.repeat(indent) + p + '\n';
+    }
+    // Self-closing or void
+    else if (p.match(/^<[\w-]+[^>]*\/>$/) || (p.match(/^<([\w-]+)/) && selfClosing.test(RegExp.$1))) {
+      result += '  '.repeat(indent) + p + '\n';
+    }
+    // Opening tag (might contain text + closing on same line)
+    else if (p.startsWith('<') && p.includes('</') && !p.startsWith('<!--')) {
+      result += '  '.repeat(indent) + p + '\n';
+      // Don't change indent — it opened and closed on same line
+    }
+    // Opening tag only
+    else if (p.startsWith('<') && !p.startsWith('</')) {
+      result += '  '.repeat(indent) + p + '\n';
+      indent++;
+    }
+    // Text node
+    else {
+      result += '  '.repeat(indent) + p + '\n';
+    }
+  }
+  return result.trimEnd();
+}
+
+function hl(code) {
+  // Work on raw HTML — tokenize BEFORE escaping
+  const out = [];
+  let i = 0;
+  while (i < code.length) {
+    // HTML comment
+    if (code.startsWith('<!--', i)) {
+      const end = code.indexOf('-->', i);
+      if (end !== -1) {
+        out.push('<span class="cc">' + esc(code.slice(i, end + 3)) + '</span>');
+        i = end + 3; continue;
+      }
+    }
+    // HTML tag
+    if (code[i] === '<') {
+      const end = code.indexOf('>', i);
+      if (end !== -1) {
+        const raw = code.slice(i, end + 1);
+        out.push(colorizeTag(raw));
+        i = end + 1; continue;
+      }
+    }
+    // Text — collect until next '<'
+    const next = code.indexOf('<', i);
+    if (next === -1) { out.push(esc(code.slice(i))); break; }
+    out.push(esc(code.slice(i, next)));
+    i = next;
+  }
+  return out.join('');
+}
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function colorizeTag(raw) {
+  // Parse: <tagname attr="val" attr="val">
+  // or: </tagname>
+  // or: <input ... >
+  const parts = [];
+  let j = 0;
+
+  // Opening < or </
+  if (raw.startsWith('</')) {
+    parts.push(esc('</'));
+    j = 2;
+  } else {
+    parts.push(esc('<'));
+    j = 1;
+  }
+
+  // Tag name
+  const nameMatch = raw.slice(j).match(/^[\w-]+/);
+  if (nameMatch) {
+    parts.push('<span class="ct">' + esc(nameMatch[0]) + '</span>');
+    j += nameMatch[0].length;
+  }
+
+  // Rest until >
+  const rest = raw.slice(j, raw.endsWith('/>') ? -2 : -1);
+
+  // Parse attributes from rest
+  const attrRegex = /([\w-]+)\s*=\s*"([^"]*)"/g;
+  let lastIdx = 0;
+  let m;
+  while ((m = attrRegex.exec(rest)) !== null) {
+    // Text before this attr (spaces etc)
+    if (m.index > lastIdx) {
+      parts.push(esc(rest.slice(lastIdx, m.index)));
+    }
+    // attr="value"
+    parts.push('<span class="ca">' + esc(m[1]) + '</span>=' + '"<span class="cv">' + esc(m[2]) + '</span>"');
+    lastIdx = m.index + m[0].length;
+  }
+  // Remaining text after last attr
+  if (lastIdx < rest.length) {
+    parts.push(esc(rest.slice(lastIdx)));
+  }
+
+  // Closing
+  if (raw.endsWith('/>')) {
+    parts.push(esc('/>'));
+  } else {
+    parts.push(esc('>'));
+  }
+
+  return parts.join('');
+}
+
+function copyCode(id, btn) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    btn.textContent='Copied!'; btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000);
+  });
+}
+
+// ═══ Width Properties Panel ═══
+
+function togglePropUnit(prefix) {
+  const unit = document.querySelector(`input[name="${prefix}-unit"]:checked`).value;
+  const pxInput = document.getElementById(`${prefix}-px`);
+  const pctInput = document.getElementById(`${prefix}-pct`);
+  pxInput.disabled = (unit !== 'px');
+  pctInput.disabled = (unit !== 'pct');
+  applyWidths();
+}
+
+function resetProp(prefix) {
+  document.getElementById(`${prefix}-px`).value = '';
+  document.getElementById(`${prefix}-pct`).value = '';
+  document.getElementById(`${prefix}-applied`).textContent = '';
+  document.getElementById(`${prefix}-applied`).classList.remove('visible');
+  applyWidths();
+}
+
+function getWidthValue(prefix) {
+  const unit = document.querySelector(`input[name="${prefix}-unit"]:checked`).value;
+  const input = document.getElementById(`${prefix}-${unit === 'px' ? 'px' : 'pct'}`);
+  const val = input.value.trim();
+  if (!val) return null;
+  return unit === 'px' ? `${val}px` : `${val}%`;
+}
+
+function showApplied(prefix, value) {
+  const el = document.getElementById(`${prefix}-applied`);
+  if (value) {
+    el.textContent = `✓ width: ${value}`;
+    el.classList.add('visible');
+  } else {
+    el.textContent = '';
+    el.classList.remove('visible');
+  }
+}
+
+function applyWidths() {
+  const fgW = getWidthValue('fg');
+  const flW = getWidthValue('fl');
+  const ffW = getWidthValue('ff');
+  const cwW = getWidthValue('cw');
+
+  showApplied('fg', fgW);
+  showApplied('fl', flW);
+  showApplied('ff', ffW);
+  showApplied('cw', cwW);
+
+  // Apply to all form-groups
+  document.querySelectorAll('.zc-canvas-container .form-group').forEach(fg => {
+    if (fgW) { fg.style.width = fgW; fg.style.maxWidth = fgW; }
+    else { fg.style.removeProperty('width'); fg.style.removeProperty('max-width'); }
+  });
+
+  // Apply to all form-labels
+  document.querySelectorAll('.zc-canvas-container .form-label').forEach(fl => {
+    // Only apply fixed width in left/right mode; in top/inplace label width is auto
+    if (flW && (currentLabel === 'left' || currentLabel === 'right')) {
+      fl.style.width = flW; fl.style.minWidth = flW; fl.style.maxWidth = flW;
+      fl.style.flex = `0 0 ${flW}`;
+    } else if (flW && currentLabel === 'top') {
+      fl.style.width = flW; fl.style.maxWidth = flW;
+      fl.style.removeProperty('min-width'); fl.style.removeProperty('flex');
+    } else {
+      fl.style.removeProperty('width'); fl.style.removeProperty('min-width');
+      fl.style.removeProperty('max-width'); fl.style.removeProperty('flex');
+    }
+  });
+
+  // Apply to all form-fields
+  document.querySelectorAll('.zc-canvas-container .form-field').forEach(ff => {
+    if (ffW) { ff.style.width = ffW; ff.style.maxWidth = ffW; ff.style.flex = `0 0 ${ffW}`; }
+    else { ff.style.removeProperty('width'); ff.style.removeProperty('max-width'); ff.style.removeProperty('flex'); }
+  });
+
+  // Apply to compositeWrappers
+  document.querySelectorAll('.zc-canvas-container .compositeWrapper').forEach(cw => {
+    if (cwW) { cw.style.width = cwW; cw.style.maxWidth = cwW; }
+    else { cw.style.removeProperty('width'); cw.style.removeProperty('max-width'); }
+  });
+
+  // Update code tab to reflect inline styles
+  updateCodeAndStruct();
+}
+
+// ═══ Sidebar Tab Switching ═══
+
+function switchPropsTab(tab) {
+  document.querySelectorAll('.props-tab').forEach((b,i) => b.classList.toggle('active', (tab==='common')===(i===0)));
+  document.getElementById('propsCommon').classList.toggle('active', tab==='common');
+  document.getElementById('propsSelected').classList.toggle('active', tab==='selected');
+}
+
+// ═══ Field Selection ═══
+
+let selectedField = null;
+
+function setupFieldSelection() {
+  // Use event delegation on canvas containers
+  document.querySelectorAll('.zc-canvas-container').forEach(canvas => {
+    canvas.addEventListener('click', function(e) {
+      const fg = e.target.closest('.form-group');
+      if (!fg) return;
+      e.stopPropagation();
+      selectField(fg);
+    });
+  });
+  // Click outside deselects
+  document.querySelector('.main-content').addEventListener('click', function(e) {
+    if (!e.target.closest('.form-group') && !e.target.closest('.props-sidebar')) {
+      deselectField();
+    }
+  });
+}
+
+function selectField(fg) {
+  // Remove previous selection
+  document.querySelectorAll('.form-group.is-selected').forEach(el => el.classList.remove('is-selected'));
+  // Select new
+  fg.classList.add('is-selected');
+  selectedField = fg;
+
+  // Switch to selected tab
+  switchPropsTab('selected');
+
+  // Update header
+  const labelEl = fg.querySelector('.form-label .zc-label-text');
+  const fieldName = labelEl ? labelEl.textContent.trim() : 'Unknown';
+  const fieldType = fg.dataset.elementType || 'form_field';
+  document.getElementById('selFieldName').textContent = fieldName;
+  document.getElementById('selFieldType').textContent = fieldType;
+
+  // Show/hide compositeWrapper section
+  const hasCW = !!fg.querySelector('.compositeWrapper');
+  document.getElementById('selCWSection').style.display = hasCW ? '' : 'none';
+
+  // Show content, hide empty state
+  document.getElementById('selEmpty').style.display = 'none';
+  document.getElementById('selContent').style.display = '';
+
+  // Read current inline styles into inputs
+  readSelectedProps();
+}
+
+function deselectField() {
+  document.querySelectorAll('.form-group.is-selected').forEach(el => el.classList.remove('is-selected'));
+  selectedField = null;
+  document.getElementById('selEmpty').style.display = '';
+  document.getElementById('selContent').style.display = 'none';
+  clearSelectedInputs();
+}
+
+function readSelectedProps() {
+  if (!selectedField) return;
+  const fg = selectedField;
+  const fl = fg.querySelector('.form-label');
+  const ff = fg.querySelector('.form-field');
+  const cw = fg.querySelector('.compositeWrapper');
+
+  setInputFromStyle('sel-fg-w', fg, 'width');
+  setInputFromStyle('sel-fg-p', fg, 'padding');
+  setInputFromStyle('sel-fg-g', fg, 'gap');
+
+  if (fl) {
+    setInputFromStyle('sel-fl-w', fl, 'width');
+    setInputFromStyle('sel-fl-p', fl, 'padding');
+  }
+
+  if (ff) {
+    setInputFromStyle('sel-ff-w', ff, 'width');
+    setInputFromStyle('sel-ff-p', ff, 'padding');
+    // Read radius from first child input element
+    const firstInput = ff.querySelector('.form-control, .select2-choice');
+    if (firstInput) setInputFromStyle('sel-ff-r', firstInput, 'borderRadius');
+  }
+
+  if (cw) {
+    setInputFromStyle('sel-cw-w', cw, 'width');
+    setInputFromStyle('sel-cw-g', cw, 'gap');
+    setInputFromStyle('sel-cw-p', cw, 'padding');
+  }
+}
+
+function setInputFromStyle(inputId, el, prop) {
+  const input = document.getElementById(inputId);
+  if (!input || !el) return;
+  const val = el.style[prop];
+  input.value = val ? parseInt(val) || val.replace(/px|%/g,'') : '';
+}
+
+function clearSelectedInputs() {
+  ['sel-fg-w','sel-fg-p','sel-fg-g','sel-fl-w','sel-fl-p','sel-ff-w','sel-ff-p','sel-ff-r','sel-cw-w','sel-cw-g','sel-cw-p'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+function applySelectedProps() {
+  if (!selectedField) return;
+  const fg = selectedField;
+  const fl = fg.querySelector('.form-label');
+  const ff = fg.querySelector('.form-field');
+  const cw = fg.querySelector('.compositeWrapper');
+
+  applyPropToEl(fg, 'sel-fg-w', 'width');
+  applyPropToEl(fg, 'sel-fg-p', 'padding');
+  applyPropToEl(fg, 'sel-fg-g', 'gap');
+
+  if (fl) {
+    applyPropToEl(fl, 'sel-fl-w', 'width');
+    applyPropToEl(fl, 'sel-fl-p', 'padding');
+  }
+
+  if (ff) {
+    applyPropToEl(ff, 'sel-ff-w', 'width');
+    applyPropToEl(ff, 'sel-ff-p', 'padding');
+    // Apply radius to child input/textarea/select2-choice elements, not .form-field itself
+    applyRadiusToChildren(ff, 'sel-ff-r');
+  }
+
+  if (cw) {
+    applyPropToEl(cw, 'sel-cw-w', 'width');
+    applyPropToEl(cw, 'sel-cw-g', 'gap');
+    applyPropToEl(cw, 'sel-cw-p', 'padding');
+  }
+
+  updateCodeAndStruct();
+}
+
+function applyPropToEl(el, inputId, cssProp) {
+  const input = document.getElementById(inputId);
+  if (!input || !el) return;
+  const val = input.value.trim();
+  if (val) {
+    // If it looks like just a number, append px
+    const unit = /^\d+$/.test(val) ? 'px' : '';
+    el.style[cssProp] = val + unit;
+  } else {
+    el.style.removeProperty(cssProp.replace(/([A-Z])/g, '-$1').toLowerCase());
+  }
+}
+
+function applyRadiusToChildren(ff, inputId) {
+  const input = document.getElementById(inputId);
+  if (!input || !ff) return;
+  const val = input.value.trim();
+  const children = ff.querySelectorAll('.form-control, .select2-choice');
+  children.forEach(child => {
+    if (val) {
+      const unit = /^\d+$/.test(val) ? 'px' : '';
+      child.style.borderRadius = val + unit;
+    } else {
+      child.style.removeProperty('border-radius');
+    }
+  });
+}
+
+function resetSelectedProps() {
+  if (!selectedField) return;
+  const fg = selectedField;
+  const fl = fg.querySelector('.form-label');
+  const ff = fg.querySelector('.form-field');
+  const cw = fg.querySelector('.compositeWrapper');
+
+  ['width','padding','gap'].forEach(p => {
+    fg.style.removeProperty(p);
+  });
+  if (fl) ['width','padding'].forEach(p => fl.style.removeProperty(p));
+  if (ff) {
+    ['width','padding'].forEach(p => ff.style.removeProperty(p));
+    // Reset radius on child elements
+    ff.querySelectorAll('.form-control, .select2-choice').forEach(child => {
+      child.style.removeProperty('border-radius');
+    });
+  }
+  if (cw) ['width','gap','padding'].forEach(p => cw.style.removeProperty(p));
+
+  clearSelectedInputs();
+  updateCodeAndStruct();
+}
+
+// Init
+// Save original form inner HTML for mixed restore
+origFormS = document.querySelector('#formCanvasS form').innerHTML;
+origFormF = document.querySelector('#formCanvasF form').innerHTML;
+updateCodeAndStruct();
+setupInplacePlaceholders();
+setupFieldSelection();
+
+function switchCols(n) {
+  currentCols = n;
+  const btns = document.querySelectorAll('#colBar .variant-btn');
+  const idx = {mixed:0,1:1,2:2,3:3,4:4,5:5};
+  btns.forEach((b,i) => b.classList.toggle('active', i===idx[n]));
+
+  document.querySelectorAll('.zc-canvas-container').forEach(canvas => {
+    const form = canvas.querySelector('form');
+    if (!form) return;
+    const isSections = canvas.id === 'formCanvasS';
+
+    // Always restore original HTML first so we have a clean base
+    form.innerHTML = isSections ? origFormS : origFormF;
+
+    if (n === 'mixed') {
+      // Already restored — done
+    } else {
+      // Collect all cells from the restored original
+      const allCells = [];
+
+      if (isSections) {
+        // Process each section independently
+        const sectionEls = form.querySelectorAll('[data-element-type="form_section"]');
+        const header = form.querySelector('[data-element-type="form_header"]');
+        const footer = form.querySelector('[data-element-type="form_footer"]');
+        const headerHTML = header ? header.outerHTML : '';
+        const footerHTML = footer ? footer.outerHTML : '';
+
+        const sections = [];
+        sectionEls.forEach(sec => {
+          const label = sec.querySelector('.section-label');
+          const secCells = [];
+          sec.querySelectorAll('[data-element-type="horizontal_flex"] > .zc-no-shrink').forEach(cell => {
+            secCells.push(cell.cloneNode(true));
+          });
+          sections.push({ labelHTML: label ? label.outerHTML : '', cells: secCells });
+        });
+
+        let newHTML = headerHTML;
+        sections.forEach(sec => {
+          if (n === 1) {
+            newHTML += `<div data-element-type="form_section" class="zc-no-shrink" style="display:block">`;
+          } else {
+            newHTML += `<div data-element-type="form_section" class="zc-flex zc-no-shrink zc-direction-column zc-gap-row-15">`;
+          }
+          newHTML += sec.labelHTML;
+          newHTML += buildColRows(sec.cells, n);
+          newHTML += `</div>`;
+        });
+        newHTML += footerHTML;
+        form.innerHTML = newHTML;
+
+      } else {
+        // Flat: collect all cells
+        const cells = [];
+        form.querySelectorAll('[data-element-type="horizontal_flex"] > .zc-no-shrink').forEach(cell => {
+          cells.push(cell.cloneNode(true));
+        });
+
+        const header = form.querySelector('[data-element-type="form_header"]');
+        const footer = form.querySelector('[data-element-type="form_footer"]');
+        const headerHTML = header ? header.outerHTML : '';
+        const footerHTML = footer ? footer.outerHTML : '';
+
+        let newHTML = headerHTML;
+        newHTML += buildColRows(cells, n);
+        newHTML += footerHTML;
+        form.innerHTML = newHTML;
+      }
+    }
+  });
+
+  // Re-apply label mode after DOM rebuild
+  switchLabel(currentLabel);
+}
+
+function buildColRows(cellList, n) {
+  const colCls = COL_CLASS[n] || 'zc-col-12';
+  let html = '';
+
+  if (n === 1) {
+    // 1-column: form-group directly, no row/cell wrapper
+    cellList.forEach(cell => {
+      const fg = cell.querySelector('.form-group');
+      html += fg ? fg.outerHTML : cell.innerHTML;
+    });
+  } else {
+    // Multi-column: group into rows of n
+    for (let i = 0; i < cellList.length; i += n) {
+      const chunk = cellList.slice(i, i + n);
+      html += `<div data-element-type="horizontal_flex" class="${ROW_CLASSES}">`;
+      chunk.forEach(cell => {
+        // Replace column class
+        cell.className = cell.className.replace(/zc-col-\d+/g, '').replace(/\s+/g, ' ').trim();
+        cell.classList.add('zc-no-shrink', colCls);
+        html += cell.outerHTML;
+      });
+      html += `</div>`;
+    }
+  }
+  return html;
+}
+</script>
+</body>
+</html>

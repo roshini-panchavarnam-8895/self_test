@@ -1,0 +1,65 @@
+{% comment %} Name Field — Composite Form Field Component {% endcomment %}
+{% include "_common-field" %}
+
+{% assign field_id = field.id | default: "name" %}
+{% assign field_name = field.name | default: "Name" %}
+{% assign field_label = field.label | default: "Name" %}
+
+<div class="form-group clearfix zc-{{ field_name }}-group zc-name-field-group" data-element-type="name-field" data-element-id="{{ field_id }}">
+
+  <label class="form-label zc-dem-clearfix zc-{{ field_name }}-label zc_name_label" for="zc-{{ field_name }}" id="zc-{{ field_name }}-arialabel">
+    <span class="zc-label-text">
+      {{ field_label }}
+      {% if field.required %}
+        <span class="fieldMandate">*</span>
+      {% endif %}
+    </span>
+  </label>
+
+  <div class="clearfix form-field mediumSizeLive">
+    <div class="flLeft compositeWrapper zc_{{ field_name }}_fld zc-{{ field_name }}" type="composite" name="{{ field_name }}">
+
+      <span class="PREFIX-wrapper">
+        <div class="select2-container form-control prefix-sel" id="s2id_prefix_{{ field_name }}">
+          <a class="select2-choice select2-default" tabindex="-1">
+            <span class="select2-chosen" id="select2-chosen-prefix-{{ field_name }}">None</span>
+            <abbr class="select2-search-choice-close"></abbr>
+            <span class="select2-arrow" role="presentation"><b role="presentation"></b></span>
+          </a>
+        </div>
+        <select class="form-control prefix-sel" name="{{ field_name }}.prefix" id="prefix_{{ field_name }}" tabindex="-1" style="display: none;">
+          <option value=""></option>
+          {% for prefix in field.prefix_options %}
+            <option value="{{ prefix }}">{{ prefix }}</option>
+          {% endfor %}
+          {% if field.prefix_options == nil %}
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Ms.">Ms.</option>
+          {% endif %}
+        </select>
+        <p class="zc-subfield-label" id="zc-{{ field_name }}-prefix">Prefix</p>
+      </span>
+
+      <span class="FIRST_NAME-wrapper">
+        <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.first_name" id="firstname_{{ field_name }}" maxlength="255" autocomplete="given-name"
+          {% if field.required %}required aria-required="true"{% endif %}>
+        <p class="zc-subfield-label" id="zc-{{ field_name }}-firstname">First Name</p>
+      </span>
+
+      <span class="LAST_NAME-wrapper">
+        <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.last_name" id="lastname_{{ field_name }}" maxlength="255" autocomplete="family-name"
+          {% if field.required %}required aria-required="true"{% endif %}>
+        <p class="zc-subfield-label" id="zc-{{ field_name }}-lastname">Last Name</p>
+      </span>
+
+      <span class="SUFFIX-wrapper">
+        <input class="form-control zc-elem-focus-field" type="text" name="{{ field_name }}.suffix" id="suffix_{{ field_name }}" maxlength="15" autocomplete="honorific-suffix">
+        <p class="zc-subfield-label" id="zc-{{ field_name }}-suffix">Suffix</p>
+      </span>
+
+    </div>
+    <input type="hidden" name="{{ field_name }}.status" value="add">
+  </div>
+
+</div>

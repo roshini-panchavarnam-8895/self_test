@@ -1,0 +1,224 @@
+@charset "UTF-8";
+/* =============================================================
+   Content Switcher — Zoho Creator Design System (SCSS)
+   Figma: Content Switcher (2630:5644), Content_Switcher_Button_Base (2730:443)
+
+   Connected segmented control (not inset pills):
+     • Outer border wraps the group; 1px dividers between segments
+     • First/last segment carry outer corner radius (--zc-radius-r)
+     • Fill: active = primary surface + white text; inactive = white + primary text
+     • Fill Minimal: active = primary subtle bg; border = huegrey low
+   ============================================================= */
+.zc-content-switcher {
+  min-height: auto !important;
+  background-color: transparent !important;
+  min-width: auto !important;
+  border: none !important;
+  font-family: var(--zc-font-family-default, "ZohoPuvi", sans-serif);
+}
+.zc-content-switcher .lyteTabNav {
+  width: auto !important;
+  float: none !important;
+}
+.zc-content-switcher lyte-tab-head {
+  display: inline-flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  padding: 0;
+  margin: 0;
+  float: none !important;
+  background: var(--zc-color-black-white-surface-white-surface);
+  border: 1px solid var(--zc-color-primary-border-default);
+  border-radius: var(--zc-radius-r);
+  overflow: hidden;
+  gap: 0;
+  box-sizing: border-box;
+}
+.zc-content-switcher lyte-tab-head::after {
+  display: none;
+}
+.zc-content-switcher lyte-tab-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 36px;
+  padding: 0 14px;
+  margin: 0;
+  font-family: inherit;
+  font-size: var(--zc-p2-font-size, 14px);
+  font-weight: var(--zc-p2-font-weight-regular, 400);
+  line-height: var(--zc-p2-line-height, 18px);
+  color: var(--zc-color-primary-text-default);
+  background: var(--zc-color-black-white-surface-white-surface);
+  border: none !important;
+  border-right: 1px solid var(--zc-color-primary-border-default) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  user-select: none;
+  float: none !important;
+  opacity: 1 !important;
+  box-sizing: border-box;
+  text-align: center;
+}
+.zc-content-switcher lyte-tab-title:last-child {
+  border-right: none !important;
+}
+.zc-content-switcher lyte-tab-title:hover:not(.lyteTabActive) {
+  background: var(--zc-color-primary-surface-subtle-hover);
+  color: var(--zc-color-primary-text-default);
+}
+.zc-content-switcher lyte-tab-title.lyteTabActive {
+  font-weight: var(--zc-p2-font-weight-regular, 400);
+  opacity: 1 !important;
+}
+.zc-content-switcher lyte-tab-body {
+  display: none !important;
+}
+
+/* --- Fill — solid primary active segment --- */
+.zc-content-switcher-fill lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-primary-surface-default) !important;
+  color: var(--zc-color-black-white-text-white-text) !important;
+  border-right-color: var(--zc-color-primary-border-default) !important;
+}
+.zc-content-switcher-fill lyte-tab-title.lyteTabActive:hover {
+  background: var(--zc-color-primary-surface-default-hover) !important;
+  color: var(--zc-color-black-white-text-white-text) !important;
+}
+
+/* --- Fill Minimal --- */
+.zc-content-switcher-minimal lyte-tab-head {
+  border-color: var(--zc-color-huegrey-text-fairish);
+}
+.zc-content-switcher-minimal lyte-tab-title {
+  color: var(--zc-color-primary-text-default);
+  border-right-color: var(--zc-color-huegrey-text-fairish) !important;
+}
+.zc-content-switcher-minimal lyte-tab-title:hover:not(.lyteTabActive) {
+  background: var(--zc-color-primary-surface-subtle);
+  color: var(--zc-color-primary-text-default);
+}
+.zc-content-switcher-minimal lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-primary-surface-subtle-hover) !important;
+  color: var(--zc-color-primary-text-default) !important;
+  border-right-color: var(--zc-color-huegrey-text-fairish) !important;
+}
+.zc-content-switcher-minimal lyte-tab-title.lyteTabActive:hover {
+  background: var(--zc-color-primary-surface-low) !important;
+  color: var(--zc-color-primary-text-default) !important;
+}
+
+/* --- Sizes --- */
+.zc-content-switcher-xs lyte-tab-head {
+  border-radius: var(--zc-radius-r);
+}
+.zc-content-switcher-xs lyte-tab-title {
+  height: 26px;
+  padding: 0 10px;
+  font-size: var(--zc-p3-font-size, 12px);
+  line-height: 18px;
+}
+
+.zc-content-switcher-sm lyte-tab-title {
+  height: 32px;
+  padding: 0 12px;
+}
+
+.zc-content-switcher-md lyte-tab-title {
+  height: 36px;
+  padding: 0 14px;
+}
+
+.zc-content-switcher-lg lyte-tab-title {
+  height: 40px;
+  padding: 0 16px;
+}
+
+/* --- Icon-only segments (32×32, Figma Content_Switcher_Icon) --- */
+.zc-content-switcher-button lyte-tab-title {
+  flex: 0 0 32px;
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.zc-cs-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.zc-cs-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- State showcase helpers --- */
+.zc-content-switcher-hover-default lyte-tab-title:not(.lyteTabActive) {
+  background: var(--zc-color-primary-surface-subtle-hover);
+  color: var(--zc-color-primary-text-default);
+}
+
+.zc-content-switcher-hover-active lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-primary-surface-default-hover) !important;
+  color: var(--zc-color-black-white-text-white-text) !important;
+}
+.zc-content-switcher-hover-active.zc-content-switcher-minimal lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-primary-surface-low) !important;
+  color: var(--zc-color-primary-text-default) !important;
+}
+
+/* --- Disabled (no selection) --- */
+.zc-content-switcher-disabled {
+  pointer-events: none;
+}
+.zc-content-switcher-disabled lyte-tab-head {
+  background: var(--zc-color-huegrey-surface-low-hover);
+  border-color: var(--zc-color-huegrey-text-fairish);
+}
+.zc-content-switcher-disabled lyte-tab-title {
+  color: var(--zc-color-neutral-text-fairish-hover);
+  border-right-color: var(--zc-color-huegrey-text-fairish) !important;
+  cursor: not-allowed;
+}
+.zc-content-switcher-disabled.zc-content-switcher-fill lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-neutral-text-fairish-hover) !important;
+  color: var(--zc-color-black-white-text-white-text) !important;
+}
+.zc-content-switcher-disabled.zc-content-switcher-minimal lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-huegrey-text-fairish) !important;
+  color: var(--zc-color-neutral-text-fairish-hover) !important;
+}
+
+/* --- Disabled after (selection locked) --- */
+.zc-content-switcher-disabled-after {
+  pointer-events: none;
+}
+.zc-content-switcher-disabled-after lyte-tab-head {
+  background: var(--zc-color-huegrey-surface-low-hover);
+  border-color: var(--zc-color-huegrey-text-fairish);
+}
+.zc-content-switcher-disabled-after lyte-tab-title {
+  color: var(--zc-color-neutral-text-fairish-hover);
+  border-right-color: var(--zc-color-huegrey-text-fairish) !important;
+  cursor: not-allowed;
+}
+.zc-content-switcher-disabled-after.zc-content-switcher-fill lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-neutral-text-fairish-hover) !important;
+  color: var(--zc-color-black-white-text-white-text) !important;
+}
+.zc-content-switcher-disabled-after.zc-content-switcher-minimal lyte-tab-title.lyteTabActive {
+  background: var(--zc-color-huegrey-text-fairish) !important;
+  color: var(--zc-color-neutral-text-fairish-hover) !important;
+}

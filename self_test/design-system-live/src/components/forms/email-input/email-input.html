@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Input — Zoho Creator</title>
+  <link rel="stylesheet" href="email-input.css">
+</head>
+<body>
+<form class="form-table label-left">
+
+    <!-- With help text -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-email">
+        <span class="zc-label-text">Email</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix zc-email-field">
+        <input class="form-control" type="email" name="Email" id="zc-email" maxlength="80" autocomplete="email" placeholder="user@example.com" aria-describedby="zc-email-help">
+        <div id="zc-email-help" class="zc-help-txt">Help text goes here</div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="form-group clearfix">
+      <label class="form-label" for="zc-email-err">
+        <span class="zc-label-text">Email<span class="fieldMandate" aria-hidden="true">*</span></span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix zc-email-field validationError">
+        <input class="form-control" type="email" name="Email_Err" id="zc-email-err" maxlength="80" autocomplete="email" required aria-required="true" aria-invalid="true" aria-describedby="zc-email-error">
+        <div id="zc-email-error" class="fieldErrorMsg" role="alert">
+          <span>This field is mandatory. Enter a value.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled state -->
+    <div class="form-group clearfix zc-field-disabled">
+      <label class="form-label" for="zc-email-dis">
+        <span class="zc-label-text">Email</span>
+      </label>
+      <div class="form-field mediumSizeLive clearfix zc-email-field">
+        <input class="form-control" type="email" name="Email_Dis" id="zc-email-dis" maxlength="80" placeholder="Disabled" disabled aria-disabled="true">
+      </div>
+    </div>
+
+</form>
+</body>
+</html>

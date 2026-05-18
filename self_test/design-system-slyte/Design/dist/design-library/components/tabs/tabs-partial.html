@@ -1,0 +1,225 @@
+<style>
+    .tab-section { margin-bottom: 28px; }
+    .tab-section-title { font-size: var(--zc-p2-font-size); font-weight: var(--zc-font-weight-bold); text-transform: uppercase; letter-spacing: 0.04em; color: var(--zc-color-huegrey-text-default); margin-bottom: 12px; }
+    .tab-section-card { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-rl); padding: 24px; box-shadow: var(--zc-elevation-subtle-default); }
+    .tab-table { width: 100%; border-collapse: collapse; }
+    .tab-table th { text-align: left; font-size: var(--zc-p3-font-size); font-weight: var(--zc-font-weight-bold); color: var(--zc-color-huegrey-text-default); padding: 0 12px 12px 0; white-space: nowrap; }
+    .tab-table td { padding: 10px 12px 10px 0; vertical-align: middle; }
+    .tab-table tr + tr td { border-top: 1px solid var(--zc-color-huegrey-border-minimal); }
+    .tab-table .tab-row-label { font-size: 13px; font-weight: var(--zc-font-weight-semibold); color: var(--zc-color-huegrey-text-dark); white-space: nowrap; min-width: 110px; }    .tab-desc { font-size: 13px; color: var(--zc-color-huegrey-text-default); margin-bottom: 24px; line-height: var(--zc-p2-line-height); }
+    .tab-desc code { background: var(--zc-color-black-white-surface-white-surface); border: 1px solid var(--zc-color-huegrey-border-minimal); border-radius: var(--zc-radius-s); padding: 1px 6px; font-size: var(--zc-p3-font-size); font-family: var(--zc-font-family-mono); }
+    .tab-variant-label { font-size: 12px; color: var(--zc-color-huegrey-text-default); margin-bottom: 6px; }
+</style>
+
+<!-- Card Grid Header -->
+<div class="card-grid-header">
+    <button class="back-btn" onclick="window.showCardGrid()"><i class="fas fa-arrow-left"></i></button>
+    <h2>Tabs</h2>
+</div>
+
+<p class="tab-desc">Source: Figma <code>Tabs (2294:4392)</code>. Underlined text tabs (different from the Content Switcher segmented control). 7 states. Variable bottom padding (6 / 10 / 12 / 14 / 16 px) and horizontal padding (0-14 px).</p>
+
+<!-- SINGLE-TAB STATES -->
+<div class="tab-section">
+    <div class="tab-section-title">Single-tab states</div>
+    <div class="tab-section-card">
+        <table class="tab-table">
+            <thead>
+                <tr>
+                    <th style="min-width:200px;">State</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tab-row-label">Default</td>
+                    <td>
+                        <lyte-tabs lt-prop-height="auto">
+                            <template is="registerYield" yield-name="tabYield">
+                                <lyte-tab-head>
+                                    <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                                </lyte-tab-head>
+                                <lyte-tab-body><lyte-tab-content></lyte-tab-content></lyte-tab-body>
+                            </template>
+                        </lyte-tabs>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab-row-label">Hover on Default</td>
+                    <td>
+                        <lyte-tabs lt-prop-height="auto" class="zc-tabs-hover-demo">
+                            <template is="registerYield" yield-name="tabYield">
+                                <lyte-tab-head>
+                                    <lyte-tab-title class="zc-tab-hover"><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                                </lyte-tab-head>
+                                <lyte-tab-body><lyte-tab-content></lyte-tab-content></lyte-tab-body>
+                            </template>
+                        </lyte-tabs>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab-row-label">Active</td>
+                    <td>
+                        <lyte-tabs lt-prop-height="auto">
+                            <template is="registerYield" yield-name="tabYield">
+                                <lyte-tab-head>
+                                    <lyte-tab-title class="zc-tab-active"><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                                </lyte-tab-head>
+                                <lyte-tab-body><lyte-tab-content></lyte-tab-content></lyte-tab-body>
+                            </template>
+                        </lyte-tabs>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab-row-label">Hover on Active</td>
+                    <td>
+                        <lyte-tabs lt-prop-height="auto">
+                            <template is="registerYield" yield-name="tabYield">
+                                <lyte-tab-head>
+                                    <lyte-tab-title class="zc-tab-active zc-tab-hover"><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                                </lyte-tab-head>
+                                <lyte-tab-body><lyte-tab-content></lyte-tab-content></lyte-tab-body>
+                            </template>
+                        </lyte-tabs>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab-row-label">Active Border (only)</td>
+                    <td>
+                        <lyte-tabs lt-prop-height="auto">
+                            <template is="registerYield" yield-name="tabYield">
+                                <lyte-tab-head>
+                                    <lyte-tab-title class="zc-tab-active-border"><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                                </lyte-tab-head>
+                                <lyte-tab-body><lyte-tab-content></lyte-tab-content></lyte-tab-body>
+                            </template>
+                        </lyte-tabs>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab-row-label">Hover on Active Border</td>
+                    <td>
+                        <lyte-tabs lt-prop-height="auto">
+                            <template is="registerYield" yield-name="tabYield">
+                                <lyte-tab-head>
+                                    <lyte-tab-title class="zc-tab-active-border zc-tab-hover"><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                                </lyte-tab-head>
+                                <lyte-tab-body><lyte-tab-content></lyte-tab-content></lyte-tab-body>
+                            </template>
+                        </lyte-tabs>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab-row-label">Disabled</td>
+                    <td>
+                        <lyte-tabs lt-prop-height="auto">
+                            <template is="registerYield" yield-name="tabYield">
+                                <lyte-tab-head>
+                                    <lyte-tab-title class="zc-tab-disabled" disabled><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                                </lyte-tab-head>
+                                <lyte-tab-body><lyte-tab-content></lyte-tab-content></lyte-tab-body>
+                            </template>
+                        </lyte-tabs>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- TAB STRIPS (Tab_Default_Base) -->
+<div class="tab-section">
+    <div class="tab-section-title">Tab strips (Tab_Default_Base)</div>
+    <p style="color: var(--zc-color-huegrey-text-default); font-size: 12px; margin: 0 0 12px;">Click any tab — only one is active at a time per strip.</p>
+    <div class="tab-section-card" class="zc-flex zc-direction-column zc-gap-24">
+
+        <div>
+            <div class="tab-variant-label">Count = 4 &middot; Bottom padding 12px</div>
+            <lyte-tabs lt-prop-height="auto">
+                <template is="registerYield" yield-name="tabYield">
+                    <lyte-tab-head>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                    </lyte-tab-head>
+                    <lyte-tab-body>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                    </lyte-tab-body>
+                </template>
+            </lyte-tabs>
+        </div>
+
+        <div>
+            <div class="tab-variant-label">Count = 6 &middot; Bottom padding 10px</div>
+            <lyte-tabs lt-prop-height="auto" class="zc-tabs-py-10">
+                <template is="registerYield" yield-name="tabYield">
+                    <lyte-tab-head>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title class="zc-tab-disabled" disabled><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                    </lyte-tab-head>
+                    <lyte-tab-body>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                    </lyte-tab-body>
+                </template>
+            </lyte-tabs>
+        </div>
+
+        <div>
+            <div class="tab-variant-label">Count = 8 &middot; Bottom padding 14px</div>
+            <lyte-tabs lt-prop-height="auto" class="zc-tabs-py-14">
+                <template is="registerYield" yield-name="tabYield">
+                    <lyte-tab-head>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                        <lyte-tab-title><i class="fas fa-circle" style="font-size:8px; margin-right:4px;"></i>Tab<i class="fas fa-circle" style="font-size:8px; margin-left:4px;"></i></lyte-tab-title>
+                    </lyte-tab-head>
+                    <lyte-tab-body>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                    </lyte-tab-body>
+                </template>
+            </lyte-tabs>
+        </div>
+
+        <div>
+            <div class="tab-variant-label">Count = 2 &middot; Bottom padding 6px (compact)</div>
+            <lyte-tabs lt-prop-height="auto" class="zc-tabs-py-6 zc-tabs-px-8">
+                <template is="registerYield" yield-name="tabYield">
+                    <lyte-tab-head>
+                        <lyte-tab-title>Tab</lyte-tab-title>
+                        <lyte-tab-title>Tab</lyte-tab-title>
+                    </lyte-tab-head>
+                    <lyte-tab-body>
+                        <lyte-tab-content></lyte-tab-content>
+                        <lyte-tab-content></lyte-tab-content>
+                    </lyte-tab-body>
+                </template>
+            </lyte-tabs>
+        </div>
+
+    </div>
+</div>

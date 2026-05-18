@@ -1,0 +1,54 @@
+/* Shared showcase chrome — NO flex layout (use grid.css utilities on markup) */
+
+.ds-section { margin-bottom: 28px; }
+
+.ds-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--zc-color-huegrey-text-default);
+    margin-bottom: 12px;
+}
+
+.ds-section-card {
+    background: var(--zc-color-black-white-surface-white-surface);
+    border: 1px solid var(--zc-color-huegrey-border-minimal);
+    border-radius: var(--zc-radius-rl);
+    padding: 24px;
+    box-shadow: var(--zc-elevation-subtle-default);
+}
+
+.ds-table { width: 100%; border-collapse: collapse; }
+
+.ds-table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--zc-color-huegrey-text-default);
+    padding: 0 12px 12px 0;
+    white-space: nowrap;
+}
+
+.ds-table td {
+    padding: 10px 12px 10px 0;
+    vertical-align: middle;
+}
+
+.ds-table tr + tr td {
+    border-top: 1px solid var(--zc-color-huegrey-border-minimal);
+}
+
+.ds-row-label {
+    font-size: 13px;
+    font-weight: var(--zc-font-weight-semibold);
+    color: var(--zc-color-huegrey-text-dark);
+    white-space: nowrap;
+    min-width: 110px;
+}
+
+.ds-note {
+    font-size: 12px;
+    color: var(--zc-color-huegrey-text-default);
+    margin-bottom: 12px;
+}
