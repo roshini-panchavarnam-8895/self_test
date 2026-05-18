@@ -1,0 +1,137 @@
+/* Tooltip SCSS - Figma: Rich_Tooltip_Core (2401:258) */
+
+/* -----------------------------------------------------------------------
+   BASE TOOLTIP
+   ----------------------------------------------------------------------- */
+.zc-tooltip {
+    position: absolute;
+    z-index: 1100;
+    max-width: 240px;
+    background: #182649;
+    border-radius: var(--zc-radius-r, 6px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: var(--zc-p3-font-size, 12px);
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+/* -----------------------------------------------------------------------
+   TITLE
+   ----------------------------------------------------------------------- */
+.zc-tooltip-title {
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    font-size: var(--zc-p3-font-size, 12px);
+    margin-bottom: 4px;
+    color: #FFFFFF;
+}
+
+/* -----------------------------------------------------------------------
+   LIST TYPE
+   ----------------------------------------------------------------------- */
+.zc-tooltip-list {
+    list-style: disc;
+    margin: 0;
+    padding-left: 16px;
+}
+
+.zc-tooltip-list li {
+    padding: 2px 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* -----------------------------------------------------------------------
+   TABLE TYPE
+   ----------------------------------------------------------------------- */
+.zc-tooltip-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.zc-tooltip-table td {
+    padding: 2px 0;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+.zc-tooltip-key {
+    color: rgba(255, 255, 255, 0.6);
+    padding-right: 12px;
+    white-space: nowrap;
+}
+
+.zc-tooltip-val {
+    color: #FFFFFF;
+}
+
+/* -----------------------------------------------------------------------
+   ARROW
+   ----------------------------------------------------------------------- */
+.zc-tooltip-arrow {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #182649;
+    transform: rotate(45deg);
+}
+
+/* -----------------------------------------------------------------------
+   POSITIONS
+   ----------------------------------------------------------------------- */
+.zc-tooltip-top {
+    bottom: calc(100% + 6px);
+}
+
+.zc-tooltip-top .zc-tooltip-arrow {
+    bottom: -3px;
+    left: 50%;
+    margin-left: -3px;
+}
+
+.zc-tooltip-bottom {
+    top: calc(100% + 6px);
+}
+
+.zc-tooltip-bottom .zc-tooltip-arrow {
+    top: -3px;
+    left: 50%;
+    margin-left: -3px;
+}
+
+.zc-tooltip-left {
+    right: calc(100% + 6px);
+}
+
+.zc-tooltip-left .zc-tooltip-arrow {
+    right: -3px;
+    top: 50%;
+    margin-top: -3px;
+}
+
+.zc-tooltip-right {
+    left: calc(100% + 6px);
+}
+
+.zc-tooltip-right .zc-tooltip-arrow {
+    left: -3px;
+    top: 50%;
+    margin-top: -3px;
+}
+
+/* -----------------------------------------------------------------------
+   DEMO WRAPPER (makes tooltip static & visible in showcase)
+   ----------------------------------------------------------------------- */
+.zc-tooltip-demo {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 40px;
+}
+
+.zc-tooltip-demo .zc-tooltip {
+    position: relative;
+    display: block;
+}

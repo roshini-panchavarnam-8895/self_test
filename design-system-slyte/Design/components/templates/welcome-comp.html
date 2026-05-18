@@ -1,0 +1,79 @@
+<template tag-name='welcome-comp'>
+	<h1>Available features of SLYTE</h1>
+	<ul>	
+		<li lyte-for="{{features}} as item index">
+			<a href="{{item.url}}" target="_blank">{{item.module}}</a>
+		</li>
+		<lyte-button>
+			<template is="registerYield" yield-name="text">
+				Default
+			</template>
+		</lyte-button>
+		<lyte-button lt-prop-appearance="primary zc-col-common">
+    <template is="registerYield" yield-name="text">
+        Primary
+    </template>
+</lyte-button>
+<lyte-dropdown class="zc-custom-dropdown" lt-prop-selected="supplier">
+    <template is="registerYield" yield-name="yield">
+        <lyte-drop-box>
+            <lyte-drop-body>
+                <lyte-drop-item data-value="prospect">Prospects Found</lyte-drop-item>
+                <lyte-drop-item data-value="supplier">Suppliers Found</lyte-drop-item>
+                <lyte-drop-item data-value="vendor">Vendors Found</lyte-drop-item>
+                <lyte-drop-item data-value="influencer">Influencers Found</lyte-drop-item>
+            </lyte-drop-body>
+        </lyte-drop-box>
+    </template>
+</lyte-dropdown>
+	</ul>
+
+	<!-- Hidden: register all lyte-ui components for the design system -->
+	<div style="display:none">
+		<lyte-accordion></lyte-accordion>
+		<lyte-badge></lyte-badge>
+		<lyte-breadcrumb></lyte-breadcrumb>
+		<lyte-button-group></lyte-button-group>
+		<lyte-carousel></lyte-carousel>
+		<lyte-code-snippet></lyte-code-snippet>
+		<lyte-daterangepicker></lyte-daterangepicker>
+		<lyte-drawer></lyte-drawer>
+		<lyte-fileupload></lyte-fileupload>
+		<lyte-kanbanview></lyte-kanbanview>
+		<lyte-nav></lyte-nav>
+		<lyte-navigator></lyte-navigator>
+		<lyte-progressbar></lyte-progressbar>
+		<lyte-rating></lyte-rating>
+		<lyte-search></lyte-search>
+		<lyte-signature></lyte-signature>
+		<lyte-slider></lyte-slider>
+		<lyte-tabs></lyte-tabs>
+		<lyte-table></lyte-table>
+		<lyte-text></lyte-text>
+		<lyte-tree></lyte-tree>
+		<lyte-video></lyte-video>
+		<lyte-voicenote></lyte-voicenote>
+		<lyte-alert></lyte-alert>
+		<lyte-banner></lyte-banner>
+		<lyte-calendar></lyte-calendar>
+		<lyte-colorbox></lyte-colorbox>
+		<lyte-combobox></lyte-combobox>
+		<lyte-dateselect></lyte-dateselect>
+		<lyte-loader></lyte-loader>
+		<lyte-menu></lyte-menu>
+		<lyte-messagebox></lyte-messagebox>
+		<lyte-modal></lyte-modal>
+		<lyte-multi-dropdown></lyte-multi-dropdown>
+		<lyte-popover></lyte-popover>
+		<lyte-tooltip></lyte-tooltip>
+		<lyte-checkbox></lyte-checkbox>
+		<lyte-checkbox-group></lyte-checkbox-group>
+		<lyte-datetime-input></lyte-datetime-input>
+		<lyte-input></lyte-input>
+		<lyte-number></lyte-number>
+		<lyte-radiobutton></lyte-radiobutton>
+		<lyte-radiobutton-group></lyte-radiobutton-group>
+		<lyte-avatar-navigator></lyte-avatar-navigator>
+	</div>
+</template>
+

@@ -1,0 +1,454 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-comment-dots"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Popover</h1>
+                            <p class="detail-description">Contextual overlay container using <code>&lt;lyte-popover&gt;</code> Slyte DOM. Displays supplementary content anchored to a trigger element with an arrow caret.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Overlay</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 4 Positions &times; 3 Alignments</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchPopoverStyleTab('basic', this)">Basic</button>
+                        <button class="btn-style-tab" onclick="switchPopoverStyleTab('with-header', this)">With Header</button>
+                        <button class="btn-style-tab" onclick="switchPopoverStyleTab('with-actions', this)">With Actions</button>
+                        <button class="btn-style-tab" onclick="switchPopoverStyleTab('placement', this)">Placement</button>
+                    </div>
+
+                    <div id="popover-component-variants">
+
+                        <!-- ==== BASIC ==== -->
+                        <div class="btn-variant-group" data-style="basic">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Basic Popover &mdash; Body Only</span><button class="btn-variant-card__toggle" onclick="togglePopoverCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Bottom (default)</span>
+                                        <div class="zc-popover-demo">
+                                            <button id="pop-basic-bottom" class="zc-btn-demo">Trigger</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-basic-bottom" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">This is a simple popover with body text only.</p>
+                                                    </lyte-popover-content>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Top</span>
+                                        <div class="zc-popover-demo">
+                                            <button id="pop-basic-top" class="zc-btn-demo">Trigger</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="top" lt-prop-origin-elem="#pop-basic-top" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">This is a simple popover with body text only.</p>
+                                                    </lyte-popover-content>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchPopoverCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchPopoverCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyPopoverCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Basic Popover — Bottom --&gt;
+&lt;button id="pop-trigger"&gt;Trigger&lt;/button&gt;
+&lt;lyte-popover lt-prop-show="true"
+              lt-prop-type="callout"
+              lt-prop-placement="bottom"
+              lt-prop-origin-elem="#pop-trigger"&gt;
+  &lt;template is="registerYield" yield-name="popover"&gt;
+    &lt;lyte-popover-content&gt;
+      &lt;p&gt;Popover body text.&lt;/p&gt;
+    &lt;/lyte-popover-content&gt;
+  &lt;/template&gt;
+&lt;/lyte-popover&gt;
+
+&lt;!-- Top placement --&gt;
+&lt;lyte-popover lt-prop-show="true"
+              lt-prop-type="callout"
+              lt-prop-placement="top"
+              lt-prop-origin-elem="#trigger2"&gt;
+  ...
+&lt;/lyte-popover&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyPopoverCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* lyte-popover renders: .popoverWrapper > .lytePopover > .lytePopoverArrow + content */
+lyte-popover .lytePopover {
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #E4E5E8);
+    border-radius: var(--zc-radius-rl, 8px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    font-family: 'ZohoPuvi', sans-serif;
+}
+.zc-popover-body {
+    font-size: var(--zc-p2-font-size, 14px);
+    color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+    line-height: 20px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH HEADER ==== -->
+                        <div class="btn-variant-group" data-style="with-header" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Popover with Title &amp; Body</span><button class="btn-variant-card__toggle" onclick="togglePopoverCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Bottom</span>
+                                        <div class="zc-popover-demo">
+                                            <button id="pop-header-bottom" class="zc-btn-demo">Hover me</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-header-bottom" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-header>Popover Title</lyte-popover-header>
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">This is the popover content with a title and descriptive body text explaining something useful.</p>
+                                                    </lyte-popover-content>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Right</span>
+                                        <div class="zc-popover-demo" style="flex-direction:row; gap:12px;">
+                                            <button id="pop-header-right" class="zc-btn-demo">Hover me</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="right" lt-prop-origin-elem="#pop-header-right" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-header>Popover Title</lyte-popover-header>
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">Content displayed to the right of the trigger element.</p>
+                                                    </lyte-popover-content>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Left</span>
+                                        <div class="zc-popover-demo" style="flex-direction:row; gap:12px;">
+                                            <button id="pop-header-left" class="zc-btn-demo">Hover me</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="left" lt-prop-origin-elem="#pop-header-left" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-header>Popover Title</lyte-popover-header>
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">Content displayed to the left of the trigger element.</p>
+                                                    </lyte-popover-content>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchPopoverCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchPopoverCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyPopoverCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Popover with Title &amp; Body — Bottom --&gt;
+&lt;button id="pop-trigger"&gt;Hover me&lt;/button&gt;
+&lt;lyte-popover lt-prop-show="true"
+              lt-prop-type="callout"
+              lt-prop-placement="bottom"
+              lt-prop-origin-elem="#pop-trigger"&gt;
+  &lt;template is="registerYield" yield-name="popover"&gt;
+    &lt;lyte-popover-header&gt;Popover Title&lt;/lyte-popover-header&gt;
+    &lt;lyte-popover-content&gt;
+      &lt;p&gt;Descriptive body text.&lt;/p&gt;
+    &lt;/lyte-popover-content&gt;
+  &lt;/template&gt;
+&lt;/lyte-popover&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyPopoverCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>lyte-popover lyte-popover-header {
+    font-size: 16px;
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    line-height: 22px;
+}
+.zc-popover-body {
+    font-size: var(--zc-p2-font-size, 14px);
+    color: var(--zc-color-neutral-text-neutral-text-secondary, #696C74);
+    line-height: 20px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH ACTIONS ==== -->
+                        <div class="btn-variant-group" data-style="with-actions" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Popover with Title, Body &amp; Action Buttons</span><button class="btn-variant-card__toggle" onclick="togglePopoverCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Bottom</span>
+                                        <div class="zc-popover-demo">
+                                            <button id="pop-actions-bottom" class="zc-btn-demo">Click me</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="bottom" lt-prop-origin-elem="#pop-actions-bottom" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-header>Confirm Action</lyte-popover-header>
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">Are you sure you want to proceed? This action cannot be undone.</p>
+                                                    </lyte-popover-content>
+                                                    <lyte-popover-footer>
+                                                        <div class="zc-popover-actions">
+                                                            <button class="zc-popover-btn zc-popover-btn-secondary">Cancel</button>
+                                                            <button class="zc-popover-btn zc-popover-btn-primary">Confirm</button>
+                                                        </div>
+                                                    </lyte-popover-footer>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Top</span>
+                                        <div class="zc-popover-demo">
+                                            <button id="pop-actions-top" class="zc-btn-demo">Click me</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="top" lt-prop-origin-elem="#pop-actions-top" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-header>Delete Item?</lyte-popover-header>
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">This will permanently remove the selected item from your workspace.</p>
+                                                    </lyte-popover-content>
+                                                    <lyte-popover-footer>
+                                                        <div class="zc-popover-actions">
+                                                            <button class="zc-popover-btn zc-popover-btn-secondary">Cancel</button>
+                                                            <button class="zc-popover-btn zc-popover-btn-primary">Confirm</button>
+                                                        </div>
+                                                    </lyte-popover-footer>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Right</span>
+                                        <div class="zc-popover-demo" style="flex-direction:row; gap:12px;">
+                                            <button id="pop-actions-right" class="zc-btn-demo">Click me</button>
+                                            <lyte-popover lt-prop-show="true" lt-prop-type="callout" lt-prop-placement="right" lt-prop-origin-elem="#pop-actions-right" lt-prop-close-on-body-click="false" lt-prop-close-on-escape="false">
+                                                <template is="registerYield" yield-name="popover">
+                                                    <lyte-popover-header>Save Changes?</lyte-popover-header>
+                                                    <lyte-popover-content>
+                                                        <p class="zc-popover-body">You have unsaved changes that will be lost.</p>
+                                                    </lyte-popover-content>
+                                                    <lyte-popover-footer>
+                                                        <div class="zc-popover-actions">
+                                                            <button class="zc-popover-btn zc-popover-btn-secondary">Cancel</button>
+                                                            <button class="zc-popover-btn zc-popover-btn-primary">Confirm</button>
+                                                        </div>
+                                                    </lyte-popover-footer>
+                                                </template>
+                                            </lyte-popover>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchPopoverCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchPopoverCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyPopoverCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Popover with Actions — Bottom --&gt;
+&lt;button id="pop-trigger"&gt;Click me&lt;/button&gt;
+&lt;lyte-popover lt-prop-show="true"
+              lt-prop-type="callout"
+              lt-prop-placement="bottom"
+              lt-prop-origin-elem="#pop-trigger"&gt;
+  &lt;template is="registerYield" yield-name="popover"&gt;
+    &lt;lyte-popover-header&gt;Confirm Action&lt;/lyte-popover-header&gt;
+    &lt;lyte-popover-content&gt;
+      &lt;p&gt;Are you sure you want to proceed?&lt;/p&gt;
+    &lt;/lyte-popover-content&gt;
+    &lt;lyte-popover-footer&gt;
+      &lt;button class="zc-popover-btn zc-popover-btn-secondary"&gt;Cancel&lt;/button&gt;
+      &lt;button class="zc-popover-btn zc-popover-btn-primary"&gt;Confirm&lt;/button&gt;
+    &lt;/lyte-popover-footer&gt;
+  &lt;/template&gt;
+&lt;/lyte-popover&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyPopoverCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>lyte-popover-footer .zc-popover-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 8px 16px 12px;
+    border-top: 1px solid var(--zc-color-neutral-border-neutral-border-default, #E4E5E8);
+}
+.zc-popover-btn {
+    padding: 6px 16px;
+    border-radius: var(--zc-radius-rs, 6px);
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+}
+.zc-popover-btn-secondary {
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+    color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+    border-color: var(--zc-color-neutral-border-neutral-border-default, #E4E5E8);
+}
+.zc-popover-btn-primary {
+    background: var(--zc-color-primary-surface-primary-surface-default, #2D62ED);
+    color: var(--zc-color-black-white-text-white-text, #FFFFFF);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== PLACEMENT ==== -->
+                        <!-- Custom HTML — lyte-popover supports 4 placements (top/bottom/left/right); 12-position anatomy grid uses styled mini divs for visual reference -->
+                        <div class="btn-variant-group" data-style="placement" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">All 12 Placements &mdash; Position &times; Alignment</span><button class="btn-variant-card__toggle" onclick="togglePopoverCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="zc-popover-placement-grid">
+                                        <!-- Top Start -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Top Start</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-top" style="left:0;">
+                                                    <div class="zc-popover-mini-arrow" style="left:12px; margin-left:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Top Center -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Top Center</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-top">
+                                                    <div class="zc-popover-mini-arrow"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Top End -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Top End</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-top" style="right:0; left:auto;">
+                                                    <div class="zc-popover-mini-arrow" style="right:12px; left:auto; margin-left:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Bottom Start -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Bottom Start</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-bottom" style="left:0;">
+                                                    <div class="zc-popover-mini-arrow" style="left:12px; margin-left:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Bottom Center -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Bottom Center</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-bottom">
+                                                    <div class="zc-popover-mini-arrow"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Bottom End -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Bottom End</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-bottom" style="right:0; left:auto;">
+                                                    <div class="zc-popover-mini-arrow" style="right:12px; left:auto; margin-left:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Left Start -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Left Start</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-left" style="top:0;">
+                                                    <div class="zc-popover-mini-arrow" style="top:8px; margin-top:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Left Center -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Left Center</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-left">
+                                                    <div class="zc-popover-mini-arrow"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Left End -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Left End</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-left" style="bottom:0; top:auto;">
+                                                    <div class="zc-popover-mini-arrow" style="bottom:8px; top:auto; margin-top:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Right Start -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Right Start</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-right" style="top:0;">
+                                                    <div class="zc-popover-mini-arrow" style="top:8px; margin-top:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Right Center -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Right Center</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-right">
+                                                    <div class="zc-popover-mini-arrow"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Right End -->
+                                        <div class="zc-popover-placement-cell">
+                                            <span class="zc-popover-placement-label">Right End</span>
+                                            <div class="zc-popover-mini-demo">
+                                                <div class="zc-popover-mini-trigger">Trigger</div>
+                                                <div class="zc-popover-mini zc-popover-mini-right" style="bottom:0; top:auto;">
+                                                    <div class="zc-popover-mini-arrow" style="bottom:8px; top:auto; margin-top:0;"></div>
+                                                    Popover
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchPopoverCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyPopoverCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- lyte-popover supports lt-prop-placement: top | bottom | left | right --&gt;
+
+&lt;!-- Example: Bottom --&gt;
+&lt;button id="trigger"&gt;Trigger&lt;/button&gt;
+&lt;lyte-popover lt-prop-show="true"
+              lt-prop-type="callout"
+              lt-prop-placement="bottom"
+              lt-prop-origin-elem="#trigger"&gt;
+  &lt;template is="registerYield" yield-name="popover"&gt;
+    &lt;lyte-popover-content&gt;
+      &lt;p&gt;Bottom popover&lt;/p&gt;
+    &lt;/lyte-popover-content&gt;
+  &lt;/template&gt;
+&lt;/lyte-popover&gt;
+
+&lt;!-- Example: Top --&gt;
+&lt;lyte-popover lt-prop-placement="top" ...&gt;...&lt;/lyte-popover&gt;
+
+&lt;!-- Example: Left --&gt;
+&lt;lyte-popover lt-prop-placement="left" ...&gt;...&lt;/lyte-popover&gt;
+
+&lt;!-- Example: Right --&gt;
+&lt;lyte-popover lt-prop-placement="right" ...&gt;...&lt;/lyte-popover&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

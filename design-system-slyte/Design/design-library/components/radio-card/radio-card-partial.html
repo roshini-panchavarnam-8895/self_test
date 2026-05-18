@@ -1,0 +1,435 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-id-card"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Radio Card</h1>
+                            <p class="detail-description">Radio button presented as a selectable card/tile using <code>&lt;lyte-radiobutton&gt;</code> Slyte DOM with label, description, and optional icon.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 6 Variants × 2 Sizes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchRadioCardStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchRadioCardStyleTab('selected', this)">Selected</button>
+                        <button class="btn-style-tab" onclick="switchRadioCardStyleTab('with-icon', this)">With Icon</button>
+                        <button class="btn-style-tab" onclick="switchRadioCardStyleTab('with-description', this)">With Description</button>
+                        <button class="btn-style-tab" onclick="switchRadioCardStyleTab('horizontal', this)">Horizontal</button>
+                        <button class="btn-style-tab" onclick="switchRadioCardStyleTab('disabled', this)">Disabled</button>
+                    </div>
+
+                    <div id="radio-card-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Unselected</span><button class="btn-variant-card__toggle" onclick="toggleRadioCardCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-radio-card">
+                                            <lyte-radiobutton name="demo-default">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <span class="zc-radio-card-label">Option A</span>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small</span>
+                                        <div class="zc-radio-card zc-radio-card-sm">
+                                            <lyte-radiobutton name="demo-default-sm">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <span class="zc-radio-card-label">Option A</span>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchRadioCardCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchRadioCardCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Default Radio Card --&gt;
+&lt;div class="zc-radio-card"&gt;
+  &lt;lyte-radiobutton name="demo-group"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;span class="zc-radio-card-label"&gt;Option A&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-radiobutton&gt;
+&lt;/div&gt;
+
+&lt;!-- Small Radio Card --&gt;
+&lt;div class="zc-radio-card zc-radio-card-sm"&gt;
+  &lt;lyte-radiobutton name="demo-group"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;span class="zc-radio-card-label"&gt;Option A&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-radiobutton&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-radio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+  border-radius: 8px;
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SELECTED ==== -->
+                        <div class="btn-variant-group" data-style="selected" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Selected State</span><button class="btn-variant-card__toggle" onclick="toggleRadioCardCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-radio-card zc-radio-card-selected">
+                                            <lyte-radiobutton name="demo-selected" lt-prop-checked="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <span class="zc-radio-card-label">Option A</span>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small</span>
+                                        <div class="zc-radio-card zc-radio-card-selected zc-radio-card-sm">
+                                            <lyte-radiobutton name="demo-selected-sm" lt-prop-checked="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <span class="zc-radio-card-label">Option A</span>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchRadioCardCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchRadioCardCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Selected Radio Card --&gt;
+&lt;div class="zc-radio-card zc-radio-card-selected"&gt;
+  &lt;lyte-radiobutton name="demo-group" lt-prop-checked="true"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;span class="zc-radio-card-label"&gt;Option A&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-radiobutton&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-radio-card-selected {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH ICON ==== -->
+                        <div class="btn-variant-group" data-style="with-icon" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Icon</span><button class="btn-variant-card__toggle" onclick="toggleRadioCardCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-radio-card">
+                                            <div class="zc-radio-card-icon"><i class="fas fa-star"></i></div>
+                                            <lyte-radiobutton name="demo-icon">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <div class="zc-radio-card-content">
+                                                        <span class="zc-radio-card-label">Option A</span>
+                                                        <span class="zc-radio-card-desc">Description text for this option</span>
+                                                    </div>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Selected</span>
+                                        <div class="zc-radio-card zc-radio-card-selected">
+                                            <div class="zc-radio-card-icon"><i class="fas fa-heart"></i></div>
+                                            <lyte-radiobutton name="demo-icon-sel" lt-prop-checked="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <div class="zc-radio-card-content">
+                                                        <span class="zc-radio-card-label">Option B</span>
+                                                        <span class="zc-radio-card-desc">This option is currently selected</span>
+                                                    </div>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchRadioCardCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchRadioCardCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Radio Card with Icon --&gt;
+&lt;div class="zc-radio-card"&gt;
+  &lt;div class="zc-radio-card-icon"&gt;&lt;i class="fas fa-star"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;lyte-radiobutton name="demo"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;div class="zc-radio-card-content"&gt;
+        &lt;span class="zc-radio-card-label"&gt;Option A&lt;/span&gt;
+        &lt;span class="zc-radio-card-desc"&gt;Description text&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/template&gt;
+  &lt;/lyte-radiobutton&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-radio-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  font-size: 18px;
+  flex-shrink: 0;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH DESCRIPTION ==== -->
+                        <div class="btn-variant-group" data-style="with-description" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Description</span><button class="btn-variant-card__toggle" onclick="toggleRadioCardCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-radio-card">
+                                            <lyte-radiobutton name="demo-desc">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <div class="zc-radio-card-content">
+                                                        <span class="zc-radio-card-label">Standard Plan</span>
+                                                        <span class="zc-radio-card-desc">Best for small teams with basic needs</span>
+                                                    </div>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Selected</span>
+                                        <div class="zc-radio-card zc-radio-card-selected">
+                                            <lyte-radiobutton name="demo-desc-sel" lt-prop-checked="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <div class="zc-radio-card-content">
+                                                        <span class="zc-radio-card-label">Professional Plan</span>
+                                                        <span class="zc-radio-card-desc">Advanced features for growing teams</span>
+                                                    </div>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchRadioCardCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchRadioCardCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Radio Card with Description --&gt;
+&lt;div class="zc-radio-card"&gt;
+  &lt;lyte-radiobutton name="demo-group"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;div class="zc-radio-card-content"&gt;
+        &lt;span class="zc-radio-card-label"&gt;Standard Plan&lt;/span&gt;
+        &lt;span class="zc-radio-card-desc"&gt;Best for small teams&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/template&gt;
+  &lt;/lyte-radiobutton&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-radio-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.zc-radio-card-label {
+  font-size: var(--zc-p2-font-size, 14px);
+  font-weight: var(--zc-p2-font-weight-semibold, 600);
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+}
+
+.zc-radio-card-desc {
+  font-size: var(--zc-p3-font-size, 12px);
+  font-weight: var(--zc-p3-font-weight-regular, 400);
+  color: var(--zc-color-neutral-text-neutral-text-subtle, #696C74);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== HORIZONTAL LAYOUT ==== -->
+                        <div class="btn-variant-group" data-style="horizontal" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Horizontal Layout</span><button class="btn-variant-card__toggle" onclick="toggleRadioCardCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row" style="flex-direction:column;align-items:stretch;">
+                                        <span class="btn-size-label">Horizontal Group (flex row)</span>
+                                        <div class="zc-radio-card-group-horizontal">
+                                            <div class="zc-radio-card">
+                                                <lyte-radiobutton name="demo-horiz">
+                                                    <template is="registerYield" yield-name="yield">
+                                                        <span class="zc-radio-card-label">Option A</span>
+                                                    </template>
+                                                </lyte-radiobutton>
+                                            </div>
+                                            <div class="zc-radio-card zc-radio-card-selected">
+                                                <lyte-radiobutton name="demo-horiz" lt-prop-checked="true">
+                                                    <template is="registerYield" yield-name="yield">
+                                                        <span class="zc-radio-card-label">Option B</span>
+                                                    </template>
+                                                </lyte-radiobutton>
+                                            </div>
+                                            <div class="zc-radio-card">
+                                                <lyte-radiobutton name="demo-horiz">
+                                                    <template is="registerYield" yield-name="yield">
+                                                        <span class="zc-radio-card-label">Option C</span>
+                                                    </template>
+                                                </lyte-radiobutton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row" style="flex-direction:column;align-items:stretch;margin-top:16px;">
+                                        <span class="btn-size-label">Vertical Group (flex column)</span>
+                                        <div class="zc-radio-card-group-vertical">
+                                            <div class="zc-radio-card">
+                                                <lyte-radiobutton name="demo-vert">
+                                                    <template is="registerYield" yield-name="yield">
+                                                        <div class="zc-radio-card-content">
+                                                            <span class="zc-radio-card-label">Starter</span>
+                                                            <span class="zc-radio-card-desc">Free forever</span>
+                                                        </div>
+                                                    </template>
+                                                </lyte-radiobutton>
+                                            </div>
+                                            <div class="zc-radio-card zc-radio-card-selected">
+                                                <lyte-radiobutton name="demo-vert" lt-prop-checked="true">
+                                                    <template is="registerYield" yield-name="yield">
+                                                        <div class="zc-radio-card-content">
+                                                            <span class="zc-radio-card-label">Professional</span>
+                                                            <span class="zc-radio-card-desc">$12/month per user</span>
+                                                        </div>
+                                                    </template>
+                                                </lyte-radiobutton>
+                                            </div>
+                                            <div class="zc-radio-card">
+                                                <lyte-radiobutton name="demo-vert">
+                                                    <template is="registerYield" yield-name="yield">
+                                                        <div class="zc-radio-card-content">
+                                                            <span class="zc-radio-card-label">Enterprise</span>
+                                                            <span class="zc-radio-card-desc">Custom pricing</span>
+                                                        </div>
+                                                    </template>
+                                                </lyte-radiobutton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchRadioCardCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchRadioCardCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Horizontal Layout --&gt;
+&lt;div class="zc-radio-card-group-horizontal"&gt;
+  &lt;div class="zc-radio-card"&gt;
+    &lt;lyte-radiobutton name="group"&gt;
+      &lt;template is="registerYield" yield-name="yield"&gt;
+        &lt;span class="zc-radio-card-label"&gt;Option A&lt;/span&gt;
+      &lt;/template&gt;
+    &lt;/lyte-radiobutton&gt;
+  &lt;/div&gt;
+  &lt;div class="zc-radio-card zc-radio-card-selected"&gt;
+    &lt;lyte-radiobutton name="group" lt-prop-checked="true"&gt;
+      &lt;template is="registerYield" yield-name="yield"&gt;
+        &lt;span class="zc-radio-card-label"&gt;Option B&lt;/span&gt;
+      &lt;/template&gt;
+    &lt;/lyte-radiobutton&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Vertical Layout --&gt;
+&lt;div class="zc-radio-card-group-vertical"&gt;
+  &lt;div class="zc-radio-card"&gt;
+    &lt;lyte-radiobutton name="group"&gt;
+      &lt;template is="registerYield" yield-name="yield"&gt;
+        &lt;div class="zc-radio-card-content"&gt;
+          &lt;span class="zc-radio-card-label"&gt;Starter&lt;/span&gt;
+          &lt;span class="zc-radio-card-desc"&gt;Free forever&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/template&gt;
+    &lt;/lyte-radiobutton&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-radio-card-group-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.zc-radio-card-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zc-radio-card-group-horizontal > .zc-radio-card {
+  flex: 1 1 0;
+  min-width: 160px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled State</span><button class="btn-variant-card__toggle" onclick="toggleRadioCardCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled Unselected</span>
+                                        <div class="zc-radio-card zc-radio-card-disabled">
+                                            <lyte-radiobutton name="demo-dis" lt-prop-disabled="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <span class="zc-radio-card-label">Unavailable</span>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled Selected</span>
+                                        <div class="zc-radio-card zc-radio-card-selected zc-radio-card-disabled">
+                                            <lyte-radiobutton name="demo-dis-sel" lt-prop-checked="true" lt-prop-disabled="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <span class="zc-radio-card-label">Locked Choice</span>
+                                                </template>
+                                            </lyte-radiobutton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchRadioCardCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchRadioCardCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled Unselected --&gt;
+&lt;div class="zc-radio-card zc-radio-card-disabled"&gt;
+  &lt;lyte-radiobutton name="demo" lt-prop-disabled="true"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;span class="zc-radio-card-label"&gt;Unavailable&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-radiobutton&gt;
+&lt;/div&gt;
+
+&lt;!-- Disabled Selected --&gt;
+&lt;div class="zc-radio-card zc-radio-card-selected zc-radio-card-disabled"&gt;
+  &lt;lyte-radiobutton name="demo" lt-prop-checked="true" lt-prop-disabled="true"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;span class="zc-radio-card-label"&gt;Locked Choice&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-radiobutton&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyRadioCardCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-radio-card-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

@@ -1,0 +1,154 @@
+/* ============================================================
+   PROGRESS BAR — SCSS
+   Figma Source: Progres_Bar_Core_With_Hint (node 2349:18)
+   File: 88Zeos2AXPni7858flxLP2
+
+   Lyte DOM: lyte-progressbar renders:
+     <div class="lyteProgressBar lyteHorizontal">
+       <span class="lyteProgressStatus" style="width:N%">
+         <span class="lyteProgressPercentage">N%</span>
+       </span>
+     </div>
+   ============================================================ */
+
+/* -----------------------------------------------------------------------
+   BASE CONTAINER
+   ----------------------------------------------------------------------- */
+.zc-progressbar {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* -----------------------------------------------------------------------
+   HEADER (Label + Percentage)
+   ----------------------------------------------------------------------- */
+.zc-progressbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.zc-progressbar-label {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-default, #37383C);
+    line-height: 1.4;
+}
+
+.zc-progressbar-percent {
+    font-size: var(--zc-p3-font-size, 12px);
+    color: var(--zc-color-neutral-text-secondary, #696C74);
+    line-height: 1.4;
+}
+
+/* -----------------------------------------------------------------------
+   TRACK (Background rail) — targets Lyte rendered DOM + custom selectors
+   ----------------------------------------------------------------------- */
+.zc-progressbar .lyteProgressBar,
+.zc-progressbar-track {
+    width: 100%;
+    height: 8px;
+    background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* -----------------------------------------------------------------------
+   FILL (Progress indicator) — targets Lyte rendered DOM + custom selectors
+   ----------------------------------------------------------------------- */
+.zc-progressbar .lyteProgressStatus,
+.zc-progressbar-fill {
+    height: 100%;
+    background: var(--zc-color-primary-surface-default, #0D4EF2);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+/* -----------------------------------------------------------------------
+   Standalone lyte-progressbar (without .zc-progressbar wrapper)
+   ----------------------------------------------------------------------- */
+lyte-progressbar {
+    .lyteProgressBar {
+        background: var(--zc-color-neutral-surface-subtle, #F0F1F3);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .lyteProgressStatus {
+        background: var(--zc-color-primary-surface-default, #0D4EF2);
+        border-radius: 4px;
+        transition: width 0.4s ease;
+    }
+
+    .lyteProgressPercentage {
+        font-family: 'ZohoPuvi', sans-serif;
+        font-size: var(--zc-p3-font-size, 12px);
+        color: var(--zc-color-black-white-text-white-text, #FFFFFF);
+    }
+}
+
+/* -----------------------------------------------------------------------
+   SIZE MODIFIERS
+   ----------------------------------------------------------------------- */
+/* Small — 4px track */
+.zc-progressbar-sm .lyteProgressBar,
+.zc-progressbar-sm .zc-progressbar-track {
+    height: 4px;
+}
+
+/* Tiny — 2px track */
+.zc-progressbar-xs .lyteProgressBar,
+.zc-progressbar-xs .zc-progressbar-track {
+    height: 2px;
+}
+
+/* -----------------------------------------------------------------------
+   COLOR THEMES
+   ----------------------------------------------------------------------- */
+/* Success — Green */
+.zc-progressbar-success .lyteProgressStatus,
+.zc-progressbar-success .zc-progressbar-fill {
+    background: var(--zc-color-success-surface-default, #078841);
+}
+
+/* Warning — Orange */
+.zc-progressbar-warning .lyteProgressStatus,
+.zc-progressbar-warning .zc-progressbar-fill {
+    background: var(--zc-color-warning-surface-default, #D25704);
+}
+
+/* Error — Red */
+.zc-progressbar-error .lyteProgressStatus,
+.zc-progressbar-error .zc-progressbar-fill {
+    background: var(--zc-color-error-surface-default, #CC1914);
+}
+
+/* -----------------------------------------------------------------------
+   INDETERMINATE ANIMATION
+   ----------------------------------------------------------------------- */
+.zc-progressbar-indeterminate .lyteProgressStatus,
+.zc-progressbar-indeterminate .zc-progressbar-fill {
+    width: 30% !important;
+    animation: zc-progress-indeterminate 1.5s infinite ease-in-out;
+}
+
+/* Lyte native indeterminate */
+lyte-progressbar .lyteIndeterminate {
+    .inc,
+    .dec {
+        background: var(--zc-color-primary-surface-default, #0D4EF2);
+        border-radius: 4px;
+    }
+}
+
+@keyframes zc-progress-indeterminate {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(400%);
+    }
+}

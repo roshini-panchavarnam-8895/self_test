@@ -1,0 +1,411 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-sticky-note"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Notes</h1>
+                            <p class="detail-description">Custom note/comment block for inline annotations. Custom HTML — no Lyte equivalent.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Basic</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 5 Variants × 3 Colors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchNotesStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchNotesStyleTab('with-author', this)">With Author</button>
+                        <button class="btn-style-tab" onclick="switchNotesStyleTab('with-actions', this)">With Actions</button>
+                        <button class="btn-style-tab" onclick="switchNotesStyleTab('colors', this)">Colors</button>
+                        <button class="btn-style-tab" onclick="switchNotesStyleTab('read-only', this)">Read-only</button>
+                    </div>
+
+                    <div id="notes-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default Note</span><button class="btn-variant-card__toggle" onclick="toggleNotesCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Basic</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note">
+                                            <div class="zc-note-content">
+                                                <p>This is a sample note with some important information about the record.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Timestamp</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note">
+                                            <div class="zc-note-content">
+                                                <p>This is a sample note with some important information about the record.</p>
+                                            </div>
+                                            <div class="zc-note-meta">
+                                                <span class="zc-note-timestamp">2 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNotesCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNotesCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Default Note --&gt;
+&lt;div class="zc-note"&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;This is a sample note with some important information.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Note with Timestamp --&gt;
+&lt;div class="zc-note"&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;This is a sample note with some important information.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="zc-note-meta"&gt;
+        &lt;span class="zc-note-timestamp"&gt;2 hours ago&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-note {
+    border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+    border-radius: var(--zc-radius-rl, 8px);
+    padding: 12px 16px;
+    background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+}
+.zc-note-content p {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    color: var(--zc-color-neutral-text-neutral-text-default, #1B1F23);
+}
+.zc-note-timestamp {
+    font-size: var(--zc-p3-font-size, 12px);
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #6B7280);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH AUTHOR ==== -->
+                        <div class="btn-variant-group" data-style="with-author" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Note with Author</span><button class="btn-variant-card__toggle" onclick="toggleNotesCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Avatar + Name</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note">
+                                            <div class="zc-note-header">
+                                                <div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full">JD</div>
+                                                <span class="zc-note-author">John Doe</span>
+                                                <span class="zc-note-timestamp">2 hours ago</span>
+                                            </div>
+                                            <div class="zc-note-content">
+                                                <p>Updated the form configuration settings.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Name Only</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note">
+                                            <div class="zc-note-header">
+                                                <span class="zc-note-author">Jane Smith</span>
+                                                <span class="zc-note-timestamp">5 minutes ago</span>
+                                            </div>
+                                            <div class="zc-note-content">
+                                                <p>Please review the latest deployment changes before merging.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNotesCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNotesCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Note with Avatar + Author --&gt;
+&lt;div class="zc-note"&gt;
+    &lt;div class="zc-note-header"&gt;
+        &lt;div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full"&gt;JD&lt;/div&gt;
+        &lt;span class="zc-note-author"&gt;John Doe&lt;/span&gt;
+        &lt;span class="zc-note-timestamp"&gt;2 hours ago&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;Updated the form configuration settings.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Note with Name Only --&gt;
+&lt;div class="zc-note"&gt;
+    &lt;div class="zc-note-header"&gt;
+        &lt;span class="zc-note-author"&gt;Jane Smith&lt;/span&gt;
+        &lt;span class="zc-note-timestamp"&gt;5 minutes ago&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;Please review the latest deployment changes.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-note-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.zc-note-author {
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    color: var(--zc-color-neutral-text-neutral-text-default, #1B1F23);
+}
+.zc-note-timestamp {
+    font-size: var(--zc-p3-font-size, 12px);
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #6B7280);
+    margin-left: auto;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH ACTIONS ==== -->
+                        <div class="btn-variant-group" data-style="with-actions" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Note with Actions</span><button class="btn-variant-card__toggle" onclick="toggleNotesCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Edit &amp; Delete</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note">
+                                            <div class="zc-note-header">
+                                                <span class="zc-note-author">John Doe</span>
+                                                <div class="zc-note-actions">
+                                                    <button class="zc-note-action"><i class="fas fa-edit"></i></button>
+                                                    <button class="zc-note-action"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="zc-note-content">
+                                                <p>Remember to update the deployment settings.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Full Header</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note">
+                                            <div class="zc-note-header">
+                                                <div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full">AS</div>
+                                                <span class="zc-note-author">Alice Smith</span>
+                                                <span class="zc-note-timestamp">1 hour ago</span>
+                                                <div class="zc-note-actions">
+                                                    <button class="zc-note-action"><i class="fas fa-edit"></i></button>
+                                                    <button class="zc-note-action"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="zc-note-content">
+                                                <p>Checked the API response — looks good to deploy.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNotesCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNotesCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Note with Actions --&gt;
+&lt;div class="zc-note"&gt;
+    &lt;div class="zc-note-header"&gt;
+        &lt;span class="zc-note-author"&gt;John Doe&lt;/span&gt;
+        &lt;div class="zc-note-actions"&gt;
+            &lt;button class="zc-note-action"&gt;&lt;i class="fas fa-edit"&gt;&lt;/i&gt;&lt;/button&gt;
+            &lt;button class="zc-note-action"&gt;&lt;i class="fas fa-trash"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;Remember to update the deployment settings.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Full Header: Avatar + Author + Timestamp + Actions --&gt;
+&lt;div class="zc-note"&gt;
+    &lt;div class="zc-note-header"&gt;
+        &lt;div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full"&gt;AS&lt;/div&gt;
+        &lt;span class="zc-note-author"&gt;Alice Smith&lt;/span&gt;
+        &lt;span class="zc-note-timestamp"&gt;1 hour ago&lt;/span&gt;
+        &lt;div class="zc-note-actions"&gt;
+            &lt;button class="zc-note-action"&gt;&lt;i class="fas fa-edit"&gt;&lt;/i&gt;&lt;/button&gt;
+            &lt;button class="zc-note-action"&gt;&lt;i class="fas fa-trash"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;Checked the API response — looks good to deploy.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-note-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+.zc-note-action {
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    border-radius: var(--zc-radius-s, 4px);
+    color: var(--zc-color-neutral-text-neutral-text-subtle, #6B7280);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.zc-note-action:hover {
+    background: var(--zc-color-neutral-surface-neutral-surface-hover, #F3F4F6);
+    color: var(--zc-color-neutral-text-neutral-text-default, #1B1F23);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== COLORS ==== -->
+                        <div class="btn-variant-group" data-style="colors" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Color Variants</span><button class="btn-variant-card__toggle" onclick="toggleNotesCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note zc-note-default">
+                                            <div class="zc-note-content">
+                                                <p>Default neutral note — standard annotations and general comments.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Info</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note zc-note-info">
+                                            <div class="zc-note-content">
+                                                <p>Informational note — highlights helpful context or tips.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Warning</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note zc-note-warning">
+                                            <div class="zc-note-content">
+                                                <p>Warning note — indicates caution or potential issues.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNotesCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNotesCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Default (neutral) --&gt;
+&lt;div class="zc-note zc-note-default"&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;Default neutral note.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Info (blue tint) --&gt;
+&lt;div class="zc-note zc-note-info"&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;Informational note.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Warning (yellow tint) --&gt;
+&lt;div class="zc-note zc-note-warning"&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;Warning note.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-note-default {
+    background: var(--zc-color-neutral-surface-neutral-surface-subtle, #F9FAFB);
+    border-color: var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+}
+.zc-note-info {
+    background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+    border-color: var(--zc-color-primary-border-primary-border-minimal, #C0D1FC);
+}
+.zc-note-warning {
+    background: var(--zc-color-warning-surface-warning-surface-subtle, #FFFBEB);
+    border-color: var(--zc-color-warning-border-warning-border-minimal, #FDE68A);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== READ-ONLY ==== -->
+                        <div class="btn-variant-group" data-style="read-only" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Read-only Note</span><button class="btn-variant-card__toggle" onclick="toggleNotesCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Read-only</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note zc-note-readonly">
+                                            <div class="zc-note-header">
+                                                <div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full">JD</div>
+                                                <span class="zc-note-author">John Doe</span>
+                                                <span class="zc-note-timestamp">3 days ago</span>
+                                            </div>
+                                            <div class="zc-note-content">
+                                                <p>This note is locked and cannot be edited. It serves as a permanent record of the decision made during the sprint review.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Editable</span>
+                                        <!-- Custom HTML — no Lyte equivalent for Notes -->
+                                        <div class="zc-note zc-note-editable">
+                                            <div class="zc-note-header">
+                                                <span class="zc-note-author">You</span>
+                                                <span class="zc-note-timestamp">Just now</span>
+                                                <div class="zc-note-actions">
+                                                    <button class="zc-note-action"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="zc-note-content" contenteditable="true">
+                                                <p>Click here to edit this note. This note supports inline editing.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchNotesCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchNotesCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Read-only Note --&gt;
+&lt;div class="zc-note zc-note-readonly"&gt;
+    &lt;div class="zc-note-header"&gt;
+        &lt;div class="zc-avatar zc-avatar-solid zc-avatar-sm zc-avatar-full"&gt;JD&lt;/div&gt;
+        &lt;span class="zc-note-author"&gt;John Doe&lt;/span&gt;
+        &lt;span class="zc-note-timestamp"&gt;3 days ago&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="zc-note-content"&gt;
+        &lt;p&gt;This note is locked and cannot be edited.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Editable Note --&gt;
+&lt;div class="zc-note zc-note-editable"&gt;
+    &lt;div class="zc-note-header"&gt;
+        &lt;span class="zc-note-author"&gt;You&lt;/span&gt;
+        &lt;span class="zc-note-timestamp"&gt;Just now&lt;/span&gt;
+        &lt;div class="zc-note-actions"&gt;
+            &lt;button class="zc-note-action"&gt;&lt;i class="fas fa-edit"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="zc-note-content" contenteditable="true"&gt;
+        &lt;p&gt;Click here to edit this note.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyNotesCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-note-readonly {
+    opacity: 0.75;
+    cursor: default;
+    user-select: text;
+}
+.zc-note-editable .zc-note-content {
+    outline: none;
+    cursor: text;
+}
+.zc-note-editable .zc-note-content:focus {
+    box-shadow: 0 0 0 2px var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+    border-radius: var(--zc-radius-s, 4px);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /notes-component-variants -->

@@ -1,0 +1,136 @@
+/* ==========================================================================
+   RADIO BUTTON SCSS — Lyte Framework Overrides + Custom Classes
+   Figma: Radio_Base (2205:46587)
+   
+   Lyte DOM: lyte-radiobutton > label.lyteRadioBtn.lytePrimary >
+             input[type=radio] + span.lyteRadioLayer > span.lyteRadioCheck
+             + span.lyteRadioLabel
+   ========================================================================== */
+
+/* ==========================================================================
+   SECTION 1 — LYTE-RADIOBUTTON FRAMEWORK OVERRIDES
+   ========================================================================== */
+
+/* --- Base circle (Figma: 14×14, 1px #D5D6D9) --- */
+.lyteRadioBtn .lyteRadioLayer {
+    width: 14px !important;
+    height: 14px !important;
+    border: 1px solid #D5D6D9 !important;
+    border-radius: 50% !important;
+    background: #FFFFFF !important;
+    box-sizing: border-box !important;
+    transition: all 0.15s ease !important;
+}
+
+/* --- Hide default inner dot (using inset-shadow approach instead) --- */
+.lyteRadioBtn .lyteRadioLayer .lyteRadioCheck {
+    display: none !important;
+}
+
+/* --- Label text (Figma: P2_Regular 400/14 #37383C) --- */
+.lyteRadioBtn .lyteRadioLabel {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #37383C !important;
+    font-family: 'ZohoPuvi', sans-serif !important;
+    line-height: 18px !important;
+    margin-left: 8px !important;
+    margin-right: 0 !important;
+}
+
+/* --- Hover (unselected) → blue border --- */
+lyte-radiobutton:hover .lyteRadioLayer {
+    border-color: #0D4EF2 !important;
+}
+
+lyte-radiobutton:hover .lyteRadioLabel {
+    color: #000000 !important;
+}
+
+/* --- Checked → blue fill + white inset ring (1px border | 2px white | 8px center) --- */
+.lyteRadioBtn input[type="radio"]:checked + .lyteRadioLayer {
+    border-color: #0D4EF2 !important;
+    background: #0D4EF2 !important;
+    box-shadow: inset 0 0 0 2px #FFFFFF !important;
+}
+
+/* --- Checked label → black --- */
+lyte-radiobutton.lyteRadioChecked .lyteRadioLabel {
+    color: #000000 !important;
+}
+
+/* --- Checked + hover → darker blue --- */
+lyte-radiobutton:hover input[type="radio"]:checked + .lyteRadioLayer {
+    border-color: #0B44D5 !important;
+    background: #0B44D5 !important;
+}
+
+/* --- Disabled --- */
+lyte-radiobutton.lyteRadioDisabled {
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+}
+
+lyte-radiobutton.lyteRadioDisabled .lyteRadioLayer {
+    border-color: #D5D6D9 !important;
+    background: #FAFAFA !important;
+    box-shadow: none !important;
+}
+
+lyte-radiobutton.lyteRadioDisabled .lyteRadioLabel {
+    color: #9EA0A7 !important;
+}
+
+/* --- Disabled + checked --- */
+lyte-radiobutton.lyteRadioDisabled input[type="radio"]:checked + .lyteRadioLayer {
+    background: #D5D6D9 !important;
+    border-color: #D5D6D9 !important;
+    box-shadow: inset 0 0 0 2px #FAFAFA !important;
+}
+
+/* ==========================================================================
+   SECTION 2 — CUSTOM CLASSES (group, hints, error)
+   ========================================================================== */
+
+/* --- Group label --- */
+.zc-radio-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 6px;
+    font-family: 'ZohoPuvi', sans-serif;
+}
+
+/* --- Hint text (sits outside lyte-radiobutton) --- */
+.zc-radio-hint {
+    font-size: 12px;
+    color: #26282B;
+    margin-top: 4px;
+    margin-left: 22px; /* 14px circle + 8px gap */
+}
+
+/* --- Group layout --- */
+.zc-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.zc-radio-group-horizontal {
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* --- Error (wrapper class) --- */
+.zc-radio-error .lyteRadioLayer {
+    border-color: #CC1914 !important;
+}
+
+.zc-radio-error:hover .lyteRadioLayer {
+    border-color: #BA1812 !important;
+}
+
+.zc-radio-error .zc-radio-hint {
+    color: #CC1914;
+}

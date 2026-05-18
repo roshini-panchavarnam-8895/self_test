@@ -1,0 +1,385 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-align-left"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">TextArea</h1>
+                            <p class="detail-description">Multi-line text input using <code>&lt;lyte-input lt-prop-type="textarea"&gt;</code> Slyte DOM. States: Empty, Filled, Focus, Disabled, Error, Success, Resizable, With Counter.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 10 States × 1 Size</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchTextareaStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchTextareaStyleTab('filled', this)">Filled</button>
+                        <button class="btn-style-tab" onclick="switchTextareaStyleTab('focus', this)">Focus</button>
+                        <button class="btn-style-tab" onclick="switchTextareaStyleTab('disabled', this)">Disabled</button>
+                        <button class="btn-style-tab" onclick="switchTextareaStyleTab('error', this)">Error</button>
+                        <button class="btn-style-tab" onclick="switchTextareaStyleTab('success', this)">Success</button>
+                        <button class="btn-style-tab" onclick="switchTextareaStyleTab('resizable', this)">Resizable</button>
+                        <button class="btn-style-tab" onclick="switchTextareaStyleTab('counter', this)">With Counter</button>
+                    </div>
+
+                    <div id="textarea-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Empty</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Enter text..." lt-prop-rows="3" lt-prop-label="Description" lt-prop-appearance="box"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Optional helper text</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTextareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-input lt-prop-type="textarea"
+  lt-prop-placeholder="Enter text..."
+  lt-prop-rows="3"
+  lt-prop-label="Description"
+  lt-prop-appearance="box"&gt;
+&lt;/lyte-input&gt;
+&lt;div class="zc-textarea-footer"&gt;
+  &lt;span class="zc-textarea-hint"&gt;Optional helper text&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* lyte-input[type=textarea] renders internally as:
+   lyte-input > label.lyteLabel + div.lyteField > textarea */
+lyte-input .lyteField textarea {
+  min-height: 80px;
+  font-size: var(--zc-p2-font-size, 14px);
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Without Helper Text</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">No Hint</span>
+                                        <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Add your comments here..." lt-prop-rows="3" lt-prop-label="Comments" lt-prop-appearance="box"></lyte-input>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-input lt-prop-type="textarea"
+  lt-prop-placeholder="Add your comments here..."
+  lt-prop-rows="3"
+  lt-prop-label="Comments"
+  lt-prop-appearance="box"&gt;
+&lt;/lyte-input&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FILLED ==== -->
+                        <div class="btn-variant-group" data-style="filled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Filled — Multi-line Content</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Filled</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-value="This is a multi-line text area with some content filled in. It demonstrates how the textarea looks when the user has already entered text across multiple lines." lt-prop-rows="4" lt-prop-label="Description" lt-prop-appearance="box"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Helper text goes here</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-input lt-prop-type="textarea"
+  lt-prop-value="Your content here..."
+  lt-prop-rows="4"
+  lt-prop-label="Description"
+  lt-prop-appearance="box"&gt;
+&lt;/lyte-input&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FOCUS ==== -->
+                        <div class="btn-variant-group" data-style="focus" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Focus — Click to See Blue Border + Shadow</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Click to Focus</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Click here to see focus state..." lt-prop-rows="3" lt-prop-label="Notes" lt-prop-appearance="box"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Click the textarea to see focus styling (blue border + shadow)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTextareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-input lt-prop-type="textarea"
+  lt-prop-placeholder="Click here to see focus state..."
+  lt-prop-rows="3"
+  lt-prop-label="Notes"
+  lt-prop-appearance="box"&gt;
+&lt;/lyte-input&gt;
+&lt;!-- Focus state adds .lyteInputFocus class automatically --&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Lyte auto-adds .lyteInputFocus on focus */
+lyte-input.lyteInputFocus .lyteField {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled Empty</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Enter address..." lt-prop-rows="3" lt-prop-label="Address" lt-prop-appearance="box" lt-prop-disabled="true"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">This field is disabled</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row" style="margin-top: 16px;">
+                                        <span class="btn-size-label">Disabled Filled</span>
+                                        <lyte-input lt-prop-type="textarea" lt-prop-value="123 Main Street, Suite 400, San Francisco, CA 94105, United States" lt-prop-rows="3" lt-prop-label="Address" lt-prop-appearance="box" lt-prop-disabled="true"></lyte-input>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTextareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-input lt-prop-type="textarea"
+  lt-prop-placeholder="Enter address..."
+  lt-prop-rows="3"
+  lt-prop-label="Address"
+  lt-prop-appearance="box"
+  lt-prop-disabled="true"&gt;
+&lt;/lyte-input&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Lyte auto-adds .lyteInputDisabled class */
+lyte-input.lyteInputDisabled .lyteField {
+  background: var(--zc-color-neutral-surface-neutral-surface-disabled, #F5F5F5);
+  cursor: not-allowed;
+}
+lyte-input.lyteInputDisabled .lyteField textarea {
+  cursor: not-allowed;
+  color: #9EA0A7;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ERROR ==== -->
+                        <div class="btn-variant-group" data-style="error" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Error — Validation Failed</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Error Empty</span>
+                                        <div class="zc-textarea-field zc-textarea-field-error">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Tell us about yourself..." lt-prop-rows="3" lt-prop-label="Bio" lt-prop-appearance="box" class="zc-input-error"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">This field is required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row" style="margin-top: 16px;">
+                                        <span class="btn-size-label">Error Filled</span>
+                                        <div class="zc-textarea-field zc-textarea-field-error">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-value="Too short" lt-prop-rows="3" lt-prop-label="Bio" lt-prop-appearance="box" class="zc-input-error"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Minimum 50 characters required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTextareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-textarea-field zc-textarea-field-error"&gt;
+  &lt;lyte-input lt-prop-type="textarea"
+    lt-prop-placeholder="Tell us about yourself..."
+    lt-prop-rows="3" lt-prop-label="Bio"
+    lt-prop-appearance="box"
+    class="zc-input-error"&gt;
+  &lt;/lyte-input&gt;
+  &lt;div class="zc-textarea-footer"&gt;
+    &lt;span class="zc-textarea-hint"&gt;This field is required&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>lyte-input.zc-input-error .lyteField {
+  border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+  background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
+}
+.zc-textarea-field-error .zc-textarea-hint {
+  color: var(--zc-color-error-text-error-text-default, #CC1914);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SUCCESS ==== -->
+                        <div class="btn-variant-group" data-style="success" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Success — Validated</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Success</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-value="Great product! I love using the Zoho Creator platform for building custom applications. The drag-and-drop interface makes it very intuitive." lt-prop-rows="3" lt-prop-label="Feedback" lt-prop-appearance="box" class="zc-input-success"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint" style="color: #078841;">Looks good!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTextareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-input lt-prop-type="textarea"
+  lt-prop-value="Your feedback..."
+  lt-prop-rows="3"
+  lt-prop-label="Feedback"
+  lt-prop-appearance="box"
+  class="zc-input-success"&gt;
+&lt;/lyte-input&gt;
+&lt;div class="zc-textarea-footer"&gt;
+  &lt;span class="zc-textarea-hint" style="color: #078841;"&gt;Looks good!&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>lyte-input.zc-input-success .lyteField {
+  border-color: var(--zc-color-success-border-success-border-default, #078841);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== RESIZABLE ==== -->
+                        <div class="btn-variant-group" data-style="resizable" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Resizable — User Can Drag to Resize</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Vertical Resize</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Drag bottom-right corner to resize..." lt-prop-rows="3" lt-prop-label="Message" lt-prop-appearance="box" style="--lyte-textarea-resize: vertical;"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Drag the corner to resize vertically</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row" style="margin-top: 16px;">
+                                        <span class="btn-size-label">Both Directions</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Resize in any direction..." lt-prop-rows="3" lt-prop-label="Notes" lt-prop-appearance="box" style="--lyte-textarea-resize: both;"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Resize in both directions</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row" style="margin-top: 16px;">
+                                        <span class="btn-size-label">No Resize</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Cannot resize this textarea..." lt-prop-rows="3" lt-prop-label="Fixed Height" lt-prop-appearance="box" style="--lyte-textarea-resize: none;"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Resize is disabled</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTextareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Vertical resize --&gt;
+&lt;lyte-input lt-prop-type="textarea" lt-prop-rows="3"
+  style="--lyte-textarea-resize: vertical;"&gt;&lt;/lyte-input&gt;
+
+&lt;!-- Both directions --&gt;
+&lt;lyte-input lt-prop-type="textarea" lt-prop-rows="3"
+  style="--lyte-textarea-resize: both;"&gt;&lt;/lyte-input&gt;
+
+&lt;!-- No resize --&gt;
+&lt;lyte-input lt-prop-type="textarea" lt-prop-rows="3"
+  style="--lyte-textarea-resize: none;"&gt;&lt;/lyte-input&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Override textarea resize via CSS custom property */
+lyte-input .lyteField textarea {
+  resize: var(--lyte-textarea-resize, vertical);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH COUNTER ==== -->
+                        <div class="btn-variant-group" data-style="counter" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Counter — Character Limit</span><button class="btn-variant-card__toggle" onclick="toggleTextareaCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Empty Counter</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-placeholder="Write a short bio..." lt-prop-rows="3" lt-prop-label="Short Bio" lt-prop-appearance="box" lt-prop-max-length="200"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Keep it brief</span>
+                                                <span class="zc-textarea-counter">0/200</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row" style="margin-top: 16px;">
+                                        <span class="btn-size-label">Partial Counter</span>
+                                        <div class="zc-textarea-field">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-value="Zoho Creator is a low-code application development platform." lt-prop-rows="3" lt-prop-label="Summary" lt-prop-appearance="box" lt-prop-max-length="200"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint"></span>
+                                                <span class="zc-textarea-counter">62/200</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row" style="margin-top: 16px;">
+                                        <span class="btn-size-label">Near Limit</span>
+                                        <div class="zc-textarea-field zc-textarea-field-error">
+                                            <lyte-input lt-prop-type="textarea" lt-prop-value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco." lt-prop-rows="3" lt-prop-label="Tweet" lt-prop-appearance="box" lt-prop-max-length="200" class="zc-input-error"></lyte-input>
+                                            <div class="zc-textarea-footer">
+                                                <span class="zc-textarea-hint">Character limit almost reached</span>
+                                                <span class="zc-textarea-counter" style="color: #CC1914;">192/200</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchTextareaCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchTextareaCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-input lt-prop-type="textarea"
+  lt-prop-placeholder="Write a short bio..."
+  lt-prop-rows="3"
+  lt-prop-label="Short Bio"
+  lt-prop-appearance="box"
+  lt-prop-max-length="200"&gt;
+&lt;/lyte-input&gt;
+&lt;div class="zc-textarea-footer"&gt;
+  &lt;span class="zc-textarea-hint"&gt;Keep it brief&lt;/span&gt;
+  &lt;span class="zc-textarea-counter"&gt;0/200&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyTextareaCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+.zc-textarea-counter {
+  font-size: var(--zc-p3-font-size, 12px);
+  color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+  margin-left: auto;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

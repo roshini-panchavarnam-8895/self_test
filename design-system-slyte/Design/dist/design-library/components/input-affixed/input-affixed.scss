@@ -1,0 +1,308 @@
+/* ==========================================================================
+   INPUT AFFIXED COMPONENT — SCSS
+   Figma Source: Input_Affixed (node 3079:8161)
+
+   Combo component: Uses BOTH .zc-input-prefixed + .zc-input-suffixed together.
+   VARIANTS: Text+Text, Icon+Text, Icon+Icon, Dropdown+Button
+   STATES:   Default, Hover, Hover On CTA, Focus, Filled, Error, Success, Disabled
+
+   Figma-specific: In Error/Success, only left CTA + input area take state
+   colors. Right CTA stays default (#FAFAFA bg, #D5D6D9 border).
+   ========================================================================== */
+
+$combo: '.zc-input-affixed.zc-input-prefixed.zc-input-suffixed';
+
+/* -- Combo state: both prefix + suffix simultaneously -- */
+#{$combo} {
+    display: inline-flex;
+    align-items: stretch;
+    height: 36px;
+    min-width: 260px;
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    background: #FFFFFF;
+    overflow: hidden;
+    font-family: 'ZohoPuvi', sans-serif;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Input takes remaining space */
+#{$combo} lyte-input,
+#{$combo} .zc-input {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ==========================================================================
+   LYTE-INPUT OVERRIDES INSIDE AFFIXED WRAPPER
+   ========================================================================== */
+
+#{$combo} lyte-input {
+    border-bottom: none !important;
+    display: flex !important;
+    align-items: stretch !important;
+    height: 100% !important;
+}
+
+#{$combo} lyte-input > div {
+    width: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    height: 100% !important;
+    top: 0 !important;
+    padding: 0 12px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#{$combo} lyte-input > div:after {
+    display: none !important;
+}
+
+#{$combo} lyte-input input {
+    height: 100% !important;
+    font-family: 'ZohoPuvi', sans-serif !important;
+    font-size: 14px !important;
+    color: #000000 !important;
+    padding: 0 !important;
+
+    &::placeholder {
+        color: #9EA0A7 !important;
+    }
+}
+
+/* ==========================================================================
+   PREFIX ELEMENT (left addon) — Figma: bg #FAFAFA, text #37383C
+   ========================================================================== */
+
+#{$combo} .zc-input-prefix {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    gap: 8px;
+    background: #FAFAFA;
+    border-right: 1px solid #D5D6D9;
+    font-size: 14px;
+    color: #37383C;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* ==========================================================================
+   SUFFIX ELEMENT (right addon) — Figma: bg #FAFAFA, text #37383C
+   ========================================================================== */
+
+#{$combo} .zc-input-suffix {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    gap: 8px;
+    background: #FAFAFA;
+    border-left: 1px solid #D5D6D9;
+    font-size: 14px;
+    color: #37383C;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* ==========================================================================
+   ICON VARIANTS
+   ========================================================================== */
+
+#{$combo} .zc-input-prefix-icon {
+    padding: 0 10px;
+    font-size: 14px;
+    color: #37383C;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+#{$combo} .zc-input-suffix-icon {
+    padding: 0 10px;
+    font-size: 14px;
+    color: #37383C;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+/* ==========================================================================
+   DROPDOWN PREFIX
+   ========================================================================== */
+
+#{$combo} .zc-input-prefix-dropdown {
+    padding: 0;
+}
+
+#{$combo} .zc-input-prefix-select {
+    height: 100%;
+    padding: 0 8px 0 12px;
+    border: none;
+    background: transparent;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 14px;
+    color: #37383C;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23696C74' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 22px;
+}
+
+/* ==========================================================================
+   BUTTON SUFFIX
+   ========================================================================== */
+
+#{$combo} .zc-input-suffix-btn {
+    padding: 0 16px;
+    border: none;
+    border-left: 1px solid #D5D6D9;
+    background: #0D4EF2;
+    color: #FFFFFF;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: #0B44D5;
+    }
+}
+
+/* ==========================================================================
+   STATES
+   ========================================================================== */
+
+/* -- Hover on wrapper → blue border -- */
+#{$combo}:hover {
+    border-color: #0D4EF2;
+}
+
+/* -- Hover on CTA (prefix) → light blue bg, darker text -- */
+#{$combo} .zc-input-prefix:hover {
+    background: #F5F8FE;
+    color: #0B44D5;
+}
+
+#{$combo} .zc-input-prefix-icon:hover {
+    color: #0B44D5;
+    background: #F5F8FE;
+}
+
+/* -- Hover on CTA (suffix) → light blue bg, darker text -- */
+#{$combo} .zc-input-suffix:hover {
+    background: #F5F8FE;
+    color: #0B44D5;
+}
+
+#{$combo} .zc-input-suffix-icon:hover {
+    color: #0B44D5;
+    background: #F5F8FE;
+}
+
+/* -- Focus -- */
+#{$combo}.zc-input-affixed-focus,
+#{$combo}:focus-within {
+    border-color: #0D4EF2;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05);
+
+    .zc-input-prefix {
+        color: #0D4EF2;
+    }
+}
+
+/* -- Error (only left CTA + input take error; right CTA stays default) -- */
+#{$combo}.zc-input-affixed-error {
+    border-color: #CC1914;
+    background: #FEF6F6;
+
+    &:hover {
+        border-color: #CC1914;
+    }
+
+    .zc-input-prefix {
+        border-right-color: #CC1914;
+        background: #FEF6F6;
+        color: #CC1914;
+    }
+
+    .zc-input-suffix {
+        border-left-color: #D5D6D9;
+        background: #FAFAFA;
+        color: #37383C;
+    }
+}
+
+/* -- Success (only left CTA + input take success; right CTA stays default) -- */
+#{$combo}.zc-input-affixed-success {
+    border-color: #078841;
+    background: #F6FEF9;
+
+    &:hover {
+        border-color: #078841;
+    }
+
+    .zc-input-prefix {
+        border-right-color: #078841;
+        background: #F6FEF9;
+    }
+
+    .zc-input-suffix {
+        border-left-color: #D5D6D9;
+        background: #FAFAFA;
+        color: #37383C;
+    }
+}
+
+/* -- Disabled (NO opacity, per-element styling) -- */
+#{$combo}.zc-input-affixed-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background: #F5F5F5;
+    border-color: #D5D6D9;
+
+    &:hover {
+        border-color: #D5D6D9;
+    }
+
+    .zc-input-prefix {
+        background: #F5F5F5;
+        color: #9EA0A7;
+    }
+
+    .zc-input-suffix {
+        background: #F5F5F5;
+        color: #9EA0A7;
+    }
+
+    .zc-input-prefix-select {
+        color: #9EA0A7;
+        cursor: not-allowed;
+    }
+
+    .zc-input-suffix-btn {
+        background: #D5D6D9;
+        color: #9EA0A7;
+        cursor: not-allowed;
+    }
+
+    lyte-input input {
+        color: #9EA0A7 !important;
+        cursor: not-allowed !important;
+    }
+
+    lyte-input input::placeholder {
+        color: #9EA0A7 !important;
+    }
+}

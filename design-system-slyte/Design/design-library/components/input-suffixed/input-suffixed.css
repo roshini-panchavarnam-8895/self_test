@@ -1,0 +1,266 @@
+/* ==========================================================================
+   INPUT SUFFIXED COMPONENT — CSS (Compiled)
+   Figma Source: Input_Suffixed (node 3007:320)
+
+   VARIANTS: Text Suffix, Icon Suffix, Button Suffix, Dropdown Suffix
+   STATES:   Default, Hover, Hover On CTA, Focus, Filled, Error, Success, Disabled
+   SIZES:    SM (28px), MD (36px — default), LG (44px)
+   ========================================================================== */
+
+/* -- Affixed wrapper (shared base for prefix + suffix) -- */
+.zc-input-affixed {
+    display: inline-flex;
+    align-items: stretch;
+    height: 36px;
+    min-width: 200px;
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    background: #FFFFFF;
+    overflow: hidden;
+    font-family: 'ZohoPuvi', sans-serif;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* -- Suffixed-specific — input takes remaining space -- */
+.zc-input-suffixed .zc-input,
+.zc-input-suffixed lyte-input {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ==========================================================================
+   LYTE-INPUT OVERRIDES INSIDE AFFIXED WRAPPER
+   ========================================================================== */
+
+.zc-input-affixed lyte-input {
+    border-bottom: none !important;
+    display: flex !important;
+    align-items: stretch !important;
+    height: 100% !important;
+}
+
+.zc-input-affixed lyte-input > div {
+    width: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    height: 100% !important;
+    top: 0 !important;
+    padding: 0 12px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.zc-input-affixed lyte-input > div:after {
+    display: none !important;
+}
+
+.zc-input-affixed lyte-input input {
+    height: 100% !important;
+    font-family: 'ZohoPuvi', sans-serif !important;
+    font-size: 14px !important;
+    color: #000000 !important;
+    padding: 0 !important;
+}
+
+.zc-input-affixed lyte-input input::placeholder {
+    color: #9EA0A7 !important;
+}
+
+/* ==========================================================================
+   SUFFIX ELEMENT — Base (Figma: bg #FAFAFA, text #37383C)
+   ========================================================================== */
+
+.zc-input-suffix {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    gap: 8px;
+    background: #FAFAFA;
+    border-left: 1px solid #D5D6D9;
+    font-size: 14px;
+    color: #37383C;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* ==========================================================================
+   SUFFIX VARIANTS
+   ========================================================================== */
+
+/* -- Icon Suffix -- */
+.zc-input-suffix-icon {
+    padding: 0 10px;
+    font-size: 14px;
+    color: #37383C;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+/* -- Button Suffix -- */
+.zc-input-suffix-btn {
+    padding: 0 16px;
+    border: none;
+    border-left: 1px solid #D5D6D9;
+    background: #0D4EF2;
+    color: #FFFFFF;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+.zc-input-suffix-btn:hover {
+    background: #0B44D5;
+}
+
+.zc-input-suffix-btn:active {
+    background: #093BB3;
+}
+
+/* ==========================================================================
+   STATE VARIANTS
+   ========================================================================== */
+
+/* -- Hover on wrapper → blue border + suffix text blue -- */
+.zc-input-affixed:hover {
+    border-color: #0D4EF2;
+}
+
+.zc-input-affixed:hover .zc-input-suffix:not(.zc-input-suffix-btn) {
+    color: #0D4EF2;
+}
+
+/* -- Hover on CTA → CTA bg light blue, text darker blue -- */
+.zc-input-suffix:hover {
+    background: #F5F8FE;
+    color: #0B44D5;
+}
+
+.zc-input-suffix-icon:hover {
+    color: #0B44D5;
+    background: #F5F8FE;
+}
+
+/* -- Focus -- */
+.zc-input-affixed-focus,
+.zc-input-affixed:focus-within {
+    border-color: #0D4EF2;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05);
+}
+
+.zc-input-affixed-focus .zc-input-suffix:not(.zc-input-suffix-btn),
+.zc-input-affixed:focus-within .zc-input-suffix:not(.zc-input-suffix-btn) {
+    color: #0D4EF2;
+}
+
+/* -- Error -- */
+.zc-input-affixed-error {
+    border-color: #CC1914;
+    background: #FEF6F6;
+}
+
+.zc-input-affixed-error:hover {
+    border-color: #CC1914;
+}
+
+.zc-input-affixed-error .zc-input-suffix {
+    border-left-color: #CC1914;
+    background: #FEF6F6;
+    color: #CC1914;
+}
+
+/* -- Success -- */
+.zc-input-affixed-success {
+    border-color: #078841;
+    background: #F6FEF9;
+}
+
+.zc-input-affixed-success:hover {
+    border-color: #078841;
+}
+
+.zc-input-affixed-success .zc-input-suffix {
+    border-left-color: #078841;
+}
+
+/* -- Disabled (Figma: NO opacity, per-element styling) -- */
+.zc-input-affixed-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background: #F5F5F5;
+    border-color: #D5D6D9;
+}
+
+.zc-input-affixed-disabled:hover {
+    border-color: #D5D6D9;
+}
+
+.zc-input-affixed-disabled .zc-input-suffix {
+    background: #F5F5F5;
+    color: #9EA0A7;
+}
+
+.zc-input-affixed-disabled .zc-input-suffix-btn {
+    background: #D5D6D9;
+    color: #9EA0A7;
+    cursor: not-allowed;
+}
+
+.zc-input-affixed-disabled lyte-input input {
+    color: #9EA0A7 !important;
+    cursor: not-allowed !important;
+}
+
+.zc-input-affixed-disabled lyte-input input::placeholder {
+    color: #9EA0A7 !important;
+}
+
+/* ==========================================================================
+   SIZE VARIANTS
+   ========================================================================== */
+
+/* -- SM (28px) -- */
+.zc-input-affixed-sm {
+    height: 28px;
+}
+
+.zc-input-affixed-sm .zc-input-suffix {
+    padding: 0 8px;
+    font-size: 12px;
+}
+
+.zc-input-affixed-sm .zc-input-suffix-icon {
+    padding: 0 8px;
+    font-size: 12px;
+}
+
+.zc-input-affixed-sm .zc-input-suffix-btn {
+    padding: 0 12px;
+    font-size: 12px;
+}
+
+/* -- LG (44px) -- */
+.zc-input-affixed-lg {
+    height: 44px;
+}
+
+.zc-input-affixed-lg .zc-input-suffix {
+    padding: 0 16px;
+    font-size: 14px;
+}
+
+.zc-input-affixed-lg .zc-input-suffix-icon {
+    padding: 0 14px;
+    font-size: 16px;
+}
+
+.zc-input-affixed-lg .zc-input-suffix-btn {
+    padding: 0 20px;
+    font-size: 14px;
+}

@@ -1,0 +1,56 @@
+@font-face {
+   font-family:"ZohoPuvi";
+   font-weight:300;
+   font-style:light;
+   src:url("./ZohoPuvi-Light.eot") format("eot"),
+       url("./ZohoPuvi-Light.woff2") format("woff2"),
+       url("./ZohoPuvi-Light.ttf") format("truetype");
+}
+@font-face {
+   font-family:"ZohoPuvi";
+   font-weight:400;
+   font-style:regular;
+   src:url("./ZohoPuvi-Regular.eot") format("eot"),
+       url("./ZohoPuvi-Regular.woff2") format("woff2"),
+       url("./ZohoPuvi-Regular.ttf") format("truetype");
+}
+@font-face {
+   font-family:"ZohoPuvi";
+   font-weight:500;
+   font-style:medium;
+   src:url("./ZohoPuvi-Medium.eot") format("eot"),
+       url("./ZohoPuvi-Medium.woff2") format("woff2"),
+       url("./ZohoPuvi-Medium.ttf") format("truetype");
+}
+@font-face {
+   font-family:"ZohoPuvi";
+   font-weight:600;
+   font-style:semibold;
+   src:url("./ZohoPuvi-Semibold.eot") format("eot"),
+       url("./ZohoPuvi-Semibold.woff2") format("woff2"),
+       url("./ZohoPuvi-Semibold.ttf") format("truetype");
+}
+@font-face {
+   font-family:"ZohoPuvi";
+   font-weight:700;
+   font-style:bold;
+   src:url("./ZohoPuvi-Bold.eot") format("eot"),
+      url("./ZohoPuvi-Bold.woff2") format("woff2"),
+      url("./ZohoPuvi-Bold.ttf") format("truetype");
+}
+@font-face {
+   font-family:"ZohoPuvi";
+   font-weight:800;
+   font-style:extrabold;
+   src:url("./ZohoPuvi-Extrabold.eot") format("eot"),
+      url("./ZohoPuvi-Extrabold.woff2") format("woff2"),
+      url("./ZohoPuvi-Extrabold.ttf") format("truetype");
+}
+@font-face {
+   font-family:"ZohoPuvi";
+   font-weight:900;
+   font-style:black;
+   src:url("./ZohoPuvi-Black.eot") format("eot"),
+      url("./ZohoPuvi-Black.woff2") format("woff2"),
+      url("./ZohoPuvi-Black.ttf") format("truetype");
+}

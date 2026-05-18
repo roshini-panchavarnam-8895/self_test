@@ -1,0 +1,116 @@
+/* ==========================================================================
+   RADIO CARD SCSS — Custom Card Wrapper + Lyte Radio Overrides
+   Figma: Radio Card (2352:2858)
+   
+   HTML: div.zc-radio-card > lyte-radiobutton (Lyte DOM inside)
+   Card wrapper is custom HTML; radio circle inside uses Lyte framework
+   ========================================================================== */
+
+/* ==========================================================================
+   SECTION 1 — CARD CONTAINER (custom .zc-radio-card)
+   ========================================================================== */
+
+.zc-radio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 14px 14px;
+    border: 1px solid #D5D6D9;
+    border-radius: 6px;
+    background: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 120px;
+}
+
+.zc-radio-card-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.zc-radio-card-disabled .zc-radio-card-label {
+    color: #9EA0A7;
+}
+
+.zc-radio-card-disabled .zc-radio-card-desc {
+    color: #9EA0A7;
+}
+
+/* ==========================================================================
+   SECTION 2 — LYTE-RADIOBUTTON INSIDE CARD
+   ========================================================================== */
+
+.zc-radio-card lyte-radiobutton {
+    display: block !important;
+    width: 100% !important;
+}
+
+.zc-radio-card .lyteRadioBtn {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+}
+
+.zc-radio-card .lyteRadioLabel {
+    display: block !important;
+    margin-left: 0 !important;
+    flex: 1 !important;
+}
+
+/* ==========================================================================
+   SECTION 3 — CONTENT ELEMENTS
+   ========================================================================== */
+
+.zc-radio-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.zc-radio-card-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 18px;
+}
+
+.zc-radio-card-desc {
+    font-size: 12px;
+    font-weight: 400;
+    color: #696C74;
+    line-height: 15px;
+}
+
+/* ==========================================================================
+   SECTION 4 — GROUP LAYOUTS
+   ========================================================================== */
+
+.zc-radio-card-group-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.zc-radio-card-group-horizontal > .zc-radio-card {
+    flex: 1 1 0;
+    min-width: 160px;
+}
+
+.zc-radio-card-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.zc-radio-card:focus-within {
+    outline: 2px solid #0D4EF2;
+    outline-offset: 2px;
+}
+
+.zc-radio-card-sm {
+    padding: 8px 10px 10px;
+}

@@ -1,0 +1,72 @@
+/* ============================================================
+   DROPDOWN OPTGROUP SCSS — Figma: Input_Optgroup_Core (2573:6634)
+   ============================================================
+   NOTE: Shares the same lyte-dropdown framework DOM as regular
+   dropdown. Uses .zc-dropdown-optgroup on lyte-dropdown root.
+   Inherits base trigger/overlay styles from dropdown.css.
+   This file only adds optgroup-specific rules.
+   ============================================================ */
+
+.zc-dropdown-optgroup {
+
+    /* Group header — non-selectable separator label */
+    /* Figma: Optgroup_Head — P2_Regular (14px, weight 400), fill_ZCBS96 (#9EA0A7) */
+    lyte-drop-header.zc-dropdown-optgroup-header {
+        font-size: 14px;
+        font-weight: 400;
+        color: #9EA0A7;
+        padding: 10px 10px 6px;
+        pointer-events: none;
+        user-select: none;
+        cursor: default;
+        border-bottom: none;
+        line-height: 18px;
+
+        /* Separator between group headers (except first) */
+        & ~ lyte-drop-header.zc-dropdown-optgroup-header {
+            margin-top: 4px;
+            border-top: 1px solid #D5D6D9;
+            padding-top: 10px;
+        }
+    }
+
+    /* Optgroup list body — Figma: layout_892BML — padding 6px 10px 10px, gap 1px */
+    lyte-drop-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        padding: 0;
+    }
+
+    /* Drop items — Figma: List_Vertical_Core / layout_5L316Y
+       padding 9px 10px, gap 10px, radius 6px, fill_J02H9N #696C74 */
+    lyte-drop-item {
+        display: flex;
+        align-items: center;
+        padding: 9px 10px;
+        font-size: 14px;
+        color: #696C74;
+        cursor: pointer;
+        transition: background 0.1s ease, color 0.1s ease;
+        border-radius: 6px;
+        gap: 10px;
+
+        /* Figma: Status=Hover On Default — bg #EFF2F9, text #000000 */
+        &:hover {
+            background: #EFF2F9;
+            color: #000000;
+        }
+
+        /* Figma: Status=Selected — bg fill_K4CRDS #F7F9FD, text fill_NTZOO6 #000000 */
+        &.lyteDropdownSelection,
+        &[selected] {
+            background: #F7F9FD;
+            color: #000000;
+        }
+
+        /* Figma: Hover on selected — bg #EFF2F9 */
+        &.lyteDropdownSelection:hover {
+            background: #EFF2F9;
+        }
+    }
+}

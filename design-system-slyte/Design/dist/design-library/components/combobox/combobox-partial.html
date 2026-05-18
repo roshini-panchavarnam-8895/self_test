@@ -1,0 +1,487 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-list-ul"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Combobox</h1>
+                            <p class="detail-description">Creatable dropdown using <code>&lt;lyte-combobox&gt;</code> Slyte DOM — combines text input with dropdown list. Supports search, create-new, multi-select with tags, and all standard field states. Figma source: Input Creatable Dropdown (5251:5457).</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Floating</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 5 Variants</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchComboboxStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchComboboxStyleTab('searchable', this)">Searchable</button>
+                        <button class="btn-style-tab" onclick="switchComboboxStyleTab('creatable', this)">Creatable</button>
+                        <button class="btn-style-tab" onclick="switchComboboxStyleTab('multiselect', this)">Multi-Select</button>
+                        <button class="btn-style-tab" onclick="switchComboboxStyleTab('disabled', this)">Disabled</button>
+                    </div>
+
+                    <div id="combobox-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Basic Combobox</span><button class="btn-variant-card__toggle" onclick="toggleComboboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Basic</span>
+                                        <div class="zc-combobox">
+                                            <lyte-combobox lt-prop-placeholder="Select an option">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                            <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">With Label</span>
+                                        <div class="zc-combobox">
+                                            <div class="zc-combobox-label">Department</div>
+                                            <lyte-combobox lt-prop-placeholder="Choose department">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="eng">Engineering</lyte-drop-item>
+                                                            <lyte-drop-item data-value="des">Design</lyte-drop-item>
+                                                            <lyte-drop-item data-value="mkt">Marketing</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">With Hint</span>
+                                        <div class="zc-combobox">
+                                            <div class="zc-combobox-label">Priority</div>
+                                            <lyte-combobox lt-prop-placeholder="Select priority">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="high">High</lyte-drop-item>
+                                                            <lyte-drop-item data-value="medium">Medium</lyte-drop-item>
+                                                            <lyte-drop-item data-value="low">Low</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                            <div class="zc-combobox-hint">Choose the priority level for this task</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchComboboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchComboboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-combobox"&gt;
+  &lt;div class="zc-combobox-label"&gt;Department&lt;/div&gt;
+  &lt;lyte-combobox lt-prop-placeholder="Choose department"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;lyte-drop-box&gt;
+        &lt;lyte-drop-body&gt;
+          &lt;lyte-drop-item data-value="eng"&gt;Engineering&lt;/lyte-drop-item&gt;
+          &lt;lyte-drop-item data-value="des"&gt;Design&lt;/lyte-drop-item&gt;
+          &lt;lyte-drop-item data-value="mkt"&gt;Marketing&lt;/lyte-drop-item&gt;
+        &lt;/lyte-drop-body&gt;
+      &lt;/lyte-drop-box&gt;
+    &lt;/template&gt;
+  &lt;/lyte-combobox&gt;
+  &lt;div class="zc-combobox-hint"&gt;Choose the priority level&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-combobox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 280px;
+}
+.zc-combobox lyte-combobox {
+  height: 36px;
+  border: 1px solid #D5D6D9;
+  border-radius: 6px;
+  background: #FFFFFF;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SEARCHABLE ==== -->
+                        <div class="btn-variant-group" data-style="searchable" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Searchable — Type to Filter</span><button class="btn-variant-card__toggle" onclick="toggleComboboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Search Enabled</span>
+                                        <div class="zc-combobox">
+                                            <lyte-combobox lt-prop-placeholder="Type to search…" lt-prop-search="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="apple">Apple</lyte-drop-item>
+                                                            <lyte-drop-item data-value="banana">Banana</lyte-drop-item>
+                                                            <lyte-drop-item data-value="cherry">Cherry</lyte-drop-item>
+                                                            <lyte-drop-item data-value="dragon">Dragon Fruit</lyte-drop-item>
+                                                            <lyte-drop-item data-value="elderberry">Elderberry</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">With Label</span>
+                                        <div class="zc-combobox">
+                                            <div class="zc-combobox-label">Timezone</div>
+                                            <lyte-combobox lt-prop-placeholder="Search timezone…" lt-prop-search="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="utc">UTC</lyte-drop-item>
+                                                            <lyte-drop-item data-value="est">EST (UTC-5)</lyte-drop-item>
+                                                            <lyte-drop-item data-value="pst">PST (UTC-8)</lyte-drop-item>
+                                                            <lyte-drop-item data-value="ist">IST (UTC+5:30)</lyte-drop-item>
+                                                            <lyte-drop-item data-value="gmt">GMT (UTC+0)</lyte-drop-item>
+                                                            <lyte-drop-item data-value="cet">CET (UTC+1)</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                            <div class="zc-combobox-hint">Type to filter the list</div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Open with Results</span>
+                                        <div class="zc-combobox zc-combobox-open">
+                                            <div class="zc-combobox-label">Country</div>
+                                            <lyte-combobox lt-prop-placeholder="Search country…" lt-prop-search="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="us">United States</lyte-drop-item>
+                                                            <lyte-drop-item data-value="uk">United Kingdom</lyte-drop-item>
+                                                            <lyte-drop-item data-value="in">India</lyte-drop-item>
+                                                            <lyte-drop-item data-value="de">Germany</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchComboboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchComboboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-combobox"&gt;
+  &lt;div class="zc-combobox-label"&gt;Timezone&lt;/div&gt;
+  &lt;lyte-combobox lt-prop-placeholder="Search timezone…" lt-prop-search="true"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;lyte-drop-box&gt;
+        &lt;lyte-drop-body&gt;
+          &lt;lyte-drop-item data-value="utc"&gt;UTC&lt;/lyte-drop-item&gt;
+          &lt;lyte-drop-item data-value="est"&gt;EST (UTC-5)&lt;/lyte-drop-item&gt;
+          &lt;lyte-drop-item data-value="pst"&gt;PST (UTC-8)&lt;/lyte-drop-item&gt;
+        &lt;/lyte-drop-body&gt;
+      &lt;/lyte-drop-box&gt;
+    &lt;/template&gt;
+  &lt;/lyte-combobox&gt;
+  &lt;div class="zc-combobox-hint"&gt;Type to filter the list&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* lt-prop-search="true" enables built-in search */
+.zc-combobox .zc-combobox-input {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #D5D6D9;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'ZohoPuvi', sans-serif;
+  color: #25272C;
+  outline: none;
+}
+.zc-combobox .zc-combobox-input:focus {
+  border-color: #0D4EF2;
+  box-shadow: 0 0 0 2px rgba(13,78,242,0.12);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== CREATABLE ==== -->
+                        <div class="btn-variant-group" data-style="creatable" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Creatable — Type to Add New</span><button class="btn-variant-card__toggle" onclick="toggleComboboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Create New</span>
+                                        <div class="zc-combobox zc-combobox-creatable">
+                                            <div class="zc-combobox-label">Tags</div>
+                                            <lyte-combobox lt-prop-placeholder="Type to create…" lt-prop-search="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="bug">Bug</lyte-drop-item>
+                                                            <lyte-drop-item data-value="feature">Feature</lyte-drop-item>
+                                                            <lyte-drop-item data-value="improvement">Improvement</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                        <div class="zc-combobox-create-option">
+                                                            <i class="fas fa-plus"></i>
+                                                            <span>Create "<em>new tag</em>"</span>
+                                                        </div>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                            <div class="zc-combobox-hint">Type a new value and press Enter to create</div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">With Existing Options</span>
+                                        <div class="zc-combobox zc-combobox-creatable zc-combobox-open">
+                                            <div class="zc-combobox-label">Category</div>
+                                            <lyte-combobox lt-prop-placeholder="Search or create…" lt-prop-search="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="frontend">Frontend</lyte-drop-item>
+                                                            <lyte-drop-item data-value="backend">Backend</lyte-drop-item>
+                                                            <lyte-drop-item data-value="devops">DevOps</lyte-drop-item>
+                                                            <lyte-drop-item data-value="qa">QA</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                        <div class="zc-combobox-create-option">
+                                                            <i class="fas fa-plus"></i>
+                                                            <span>Create "<em>Mobile</em>"</span>
+                                                        </div>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error State</span>
+                                        <div class="zc-combobox zc-combobox-creatable zc-combobox-error">
+                                            <div class="zc-combobox-label">Skill <span class="zc-label-required">*</span></div>
+                                            <lyte-combobox lt-prop-placeholder="Type to create…" lt-prop-search="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="js">JavaScript</lyte-drop-item>
+                                                            <lyte-drop-item data-value="py">Python</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                            <div class="zc-combobox-hint">At least one skill is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchComboboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchComboboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-combobox zc-combobox-creatable"&gt;
+  &lt;div class="zc-combobox-label"&gt;Tags&lt;/div&gt;
+  &lt;lyte-combobox lt-prop-placeholder="Type to create…" lt-prop-search="true"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;lyte-drop-box&gt;
+        &lt;lyte-drop-body&gt;
+          &lt;lyte-drop-item data-value="bug"&gt;Bug&lt;/lyte-drop-item&gt;
+          &lt;lyte-drop-item data-value="feature"&gt;Feature&lt;/lyte-drop-item&gt;
+        &lt;/lyte-drop-body&gt;
+        &lt;div class="zc-combobox-create-option"&gt;
+          &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+          &lt;span&gt;Create "&lt;em&gt;new tag&lt;/em&gt;"&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/lyte-drop-box&gt;
+    &lt;/template&gt;
+  &lt;/lyte-combobox&gt;
+  &lt;div class="zc-combobox-hint"&gt;Type and press Enter to create&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-combobox-create-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  font-size: 14px;
+  cursor: pointer;
+  border-top: 1px solid #EBEBEB;
+}
+.zc-combobox-create-option:hover {
+  background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+}
+.zc-combobox-create-option i {
+  font-size: 12px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== MULTI-SELECT ==== -->
+                        <div class="btn-variant-group" data-style="multiselect" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Multi-Select — With Tags</span><button class="btn-variant-card__toggle" onclick="toggleComboboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Empty</span>
+                                        <div class="zc-combobox zc-combobox-multi">
+                                            <div class="zc-combobox-label">Assignees</div>
+                                            <div class="zc-combobox-input-wrapper">
+                                                <input type="text" class="zc-combobox-input" placeholder="Search people…" />
+                                                <span class="zc-combobox-arrow"><i class="fas fa-chevron-down"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">With Tags</span>
+                                        <div class="zc-combobox zc-combobox-multi">
+                                            <div class="zc-combobox-label">Skills</div>
+                                            <div class="zc-combobox-input-wrapper zc-combobox-has-tags">
+                                                <span class="zc-combobox-tag">JavaScript <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-combobox-tag">Python <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-combobox-tag">React <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <input type="text" class="zc-combobox-input" placeholder="" />
+                                                <span class="zc-combobox-arrow"><i class="fas fa-chevron-down"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Many Tags (Wrap)</span>
+                                        <div class="zc-combobox zc-combobox-multi">
+                                            <div class="zc-combobox-label">Technologies</div>
+                                            <div class="zc-combobox-input-wrapper zc-combobox-has-tags">
+                                                <span class="zc-combobox-tag">JavaScript <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-combobox-tag">TypeScript <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-combobox-tag">Python <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-combobox-tag">Go <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-combobox-tag">Rust <button class="zc-combobox-tag-remove"><i class="fas fa-times"></i></button></span>
+                                                <input type="text" class="zc-combobox-input" placeholder="" />
+                                                <span class="zc-combobox-arrow"><i class="fas fa-chevron-down"></i></span>
+                                            </div>
+                                            <div class="zc-combobox-hint">Select multiple technologies</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchComboboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchComboboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-combobox zc-combobox-multi"&gt;
+  &lt;div class="zc-combobox-label"&gt;Skills&lt;/div&gt;
+  &lt;div class="zc-combobox-input-wrapper zc-combobox-has-tags"&gt;
+    &lt;span class="zc-combobox-tag"&gt;
+      JavaScript
+      &lt;button class="zc-combobox-tag-remove"&gt;
+        &lt;i class="fas fa-times"&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/span&gt;
+    &lt;span class="zc-combobox-tag"&gt;
+      Python
+      &lt;button class="zc-combobox-tag-remove"&gt;
+        &lt;i class="fas fa-times"&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/span&gt;
+    &lt;input type="text" class="zc-combobox-input" placeholder="" /&gt;
+    &lt;span class="zc-combobox-arrow"&gt;
+      &lt;i class="fas fa-chevron-down"&gt;&lt;/i&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-combobox-input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  min-height: 36px;
+  padding: 4px 8px;
+  border: 1px solid #D5D6D9;
+  border-radius: 6px;
+  background: #FFFFFF;
+}
+.zc-combobox-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  background: #E7EDFE;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #0D4EF2;
+}
+.zc-combobox-tag-remove {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: #0D4EF2;
+  font-size: 10px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive</span><button class="btn-variant-card__toggle" onclick="toggleComboboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Empty Disabled</span>
+                                        <div class="zc-combobox zc-combobox-disabled">
+                                            <lyte-combobox lt-prop-placeholder="Select an option" lt-prop-disabled="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                            <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Filled Disabled</span>
+                                        <div class="zc-combobox zc-combobox-disabled">
+                                            <div class="zc-combobox-label">Role</div>
+                                            <lyte-combobox lt-prop-placeholder="Select role" lt-prop-selected="admin" lt-prop-disabled="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box>
+                                                        <lyte-drop-body>
+                                                            <lyte-drop-item data-value="admin">Administrator</lyte-drop-item>
+                                                            <lyte-drop-item data-value="editor">Editor</lyte-drop-item>
+                                                            <lyte-drop-item data-value="viewer">Viewer</lyte-drop-item>
+                                                        </lyte-drop-body>
+                                                    </lyte-drop-box>
+                                                </template>
+                                            </lyte-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Multi Disabled</span>
+                                        <div class="zc-combobox zc-combobox-multi zc-combobox-disabled">
+                                            <div class="zc-combobox-label">Locked Skills</div>
+                                            <div class="zc-combobox-input-wrapper zc-combobox-has-tags">
+                                                <span class="zc-combobox-tag">JavaScript <button class="zc-combobox-tag-remove" disabled><i class="fas fa-times"></i></button></span>
+                                                <span class="zc-combobox-tag">Python <button class="zc-combobox-tag-remove" disabled><i class="fas fa-times"></i></button></span>
+                                                <input type="text" class="zc-combobox-input" placeholder="" disabled />
+                                                <span class="zc-combobox-arrow"><i class="fas fa-chevron-down"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchComboboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchComboboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-combobox zc-combobox-disabled"&gt;
+  &lt;lyte-combobox lt-prop-placeholder="Select an option" lt-prop-disabled="true"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;lyte-drop-box&gt;
+        &lt;lyte-drop-body&gt;
+          &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+        &lt;/lyte-drop-body&gt;
+      &lt;/lyte-drop-box&gt;
+    &lt;/template&gt;
+  &lt;/lyte-combobox&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyComboboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-combobox-disabled,
+.zc-combobox lyte-combobox[lt-prop-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.zc-combobox-disabled lyte-combobox,
+.zc-combobox-disabled .zc-combobox-input-wrapper {
+  background: #E5E5E7;
+  border-color: #D5D6D9;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

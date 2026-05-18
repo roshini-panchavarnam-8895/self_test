@@ -1,0 +1,13 @@
+CliLocation :/usr/local/lib/node_modules/@zoho/lyte-cli
+ CliVersion 3.1.7
+[Time] : copyAppDir =>0.001 s
+Building components ....
+[Time] => components completed : 0.31 s
+========== Components compiled ==========
+Building models ..............
+
+[Time] => 0 s
+================= _super call of model completed =======================
+Building helpers .....
+Building mixins .....
+LiveServer running in 55527

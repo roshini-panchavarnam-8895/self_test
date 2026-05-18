@@ -1,0 +1,196 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-tasks"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Progress Bar</h1>
+                            <p class="detail-description">Visual progress indicator using <code>&lt;lyte-progressbar&gt;</code> Slyte DOM. Supports horizontal bars with configurable value, size, color, percentage label, and indeterminate animation.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Feedback</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 5 Types × 4 Colors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchProgressbarStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchProgressbarStyleTab('sizes', this)">Sizes</button>
+                        <button class="btn-style-tab" onclick="switchProgressbarStyleTab('colors', this)">Colors</button>
+                        <button class="btn-style-tab" onclick="switchProgressbarStyleTab('with-label', this)">With Label</button>
+                        <button class="btn-style-tab" onclick="switchProgressbarStyleTab('indeterminate', this)">Indeterminate</button>
+                    </div>
+
+                    <div id="progressbar-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Various Progress</span><button class="btn-variant-card__toggle" onclick="toggleProgressbarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">25%</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"25"},"width":"100%","height":"8px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">50%</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"50"},"width":"100%","height":"8px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">75%</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"75"},"width":"100%","height":"8px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">100%</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"100"},"width":"100%","height":"8px"}'></lyte-progressbar>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchProgressbarCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyProgressbarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 25% progress --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"25"},"width":"100%","height":"8px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- 50% progress --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"50"},"width":"100%","height":"8px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- 75% progress --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"75"},"width":"100%","height":"8px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- 100% progress --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"100"},"width":"100%","height":"8px"}'&gt;&lt;/lyte-progressbar&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SIZES ==== -->
+                        <div class="btn-variant-group" data-style="sizes" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Sizes — Default, Small, Tiny</span><button class="btn-variant-card__toggle" onclick="toggleProgressbarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default (8px)</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small (4px)</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"4px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Tiny (2px)</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"2px"}'></lyte-progressbar>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchProgressbarCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyProgressbarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Default (8px height) --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Small (4px height) --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"4px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Tiny (2px height) --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"2px"}'&gt;&lt;/lyte-progressbar&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== COLORS ==== -->
+                        <div class="btn-variant-group" data-style="colors" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Color Themes</span><button class="btn-variant-card__toggle" onclick="toggleProgressbarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Primary</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Success</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","background":"#078841"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Warning</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","background":"#D25704"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Error</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","background":"#CC1914"}'></lyte-progressbar>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchProgressbarCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyProgressbarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Primary (default blue) --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Success (green) --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","background":"#078841"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Warning (orange) --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","background":"#D25704"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Error (red) --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","background":"#CC1914"}'&gt;&lt;/lyte-progressbar&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== WITH LABEL ==== -->
+                        <div class="btn-variant-group" data-style="with-label" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Label &amp; Percentage</span><button class="btn-variant-card__toggle" onclick="toggleProgressbarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Uploading (60%)</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","showPercentage":true}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Processing (35%)</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"35"},"width":"100%","height":"8px","showPercentage":true}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Complete (100%)</span>
+                                        <lyte-progressbar lt-prop='{"progressProperty":{"value":"100"},"width":"100%","height":"8px","showPercentage":true,"background":"#078841"}'></lyte-progressbar>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchProgressbarCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyProgressbarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- With percentage label --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"60"},"width":"100%","height":"8px","showPercentage":true}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Complete — success color --&gt;
+&lt;lyte-progressbar lt-prop='{"progressProperty":{"value":"100"},"width":"100%","height":"8px","showPercentage":true,"background":"#078841"}'&gt;&lt;/lyte-progressbar&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== INDETERMINATE ==== -->
+                        <div class="btn-variant-group" data-style="indeterminate" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Indeterminate — Animated</span><button class="btn-variant-card__toggle" onclick="toggleProgressbarCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <lyte-progressbar lt-prop='{"indeterminate":true,"width":"100%","height":"8px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Small</span>
+                                        <lyte-progressbar lt-prop='{"indeterminate":true,"width":"100%","height":"4px"}'></lyte-progressbar>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Tiny</span>
+                                        <lyte-progressbar lt-prop='{"indeterminate":true,"width":"100%","height":"2px"}'></lyte-progressbar>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchProgressbarCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyProgressbarCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Indeterminate (no percentage) --&gt;
+&lt;lyte-progressbar lt-prop='{"indeterminate":true,"width":"100%","height":"8px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Indeterminate — Small --&gt;
+&lt;lyte-progressbar lt-prop='{"indeterminate":true,"width":"100%","height":"4px"}'&gt;&lt;/lyte-progressbar&gt;
+
+&lt;!-- Indeterminate — Tiny --&gt;
+&lt;lyte-progressbar lt-prop='{"indeterminate":true,"width":"100%","height":"2px"}'&gt;&lt;/lyte-progressbar&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

@@ -1,0 +1,654 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-caret-square-down"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Dropdown</h1>
+                            <p class="detail-description">Selection dropdown using <code>&lt;lyte-dropdown&gt;</code> and <code>&lt;lyte-multi-dropdown&gt;</code> Slyte DOM. Figma: Input_Dropdown_Core — States: Default, Selected, Disabled, Error with optional label/hint. Includes Creatable and Multi Select variants.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Inputs</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 15 States × 1 Size</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchDropdownStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchDropdownStyleTab('disabled', this)">Disabled</button>
+                        <button class="btn-style-tab" onclick="switchDropdownStyleTab('error', this)">Error</button>
+                        <button class="btn-style-tab" onclick="switchDropdownStyleTab('with-label', this)">With Label</button>
+                        <button class="btn-style-tab" onclick="switchDropdownStyleTab('creatable', this)">Creatable</button>
+                        <button class="btn-style-tab" onclick="switchDropdownStyleTab('multi-select', this)">Multi Select</button>
+                    </div>
+
+                    <div id="dropdown-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+
+                            <!-- Default — Empty -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Empty</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Empty</span>
+                                        <lyte-dropdown lt-prop-placeholder="Select an option">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-dropdown lt-prop-placeholder="Select an option"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+      &lt;lyte-drop-item data-value="opt2"&gt;Option 2&lt;/lyte-drop-item&gt;
+      &lt;lyte-drop-item data-value="opt3"&gt;Option 3&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Figma: State=Default — border #D5D6D9, bg #FFFFFF, radius 6px */
+lyte-dropdown lyte-drop-button {
+  border: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+  border-radius: var(--zc-radius-r, 6px);
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+  padding: 9px 10px;
+  height: 36px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Figma: State=Hover — border #0D4EF2 */
+lyte-dropdown lyte-drop-button:hover {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+}
+
+/* Figma: State=Active — border #0D4EF2 + elevation */
+lyte-dropdown.lyteDropdownActive lyte-drop-button {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08);
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                            <!-- Default — Selected -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Selected — Value Chosen</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Selected</span>
+                                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select an option">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Clear</span>
+                                        <lyte-dropdown lt-prop-selected="opt2" lt-prop-placeholder="Select an option" lt-prop-show-deselect-icon="true">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Selected --&gt;
+&lt;lyte-dropdown lt-prop-selected="opt1" lt-prop-placeholder="Select an option"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;
+
+&lt;!-- Selected with clear icon --&gt;
+&lt;lyte-dropdown lt-prop-selected="opt2" lt-prop-show-deselect-icon="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt2"&gt;Option 2&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Figma: State=Selected — same border, value text is default color */
+lyte-dropdown .lyteDropdownLabel {
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+  font-size: var(--zc-p2-font-size, 14px);
+}
+
+/* Figma: State=Selected With Clear — deselect icon visible */
+lyte-dropdown.lyteDropdownWithDeselectIcon lyte-drop-remove {
+  display: inline-flex;
+  cursor: pointer;
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Before (Empty)</span>
+                                        <lyte-dropdown lt-prop-placeholder="Select an option" lt-prop-disabled="true">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">After (Filled)</span>
+                                        <lyte-dropdown lt-prop-selected="opt1" lt-prop-disabled="true">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled Before (empty) --&gt;
+&lt;lyte-dropdown lt-prop-placeholder="Select an option" lt-prop-disabled="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;
+
+&lt;!-- Disabled After (with selection) --&gt;
+&lt;lyte-dropdown lt-prop-selected="opt1" lt-prop-disabled="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Figma: State=Disabled Before / Disabled After — bg #F5F5F5, border #D5D6D9 */
+lyte-dropdown.lyteDropdown-disabled lyte-drop-button {
+  background: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover, #F5F5F5);
+  border-color: var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ERROR ==== -->
+                        <div class="btn-variant-group" data-style="error" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Error — Validation Failed</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Error</span>
+                                        <div class="zc-dropdown zc-dropdown-error">
+                                            <lyte-dropdown lt-prop-placeholder="Select an option">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box><lyte-drop-body>
+                                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                    </lyte-drop-body></lyte-drop-box>
+                                                </template>
+                                            </lyte-dropdown>
+                                            <span class="zc-dropdown-hint zc-dropdown-hint-error">This field is required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-dropdown zc-dropdown-error"&gt;
+  &lt;lyte-dropdown lt-prop-placeholder="Select an option"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+        &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+      &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+    &lt;/template&gt;
+  &lt;/lyte-dropdown&gt;
+  &lt;span class="zc-dropdown-hint zc-dropdown-hint-error"&gt;This field is required&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Figma: State=Error — error border + bg on trigger */
+.zc-dropdown-error lyte-dropdown lyte-drop-button {
+  border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+  background: var(--zc-color-error-surface-error-surface-subtle, #FEF6F6);
+}
+.zc-dropdown-hint-error {
+  color: var(--zc-color-error-text-error-text-default, #CC1914);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- ==== WITH LABEL ==== -->
+                        <div class="btn-variant-group" data-style="with-label" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">With Label &amp; Hint</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Default</span>
+                                        <div class="zc-dropdown">
+                                            <label class="zc-dropdown-label">Field Label</label>
+                                            <lyte-dropdown lt-prop-placeholder="Select an option">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box><lyte-drop-body>
+                                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                        <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                    </lyte-drop-body></lyte-drop-box>
+                                                </template>
+                                            </lyte-dropdown>
+                                            <span class="zc-dropdown-hint">Helper text goes here</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Error</span>
+                                        <div class="zc-dropdown zc-dropdown-error">
+                                            <label class="zc-dropdown-label">Field Label</label>
+                                            <lyte-dropdown lt-prop-placeholder="Select an option">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box><lyte-drop-body>
+                                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    </lyte-drop-body></lyte-drop-box>
+                                                </template>
+                                            </lyte-dropdown>
+                                            <span class="zc-dropdown-hint zc-dropdown-hint-error">This field is required</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled</span>
+                                        <div class="zc-dropdown">
+                                            <label class="zc-dropdown-label">Field Label</label>
+                                            <lyte-dropdown lt-prop-placeholder="Select an option" lt-prop-disabled="true">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box><lyte-drop-body>
+                                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    </lyte-drop-body></lyte-drop-box>
+                                                </template>
+                                            </lyte-dropdown>
+                                            <span class="zc-dropdown-hint">This field is disabled</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- With label and hint --&gt;
+&lt;div class="zc-dropdown"&gt;
+  &lt;label class="zc-dropdown-label"&gt;Field Label&lt;/label&gt;
+  &lt;lyte-dropdown lt-prop-placeholder="Select an option"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+        &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+      &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+    &lt;/template&gt;
+  &lt;/lyte-dropdown&gt;
+  &lt;span class="zc-dropdown-hint"&gt;Helper text goes here&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Error with label --&gt;
+&lt;div class="zc-dropdown zc-dropdown-error"&gt;
+  &lt;label class="zc-dropdown-label"&gt;Field Label&lt;/label&gt;
+  &lt;lyte-dropdown lt-prop-placeholder="Select an option"&gt;...&lt;/lyte-dropdown&gt;
+  &lt;span class="zc-dropdown-hint zc-dropdown-hint-error"&gt;This field is required&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-dropdown {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.zc-dropdown-label {
+  font-size: var(--zc-p2-font-size, 14px);
+  font-weight: var(--zc-p2-font-weight-semibold, 600);
+  color: var(--zc-color-neutral-text-neutral-text-default, #37383C);
+}
+.zc-dropdown-hint {
+  font-size: var(--zc-p3-font-size, 12px);
+  color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+}
+.zc-dropdown-hint-error {
+  color: var(--zc-color-error-text-error-text-default, #CC1914);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== CREATABLE ==== -->
+                        <div class="btn-variant-group" data-style="creatable" style="display:none">
+
+                            <!-- Creatable — Default -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Creatable — Default / Placeholder</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Base</span>
+                                        <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-dropdown lt-prop-placeholder="Search or create..."
+               lt-prop-search="true"
+               class="zc-dropdown zc-creatable-dropdown"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+      &lt;lyte-drop-item data-value="opt2"&gt;Option 2&lt;/lyte-drop-item&gt;
+      &lt;lyte-drop-item data-value="opt3"&gt;Option 3&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-creatable-dropdown {
+  min-width: 240px;
+}
+.zc-creatable-dropdown .lyteDDHeader {
+  border: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+  border-radius: var(--zc-radius-r, 6px);
+  background: var(--zc-color-black-white-surface-white-surface, #FFFFFF);
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                            <!-- Creatable — Open / Focus -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Creatable — Open / Search Active</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Typed Value</span>
+                                        <div class="zc-creatable-dropdown-demo-open">
+                                            <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box><lyte-drop-body>
+                                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                        <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                    </lyte-drop-body></lyte-drop-box>
+                                                </template>
+                                            </lyte-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-dropdown lt-prop-placeholder="Search or create..."
+               lt-prop-search="true"
+               class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-creatable-dropdown-focus .lyteDDHeader,
+.zc-creatable-dropdown:focus-within .lyteDDHeader {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  box-shadow: 0 0 0 2px rgba(13, 78, 242, 0.15);
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                            <!-- Creatable — Create Option -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Creatable — "+ Create" Action Row</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">With Create Row</span>
+                                        <div class="zc-creatable-dropdown-demo-create">
+                                            <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box><lyte-drop-body>
+                                                        <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                        <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                        <lyte-drop-item data-value="opt3">Option 3</lyte-drop-item>
+                                                    </lyte-drop-body></lyte-drop-box>
+                                                </template>
+                                            </lyte-dropdown>
+                                            <div class="zc-creatable-dropdown-panel-demo">
+                                                <div class="zc-creatable-dropdown-create-row">
+                                                    <i class="fas fa-plus"></i>
+                                                    <span>Create "<strong>New Item</strong>"</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">No Match + Create</span>
+                                        <div class="zc-creatable-dropdown-demo-create">
+                                            <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" class="zc-dropdown zc-creatable-dropdown zc-creatable-dropdown-focus">
+                                                <template is="registerYield" yield-name="yield">
+                                                    <lyte-drop-box><lyte-drop-body>
+                                                    </lyte-drop-body></lyte-drop-box>
+                                                </template>
+                                            </lyte-dropdown>
+                                            <div class="zc-creatable-dropdown-panel-demo">
+                                                <div class="zc-creatable-dropdown-no-match">No matching options</div>
+                                                <div class="zc-creatable-dropdown-create-row">
+                                                    <i class="fas fa-plus"></i>
+                                                    <span>Create "<strong>Custom Value</strong>"</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-dropdown lt-prop-placeholder="Search or create..."
+               lt-prop-search="true"
+               class="zc-dropdown zc-creatable-dropdown"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+      &lt;lyte-drop-item class="zc-creatable-dropdown-create-row"
+                       data-value="__create__"&gt;
+        &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+        Create "New Item"
+      &lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-creatable-dropdown-create-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: var(--zc-color-primary-text-primary-text-default, #0D4EF2);
+  font-weight: 600;
+  cursor: pointer;
+  border-top: 1px solid var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+}
+.zc-creatable-dropdown-create-row:hover {
+  background: var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+}
+.zc-creatable-dropdown-no-match {
+  padding: 8px 12px;
+  color: var(--zc-color-neutral-text-neutral-text-subtle, #9EA0A7);
+  font-size: 12px;
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                            <!-- Creatable — Disabled -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Creatable — Disabled</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled Empty</span>
+                                        <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" lt-prop-disabled="true" class="zc-dropdown zc-creatable-dropdown">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">Disabled Filled</span>
+                                        <lyte-dropdown lt-prop-placeholder="Search or create..." lt-prop-search="true" lt-prop-disabled="true" lt-prop-selected="opt1" class="zc-dropdown zc-creatable-dropdown">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchDropdownCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-dropdown lt-prop-placeholder="Search or create..."
+               lt-prop-search="true"
+               lt-prop-disabled="true"
+               class="zc-dropdown zc-creatable-dropdown"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-dropdown&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>lyte-dropdown.zc-creatable-dropdown[lt-prop-disabled="true"] .lyteDDHeader {
+  background: var(--zc-color-huegrey-surface-huegrey-surface-subtle-hover, #F5F5F5);
+  border-color: var(--zc-color-huegrey-border-huegrey-border-fairish, #D5D6D9);
+  cursor: not-allowed;
+  opacity: 0.65;
+}</code></pre></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- ==== MULTI SELECT ==== -->
+                        <div class="btn-variant-group" data-style="multi-select" style="display:none">
+
+                            <!-- Multi Select — Default -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Multi Select — Default</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Default</span>
+                                        <lyte-multi-dropdown lt-prop-placeholder="Select items">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="red">Red</lyte-drop-item>
+                                                    <lyte-drop-item data-value="green">Green</lyte-drop-item>
+                                                    <lyte-drop-item data-value="blue">Blue</lyte-drop-item>
+                                                    <lyte-drop-item data-value="yellow">Yellow</lyte-drop-item>
+                                                    <lyte-drop-item data-value="purple">Purple</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-multi-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-multi-dropdown lt-prop-placeholder="Select items"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;
+      &lt;lyte-drop-body&gt;
+        &lt;lyte-drop-item data-value="red"&gt;Red&lt;/lyte-drop-item&gt;
+        &lt;lyte-drop-item data-value="green"&gt;Green&lt;/lyte-drop-item&gt;
+        &lt;lyte-drop-item data-value="blue"&gt;Blue&lt;/lyte-drop-item&gt;
+      &lt;/lyte-drop-body&gt;
+    &lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-multi-dropdown&gt;</code></pre></div>
+                                </div>
+                            </div>
+
+                            <!-- Multi Select — With Search -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Multi Select — With Search</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Searchable</span>
+                                        <lyte-multi-dropdown lt-prop-placeholder="Search &amp; select..." lt-prop-search="true">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="apple">Apple</lyte-drop-item>
+                                                    <lyte-drop-item data-value="banana">Banana</lyte-drop-item>
+                                                    <lyte-drop-item data-value="cherry">Cherry</lyte-drop-item>
+                                                    <lyte-drop-item data-value="grape">Grape</lyte-drop-item>
+                                                    <lyte-drop-item data-value="mango">Mango</lyte-drop-item>
+                                                    <lyte-drop-item data-value="orange">Orange</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-multi-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-multi-dropdown lt-prop-placeholder="Search &amp; select..."
+                     lt-prop-search="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="apple"&gt;Apple&lt;/lyte-drop-item&gt;
+      &lt;lyte-drop-item data-value="banana"&gt;Banana&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-multi-dropdown&gt;</code></pre></div>
+                                </div>
+                            </div>
+
+                            <!-- Multi Select — Disabled -->
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Multi Select — Disabled</span><button class="btn-variant-card__toggle" onclick="toggleDropdownCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Disabled</span>
+                                        <lyte-multi-dropdown lt-prop-placeholder="Disabled multi-select" lt-prop-disabled="true">
+                                            <template is="registerYield" yield-name="yield">
+                                                <lyte-drop-box><lyte-drop-body>
+                                                    <lyte-drop-item data-value="opt1">Option 1</lyte-drop-item>
+                                                    <lyte-drop-item data-value="opt2">Option 2</lyte-drop-item>
+                                                </lyte-drop-body></lyte-drop-box>
+                                            </template>
+                                        </lyte-multi-dropdown>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchDropdownCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyDropdownCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-multi-dropdown lt-prop-placeholder="Disabled"
+                     lt-prop-disabled="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;lyte-drop-box&gt;&lt;lyte-drop-body&gt;
+      &lt;lyte-drop-item data-value="opt1"&gt;Option 1&lt;/lyte-drop-item&gt;
+    &lt;/lyte-drop-body&gt;&lt;/lyte-drop-box&gt;
+  &lt;/template&gt;
+&lt;/lyte-multi-dropdown&gt;</code></pre></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>

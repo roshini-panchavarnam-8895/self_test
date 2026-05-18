@@ -1,0 +1,235 @@
+/* =============================================================================
+   TABS COMPONENT — CSS (Compiled from SCSS)
+   Figma Source: Tab_Default_Base (node 2299:1928)
+
+   SECTIONS:
+     1. Lyte Override — targets actual lyte-tabs rendered DOM
+     2. Custom .zc-tabs — for manual / non-Lyte HTML
+     3. Shared utilities (padding, bordered, disabled)
+
+   NAMING: Single-hyphen modifier (zc-tab-active NOT zc-tab--active)
+   ============================================================================= */
+
+/* =============================================================================
+   SECTION 1 — LYTE OVERRIDE (targets lyte-tabs rendered DOM)
+   Lyte renders: lyte-tabs > .lyteTabNav > lyte-tab-head > lyte-tab-title
+   ============================================================================= */
+
+/* Reset Lyte defaults */
+lyte-tabs {
+    min-height: auto !important;
+    background-color: transparent !important;
+    min-width: auto !important;
+}
+
+/* Tab list (rendered as lyte-tab-head inside .lyteTabNav) */
+lyte-tabs lyte-tab-head {
+    display: flex !important;
+    align-items: center;
+    border-bottom: 1px solid var(--zc-color-neutral-border-subtle, #E4E5E8);
+    gap: 0;
+    overflow-x: auto;
+}
+
+/* Tab item (lyte-tab-title) */
+lyte-tabs lyte-tab-title {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    color: var(--zc-color-neutral-text-secondary, #696C74);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    margin-bottom: -1px;
+    opacity: 1 !important;
+    float: none !important;
+    flex-shrink: 0;
+}
+
+/* Hover */
+lyte-tabs lyte-tab-title:hover {
+    color: var(--zc-color-neutral-text-default, #37383C);
+}
+
+/* Active (Lyte adds .lyteTabActive class) */
+lyte-tabs lyte-tab-title.lyteTabActive {
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    border-bottom-color: var(--zc-color-primary-border-default, #0D4EF2);
+}
+
+/* Disabled */
+lyte-tabs lyte-tab-title.zc-tab-disabled {
+    opacity: 0.45 !important;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Icons inside tab titles */
+lyte-tabs lyte-tab-title i,
+lyte-tabs lyte-tab-title svg {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+lyte-tabs lyte-tab-title.lyteTabActive i {
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+}
+
+/* Tab body */
+lyte-tabs lyte-tab-body {
+    padding: 16px 0;
+}
+
+/* Padding variants (on wrapper lyte-tabs) */
+lyte-tabs.zc-tabs-p0 lyte-tab-head { gap: 0; }
+lyte-tabs.zc-tabs-p4 lyte-tab-head { gap: 4px; }
+lyte-tabs.zc-tabs-p8 lyte-tab-head { gap: 8px; }
+lyte-tabs.zc-tabs-p12 lyte-tab-head { gap: 12px; }
+lyte-tabs.zc-tabs-p16 lyte-tab-head { gap: 16px; }
+
+/* Bordered variant */
+lyte-tabs.zc-tabs-bordered lyte-tab-head {
+    border-bottom: none;
+    background: #F5F5F5;
+    border-radius: 8px;
+    padding: 4px;
+    gap: 0;
+}
+
+lyte-tabs.zc-tabs-bordered lyte-tab-title {
+    border-bottom: none;
+    border-radius: 6px;
+    margin-bottom: 0;
+    padding: 8px 16px;
+}
+
+lyte-tabs.zc-tabs-bordered lyte-tab-title.lyteTabActive {
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-bottom: none;
+}
+
+
+/* =============================================================================
+   SECTION 2 — CUSTOM .zc-tabs (manual / non-Lyte HTML)
+   ============================================================================= */
+
+/* BASE CONTAINER */
+.zc-tabs {
+    display: flex;
+    flex-direction: column;
+    font-family: 'ZohoPuvi', sans-serif;
+    width: 100%;
+}
+
+/* TAB LIST */
+.zc-tabs-list {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--zc-color-neutral-border-subtle, #E4E5E8);
+    gap: 0;
+    overflow-x: auto;
+}
+
+/* TAB ITEM */
+.zc-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    color: var(--zc-color-neutral-text-secondary, #696C74);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    margin-bottom: -1px;
+}
+
+/* HOVER STATE */
+.zc-tab:hover {
+    color: var(--zc-color-neutral-text-default, #37383C);
+}
+
+/* ACTIVE STATE */
+.zc-tab-active {
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    border-bottom-color: var(--zc-color-primary-border-default, #0D4EF2);
+}
+
+/* DISABLED STATE */
+.zc-tab-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* TAB ICON */
+.zc-tab i,
+.zc-tab svg {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.zc-tab-active i {
+    color: var(--zc-color-primary-text-default, #0D4EF2);
+}
+
+/* PADDING VARIANTS */
+.zc-tabs-p0 .zc-tabs-list { gap: 0; }
+.zc-tabs-p4 .zc-tabs-list { gap: 4px; }
+.zc-tabs-p8 .zc-tabs-list { gap: 8px; }
+.zc-tabs-p12 .zc-tabs-list { gap: 12px; }
+.zc-tabs-p16 .zc-tabs-list { gap: 16px; }
+
+/* BORDERED VARIANT */
+.zc-tabs-bordered .zc-tabs-list {
+    border-bottom: none;
+    background: #F5F5F5;
+    border-radius: 8px;
+    padding: 4px;
+    gap: 0;
+}
+
+.zc-tabs-bordered .zc-tab {
+    border-bottom: none;
+    border-radius: 6px;
+    margin-bottom: 0;
+    padding: 8px 16px;
+}
+
+.zc-tabs-bordered .zc-tab-active {
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-bottom: none;
+}
+
+/* CONTENT AREA */
+.zc-tabs-content {
+    padding: 16px 0;
+}
+
+.zc-tab-panel {
+    display: none;
+}
+
+.zc-tab-panel-active {
+    display: block;
+}

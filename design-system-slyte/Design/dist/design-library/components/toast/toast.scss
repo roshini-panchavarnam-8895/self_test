@@ -1,0 +1,309 @@
+/* =============================================================================
+   TOAST COMPONENT — SCSS
+   Figma Source: Toast_Overlay (node 2257:53389)
+   File: 88Zeos2AXPni7858flxLP2
+
+   VARIANTS:
+     Types     → Info | Success | Warning | Error
+     Features  → Close Button | Action Button | Auto-Dismiss
+     Positions → Top-Left | Top-Center | Top-Right |
+                 Bottom-Left | Bottom-Center | Bottom-Right
+
+   NAMING: Single-hyphen modifier  (zc-toast-info  NOT  zc-toast--info)
+   DOM:    Uses .zc-toast wrapper class on <lyte-alert> Slyte component
+
+   CSS VARIABLE DEPENDENCIES (from _color-tokens.scss):
+     --zc-color-info-surface-subtle            (#F5F8FE)
+     --zc-color-info-border-default             (#0D4EF2)
+     --zc-color-info-text-default                 (#0D4EF2)
+     --zc-color-info-text-bold                    (#051F61)
+     --zc-color-success-surface-subtle      (#F6FEF9)
+     --zc-color-success-border-default       (#078841)
+     --zc-color-success-text-default           (#078841)
+     --zc-color-success-text-bold              (#033F1E)
+     --zc-color-warning-surface-subtle      (#FFF9F5)
+     --zc-color-warning-border-default       (#D25704)
+     --zc-color-warning-text-default           (#D25704)
+     --zc-color-warning-text-bold              (#642902)
+     --zc-color-error-surface-subtle          (#FEF6F6)
+     --zc-color-error-border-default           (#CC1914)
+     --zc-color-error-text-default               (#CC1914)
+     --zc-color-error-text-bold                  (#5F0A07)
+     --zc-color-black-white-text-white-text                 (#FFFFFF)
+     --zc-font-family-default                               (ZohoPuvi)
+     --zc-radius-rl                                         (8px)
+     --zc-radius-s                                          (4px)
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   BASE TOAST
+   --------------------------------------------------------------------------- */
+.zc-toast {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--zc-radius-rl, 8px);
+    border-left: 4px solid transparent;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: var(--zc-p2-font-size, 14px);
+    font-weight: var(--zc-p2-font-weight-regular, 400);
+    line-height: var(--zc-p2-line-height, 20px);
+    min-width: 280px;
+    max-width: 480px;
+    box-shadow: 0px 2px 2px 0px rgba(38, 40, 43, 0.05),
+                0px 12px 16px -4px rgba(38, 40, 43, 0.08);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------------------
+   LYTE-BANNER OVERRIDES — reset banner defaults when used as toast
+   .lyteBannerNonFloating has: background:#2f363d, padding:10px 20px,
+   text-align:center, color:#fff, font-size:15px, display:block (inline JS)
+   --------------------------------------------------------------------------- */
+.lyteBannerNonFloating.zc-toast {
+    display: inline-flex !important;
+    text-align: left;
+}
+
+/* Compact position-demo items */
+.zc-toast.zc-toast-position-item {
+    min-width: auto;
+    font-size: 12px;
+    padding: 8px 12px;
+}
+
+/* ---------------------------------------------------------------------------
+   TOAST ICON
+   --------------------------------------------------------------------------- */
+.zc-toast-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+
+    svg, img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   TOAST MESSAGE
+   --------------------------------------------------------------------------- */
+.zc-toast-message {
+    flex: 1;
+    word-break: break-word;
+}
+
+/* ---------------------------------------------------------------------------
+   TYPE: INFO — Blue
+   --------------------------------------------------------------------------- */
+.zc-toast-info {
+    background: var(--zc-color-info-surface-subtle, #F5F8FE);
+    border-left-color: var(--zc-color-info-border-default, #0D4EF2);
+    color: var(--zc-color-info-text-bold, #051F61);
+
+    .zc-toast-icon {
+        color: var(--zc-color-info-text-default, #0D4EF2);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   TYPE: SUCCESS — Green
+   --------------------------------------------------------------------------- */
+.zc-toast-success {
+    background: var(--zc-color-success-surface-subtle, #F6FEF9);
+    border-left-color: var(--zc-color-success-border-default, #078841);
+    color: var(--zc-color-success-text-bold, #033F1E);
+
+    .zc-toast-icon {
+        color: var(--zc-color-success-text-default, #078841);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   TYPE: WARNING — Orange
+   --------------------------------------------------------------------------- */
+.zc-toast-warning {
+    background: var(--zc-color-warning-surface-subtle, #FFF9F5);
+    border-left-color: var(--zc-color-warning-border-default, #D25704);
+    color: var(--zc-color-warning-text-bold, #642902);
+
+    .zc-toast-icon {
+        color: var(--zc-color-warning-text-default, #D25704);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   TYPE: ERROR — Red
+   --------------------------------------------------------------------------- */
+.zc-toast-error {
+    background: var(--zc-color-error-surface-subtle, #FEF6F6);
+    border-left-color: var(--zc-color-error-border-default, #CC1914);
+    color: var(--zc-color-error-text-bold, #5F0A07);
+
+    .zc-toast-icon {
+        color: var(--zc-color-error-text-default, #CC1914);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   CLOSE BUTTON
+   --------------------------------------------------------------------------- */
+.zc-toast-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    margin-left: auto;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    border-radius: var(--zc-radius-s, 4px);
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, background 0.2s ease;
+
+    &:hover {
+        opacity: 1;
+        background: rgba(38, 40, 43, 0.06);
+    }
+
+    &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 1px;
+        opacity: 1;
+    }
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   ACTION BUTTON (inside toast)
+   --------------------------------------------------------------------------- */
+.zc-toast-action-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border: none;
+    border-radius: var(--zc-radius-s, 4px);
+    background: rgba(38, 40, 43, 0.08);
+    color: inherit;
+    font-family: 'ZohoPuvi', sans-serif;
+    font-size: var(--zc-p3-font-size, 12px);
+    font-weight: var(--zc-p2-font-weight-semibold, 600);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+        background: rgba(38, 40, 43, 0.14);
+    }
+
+    &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 1px;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   TOAST CONTAINER — fixed position wrapper
+   --------------------------------------------------------------------------- */
+.zc-toast-container {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+
+    .zc-toast,
+    lyte-banner {
+        pointer-events: auto;
+    }
+
+    /* Top positions */
+    &.zc-toast-top-left {
+        top: 20px;
+        left: 20px;
+        align-items: flex-start;
+    }
+    &.zc-toast-top-center {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+    }
+    &.zc-toast-top-right {
+        top: 20px;
+        right: 20px;
+        align-items: flex-end;
+    }
+
+    /* Bottom positions */
+    &.zc-toast-bottom-left {
+        bottom: 20px;
+        left: 20px;
+        align-items: flex-start;
+    }
+    &.zc-toast-bottom-center {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+    }
+    &.zc-toast-bottom-right {
+        bottom: 20px;
+        right: 20px;
+        align-items: flex-end;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   POSITION DEMO — viewport simulation (for showcase only)
+   --------------------------------------------------------------------------- */
+.zc-toast-position-demo {
+    margin-top: 16px;
+}
+
+.zc-toast-demo-viewport {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #F8F9FB;
+    border: 1px dashed #D5D6D9;
+    border-radius: var(--zc-radius-rl, 8px);
+    overflow: hidden;
+
+    .zc-toast-container {
+        position: absolute;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   ANIMATION — slide in
+   --------------------------------------------------------------------------- */
+@keyframes zc-toast-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.zc-toast {
+    animation: zc-toast-slide-in 0.3s ease forwards;
+}

@@ -1,0 +1,164 @@
+/* ==========================================================================
+   INPUT TEXT SCSS — Lyte Framework Overrides + Custom Classes
+   Figma: Text_Input_Base (node 2165:32695)
+   
+   Lyte DOM: lyte-input.lyteInputBox >
+             label.lyteLabel + div.lyteField > input
+   Framework adds: .lyteInputFocus (focus), .lyteInputDisabled (disabled)
+   ========================================================================== */
+
+/* ==========================================================================
+   SECTION 1 — LYTE-INPUT FRAMEWORK OVERRIDES (appearance="box")
+   ========================================================================== */
+
+/* --- Remove default bottom-border, force vertical layout --- */
+lyte-input.lyteInputBox {
+    border-bottom: none !important;
+    display: block !important;
+}
+
+/* --- Label (Figma: P2_Semibold 500/14 #000000) --- */
+lyte-input.lyteInputBox > label.lyteLabel {
+    display: block !important;
+    width: 100% !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #000000 !important;
+    font-family: 'ZohoPuvi', sans-serif !important;
+    line-height: 18px !important;
+    padding: 0 0 6px 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* --- Field wrapper (Figma: 36px height, 6px radius, #D5D6D9 border) --- */
+lyte-input.lyteInputBox > div {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 36px !important;
+    border: 1px solid #D5D6D9 !important;
+    border-radius: 6px !important;
+    background: #FFFFFF !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+    top: 0 !important;
+}
+
+/* --- Clear pseudo-element (framework :after) --- */
+lyte-input.lyteInputBox > div:after {
+    display: none !important;
+}
+
+/* --- Input element (Figma: P2_Regular 14px #37383C) --- */
+lyte-input.lyteInputBox input {
+    font-family: 'ZohoPuvi', sans-serif !important;
+    font-size: 14px !important;
+    color: #37383C !important;
+    height: 100% !important;
+    padding: 0 !important;
+    line-height: normal !important;
+}
+
+lyte-input.lyteInputBox input::placeholder {
+    color: #9EA0A7 !important;
+}
+
+/* --- Hover → blue border --- */
+lyte-input.lyteInputBox:hover > div {
+    border-color: #0D4EF2 !important;
+}
+
+/* --- Focus → blue border + shadow --- */
+lyte-input.lyteInputBox.lyteInputFocus > div,
+lyte-input.lyteInputBox > div:focus-within {
+    border-color: #0D4EF2 !important;
+    box-shadow: 0px 2px 2px 0px rgba(13, 78, 242, 0.05), 0px 2px 4px 0px rgba(13, 78, 242, 0.08) !important;
+}
+
+/* --- Disabled --- */
+lyte-input.lyteInputBox.lyteInputDisabled > div {
+    background: #F5F5F5 !important;
+    border-color: #D5D6D9 !important;
+    cursor: not-allowed !important;
+}
+
+lyte-input.lyteInputBox.lyteInputDisabled:hover > div {
+    border-color: #D5D6D9 !important;
+}
+
+lyte-input.lyteInputBox.lyteInputDisabled input {
+    cursor: not-allowed !important;
+    color: #9EA0A7 !important;
+}
+
+lyte-input.lyteInputBox.lyteInputDisabled > label.lyteLabel {
+    color: #9EA0A7 !important;
+}
+
+/* --- Read-only --- */
+lyte-input.lyteInputBox[lt-prop-readonly="true"] > div {
+    background: #F5F5F5 !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-readonly="true"]:hover > div {
+    border-color: #D5D6D9 !important;
+}
+
+lyte-input.lyteInputBox[lt-prop-readonly="true"] input {
+    cursor: default !important;
+}
+
+/* --- Error (class="zc-input-error" on lyte-input) --- */
+lyte-input.lyteInputBox.zc-input-error > div {
+    border-color: #CC1914 !important;
+    background: #FEF6F6 !important;
+}
+
+lyte-input.lyteInputBox.zc-input-error:hover > div {
+    border-color: #CC1914 !important;
+}
+
+/* --- Success (class="zc-input-success" on lyte-input) --- */
+lyte-input.lyteInputBox.zc-input-success > div {
+    border-color: #078841 !important;
+    background: #F6FEF9 !important;
+}
+
+lyte-input.lyteInputBox.zc-input-success:hover > div {
+    border-color: #078841 !important;
+}
+
+/* ==========================================================================
+   SECTION 2 — CUSTOM WRAPPER CLASSES (field, hint, icons)
+   ========================================================================== */
+
+/* --- Field container (wraps lyte-input + hint) --- */
+.zc-input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: 'ZohoPuvi', sans-serif;
+    min-width: 200px;
+}
+
+/* --- Hint / Helper text --- */
+.zc-input-hint {
+    font-size: 12px;
+    color: #26282B;
+}
+
+/* --- Error hint --- */
+.zc-input-field-error .zc-input-hint {
+    color: #CC1914;
+}
+
+/* --- Success hint --- */
+.zc-input-field-success .zc-input-hint {
+    color: #078841;
+}
+
+/* --- Disabled hint --- */
+.zc-input-field-disabled .zc-input-hint {
+    color: #9EA0A7;
+}

@@ -1,0 +1,387 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-check-square"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Checkbox</h1>
+                            <p class="detail-description">Select one or more items using <code>&lt;lyte-checkbox&gt;</code> Slyte DOM. Figma: CheckBox_Base (2352:2180). Variants: Unchecked, Checked, Indeterminate across Default, Hover, Pressed, Disabled states.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 3 Selections × 4 States</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchCheckboxStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchCheckboxStyleTab('checked', this)">Checked</button>
+                        <button class="btn-style-tab" onclick="switchCheckboxStyleTab('indeterminate', this)">Indeterminate</button>
+                        <button class="btn-style-tab" onclick="switchCheckboxStyleTab('hover', this)">Hover</button>
+                        <button class="btn-style-tab" onclick="switchCheckboxStyleTab('disabled', this)">Disabled</button>
+                        <button class="btn-style-tab" onclick="switchCheckboxStyleTab('group', this)">Group</button>
+                        <button class="btn-style-tab" onclick="switchCheckboxStyleTab('error', this)">Error</button>
+                    </div>
+
+                    <div id="checkbox-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Default — Unchecked</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Basic</span>
+                                        <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Accept terms and conditions</span></template></lyte-checkbox>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">With Hint</span>
+                                        <div>
+                                            <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Subscribe to newsletter</span></template></lyte-checkbox>
+                                            <div class="zc-checkbox-hint">We'll send you updates about new features</div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">No Label</span>
+                                        <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Remember me</span></template></lyte-checkbox>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-checkbox&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Accept terms and conditions&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-checkbox&gt;
+
+&lt;!-- With hint text --&gt;
+&lt;div&gt;
+  &lt;lyte-checkbox&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;
+      &lt;span&gt;Subscribe to newsletter&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/lyte-checkbox&gt;
+  &lt;div class="zc-checkbox-hint"&gt;We'll send you updates&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Override Lyte sprite with CSS — matches Figma Input_Checkbox */
+.lyteCheckBoxDefault:before {
+  width: 14px; height: 14px;
+  border-radius: 4px;
+  border: 1px solid #D5D6D9;
+  background: #FFFFFF;
+  background-image: none;   /* removes sprite */
+  box-sizing: border-box;
+}
+.zc-checkbox-hint {
+  font-size: 12px;
+  color: #9EA0A7;
+  margin-top: 2px;
+  margin-left: 20px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== CHECKED ==== -->
+                        <div class="btn-variant-group" data-style="checked" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Checked — Selected</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Single</span>
+                                        <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Selected option</span></template></lyte-checkbox>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Notifications</span>
+                                        <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Notifications enabled</span></template></lyte-checkbox>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Mixed List</span>
+                                        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+                                            <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Email</span></template></lyte-checkbox>
+                                            <lyte-checkbox><template is="registerYield" yield-name="yield"><span>SMS</span></template></lyte-checkbox>
+                                            <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Push</span></template></lyte-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;lyte-checkbox lt-prop-checked="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Selected option&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-checkbox&gt;
+
+&lt;!-- Mixed list --&gt;
+&lt;div style="display:flex;gap:20px;"&gt;
+  &lt;lyte-checkbox lt-prop-checked="true"&gt;...Email...&lt;/lyte-checkbox&gt;
+  &lt;lyte-checkbox&gt;...SMS...&lt;/lyte-checkbox&gt;
+  &lt;lyte-checkbox lt-prop-checked="true"&gt;...Push...&lt;/lyte-checkbox&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Checked → blue fill + inline SVG checkmark */
+.lyteCheckbox input:checked + .lyteCheckBoxDefault:before {
+  background: #0D4EF2 url("data:image/svg+xml,...tick...") no-repeat center;
+  background-size: 14px 14px;
+  border-color: #0B44D5;
+}
+/* Checked hover → darker blue */
+.lyteCheckbox:hover input:checked + .lyteCheckBoxDefault:before {
+  background-color: #0B44D5;
+  border-color: #0D4EF2;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== INDETERMINATE ==== (Custom HTML — lyte-checkbox doesn't support indeterminate natively) -->
+                        <div class="btn-variant-group" data-style="indeterminate" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Indeterminate — Partial Selection</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <!-- Custom HTML: lyte-checkbox doesn't support indeterminate state -->
+                                    <div class="btn-size-row"><span class="btn-size-label">Indeterminate</span>
+                                        <div class="zc-checkbox zc-checkbox-indeterminate">
+                                            <div class="zc-checkbox-box"><i class="fas fa-minus"></i></div>
+                                            <span class="zc-checkbox-text">Select all</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Parent + Children</span>
+                                        <div style="display:flex;flex-direction:column;gap:8px;">
+                                            <div class="zc-checkbox zc-checkbox-indeterminate">
+                                                <div class="zc-checkbox-box"><i class="fas fa-minus"></i></div>
+                                                <span class="zc-checkbox-text">All permissions</span>
+                                            </div>
+                                            <div style="margin-left:24px;display:flex;flex-direction:column;gap:8px;">
+                                                <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Read</span></template></lyte-checkbox>
+                                                <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Write</span></template></lyte-checkbox>
+                                                <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Admin</span></template></lyte-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Custom HTML — lyte-checkbox doesn't support indeterminate --&gt;
+&lt;div class="zc-checkbox zc-checkbox-indeterminate"&gt;
+  &lt;div class="zc-checkbox-box"&gt;&lt;i class="fas fa-minus"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;span class="zc-checkbox-text"&gt;Select all&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Child checkboxes use lyte-checkbox --&gt;
+&lt;div style="margin-left:24px;"&gt;
+  &lt;lyte-checkbox lt-prop-checked="true"&gt;...Read...&lt;/lyte-checkbox&gt;
+  &lt;lyte-checkbox&gt;...Admin...&lt;/lyte-checkbox&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Indeterminate → grey fill + dark minus (Figma) */
+.zc-checkbox-indeterminate .zc-checkbox-box {
+  background: #E5E5E7;
+  border-color: #D5D6D9;
+}
+.zc-checkbox-indeterminate .zc-checkbox-box i {
+  display: inline-flex;
+  color: #37383C;
+  font-size: 8px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== HOVER ==== -->
+                        <div class="btn-variant-group" data-style="hover" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Hover — Interactive States</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Unchecked Hover</span>
+                                        <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Hover over me</span></template></lyte-checkbox>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Checked Hover</span>
+                                        <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Checked — hover to darken</span></template></lyte-checkbox>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Hover is automatic via CSS :hover --&gt;
+&lt;lyte-checkbox&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Hover over me&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-checkbox&gt;
+
+&lt;!-- Checked hover --&gt;
+&lt;lyte-checkbox lt-prop-checked="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Checked — hover to darken&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-checkbox&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Unchecked hover → blue border + halo */
+lyte-checkbox:hover .lyteCheckBoxDefault:before {
+  border-color: #0D4EF2;
+  box-shadow: 0 0 0 2px #F5F8FE;
+}
+/* Checked hover → darker blue */
+.lyteCheckbox:hover input:checked + .lyteCheckBoxDefault:before {
+  background-color: #0B44D5;
+  border-color: #0D4EF2;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Disabled — Non-interactive</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Unchecked</span>
+                                        <lyte-checkbox lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span>Cannot select</span></template></lyte-checkbox>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Checked</span>
+                                        <lyte-checkbox lt-prop-checked="true" lt-prop-disabled="true"><template is="registerYield" yield-name="yield"><span>Already selected</span></template></lyte-checkbox>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Indeterminate</span>
+                                        <!-- Custom HTML: indeterminate + disabled not possible in lyte-checkbox -->
+                                        <div class="zc-checkbox zc-checkbox-indeterminate zc-checkbox-disabled">
+                                            <div class="zc-checkbox-box"><i class="fas fa-minus" style="display:inline-flex;"></i></div>
+                                            <span class="zc-checkbox-text">Partial (locked)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled unchecked --&gt;
+&lt;lyte-checkbox lt-prop-disabled="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Cannot select&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-checkbox&gt;
+
+&lt;!-- Disabled checked --&gt;
+&lt;lyte-checkbox lt-prop-checked="true" lt-prop-disabled="true"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Already selected&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-checkbox&gt;
+
+&lt;!-- Indeterminate disabled (custom HTML) --&gt;
+&lt;div class="zc-checkbox zc-checkbox-indeterminate zc-checkbox-disabled"&gt;
+  &lt;div class="zc-checkbox-box"&gt;&lt;i class="fas fa-minus"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;span class="zc-checkbox-text"&gt;Partial (locked)&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Disabled unchecked → grey fill */
+lyte-checkbox[lt-prop-disabled="true"] .lyteCheckBoxDefault:before {
+  background: #E5E5E7;
+  border-color: #D5D6D9;
+  cursor: not-allowed;
+}
+/* Disabled checked → grey fill + grey tick */
+lyte-checkbox[lt-prop-disabled="true"] .lyteCheckbox input:checked
+  + .lyteCheckBoxDefault:before {
+  background: #E5E5E7 url("...grey-tick...") no-repeat center;
+  border-color: #D5D6D9;
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== GROUP ==== -->
+                        <div class="btn-variant-group" data-style="group" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Group — Horizontal Layout</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Horizontal</span>
+                                        <div class="zc-checkbox-group">
+                                            <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Red</span></template></lyte-checkbox>
+                                            <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Green</span></template></lyte-checkbox>
+                                            <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Blue</span></template></lyte-checkbox>
+                                            <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Yellow</span></template></lyte-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-checkbox-group"&gt;
+  &lt;lyte-checkbox lt-prop-checked="true"&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;&lt;span&gt;Red&lt;/span&gt;&lt;/template&gt;
+  &lt;/lyte-checkbox&gt;
+  &lt;lyte-checkbox&gt;
+    &lt;template is="registerYield" yield-name="yield"&gt;&lt;span&gt;Green&lt;/span&gt;&lt;/template&gt;
+  &lt;/lyte-checkbox&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-checkbox-group {
+  display: flex;
+  gap: 12px;
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Group — Vertical Layout</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Vertical</span>
+                                        <div>
+                                            <div class="zc-checkbox-label">Select toppings</div>
+                                            <div class="zc-checkbox-group zc-checkbox-group-vertical">
+                                                <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Cheese</span></template></lyte-checkbox>
+                                                <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Mushroom</span></template></lyte-checkbox>
+                                                <lyte-checkbox><template is="registerYield" yield-name="yield"><span>Pepperoni</span></template></lyte-checkbox>
+                                                <lyte-checkbox lt-prop-checked="true"><template is="registerYield" yield-name="yield"><span>Onion</span></template></lyte-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;div class="zc-checkbox-label"&gt;Select toppings&lt;/div&gt;
+&lt;div class="zc-checkbox-group zc-checkbox-group-vertical"&gt;
+  &lt;lyte-checkbox lt-prop-checked="true"&gt;...Cheese...&lt;/lyte-checkbox&gt;
+  &lt;lyte-checkbox&gt;...Mushroom...&lt;/lyte-checkbox&gt;
+  &lt;lyte-checkbox&gt;...Pepperoni...&lt;/lyte-checkbox&gt;
+  &lt;lyte-checkbox lt-prop-checked="true"&gt;...Onion...&lt;/lyte-checkbox&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-checkbox-group { display: flex; gap: 12px; }
+.zc-checkbox-group-vertical { flex-direction: column; }
+.zc-checkbox-label { font-size: 14px; font-weight: 600; color: #37383C; margin-bottom: 6px; }</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ERROR ==== -->
+                        <div class="btn-variant-group" data-style="error" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">Error — Validation State</span><button class="btn-variant-card__toggle" onclick="toggleCheckboxCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row"><span class="btn-size-label">Error Unchecked</span>
+                                        <div>
+                                            <div class="zc-checkbox-error-wrapper">
+                                                <lyte-checkbox class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span>Accept terms</span></template></lyte-checkbox>
+                                            </div>
+                                            <div class="zc-checkbox-hint" style="color:#CC1914;">This field is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-size-row"><span class="btn-size-label">Error Group</span>
+                                        <div>
+                                            <div class="zc-checkbox-label">Select at least one</div>
+                                            <div class="zc-checkbox-group zc-checkbox-group-vertical zc-checkbox-error-wrapper">
+                                                <lyte-checkbox class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span>Option A</span></template></lyte-checkbox>
+                                                <lyte-checkbox class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span>Option B</span></template></lyte-checkbox>
+                                                <lyte-checkbox class="zc-checkbox-error"><template is="registerYield" yield-name="yield"><span>Option C</span></template></lyte-checkbox>
+                                            </div>
+                                            <div class="zc-checkbox-hint" style="color:#CC1914;">Please select at least one option</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchCheckboxCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchCheckboxCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Error state via wrapper class on lyte-checkbox --&gt;
+&lt;lyte-checkbox class="zc-checkbox-error"&gt;
+  &lt;template is="registerYield" yield-name="yield"&gt;
+    &lt;span&gt;Accept terms&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/lyte-checkbox&gt;
+&lt;div class="zc-checkbox-hint" style="color:#CC1914;"&gt;This field is required&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyCheckboxCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>/* Error unchecked → red border */
+lyte-checkbox.zc-checkbox-error .lyteCheckBoxDefault:before {
+  border-color: #CC1914;
+}
+/* Error hover → darker red border + subtle halo */
+lyte-checkbox.zc-checkbox-error:hover .lyteCheckBoxDefault:before {
+  border-color: #BA1812;
+  box-shadow: 0 0 0 2px rgba(204,25,20,0.08);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>

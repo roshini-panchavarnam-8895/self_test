@@ -1,0 +1,370 @@
+                    <div class="detail-header">
+                        <div class="detail-icon"><i class="fas fa-key"></i></div>
+                        <div class="detail-info">
+                            <h1 class="detail-title">Input OTP</h1>
+                            <p class="detail-description">OTP (One-Time Password) input with individual digit boxes using <code>&lt;lyte-input&gt;</code> Slyte DOM. Each digit is a separate input; auto-focus advances to the next box on entry.</p>
+                            <div class="detail-meta">
+                                <span class="meta-tag"><i class="fas fa-folder"></i> Form</span>
+                                <span class="meta-tag"><i class="fab fa-figma"></i> Figma Synced</span>
+                                <span class="meta-tag"><i class="fas fa-layer-group"></i> 2 Counts &times; 5 States</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Tabs -->
+                    <div class="btn-style-tabs zc-mb-16 zc-mt-8">
+                        <button class="btn-style-tab active" onclick="switchInputOtpStyleTab('default', this)">Default</button>
+                        <button class="btn-style-tab" onclick="switchInputOtpStyleTab('focus', this)">Focus</button>
+                        <button class="btn-style-tab" onclick="switchInputOtpStyleTab('filled', this)">Filled</button>
+                        <button class="btn-style-tab" onclick="switchInputOtpStyleTab('error', this)">Error</button>
+                        <button class="btn-style-tab" onclick="switchInputOtpStyleTab('success', this)">Success</button>
+                        <button class="btn-style-tab" onclick="switchInputOtpStyleTab('disabled', this)">Disabled</button>
+                    </div>
+
+                    <div id="input-otp-component-variants">
+
+                        <!-- ==== DEFAULT ==== -->
+                        <div class="btn-variant-group" data-style="default">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4-Digit OTP — Default</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">4-Digit</span>
+                                        <!-- Custom wrapper — lyte-input used per digit box -->
+                                        <div class="zc-otp-group zc-otp-4">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputOtpCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 4-Digit OTP — Default --&gt;
+&lt;div class="zc-otp-group zc-otp-4"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-otp-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.zc-otp-input,
+.zc-otp-input input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid var(--zc-color-neutral-border-neutral-border-default, #D5D6D9);
+  border-radius: var(--zc-radius-r, 6px);
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">6-Digit OTP — Default</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">6-Digit</span>
+                                        <!-- Custom wrapper — lyte-input used per digit box -->
+                                        <div class="zc-otp-group zc-otp-6">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 6-Digit OTP — Default --&gt;
+&lt;div class="zc-otp-group zc-otp-6"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FOCUS ==== -->
+                        <div class="btn-variant-group" data-style="focus" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4-Digit OTP — Focus</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">4-Digit</span>
+                                        <div class="zc-otp-group zc-otp-4">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input zc-otp-focus" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputOtpCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Focus state is automatic on :focus, or use .zc-otp-focus class --&gt;
+&lt;div class="zc-otp-group zc-otp-4"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input zc-otp-focus" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-otp-input:focus-within,
+.zc-otp-input.zc-otp-focus,
+.zc-otp-input.zc-otp-focus input {
+  border-color: var(--zc-color-primary-border-primary-border-default, #0D4EF2);
+  box-shadow: 0 0 0 2px var(--zc-color-primary-surface-primary-surface-subtle, #F5F8FE);
+}</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== FILLED ==== -->
+                        <div class="btn-variant-group" data-style="filled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4-Digit OTP — Filled</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">4-Digit</span>
+                                        <div class="zc-otp-group zc-otp-4">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="5"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="3"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="8"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="1"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Filled — each input has a value --&gt;
+&lt;div class="zc-otp-group zc-otp-4"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="5"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="3"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="8"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="1"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">6-Digit OTP — Filled</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">6-Digit</span>
+                                        <div class="zc-otp-group zc-otp-6">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="7"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="2"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="9"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="4"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="0"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="6"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 6-Digit Filled --&gt;
+&lt;div class="zc-otp-group zc-otp-6"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="7"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="2"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="9"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="4"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="0"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="6"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== ERROR ==== -->
+                        <div class="btn-variant-group" data-style="error" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4-Digit OTP — Error</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">4-Digit</span>
+                                        <div class="zc-otp-group zc-otp-4 zc-otp-error">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="5"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="3"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="8"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="1"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputOtpCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Error — add .zc-otp-error to group --&gt;
+&lt;div class="zc-otp-group zc-otp-4 zc-otp-error"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="5"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="3"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="8"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="1"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-otp-error .zc-otp-input,
+.zc-otp-error .zc-otp-input input {
+  border-color: var(--zc-color-error-border-error-border-default, #CC1914);
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">6-Digit OTP — Error</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">6-Digit</span>
+                                        <div class="zc-otp-group zc-otp-6 zc-otp-error">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="7"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="2"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="9"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="4"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="0"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="6"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 6-Digit Error --&gt;
+&lt;div class="zc-otp-group zc-otp-6 zc-otp-error"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="7"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="2"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="9"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="4"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="0"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="6"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== SUCCESS ==== -->
+                        <div class="btn-variant-group" data-style="success" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4-Digit OTP — Success</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">4-Digit</span>
+                                        <div class="zc-otp-group zc-otp-4 zc-otp-success">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="5"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="3"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="8"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="1"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputOtpCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Success — add .zc-otp-success to group --&gt;
+&lt;div class="zc-otp-group zc-otp-4 zc-otp-success"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="5"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="3"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="8"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="1"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-otp-success .zc-otp-input,
+.zc-otp-success .zc-otp-input input {
+  border-color: var(--zc-color-success-border-success-border-default, #078841);
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">6-Digit OTP — Success</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">6-Digit</span>
+                                        <div class="zc-otp-group zc-otp-6 zc-otp-success">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="7"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="2"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="9"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="4"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="0"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="6"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 6-Digit Success --&gt;
+&lt;div class="zc-otp-group zc-otp-6 zc-otp-success"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="7"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="2"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="9"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="4"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="0"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-value="6"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== DISABLED ==== -->
+                        <div class="btn-variant-group" data-style="disabled" style="display:none">
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">4-Digit OTP — Disabled</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">4-Digit</span>
+                                        <div class="zc-otp-group zc-otp-4 zc-otp-disabled">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button><button class="btn-code-tab" onclick="switchInputOtpCodeTab('scss', this)">SCSS</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- Disabled — use lt-prop-disabled on each lyte-input --&gt;
+&lt;div class="zc-otp-group zc-otp-4 zc-otp-disabled"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                    <div class="btn-code-block" data-lang="scss" style="display:none"><div class="btn-code-header"><span>SCSS</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>.zc-otp-disabled,
+.zc-otp-group.zc-otp-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}</code></pre></div>
+                                </div>
+                            </div>
+                            <div class="btn-variant-card">
+                                <div class="btn-variant-card__header"><span class="btn-variant-card__title">6-Digit OTP — Disabled</span><button class="btn-variant-card__toggle" onclick="toggleInputOtpCodePanel(this)"><i class="fas fa-code"></i><span>Show Code</span></button></div>
+                                <div class="btn-variant-card__preview">
+                                    <div class="btn-size-row">
+                                        <span class="btn-size-label">6-Digit</span>
+                                        <div class="zc-otp-group zc-otp-6 zc-otp-disabled">
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                            <lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"></lyte-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-code-panel" style="display:none">
+                                    <div class="btn-code-tabs"><button class="btn-code-tab active" onclick="switchInputOtpCodeTab('html', this)">HTML</button></div>
+                                    <div class="btn-code-block" data-lang="html" style="display:block"><div class="btn-code-header"><span>HTML</span><button onclick="copyInputOtpCode(this)"><i class="fas fa-copy"></i></button></div><pre><code>&lt;!-- 6-Digit Disabled --&gt;
+&lt;div class="zc-otp-group zc-otp-6 zc-otp-disabled"&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+  &lt;lyte-input class="zc-otp-input" lt-prop-placeholder="·" lt-prop-max-length="1" lt-prop-disabled="true"&gt;&lt;/lyte-input&gt;
+&lt;/div&gt;</code></pre></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
